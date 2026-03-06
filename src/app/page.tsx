@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "高雄質感包棟民宿 | 你好哇寓所 & 溝頂民宿 | 6-38人團體住宿首選",
-  description: "高雄鹽埕區包棟民宿推薦。你好哇寓所（6-26人）與溝頂民宿（10-12人），專為團體打造的質感獨立旅宿空間。近駁二、大港橋，配備中島廚房與麻將設備。",
+  title: "高雄質感包棟民宿 | 你好哇寓所・溝頂民宿・大智若愚 | 6-48人團體住宿首選",
+  description: "高雄鹽埕區包棟民宿推薦。你好哇寓所（6-26人）、溝頂民宿（10-12人）、大智若愚（最大48人），專為團體打造的質感獨立旅宿空間。近駁二、大港橋。",
 };
 
 export default function HomePage() {
@@ -48,8 +48,8 @@ export default function HomePage() {
       <section className="sec-cream">
         <div className="w" style={{ textAlign: "center", marginBottom: "60px" }}>
           <Reveal>
-            <div className="label-d" style={{ color: "#8A8279" }}>Two Properties, One Philosophy</div>
-            <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "0.06em" }}>兩棟風格，一種堅持</h2>
+            <div className="label-d" style={{ color: "#8A8279" }}>Three Properties, One Philosophy</div>
+            <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "0.06em" }}>三館風格，一種堅持</h2>
             <div className="gold-line" style={{ margin: "24px auto" }} />
           </Reveal>
         </div>
@@ -100,6 +100,31 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
+
+          {/* 大智若愚 */}
+          <Reveal>
+            <div className="grid-asym" style={{ marginTop: "clamp(60px, 8vw, 100px)" }}>
+              <div style={{ background: "#FAF8F5", borderRadius: "16px", padding: "40px 32px", textAlign: "center" }}>
+                <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.3em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "16px" }}>Coming Soon · 2026</div>
+                <div style={{ fontFamily: "var(--serif)", fontSize: "2rem", color: "#3D3830", letterSpacing: "0.1em", marginBottom: "12px" }}>大智若愚</div>
+                <div style={{ width: "40px", height: "1px", background: "#D4CBC0", margin: "0 auto" }} />
+              </div>
+              <div>
+                <div className="label-d" style={{ color: "#BEB5A8" }}>03</div>
+                <h3 style={{ fontSize: "1.6rem", marginBottom: "16px", letterSpacing: "0.06em" }}>大智若愚</h3>
+                <div className="gold-line" style={{ background: "#D4CBC0", marginBottom: "20px" }} />
+                <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
+                  全新電梯民宿，最大可住 48 人。大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟。
+                </p>
+                <p style={{ fontSize: "0.78rem", color: "#bbb", marginBottom: "28px" }}>
+                  大港橋旁・即將開幕
+                </p>
+                <Link href="/dazhi" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#A09282", letterSpacing: "0.1em", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "4px" }}>
+                  了解更多 →
+                </Link>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -107,7 +132,7 @@ export default function HomePage() {
       <div className="cta-strip">
         <Reveal>
           <h3>找到屬於你的理想空間</h3>
-          <p>6 至 38 人彈性包棟，為每一場相聚量身打造。</p>
+          <p>6 至 48 人彈性包棟，為每一場相聚量身打造。</p>
           <Link href="/book" className="btn-reserve">查詢空房與報價</Link>
         </Reveal>
       </div>

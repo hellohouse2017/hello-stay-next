@@ -16,6 +16,7 @@ export default function Footer() {
                         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                             <Link href="/hellohouse" style={{ fontSize: "0.82rem" }}>你好哇寓所</Link>
                             <Link href="/godin" style={{ fontSize: "0.82rem" }}>溝頂民宿</Link>
+                            <Link href="/dazhi" style={{ fontSize: "0.82rem" }}>大智若愚</Link>
                             <Link href="/book" style={{ fontSize: "0.82rem" }}>查詢空房</Link>
                         </div>
                     </div>

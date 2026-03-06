@@ -14,6 +14,7 @@ export default function Navbar() {
     const links = [
         { href: "/hellohouse", label: "你好哇寓所" },
         { href: "/godin", label: "溝頂民宿" },
+        { href: "/dazhi", label: "大智若愚" },
         { href: "/book", label: "預訂", cta: true },
     ];
 
