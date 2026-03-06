@@ -16,6 +16,18 @@ export default function DazhiPage() {
             paddingTop: "calc(var(--nav-h) + 20px)",
             paddingBottom: "80px",
         }}>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org", "@type": "LodgingBusiness",
+                    name: "大智若愚 Dazhi Ruoyu", url: "https://www.hello-stay.com/dazhi",
+                    telephone: "+886-932-828-922",
+                    description: "高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。即將開幕。",
+                    address: { "@type": "PostalAddress", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                    geo: { "@type": "GeoCoordinates", latitude: 22.6190, longitude: 120.2850 },
+                    checkinTime: "16:00", checkoutTime: "11:00",
+                    petsAllowed: false,
+                })
+            }} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px" }}>
 
                 {/* Hero render */}

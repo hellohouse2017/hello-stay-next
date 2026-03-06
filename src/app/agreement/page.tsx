@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "入住須知與住宿契約 | 你好哇寓所 & 溝頂民宿",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function AgreementPage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+            <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: "入住須知與住宿契約", description: "你好哇寓所與溝頂民宿的住宿契約書、押金規定、取消退費政策及生活規範。", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" } }} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
 
                 {/* Header */}

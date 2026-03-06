@@ -12,12 +12,38 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org", "@type": "LodgingBusiness",
-          name: "Hello Stay 你好哇寓所 & 溝頂民宿", url: "https://www.hello-stay.com",
-          telephone: "0932828922",
-          description: "高雄鹽埕質感包棟民宿，6-38人團體住宿首選。",
-        })
+        __html: JSON.stringify([
+          {
+            "@context": "https://schema.org", "@type": "LodgingBusiness",
+            name: "Hello Stay 你好哇寓所 & 溝頂民宿 & 大智若愚",
+            url: "https://www.hello-stay.com",
+            telephone: "+886-932-828-922",
+            description: "高雄鹽埕區質感包棟民宿，三館可容納6至48人。配備中島廚房、麻將桌與KTV設備。",
+            address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+            geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 },
+            priceRange: "$$",
+            checkinTime: "16:00", checkoutTime: "11:00",
+            numberOfRooms: 10, petsAllowed: false,
+            amenityFeature: [
+              { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
+              { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
+              { "@type": "LocationFeatureSpecification", name: "KTV", value: true },
+              { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+            ],
+            aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "87", bestRating: "5" },
+          },
+          {
+            "@context": "https://schema.org", "@type": "FAQPage",
+            mainEntity: [
+              { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，提供6間房型。另有溝頂民宿（10-12人）及即將開幕的大智若愚（最大48人）。" } },
+              { "@type": "Question", name: "高雄包棟民宿有停車場嗎？", acceptedAnswer: { "@type": "Answer", text: "周邊有6間停車場，大公路路邊20:00-08:00免費停車。詳見交通指南頁面。" } },
+              { "@type": "Question", name: "民宿可以帶寵物嗎？", acceptedAnswer: { "@type": "Answer", text: "非寵物友善旅宿。經事前申請並同意者，酌收清潔費$800-$1,000。" } },
+              { "@type": "Question", name: "有廚房可以煮飯嗎？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所配備豪華中島廚房，可自行採買食材料理。非常適合包棟聚餐、火鍋圍爐。" } },
+              { "@type": "Question", name: "怎麼到達民宿？", acceptedAnswer: { "@type": "Answer", text: "搭高鐵至左營站，轉捷運紅線到美麗島站，再轉橘線至鹽埕埔站（O2），4號出口步行約5分鐘即達。" } },
+              { "@type": "Question", name: "附近有什麼景點？", acceptedAnswer: { "@type": "Answer", text: "步行10分鐘到駁二藝術特區，8分鐘到大港橋，鄰近棧貳庫、西子灣、旗津渡輪站。位於鹽埕區美食一級戰區。" } },
+            ],
+          },
+        ])
       }} />
 
       {/* ── Hero ── */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "包棟方案 | 企業・婚禮・家族・球隊・派對 | 你好哇寓所 & 溝頂民宿",
@@ -55,6 +56,7 @@ const packages = [
 export default function PackagesPage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+            <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", provider: { "@type": "LodgingBusiness", name: "Hello Stay" }, name: "高雄包棟方案", description: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，量身打造高雄鹽埕區包棟方案。", areaServed: { "@type": "Place", name: "高雄鹽埕區" }, serviceType: "包棟住宿", hasOfferCatalog: { "@type": "OfferCatalog", name: "包棟方案列表", itemListElement: packages.map((p, i) => ({ "@type": "Offer", position: i + 1, name: p.title, description: p.desc })) } }} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
                 {/* Header */}

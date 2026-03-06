@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "周邊探索 | 景點・美食・行程推薦 | 你好哇寓所 & 溝頂民宿",
@@ -85,6 +86,7 @@ const itineraries = [
 export default function ExplorePage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+            <JsonLd data={{ "@context": "https://schema.org", "@type": "TouristDestination", name: "高雄鹽埕區", description: "高雄最有文化底蘊的美食街區，步行可達駁二藝術特區、大港橋、棧貳庫。30間以上在地老店，入住包棟民宿即可步出門探索。", touristType: ["家庭旅遊", "團體旅遊", "文化旅遊", "美食之旅"], geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } }} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
                 {/* Header */}

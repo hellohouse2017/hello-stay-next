@@ -29,13 +29,32 @@ export default function GodinPage() {
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                    "@context": "https://schema.org", "@type": "LodgingBusiness",
-                    name: "溝頂民宿", url: "https://www.hello-stay.com/godin",
-                    telephone: "0932828922",
-                    description: "高雄鹽埕精緻獨棟包棟，10-12人家庭出遊推薦。",
-                    address: { "@type": "PostalAddress", addressLocality: "高雄市", addressRegion: "鹽埕區" },
-                })
+                __html: JSON.stringify([
+                    {
+                        "@context": "https://schema.org", "@type": "LodgingBusiness",
+                        name: "溝頂民宿 Godin House", url: "https://www.hello-stay.com/godin",
+                        telephone: "+886-932-828-922",
+                        description: "高雄鹽埕區精緻獨棟包棟民宿，10-12人家庭出遊推薦。五層樓完整空間，平日$10,000起。",
+                        address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                        geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 },
+                        priceRange: "$", checkinTime: "16:00", checkoutTime: "11:00",
+                        numberOfRooms: 4, petsAllowed: false,
+                        amenityFeature: [
+                            { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "獨立衛浴", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+                        ],
+                        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "45", bestRating: "5" },
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "FAQPage",
+                        mainEntity: [
+                            { "@type": "Question", name: "溝頂民宿可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿為五層樓獨棟，可容納10-12人入住。" } },
+                            { "@type": "Question", name: "溝頂民宿平日多少錢？", acceptedAnswer: { "@type": "Answer", text: "平日$10,000起，是小團體包棟的超值首選。" } },
+                            { "@type": "Question", name: "溝頂民宿在哪裡？", acceptedAnswer: { "@type": "Answer", text: "位於高雄鹽埕區大公路70巷，鄰近捷運鹽埕埔站O2，步行至駁二藝術特區約10分鐘。" } },
+                        ],
+                    },
+                ])
             }} />
 
             {/* ── Hero (B-style: clean photo, no overlay) ── */}

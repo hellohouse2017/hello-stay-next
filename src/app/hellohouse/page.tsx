@@ -29,13 +29,35 @@ export default function HelloHousePage() {
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                    "@context": "https://schema.org", "@type": "LodgingBusiness",
-                    name: "你好哇寓所", url: "https://www.hello-stay.com/hellohouse",
-                    telephone: "0932828922",
-                    description: "高雄鹽埕區質感包棟民宿，6-26人彈性包棟。配備中島廚房與麻將設備。",
-                    address: { "@type": "PostalAddress", addressLocality: "高雄市", addressRegion: "鹽埕區" },
-                })
+                __html: JSON.stringify([
+                    {
+                        "@context": "https://schema.org", "@type": "LodgingBusiness",
+                        name: "你好哇寓所 Hello House", url: "https://www.hello-stay.com/hellohouse",
+                        telephone: "+886-932-828-922",
+                        description: "高雄鹽埕區質感包棟民宿，6-26人彈性包棟。配備豪華中島廚房、麻將桌、KTV。步行10分鐘到駁二藝術特區。",
+                        address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                        geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 },
+                        priceRange: "$$", checkinTime: "16:00", checkoutTime: "11:00",
+                        numberOfRooms: 6, petsAllowed: false,
+                        amenityFeature: [
+                            { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "KTV", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+                            { "@type": "LocationFeatureSpecification", name: "獨立衛浴", value: true },
+                        ],
+                        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "87", bestRating: "5" },
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "FAQPage",
+                        mainEntity: [
+                            { "@type": "Question", name: "哪裡訂房最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方訂房最優惠！透過 LINE 或網站預訂，免收平台手續費。" } },
+                            { "@type": "Question", name: "附近有什麼好玩景點？", acceptedAnswer: { "@type": "Answer", text: "步行即達駁二藝術特區、大港橋、棧貳庫。鄰近愛河、西子灣、壽山動物園。" } },
+                            { "@type": "Question", name: "包棟可以容納多少人？", acceptedAnswer: { "@type": "Answer", text: "彈性方案6至26人。兩棟合訂最高可接待38人。" } },
+                            { "@type": "Question", name: "有廚房或娛樂設施嗎？", acceptedAnswer: { "@type": "Answer", text: "一樓大型中島廚房（含IH爐、冰箱、餐具）及麻將桌、43吋聯網電視。" } },
+                        ],
+                    },
+                ])
             }} />
 
             {/* ── Hero (D-style: dark + gold) ── */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "交通指南與停車資訊 | 你好哇寓所 & 溝頂民宿",
@@ -36,6 +37,10 @@ const properties = [
 export default function TrafficPage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+            <JsonLd data={[
+                { "@context": "https://schema.org", "@type": "Place", name: "你好哇寓所", address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 }, publicAccess: true },
+                { "@context": "https://schema.org", "@type": "Place", name: "溝頂民宿", address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 }, publicAccess: true },
+            ]} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
 
                 {/* Header */}
