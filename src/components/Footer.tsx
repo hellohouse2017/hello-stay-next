@@ -28,6 +28,7 @@ export default function Footer() {
                             <Link href="/explore" style={{ fontSize: "0.82rem" }}>周邊探索</Link>
                             <Link href="/packages" style={{ fontSize: "0.82rem" }}>包棟方案</Link>
                             <Link href="/blog" style={{ fontSize: "0.82rem" }}>旅宿攻略</Link>
+                            <Link href="/reviews" style={{ fontSize: "0.82rem" }}>住客評價</Link>
                         </div>
                     </div>
                     <div>

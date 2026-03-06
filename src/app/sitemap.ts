@@ -14,6 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/traffic`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/explore`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
         { url: `${baseUrl}/packages`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/reviews`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        // Capacity landing pages
+        { url: `${baseUrl}/capacity/10`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/capacity/20`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/capacity/30`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         // Blog
         { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
         { url: `${baseUrl}/blog/kaohsiung-group-stay-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
