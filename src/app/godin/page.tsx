@@ -4,103 +4,92 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "溝頂民宿 | 高雄鹽埕區精緻小包棟 | 10-12人家庭出遊推薦",
-    description: "溝頂民宿位於高雄鹽埕區，提供10至12人精緻獨棟包棟，五層樓空間規劃，溫馨家庭風格。交通便利近駁二藝術特區。",
+    title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人家庭出遊推薦",
+    description: "高雄鹽埕區精緻獨棟包棟民宿。溝頂民宿提供10-12人入住，五層樓完整空間，溫馨家庭風格。近駁二藝術特區、大港橋。平日$10,000起。",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
 };
 
-const features = [
-    { icon: "fa-solid fa-house-chimney", title: "五層獨棟空間", desc: "整棟獨立使用，完整隱私。從 1F 到 5F 每層都有不同功能空間規劃。" },
-    { icon: "fa-solid fa-users", title: "10-12人舒適入住", desc: "3-4 房靈活配置，每房獨立衛浴。適合家族旅遊、小型團體包棟。" },
-    { icon: "fa-solid fa-tag", title: "高 CP 值定價", desc: "平日 10,000 元起即可全棟包下，是小團體包棟的超值首選。" },
-    { icon: "fa-solid fa-location-dot", title: "鹽埕核心位置", desc: "步行即可抵達駁二、大港橋。鄰近捷運鹽埕埔站，交通便利。" },
+const rooms = [
+    { src: "/images/godin/room1.jpg", alt: "溝頂民宿 2F 四人房" },
+    { src: "/images/godin/room2.jpg", alt: "溝頂民宿 3F 四人房" },
+    { src: "/images/godin/room3.jpg", alt: "溝頂民宿 4F 雙人房" },
+    { src: "/images/godin/room4.jpg", alt: "溝頂民宿 5F 雙人房" },
 ];
 
 const floors = [
-    { title: "1F", sub: "玄關 + 公共空間", detail: "電子鎖入口、鞋櫃、公共區域" },
-    { title: "2F", sub: "四人房", detail: "寬敞四人空間，獨立衛浴" },
-    { title: "3F", sub: "四人房", detail: "明亮四人空間，獨立衛浴" },
-    { title: "4F", sub: "雙人房 + 客廳", detail: "溫馨雙人房，開放式客廳" },
-    { title: "5F", sub: "雙人房", detail: "頂樓雙人房，採光充足" },
+    { num: "1F", label: "玄關 + 公共空間", desc: "電子鎖入口、鞋櫃、客廳區域" },
+    { num: "2F", label: "四人房", desc: "寬敞空間，獨立衛浴" },
+    { num: "3F", label: "四人房", desc: "明亮採光，獨立衛浴" },
+    { num: "4F", label: "雙人房 + 客廳", desc: "溫馨小客廳，休憩空間" },
+    { num: "5F", label: "雙人房", desc: "頂樓空間，充足採光" },
 ];
 
 export default function GodinPage() {
     return (
         <>
-            {/* JSON-LD */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "LodgingBusiness",
-                        name: "溝頂民宿",
-                        url: "https://www.hello-stay.com/godin",
-                        telephone: "0932828922",
-                        description: "高雄鹽埕精緻小包棟，10-12人家庭出遊推薦。",
-                        address: { "@type": "PostalAddress", addressLocality: "高雄市", addressRegion: "鹽埕區" },
-                    }),
-                }}
-            />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org", "@type": "LodgingBusiness",
+                    name: "溝頂民宿", url: "https://www.hello-stay.com/godin",
+                    telephone: "0932828922",
+                    description: "高雄鹽埕精緻獨棟包棟，10-12人家庭出遊推薦。",
+                    address: { "@type": "PostalAddress", addressLocality: "高雄市", addressRegion: "鹽埕區" },
+                })
+            }} />
 
-            {/* Hero */}
-            <section
-                style={{
-                    position: "relative",
-                    height: "75vh",
-                    minHeight: "550px",
-                    display: "flex",
-                    alignItems: "flex-end",
-                    overflow: "hidden",
-                    background: "#0a0a0a",
-                }}
-            >
-                <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/godin/cover-1.jpg')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.55, animation: "zoomSlow 25s infinite alternate" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%)" }} />
-                <div style={{ position: "relative", zIndex: 2, padding: "60px 0", width: "100%" }}>
-                    <div className="container">
-                        <div style={{ fontFamily: "var(--font-en)", fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--c-gold-light)", marginBottom: "16px", opacity: 0, animation: "fadeInUp 0.8s ease 0.2s forwards" }}>
-                            Godin House · 溝頂民宿
-                        </div>
-                        <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "white", fontWeight: 600, letterSpacing: "0.06em", lineHeight: 1.3, marginBottom: "24px", opacity: 0, animation: "fadeInUp 0.8s ease 0.4s forwards" }}>
-                            溝頂民宿
-                        </h1>
-                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", opacity: 0, animation: "fadeInUp 0.8s ease 0.6s forwards" }}>
-                            {["10-12人精緻包棟", "五層獨棟空間", "高CP值"].map(t => (
-                                <span key={t} className="badge" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.15)" }}>{t}</span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+            {/* ── Hero (B-style: clean photo, no overlay) ── */}
+            <section className="hero-b">
+                <Image src="/images/godin/cover-1.jpg" alt="溝頂民宿 共用空間" width={900} height={600} priority />
+                <h1>溝頂民宿</h1>
+                <div className="sub">Godin House · A Quiet Retreat</div>
+                <p className="desc">
+                    隱身鹽埕靜謐巷弄，五層樓獨棟空間。<br />
+                    為 10 至 12 人的小團體，打造有溫度的包棟體驗。
+                </p>
             </section>
 
-            {/* Intro */}
-            <section className="section" style={{ background: "white" }}>
-                <div className="container" style={{ maxWidth: "750px", textAlign: "center" }}>
+            {/* ── Intro (asymmetric) ── */}
+            <section className="sec-warm" style={{ paddingTop: "0" }}>
+                <div className="w">
                     <Reveal>
-                        <span className="section-label" style={{ justifyContent: "center" }}>About Godin</span>
-                        <p style={{ fontSize: "1.15rem", lineHeight: 2.2, color: "var(--c-text-soft)" }}>
-                            <strong style={{ color: "var(--c-text)" }}>溝頂民宿</strong>是你好哇系列的精緻二館，
-                            整棟五層樓獨立空間，<strong style={{ color: "var(--c-text)" }}>10 至 12 人</strong>小團體的完美選擇。
-                            隱身在鹽埕靜謐巷弄中，卻擁有前往駁二、大港橋的絕佳位置。
-                            以溫馨家庭風格呈現，讓每一次入住都像回家。
-                        </p>
+                        <div className="grid-asym">
+                            <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
+                                <Image src="/images/godin/cover-2.jpg" alt="溝頂民宿 客廳" width={700} height={525} className="img-cover" />
+                            </div>
+                            <div>
+                                <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>About</div>
+                                <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", marginBottom: "16px", letterSpacing: "0.06em", color: "#2a2a2a" }}>像回家一樣的旅行</h2>
+                                <div style={{ width: "40px", height: "1px", background: "#ddd", marginBottom: "20px" }} />
+                                <p style={{ fontSize: "0.92rem", color: "#999", lineHeight: 2.2 }}>
+                                    溝頂民宿是你好哇系列的精緻二館。整棟五層樓獨立使用，沒有外人打擾。
+                                    以溫馨家庭風格呈現，讓每一次入住都像回到自己的家。
+                                    平日 $10,000 起，是小團體包棟的超值首選。
+                                </p>
+                            </div>
+                        </div>
                     </Reveal>
                 </div>
             </section>
 
-            {/* Gallery */}
-            <section style={{ padding: "0 0 var(--space-2xl)" }}>
-                <div className="container">
+            {/* ── Room Gallery (B-style: zen cards) ── */}
+            <section className="sec-warm" style={{ paddingTop: "0" }}>
+                <div className="w" style={{ marginBottom: "30px" }}>
                     <Reveal>
-                        <div className="gallery-grid">
-                            {[
-                                { src: "/images/godin/cover-1.jpg", alt: "溝頂民宿外觀" },
-                                { src: "/images/godin/cover-2.jpg", alt: "溝頂民宿客廳" },
-                                { src: "/images/godin/cover-3.jpg", alt: "溝頂民宿臥室" },
-                            ].map(img => (
-                                <div key={img.src} className="gallery-img">
-                                    <Image src={img.src} alt={img.alt} width={800} height={500} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>Rooms</div>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a" }}>房間一覽</h2>
+                    </Reveal>
+                </div>
+                <div className="w">
+                    <Reveal>
+                        <div className="grid-2">
+                            {rooms.map(r => (
+                                <div key={r.src} className="zen-card">
+                                    <div className="img-zoom" style={{ aspectRatio: "4/3" }}>
+                                        <Image src={r.src} alt={r.alt} width={600} height={450} className="img-cover" />
+                                    </div>
+                                    <div style={{ padding: "16px 20px" }}>
+                                        <div style={{ fontSize: "0.85rem", color: "#888" }}>{r.alt.replace("溝頂民宿 ", "")}</div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -108,88 +97,60 @@ export default function GodinPage() {
                 </div>
             </section>
 
-            {/* Features */}
-            <section className="section" style={{ background: "var(--c-warm-white)" }}>
-                <div className="container">
+            {/* ── Floor Plan (B-style: clean list) ── */}
+            <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
+                <div className="w" style={{ maxWidth: "650px" }}>
                     <Reveal>
-                        <span className="section-label">Highlights</span>
-                        <h2 className="section-heading">溝頂四大特色</h2>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>Floor Plan</div>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a", marginBottom: "30px" }}>樓層配置</h2>
                     </Reveal>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px", marginTop: "50px" }}>
-                        {features.map((f, i) => (
-                            <Reveal key={f.title} delay={i + 1}>
-                                <div className="feature-card">
-                                    <div className="feature-icon"><i className={f.icon} /></div>
-                                    <h3 style={{ fontSize: "1.1rem", marginBottom: "10px" }}>{f.title}</h3>
-                                    <p style={{ color: "var(--c-text-soft)", fontSize: "0.9rem", lineHeight: 1.8 }}>{f.desc}</p>
+                    {floors.map(f => (
+                        <Reveal key={f.num}>
+                            <div className="floor-item">
+                                <div className="floor-num">{f.num}</div>
+                                <div>
+                                    <div className="floor-label">{f.label}</div>
+                                    <div className="floor-desc">{f.desc}</div>
                                 </div>
-                            </Reveal>
-                        ))}
-                    </div>
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
             </section>
 
-            {/* Floor Plan */}
-            <section className="section">
-                <div className="container" style={{ maxWidth: "750px" }}>
+            {/* ── More photos ── */}
+            <section className="sec-warm">
+                <div className="w">
                     <Reveal>
-                        <span className="section-label">Floor Plan</span>
-                        <h2 className="section-heading">樓層空間配置</h2>
-                    </Reveal>
-                    <div style={{ marginTop: "50px" }}>
-                        {floors.map((f, i) => (
-                            <Reveal key={f.title} delay={i}>
-                                <div style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "24px",
-                                    padding: "24px 0",
-                                    borderBottom: "1px solid var(--c-border)",
-                                }}>
-                                    <div style={{
-                                        width: "60px",
-                                        height: "60px",
-                                        borderRadius: "16px",
-                                        background: "var(--c-gold-glow)",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontFamily: "var(--font-en)",
-                                        fontWeight: 700,
-                                        fontSize: "1.1rem",
-                                        color: "var(--c-gold-dark)",
-                                        flexShrink: 0,
-                                    }}>
-                                        {f.title}
-                                    </div>
-                                    <div>
-                                        <div style={{ fontWeight: 600, fontSize: "1rem", marginBottom: "4px" }}>{f.sub}</div>
-                                        <div style={{ fontSize: "0.88rem", color: "var(--c-text-soft)" }}>{f.detail}</div>
-                                    </div>
+                        <div className="grid-3">
+                            {["/images/godin/cover-3.jpg", "/images/godin/cover-4.jpg", "/images/godin/cover-bg.jpg"].map(src => (
+                                <div key={src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
+                                    <Image src={src} alt="溝頂民宿" width={400} height={300} className="img-cover" />
                                 </div>
-                            </Reveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="section" style={{ background: "var(--c-cream)" }}>
-                <div className="container">
-                    <Reveal>
-                        <div className="cta-block">
-                            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "white", marginBottom: "16px" }}>
-                                小團體的完美包棟體驗
-                            </h3>
-                            <p style={{ color: "rgba(255,255,255,0.5)", marginBottom: "36px", lineHeight: 2 }}>
-                                平日 $10,000 起，12 人以內的聚會首選。
-                            </p>
-                            <Link href="/book" className="btn btn-gold" style={{ padding: "16px 48px" }}>
-                                立即查詢空房
-                            </Link>
+                            ))}
                         </div>
                     </Reveal>
                 </div>
+            </section>
+
+            {/* ── CTA (B-style: soft) ── */}
+            <section style={{ background: "#fff", padding: "80px 28px", textAlign: "center" }}>
+                <Reveal>
+                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.2rem, 3vw, 1.6rem)", letterSpacing: "0.06em", color: "#2a2a2a", marginBottom: "12px" }}>
+                        小團體的完美包棟體驗
+                    </h3>
+                    <p style={{ fontSize: "0.88rem", color: "#aaa", marginBottom: "30px" }}>
+                        平日 $10,000 起 · 12 人以內
+                    </p>
+                    <Link href="/book" style={{
+                        display: "inline-block", padding: "14px 44px",
+                        border: "1px solid #2a2a2a", color: "#2a2a2a",
+                        fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.12em",
+                        transition: "all 0.4s",
+                    }}>
+                        查詢空房
+                    </Link>
+                </Reveal>
             </section>
         </>
     );
