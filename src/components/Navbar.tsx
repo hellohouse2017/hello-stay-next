@@ -11,7 +11,7 @@ export default function Navbar({ brand = "main" }: NavbarProps) {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50);
+        const onScroll = () => setScrolled(window.scrollY > 80);
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
@@ -20,77 +20,202 @@ export default function Navbar({ brand = "main" }: NavbarProps) {
     const basePath = brand === "godin" ? "/godin" : brand === "hellohouse" ? "/hellohouse" : "";
 
     const navLinks = brand === "main" ? [
-        { href: "/hellohouse", label: "你好哇寓所", icon: "fa-solid fa-house" },
-        { href: "/godin", label: "溝頂民宿", icon: "fa-solid fa-house" },
-        { href: "/book", label: "查詢空房", icon: "fa-solid fa-calendar-check", isBooking: true },
+        { href: "/hellohouse", label: "你好哇寓所" },
+        { href: "/godin", label: "溝頂民宿" },
+        { href: "/book", label: "查詢空房", isCTA: true },
     ] : [
-        { href: `${basePath}`, label: "首頁", icon: "fa-solid fa-house" },
-        { href: `${basePath}/rooms`, label: "房型介紹", icon: "fa-solid fa-bed" },
-        { href: `${basePath}/traffic`, label: "交通停車", icon: "fa-solid fa-car" },
-        { href: `${basePath}/travel`, label: "旅遊行程", icon: "fa-solid fa-map-location-dot" },
-        { href: "/book", label: "查詢空房", icon: "fa-solid fa-calendar-check", isBooking: true },
+        { href: `${basePath}`, label: "首頁" },
+        { href: `${basePath}/rooms`, label: "房型" },
+        { href: `${basePath}/traffic`, label: "交通" },
+        { href: `${basePath}/travel`, label: "旅遊" },
+        { href: "/book", label: "查詢空房", isCTA: true },
     ];
 
     return (
-        <nav
-            className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-300 ${scrolled ? "shadow-lg" : ""
-                }`}
-            style={{
-                background: "rgba(26, 32, 44, 0.95)",
-                backdropFilter: "blur(10px)",
-                borderBottom: "1px solid rgba(197, 160, 101, 0.3)",
-                height: "70px",
-            }}
-        >
-            <div className="flex justify-between items-center h-full max-w-[1200px] mx-auto px-5">
-                <Link
-                    href={basePath || "/"}
-                    className="text-[1.5rem] font-bold tracking-wider"
-                    style={{ color: "var(--c-accent)", fontFamily: "var(--font-serif)" }}
-                >
-                    {logoText}
-                </Link>
+        <>
+            <nav
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    zIndex: 9999,
+                    transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+                    background: scrolled ? "rgba(28, 28, 30, 0.97)" : "transparent",
+                    backdropFilter: scrolled ? "blur(20px)" : "none",
+                    borderBottom: scrolled ? "1px solid rgba(201, 169, 110, 0.15)" : "1px solid transparent",
+                    height: "80px",
+                }}
+            >
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    height: "100%",
+                    maxWidth: "1200px",
+                    margin: "0 auto",
+                    padding: "0 30px",
+                }}>
+                    {/* Logo */}
+                    <Link
+                        href={basePath || "/"}
+                        style={{
+                            fontFamily: "var(--font-display)",
+                            fontSize: "1.4rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.08em",
+                            color: scrolled ? "var(--c-gold)" : "white",
+                            transition: "color 0.5s",
+                        }}
+                    >
+                        {logoText}
+                    </Link>
 
-                {/* Mobile toggle */}
-                <button
-                    className="block md:hidden cursor-pointer border-none bg-transparent p-2"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="選單"
-                >
-                    <span className="block w-[25px] h-[3px] my-[5px] transition-all duration-300" style={{ backgroundColor: "var(--c-accent)" }} />
-                    <span className="block w-[25px] h-[3px] my-[5px] transition-all duration-300" style={{ backgroundColor: "var(--c-accent)" }} />
-                    <span className="block w-[25px] h-[3px] my-[5px] transition-all duration-300" style={{ backgroundColor: "var(--c-accent)" }} />
-                </button>
+                    {/* Mobile toggle */}
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label="選單"
+                        style={{
+                            display: "none",
+                            background: "none",
+                            border: "none",
+                            cursor: "pointer",
+                            padding: "8px",
+                            position: "relative",
+                            width: "32px",
+                            height: "32px",
+                        }}
+                        className="mobile-toggle"
+                    >
+                        <span style={{
+                            display: "block",
+                            width: "22px",
+                            height: "2px",
+                            background: scrolled ? "var(--c-gold)" : "white",
+                            transition: "all 0.3s",
+                            position: "absolute",
+                            left: "5px",
+                            top: menuOpen ? "15px" : "9px",
+                            transform: menuOpen ? "rotate(45deg)" : "none",
+                        }} />
+                        <span style={{
+                            display: "block",
+                            width: "22px",
+                            height: "2px",
+                            background: scrolled ? "var(--c-gold)" : "white",
+                            transition: "all 0.3s",
+                            position: "absolute",
+                            left: "5px",
+                            top: "15px",
+                            opacity: menuOpen ? 0 : 1,
+                        }} />
+                        <span style={{
+                            display: "block",
+                            width: "22px",
+                            height: "2px",
+                            background: scrolled ? "var(--c-gold)" : "white",
+                            transition: "all 0.3s",
+                            position: "absolute",
+                            left: "5px",
+                            top: menuOpen ? "15px" : "21px",
+                            transform: menuOpen ? "rotate(-45deg)" : "none",
+                        }} />
+                    </button>
 
-                {/* Menu */}
-                <ul
-                    className={`md:flex items-center gap-5 list-none m-0 p-0 ${menuOpen
-                            ? "flex flex-col fixed left-0 top-[70px] w-full bg-[#1A202C] py-4 px-6 gap-0"
-                            : "hidden"
-                        }`}
+                    {/* Desktop nav */}
+                    <ul className="nav-links" style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        listStyle: "none",
+                        margin: 0,
+                        padding: 0,
+                    }}>
+                        {navLinks.map((link) => (
+                            <li key={link.href}>
+                                {link.isCTA ? (
+                                    <Link
+                                        href={link.href}
+                                        className="btn btn-gold"
+                                        style={{ padding: "10px 28px", fontSize: "0.88rem" }}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        href={link.href}
+                                        style={{
+                                            color: "rgba(255,255,255,0.8)",
+                                            fontSize: "0.9rem",
+                                            fontWeight: 400,
+                                            padding: "10px 18px",
+                                            borderRadius: "8px",
+                                            transition: "all 0.3s",
+                                            letterSpacing: "0.06em",
+                                        }}
+                                        onMouseEnter={e => {
+                                            (e.target as HTMLElement).style.color = "white";
+                                            (e.target as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+                                        }}
+                                        onMouseLeave={e => {
+                                            (e.target as HTMLElement).style.color = "rgba(255,255,255,0.8)";
+                                            (e.target as HTMLElement).style.background = "transparent";
+                                        }}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </nav>
+
+            {/* Mobile menu overlay */}
+            {menuOpen && (
+                <div
+                    style={{
+                        position: "fixed",
+                        inset: 0,
+                        zIndex: 9998,
+                        background: "rgba(28, 28, 30, 0.98)",
+                        backdropFilter: "blur(20px)",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "12px",
+                        animation: "fadeInUp 0.4s ease",
+                    }}
                 >
-                    {navLinks.map((link) => (
-                        <li key={link.href} className={menuOpen ? "w-full border-b border-white/5" : ""}>
-                            <Link
-                                href={link.href}
-                                onClick={() => setMenuOpen(false)}
-                                className={`flex items-center gap-2 text-white text-[0.95rem] font-medium transition-all duration-300 ${link.isBooking
-                                        ? "px-5 py-2 rounded-full font-bold border"
-                                        : "py-3 px-1 hover:text-[#C5A065]"
-                                    } ${menuOpen ? "py-5 text-[1.1rem]" : ""}`}
-                                style={
-                                    link.isBooking
-                                        ? { backgroundColor: "var(--c-accent)", borderColor: "var(--c-accent)", color: "white" }
-                                        : undefined
-                                }
-                            >
-                                <i className={link.icon} />
-                                {link.label}
-                            </Link>
-                        </li>
+                    {navLinks.map((link, i) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setMenuOpen(false)}
+                            style={{
+                                color: link.isCTA ? "var(--c-gold)" : "white",
+                                fontSize: "1.6rem",
+                                fontFamily: "var(--font-display)",
+                                fontWeight: 500,
+                                padding: "16px 0",
+                                letterSpacing: "0.1em",
+                                opacity: 0,
+                                animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
+                            }}
+                        >
+                            {link.label}
+                        </Link>
                     ))}
-                </ul>
-            </div>
-        </nav>
+                </div>
+            )}
+
+            <style jsx>{`
+        @media (max-width: 768px) {
+          .mobile-toggle { display: block !important; }
+          .nav-links { display: none !important; }
+        }
+      `}</style>
+        </>
     );
 }
