@@ -63,7 +63,7 @@ const itineraries = [
     {
         days: "2天1夜", plans: [
             { name: "親子放電", emoji: "👶", desc: "駁二小火車 → 港園牛肉麵 → 壽山動物園" },
-            { name: "網美打卡", emoji: "📸", desc: "大港橋旋轉秀 → Pier No.1 高空酒吧 → 民宿 KTV" },
+            { name: "網美打卡", emoji: "📸", desc: "大港橋旋轉秀 → Pier No.1 高空酒吧 → 民宿桌遊" },
             { name: "吃貨攻略", emoji: "🍜", desc: "奶茶一條街 → 鴨肉珍 → 阿囉哈滷味 → 阿綿麻糬" },
         ]
     },

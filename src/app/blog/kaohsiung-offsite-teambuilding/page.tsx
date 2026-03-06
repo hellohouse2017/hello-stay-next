@@ -31,8 +31,8 @@ const sections = [
 • 每間房有桌椅、空調、獨立衛浴
 
 娛樂空間（team building）
-• 麻將桌 → 策略思考訓練（誤）
-• KTV → 尾牙歡唱
+• 麻將 → 策略思考訓練（誤）
+• 桌遊同樂
 • 桌遊 → 團隊破冰` },
     {
         id: "schedule", title: "2 天 1 夜 Off-site 行程範本", content: `Day 1
@@ -42,7 +42,7 @@ const sections = [
 17:00  分組討論：策略工作坊（各房間）
 18:30  團隊料理時間：到全聯採買 → 中島廚房煮火鍋
 20:00  團隊晚餐 + 分享
-21:00  KTV / 麻將 / 自由交流
+21:00  麻將 / 桌遊 / 自由交流
 23:00  各房休息
 
 Day 2
@@ -86,7 +86,7 @@ export default function OffsitePage() {
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
                         { "@type": "Question", name: "高雄企業off-site住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區你好哇寓所，客廳可當會議室（20+人），55吋電視投影，中島廚房coffee break和團隊聚餐。6-48人彈性方案，場地+住宿一價全包。比飯店會議室+住宿省30%以上。" } },
-                        { "@type": "Question", name: "高雄團建活動推薦什麼？", acceptedAnswer: { "@type": "Answer", text: "白天策略工作坊後，推薦：中島廚房團隊料理時間、KTV歡唱、麻將桌策略訓練、駁二藝術特區戶外活動、旗津單車一日遊。包棟民宿的好處是不用移動場地，所有活動在同一棟樓。" } },
+                        { "@type": "Question", name: "高雄團建活動推薦什麼？", acceptedAnswer: { "@type": "Answer", text: "白天策略工作坊後，推薦：中島廚房團隊料理時間、麻將策略訓練、駁二藝術特區戶外活動、旗津單車一日遊。包棟民宿的好處是不用移動場地，所有活動在同一棟樓。" } },
                     ]
                 },
             ]} />

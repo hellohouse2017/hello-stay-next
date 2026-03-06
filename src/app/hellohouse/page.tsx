@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
     title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
-    description: "高雄鹽埕區合法包棟首選。你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、麻將桌、多元房型。步行即達駁二藝術特區、大港橋。",
+    description: "高雄鹽埕區合法包棟首選。你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、麻將、多元房型。步行即達駁二藝術特區、大港橋。",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
 };
 
@@ -22,7 +22,7 @@ const reviews = [
     { text: "一樓的中島廚房真的太棒了！鍋碗瓢盆都很齊全，大家聚在一起煮火鍋喝酒，氣氛滿分。", author: "T 先生" },
     { text: "離駁二走路只要10分鐘。隔音意外的好，晚上睡覺很安靜，床墊支撐性也很夠。", author: "L 小姐" },
     { text: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。", author: "W 先生" },
-    { text: "客廳有麻將桌太加分！還有電視可以看 Netflix。每間都有獨立衛浴。", author: "C 小姐" },
+    { text: "客廳有麻將太加分！還有電視可以看 Netflix。每間都有獨立衛浴。", author: "C 小姐" },
 ];
 
 export default function HelloHousePage() {
@@ -37,7 +37,7 @@ export default function HelloHousePage() {
                         alternateName: ["Hello House", "你好哇", "Hello Stay 一館"],
                         url: "https://www.hello-stay.com/hellohouse",
                         telephone: "+886-932-828-922",
-                        description: "高雄鹽埕區質感包棟民宿，6-26人彈性包棟。配備豪華中島廚房、麻將桌、KTV。步行10分鐘到駁二藝術特區。綜藝玩很大、我們回家吧2等節目拍攝場地。",
+                        description: "高雄鹽埕區質感包棟民宿，6-26人彈性包棟。配備豪華中島廚房、麻將桌、桌遊。步行10分鐘到駁二藝術特區。綜藝玩很大、我們回家吧2等節目拍攝場地。",
                         address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
                         geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 },
                         hasMap: "https://goo.gl/maps/qxGN4mpNP8qfRCB16",
@@ -46,7 +46,6 @@ export default function HelloHousePage() {
                         amenityFeature: [
                             { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
                             { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
-                            { "@type": "LocationFeatureSpecification", name: "KTV", value: true },
                             { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
                             { "@type": "LocationFeatureSpecification", name: "獨立衛浴", value: true },
                             { "@type": "LocationFeatureSpecification", name: "冷氣", value: true },
@@ -72,7 +71,7 @@ export default function HelloHousePage() {
                             { "@type": "Question", name: "包棟可以容納多少人？", acceptedAnswer: { "@type": "Answer", text: "彈性方案6至26人。兩棟合訂（你好哇＋溝頂）最高可接待38人，三館聯訂最大48人。" } },
                             { "@type": "Question", name: "哪裡訂房最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方訂房最優惠！透過 LINE 官方帳號或官網 www.hello-stay.com 預訂，免收平台手續費。" } },
                             { "@type": "Question", name: "附近有什麼好玩景點？", acceptedAnswer: { "@type": "Answer", text: "步行即達駁二藝術特區、大港橋、棧貳庫、哈瑪星鐵道園區。鄰近愛河、西子灣、壽山動物園、旗津渡輪。" } },
-                            { "@type": "Question", name: "有廚房和娛樂設施嗎？", acceptedAnswer: { "@type": "Answer", text: "一樓大型中島廚房（含IH爐、冰箱、完整餐具），麻將桌、KTV歡唱設備、43吋Netflix聯網電視、製冰機。" } },
+                            { "@type": "Question", name: "有廚房和娛樂設施嗎？", acceptedAnswer: { "@type": "Answer", text: "一樓大型中島廚房（含IH爐、冰箱、完整餐具），麻將、桌遊歡唱設備、43吋Netflix聯網電視、製冰機。" } },
                             { "@type": "Question", name: "隔音好嗎？睡覺會不會吵？", acceptedAnswer: { "@type": "Answer", text: "隔音非常好，住客評價「隔音意外的好，晚上睡覺很安靜」。但位於住宅區，23:00後請降低音量，為鄰居著想。" } },
                         ],
                     },
@@ -141,7 +140,7 @@ export default function HelloHousePage() {
                             <div className="col3-item">
                                 <div className="gold" style={{ fontSize: "1.6rem", marginBottom: "4px" }}>🀄</div>
                                 <h3 style={{ color: "#fff" }}>專屬娛樂設施</h3>
-                                <p>麻將桌、43 吋聯網電視，讓派對時光絕無冷場。</p>
+                                <p>麻將、43 吋聯網電視，讓派對時光絕無冷場。</p>
                             </div>
                             <div className="col3-item">
                                 <div className="gold" style={{ fontSize: "1.6rem", marginBottom: "4px" }}>🛏️</div>
@@ -231,7 +230,7 @@ export default function HelloHousePage() {
                         { q: "哪裡訂房最便宜？", a: "官方訂房最優惠！透過 LINE 或網站預訂，免收平台手續費。" },
                         { q: "附近有什麼好玩景點？", a: "步行即達駁二藝術特區、大港橋、棧貳庫。鄰近愛河、西子灣、壽山動物園。" },
                         { q: "包棟可以容納多少人？", a: "彈性方案 6 至 26 人。兩棟合訂最高可接待 38 人。" },
-                        { q: "有廚房或娛樂設施嗎？", a: "一樓大型中島廚房（含 IH 爐、冰箱、餐具）及麻將桌。" },
+                        { q: "有廚房或娛樂設施嗎？", a: "一樓大型中島廚房（含 IH 爐、冰箱、餐具）及麻將。" },
                     ].map(faq => (
                         <Reveal key={faq.q}>
                             <div style={{ padding: "22px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>

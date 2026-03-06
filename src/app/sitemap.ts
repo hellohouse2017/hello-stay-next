@@ -26,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/blog/kaohsiung-nye-stay`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/blog/kaohsiung-mahjong-stay`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/blog/kaohsiung-kitchen-bnb`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-        { url: `${baseUrl}/blog/kaohsiung-ktv-party`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/blog/kaohsiung-family-reunion`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/blog/kaohsiung-sports-team`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ];

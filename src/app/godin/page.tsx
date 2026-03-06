@@ -21,7 +21,7 @@ const floors = [
     { num: "1F", label: "經典雙人房", desc: "一樓獨立空間，舒適雙人住宿" },
     { num: "2F", label: "陽光四人房", desc: "寬敞明亮，適合家庭入住" },
     { num: "3F", label: "雅緻四人房", desc: "溫馨風格，獨立衛浴" },
-    { num: "4F", label: "公共交誼廳", desc: "客廳、麻將桌，團聚歡樂空間" },
+    { num: "4F", label: "公共交誼廳", desc: "客廳、麻將，團聚歡樂空間" },
     { num: "5F", label: "景觀雙人房", desc: "頂樓視野，充足採光" },
 ];
 
@@ -59,7 +59,7 @@ export default function GodinPage() {
                             { "@type": "Question", name: "溝頂民宿可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿為五層樓獨棟，可容納10-12人入住。1F經典雙人房、2F陽光四人房、3F雅緻四人房、5F景觀雙人房，4F為交誼廳。" } },
                             { "@type": "Question", name: "溝頂民宿平日多少錢？", acceptedAnswer: { "@type": "Answer", text: "平日$10,000起，含整棟五層樓獨立使用。是10人左右小團體包棟的超值首選，平均每人只要$1,000。" } },
                             { "@type": "Question", name: "溝頂民宿在哪裡？", acceptedAnswer: { "@type": "Answer", text: "位於高雄鹽埕區大公路70巷6-2號，鄰近捷運鹽埕埔站O2（步行5分鐘），步行至駁二藝術特區約10分鐘。與你好哇寓所僅距30公尺。" } },
-                            { "@type": "Question", name: "溝頂民宿適合帶長輩嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！溫馨家庭風格，分層住宿讓作息不同的家人互不干擾。4F交誼廳有麻將桌，長輩最愛。每間房獨立衛浴，方便年長者使用。" } },
+                            { "@type": "Question", name: "溝頂民宿適合帶長輩嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！溫馨家庭風格，分層住宿讓作息不同的家人互不干擾。4F交誼廳有麻將，長輩最愛。每間房獨立衛浴，方便年長者使用。" } },
                             { "@type": "Question", name: "溝頂民宿跟你好哇寓所可以一起訂嗎？", acceptedAnswer: { "@type": "Answer", text: "可以！兩棟僅距30公尺，合訂最高38人。非常適合大家族旅遊或大型團體活動。透過LINE或官網一起預訂即可。" } },
                             { "@type": "Question", name: "高雄小包棟10人左右推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦溝頂民宿，整棟五層樓獨立使用，10-12人入住，平日只要$10,000。位於鹽埕區，近駁二、大港橋，Google評價4.8星。" } },
                         ],
