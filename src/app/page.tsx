@@ -54,6 +54,8 @@ export default function HomePage() {
             ],
             sameAs: [
               "https://www.instagram.com/hellostay2017/",
+              "https://www.facebook.com/HelloHouse2020",
+              "https://www.facebook.com/ruins.yencheng/",
               "https://lin.ee/atCiMQw",
             ],
             isAccessibleForFree: false,

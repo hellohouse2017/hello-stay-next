@@ -27,6 +27,7 @@ export default function Footer() {
                             <Link href="/traffic" style={{ fontSize: "0.82rem" }}>交通停車</Link>
                             <Link href="/explore" style={{ fontSize: "0.82rem" }}>周邊探索</Link>
                             <Link href="/packages" style={{ fontSize: "0.82rem" }}>包棟方案</Link>
+                            <Link href="/blog" style={{ fontSize: "0.82rem" }}>旅宿攻略</Link>
                         </div>
                     </div>
                     <div>

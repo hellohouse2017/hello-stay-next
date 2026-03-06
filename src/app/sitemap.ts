@@ -14,5 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/traffic`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/explore`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
         { url: `${baseUrl}/packages`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+        // Blog
+        { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-group-stay-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${baseUrl}/blog/yancheng-food-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${baseUrl}/blog/kaohsiung-group-trip`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     ];
 }
