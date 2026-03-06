@@ -1,34 +1,26 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-interface NavbarProps {
-    theme?: "d" | "b";
-}
-
-export default function Navbar({ theme = "d" }: NavbarProps) {
+export default function Navbar() {
     const [open, setOpen] = useState(false);
-    const isDark = theme === "d";
-    const cls = isDark ? "nav-d" : "nav-b";
+    const path = usePathname();
 
-    const links = isDark
-        ? [
-            { href: "/hellohouse", label: "你好哇寓所" },
-            { href: "/godin", label: "溝頂民宿" },
-            { href: "/book", label: "預訂", cta: true },
-        ]
-        : [
-            { href: "/godin", label: "空間介紹" },
-            { href: "/hellohouse", label: "你好哇寓所" },
-            { href: "/book", label: "預訂查詢", cta: true },
-        ];
+    // B-style (zen light) for godin, D-style (dark gold) for everything else
+    const isZen = path === "/godin";
+    const isDark = !isZen;
+
+    const links = [
+        { href: "/hellohouse", label: "你好哇寓所" },
+        { href: "/godin", label: "溝頂民宿" },
+        { href: "/book", label: "預訂", cta: true },
+    ];
 
     return (
-        <nav className={cls}>
+        <nav className={isDark ? "nav-d" : "nav-b"}>
             <div className="w" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
-                <Link href={isDark ? "/" : "/godin"} className="logo">
-                    {isDark ? "Hello Stay" : "溝頂民宿"}
-                </Link>
+                <Link href="/" className="logo">Hello Stay</Link>
 
                 {/* Desktop */}
                 <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "32px" }}>
