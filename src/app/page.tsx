@@ -66,7 +66,7 @@ export default function HomePage() {
                 <h3 style={{ fontSize: "1.6rem", marginBottom: "16px", letterSpacing: "0.06em" }}>你好哇寓所</h3>
                 <div className="gold-line" style={{ marginBottom: "20px" }} />
                 <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
-                  6 至 26 人彈性包棟。紅磚中島廚房、電動麻將桌、多元房型。老屋溫度與現代質感的完美融合。
+                  6 至 26 人彈性包棟。豪宅級中島廚房、麻將桌、多元房型。老屋溫度與現代質感的完美融合。
                 </p>
                 <p style={{ fontSize: "0.78rem", color: "#bbb", marginBottom: "28px" }}>
                   近駁二藝術特區・步行 10 分鐘
