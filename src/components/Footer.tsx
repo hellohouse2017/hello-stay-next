@@ -21,6 +21,15 @@ export default function Footer() {
                         </div>
                     </div>
                     <div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "16px" }}>Info</div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                            <Link href="/agreement" style={{ fontSize: "0.82rem" }}>入住須知</Link>
+                            <Link href="/traffic" style={{ fontSize: "0.82rem" }}>交通停車</Link>
+                            <Link href="/explore" style={{ fontSize: "0.82rem" }}>周邊探索</Link>
+                            <Link href="/packages" style={{ fontSize: "0.82rem" }}>包棟方案</Link>
+                        </div>
+                    </div>
+                    <div>
                         <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "16px" }}>Contact</div>
                         <div style={{ display: "flex", flexDirection: "column", gap: "10px", fontSize: "0.82rem" }}>
                             <span>0932-828-922</span>
