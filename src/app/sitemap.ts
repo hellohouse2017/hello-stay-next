@@ -19,5 +19,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/blog/kaohsiung-group-stay-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${baseUrl}/blog/yancheng-food-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
         { url: `${baseUrl}/blog/kaohsiung-group-trip`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${baseUrl}/blog/kaohsiung-wedding-venue`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-offsite-teambuilding`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-graduation-trip`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/pier2-accommodation`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+        { url: `${baseUrl}/blog/kaohsiung-nye-stay`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-mahjong-stay`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-kitchen-bnb`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-ktv-party`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-family-reunion`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/blog/kaohsiung-sports-team`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ];
 }
