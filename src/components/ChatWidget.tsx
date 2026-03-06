@@ -103,6 +103,7 @@ export default function ChatWidget() {
             {/* Floating Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                data-chat-toggle="true"
                 className="fixed z-[998] flex items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-110"
                 style={{
                     bottom: "30px",
