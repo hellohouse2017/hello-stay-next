@@ -59,8 +59,10 @@ export default function Navbar() {
                     position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
                     background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
                     backdropFilter: "blur(20px)",
-                    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "28px",
+                    display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", gap: "28px",
+                    paddingTop: "25vh",
                     boxSizing: "border-box",
+                    overflowY: "auto",
                 }}>
                     {/* Close button */}
                     <button
