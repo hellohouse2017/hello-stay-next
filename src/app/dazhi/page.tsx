@@ -6,6 +6,13 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
     title: "大智若愚 | 高雄全新電梯包棟民宿 | 大港橋・駁二大義倉庫群旁",
     description: "大智若愚 — 全新電梯民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。COMING SOON",
+    alternates: { canonical: "https://www.hello-stay.com/dazhi" },
+    openGraph: {
+        title: "大智若愚 | 高雄全新電梯包棟民宿",
+        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。Coming Soon 2026",
+        url: "https://www.hello-stay.com/dazhi",
+        images: [{ url: "/images/dazhi/building-render.png", width: 1200, height: 630, alt: "大智若愚" }],
+    },
 };
 
 export default function DazhiPage() {

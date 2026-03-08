@@ -6,6 +6,12 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
     title: "交通指南與停車資訊 | 你好哇寓所 & 溝頂民宿",
     description: "前往你好哇寓所及溝頂民宿的交通方式、周邊停車場資訊與大眾運輸指南。鄰近捷運鹽埕埔站。",
+    openGraph: {
+        title: "交通指南與停車資訊 | Hello Stay",
+        description: "如何前往你好哇寓所、溝頂民宿，鄰近停車場與捷運資訊。",
+        url: "https://www.hello-stay.com/traffic",
+        images: [{ url: "/images/cover-bg.jpg", width: 1200, height: 630, alt: "Hello Stay 交通指南" }],
+    },
 };
 
 const parkingLots = [

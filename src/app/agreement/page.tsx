@@ -6,6 +6,12 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
     title: "入住須知與住宿契約 | 你好哇寓所 & 溝頂民宿",
     description: "住宿契約書、入住須知、押金規定、取消退費政策及生活規範。訂房前請詳閱。",
+    openGraph: {
+        title: "入住須知與住宿契約 | Hello Stay",
+        description: "住宿契約、押金規定、取消退費政策。",
+        url: "https://www.hello-stay.com/agreement",
+        images: [{ url: "/images/cover-bg.jpg", width: 1200, height: 630, alt: "Hello Stay 入住須知" }],
+    },
 };
 
 export default function AgreementPage() {
