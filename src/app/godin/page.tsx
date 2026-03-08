@@ -211,7 +211,7 @@ export default function GodinPage() {
                                 <div className="room-amenities">
                                     <span>🀄 麻將 / 桌遊</span>
                                     <span>🧊 RO飲水機 / 雙門冰箱</span>
-                                    <span>🍞 微波爐 / 烤箱</span>
+                                    <span>🍞 微波爐</span>
                                     <span>📺 聯網電視</span>
                                     <span>🛋️ 舒適沙發區</span>
                                     <span>🚰 流理台</span>
