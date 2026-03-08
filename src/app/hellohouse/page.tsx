@@ -152,12 +152,187 @@ export default function HelloHousePage() {
                 </div>
             </section>
 
-            {/* ── Photo Gallery ── */}
+            {/* ── Room Details ── */}
             <section className="sec-white">
+                <div className="w" style={{ marginBottom: "50px" }}>
+                    <Reveal>
+                        <div className="label-d" style={{ color: "#8A8279" }}>Rooms</div>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em" }}>房型與空間介紹</h2>
+                        <p style={{ fontSize: "0.9rem", color: "#8A8279", marginTop: "10px" }}>全館 6 間客房皆配備獨立筒床墊、乾濕分離衛浴、聯網電視與冷暖空調</p>
+                    </Reveal>
+                </div>
+
+                {/* 1F 公共空間 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1000.jpg" alt="1F 公共空間 — 中島廚房與交誼區" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">1F</div>
+                                <h3>公共空間</h3>
+                                <p className="room-subtitle">寬敞舒適的交誼核心，大家聚在一起最棒的空間。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">56 m²</span>
+                                    <span className="room-badge gold">豪華中島廚房</span>
+                                    <span className="room-badge">獨立衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🍳 雙口IH爐 / 抽油煙機</span>
+                                    <span>🧊 RO飲水機 / 雙門冰箱</span>
+                                    <span>🍞 烤箱 / 微波 / 烤麵包機</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>🀄 麻將 / 撲克牌</span>
+                                    <span>❄️ 一級冷暖空調</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 2F-1201 雙人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card reverse">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1201.jpg" alt="2F-1201 雙人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">2F</div>
+                                <h3>1201 雙人房</h3>
+                                <p className="room-subtitle">標準舒適空間，溫馨的休憩角落。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">24 m²</span>
+                                    <span className="room-badge gold">對外氣密窗</span>
+                                    <span className="room-badge">乾濕分離衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床</span>
+                                    <span>💻 書桌</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>❄️ 空調 / 吹風機</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 2F-1202 四人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1202.jpg" alt="2F-1202 四人房 — 網美吊椅房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">2F</div>
+                                <h3>1202 四人房</h3>
+                                <p className="room-subtitle">極佳採光與網美設施，拍照打卡首選。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">40 m²</span>
+                                    <span className="room-badge gold">落地玻璃採光</span>
+                                    <span className="room-badge gold">✨ 網美吊椅</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床 ×2</span>
+                                    <span>🪑 沙發 / 茶几 / 吊椅</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>🚿 乾濕分離衛浴</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 3F-1302 六人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card reverse">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1302.jpg" alt="3F-1302 六人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">3F</div>
+                                <h3>1302 六人房</h3>
+                                <p className="room-subtitle">寬敞團體空間，適合家庭或好朋友同住。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">48 m²</span>
+                                    <span className="room-badge gold">落地玻璃採光</span>
+                                    <span className="room-badge">乾濕分離衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 雙人床 (150×200) ×3</span>
+                                    <span>💻 書桌</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>❄️ 空調 / 吹風機</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 4F-1401 雙人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1401.jpg" alt="4F-1401 雙人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">4F</div>
+                                <h3>1401 雙人房</h3>
+                                <p className="room-subtitle">雅緻高樓層視野，享受安靜的私人時光。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">24 m²</span>
+                                    <span className="room-badge gold">對外落地窗</span>
+                                    <span className="room-badge">乾濕分離衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床</span>
+                                    <span>🪑 沙發 / 茶几</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>❄️ 空調 / 吹風機</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 4F-1402 六人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card reverse">
+                            <div className="room-detail-img">
+                                <Image src="/images/hellohouse/1402.jpg" alt="4F-1402 六人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">4F</div>
+                                <h3>1402 六人房</h3>
+                                <p className="room-subtitle">高樓層大空間，視野開闊，團體入住首選。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">45 m²</span>
+                                    <span className="room-badge gold">落地玻璃採光</span>
+                                    <span className="room-badge">乾濕分離衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 雙人床 (150×200) ×3</span>
+                                    <span>💻 書桌</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>❄️ 空調 / 吹風機</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
+            {/* ── Photo Gallery ── */}
+            <section className="sec-cream">
                 <div className="w" style={{ marginBottom: "40px" }}>
                     <Reveal>
                         <div className="label-d" style={{ color: "#8A8279" }}>Gallery</div>
-                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em" }}>空間一覽</h2>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em" }}>更多空間實景</h2>
                     </Reveal>
                 </div>
                 <div className="w">
