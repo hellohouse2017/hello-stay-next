@@ -59,7 +59,9 @@ export default function Navbar() {
                     position: "fixed", inset: 0, zIndex: 998,
                     background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
                     backdropFilter: "blur(20px)",
-                    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "20px",
+                    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "24px",
+                    paddingTop: "80px", paddingBottom: "40px",
+                    overflowY: "auto",
                 }}>
                     {links.map((l, i) => (
                         <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
