@@ -4,8 +4,16 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "高雄質感包棟民宿 | 你好哇寓所・溝頂民宿・大智若愚 | 6-48人團體住宿首選",
-  description: "高雄鹽埕區包棟民宿推薦。你好哇寓所（6-26人）、溝頂民宿（10-12人）、大智若愚（最大48人），專為團體打造的質感獨立旅宿空間。近駁二、大港橋。",
+  title: "高雄包棟民宿推薦｜Hello Stay 你好哇寓所・溝頂民宿｜6-48人包棟首選",
+  description: "高雄包棟推薦 Hello Stay！三棟質感包棟民宿：你好哇寓所（6-26人）、溝頂民宿（10-12人，平日$10,000起）、大智若愚（48人）。配備中島廚房、麻將桌。鹽埕區近駁二，Google 4.9星。",
+  alternates: { canonical: "https://www.hello-stay.com" },
+  openGraph: {
+    title: "高雄包棟民宿推薦｜Hello Stay 6-48人質感包棟",
+    description: "三棟質感包棟民宿，鹽埕區近駁二。中島廚房、麻將、桌遊。自2017年服務超過5000組旅客。",
+    url: "https://www.hello-stay.com",
+    siteName: "Hello Stay 高雄包棟民宿",
+    type: "website",
+  },
 };
 
 export default function HomePage() {
