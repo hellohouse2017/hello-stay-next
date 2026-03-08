@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     "geo.position": "22.6245;120.2823",
     "ICBM": "22.6245, 120.2823",
   },
+  verification: {
+    google: "VccBLBmoWAgu_Hn0562s8itv58XjH6QGshmI26mY32o",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
