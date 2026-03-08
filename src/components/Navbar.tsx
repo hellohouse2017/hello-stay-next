@@ -56,19 +56,32 @@ export default function Navbar() {
             {/* Mobile menu */}
             {open && (
                 <div style={{
-                    position: "fixed", inset: 0, zIndex: 998,
+                    position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
                     background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
                     backdropFilter: "blur(20px)",
-                    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "24px",
-                    paddingTop: "80px", paddingBottom: "40px",
-                    overflowY: "auto",
+                    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "28px",
+                    boxSizing: "border-box",
                 }}>
+                    {/* Close button */}
+                    <button
+                        onClick={() => setOpen(false)}
+                        aria-label="關閉選單"
+                        style={{
+                            position: "absolute", top: "20px", right: "20px",
+                            background: "none", border: "none", cursor: "pointer",
+                            fontSize: "28px", lineHeight: 1,
+                            color: isDark ? "#C8AD7F" : "#2a2a2a",
+                            zIndex: 1000,
+                            padding: "8px",
+                        }}
+                    >✕</button>
                     {links.map((l, i) => (
                         <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
                             style={{
                                 fontFamily: "var(--serif)", fontSize: "1.4rem", letterSpacing: "0.1em",
                                 color: isDark ? (l.cta ? "#C8AD7F" : "#fff") : (l.cta ? "#2a2a2a" : "#888"),
                                 opacity: 0, animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
+                                textDecoration: "none",
                             }}
                         >{l.label}</Link>
                     ))}
