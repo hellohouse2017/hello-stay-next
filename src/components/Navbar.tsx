@@ -1,11 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const path = usePathname();
+
+    useEffect(() => { setMounted(true); }, []);
+
+    // Close menu on route change
+    useEffect(() => { setOpen(false); }, [path]);
 
     // B-style (zen light) for godin, D-style (dark gold) for everything else
     const isZen = path === "/godin";
@@ -18,77 +25,78 @@ export default function Navbar() {
         { href: "/book", label: "預訂", cta: true },
     ];
 
-    return (
-        <nav className={isDark ? "nav-d" : "nav-b"}>
-            <div className="w" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
-                <Link href="/" className="logo">Hello Stay</Link>
-
-                {/* Desktop */}
-                <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-                    {links.map(l => (
-                        <Link key={l.href} href={l.href} className={l.cta ? "cta-link" : ""}>
-                            {l.label}
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Mobile toggle */}
-                <button
-                    className="mobile-toggle"
-                    onClick={() => setOpen(!open)}
-                    aria-label="選單"
+    // Mobile menu portal - renders outside nav to avoid nav's height/overflow constraints
+    const mobileMenu = open && mounted ? createPortal(
+        <div style={{
+            position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 9999,
+            background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
+            backdropFilter: "blur(20px)",
+            display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "28px",
+            boxSizing: "border-box",
+        }}>
+            {/* Close button */}
+            <button
+                onClick={() => setOpen(false)}
+                aria-label="關閉選單"
+                style={{
+                    position: "absolute", top: "20px", right: "20px",
+                    background: "none", border: "none", cursor: "pointer",
+                    fontSize: "28px", lineHeight: 1,
+                    color: isDark ? "#C8AD7F" : "#2a2a2a",
+                    padding: "8px",
+                }}
+            >✕</button>
+            {links.map((l, i) => (
+                <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
                     style={{
-                        background: "none", border: "none", cursor: "pointer",
-                        display: "flex", flexDirection: "column", gap: "5px", padding: "8px",
+                        fontFamily: "var(--serif)", fontSize: "1.4rem", letterSpacing: "0.1em",
+                        color: isDark ? (l.cta ? "#C8AD7F" : "#fff") : (l.cta ? "#2a2a2a" : "#888"),
+                        opacity: 0, animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
+                        textDecoration: "none",
                     }}
-                >
-                    {[0, 1, 2].map(i => (
-                        <span key={i} style={{
-                            width: "20px", height: "1.5px",
-                            background: isDark ? "#C8AD7F" : "#2a2a2a",
-                            transition: "all 0.3s",
-                            transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
-                        }} />
-                    ))}
-                </button>
-            </div>
+                >{l.label}</Link>
+            ))}
+        </div>,
+        document.body
+    ) : null;
 
-            {/* Mobile menu */}
-            {open && (
-                <div style={{
-                    position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
-                    background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
-                    backdropFilter: "blur(20px)",
-                    display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", gap: "28px",
-                    paddingTop: "25vh",
-                    boxSizing: "border-box",
-                    overflowY: "auto",
-                }}>
-                    {/* Close button */}
+    return (
+        <>
+            <nav className={isDark ? "nav-d" : "nav-b"}>
+                <div className="w" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
+                    <Link href="/" className="logo">Hello Stay</Link>
+
+                    {/* Desktop */}
+                    <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+                        {links.map(l => (
+                            <Link key={l.href} href={l.href} className={l.cta ? "cta-link" : ""}>
+                                {l.label}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Mobile toggle */}
                     <button
-                        onClick={() => setOpen(false)}
-                        aria-label="關閉選單"
+                        className="mobile-toggle"
+                        onClick={() => setOpen(!open)}
+                        aria-label="選單"
                         style={{
-                            position: "absolute", top: "20px", right: "20px",
                             background: "none", border: "none", cursor: "pointer",
-                            fontSize: "28px", lineHeight: 1,
-                            color: isDark ? "#C8AD7F" : "#2a2a2a",
-                            zIndex: 1000,
-                            padding: "8px",
+                            display: "flex", flexDirection: "column", gap: "5px", padding: "8px",
                         }}
-                    >✕</button>
-                    {links.map((l, i) => (
-                        <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-                            style={{
-                                fontFamily: "var(--serif)", fontSize: "1.4rem", letterSpacing: "0.1em",
-                                color: isDark ? (l.cta ? "#C8AD7F" : "#fff") : (l.cta ? "#2a2a2a" : "#888"),
-                                opacity: 0, animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
-                                textDecoration: "none",
-                            }}
-                        >{l.label}</Link>
-                    ))}
+                    >
+                        {[0, 1, 2].map(i => (
+                            <span key={i} style={{
+                                width: "20px", height: "1.5px",
+                                background: isDark ? "#C8AD7F" : "#2a2a2a",
+                                transition: "all 0.3s",
+                                transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
+                            }} />
+                        ))}
+                    </button>
                 </div>
-            )}
-        </nav>
+            </nav>
+            {mobileMenu}
+        </>
     );
 }
