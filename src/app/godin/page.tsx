@@ -101,50 +101,151 @@ export default function GodinPage() {
                 </div>
             </section>
 
-            {/* ── Room Gallery (B-style: zen cards) ── */}
-            <section className="sec-warm" style={{ paddingTop: "0" }}>
-                <div className="w" style={{ marginBottom: "30px" }}>
+            {/* ── Room Details ── */}
+            <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
+                <div className="w" style={{ marginBottom: "50px" }}>
                     <Reveal>
                         <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>Rooms</div>
-                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a" }}>房間一覽</h2>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a" }}>房型與空間介紹</h2>
+                        <p style={{ fontSize: "0.9rem", color: "#999", marginTop: "10px" }}>五層樓獨棟，4 間客房皆配備獨立衛浴、冷暖空調</p>
                     </Reveal>
                 </div>
+
+                {/* 1F 經典雙人房 */}
                 <div className="w">
                     <Reveal>
-                        <div className="grid-2">
-                            {rooms.map(r => (
-                                <div key={r.src} className="zen-card">
-                                    <div className="img-zoom" style={{ aspectRatio: "4/3" }}>
-                                        <Image src={r.src} alt={r.alt} width={600} height={450} className="img-cover" />
-                                    </div>
-                                    <div style={{ padding: "16px 20px" }}>
-                                        <div style={{ fontSize: "0.85rem", color: "#888" }}>{r.alt.replace("溝頂民宿 ", "")}</div>
-                                    </div>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/godin/room1.jpg" alt="1F 經典雙人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">1F</div>
+                                <h3>經典雙人房</h3>
+                                <p className="room-subtitle">一樓獨立空間，舒適安靜的休憩角落。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">15 m²</span>
+                                    <span className="room-badge gold">獨立衛浴</span>
+                                    <span className="room-badge">對外窗</span>
                                 </div>
-                            ))}
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床 ×1</span>
+                                    <span>💻 工作桌椅</span>
+                                    <span>❄️ 冷暖空調</span>
+                                    <span>🚿 淋浴設備</span>
+                                </div>
+                            </div>
                         </div>
                     </Reveal>
                 </div>
-            </section>
 
-            {/* ── Floor Plan (B-style: clean list) ── */}
-            <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
-                <div className="w" style={{ maxWidth: "650px" }}>
+                {/* 2F 陽光四人房 */}
+                <div className="w">
                     <Reveal>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>Floor Plan</div>
-                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a", marginBottom: "30px" }}>樓層配置</h2>
-                    </Reveal>
-                    {floors.map(f => (
-                        <Reveal key={f.num}>
-                            <div className="floor-item">
-                                <div className="floor-num">{f.num}</div>
-                                <div>
-                                    <div className="floor-label">{f.label}</div>
-                                    <div className="floor-desc">{f.desc}</div>
+                        <div className="room-detail-card reverse">
+                            <div className="room-detail-img">
+                                <Image src="/images/godin/room2.jpg" alt="2F 陽光四人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">2F</div>
+                                <h3>陽光四人房</h3>
+                                <p className="room-subtitle">寬敞明亮，大面採光玻璃，適合家庭入住。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">18 m²</span>
+                                    <span className="room-badge gold">大面採光玻璃</span>
+                                    <span className="room-badge">獨立衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床 ×2</span>
+                                    <span>🧴 衛浴備品齊全</span>
+                                    <span>💨 吹風機 / 空調</span>
+                                    <span>☀️ 自然採光</span>
                                 </div>
                             </div>
-                        </Reveal>
-                    ))}
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 3F 雅緻四人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/godin/room3.jpg" alt="3F 雅緻四人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">3F</div>
+                                <h3>雅緻四人房</h3>
+                                <p className="room-subtitle">溫馨風格，獨立衛浴，安靜舒適。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">18 m²</span>
+                                    <span className="room-badge gold">大面採光玻璃</span>
+                                    <span className="room-badge">獨立衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床 ×2</span>
+                                    <span>🧴 衛浴備品齊全</span>
+                                    <span>💨 吹風機 / 空調</span>
+                                    <span>☀️ 自然採光</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 4F 公共交誼廳 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card reverse">
+                            <div className="room-detail-img">
+                                <Image src="/images/godin/room4.jpg" alt="4F 公共交誼廳" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">4F</div>
+                                <h3>公共交誼廳</h3>
+                                <p className="room-subtitle">團聚歡樂空間，麻將、桌遊、沙發，最棒的交誼時光。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">24 m²</span>
+                                    <span className="room-badge gold">休閒麻將桌</span>
+                                    <span className="room-badge">獨立空調</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🀄 麻將 / 桌遊</span>
+                                    <span>🧊 RO飲水機 / 雙門冰箱</span>
+                                    <span>🍞 微波爐 / 烤箱</span>
+                                    <span>📺 聯網電視</span>
+                                    <span>🛋️ 舒適沙發區</span>
+                                    <span>🚰 流理台</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
+                {/* 5F 景觀雙人房 */}
+                <div className="w">
+                    <Reveal>
+                        <div className="room-detail-card">
+                            <div className="room-detail-img">
+                                <Image src="/images/godin/room5.jpg" alt="5F 景觀雙人房" width={700} height={500} className="img-cover" />
+                            </div>
+                            <div className="room-detail-info">
+                                <div className="room-floor-tag">5F</div>
+                                <h3>景觀雙人房</h3>
+                                <p className="room-subtitle">頂樓視野開闊，落地窗街景，充足採光。</p>
+                                <div className="room-badges">
+                                    <span className="room-badge">15 m²</span>
+                                    <span className="room-badge gold">落地窗</span>
+                                    <span className="room-badge">獨立衛浴</span>
+                                </div>
+                                <div className="room-amenities">
+                                    <span>🛏️ 標準雙人床</span>
+                                    <span>📖 閱讀區</span>
+                                    <span>❄️ 冷暖空調</span>
+                                    <span>🏙️ 街景視野</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
                 </div>
             </section>
 
