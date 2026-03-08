@@ -181,7 +181,7 @@ export default function HelloHousePage() {
                                 <div className="room-amenities">
                                     <span>🍳 雙口IH爐 / 抽油煙機</span>
                                     <span>🧊 RO飲水機 / 雙門冰箱</span>
-                                    <span>🍞 烤箱 / 微波 / 烤麵包機</span>
+                                    <span>🍞 烤箱 / 微波爐</span>
                                     <span>📺 聯網電視</span>
                                     <span>🀄 麻將 / 撲克牌</span>
                                     <span>❄️ 一級冷暖空調</span>
