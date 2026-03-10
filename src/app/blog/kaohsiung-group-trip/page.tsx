@@ -160,6 +160,8 @@ export default function TripGuidePage() {
                     </Reveal>
                 ))}
 
+                <RelatedArticles current="kaohsiung-group-trip" />
+
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <p style={{ fontSize: "0.85rem", color: "#999", marginBottom: "20px" }}>行程規劃好了，先訂房吧！</p>

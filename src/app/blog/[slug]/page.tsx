@@ -101,6 +101,8 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     </Reveal>
                 )}
 
+                <RelatedArticles current={slug} currentTags={article.tags} />
+
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>

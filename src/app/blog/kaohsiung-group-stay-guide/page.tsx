@@ -175,6 +175,8 @@ export default function ArticlePage() {
                     </Reveal>
                 ))}
 
+                <RelatedArticles current="kaohsiung-group-stay-guide" />
+
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>

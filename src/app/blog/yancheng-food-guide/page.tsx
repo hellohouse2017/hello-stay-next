@@ -134,6 +134,8 @@ export default function FoodGuidePage() {
                     </Reveal>
                 ))}
 
+                <RelatedArticles current="yancheng-food-guide" />
+
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <p style={{ fontSize: "0.85rem", color: "#999", marginBottom: "20px" }}>住在最好吃的位置，開啟你的鹽埕美食之旅</p>
