@@ -3,6 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // ===== GSC 涵蓋範圍報告中的 404 URL =====
+      { source: "/index", destination: "/", permanent: true },
+      { source: "/index/", destination: "/", permanent: true },
+      { source: "/rooms", destination: "/hellohouse", permanent: true },
+      { source: "/rooms/", destination: "/hellohouse", permanent: true },
+      { source: "/%E5%91%A8%E9%82%8A%E6%99%AF%E9%BB%9E", destination: "/explore", permanent: true },
+      { source: "/%E5%91%A8%E9%82%8A%E6%99%AF%E9%BB%9E/", destination: "/explore", permanent: true },
+
       // ===== 舊站 hellohouse/ 頁面 → 新站對應頁面 =====
       { source: "/hellohouse/index.html", destination: "/hellohouse", permanent: true },
       { source: "/hellohouse/rooms.html", destination: "/hellohouse", permanent: true },
