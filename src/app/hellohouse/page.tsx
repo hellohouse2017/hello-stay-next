@@ -104,7 +104,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="grid-asym" style={{ marginBottom: "0" }}>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/hellohouse/photo1.jpg" alt="你好哇寓所 大廳" width={700} height={525} className="img-cover" />
+                                <Image src="/images/hellohouse/photo1.jpg" alt="你好哇寓所 大廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
                                 <div className="label-d" style={{ color: "#C8AD7F" }}>About</div>
@@ -167,7 +167,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1000.jpg" alt="1F 公共空間 — 中島廚房與交誼區" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1000.jpg" alt="1F 公共空間 — 中島廚房與交誼區" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">1F</div>
@@ -196,7 +196,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1201.jpg" alt="2F-1201 雙人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1201.jpg" alt="2F-1201 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">2F</div>
@@ -223,7 +223,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1202.jpg" alt="2F-1202 四人房 — 網美吊椅房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1202.jpg" alt="2F-1202 四人房 — 網美吊椅房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">2F</div>
@@ -250,7 +250,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1302.jpg" alt="3F-1302 六人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1302.jpg" alt="3F-1302 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">3F</div>
@@ -277,7 +277,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1401.jpg" alt="4F-1401 雙人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1401.jpg" alt="4F-1401 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">4F</div>
@@ -304,7 +304,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1402.jpg" alt="4F-1402 六人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/hellohouse/1402.jpg" alt="4F-1402 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">4F</div>
@@ -340,7 +340,7 @@ export default function HelloHousePage() {
                         <div className="grid-3">
                             {galleryImages.map((img) => (
                                 <div key={img.src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                    <Image src={img.src} alt={img.alt} width={400} height={300} className="img-cover" />
+                                    <Image src={img.src} alt={img.alt} width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                             ))}
                         </div>

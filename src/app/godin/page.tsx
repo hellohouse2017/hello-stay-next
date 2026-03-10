@@ -90,7 +90,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="grid-asym">
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/godin/cover-2.jpg" alt="溝頂民宿 客廳" width={700} height={525} className="img-cover" />
+                                <Image src="/images/godin/cover-2.jpg" alt="溝頂民宿 客廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
                                 <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>About</div>
@@ -122,7 +122,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/godin/room1.jpg" alt="1F 經典雙人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/godin/room1.jpg" alt="1F 經典雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">1F</div>
@@ -149,7 +149,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/godin/room2.jpg" alt="2F 陽光四人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/godin/room2.jpg" alt="2F 陽光四人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">2F</div>
@@ -176,7 +176,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/godin/room3.jpg" alt="3F 雅緻四人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/godin/room3.jpg" alt="3F 雅緻四人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">3F</div>
@@ -203,7 +203,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/godin/room4.jpg" alt="4F 公共交誼廳" width={700} height={500} className="img-cover" />
+                                <Image src="/images/godin/room4.jpg" alt="4F 公共交誼廳" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">4F</div>
@@ -232,7 +232,7 @@ export default function GodinPage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/godin/room5.jpg" alt="5F 景觀雙人房" width={700} height={500} className="img-cover" />
+                                <Image src="/images/godin/room5.jpg" alt="5F 景觀雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">5F</div>
@@ -262,7 +262,7 @@ export default function GodinPage() {
                         <div className="grid-3">
                             {["/images/godin/cover-3.jpg", "/images/godin/cover-4.jpg", "/images/godin/cover-bg.jpg"].map(src => (
                                 <div key={src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                    <Image src={src} alt="溝頂民宿" width={400} height={300} className="img-cover" />
+                                    <Image src={src} alt="溝頂民宿" width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                             ))}
                         </div>
