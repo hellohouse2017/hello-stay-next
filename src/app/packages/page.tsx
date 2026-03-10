@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "包棟方案 | 企業・婚禮・家族・球隊・派對 | 你好哇寓所 & 溝頂民宿",
-    description: "專為各種場合量身打造的包棟住宿方案。企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，高雄鹽埕最彈性的包棟民宿。",
+    description: "專為各種場合量身打造的高雄包棟住宿方案｜企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，鹽埕區最彈性的包棟民宿。6-48人多種組合，平日週末透明定價，LINE AI管家即時報價。",
     openGraph: {
         title: "包棟方案 | 企業・婚禮・家族・球隊 | Hello Stay",
         description: "高雄鹽埕最彈性的包棟方案，專為各種場合量身打造。",

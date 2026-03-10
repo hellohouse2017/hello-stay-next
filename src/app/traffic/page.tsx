@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "交通指南與停車資訊 | 你好哇寓所 & 溝頂民宿",
-    description: "前往你好哇寓所及溝頂民宿的交通方式、周邊停車場資訊與大眾運輸指南。鄰近捷運鹽埕埔站。",
+    description: "前往你好哇寓所及溝頂民宿的完整交通指南｜開車導航、周邊停車場位置與收費、高雄捷運鹽埕埔站步行路線。高鐵左營站轉乘方式、機場接駁建議，讓您輕鬆抵達鹽埕區包棟民宿。",
     openGraph: {
         title: "交通指南與停車資訊 | Hello Stay",
         description: "如何前往你好哇寓所、溝頂民宿，鄰近停車場與捷運資訊。",

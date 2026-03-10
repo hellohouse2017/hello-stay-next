@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "入住須知與住宿契約 | 你好哇寓所 & 溝頂民宿",
-    description: "住宿契約書、入住須知、押金規定、取消退費政策及生活規範。訂房前請詳閱。",
+    description: "你好哇寓所與溝頂民宿住宿契約書、入住須知、押金規定、取消退費政策及生活規範。入住時間16:00、退房11:00，押金退房確認後全額退還。訂房前請詳閱所有條款，確保愉快的住宿體驗。",
     openGraph: {
         title: "入住須知與住宿契約 | Hello Stay",
         description: "住宿契約、押金規定、取消退費政策。",

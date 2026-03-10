@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
     title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人家庭出遊推薦",
-    description: "高雄鹽埕區精緻獨棟包棟民宿。溝頂民宿提供10-12人入住，五層樓完整空間，溫馨家庭風格。近駁二藝術特區、大港橋。平日$10,000起。",
+    description: "高雄鹽埕區精緻獨棟包棟民宿｜溝頂民宿提供10-12人入住，五層樓完整獨立空間，溫馨家庭風格。配備手動麻將桌、頂樓景觀雙人房。近駁二藝術特區、大港橋，平日$10,000起，小家庭、好友出遊高CP值首選。",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
     openGraph: {
         title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人",

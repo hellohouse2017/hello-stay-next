@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
     title: "大智若愚 | 高雄全新電梯包棟民宿 | 大港橋・駁二大義倉庫群旁",
-    description: "大智若愚 — 全新電梯民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。COMING SOON",
+    description: "大智若愚 — 高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳獨立空間，可包層可包棟，最大可容納48人。2026全新開幕，適合超大團體、企業活動、多家庭旅遊。敬請期待！",
     alternates: { canonical: "https://www.hello-stay.com/dazhi" },
     openGraph: {
         title: "大智若愚 | 高雄全新電梯包棟民宿",

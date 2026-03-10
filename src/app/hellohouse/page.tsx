@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
     title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
-    description: "高雄鹽埕區合法包棟首選。你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、麻將、多元房型。步行即達駁二藝術特區、大港橋。",
+    description: "高雄鹽埕區合法包棟首選｜你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、手動麻將桌、多元房型。電梯大樓含停車指引，步行即達駁二藝術特區、大港橋。綜藝玩很大拍攝場地，家族旅遊、朋友聚會、企業包場最佳選擇。",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
 };
 
