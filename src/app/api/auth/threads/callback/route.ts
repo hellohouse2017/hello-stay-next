@@ -13,8 +13,8 @@ import { NextRequest, NextResponse } from "next/server";
  * 3. 授權後會自動換取 access token 並顯示在頁面上
  */
 
-const THREADS_APP_ID = process.env.THREADS_APP_ID || "832940979835089";
-const THREADS_APP_SECRET = process.env.THREADS_APP_SECRET || "";
+const THREADS_APP_ID = (process.env.THREADS_APP_ID || "832940979835089").trim();
+const THREADS_APP_SECRET = (process.env.THREADS_APP_SECRET || "").trim();
 
 export async function GET(req: NextRequest) {
     const code = req.nextUrl.searchParams.get("code");
