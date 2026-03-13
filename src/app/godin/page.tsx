@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人",
         description: "五層樓獨棟包棟民宿，10-12人入住，溫馨家庭風格。平日$10,000起。近駁二。",
         url: "https://www.hello-stay.com/godin",
-        images: [{ url: "/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
+        images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
     },
 };
 
@@ -260,9 +260,9 @@ export default function GodinPage() {
                 <div className="w">
                     <Reveal>
                         <div className="grid-3">
-                            {["/images/godin/cover-3.webp", "/images/godin/cover-4.webp", "/images/godin/cover-bg.webp"].map(src => (
+                            {["/images/godin/cover-3.webp", "/images/godin/cover-4.webp", "/images/godin/cover-bg.webp"].map((src, i) => (
                                 <div key={src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                    <Image src={src} alt="溝頂民宿" width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                    <Image src={src} alt={["溝頂民宿 客廳交誼空間", "溝頂民宿 溫馨房型實景", "溝頂民宿 五層樓獨棟外觀"][i]} width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                             ))}
                         </div>
@@ -288,6 +288,35 @@ export default function GodinPage() {
                         查詢空房
                     </Link>
                 </Reveal>
+            </section>
+
+            {/* ── Related Blog ── */}
+            <section style={{ padding: "60px 28px", background: "#FAF8F5" }}>
+                <div className="w" style={{ maxWidth: "780px" }}>
+                    <Reveal>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px", textAlign: "center" }}>Related Articles</div>
+                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", textAlign: "center", marginBottom: "24px", letterSpacing: "0.06em" }}>相關旅宿攻略</h3>
+                        <div style={{ display: "grid", gap: "10px" }}>
+                            {[
+                                { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
+                                { href: "/blog/pier2-accommodation", emoji: "🎨", title: "駁二住宿推薦", desc: "步行 10 分鐘到駁二" },
+                                { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
+                                { href: "/blog/yancheng-food-guide", emoji: "🍜", title: "鹽埕區美食地圖", desc: "30 間必吃老店" },
+                            ].map(a => (
+                                <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
+                                    <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
+                                    <div>
+                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>{a.title}</div>
+                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>{a.desc}</div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                        <div style={{ textAlign: "center", marginTop: "16px" }}>
+                            <Link href="/blog" style={{ fontSize: "0.75rem", color: "#C8AD7F", textDecoration: "none", letterSpacing: "0.1em" }}>瀏覽所有攻略 →</Link>
+                        </div>
+                    </Reveal>
+                </div>
             </section>
         </>
     );

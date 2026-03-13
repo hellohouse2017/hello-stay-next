@@ -8,7 +8,7 @@ export async function GET() {
 ## 基本資訊
 - 官方網站: https://www.hello-stay.com
 - 電話: +886-932-828-922
-- Email: hellostay2017@gmail.com
+- Email: hellohouse2017@gmail.com
 - 地址: 高雄市鹽埕區大公路70巷8號 (803)
 - LINE 官方帳號: https://lin.ee/atCiMQw
 - Instagram: https://www.instagram.com/hellostay2017/

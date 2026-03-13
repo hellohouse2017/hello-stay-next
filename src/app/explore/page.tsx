@@ -6,11 +6,12 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
     title: "周邊探索 | 景點・美食・行程推薦 | 你好哇寓所 & 溝頂民宿",
     description: "鹽埕區周邊景點、美食地圖與行程推薦｜駁二藝術特區、大港橋、西子灣、旗津渡輪，30間以上在地必吃老店，9條主題行程一次看。入住包棟民宿，步出門即可探索高雄最有故事的街區。",
+    alternates: { canonical: "https://www.hello-stay.com/explore" },
     openGraph: {
         title: "周邊探索 | 景點・美食・行程 | Hello Stay",
         description: "駁二、大港橋、西子灣，30+間必吃老店，行程推薦一次看。",
         url: "https://www.hello-stay.com/explore",
-        images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 周邊探索" }],
+        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 周邊探索" }],
     },
 };
 

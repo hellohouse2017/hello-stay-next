@@ -28,7 +28,7 @@ export default function HomePage() {
             alternateName: ["你好哇寓所", "Hello House", "溝頂民宿", "Godin House", "大智若愚"],
             url: "https://www.hello-stay.com",
             telephone: "+886-932-828-922",
-            email: "hellostay2017@gmail.com",
+            email: "hellohouse2017@gmail.com",
             description: "高雄鹽埕區質感包棟民宿，三館可容納6至48人。配備中島廚房、麻將與桌遊設備，步行10分鐘到駁二藝術特區。自2017年起服務超過5,000組旅客，Google評價4.9星。",
             slogan: "高雄鹽埕・質感包棟旅宿",
             foundingDate: "2017",

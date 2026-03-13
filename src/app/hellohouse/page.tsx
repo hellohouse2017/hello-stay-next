@@ -7,6 +7,12 @@ export const metadata: Metadata = {
     title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
     description: "高雄鹽埕區合法包棟首選｜你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、手動麻將桌、多元房型。電梯大樓含停車指引，步行即達駁二藝術特區、大港橋。綜藝玩很大拍攝場地，家族旅遊、朋友聚會、企業包場最佳選擇。",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
+    openGraph: {
+        title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
+        description: "6至26人彈性包棟，豪華中島廚房、麻將桌、桌遊。近駁二藝術特區，Google 4.9 星。",
+        url: "https://www.hello-stay.com/hellohouse",
+        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "你好哇寓所 高雄包棟民宿" }],
+    },
 };
 
 const galleryImages = [
@@ -421,6 +427,35 @@ export default function HelloHousePage() {
                             </div>
                         </Reveal>
                     ))}
+                </div>
+            </section>
+
+            {/* ── Related Blog ── */}
+            <section style={{ padding: "60px 28px", background: "#FAF8F5" }}>
+                <div className="w" style={{ maxWidth: "780px" }}>
+                    <Reveal>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px", textAlign: "center" }}>Related Articles</div>
+                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", textAlign: "center", marginBottom: "24px", letterSpacing: "0.06em" }}>相關旅宿攻略</h3>
+                        <div style={{ display: "grid", gap: "10px" }}>
+                            {[
+                                { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
+                                { href: "/blog/kaohsiung-kitchen-bnb", emoji: "🍳", title: "有廚房的民宿推薦", desc: "中島廚房・火鍋趴" },
+                                { href: "/blog/kaohsiung-family-reunion", emoji: "👨‍👩‍👧‍👦", title: "家族旅遊包棟推薦", desc: "三代同堂・長輩友善" },
+                                { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
+                            ].map(a => (
+                                <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
+                                    <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
+                                    <div>
+                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>{a.title}</div>
+                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>{a.desc}</div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                        <div style={{ textAlign: "center", marginTop: "16px" }}>
+                            <Link href="/blog" style={{ fontSize: "0.75rem", color: "#C8AD7F", textDecoration: "none", letterSpacing: "0.1em" }}>瀏覽所有攻略 →</Link>
+                        </div>
+                    </Reveal>
                 </div>
             </section>
 

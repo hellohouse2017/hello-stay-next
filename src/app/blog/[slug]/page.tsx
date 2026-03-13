@@ -104,6 +104,28 @@ export default async function ScheduledArticlePage({ params }: Props) {
                 <RelatedArticles current={slug} currentTags={article.tags} />
 
                 <Reveal>
+                    <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "14px" }}>Recommended Stay</div>
+                        <div style={{ display: "grid", gap: "10px" }}>
+                            <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "#FAF8F5" }}>
+                                <span style={{ fontSize: "1.3rem" }}>🏠</span>
+                                <div>
+                                    <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>你好哇寓所</div>
+                                    <div style={{ fontSize: "0.72rem", color: "#999" }}>6-26人・中島廚房・麻將桌</div>
+                                </div>
+                            </Link>
+                            <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "#FAF8F5" }}>
+                                <span style={{ fontSize: "1.3rem" }}>🏡</span>
+                                <div>
+                                    <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>溝頂民宿</div>
+                                    <div style={{ fontSize: "0.72rem", color: "#999" }}>10-12人・五層獨棟・溫馨家庭風</div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                </Reveal>
+
+                <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
                             <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link>

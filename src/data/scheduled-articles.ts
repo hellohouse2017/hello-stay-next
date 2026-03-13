@@ -28,7 +28,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-6-person-stay",
         title: "高雄 6 人住宿推薦：小團體包棟 vs 訂飯店，哪個划算？",
         description: "6人出遊高雄住包棟還是飯店？從價格、空間、設備完整比較，幫你找到最適合的住宿方式。",
-        publishDate: "2026-03-15",
+        publishDate: "2026-03-01",
         emoji: "👥", tags: ["包棟", "6人"],
         excerpt: "6人出遊住飯店要訂3間房，包棟只要一棟。價格、空間、設備完整比較。",
         sections: [
@@ -67,7 +67,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-10-person-stay",
         title: "高雄 10 人包棟住宿怎麼選？3 個重點一次看",
         description: "10人團體高雄包棟住宿推薦，從空間、設備、地點三大重點幫你挑到最適合的民宿。",
-        publishDate: "2026-03-22",
+        publishDate: "2026-03-08",
         emoji: "🏠", tags: ["包棟", "10人"],
         excerpt: "10 人出遊是最常見的包棟人數。空間、設備、地點三大重點幫你選。",
         sections: [
@@ -115,7 +115,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-15-person-stay",
         title: "高雄 15 人住宿：包棟民宿完整比較與推薦",
         description: "15人團體高雄住宿怎麼選？包棟民宿完整比較，從房型、設備到預算一次解決。",
-        publishDate: "2026-03-29",
+        publishDate: "2026-03-13",
         emoji: "👨‍👩‍👧‍👦", tags: ["包棟", "15人"],
         excerpt: "15 人是最尷尬的人數：飯店要訂一堆房、小包棟住不下。怎麼解決？",
         sections: [
@@ -161,7 +161,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-20-person-stay",
         title: "高雄 20 人包棟住哪裡？在地人推薦的 3 間民宿",
         description: "20人團體高雄包棟住宿推薦，鹽埕區在地民宿主人親自推薦最適合的3間包棟。",
-        publishDate: "2026-04-05",
+        publishDate: "2026-03-20",
         emoji: "🎉", tags: ["包棟", "20人"],
         excerpt: "20 人包棟是最受歡迎的團體規模。在地 8 年經驗，推薦最適合的方案。",
         sections: [
@@ -208,7 +208,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-30-person-stay",
         title: "高雄 30 人大團體住宿攻略：場地 × 交通 × 預算",
         description: "30人團體高雄住宿怎麼安排？從場地選擇到交通規劃，完整攻略一次搞定。",
-        publishDate: "2026-04-12",
+        publishDate: "2026-03-27",
         emoji: "🏘️", tags: ["包棟", "30人"],
         excerpt: "30 人出遊最大的挑戰：找不到一個地方能全部住在一起。我們有解法。",
         sections: [
@@ -256,7 +256,7 @@ export const scheduledArticles: ScheduledArticle[] = [
         slug: "kaohsiung-40-person-stay",
         title: "高雄 40 人住宿怎麼辦？超大包棟方案全解析",
         description: "40人超大團體高雄住宿方案，三棟聯訂最多容納48人，完整規劃攻略。",
-        publishDate: "2026-04-19",
+        publishDate: "2026-04-03",
         emoji: "🏢", tags: ["包棟", "40人"],
         excerpt: "40 人以上的超大團體，在高雄要住哪？三棟聯訂方案讓你全部住在一起。",
         sections: [
@@ -296,7 +296,7 @@ Hello Stay 三棟聯訂方案：
         slug: "kaohsiung-birthday-party-venue",
         title: "高雄生日派對場地推薦：包棟民宿辦趴最完整攻略",
         description: "在高雄辦生日派對？包棟民宿是最佳場地！從佈置到餐食，完整辦趴攻略。",
-        publishDate: "2026-04-26",
+        publishDate: "2026-04-10",
         emoji: "🎂", tags: ["生日", "派對"],
         excerpt: "餐廳辦生日太無聊？包棟民宿辦趴才是王道：廚房煮大餐、客廳開趴、住到隔天。",
         sections: [
@@ -336,7 +336,7 @@ Hello Stay 三棟聯訂方案：
         slug: "kaohsiung-bachelorette-party",
         title: "高雄單身趴住宿推薦：閨蜜出遊包棟首選",
         description: "高雄閨蜜旅行、單身派對住宿推薦。8-15人包棟私密空間，廚房煮飯、麻將桌遊、拍美照。",
-        publishDate: "2026-05-03",
+        publishDate: "2026-04-17",
         emoji: "👯‍♀️", tags: ["閨蜜", "單身趴"],
         excerpt: "結婚前最後的瘋狂！閨蜜們包一整棟，從下午玩到隔天。",
         sections: [
@@ -375,7 +375,7 @@ Day 2
         slug: "kaohsiung-parent-child-stay",
         title: "高雄親子包棟民宿：帶小孩住包棟的 5 大好處",
         description: "帶小孩去高雄玩住包棟民宿比飯店好？5個爸媽一定有感的優點，附親子行程推薦。",
-        publishDate: "2026-05-10",
+        publishDate: "2026-04-24",
         emoji: "👶", tags: ["親子", "家庭"],
         excerpt: "帶小孩住飯店怕吵到隔壁？住包棟整棟都是你的，小孩怎麼跑都不怕。",
         sections: [
@@ -421,7 +421,7 @@ Day 2
         slug: "kaohsiung-couple-friends-trip",
         title: "好友夫妻檔出遊高雄：4 對夫妻住包棟的完美體驗",
         description: "好朋友夫妻檔一起出遊高雄，包棟民宿讓每對有獨立房間又能一起玩。行程規劃完整攻略。",
-        publishDate: "2026-05-17",
+        publishDate: "2026-05-01",
         emoji: "💑", tags: ["夫妻", "朋友"],
         excerpt: "4 對夫妻、8 個好朋友。各自有獨立房間，公共空間一起玩。最完美的旅行配置。",
         sections: [
@@ -467,7 +467,7 @@ Day 3 — 大港橋 + 回程
         slug: "kaohsiung-company-retreat",
         title: "高雄員工旅遊住宿推薦：包棟民宿 vs 飯店怎麼選",
         description: "公司員工旅遊高雄住宿選飯店還是包棟？從費用、團隊凝聚、活動空間完整比較。",
-        publishDate: "2026-05-24",
+        publishDate: "2026-05-08",
         emoji: "🏢", tags: ["員旅", "企業"],
         excerpt: "員工旅遊住飯店各回各房，住包棟一起煮火鍋打麻將。哪個更凝聚團隊？",
         sections: [
@@ -508,7 +508,7 @@ Day 3 — 大港橋 + 回程
         slug: "kaohsiung-class-reunion",
         title: "高雄同學會住宿：包棟聚會讓感情瞬間回到學生時代",
         description: "辦同學會住包棟民宿，客廳聊通宵、廚房煮宵夜，一秒回到學生時代。高雄同學會場地推薦。",
-        publishDate: "2026-05-31",
+        publishDate: "2026-05-15",
         emoji: "🎓", tags: ["同學會", "聚會"],
         excerpt: "10 年沒見的同學，在餐廳吃 2 小時就散場？住包棟聊到天亮才過癮。",
         sections: [
@@ -545,7 +545,7 @@ Day 3 — 大港橋 + 回程
         slug: "kaohsiung-church-group-stay",
         title: "教會團契高雄住宿推薦：大團體包棟空間指南",
         description: "教會團契、小組旅遊高雄住宿推薦，15-38人包棟方案，有客廳可聚會、廚房可共食。",
-        publishDate: "2026-06-07",
+        publishDate: "2026-05-22",
         emoji: "⛪", tags: ["教會", "團契"],
         excerpt: "教會小組出遊，需要有聚會空間又能住在一起。包棟民宿是最佳選擇。",
         sections: [
@@ -708,7 +708,7 @@ Day 2
     // ── Q3: 節慶篇 × 行程篇 ──
     // Week 27
     {
-        slug: "kaohsiung-mid-autumn-bbq", title: "中秋節高雄包棟烤肉攻略：最適合團體的場地推薦", description: "中秋連假高雄包棟住宿，用廚房煮火鍋代替傳統烤肉，團體中秋聚會完整攻略。", publishDate: "2026-09-13", emoji: "🌕", tags: ["中秋", "包棟"], excerpt: "中秋不一定要烤肉！包棟煮火鍋 + 吃柚子 + 賞月，一樣有氣氛。",
+        slug: "kaohsiung-mid-autumn-bbq", title: "中秋節高雄包棟烤肉攻略：最適合團體的場地推薦", description: "中秋連假高雄包棟住宿，用廚房煮火鍋代替傳統烤肉，團體中秋聚會完整攻略。", publishDate: "2026-08-21", emoji: "🌕", tags: ["中秋", "包棟"], excerpt: "中秋不一定要烤肉！包棟煮火鍋 + 吃柚子 + 賞月，一樣有氣氛。",
         sections: [
             { id: "plan", title: "中秋包棟聚會怎麼辦？", content: `誰說中秋一定要烤肉？在包棟民宿煮火鍋一樣有團聚感：\n\n中秋包棟流程建議：\n16:00 入住、佈置中秋裝飾\n17:00 全聯採購火鍋食材 + 月餅 + 柚子\n18:30 中島廚房煮火鍋（最輕鬆的團體聚餐）\n20:00 客廳吃月餅、剝柚子\n21:00 步行到港邊賞月（8 分鐘到大港橋）\n22:00 回來打麻將\n\n為什麼火鍋比烤肉好？\n• 不用準備烤肉架和炭\n• 不怕下雨（室內活動）\n• 不會弄得一身煙味\n• 食材更豐富更健康` },
         ],
@@ -716,7 +716,7 @@ Day 2
     },
     // Week 28
     {
-        slug: "kaohsiung-national-day-trip", title: "國慶連假高雄包棟住宿：三天兩夜行程推薦", description: "國慶連假高雄包棟住宿推薦，三天兩夜行程規劃，從住宿到景點一次搞定。", publishDate: "2026-09-20", emoji: "🇹🇼", tags: ["國慶", "連假"], excerpt: "國慶三天連假去高雄！包棟住宿 + 三天行程完整規劃。",
+        slug: "kaohsiung-national-day-trip", title: "國慶連假高雄包棟住宿：三天兩夜行程推薦", description: "國慶連假高雄包棟住宿推薦，三天兩夜行程規劃，從住宿到景點一次搞定。", publishDate: "2026-09-04", emoji: "🇹🇼", tags: ["國慶", "連假"], excerpt: "國慶三天連假去高雄！包棟住宿 + 三天行程完整規劃。",
         sections: [
             { id: "itinerary", title: "國慶三天兩夜行程", content: `Day 1（抵達日）\n14:00 高鐵左營 → 捷運到鹽埕埔站\n16:00 入住包棟\n17:00 鹽埕區散步覓食\n20:00 回民宿煮火鍋 + 麻將\n\nDay 2（全天玩）\n09:00 駁二藝術特區（半天）\n12:00 棧貳庫午餐\n14:00 搭渡輪去旗津\n16:00 旗津海產 + 海邊散步\n18:00 回民宿休息\n20:00 鹽埕酒吧巡禮\n\nDay 3（回程日）\n09:00 大港橋 + 棧貳庫咖啡\n11:00 退房\n12:00 午餐後搭高鐵回家\n\n預算：每人約 $3,000-$4,500（含住宿交通餐費）` },
         ],
@@ -724,7 +724,7 @@ Day 2
     },
     // Week 29
     {
-        slug: "kaohsiung-christmas-party", title: "高雄聖誕派對場地：包棟民宿交換禮物最有氣氛", description: "高雄聖誕節派對場地推薦，包棟民宿辦交換禮物、聖誕晚會，比餐廳更有氣氛。", publishDate: "2026-09-27", emoji: "🎄", tags: ["聖誕", "派對"], excerpt: "聖誕節在餐廳吃飯太無聊！包棟民宿佈置聖誕氛圍，交換禮物更有感覺。",
+        slug: "kaohsiung-christmas-party", title: "高雄聖誕派對場地：包棟民宿交換禮物最有氣氛", description: "高雄聖誕節派對場地推薦，包棟民宿辦交換禮物、聖誕晚會，比餐廳更有氣氛。", publishDate: "2026-11-20", emoji: "🎄", tags: ["聖誕", "派對"], excerpt: "聖誕節在餐廳吃飯太無聊！包棟民宿佈置聖誕氛圍，交換禮物更有感覺。",
         sections: [
             { id: "howto", title: "包棟聖誕派對攻略", content: `佈置清單（蝦皮 $500 搞定）：\n• 聖誕小樹（桌上型）\n• LED 燈串\n• 聖誕帽（人手一頂）\n• 紅白桌巾\n\n活動流程：\n18:00 入住、佈置\n19:00 聖誕大餐（火鍋或叫外送）\n20:00 交換禮物！（建議 $300-$500 預算）\n21:00 聖誕 Netflix 電影\n22:00 麻將 + 桌遊\n\n交換禮物玩法：\n1. 經典抽籤：每人抽一個號碼\n2. 偷禮物：可以搶別人的\n3. 骰子決定：擲骰子決定誰拿哪個` },
         ],
@@ -732,7 +732,7 @@ Day 2
     },
     // Week 30
     {
-        slug: "kaohsiung-spring-festival-stay", title: "2027 過年高雄住宿推薦：春節包棟早鳥攻略", description: "2027春節過年高雄包棟住宿推薦，早鳥訂房攻略、春節行程規劃、年菜準備指南。", publishDate: "2026-10-04", emoji: "🧧", tags: ["過年", "春節"], excerpt: "過年不想在家？帶全家來高雄包棟，有廚房煮年菜、有麻將打到初五。",
+        slug: "kaohsiung-spring-festival-stay", title: "2027 過年高雄住宿推薦：春節包棟早鳥攻略", description: "2027春節過年高雄包棟住宿推薦，早鳥訂房攻略、春節行程規劃、年菜準備指南。", publishDate: "2026-11-06", emoji: "🧧", tags: ["過年", "春節"], excerpt: "過年不想在家？帶全家來高雄包棟，有廚房煮年菜、有麻將打到初五。",
         sections: [
             { id: "tips", title: "春節包棟訂房攻略", content: `春節是包棟最熱門的時段，通常 2-3 個月前就被訂滿。\n\n早鳥攻略：\n1. 10 月就開始訂（這篇文就是提醒你的）\n2. 直接 LINE 詢問空房最快\n3. 春節價格通常是平日的 1.5-2 倍（但包棟分攤下來還是比飯店便宜）\n4. 越早訂越有議價空間\n\n春節包棟最適合：\n• 家族團圓（三代同堂）\n• 大年初一走春（駁二、大港橋）\n• 除夕圍爐（中島廚房煮年菜）\n• 打麻將打到初五` },
         ],
@@ -740,7 +740,7 @@ Day 2
     },
     // Week 31
     {
-        slug: "kaohsiung-summer-trip-plan", title: "高雄暑假團體旅遊攻略：親子 × 學生 × 家族", description: "高雄暑假團體旅遊攻略，針對親子、學生、家族三種團體量身推薦行程和住宿。", publishDate: "2026-10-11", emoji: "☀️", tags: ["暑假", "團體"], excerpt: "暑假是高雄旅遊旺季！三種團體的專屬攻略，讓你玩得聰明又省錢。",
+        slug: "kaohsiung-summer-trip-plan", title: "高雄暑假團體旅遊攻略：親子 × 學生 × 家族", description: "高雄暑假團體旅遊攻略，針對親子、學生、家族三種團體量身推薦行程和住宿。", publishDate: "2026-06-19", emoji: "☀️", tags: ["暑假", "團體"], excerpt: "暑假是高雄旅遊旺季！三種團體的專屬攻略，讓你玩得聰明又省錢。",
         sections: [
             { id: "types", title: "三種暑假團體攻略", content: `親子團（2-3 個家庭）：\n• 住宿：溝頂民宿（10-12人剛好）\n• 行程：壽山動物園 → 旗津海邊 → 駁二小火車\n• 預算：每人 $2,000-$3,000（2天1夜）\n\n學生團（10-20 人）：\n• 住宿：你好哇寓所（最省錢）\n• 行程：駁二 → 大港橋 → 鹽埕美食\n• 預算：每人 $1,500-$2,500（2天1夜）\n\n家族團（15-30 人）：\n• 住宿：雙棟聯訂\n• 行程：緩慢步調，以吃和聊天為主\n• 預算：每人 $2,000-$3,500（2天1夜）\n\n小提醒：暑假是旺季，建議提早 1 個月訂房。` },
         ],
@@ -780,7 +780,7 @@ Day 2
     },
     // Week 36
     {
-        slug: "kaohsiung-year-end-party", title: "高雄尾牙包棟推薦：公司聚餐 + 住宿一站搞定", description: "高雄公司尾牙場地推薦，包棟民宿辦尾牙聚餐加住宿，比餐廳更有凝聚力。", publishDate: "2026-11-15", emoji: "🎊", tags: ["尾牙", "企業"], excerpt: "尾牙不要再去餐廳了！包棟民宿辦尾牙，吃完直接住，凝聚力翻倍。",
+        slug: "kaohsiung-year-end-party", title: "高雄尾牙包棟推薦：公司聚餐 + 住宿一站搞定", description: "高雄公司尾牙場地推薦，包棟民宿辦尾牙聚餐加住宿，比餐廳更有凝聚力。", publishDate: "2026-12-04", emoji: "🎊", tags: ["尾牙", "企業"], excerpt: "尾牙不要再去餐廳了！包棟民宿辦尾牙，吃完直接住，凝聚力翻倍。",
         sections: [
             { id: "plan", title: "包棟尾牙怎麼辦？", content: `傳統尾牙：在餐廳吃 2 小時就散場\n包棟尾牙：吃完繼續玩，住一晚感情加倍\n\n包棟尾牙流程：\n16:00 入住、佈置場地\n17:00 抽獎準備（獎品擺好）\n18:00 中島廚房煮火鍋 or 叫外燴\n19:30 年度回顧 + 頒獎\n20:00 重頭戲：抽獎！\n21:00 麻將、桌遊、卡拉OK\n23:00 宵夜時光\n隔天 一起吃早餐\n\n費用：住宿 + 餐費每人約 $1,500-$2,500\n比餐廳尾牙便宜，時間又更長！` },
         ],
@@ -877,7 +877,7 @@ Day 2
     },
     // Week 48
     {
-        slug: "kaohsiung-valentines-stay", title: "高雄情人節住宿推薦：情侶 × 夫妻的質感包棟", description: "高雄情人節住宿推薦，和另一半住進質感包棟民宿，享受兩人的悠閒時光。", publishDate: "2027-02-07", emoji: "💕", tags: ["情人節", "情侶"], excerpt: "情人節不一定要去高級飯店。質感包棟民宿 + 鹽埕老街散步，更浪漫。",
+        slug: "kaohsiung-valentines-stay", title: "高雄情人節住宿推薦：情侶 × 夫妻的質感包棟", description: "高雄情人節住宿推薦，和另一半住進質感包棟民宿，享受兩人的悠閒時光。", publishDate: "2027-01-15", emoji: "💕", tags: ["情人節", "情侶"], excerpt: "情人節不一定要去高級飯店。質感包棟民宿 + 鹽埕老街散步，更浪漫。",
         sections: [
             { id: "plan", title: "情人節包棟約會行程", content: `下午\n16:00 入住包棟民宿\n17:00 鹽埕老街散步，逛復古小店\n18:00 小堤咖啡下午茶\n\n晚上\n19:00 自己煮情人節大餐（廚房就是你的）\n→ 推薦：義大利麵 + 紅酒（全聯就買得到）\n20:30 散步到愛河看夜景\n21:00 回民宿 Netflix + 紅酒\n\n隔天\n09:00 一起煮早餐\n10:00 大港橋散步\n11:00 退房\n\n溝頂民宿的雙人房很適合情侶：有獨立衛浴、安靜的空間。整棟包下來只有兩個人，超級浪漫。` },
         ],

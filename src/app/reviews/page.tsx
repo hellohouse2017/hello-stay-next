@@ -7,6 +7,12 @@ export const metadata: Metadata = {
     title: "住客真心話｜Hello Stay 你好哇寓所 Google 評價精選",
     description: "Google 評價 4.9 星、87 則真實住客評價精選。家族旅遊、畢業旅行、企業團建、婚禮迎娶的住客分享包棟體驗。高雄鹽埕區包棟民宿。",
     alternates: { canonical: "https://www.hello-stay.com/reviews" },
+    openGraph: {
+        title: "住客真心話｜Hello Stay Google 評價 4.9 星精選",
+        description: "Google 評價 4.9 星、87 則真實住客評價精選。家族旅遊、畢旅、企業團建、婚禮迎娶的包棟體驗分享。",
+        url: "https://www.hello-stay.com/reviews",
+        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 住客評價" }],
+    },
 };
 
 const reviews = [

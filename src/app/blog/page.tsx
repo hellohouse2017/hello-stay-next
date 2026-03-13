@@ -7,6 +7,13 @@ import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articl
 export const metadata: Metadata = {
     title: "旅宿攻略 | 高雄包棟・鹽埕美食・行程推薦 | Hello Stay",
     description: "高雄包棟民宿完全攻略、鹽埕區美食地圖、團體旅遊行程推薦。在地經營8年的民宿主人，分享最道地的高雄旅遊情報。",
+    alternates: { canonical: "https://www.hello-stay.com/blog" },
+    openGraph: {
+        title: "旅宿攻略 | 高雄包棟・鹽埕美食・行程推薦",
+        description: "在地經營8年，最道地的高雄旅遊情報。包棟攻略、美食地圖、行程推薦。",
+        url: "https://www.hello-stay.com/blog",
+        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 旅宿攻略" }],
+    },
 };
 
 const existingArticles = [

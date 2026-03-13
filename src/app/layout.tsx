@@ -21,6 +21,7 @@ const notoSerif = Noto_Serif_TC({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.hello-stay.com"),
   title: {
     default: "高雄包棟民宿推薦 | 你好哇寓所・溝頂民宿・大智若愚 | 6-48人團體住宿首選",
     template: "%s | Hello Stay 高雄包棟民宿",
@@ -35,13 +36,13 @@ export const metadata: Metadata = {
     siteName: "Hello Stay 高雄包棟民宿",
     title: "高雄包棟民宿推薦 | 你好哇寓所・溝頂民宿・大智若愚",
     description: "高雄鹽埕區三館包棟民宿，6至48人彈性方案。中島廚房、麻將桌、桌遊，近駁二藝術特區。",
-    images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 高雄包棟民宿" }],
+    images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 高雄包棟民宿" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "高雄包棟民宿推薦 | Hello Stay",
     description: "高雄鹽埕區三館包棟民宿，6至48人彈性方案。",
-    images: ["/images/cover-bg.webp"],
+    images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://www.hello-stay.com" },
