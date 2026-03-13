@@ -62,8 +62,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N2LV3SSTPF"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N2LV3SSTPF');
+          `}
+        </Script>
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />
