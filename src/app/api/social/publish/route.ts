@@ -45,7 +45,7 @@ const PAGES: Record<PageKey, PageConfig> = {
     },
 };
 
-const API_SECRET = process.env.META_APP_SECRET || "";
+const API_SECRET = (process.env.META_APP_SECRET || "").trim();
 
 // ---------------------------------------------------------------------------
 // Helper: publish to Instagram (2-step: create container → publish)
@@ -229,7 +229,7 @@ export async function POST(req: NextRequest) {
 
         // --- Facebook ---
         if (targetPlatforms.includes("facebook")) {
-            const fbToken = process.env[pageConfig.tokenEnv];
+            const fbToken = process.env[pageConfig.tokenEnv]?.trim();
             if (!fbToken) {
                 results.facebook = { success: false, error: "Token not configured" };
             } else {
@@ -275,7 +275,7 @@ export async function POST(req: NextRequest) {
 
         // --- Instagram ---
         if (targetPlatforms.includes("instagram") && pageConfig.ig) {
-            const igToken = process.env[pageConfig.ig.tokenEnv];
+            const igToken = process.env[pageConfig.ig.tokenEnv]?.trim();
             const igUserId = pageConfig.ig.userId;
             if (!igToken || !igUserId) {
                 results.instagram = { success: false, error: "IG token or user ID not configured — skipped" };
@@ -286,7 +286,7 @@ export async function POST(req: NextRequest) {
 
         // --- Threads ---
         if (targetPlatforms.includes("threads") && pageConfig.threads) {
-            const threadsToken = process.env[pageConfig.threads.tokenEnv];
+            const threadsToken = process.env[pageConfig.threads.tokenEnv]?.trim();
             const threadsUserId = pageConfig.threads.userId;
             if (!threadsToken || !threadsUserId) {
                 results.threads = { success: false, error: "Threads token or user ID not configured — skipped" };
