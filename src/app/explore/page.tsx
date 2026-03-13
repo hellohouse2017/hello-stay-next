@@ -93,7 +93,7 @@ const itineraries = [
 export default function ExplorePage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
-            <JsonLd data={{ "@context": "https://schema.org", "@type": "TouristDestination", name: "高雄鹽埕區", description: "高雄最有文化底蘊的美食街區，步行可達駁二藝術特區、大港橋、棧貳庫。30間以上在地老店，入住包棟民宿即可步出門探索。", touristType: ["家庭旅遊", "團體旅遊", "文化旅遊", "美食之旅"], geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } }} />
+            <JsonLd data={[{ "@context": "https://schema.org", "@type": "TouristDestination", name: "高雄鹽埕區", description: "高雄最有文化底蘊的美食街區，步行可達駁二藝術特區、大港橋、棧貳庫。30間以上在地老店，入住包棟民宿即可步出門探索。", touristType: ["家庭旅遊", "團體旅遊", "文化旅遊", "美食之旅"], geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "高雄鹽埕區有什麼景點？", acceptedAnswer: { "@type": "Answer", text: "步行可達駁二藝術特區（10分鐘）、大港橋（8分鐘）、棧貳庫（15分鐘）、高雄流行音樂中心（12分鐘）、西子灣（捷運10分鐘）。" } }, { "@type": "Question", name: "鹽埕區有什麼好吃的？", acceptedAnswer: { "@type": "Answer", text: "超過30間在地老店：港園牛肉麵、鴨肉珍、阿囉哈滷味、大摳胖碳烤三明治、婆婆冰等，步行即達。" } }, { "@type": "Question", name: "住鹽埕區交通方便嗎？", acceptedAnswer: { "@type": "Answer", text: "非常方便。捷運鹽埕埔站步行5分鐘，輕軌也在附近。高鐵左營站搭捷運約30分鐘可達。" } }] }]} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
                 {/* Header */}

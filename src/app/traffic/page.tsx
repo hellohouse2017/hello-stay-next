@@ -47,6 +47,7 @@ export default function TrafficPage() {
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Place", name: "你好哇寓所", address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 }, publicAccess: true },
                 { "@context": "https://schema.org", "@type": "Place", name: "溝頂民宿", address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 }, publicAccess: true },
+                { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "怎麼從高鐵到你好哇寓所？", acceptedAnswer: { "@type": "Answer", text: "高鐵左營站 → 捷運紅線至美麗島站 → 轉橘線至鹽埕埔站 (O2) → 4號出口步行 5 分鐘即達。全程約30分鐘。" } }, { "@type": "Question", name: "附近有停車場嗎？", acceptedAnswer: { "@type": "Answer", text: "周邊有6間停車場。大公路路邊晚上8點至早上8點免費，富野路停車場平日$30/小時。" } }, { "@type": "Question", name: "可以搭捷運到嗎？", acceptedAnswer: { "@type": "Answer", text: "可以。捷運橘線鹽埕埔站(O2) 4號出口步行5分鐘即達。" } }] },
             ]} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
 

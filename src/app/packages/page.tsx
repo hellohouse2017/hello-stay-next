@@ -63,7 +63,7 @@ const packages = [
 export default function PackagesPage() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
-            <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", provider: { "@type": "LodgingBusiness", name: "Hello Stay" }, name: "高雄包棟方案", description: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，量身打造高雄鹽埕區包棟方案。", areaServed: { "@type": "Place", name: "高雄鹽埕區" }, serviceType: "包棟住宿", hasOfferCatalog: { "@type": "OfferCatalog", name: "包棟方案列表", itemListElement: packages.map((p, i) => ({ "@type": "Offer", position: i + 1, name: p.title, description: p.desc })) } }} />
+            <JsonLd data={[{ "@context": "https://schema.org", "@type": "Service", provider: { "@type": "LodgingBusiness", name: "Hello Stay" }, name: "高雄包棟方案", description: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，量身打造高雄鹽埕區包棟方案。", areaServed: { "@type": "Place", name: "高雄鹽埕區" }, serviceType: "包棟住宿", hasOfferCatalog: { "@type": "OfferCatalog", name: "包棟方案列表", itemListElement: packages.map((p, i) => ({ "@type": "Offer", position: i + 1, name: p.title, description: p.desc })) } }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "高雄包棟一晚多少錢？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿平日$10,000起（10人），你好哇寓所依人數$12,000-$28,000。平均每人$800-$1,500。" } }, { "@type": "Question", name: "適合辦什麼活動？", acceptedAnswer: { "@type": "Answer", text: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對、生日趴、畢業旅行等都適合。" } }, { "@type": "Question", name: "最多可以住幾個人？", acceptedAnswer: { "@type": "Answer", text: "三館聯訂最多可容納近80人。單館最大是大智若愚48人，你好哇寓所26人，溝頂12人。" } }] }]} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
                 {/* Header */}
