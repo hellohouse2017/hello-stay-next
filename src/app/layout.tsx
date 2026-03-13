@@ -59,7 +59,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant-TW" className={`${notoSans.variable} ${notoSerif.variable}`}>
-      <head />
+      <head>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+      </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
