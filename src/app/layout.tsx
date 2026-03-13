@@ -4,11 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import dynamic from "next/dynamic";
-
-const ChatWidget = dynamic(() => import("@/components/ChatWidget"), {
-  ssr: false,
-});
+import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 
 const notoSans = Noto_Sans_TC({
   subsets: ["latin"],
@@ -68,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />
-        <ChatWidget />
+        <ChatWidgetLoader />
         <Script
           id="font-awesome"
           strategy="lazyOnload"
