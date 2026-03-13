@@ -109,7 +109,14 @@ export default function HomePage() {
 
       {/* ── Hero ── */}
       <section className="hero-d">
-        <div className="bg" style={{ backgroundImage: "url('/images/cover-bg.jpg')", opacity: 0.45 }} />
+        <Image
+          src="/images/cover-bg.webp"
+          alt="Hello Stay 高雄包棟民宿"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", opacity: 0.45 }}
+        />
         <div className="overlay" />
         <div className="content" style={{ padding: "0 28px" }}>
           <div className="tagline" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.3s forwards" }}>
@@ -146,7 +153,7 @@ export default function HomePage() {
           <Reveal>
             <div className="grid-asym" style={{ marginBottom: "clamp(60px, 8vw, 100px)" }}>
               <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                <Image src="/images/hellohouse/cover.jpg" alt="你好哇寓所 中島廚房" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
+                <Image src="/images/hellohouse/cover.webp" alt="你好哇寓所 中島廚房" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
               </div>
               <div>
                 <div className="label-d" style={{ color: "#C8AD7F" }}>01</div>
@@ -183,7 +190,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                <Image src="/images/godin/cover-1.jpg" alt="溝頂民宿 客廳空間" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 客廳空間" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
               </div>
             </div>
           </Reveal>

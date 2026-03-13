@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 };
 
 const galleryImages = [
-    { src: "/images/hellohouse/photo1.jpg", alt: "你好哇寓所 客廳空間" },
-    { src: "/images/hellohouse/photo2.jpg", alt: "你好哇寓所 廚房設備" },
-    { src: "/images/hellohouse/photo3.jpg", alt: "你好哇寓所 房間" },
-    { src: "/images/hellohouse/photo4.jpg", alt: "你好哇寓所 空間細節" },
-    { src: "/images/hellohouse/photo5.jpg", alt: "你好哇寓所 環境" },
-    { src: "/images/hellohouse/bar-2.jpg", alt: "你好哇寓所 吧台區" },
+    { src: "/images/hellohouse/photo1.webp", alt: "你好哇寓所 客廳空間" },
+    { src: "/images/hellohouse/photo2.webp", alt: "你好哇寓所 廚房設備" },
+    { src: "/images/hellohouse/photo3.webp", alt: "你好哇寓所 房間" },
+    { src: "/images/hellohouse/photo4.webp", alt: "你好哇寓所 空間細節" },
+    { src: "/images/hellohouse/photo5.webp", alt: "你好哇寓所 環境" },
+    { src: "/images/hellohouse/bar-2.webp", alt: "你好哇寓所 吧台區" },
 ];
 
 const reviews = [
@@ -80,7 +80,14 @@ export default function HelloHousePage() {
 
             {/* ── Hero (D-style: dark + gold) ── */}
             <section className="hero-d">
-                <div className="bg" style={{ backgroundImage: "url('/images/hellohouse/cover.jpg')", opacity: 0.5 }} />
+                <Image
+                  src="/images/hellohouse/cover.webp"
+                  alt="你好哇寓所"
+                  fill
+                  priority
+                  sizes="100vw"
+                  style={{ objectFit: "cover", opacity: 0.5 }}
+                />
                 <div className="overlay" />
                 <div className="content" style={{ padding: "0 28px" }}>
                     <div className="tagline" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.2s forwards" }}>
@@ -104,7 +111,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="grid-asym" style={{ marginBottom: "0" }}>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/hellohouse/photo1.jpg" alt="你好哇寓所 大廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/photo1.webp" alt="你好哇寓所 大廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
                                 <div className="label-d" style={{ color: "#C8AD7F" }}>About</div>
@@ -167,7 +174,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1000.jpg" alt="1F 公共空間 — 中島廚房與交誼區" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1000.webp" alt="1F 公共空間 — 中島廚房與交誼區" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">1F</div>
@@ -196,7 +203,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1201.jpg" alt="2F-1201 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1201.webp" alt="2F-1201 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">2F</div>
@@ -223,7 +230,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1202.jpg" alt="2F-1202 四人房 — 網美吊椅房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1202.webp" alt="2F-1202 四人房 — 網美吊椅房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">2F</div>
@@ -250,7 +257,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1302.jpg" alt="3F-1302 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1302.webp" alt="3F-1302 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">3F</div>
@@ -277,7 +284,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1401.jpg" alt="4F-1401 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1401.webp" alt="4F-1401 雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">4F</div>
@@ -304,7 +311,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="room-detail-card reverse">
                             <div className="room-detail-img">
-                                <Image src="/images/hellohouse/1402.jpg" alt="4F-1402 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/1402.webp" alt="4F-1402 六人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div className="room-detail-info">
                                 <div className="room-floor-tag">4F</div>

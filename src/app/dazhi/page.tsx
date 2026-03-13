@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         title: "大智若愚 | 高雄全新電梯包棟民宿",
         description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。Coming Soon 2026",
         url: "https://www.hello-stay.com/dazhi",
-        images: [{ url: "/images/dazhi/building-render.png", width: 1200, height: 630, alt: "大智若愚" }],
+        images: [{ url: "/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
     },
 };
 
@@ -44,7 +44,7 @@ export default function DazhiPage() {
                         marginBottom: "50px", boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
                     }}>
                         <Image
-                            src="/images/dazhi/building-render.png"
+                            src="/images/dazhi/building-render.webp"
                             alt="大智若愚 外觀設計圖"
                             width={720} height={720}
                             className="img-cover"

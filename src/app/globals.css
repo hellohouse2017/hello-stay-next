@@ -8,9 +8,11 @@
 
 /* ── Shared Tokens ── */
 :root {
-  --serif: 'Noto Serif TC', 'Georgia', serif;
-  --sans: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
-  --en: 'Inter', 'Helvetica Neue', sans-serif;
+  --serif: var(--font-noto-serif), 'Georgia', serif;
+  --sans: var(--font-noto-sans), 'Helvetica Neue', sans-serif;
+  --en: var(--font-noto-sans), 'Helvetica Neue', sans-serif;
+  --c-accent: #C8AD7F;
+  --c-primary: #161618;
   --content-w: 1200px;
   --nav-h: 72px;
 }

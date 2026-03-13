@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: "包棟方案 | 企業・婚禮・家族・球隊 | Hello Stay",
         description: "高雄鹽埕最彈性的包棟方案，專為各種場合量身打造。",
         url: "https://www.hello-stay.com/packages",
-        images: [{ url: "/images/cover-bg.jpg", width: 1200, height: 630, alt: "Hello Stay 包棟方案" }],
+        images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 包棟方案" }],
     },
 };
 

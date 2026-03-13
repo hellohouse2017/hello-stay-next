@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: "入住須知與住宿契約 | Hello Stay",
         description: "住宿契約、押金規定、取消退費政策。",
         url: "https://www.hello-stay.com/agreement",
-        images: [{ url: "/images/cover-bg.jpg", width: 1200, height: 630, alt: "Hello Stay 入住須知" }],
+        images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 入住須知" }],
     },
 };
 

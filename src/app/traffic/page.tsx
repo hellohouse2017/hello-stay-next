@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: "交通指南與停車資訊 | Hello Stay",
         description: "如何前往你好哇寓所、溝頂民宿，鄰近停車場與捷運資訊。",
         url: "https://www.hello-stay.com/traffic",
-        images: [{ url: "/images/cover-bg.jpg", width: 1200, height: 630, alt: "Hello Stay 交通指南" }],
+        images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 交通指南" }],
     },
 };
 
