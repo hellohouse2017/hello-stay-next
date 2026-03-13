@@ -9,7 +9,7 @@ export default function Footer() {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "36px", marginBottom: "40px" }}>
                     <div>
                         <div style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#C8AD7F", letterSpacing: "0.1em", marginBottom: "14px" }}>Hello Stay</div>
-                        <p style={{ fontSize: "0.78rem", lineHeight: 2, color: "rgba(255,255,255,0.3)" }}>高雄鹽埕區質感包棟民宿<br />專為團體旅客打造的獨立空間</p>
+                        <p style={{ fontSize: "0.78rem", lineHeight: 2, color: "rgba(255,255,255,0.6)" }}>高雄鹽埕區質感包棟民宿<br />專為團體旅客打造的獨立空間</p>
                     </div>
                     <div>
                         <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "16px" }}>Properties</div>
@@ -39,7 +39,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "20px", fontSize: "0.7rem", color: "rgba(255,255,255,0.2)", textAlign: "center" }}>
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "20px", fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", textAlign: "center" }}>
                     © {new Date().getFullYear()} Hello Stay. All rights reserved.
                 </div>
             </div>

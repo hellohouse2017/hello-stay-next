@@ -93,7 +93,7 @@ export default function GodinPage() {
                                 <Image src="/images/godin/cover-2.webp" alt="溝頂民宿 客廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
-                                <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>About</div>
+                                <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#767676", marginBottom: "12px" }}>About</div>
                                 <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", marginBottom: "16px", letterSpacing: "0.06em", color: "#2a2a2a" }}>像回家一樣的旅行</h2>
                                 <div style={{ width: "40px", height: "1px", background: "#ddd", marginBottom: "20px" }} />
                                 <p style={{ fontSize: "0.92rem", color: "#999", lineHeight: 2.2 }}>
@@ -111,7 +111,7 @@ export default function GodinPage() {
             <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
                 <div className="w" style={{ marginBottom: "50px" }}>
                     <Reveal>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#aaa", marginBottom: "12px" }}>Rooms</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#767676", marginBottom: "12px" }}>Rooms</div>
                         <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a" }}>房型與空間介紹</h2>
                         <p style={{ fontSize: "0.9rem", color: "#999", marginTop: "10px" }}>五層樓獨棟，4 間客房皆配備獨立衛浴、冷暖空調</p>
                     </Reveal>
@@ -276,7 +276,7 @@ export default function GodinPage() {
                     <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.2rem, 3vw, 1.6rem)", letterSpacing: "0.06em", color: "#2a2a2a", marginBottom: "12px" }}>
                         小團體的完美包棟體驗
                     </h3>
-                    <p style={{ fontSize: "0.88rem", color: "#aaa", marginBottom: "30px" }}>
+                    <p style={{ fontSize: "0.88rem", color: "#767676", marginBottom: "30px" }}>
                         平日 $10,000 起 · 12 人以內
                     </p>
                     <Link href="/book" style={{

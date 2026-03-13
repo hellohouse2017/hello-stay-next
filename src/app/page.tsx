@@ -162,7 +162,7 @@ export default function HomePage() {
                 <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
                   6 至 26 人彈性包棟。豪宅級中島廚房、麻將、多元房型。老屋溫度與現代質感的完美融合。
                 </p>
-                <p style={{ fontSize: "0.78rem", color: "#bbb", marginBottom: "28px" }}>
+                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
                   近駁二藝術特區・步行 10 分鐘
                 </p>
                 <Link href="/hellohouse" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#C8AD7F", letterSpacing: "0.1em", borderBottom: "1px solid rgba(200,173,127,0.3)", paddingBottom: "4px" }}>
@@ -182,7 +182,7 @@ export default function HomePage() {
                 <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
                   10 至 12 人精緻獨棟。五層樓完整空間，溫馨家庭風格。小團體的高 CP 值首選。
                 </p>
-                <p style={{ fontSize: "0.78rem", color: "#bbb", marginBottom: "28px" }}>
+                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
                   鹽埕靜謐巷弄・平日 $10,000 起
                 </p>
                 <Link href="/godin" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#8A8279", letterSpacing: "0.1em", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "4px" }}>
@@ -210,7 +210,7 @@ export default function HomePage() {
                 <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
                   全新電梯民宿，最大可住 48 人。大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟。
                 </p>
-                <p style={{ fontSize: "0.78rem", color: "#bbb", marginBottom: "28px" }}>
+                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
                   大港橋旁・即將開幕
                 </p>
                 <Link href="/dazhi" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#A09282", letterSpacing: "0.1em", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "4px" }}>

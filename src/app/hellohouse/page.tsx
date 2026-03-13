@@ -390,7 +390,7 @@ export default function HelloHousePage() {
                             <div style={{ padding: "20px 0", borderBottom: "1px solid rgba(0,0,0,0.06)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                 <div>
                                     <div style={{ fontWeight: 500, fontSize: "0.95rem" }}>{s.show}</div>
-                                    <div style={{ fontSize: "0.78rem", color: "#aaa" }}>{s.cast}</div>
+                                    <div style={{ fontSize: "0.78rem", color: "#767676" }}>{s.cast}</div>
                                 </div>
                                 <a href={s.url} target="_blank" rel="noreferrer" style={{ fontSize: "0.82rem", color: "#C8AD7F", letterSpacing: "0.05em" }}>
                                     觀看片段 →

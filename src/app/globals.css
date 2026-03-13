@@ -169,7 +169,7 @@ h4 {
 
 .hero-d .sub {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.05em;
   margin-bottom: 40px;
 }
@@ -264,7 +264,7 @@ h4 {
 
 .col3-item p {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.9;
 }
 
@@ -354,7 +354,7 @@ h4 {
 
 .hero-b .sub {
   font-size: 0.82rem;
-  color: #aaa;
+  color: #767676;
   letter-spacing: 0.2em;
   font-family: var(--en);
 }
@@ -424,7 +424,7 @@ h4 {
 
 .floor-desc {
   font-size: 0.82rem;
-  color: #aaa;
+  color: #767676;
 }
 
 /* ═══════════════
@@ -523,7 +523,7 @@ h4 {
 
 .review-item .author {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 12px;
 }
 
@@ -542,7 +542,7 @@ h4 {
 }
 
 .cta-strip p {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 0.88rem;
   margin-bottom: 30px;
 }
@@ -550,7 +550,7 @@ h4 {
 /* Footer */
 .footer-d {
   background: #0e0e0e;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 0.8rem;
   padding: 50px 0 30px;
 }

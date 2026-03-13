@@ -80,7 +80,7 @@ export default function BookingPage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "24px" }}>
                         <div>
-                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#aaa", marginBottom: "8px" }}>
+                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
                                 入住日期
                             </label>
                             <input
@@ -96,7 +96,7 @@ export default function BookingPage() {
                             />
                         </div>
                         <div>
-                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#aaa", marginBottom: "8px" }}>
+                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
                                 退房日期
                             </label>
                             <input
@@ -114,7 +114,7 @@ export default function BookingPage() {
                     </div>
 
                     {nights > 0 && (
-                        <p style={{ fontSize: "0.82rem", color: "#aaa", textAlign: "center", marginBottom: "20px" }}>
+                        <p style={{ fontSize: "0.82rem", color: "#767676", textAlign: "center", marginBottom: "20px" }}>
                             共 {nights} 晚
                         </p>
                     )}
@@ -143,7 +143,7 @@ export default function BookingPage() {
                 {results && (
                     <div style={{ animation: "fadeInUp 0.5s ease" }}>
                         <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", marginBottom: "24px" }}>
-                            <div style={{ fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#aaa", marginBottom: "16px" }}>
+                            <div style={{ fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "16px" }}>
                                 {checkIn} → {checkOut} · {nights} 晚
                             </div>
 
@@ -157,7 +157,7 @@ export default function BookingPage() {
                                         <div style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "#2a2a2a", marginBottom: "2px" }}>
                                             {r.bnbName}
                                         </div>
-                                        <div style={{ fontSize: "0.78rem", color: "#aaa" }}>
+                                        <div style={{ fontSize: "0.78rem", color: "#767676" }}>
                                             {r.bnbName === "你好哇寓所" ? "6-26人" : "6-12人"}
                                         </div>
                                     </div>
