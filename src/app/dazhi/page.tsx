@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://www.hello-stay.com/dazhi" },
     openGraph: {
         title: "大智若愚 | 高雄全新電梯包棟民宿",
-        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。Coming Soon 2026",
+        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。預計 2027 年底開放",
         url: "https://www.hello-stay.com/dazhi",
         images: [{ url: "https://www.hello-stay.com/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
     },
@@ -63,7 +63,7 @@ export default function DazhiPage() {
                             letterSpacing: "0.35em", textTransform: "uppercase", color: "#A09282",
                             marginBottom: "40px",
                         }}>
-                            Coming Soon · 2026
+                            預計 2027 年底開放
                         </div>
                     </Reveal>
 
