@@ -97,8 +97,27 @@
   },
   "footer": {
     "brand": "Hello Stay",
-    "desc": "Biệt thự riêng cao cấp · Diêm Trình, Cao Hùng",
-    "contact": "Liên hệ"
+    "desc": "Biệt thự riêng cao cấp tại Diêm Trình, Cao Hùng\nKhông gian độc quyền dành cho nhóm du lịch",
+    "properties": "Properties",
+    "prop_hellohouse": "Hello House",
+    "prop_godin": "Godin House",
+    "prop_dazhi": "Dazhi House",
+    "prop_book": "Kiểm tra phòng trống",
+    "info": "Info",
+    "info_agreement": "Quy định lưu trú",
+    "info_traffic": "Hướng dẫn đi lại",
+    "info_explore": "Khám phá lân cận",
+    "info_packages": "Gói lưu trú",
+    "info_blog": "Cẩm nang du lịch",
+    "info_reviews": "Đánh giá của khách",
+    "contact": "Contact",
+    "hellohouse_name": "Hello House",
+    "hellohouse_addr": "📍 Số 8, Hẻm 70 Đại Công Lộ, Diêm Trình, Cao Hùng",
+    "hellohouse_reg": "🏛️ Giấy phép lưu trú hợp pháp: Cao Hùng số 131-1",
+    "godin_name": "Godin House",
+    "godin_addr": "📍 Số 6-2, Hẻm 70 Đại Công Lộ, Diêm Trình, Cao Hùng",
+    "godin_reg": "🏛️ Giấy phép lưu trú hợp pháp: Cao Hùng số 163",
+    "insurance": "🛡️ Toàn bộ cơ sở được bảo hiểm trách nhiệm công cộng Fubon, yên tâm lưu trú"
   },
   "lang_switcher": "🌐 Ngôn ngữ"
 }

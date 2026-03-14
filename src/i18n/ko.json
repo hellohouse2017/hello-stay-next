@@ -97,8 +97,27 @@
   },
   "footer": {
     "brand": "Hello Stay",
-    "desc": "가오슝 옌청 · 프리미엄 단독 숙소",
-    "contact": "문의하기"
+    "desc": "가오슝 옌청구 프리미엄 단독 숙소\n단체 여행객을 위한 독점 공간",
+    "properties": "Properties",
+    "prop_hellohouse": "헬로하우스",
+    "prop_godin": "거우딩 민박",
+    "prop_dazhi": "다즈르위",
+    "prop_book": "빈 방 확인",
+    "info": "Info",
+    "info_agreement": "숙박 규정",
+    "info_traffic": "오시는 길·주차",
+    "info_explore": "주변 관광",
+    "info_packages": "숙박 패키지",
+    "info_blog": "여행 가이드",
+    "info_reviews": "투숙객 후기",
+    "contact": "Contact",
+    "hellohouse_name": "헬로하우스",
+    "hellohouse_addr": "📍 가오슝시 옌청구 대공로 70항 8호",
+    "hellohouse_reg": "🏛️ 합법 민박 등록증: 가오슝시 민박 131-1호",
+    "godin_name": "거우딩 민박",
+    "godin_addr": "📍 가오슝시 옌청구 대공로 70항 6-2호",
+    "godin_reg": "🏛️ 합법 민박 등록증: 가오슝시 민박 163호",
+    "insurance": "🛡️ 전 시설 푸방산험 공공배상책임보험 가입 완료, 안심하고 이용하세요"
   },
   "lang_switcher": "🌐 언어"
 }

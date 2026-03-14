@@ -97,8 +97,27 @@
   },
   "footer": {
     "brand": "Hello Stay",
-    "desc": "Premium Private Villas · Yancheng, Kaohsiung",
-    "contact": "Contact Us"
+    "desc": "Premium private villas in Yancheng, Kaohsiung\nExclusive spaces designed for group travelers",
+    "properties": "Properties",
+    "prop_hellohouse": "Hello House",
+    "prop_godin": "Godin House",
+    "prop_dazhi": "Dazhi House",
+    "prop_book": "Check Availability",
+    "info": "Info",
+    "info_agreement": "House Rules",
+    "info_traffic": "Directions & Parking",
+    "info_explore": "Nearby Attractions",
+    "info_packages": "Villa Packages",
+    "info_blog": "Travel Guide",
+    "info_reviews": "Guest Reviews",
+    "contact": "Contact",
+    "hellohouse_name": "Hello House",
+    "hellohouse_addr": "📍 No. 8, Lane 70, Dagong Rd., Yancheng, Kaohsiung",
+    "hellohouse_reg": "🏛️ Licensed B&B Registration: Kaohsiung No. 131-1",
+    "godin_name": "Godin House",
+    "godin_addr": "📍 No. 6-2, Lane 70, Dagong Rd., Yancheng, Kaohsiung",
+    "godin_reg": "🏛️ Licensed B&B Registration: Kaohsiung No. 163",
+    "insurance": "🛡️ All properties are insured with Fubon public liability insurance for your peace of mind"
   },
   "lang_switcher": "🌐 Language"
 }

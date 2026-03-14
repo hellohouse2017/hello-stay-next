@@ -97,8 +97,27 @@
   },
   "footer": {
     "brand": "Hello Stay",
-    "desc": "高雄塩埕・デザイナーズ貸切宿",
-    "contact": "お問い合わせ"
+    "desc": "高雄塩埕区の上質な貸切宿\nグループ旅行者のための専用空間",
+    "properties": "Properties",
+    "prop_hellohouse": "ハローハウス",
+    "prop_godin": "溝頂民宿",
+    "prop_dazhi": "大智若愚",
+    "prop_book": "空室確認",
+    "info": "Info",
+    "info_agreement": "宿泊規約",
+    "info_traffic": "アクセス・駐車場",
+    "info_explore": "周辺観光",
+    "info_packages": "宿泊プラン",
+    "info_blog": "旅行ガイド",
+    "info_reviews": "ゲストの声",
+    "contact": "Contact",
+    "hellohouse_name": "ハローハウス",
+    "hellohouse_addr": "📍 高雄市塩埕区大公路70巷8号",
+    "hellohouse_reg": "🏛️ 合法民宿登録証：高雄市民宿 131-1 号",
+    "godin_name": "溝頂民宿",
+    "godin_addr": "📍 高雄市塩埕区大公路70巷6-2号",
+    "godin_reg": "🏛️ 合法民宿登録証：高雄市民宿 163 号",
+    "insurance": "🛡️ 全館にて富邦産険の公共賠償責任保険に加入済み、安心してご利用いただけます"
   },
   "lang_switcher": "🌐 言語"
 }
