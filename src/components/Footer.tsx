@@ -25,7 +25,7 @@ export default function Footer() {
                         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                             <Link href={`${prefix}/hellohouse`} style={{ fontSize: "0.82rem" }}>{t.footer.prop_hellohouse}</Link>
                             <Link href={`${prefix}/godin`} style={{ fontSize: "0.82rem" }}>{t.footer.prop_godin}</Link>
-                            <Link href="/dazhi" style={{ fontSize: "0.82rem" }}>{t.footer.prop_dazhi}</Link>
+                            <Link href={`${prefix}/dazhi`} style={{ fontSize: "0.82rem" }}>{t.footer.prop_dazhi}</Link>
                             <Link href={`${prefix}/book`} style={{ fontSize: "0.82rem" }}>{t.footer.prop_book}</Link>
                         </div>
                     </div>
