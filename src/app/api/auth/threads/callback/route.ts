@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
     if (!code) {
         // Step 1: Show instructions
         const redirectUri = `${req.nextUrl.origin}/api/auth/threads/callback`;
-        const authUrl = `https://threads.net/oauth/authorize?client_id=${THREADS_APP_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=threads_basic,threads_content_publish&response_type=code`;
+        const authUrl = `https://threads.net/oauth/authorize?client_id=${THREADS_APP_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=threads_basic,threads_content_publish,threads_keyword_search,threads_manage_replies&response_type=code`;
 
         return new NextResponse(
             `<!DOCTYPE html>
