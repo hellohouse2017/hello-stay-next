@@ -31,7 +31,7 @@ export default function Navbar() {
     const links = [
         { href: `${prefix}/hellohouse`, label: currentLocale === "zh" ? "你好哇寓所" : "Hello House" },
         { href: `${prefix}/godin`, label: currentLocale === "zh" ? "溝頂民宿" : "Godin House" },
-        { href: `${prefix !== "" ? prefix : ""}/dazhi`, label: "大智若愚" },
+        { href: "/dazhi", label: "大智若愚" },
         { href: `${prefix}/book`, label: currentLocale === "zh" ? "預訂" : "Book", cta: true },
     ];
 

@@ -199,7 +199,7 @@ export default function HomePage() {
           <Reveal>
             <div className="grid-asym" style={{ marginTop: "clamp(60px, 8vw, 100px)" }}>
               <div style={{ background: "#FAF8F5", borderRadius: "16px", padding: "40px 32px", textAlign: "center" }}>
-                <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.3em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "16px" }}>Coming Soon · 2026</div>
+                <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.3em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "16px" }}>預計 2027 年底開放</div>
                 <div style={{ fontFamily: "var(--serif)", fontSize: "2rem", color: "#3D3830", letterSpacing: "0.1em", marginBottom: "12px" }}>大智若愚</div>
                 <div style={{ width: "40px", height: "1px", background: "#D4CBC0", margin: "0 auto" }} />
               </div>
