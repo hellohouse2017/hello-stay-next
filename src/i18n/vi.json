@@ -91,6 +91,22 @@
     "meta_title": "Hướng dẫn đi lại & Đỗ xe | Hello House & Godin House",
     "meta_desc": "Hướng dẫn đầy đủ đến Hello House và Godin House tại Cao Hùng. Lái xe, đỗ xe, tuyến MRT từ ga Tả Doanh. Đi bộ 5 phút từ ga Diêm Trình Phố (O2)."
   },
+  "dazhi": {
+    "coming_soon": "Dự kiến khai trương · Cuối năm 2027",
+    "title": "Dazhi Ruoyu",
+    "tagline": "Dazhi Ruoyu · A Wise Retreat",
+    "location_label": "Location",
+    "location_title": "Cạnh cầu Đại Cảng · Khu kho Đại Nghĩa Pier-2",
+    "location_sub": "Khu vực cảng đẹp nhất Cao Hùng, nghệ thuật và văn hóa ngay trước cửa",
+    "feat1_title": "Biệt thự thang máy mới", "feat1_sub": "Tòa nhà thang máy hiện đại",
+    "feat2_title": "3 phòng + phòng khách/tầng", "feat2_sub": "Không gian tầng độc lập",
+    "feat3_title": "Thuê tầng hoặc toàn tòa", "feat3_sub": "Lựa chọn linh hoạt",
+    "feat4_title": "Tối đa 48 khách", "feat4_sub": "Hoàn hảo cho nhóm lớn",
+    "desc": "Cơ sở thứ 3 của Hello Stay sắp ra mắt.\nTòa nhà thang máy mới xây, vị trí vàng cạnh cầu Đại Cảng.\nMang tên 'Dazhi Ruoyu' — triết lý không gian tinh tế ẩn sau vẻ giản dị.\nHãy chờ đón.",
+    "cta_home": "Quay về trang chủ", "cta_line": "Đặt trước qua LINE",
+    "meta_title": "Dazhi Ruoyu | Biệt thự thang máy mới tại Cao Hùng",
+    "meta_desc": "Dazhi Ruoyu — Biệt thự thang máy mới gần cầu Đại Cảng. 3 phòng/tầng, tối đa 48 khách. Dự kiến khai trương cuối năm 2027."
+  },
   "book": {
     "meta_title": "Kiểm tra phòng trống & Báo giá | Hello Stay Cao Hùng",
     "meta_desc": "Kiểm tra phòng trống và giá ngay lập tức cho biệt thự riêng tại Cao Hùng. Chọn ngày và số khách để tự động tính giá."

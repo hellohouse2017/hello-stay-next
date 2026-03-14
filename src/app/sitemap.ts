@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getPublishedArticles, scheduledArticles } from "@/data/scheduled-articles";
 
 const i18nLocales = ["en", "ja", "ko", "vi"];
-const i18nPages = ["", "/hellohouse", "/godin", "/traffic", "/book"];
+const i18nPages = ["", "/hellohouse", "/godin", "/dazhi", "/traffic", "/book"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = "https://www.hello-stay.com";

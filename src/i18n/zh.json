@@ -91,6 +91,22 @@
     "meta_title": "交通指南與停車資訊 | 你好哇寓所 & 溝頂民宿",
     "meta_desc": "前往你好哇寓所及溝頂民宿的完整交通指南｜開車導航、周邊停車場位置與收費、高雄捷運鹽埕埔站步行路線。"
   },
+  "dazhi": {
+    "coming_soon": "預計 2027 年底開放",
+    "title": "大智若愚",
+    "tagline": "Dazhi Ruoyu · A Wise Retreat",
+    "location_label": "Location",
+    "location_title": "大港橋旁 · 駁二大義倉庫群",
+    "location_sub": "高雄最精華的港灣地段，步出門即是藝文散步路線",
+    "feat1_title": "全新電梯民宿", "feat1_sub": "現代化電梯大樓",
+    "feat2_title": "一層三房一廳", "feat2_sub": "獨立樓層空間",
+    "feat3_title": "可包層 · 可包棟", "feat3_sub": "靈活包棟方案",
+    "feat4_title": "最大 48 人", "feat4_sub": "超大團體首選",
+    "desc": "Hello Stay 第三館即將登場。\n全新電梯建築，座落大港橋旁黃金地段。\n以「大智若愚」為名，追求外拙內秀的空間哲學。\n敬請期待。",
+    "cta_home": "返回首頁", "cta_line": "LINE 搶先預約",
+    "meta_title": "大智若愚 | 高雄全新電梯包棟民宿 | 大港橋旁",
+    "meta_desc": "大智若愚 — 高雄全新電梯包棟民宿，大港橋旁。一層三房一廳，可包層可包棟，最大48人。預計 2027 年底開放。"
+  },
   "book": {
     "meta_title": "查詢空房與報價 | 你好哇寓所 & 溝頂民宿",
     "meta_desc": "即時查詢高雄包棟民宿空房與報價｜選擇入住日期與人數，系統自動計算最佳方案價格。"
