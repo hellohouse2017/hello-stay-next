@@ -1,10 +1,13 @@
 import { MetadataRoute } from "next";
 import { getPublishedArticles, scheduledArticles } from "@/data/scheduled-articles";
 
+const i18nLocales = ["en", "ja", "ko", "vi"];
+const i18nPages = ["", "/hellohouse", "/godin", "/traffic", "/book"];
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = "https://www.hello-stay.com";
     // 核心頁面的「真正最後更新日」— 只在內容有實質變更時才改日期
-    const coreUpdated = "2026-03-10";
+    const coreUpdated = "2026-03-14";
     const blogUpdated = "2026-03-08";
 
     const entries: MetadataRoute.Sitemap = [
@@ -25,6 +28,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         // Blog index
         { url: `${baseUrl}/blog`, lastModified: blogUpdated, changeFrequency: "weekly", priority: 0.7 },
     ];
+
+    // === 多語系頁面 (EN, JA, KO, VI) ===
+    for (const locale of i18nLocales) {
+        for (const page of i18nPages) {
+            entries.push({
+                url: `${baseUrl}/${locale}${page}`,
+                lastModified: coreUpdated,
+                changeFrequency: "weekly",
+                priority: page === "" ? 0.8 : 0.7,
+            });
+        }
+    }
 
     // 動態加入已發布的部落格文章
     const articles = getPublishedArticles(scheduledArticles);

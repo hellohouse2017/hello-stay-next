@@ -3,26 +3,36 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { createPortal } from "react-dom";
+import type { Locale } from "@/i18n/config";
+import { locales, localeNames, getLocalePath } from "@/i18n/config";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [langOpen, setLangOpen] = useState(false);
     const path = usePathname();
 
     useEffect(() => { setMounted(true); }, []);
 
     // Close menu on route change
-    useEffect(() => { setOpen(false); }, [path]);
+    useEffect(() => { setOpen(false); setLangOpen(false); }, [path]);
+
+    // Detect current locale from path
+    const currentLocale: Locale = (locales.find(l => l !== "zh" && path.startsWith(`/${l}/`)) || (locales.find(l => l !== "zh" && path === `/${l}`) || "zh")) as Locale;
+    const prefix = currentLocale === "zh" ? "" : `/${currentLocale}`;
+
+    // Get the path without locale prefix for language switching
+    const pathWithoutLocale = currentLocale === "zh" ? path : path.replace(`/${currentLocale}`, "") || "/";
 
     // B-style (zen light) for godin, D-style (dark gold) for everything else
-    const isZen = path === "/godin";
+    const isZen = path.endsWith("/godin");
     const isDark = !isZen;
 
     const links = [
-        { href: "/hellohouse", label: "你好哇寓所" },
-        { href: "/godin", label: "溝頂民宿" },
-        { href: "/dazhi", label: "大智若愚" },
-        { href: "/book", label: "預訂", cta: true },
+        { href: `${prefix}/hellohouse`, label: currentLocale === "zh" ? "你好哇寓所" : "Hello House" },
+        { href: `${prefix}/godin`, label: currentLocale === "zh" ? "溝頂民宿" : "Godin House" },
+        { href: `${prefix !== "" ? prefix : ""}/dazhi`, label: "大智若愚" },
+        { href: `${prefix}/book`, label: currentLocale === "zh" ? "預訂" : "Book", cta: true },
     ];
 
     // Mobile menu portal - renders outside nav to avoid nav's height/overflow constraints
@@ -64,7 +74,7 @@ export default function Navbar() {
         <>
             <nav className={isDark ? "nav-d" : "nav-b"}>
                 <div className="w" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
-                    <Link href="/" className="logo">Hello Stay</Link>
+                    <Link href={prefix || "/"} className="logo">Hello Stay</Link>
 
                     {/* Desktop */}
                     <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "32px" }}>
@@ -73,6 +83,42 @@ export default function Navbar() {
                                 {l.label}
                             </Link>
                         ))}
+                        {/* Language Switcher */}
+                        <div style={{ position: "relative" }}>
+                            <button
+                                onClick={() => setLangOpen(!langOpen)}
+                                style={{
+                                    background: "none", border: "1px solid rgba(200,173,127,0.3)", cursor: "pointer",
+                                    color: isDark ? "#C8AD7F" : "#888", fontSize: "0.75rem", padding: "4px 10px",
+                                    borderRadius: "4px", fontFamily: "var(--en)", letterSpacing: "0.05em",
+                                }}
+                            >
+                                🌐 {localeNames[currentLocale]}
+                            </button>
+                            {langOpen && (
+                                <div style={{
+                                    position: "absolute", top: "100%", right: 0, marginTop: "8px",
+                                    background: isDark ? "#1a1a1a" : "#fff", border: "1px solid rgba(200,173,127,0.2)",
+                                    borderRadius: "8px", overflow: "hidden", minWidth: "120px",
+                                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)", zIndex: 100,
+                                }}>
+                                    {locales.map(l => (
+                                        <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
+                                            onClick={() => setLangOpen(false)}
+                                            style={{
+                                                display: "block", padding: "10px 16px", fontSize: "0.8rem",
+                                                color: l === currentLocale ? "#C8AD7F" : (isDark ? "#ccc" : "#666"),
+                                                fontWeight: l === currentLocale ? 600 : 400,
+                                                textDecoration: "none", transition: "background 0.2s",
+                                                background: l === currentLocale ? (isDark ? "rgba(200,173,127,0.1)" : "rgba(200,173,127,0.05)") : "transparent",
+                                            }}
+                                        >
+                                            {localeNames[l]}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* Mobile toggle */}
