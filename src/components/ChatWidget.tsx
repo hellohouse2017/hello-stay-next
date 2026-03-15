@@ -1,102 +1,11 @@
 "use client";
-import { useState, useRef, useEffect, useCallback } from "react";
-
-const BNB_API = process.env.NEXT_PUBLIC_BNB_API || "https://bnb-mgmt-system.vercel.app";
-
-interface Message {
-    role: "user" | "assistant";
-    content: string;
-    timestamp: Date;
-}
+import { useState } from "react";
 
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([]);
-    const [input, setInput] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [sessionId] = useState(() => {
-        if (typeof window !== "undefined") {
-            const stored = localStorage.getItem("chat_session_id");
-            if (stored) return stored;
-            const id = crypto.randomUUID();
-            localStorage.setItem("chat_session_id", id);
-            return id;
-        }
-        return "";
-    });
-    const messagesEndRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
-
-    useEffect(() => {
-        if (isOpen && inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [isOpen]);
-
-    // Welcome message on first open
-    useEffect(() => {
-        if (isOpen && messages.length === 0) {
-            setMessages([
-                {
-                    role: "assistant",
-                    content: "你好！我是訂房小助手 🏠\n\n您可以直接跟我說想找哪天的住宿，例如：\n「我想找 3/15-3/17 的空房，大約 10 個人」\n\n或是直接去 [查詢空房](/book) 頁面操作！",
-                    timestamp: new Date(),
-                },
-            ]);
-        }
-    }, [isOpen, messages.length]);
-
-    const sendMessage = useCallback(async () => {
-        if (!input.trim() || loading) return;
-
-        const userMsg: Message = { role: "user", content: input.trim(), timestamp: new Date() };
-        setMessages(prev => [...prev, userMsg]);
-        setInput("");
-        setLoading(true);
-
-        try {
-            const res = await fetch(`${BNB_API}/api/web/chat`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ sessionId, message: input.trim() }),
-            });
-
-            if (res.ok) {
-                const data = await res.json();
-                setMessages(prev => [
-                    ...prev,
-                    { role: "assistant", content: data.reply || "抱歉，我暫時無法回應。", timestamp: new Date() },
-                ]);
-            } else {
-                setMessages(prev => [
-                    ...prev,
-                    { role: "assistant", content: "連線異常，請稍後再試。您也可以直接到 [查詢空房](/book) 頁面操作哦！", timestamp: new Date() },
-                ]);
-            }
-        } catch {
-            setMessages(prev => [
-                ...prev,
-                {
-                    role: "assistant",
-                    content: "網路連線異常 😢\n\n建議您可以：\n1. 前往 [查詢空房](/book) 直接搜尋\n2. 或加 LINE 官方帳號詢問",
-                    timestamp: new Date(),
-                },
-            ]);
-        } finally {
-            setLoading(false);
-        }
-    }, [input, loading, sessionId]);
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    };
+    // 產生 LINE 預填訊息連結
+    const lineUrl = "https://www.hello-stay.com/go/line";
 
     return (
         <>
@@ -117,7 +26,7 @@ export default function ChatWidget() {
                     cursor: "pointer",
                     boxShadow: "0 5px 20px rgba(197,160,101,0.4)",
                 }}
-                aria-label="AI 訂房助手"
+                aria-label="LINE 訂房助手"
             >
                 <i className={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-comments"} />
             </button>
@@ -131,8 +40,6 @@ export default function ChatWidget() {
                         right: "30px",
                         width: "380px",
                         maxWidth: "calc(100vw - 40px)",
-                        height: "500px",
-                        maxHeight: "calc(100vh - 140px)",
                         borderRadius: "16px",
                         backgroundColor: "#fff",
                         border: "1px solid rgba(0,0,0,0.1)",
@@ -152,79 +59,80 @@ export default function ChatWidget() {
                             className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
                             style={{ backgroundColor: "var(--c-accent)" }}
                         >
-                            <i className="fa-solid fa-robot" />
+                            <i className="fa-solid fa-comment-dots" />
                         </div>
                         <div>
                             <div className="font-bold text-sm">訂房小助手</div>
-                            <div className="text-[0.7rem] opacity-70">AI 智能客服 · 即時回覆</div>
+                            <div className="text-[0.7rem] opacity-70">24 小時即時回覆</div>
                         </div>
                     </div>
 
-                    {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ backgroundColor: "#f8f9fa" }}>
-                        {messages.map((msg, i) => (
-                            <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                                <div
-                                    className="max-w-[80%] px-4 py-3 rounded-2xl text-[0.9rem] leading-relaxed whitespace-pre-wrap"
-                                    style={
-                                        msg.role === "user"
-                                            ? { backgroundColor: "var(--c-accent)", color: "white", borderBottomRightRadius: "4px" }
-                                            : { backgroundColor: "white", color: "var(--c-primary)", border: "1px solid #eee", borderBottomLeftRadius: "4px" }
-                                    }
-                                    dangerouslySetInnerHTML={{
-                                        __html: msg.content.replace(
-                                            /\[(.+?)\]\((.+?)\)/g,
-                                            '<a href="$2" style="color:' + (msg.role === "user" ? "white" : "var(--c-accent)") + ';text-decoration:underline;">$1</a>'
-                                        ),
-                                    }}
-                                />
-                            </div>
-                        ))}
-                        {loading && (
-                            <div className="flex justify-start">
-                                <div className="px-4 py-3 rounded-2xl bg-white border border-gray-100" style={{ borderBottomLeftRadius: "4px" }}>
-                                    <div className="flex gap-1">
-                                        <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: "0ms" }} />
-                                        <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: "150ms" }} />
-                                        <span className="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: "300ms" }} />
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        <div ref={messagesEndRef} />
-                    </div>
-
-                    {/* Input */}
-                    <div className="flex items-center gap-2 px-4 py-3 shrink-0" style={{ borderTop: "1px solid #eee", backgroundColor: "white" }}>
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            value={input}
-                            onChange={e => setInput(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            placeholder="輸入您的問題..."
-                            className="flex-1 px-4 py-2.5 rounded-full border text-[0.9rem] focus:outline-none transition"
-                            style={{ borderColor: "#ddd" }}
-                            disabled={loading}
-                        />
-                        <button
-                            onClick={sendMessage}
-                            disabled={loading || !input.trim()}
-                            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-none cursor-pointer transition-all disabled:opacity-40"
-                            style={{ backgroundColor: "var(--c-accent)", color: "white" }}
+                    {/* Content */}
+                    <div className="p-5" style={{ backgroundColor: "#f8f9fa" }}>
+                        {/* Welcome */}
+                        <div
+                            className="px-4 py-3 rounded-2xl text-[0.9rem] leading-relaxed mb-4"
+                            style={{ backgroundColor: "white", color: "var(--c-primary)", border: "1px solid #eee", borderBottomLeftRadius: "4px" }}
                         >
-                            <i className="fa-solid fa-paper-plane text-[0.85rem]" />
-                        </button>
+                            你好！歡迎來到你好哇寓所 🏠<br /><br />
+                            想查空房、報價、或預訂房間？<br />
+                            加入我們的 LINE 官方帳號，AI 小幫手<b>即時幫您服務</b>！
+                        </div>
+
+                        {/* Benefits */}
+                        <div className="grid grid-cols-2 gap-2 mb-4">
+                            {[
+                                { icon: "fa-bolt", text: "即時回覆" },
+                                { icon: "fa-magnifying-glass", text: "查空房報價" },
+                                { icon: "fa-key", text: "自動發密碼" },
+                                { icon: "fa-gift", text: "好友優惠" },
+                            ].map(item => (
+                                <div key={item.text} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ backgroundColor: "white", fontSize: "0.8rem", color: "#555" }}>
+                                    <i className={`fa-solid ${item.icon}`} style={{ color: "var(--c-accent)", fontSize: "0.75rem" }} />
+                                    {item.text}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* LINE CTA */}
+                        <a
+                            href={lineUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-white font-bold text-[0.95rem] transition-all duration-300 hover:brightness-110"
+                            style={{
+                                background: "#06C755",
+                                textDecoration: "none",
+                                letterSpacing: "0.05em",
+                                boxShadow: "0 4px 14px rgba(6,199,85,0.3)",
+                            }}
+                        >
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
+                            </svg>
+                            加入 LINE 立即預訂
+                        </a>
+
+                        {/* Sub link */}
+                        <div className="text-center mt-3">
+                            <a
+                                href="/book"
+                                className="text-[0.75rem] transition-colors"
+                                style={{ color: "#999", textDecoration: "underline" }}
+                            >
+                                或前往查詢空房頁面 →
+                            </a>
+                        </div>
                     </div>
                 </div>
             )}
 
             <style jsx>{`
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+                @keyframes slideUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </>
     );
 }
