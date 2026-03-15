@@ -11,6 +11,7 @@ interface AvailResult {
 export default function BookingPage() {
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
+    const [guests, setGuests] = useState("");
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState<AvailResult[] | null>(null);
     const [error, setError] = useState("");
@@ -55,6 +56,20 @@ export default function BookingPage() {
     const openChat = () => {
         const chatBtn = document.querySelector("[data-chat-toggle]") as HTMLButtonElement;
         if (chatBtn) chatBtn.click();
+    };
+
+    // 產生 LINE 預填訊息連結（帶日期、人數、來源標籤）
+    const getLineBookingUrl = () => {
+        const parts: string[] = ["我想預訂"];
+        if (checkIn && checkOut) {
+            const fmtIn = checkIn.replace(/^\d{4}-/, '').replace('-', '/');
+            const fmtOut = checkOut.replace(/^\d{4}-/, '').replace('-', '/');
+            parts.push(`${fmtIn}~${fmtOut}`);
+        }
+        if (guests) parts.push(`${guests}人`);
+        parts.push("#來源官網");
+        const msg = encodeURIComponent(parts.join(" "));
+        return `https://line.me/R/oaMessage/@hellostay/?${msg}`;
     };
 
     return (
@@ -119,6 +134,26 @@ export default function BookingPage() {
                         </p>
                     )}
 
+                    {/* Guest Count */}
+                    <div style={{ marginBottom: "24px" }}>
+                        <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
+                            入住人數
+                        </label>
+                        <input
+                            type="number"
+                            min="1"
+                            max="38"
+                            value={guests}
+                            placeholder="例如 12"
+                            onChange={e => setGuests(e.target.value)}
+                            style={{
+                                width: "100%", padding: "14px 16px", border: "1px solid #e5e2dd",
+                                borderRadius: "10px", fontSize: "0.95rem", fontFamily: "var(--sans)",
+                                color: "#2a2a2a", outline: "none", transition: "border 0.3s",
+                            }}
+                        />
+                    </div>
+
                     <button
                         onClick={handleCheck}
                         disabled={loading || !checkIn || !checkOut}
@@ -182,24 +217,27 @@ export default function BookingPage() {
                                     請透過以下方式完成預訂
                                 </p>
                                 <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+                                    <a href={getLineBookingUrl()} target="_blank" rel="noreferrer" style={{
+                                        display: "inline-flex", alignItems: "center", gap: "8px",
+                                        padding: "14px 32px", border: "none", borderRadius: "10px",
+                                        background: "#06C755", color: "#fff", fontFamily: "var(--serif)",
+                                        fontSize: "0.9rem", letterSpacing: "0.08em",
+                                        transition: "all 0.3s", textDecoration: "none",
+                                    }}>
+                                        💬 加入 LINE 立即預訂
+                                    </a>
                                     <button onClick={openChat} style={{
-                                        padding: "14px 28px", border: "1px solid #161618", borderRadius: "10px",
-                                        background: "#161618", color: "#fff", fontFamily: "var(--serif)",
+                                        padding: "14px 28px", border: "1px solid #e5e2dd", borderRadius: "10px",
+                                        background: "transparent", color: "#2a2a2a", fontFamily: "var(--serif)",
                                         fontSize: "0.85rem", letterSpacing: "0.08em", cursor: "pointer",
                                         transition: "all 0.3s",
                                     }}>
-                                        💬 線上諮詢預訂
+                                        線上諮詢
                                     </button>
-                                    <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{
-                                        display: "inline-flex", alignItems: "center",
-                                        padding: "14px 28px", border: "1px solid #06C755", borderRadius: "10px",
-                                        background: "#06C755", color: "#fff", fontFamily: "var(--serif)",
-                                        fontSize: "0.85rem", letterSpacing: "0.08em",
-                                        transition: "all 0.3s",
-                                    }}>
-                                        LINE 預訂
-                                    </a>
                                 </div>
+                                <p style={{ fontSize: "0.75rem", color: "#999", marginTop: "16px" }}>
+                                    加入 LINE 後，AI 小幫手會即時幫您查詢空房與報價 🔑
+                                </p>
                             </div>
                         )}
 
