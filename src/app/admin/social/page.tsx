@@ -15,6 +15,17 @@ interface ThreadsPost {
     mediaUrl?: string;
 }
 
+interface IGPost {
+    id: string;
+    caption: string;
+    permalink: string;
+    timestamp: string;
+    mediaType: string;
+    mediaUrl?: string;
+    likeCount?: number;
+    commentsCount?: number;
+}
+
 interface SearchResult {
     success: boolean;
     platform: string;
@@ -22,6 +33,15 @@ interface SearchResult {
     count: number;
     posts: ThreadsPost[];
     error?: { message: string };
+}
+
+interface IGSearchResult {
+    success: boolean;
+    platform: string;
+    query: string;
+    count: number;
+    posts: IGPost[];
+    error?: { message: string } | string;
 }
 
 // ---------------------------------------------------------------------------
@@ -69,14 +89,22 @@ export default function SocialDashboard() {
     const [searchQuery, setSearchQuery] = useState("高雄包棟");
     const [searchType, setSearchType] = useState("RECENT");
     const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
+    const [igResults, setIgResults] = useState<IGSearchResult | null>(null);
     const [searching, setSearching] = useState(false);
+    const [searchPlatform, setSearchPlatform] = useState<"all" | "threads" | "instagram">("all");
 
-    // Reply state
+    // Reply state (Threads)
     const [replyingTo, setReplyingTo] = useState<ThreadsPost | null>(null);
     const [replyAccount, setReplyAccount] = useState("hellohouse");
     const [replyText, setReplyText] = useState("");
     const [replying, setReplying] = useState(false);
     const [replyResult, setReplyResult] = useState<string | null>(null);
+
+    // IG Comment state
+    const [commentingOn, setCommentingOn] = useState<IGPost | null>(null);
+    const [commentText, setCommentText] = useState("");
+    const [commenting, setCommenting] = useState(false);
+    const [commentResult, setCommentResult] = useState<string | null>(null);
 
     // Publish state
     const [pubPage, setPubPage] = useState("hellohouse");
@@ -92,18 +120,25 @@ export default function SocialDashboard() {
     const doSearch = useCallback(async () => {
         setSearching(true);
         setSearchResults(null);
+        setIgResults(null);
         try {
+            const platform = searchPlatform === "all" ? "all" : searchPlatform;
             const res = await fetch(
-                `/api/social/search?q=${encodeURIComponent(searchQuery)}&platform=threads&type=${searchType}`,
+                `/api/social/search?q=${encodeURIComponent(searchQuery)}&platform=${platform}&type=${searchType}`,
                 { headers: { "x-api-key": apiKey } },
             );
             const data = await res.json();
-            setSearchResults(data.threads || data);
+            if (data.threads) setSearchResults(data.threads);
+            if (data.instagram) setIgResults(data.instagram as IGSearchResult);
+            // fallback for single platform response
+            if (!data.threads && !data.instagram && data.posts) {
+                setSearchResults(data);
+            }
         } catch (e) {
             setSearchResults({ success: false, platform: "threads", query: searchQuery, count: 0, posts: [], error: { message: String(e) } });
         }
         setSearching(false);
-    }, [searchQuery, searchType, apiKey]);
+    }, [searchQuery, searchType, searchPlatform, apiKey]);
 
     const doReply = useCallback(async () => {
         if (!replyingTo || !replyText) return;
@@ -122,6 +157,24 @@ export default function SocialDashboard() {
         }
         setReplying(false);
     }, [replyingTo, replyText, replyAccount, apiKey]);
+
+    const doComment = useCallback(async () => {
+        if (!commentingOn || !commentText) return;
+        setCommenting(true);
+        setCommentResult(null);
+        try {
+            const res = await fetch("/api/social/comment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "x-api-key": apiKey },
+                body: JSON.stringify({ mediaId: commentingOn.id, message: commentText, account: replyAccount }),
+            });
+            const data = await res.json();
+            setCommentResult(data.success ? `✅ 留言成功！ID: ${data.commentId}` : `❌ 失敗：${JSON.stringify(data.error)}`);
+        } catch (e) {
+            setCommentResult(`❌ 錯誤：${String(e)}`);
+        }
+        setCommenting(false);
+    }, [commentingOn, commentText, replyAccount, apiKey]);
 
     const doPublish = useCallback(async () => {
         if (!pubMessage) return;
@@ -206,6 +259,15 @@ export default function SocialDashboard() {
                             style={styles.searchInput}
                         />
                         <select
+                            value={searchPlatform}
+                            onChange={(e) => setSearchPlatform(e.target.value as "all" | "threads" | "instagram")}
+                            style={styles.select}
+                        >
+                            <option value="all">全部平台</option>
+                            <option value="threads">🧵 Threads</option>
+                            <option value="instagram">📷 Instagram</option>
+                        </select>
+                        <select
                             value={searchType}
                             onChange={(e) => setSearchType(e.target.value)}
                             style={styles.select}
@@ -218,7 +280,7 @@ export default function SocialDashboard() {
                             disabled={searching}
                             style={styles.btnPrimary}
                         >
-                            {searching ? "搜尋中..." : "🔍 搜尋 Threads"}
+                            {searching ? "搜尋中..." : "🔍 搜尋"}
                         </button>
                     </div>
 
@@ -292,11 +354,53 @@ export default function SocialDashboard() {
                         </div>
                     )}
 
-                    {/* Reply Modal */}
+                    {/* IG Results */}
+                    {igResults && (
+                        <div style={styles.results}>
+                            <h3 style={{ ...styles.resultHeader, color: '#e1306c' }}>
+                                📷 Instagram — {igResults.success
+                                    ? `找到 ${igResults.count} 篇貼文`
+                                    : `❌ ${typeof igResults.error === 'string' ? igResults.error : igResults.error?.message}`}
+                            </h3>
+                            {igResults.posts?.map((post) => (
+                                <div key={post.id} style={styles.postCard}>
+                                    <div style={styles.postHeader}>
+                                        <strong style={{ color: '#e1306c' }}>📷 IG</strong>
+                                        <span style={styles.postTime}>
+                                            {new Date(post.timestamp).toLocaleString("zh-TW")}
+                                        </span>
+                                    </div>
+                                    <p style={styles.postText}>
+                                        {post.caption?.length > 200 ? post.caption.slice(0, 200) + "..." : post.caption}
+                                    </p>
+                                    {post.mediaUrl && (
+                                        <img src={post.mediaUrl} alt="" style={styles.postImg} />
+                                    )}
+                                    <div style={styles.postActions}>
+                                        <a href={post.permalink} target="_blank" rel="noopener noreferrer" style={styles.linkBtn}>
+                                            🔗 查看原文
+                                        </a>
+                                        <span style={{ fontSize: 13, color: '#888' }}>❤️ {post.likeCount || 0} 💬 {post.commentsCount || 0}</span>
+                                        <button
+                                            onClick={() => {
+                                                setCommentingOn(post);
+                                                setCommentText(REPLY_TEMPLATES.hellohouse[0].text);
+                                            }}
+                                            style={{ ...styles.replyBtn, borderColor: 'rgba(225,48,108,0.3)', color: '#e1306c', background: 'rgba(225,48,108,0.1)' }}
+                                        >
+                                            💬 留言
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Threads Reply Modal */}
                     {replyingTo && (
                         <div style={styles.modalOverlay} onClick={() => setReplyingTo(null)}>
                             <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
-                                <h3 style={styles.modalTitle}>💬 回覆 @{replyingTo.username}</h3>
+                                <h3 style={styles.modalTitle}>🧵 回覆 @{replyingTo.username}</h3>
                                 <div style={styles.quoteBox}>
                                     <p style={styles.quoteText}>
                                         {replyingTo.text?.length > 150
@@ -367,6 +471,78 @@ export default function SocialDashboard() {
 
                                 {replyResult && (
                                     <p style={styles.resultMsg}>{replyResult}</p>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* IG Comment Modal */}
+                    {commentingOn && (
+                        <div style={styles.modalOverlay} onClick={() => setCommentingOn(null)}>
+                            <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
+                                <h3 style={{ ...styles.modalTitle, color: '#e1306c' }}>📷 IG 留言</h3>
+                                <div style={styles.quoteBox}>
+                                    <p style={styles.quoteText}>
+                                        {commentingOn.caption?.length > 150
+                                            ? commentingOn.caption.slice(0, 150) + "..."
+                                            : commentingOn.caption}
+                                    </p>
+                                </div>
+
+                                <div style={styles.fieldRow}>
+                                    <label>留言帳號：</label>
+                                    <select
+                                        value={replyAccount}
+                                        onChange={(e) => setReplyAccount(e.target.value)}
+                                        style={styles.select}
+                                    >
+                                        <option value="hellohouse">你好哇寓所</option>
+                                        <option value="ruins">廢墟Bar</option>
+                                    </select>
+                                </div>
+
+                                <div style={styles.templateWrap}>
+                                    <p style={styles.templateLabel}>選擇文案模板：</p>
+                                    <div style={styles.templateBtns}>
+                                        {(REPLY_TEMPLATES[replyAccount] || []).map((t, i) => (
+                                            <button
+                                                key={i}
+                                                onClick={() => setCommentText(t.text)}
+                                                style={
+                                                    commentText === t.text
+                                                        ? styles.templateBtnActive
+                                                        : styles.templateBtn
+                                                }
+                                            >
+                                                {t.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <textarea
+                                    value={commentText}
+                                    onChange={(e) => setCommentText(e.target.value)}
+                                    rows={4}
+                                    style={styles.textarea}
+                                    placeholder="輸入留言內容..."
+                                />
+
+                                <div style={styles.modalActions}>
+                                    <button onClick={() => setCommentingOn(null)} style={styles.btnCancel}>
+                                        取消
+                                    </button>
+                                    <button
+                                        onClick={doComment}
+                                        disabled={commenting || !commentText}
+                                        style={{ ...styles.btnPrimary, background: 'linear-gradient(135deg, #e1306c, #fd1d1d)' }}
+                                    >
+                                        {commenting ? "留言中..." : "📤 送出留言"}
+                                    </button>
+                                </div>
+
+                                {commentResult && (
+                                    <p style={styles.resultMsg}>{commentResult}</p>
                                 )}
                             </div>
                         </div>
