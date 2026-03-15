@@ -11,6 +11,7 @@ interface ArticleInfo {
 // 所有文章（靜態 + 動態排程的）合併在此
 const allArticles: ArticleInfo[] = [
     // 原始靜態文章
+    { slug: "kaohsiung-bnb-recommendation", title: "高雄包棟民宿推薦 Top 3", emoji: "⭐", tags: ["包棟", "民宿", "推薦", "攻略"] },
     { slug: "kaohsiung-group-stay-guide", title: "高雄包棟民宿完全攻略", emoji: "🏠", tags: ["包棟", "攻略"] },
     { slug: "yancheng-food-guide", title: "鹽埕區美食地圖 30 間", emoji: "🍜", tags: ["美食", "鹽埕"] },
     { slug: "kaohsiung-group-trip", title: "團體旅遊行程 9 主題", emoji: "📋", tags: ["行程", "團體"] },

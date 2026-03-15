@@ -4,11 +4,11 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人家庭出遊推薦",
+    title: "溝頂民宿 | 高雄包棟民宿推薦 | 10-12人家庭出遊首選",
     description: "高雄鹽埕區精緻獨棟包棟民宿｜溝頂民宿提供10-12人入住，五層樓完整獨立空間，溫馨家庭風格。配備手動麻將桌、頂樓景觀雙人房。近駁二藝術特區、大港橋，平日$10,000起，小家庭、好友出遊高CP值首選。",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
     openGraph: {
-        title: "溝頂民宿 | 高雄鹽埕精緻包棟 | 10-12人",
+        title: "溝頂民宿 | 高雄包棟民宿推薦 | 10-12人",
         description: "五層樓獨棟包棟民宿，10-12人入住，溫馨家庭風格。平日$10,000起。近駁二。",
         url: "https://www.hello-stay.com/godin",
         images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
@@ -299,9 +299,9 @@ export default function GodinPage() {
                         <div style={{ display: "grid", gap: "10px" }}>
                             {[
                                 { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
+                                { href: "/blog/kaohsiung-bnb-recommendation", emoji: "⭐", title: "高雄包棟民宿推薦 Top 3", desc: "在地人精選" },
                                 { href: "/blog/pier2-accommodation", emoji: "🎨", title: "駁二住宿推薦", desc: "步行 10 分鐘到駁二" },
                                 { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
-                                { href: "/blog/yancheng-food-guide", emoji: "🍜", title: "鹽埕區美食地圖", desc: "30 間必吃老店" },
                             ].map(a => (
                                 <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
                                     <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
