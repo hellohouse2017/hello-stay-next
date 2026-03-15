@@ -439,9 +439,9 @@ export default function HelloHousePage() {
                         <div style={{ display: "grid", gap: "10px" }}>
                             {[
                                 { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
+                                { href: "/blog/kaohsiung-bnb-recommendation", emoji: "⭐", title: "高雄包棟民宿推薦 Top 3", desc: "在地人精選" },
                                 { href: "/blog/kaohsiung-kitchen-bnb", emoji: "🍳", title: "有廚房的民宿推薦", desc: "中島廚房・火鍋趴" },
                                 { href: "/blog/kaohsiung-family-reunion", emoji: "👨‍👩‍👧‍👦", title: "家族旅遊包棟推薦", desc: "三代同堂・長輩友善" },
-                                { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
                             ].map(a => (
                                 <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
                                     <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
