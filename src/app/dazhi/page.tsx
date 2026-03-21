@@ -73,7 +73,7 @@ export default function DazhiPage() {
                             fontWeight: 400, color: "#3D3830", letterSpacing: "0.12em",
                             marginBottom: "20px", lineHeight: 1.3,
                         }}>
-                            大智若愚
+                            大智若愚｜高雄鹽埕最大48人電梯包棟
                         </h1>
                     </Reveal>
 
