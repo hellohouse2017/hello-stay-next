@@ -4,12 +4,12 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "大智若愚 | 高雄全新電梯包棟民宿 | 大港橋・駁二大義倉庫群旁",
-    description: "大智若愚 — 高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳獨立空間，可包層可包棟，最大可容納48人。2026全新開幕，適合超大團體、企業活動、多家庭旅遊。敬請期待！",
+    title: "大智若愚｜高雄鹽埕包棟民宿最大48人電梯館",
+    description: "高雄鹽埕區最大規模包棟民宿，電梯直達，最多容納48人。近駁二藝術特區、大港橋。一層三房一廳獨立空間，可包層可包棟。企業團建、班遊首選，立即詢問報價！",
     alternates: { canonical: "https://www.hello-stay.com/dazhi" },
     openGraph: {
-        title: "大智若愚 | 高雄全新電梯包棟民宿",
-        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。預計 2027 年底開放",
+        title: "大智若愚｜高雄鹽埕包棟民宿最大48人電梯館",
+        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。企業團建、班遊首選。",
         url: "https://www.hello-stay.com/dazhi",
         images: [{ url: "https://www.hello-stay.com/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
     },
@@ -73,7 +73,7 @@ export default function DazhiPage() {
                             fontWeight: 400, color: "#3D3830", letterSpacing: "0.12em",
                             marginBottom: "20px", lineHeight: 1.3,
                         }}>
-                            大智若愚
+                            大智若愚｜高雄鹽埕最大48人電梯包棟
                         </h1>
                     </Reveal>
 
