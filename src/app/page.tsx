@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜Hello Stay 你好哇寓所・溝頂民宿｜6-48人包棟首選",
-  description: "高雄包棟推薦 Hello Stay！三棟質感包棟民宿：你好哇寓所（6-26人）、溝頂民宿（10-12人，平日$10,000起）、大智若愚（48人）。配備中島廚房、麻將桌。鹽埕區近駁二，Google 4.9星。",
+  title: "高雄包棟民宿｜6-48人鹽埕住宿・近駁二大港橋｜Hello Stay",
+  description: "高雄鹽埕包棟民宿推薦 Hello Stay，三館6-48人任選。中島廚房、麻將、桌遊，近駁二與大港橋。平日 NT$10,000 起，Google 4.9 星，自2017年服務超過5000組旅客。馬上查空房",
   alternates: { canonical: "https://www.hello-stay.com" },
   openGraph: {
-    title: "高雄包棟民宿推薦｜Hello Stay 6-48人質感包棟",
-    description: "三棟質感包棟民宿，鹽埕區近駁二。中島廚房、麻將、桌遊。自2017年服務超過5000組旅客。",
+    title: "高雄包棟民宿｜6-48人鹽埕住宿｜Hello Stay",
+    description: "高雄鹽埕包棟民宿，6-48人三館任選。附中島廚房、麻將、桌遊。平日 NT$10,000 起，近駁二大港橋，馬上查空房。",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -123,10 +123,10 @@ export default function HomePage() {
             Kaohsiung · Yancheng · Since 2017
           </div>
           <h1 style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.5s forwards" }}>
-            Hello Stay
+            高雄包棟民宿｜Hello Stay
           </h1>
           <p className="sub" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.7s forwards" }}>
-            高雄鹽埕・質感包棟旅宿
+            6-48人鹽埕包棟・依人數與預算快速選館
           </p>
           <div style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.9s forwards" }}>
             <Link href="/book" className="btn-reserve">立即查詢空房</Link>
