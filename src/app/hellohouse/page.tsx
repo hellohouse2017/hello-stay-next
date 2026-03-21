@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
-    description: "高雄鹽埕區合法包棟首選｜你好哇寓所提供6-26人彈性包棟，配備豪華中島廚房、手動麻將桌、多元房型。電梯大樓含停車指引，步行即達駁二藝術特區、大港橋。綜藝玩很大拍攝場地，家族旅遊、朋友聚會、企業包場最佳選擇。",
+    title: "你好哇寓所｜高雄鹽埕包棟民宿6-26人",
+    description: "高雄鹽埕區6-26人包棟民宿推薦，步行5分鐘到駁二藝術特區。獨棟空間，附中島廚房、麻將桌、桌遊、投影機。適合家庭聚會、閨蜜包棟派對。綜藝玩很大拍攝場地，Google 4.9星好評。",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
     openGraph: {
-        title: "你好哇寓所 | 高雄包棟民宿 | 6-26人鹽埕駁二質感旅宿",
-        description: "6至26人彈性包棟，豪華中島廚房、麻將桌、桌遊。近駁二藝術特區，Google 4.9 星。",
+        title: "你好哇寓所｜高雄鹽埕包棟民宿6-26人",
+        description: "高雄鹽埕區6-26人包棟民宿，中島廚房、麻將桌、桌遊、投影。近駁二藝術特區，Google 4.9 星。",
         url: "https://www.hello-stay.com/hellohouse",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "你好哇寓所 高雄包棟民宿" }],
     },
