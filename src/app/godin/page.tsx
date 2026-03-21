@@ -76,11 +76,11 @@ export default function GodinPage() {
             {/* ── Hero (B-style: clean photo, no overlay) ── */}
             <section className="hero-b">
                 <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 共用空間" width={900} height={600} priority />
-                <h1>溝頂民宿</h1>
+                <h1>溝頂民宿｜高雄鹽埕10-12人獨棟包棟</h1>
                 <div className="sub">Godin House · A Quiet Retreat</div>
                 <p className="desc">
-                    隱身鹽埕靜謐巷弄，五層樓獨棟空間。<br />
-                    為 10 至 12 人的小團體，打造有溫度的包棟體驗。
+                    鹽埕靜謐巷弄，五層樓獨棟空間，平日 $10,000 起。<br />
+                    10-12人包棟，附麻將、桌遊，近大港橋與駁二。
                 </p>
             </section>
 
