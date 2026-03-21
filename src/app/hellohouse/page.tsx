@@ -100,10 +100,10 @@ export default function HelloHousePage() {
                         Hello House · Est. 2017
                     </div>
                     <h1 style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.4s forwards" }}>
-                        你好哇寓所
+                        你好哇寓所｜高雄鹽埕包棟民宿
                     </h1>
                     <p className="sub" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.6s forwards" }}>
-                        6 – 26 人 · 鹽埕質感包棟
+                        6-26人・中島廚房・麻將・近駁二
                     </p>
                     <div style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.8s forwards" }}>
                         <Link href="/book" className="btn-reserve">查詢空房</Link>
