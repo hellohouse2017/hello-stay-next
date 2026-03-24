@@ -24,7 +24,7 @@ const galleryImages = [
     { src: "/images/hellohouse/photo1.webp", alt: "你好哇寓所 客廳空間" },
     { src: "/images/hellohouse/photo2.webp", alt: "你好哇寓所 廚房設備" },
     { src: "/images/hellohouse/photo3.webp", alt: "你好哇寓所 房間" },
-    { src: "/images/hellohouse/photo4.webp", alt: "你好哇寓所 空間細節" },
+    { src: "/images/hellohouse/1000.webp", alt: "你好哇寓所 空間細節" },
     { src: "/images/hellohouse/photo5.webp", alt: "你好哇寓所 環境" },
     { src: "/images/hellohouse/bar-2.webp", alt: "你好哇寓所 吧台區" },
 ];

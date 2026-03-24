@@ -5,12 +5,12 @@ import Reveal from "@/components/Reveal";
 import ProposalCard from "@/components/ProposalCard";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜6-48人包棟$3,500起・鹽埕近駁二｜Hello Stay 你好哇",
+  title: "高雄包棟民宿推薦｜6-48人鹽埕包棟・近駁二｜Hello Stay 你好哇",
   description: "高雄鹽埕包棟民宿推薦 Hello Stay，三館6-48人任選。中島廚房、麻將、桌遊，近駁二與大港橋。平日 NT$10,000 起，Google 4.9 星，自2017年服務超過5000組旅客。馬上查空房",
   alternates: { canonical: "https://www.hello-stay.com" },
   openGraph: {
-    title: "高雄包棟民宿推薦｜6-48人包棟$3,500起・鹽埕近駁二｜Hello Stay 你好哇",
-    description: "高雄鹽埕包棟民宿首選！三棟獨立空間可容6-48人，每人$583起。附中島廚房、麻將桌、投影機。步行5分鐘到駁二藝術特區。Google 4.9星・綜藝玩很大拍攝場地。LINE即時查空房→",
+    title: "高雄包棟民宿推薦｜6-48人鹽埕包棟・近駁二｜Hello Stay 你好哇",
+    description: "高雄鹽埕包棟民宿首選！三棟獨立空間可容6-48人，提供中島廚房、麻將桌、投影機。步行5分鐘到駁二藝術特區。Google 4.9星・綜藝玩很大拍攝場地。LINE即時查空房→",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -147,14 +147,14 @@ export default function HomePage() {
               <p className="prop-card__caption">Hello House · 6-26人</p>
               <div className="prop-card__divider" />
               <p className="prop-card__desc">
-                豪宅級中島廚房，麻將桌與 50+ 款桌遊，120 吋投影幕與 Switch。
+                豪宅級中島廚房、手動麻將桌、Netflix 影音娛樂。
                 老屋溫度遇上現代質感——這裡是你的私人招待所。
               </p>
               <div className="prop-card__tags">
-                <span>中島廚房</span><span>麻將桌</span><span>投影幕</span><span>6間套房</span>
+                <span>中島廚房</span><span>麻將桌</span><span>聚會客廳</span><span>6間套房</span>
               </div>
               <div className="prop-card__footer">
-                <span className="prop-card__price">平日 $3,500 起 · 每人 $583 起</span>
+                <span className="prop-card__price">依人數彈性配置 · LINE 諮詢</span>
                 <Link href="/hellohouse" className="prop-card__link">探索空間 →</Link>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function HomePage() {
                 <span>五層獨棟</span><span>麻將桌</span><span>4間套房</span><span>交誼廳</span>
               </div>
               <div className="prop-card__footer">
-                <span className="prop-card__price">平日 $10,000 起 · 每人 $833 起</span>
+                <span className="prop-card__price">平日 $10,000 起</span>
                 <Link href="/godin" className="prop-card__link">探索空間 →</Link>
               </div>
             </div>
@@ -235,7 +235,7 @@ export default function HomePage() {
             { src: "/images/hellohouse/photo2.webp", alt: "客廳聚會空間" },
             { src: "/images/hellohouse/1301.webp", alt: "舒適房間" },
             { src: "/images/godin/room1.webp", alt: "溝頂房間" },
-            { src: "/images/hellohouse/photo4.webp", alt: "桌遊時光" },
+            { src: "/images/hellohouse/1000.webp", alt: "舒適空間" },
             { src: "/images/godin/cover-2.webp", alt: "溝頂交誼廳" },
           ].map((img, i) => (
             <div key={i} className="strip-scroll__item">
@@ -255,7 +255,7 @@ export default function HomePage() {
           <div className="feat-grid">
             {[
               { icon: "🍳", title: "中島廚房", desc: "IH爐、冰箱、完整餐具。\n火鍋趴、聚餐、早午餐自己來。" },
-              { icon: "🀄", title: "麻將桌遊", desc: "手動麻將桌、50+款桌遊、\n120吋投影+Switch。" },
+              { icon: "🀄", title: "麻將影音", desc: "夜晚絕不無聊。\n手動麻將桌、Netflix 聯網電視。" },
               { icon: "🏠", title: "整棟包下", desc: "獨立空間不受打擾。\n打牌到天亮，沒人抗議。" },
               { icon: "📍", title: "鹽埕黃金區", desc: "步行到駁二、大港橋。\n30+間在地老店走路可達。" },
               { icon: "⭐", title: "4.9 星口碑", desc: "Google 4.9 星、5,000+組旅客。\n綜藝玩很大拍攝場地。" },
