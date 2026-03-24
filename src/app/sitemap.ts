@@ -26,6 +26,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/capacity/20`, lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/capacity/30`, lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/capacity/40`, lastModified: coreUpdated, changeFrequency: "monthly", priority: 0.7 },
+        // Micro-aggregator hub
+        { url: `${baseUrl}/kaohsiung-whole-house`, lastModified: "2026-03-25", changeFrequency: "weekly", priority: 0.9 },
+        // Compare pages
+        { url: `${baseUrl}/compare`, lastModified: "2026-03-25", changeFrequency: "weekly", priority: 0.85 },
+        { url: `${baseUrl}/compare/hellohouse-vs-godin`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/compare/hellohouse-vs-dazhi`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/compare/godin-vs-dazhi`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        // Feature pages
+        { url: `${baseUrl}/features/kitchen`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/features/parking`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        // Occasion pages
+        { url: `${baseUrl}/occasion/family-trip`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/occasion/friends-gathering`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
+        { url: `${baseUrl}/occasion/company-retreat`, lastModified: "2026-03-25", changeFrequency: "monthly", priority: 0.7 },
         // Blog index
         { url: `${baseUrl}/blog`, lastModified: blogUpdated, changeFrequency: "weekly", priority: 0.7 },
     ];
