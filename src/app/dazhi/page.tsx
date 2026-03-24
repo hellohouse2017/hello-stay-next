@@ -24,17 +24,33 @@ export default function DazhiPage() {
             paddingBottom: "80px",
         }}>
             <script type="application/ld+json" dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                    "@context": "https://schema.org", "@type": "LodgingBusiness",
-                    name: "大智若愚 Dazhi Ruoyu", url: "https://www.hello-stay.com/dazhi",
-                    telephone: "+886-932-828-922",
-                    description: "高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。即將開幕。",
-                    address: { "@type": "PostalAddress", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
-                    geo: { "@type": "GeoCoordinates", latitude: 22.6190, longitude: 120.2850 },
-                    checkinTime: "16:00", checkoutTime: "11:00",
-                    petsAllowed: false,
-                })
+                __html: JSON.stringify([
+                    {
+                        "@context": "https://schema.org", "@type": "LodgingBusiness",
+                        "@id": "https://www.hello-stay.com/dazhi/#lodging",
+                        name: "大智若愚 Dazhi Ruoyu", url: "https://www.hello-stay.com/dazhi",
+                        telephone: "+886-932-828-922",
+                        description: "高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。即將開幕。",
+                        address: { "@type": "PostalAddress", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                        geo: { "@type": "GeoCoordinates", latitude: 22.6190, longitude: 120.2850 },
+                        checkinTime: "16:00", checkoutTime: "11:00",
+                        petsAllowed: false,
+                        tourBookingPage: "https://www.hello-stay.com/book",
+                        speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".dazhi-summary", ".dazhi-faq"] },
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "FAQPage",
+                        mainEntity: [
+                            { "@type": "Question", name: "大智若愚可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "最多可接待 48 人，最低建議 20 人包棟。可依人數選擇包層（單層）或包棟（全棟），彈性配置高雄最大容量包棟方案。" } },
+                            { "@type": "Question", name: "大智若愚什麼時候開幕？", acceptedAnswer: { "@type": "Answer", text: "預計 2027 年中正式開幕。目前開放搶先預約，早鳥享有優先排程與諮詢服務，建議透過 LINE 官方帳號登記。" } },
+                            { "@type": "Question", name: "大智若愚有電梯嗎？", acceptedAnswer: { "@type": "Answer", text: "是的！大智若愚是 Hello Stay 三館中唯一有電梯的民宿，特別適合帶長輩、行動不便者，或需要搬運大量行李的大型企業團隊。" } },
+                            { "@type": "Question", name: "大智若愚適合什麼樣的活動？", acceptedAnswer: { "@type": "Answer", text: "最適合：大型家族旅遊（三代同堂）、企業員工旅遊、球隊/運動隊集訓住宿、同學會/同事聚會。20–48人靈活配置，可包層或整棟使用。" } },
+                            { "@type": "Question", name: "高雄40人以上包棟住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦大智若愚，高雄最大容量包棟民宿，最多48人，位於鹽埕區大港橋旁，全新電梯大樓，步行到駁二藝術特區約12分鐘，預計2027年開幕。" } },
+                        ],
+                    },
+                ])
             }} />
+
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px" }}>
 
                 {/* Hero render */}

@@ -71,7 +71,7 @@ export default function HelloHousePage() {
                             { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "W先生" }, reviewBody: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。" },
                         ],
                         tourBookingPage: "https://www.hello-stay.com/book",
-                        speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-d .content", ".sec-cream h2", ".sec-cream p"] },
+                        speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-d .content", ".sec-cream h2", ".sec-cream p", "h1", "table"] },
                     },
                     {
                         "@context": "https://schema.org", "@type": "FAQPage",
