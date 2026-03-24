@@ -254,12 +254,12 @@ export default function HomePage() {
           </Reveal>
           <div className="feat-grid">
             {[
-              { icon: "🍳", title: "中島廚房", desc: "IH爐、冰箱、完整餐具。\n火鍋趴、聚餐、早午餐自己來。" },
-              { icon: "🀄", title: "麻將影音", desc: "夜晚絕不無聊。\n手動麻將桌、Netflix 聯網電視。" },
-              { icon: "🏠", title: "整棟包下", desc: "獨立空間不受打擾。\n打牌到天亮，沒人抗議。" },
+              { icon: "🏠", title: "整棟包下", desc: "三館皆為獨立空間。\n不跟別人共用，完全屬於你們。" },
+              { icon: "👥", title: "6-48人彈性", desc: "從小家庭到企業團建。\n三館任選或合訂，最高近80人。" },
               { icon: "📍", title: "鹽埕黃金區", desc: "步行到駁二、大港橋。\n30+間在地老店走路可達。" },
               { icon: "⭐", title: "4.9 星口碑", desc: "Google 4.9 星、5,000+組旅客。\n綜藝玩很大拍攝場地。" },
-              { icon: "💬", title: "LINE 即訂", desc: "LINE 即時回覆、查房報價。\n官方直訂最優惠。" },
+              { icon: "💰", title: "直訂最划算", desc: "官方LINE直訂免平台手續費。\n比OTA便宜15-20%。" },
+              { icon: "💬", title: "LINE 即訂", desc: "LINE 即時回覆、查房報價。\n30秒產出包棟提案。" },
             ].map((f, i) => (
               <Reveal key={i}>
                 <div className="feat-card">
@@ -282,7 +282,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ SCENE 6: Final CTA ═══ */}
+      {/* ═══ SCENE 6: Decision Hub + Final CTA ═══ */}
       <section className="scene-cta">
         <Image
           src="/images/hellohouse/photo5.webp"
@@ -294,8 +294,14 @@ export default function HomePage() {
         <div className="scene-cta__overlay" />
         <div className="scene-cta__content">
           <Reveal>
-            <h2>找到屬於你的空間</h2>
-            <p>6 至 48 人彈性包棟，為每一場相聚量身打造。</p>
+            <h2>找到你的包棟方案</h2>
+            <p>依人數、設備、用途，快速找到最適合的包棟。</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center", margin: "24px 0" }}>
+              <Link href="/compare" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>📊 三館比較</Link>
+              <Link href="/kaohsiung-whole-house" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>🏠 高雄包棟總覽</Link>
+              <Link href="/occasion/family-trip" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>👨‍👩‍👧‍👦 家庭旅遊</Link>
+              <Link href="/occasion/company-retreat" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>💼 企業團建</Link>
+            </div>
             <div className="scene-cta__buttons">
               <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">
                 💬 LINE 查空房
