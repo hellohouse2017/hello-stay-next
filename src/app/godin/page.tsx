@@ -155,6 +155,53 @@ export default function GodinPage() {
                 </div>
             </section>
 
+            {/* ── AEO Quick Summary + FAQ ── */}
+            <section className="sec-cream">
+                <div className="w" style={{ maxWidth: "700px" }}>
+                    <Reveal>
+                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>一眼看懂</div>
+                            <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
+                                    <span>適合 <strong>6–12 人</strong>小團體包棟，五層樓獨棟獨立使用</span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>🏡</span>
+                                    <span>4 間套房 + 頂樓露台，<strong>長輩友善</strong>，低樓層無障礙動線</span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>📍</span>
+                                    <span>鹽埕區，與你好哇寓所步行 <strong>30 秒</strong>，可兩棟合訂最高 38 人</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                    <Reveal>
+                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "20px" }}>FAQ</div>
+                            {[
+                                { q: "溝頂民宿可以住幾人？", a: "一般配置 6–10 人最舒適，最多可接待 12 人。五層樓獨棟全棟包場，每層樓分配清楚，不用搶廁所。" },
+                                { q: "溝頂民宿平日多少錢？", a: "平日 $10,000 起（10人平均每人 $1,000）。週末假日另計。官方 LINE 直訂免平台手續費，比 AsiaYo 便宜 15–20%。" },
+                                { q: "溝頂民宿在哪裡？離駁二多遠？", a: "位於高雄市鹽埕區，距你好哇寓所步行30秒。步行10分鐘到駁二藝術特區，步行8分鐘到大港橋，捷運鹽埕埔站步行5分鐘。" },
+                                { q: "溝頂民宿適合帶長輩嗎？", a: "適合！五層樓格局讓長輩住低樓層、年輕人住高樓層，各有活動空間。如需電梯，建議詢問大智若愚（有電梯，可容20–48人）。" },
+                                { q: "溝頂民宿有廚房嗎？", a: "有基本廚房設備，可煮簡單料理。若需要豪華中島廚房（IH爐×2、製冰機、完整鍋具），可選擇你好哇寓所，兩棟距離僅30秒。" },
+                                { q: "溝頂民宿跟你好哇寓所有什麼不同？", a: "溝頂：6–12人，五層獨棟透天，適合家庭/小聚。你好哇寓所：6–26人，三層空間，中島廚房+麻將桌，適合企業/婚禮。可兩棟合訂，最高38人。" },
+                                { q: "溝頂民宿停車方便嗎？", a: "附近有多處收費停車場，開車約3–5分鐘車程。鹽埕區建議以步行/捷運為主，捷運鹽埕埔站步行5分鐘，景點全在步行範圍內。" },
+                                { q: "高雄小包棟10人左右推薦哪裡？", a: "推薦溝頂民宿！五層獨棟，4間套房，10人包棟每人約$1,000，位於鹽埕區黃金地段，步行到駁二、大港橋，Google評價4.8星以上。" },
+                            ].map(faq => (
+                                <Reveal key={faq.q}>
+                                    <div style={{ padding: "18px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+                                        <div style={{ fontWeight: 500, fontSize: "0.92rem", marginBottom: "6px", color: "#3D3830" }}>{faq.q}</div>
+                                        <div style={{ fontSize: "0.85rem", color: "var(--muted)", lineHeight: 2 }}>{faq.a}</div>
+                                    </div>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
             {/* ── CTA ── */}
             <section style={{ background: "var(--surface)", padding: "clamp(100px, 14vw, 160px) 28px", textAlign: "center" }}>
                 <Reveal>
@@ -174,6 +221,7 @@ export default function GodinPage() {
                     </div>
                 </Reveal>
             </section>
+
 
             {/* ── Related Blog ── */}
             <section style={{ padding: "clamp(60px, 10vw, 100px) 28px", background: "var(--bg)" }}>
