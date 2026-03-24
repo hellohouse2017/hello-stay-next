@@ -273,16 +273,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ SCENE 5.5: Proposal Card ═══ */}
+      {/* ═══ SCENE 5.5: Proposal Card + Browse Links ═══ */}
       <section className="scene-proposal" style={{ background: "var(--bg)", padding: "100px 0" }}>
         <div className="w">
           <Reveal>
             <ProposalCard />
           </Reveal>
+          {/* Browse alternative — for users who prefer to compare first */}
+          <Reveal>
+            <div style={{ maxWidth: "480px", margin: "32px auto 0", textAlign: "center" }}>
+              <div style={{ fontSize: "0.72rem", color: "#BEB5A8", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "14px" }}>或先瀏覽比較</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center" }}>
+                <Link href="/compare" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>📊 三館比較</Link>
+                <Link href="/kaohsiung-whole-house" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>🏠 包棟總覽</Link>
+                <Link href="/occasion/family-trip" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>👨‍👩‍👧‍👦 家庭旅遊</Link>
+                <Link href="/occasion/company-retreat" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>💼 企業團建</Link>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ═══ SCENE 6: Decision Hub + Final CTA ═══ */}
+      {/* ═══ SCENE 6: Final CTA ═══ */}
       <section className="scene-cta">
         <Image
           src="/images/hellohouse/photo5.webp"
@@ -294,14 +306,8 @@ export default function HomePage() {
         <div className="scene-cta__overlay" />
         <div className="scene-cta__content">
           <Reveal>
-            <h2>找到你的包棟方案</h2>
-            <p>依人數、設備、用途，快速找到最適合的包棟。</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center", margin: "24px 0" }}>
-              <Link href="/compare" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>📊 三館比較</Link>
-              <Link href="/kaohsiung-whole-house" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>🏠 高雄包棟總覽</Link>
-              <Link href="/occasion/family-trip" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>👨‍👩‍👧‍👦 家庭旅遊</Link>
-              <Link href="/occasion/company-retreat" style={{ padding: "10px 20px", borderRadius: "8px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", color: "#fff", fontSize: "0.82rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)" }}>💼 企業團建</Link>
-            </div>
+            <h2>準備好了嗎？</h2>
+            <p>在鹽埕的巷弄裡，有一個空間正等著你們。</p>
             <div className="scene-cta__buttons">
               <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">
                 💬 LINE 查空房
