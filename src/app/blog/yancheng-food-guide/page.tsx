@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
+import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "鹽埕區美食地圖｜在地人推薦 30 間必吃老店",
@@ -134,6 +135,7 @@ export default function FoodGuidePage() {
                     </Reveal>
                 ))}
 
+                <PropertyLinksBlock />
                 <RelatedArticles current="yancheng-food-guide" />
 
                 <Reveal>

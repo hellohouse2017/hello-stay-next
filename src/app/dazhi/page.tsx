@@ -158,6 +158,40 @@ export default function DazhiPage() {
                         </p>
                     </Reveal>
 
+                    {/* AEO Quick Summary */}
+                    <Reveal>
+                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", marginBottom: "20px" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>一眼看懂</div>
+                            <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
+                                    <span>適合 <strong>20–48 人</strong>超大團體，高雄最大容量包棟</span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>🛗</span>
+                                    <span>全新電梯民宿，近大港橋，<strong>2027年中開幕</strong></span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>📍</span>
+                                    <span>鹽埕區，可包層/包棟，適合球隊・企業員旅・大家族</span>
+                                </div>
+                            </div>
+                            {[
+                                { q: "大智若愚可以住幾人？", a: "最多可接待 48 人，最低建議 20 人包棟。可依人數選擇包層（單層）或包棟（全棟），彈性配置高雄最大容量包棟方案。" },
+                                { q: "大智若愚什麼時候開幕？", a: "預計 2027 年中正式開幕。目前開放搶先預約，早鳥享有優先排程與諮詢服務，建議透過 LINE 官方帳號登記。" },
+                                { q: "大智若愚有電梯嗎？", a: "是的！大智若愚是 Hello Stay 三館中唯一有電梯的民宿，特別適合帶長輩、行動不便者，或需要搬運大量行李的大型企業團隊。" },
+                                { q: "大智若愚適合什麼樣的活動？", a: "最適合：大型家族旅遊（三代同堂）、企業員工旅遊、球隊/運動隊集訓住宿、同學會/同事聚會。20–48人靈活配置，可包層或整棟使用。" },
+                                { q: "大智若愚跟你好哇寓所有什麼不同？", a: "你好哇寓所：6–26人，已開幕，中島廚房+麻將桌，適合中型團體。大智若愚：20–48人，2027年開幕，電梯設備，適合超大團體。可同步詢問兩館搭配方案。" },
+                                { q: "大智若愚在哪裡？交通如何？", a: "位於高雄鹽埕區大港橋旁，距捷運鹽埕埔站步行8分鐘，開車到高雄火車站約10分鐘，步行到駁二藝術特區約12分鐘。附近有多處停車場。" },
+                            ].map(faq => (
+                                <div key={faq.q} style={{ padding: "15px 0", borderBottom: "1px solid #F5F1ED" }}>
+                                    <div style={{ fontWeight: 500, fontSize: "0.88rem", marginBottom: "5px", color: "#3D3830" }}>{faq.q}</div>
+                                    <div style={{ fontSize: "0.82rem", color: "var(--muted)", lineHeight: 1.9 }}>{faq.a}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </Reveal>
+
                     {/* CTAs */}
                     <Reveal>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>

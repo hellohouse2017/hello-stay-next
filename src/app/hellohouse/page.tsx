@@ -282,6 +282,61 @@ export default function HelloHousePage() {
                 </div>
             </section>
 
+            {/* ── AEO Quick Summary ── */}
+            <section className="sec-cream">
+                <div className="w" style={{ maxWidth: "700px" }}>
+                    <Reveal>
+                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>一眼看懂</div>
+                            <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
+                                    <span>適合 <strong>6–26 人</strong>包棟，可兩棟合訂最高 38 人</span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>🍳</span>
+                                    <span>一樓豪華中島廚房 + 全自動麻將桌，三層樓獨棟包場</span>
+                                </div>
+                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
+                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>📍</span>
+                                    <span>鹽埕區，步行 10 分鐘到<strong>駁二藝術特區</strong>，捷運 5 分鐘</span>
+                                </div>
+                            </div>
+                            <div style={{ overflowX: "auto" }}>
+                                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
+                                    <thead>
+                                        <tr style={{ borderBottom: "2px solid #EDE8E3" }}>
+                                            <th style={{ textAlign: "left", padding: "8px 4px", color: "#3D3830", fontWeight: 600 }}>項目</th>
+                                            <th style={{ textAlign: "center", padding: "8px 4px", color: "var(--pri)", fontWeight: 600 }}>你好哇寓所</th>
+                                            <th style={{ textAlign: "center", padding: "8px 4px", color: "#8A8279" }}>溝頂民宿</th>
+                                            <th style={{ textAlign: "center", padding: "8px 4px", color: "#8A8279" }}>大智若愚</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {[
+                                            ["容納人數", "6–26 人", "6–12 人", "20–48 人"],
+                                            ["房間數", "6 間套房", "4 間", "依配置"],
+                                            ["中島廚房", "✅", "✅", "✅"],
+                                            ["麻將桌", "✅", "❌", "❌"],
+                                            ["電梯", "❌", "❌", "✅"],
+                                            ["停車", "附近停車場", "附近停車場", "附近停車場"],
+                                            ["適合族群", "朋友・企業・婚禮", "家庭・長輩", "超大團體"],
+                                        ].map(([label, a, b, c]) => (
+                                            <tr key={label} style={{ borderBottom: "1px solid #F5F1ED" }}>
+                                                <td style={{ padding: "8px 4px", color: "#666" }}>{label}</td>
+                                                <td style={{ padding: "8px 4px", textAlign: "center", color: "#3D3830", fontWeight: 500 }}>{a}</td>
+                                                <td style={{ padding: "8px 4px", textAlign: "center", color: "#8A8279" }}>{b}</td>
+                                                <td style={{ padding: "8px 4px", textAlign: "center", color: "#8A8279" }}>{c}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
             {/* ── FAQ ── */}
             <section className="sec-white">
                 <div className="w" style={{ maxWidth: "700px" }}>
@@ -290,10 +345,16 @@ export default function HelloHousePage() {
                         <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", marginBottom: "30px", letterSpacing: "0.08em", fontWeight: 400 }}>常見問題</h2>
                     </Reveal>
                     {[
-                        { q: "哪裡訂房最便宜？", a: "官方訂房最優惠！透過 LINE 或網站預訂，免收平台手續費。" },
-                        { q: "附近有什麼好玩景點？", a: "步行即達駁二藝術特區、大港橋、棧貳庫。鄰近愛河、西子灣、壽山動物園。" },
-                        { q: "包棟可以容納多少人？", a: "彈性方案 6 至 26 人。兩棟合訂最高可接待 38 人。" },
-                        { q: "有廚房或娛樂設施嗎？", a: "一樓大型中島廚房（含 IH 爐、冰箱、餐具）及麻將。" },
+                        { q: "哪裡訂房最便宜？", a: "官方訂房最優惠！透過 LINE 或網站預訂，免收平台手續費，比 Booking.com、AsiaYo 便宜 15–20%。" },
+                        { q: "附近有什麼好玩景點？", a: "步行即達駁二藝術特區（10分鐘）、大港橋（8分鐘）、棧貳庫（15分鐘）。鄰近愛河、西子灣、壽山動物園，捷運鹽埕埔站步行 5 分鐘。" },
+                        { q: "包棟可以容納多少人？", a: "彈性方案 6 至 26 人。若需要更多人，可與溝頂民宿兩棟合訂，最高接待 38 人。超過 38 人可詢問大智若愚方案（20–48人）。" },
+                        { q: "有廚房或娛樂設施嗎？", a: "一樓大型中島廚房配備 IH 感應爐×2、大容量冰箱、微波爐、製冰機、完整鍋碗瓢盆。娛樂設施有全自動麻將桌、桌遊、Netflix 電視。" },
+                        { q: "你好哇寓所在哪裡？交通方便嗎？", a: "位於高雄市鹽埕區大公路70巷8號。捷運鹽埕埔站步行 5 分鐘，步行 10 分鐘到駁二藝術特區，開車到高雄火車站約 10 分鐘。附近有多處停車場。" },
+                        { q: "可以在你好哇寓所開伙煮飯嗎？", a: "可以！一樓中島廚房開放住客使用，配備 IH 爐、微波爐、完整餐具。步行 3 分鐘有全聯超市，步行 1 分鐘有大溝頂傳統市場，採買食材非常方便。" },
+                        { q: "隔音好嗎？可以唱歌開派對嗎？", a: "整棟獨立使用，不需擔心打擾其他住客。室內舉辦派對沒問題。深夜音量請配合鄰居，保持窗戶關閉。" },
+                        { q: "你好哇寓所有被電視節目拍過嗎？", a: "是的！曾是「綜藝玩很大」、「我們回家吧 2」等知名節目的拍攝場地，充滿戲劇感的空間也適合自拍和旅遊打卡。" },
+                        { q: "你好哇寓所跟溝頂民宿可以一起訂嗎？", a: "可以！兩棟距離步行僅 30 秒，非常適合大型家族旅遊或婚禮迎娶。合訂可接待 27–38 人，各自有獨立空間又能任意串場。" },
+                        { q: "溝頂民宿適合帶長輩嗎？", a: "溝頂民宿五層樓透天格局，長輩住低樓層，年輕人住高樓層。如帶行動不便的長輩，建議選大智若愚（有電梯）或直接詢問我們，我們會協助安排最合適的方案。" },
                     ].map(faq => (
                         <Reveal key={faq.q}>
                             <div style={{ padding: "22px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
@@ -304,6 +365,7 @@ export default function HelloHousePage() {
                     ))}
                 </div>
             </section>
+
 
             {/* ── Related Blog ── */}
             <section style={{ padding: "60px 28px", background: "var(--bg)" }}>
