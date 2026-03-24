@@ -6,7 +6,6 @@ import type { NearbySpot } from '@/data/properties';
 interface LocationSectionProps {
     propertyName: string;
     address: string;
-    location: { lat: number; lng: number };
     mapUrl: string;
     nearbySpots: NearbySpot[];
 }
@@ -19,7 +18,7 @@ const TABS = [
     { id: 'convenience' as const, label: '生活', icon: '🏪' },
 ];
 
-export default function LocationSection({ propertyName, address, location, mapUrl, nearbySpots }: LocationSectionProps) {
+export default function LocationSection({ propertyName, address, mapUrl, nearbySpots }: LocationSectionProps) {
     const [activeTab, setActiveTab] = useState<string>('all');
 
     const filtered = activeTab === 'all'

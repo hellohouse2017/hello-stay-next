@@ -211,7 +211,6 @@ export default function HelloHousePage() {
             <LocationSection
                 propertyName={hellohouse.name}
                 address={hellohouse.address}
-                location={hellohouse.location}
                 mapUrl={hellohouse.mapUrl}
                 nearbySpots={hellohouse.nearbySpots}
             />
