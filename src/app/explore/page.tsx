@@ -92,7 +92,7 @@ const itineraries = [
 
 export default function ExplorePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[{ "@context": "https://schema.org", "@type": "TouristDestination", name: "高雄鹽埕區", description: "高雄最有文化底蘊的美食街區，步行可達駁二藝術特區、大港橋、棧貳庫。30間以上在地老店，入住包棟民宿即可步出門探索。", touristType: ["家庭旅遊", "團體旅遊", "文化旅遊", "美食之旅"], geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "高雄鹽埕區有什麼景點？", acceptedAnswer: { "@type": "Answer", text: "步行可達駁二藝術特區（10分鐘）、大港橋（8分鐘）、棧貳庫（15分鐘）、高雄流行音樂中心（12分鐘）、西子灣（捷運10分鐘）。" } }, { "@type": "Question", name: "鹽埕區有什麼好吃的？", acceptedAnswer: { "@type": "Answer", text: "超過30間在地老店：港園牛肉麵、鴨肉珍、阿囉哈滷味、大摳胖碳烤三明治、婆婆冰等，步行即達。" } }, { "@type": "Question", name: "住鹽埕區交通方便嗎？", acceptedAnswer: { "@type": "Answer", text: "非常方便。捷運鹽埕埔站步行5分鐘，輕軌也在附近。高鐵左營站搭捷運約30分鐘可達。" } }] }]} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
@@ -103,7 +103,7 @@ export default function ExplorePage() {
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
                             周邊探索
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
                             景點 · 美食 · 主題行程  ─  步出門就開始旅行
                         </p>
@@ -118,10 +118,10 @@ export default function ExplorePage() {
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                             {attractions.map(a => (
                                 <div key={a.name} style={{
-                                    padding: "16px 14px", background: "#FAF8F5", borderRadius: "12px",
+                                    padding: "16px 14px", background: "var(--bg)", borderRadius: "12px",
                                 }}>
                                     <div style={{ fontFamily: "var(--serif)", fontSize: "0.92rem", color: "#3D3830", marginBottom: "4px" }}>{a.name}</div>
-                                    <div style={{ fontSize: "0.7rem", color: "#C8AD7F", marginBottom: "6px", fontWeight: 500 }}>{a.dist}</div>
+                                    <div style={{ fontSize: "0.7rem", color: "var(--pri)", marginBottom: "6px", fontWeight: 500 }}>{a.dist}</div>
                                     <div style={{ fontSize: "0.75rem", color: "#999", lineHeight: 1.7 }}>{a.desc}</div>
                                 </div>
                             ))}
@@ -146,7 +146,7 @@ export default function ExplorePage() {
                                     <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                                         {cat.items.map(item => (
                                             <span key={item} style={{
-                                                padding: "6px 14px", borderRadius: "20px", background: "#FAF8F5",
+                                                padding: "6px 14px", borderRadius: "20px", background: "var(--bg)",
                                                 fontSize: "0.78rem", color: "#666",
                                             }}>{item}</span>
                                         ))}
@@ -165,14 +165,14 @@ export default function ExplorePage() {
                         <div style={{ display: "grid", gap: "24px" }}>
                             {itineraries.map(group => (
                                 <div key={group.days}>
-                                    <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                                    <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
                                         {group.days}
                                     </div>
                                     <div style={{ display: "grid", gap: "10px" }}>
                                         {group.plans.map(p => (
                                             <div key={p.name} style={{
                                                 display: "flex", gap: "14px", alignItems: "flex-start",
-                                                padding: "16px", background: "#FAF8F5", borderRadius: "12px",
+                                                padding: "16px", background: "var(--bg)", borderRadius: "12px",
                                             }}>
                                                 <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>{p.emoji}</span>
                                                 <div>
@@ -206,7 +206,7 @@ export default function ExplorePage() {
 }
 
 /* ── Shared ── */
-const labelEn: React.CSSProperties = { fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" };
+const labelEn: React.CSSProperties = { fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" };
 const cardStyle: React.CSSProperties = { background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" };
 const h2Style: React.CSSProperties = { fontFamily: "var(--serif)", fontSize: "1.2rem", color: "#3D3830", marginBottom: "20px" };
 const ctaDark: React.CSSProperties = { padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" };

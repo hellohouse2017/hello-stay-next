@@ -73,7 +73,7 @@ const categories = [
 
 export default function FoodGuidePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -100,11 +100,11 @@ export default function FoodGuidePage() {
 
                 <Reveal>
                     <div style={{ marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C8AD7F", marginBottom: "12px" }}>2026-03-03</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-03</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
                             鹽埕區美食地圖<br />在地人推薦 30 間必吃老店
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px 0" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
                         <p className="intro" style={{ fontSize: "0.88rem", color: "#999", lineHeight: 2 }}>
                             住在鹽埕區，就是住在高雄美食的中心。從清晨的虱目魚粥到深夜的特色酒吧，走路就能吃遍數十年老店。以下是我們經營民宿 8 年來，與住客們共同驗證的「不踩雷」名單。推薦外帶回民宿中島廚房，吹冷氣享受包棟聚餐。
                         </p>
@@ -119,12 +119,12 @@ export default function FoodGuidePage() {
                             </h2>
                             <div style={{ display: "grid", gap: "12px" }}>
                                 {cat.items.map(item => (
-                                    <div key={item.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px" }}>
+                                    <div key={item.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 16px", background: "var(--bg)", borderRadius: "10px" }}>
                                         <div>
                                             <div style={{ fontSize: "0.92rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>{item.name}</div>
                                             <div style={{ fontSize: "0.75rem", color: "#BEB5A8" }}>{item.note}</div>
                                         </div>
-                                        <div style={{ fontSize: "0.72rem", color: "#C8AD7F", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>
+                                        <div style={{ fontSize: "0.72rem", color: "var(--pri)", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>
                                             {item.walk}
                                         </div>
                                     </div>

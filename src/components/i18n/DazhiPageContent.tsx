@@ -18,7 +18,7 @@ export default function DazhiPageContent({ locale }: { locale: Locale }) {
     ];
 
     return (
-        <div style={{ minHeight: "100vh", background: "#FAF8F5", paddingTop: "calc(var(--nav-h) + 20px)", paddingBottom: "80px" }}>
+        <div style={{ minHeight: "100vh", background: "var(--bg)", paddingTop: "calc(var(--nav-h) + 20px)", paddingBottom: "80px" }}>
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px" }}>
                 <Reveal>
                     <div style={{ borderRadius: "20px", overflow: "hidden", marginBottom: "50px", boxShadow: "0 8px 40px rgba(0,0,0,0.08)" }}>

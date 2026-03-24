@@ -73,18 +73,18 @@ export default function BookingPage() {
     };
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#F8F6F3", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <div className="w" style={{ maxWidth: "600px", padding: "0 28px 80px" }}>
 
                 {/* Header */}
                 <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                    <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                    <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
                         Check Availability
                     </div>
                     <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
                         查詢空房
                     </h1>
-                    <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                    <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     <p style={{ fontSize: "0.88rem", color: "#999", lineHeight: 1.9 }}>
                         選擇日期即時查看兩館空房狀況
                     </p>

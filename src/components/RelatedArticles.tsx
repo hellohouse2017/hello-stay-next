@@ -78,20 +78,20 @@ export default function RelatedArticles({ current, currentTags, count = 4 }: { c
     if (related.length === 0) return null;
 
     return (
-        <div style={{ marginTop: "40px", padding: "32px 24px", background: "#fff", borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
-            <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "16px" }}>
+        <div style={{ marginTop: "40px", padding: "32px 24px", background: "var(--surface)", borderRadius: "4px", border: "1px solid var(--line)" }}>
+            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px", fontWeight: 600 }}>
                 Related Articles
             </div>
             <div style={{ display: "grid", gap: "10px" }}>
                 {related.map(a => (
-                    <Link key={a.slug} href={`/blog/${a.slug}`} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "12px 14px", borderRadius: "10px", background: "#FAF8F5", transition: "background 0.2s" }}>
+                    <Link key={a.slug} href={`/blog/${a.slug}`} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "12px 14px", borderRadius: "4px", background: "var(--bg)", transition: "background 0.2s" }}>
                         <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
-                        <span style={{ fontSize: "0.82rem", color: "#3D3830" }}>{a.title}</span>
+                        <span style={{ fontSize: "0.82rem", color: "var(--text)" }}>{a.title}</span>
                     </Link>
                 ))}
             </div>
             <div style={{ marginTop: "16px", textAlign: "center" }}>
-                <Link href="/blog" style={{ fontSize: "0.75rem", color: "#C8AD7F", textDecoration: "none", letterSpacing: "0.1em" }}>
+                <Link href="/blog" style={{ fontSize: "0.75rem", color: "var(--pri)", textDecoration: "none", letterSpacing: "0.1em" }}>
                     瀏覽所有攻略 →
                 </Link>
             </div>

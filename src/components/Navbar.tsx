@@ -39,7 +39,7 @@ export default function Navbar() {
     const mobileMenu = open && mounted ? createPortal(
         <div style={{
             position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 9999,
-            background: isDark ? "rgba(14,14,14,0.98)" : "rgba(252,251,249,0.98)",
+            background: isDark ? "rgba(247,243,238,0.98)" : "rgba(252,251,249,0.98)",
             backdropFilter: "blur(20px)",
             display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "28px",
             boxSizing: "border-box",
@@ -52,7 +52,7 @@ export default function Navbar() {
                     position: "absolute", top: "20px", right: "20px",
                     background: "none", border: "none", cursor: "pointer",
                     fontSize: "28px", lineHeight: 1,
-                    color: isDark ? "#C8AD7F" : "#2a2a2a",
+                    color: isDark ? "#B85A38" : "#2a2a2a",
                     padding: "8px",
                 }}
             >✕</button>
@@ -60,7 +60,7 @@ export default function Navbar() {
                 <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
                     style={{
                         fontFamily: "var(--serif)", fontSize: "1.4rem", letterSpacing: "0.1em",
-                        color: isDark ? (l.cta ? "#C8AD7F" : "#fff") : (l.cta ? "#2a2a2a" : "#888"),
+                        color: isDark ? (l.cta ? "#B85A38" : "#1F1A17") : (l.cta ? "#2a2a2a" : "#888"),
                         opacity: 0, animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
                         textDecoration: "none",
                     }}
@@ -88,8 +88,8 @@ export default function Navbar() {
                             <button
                                 onClick={() => setLangOpen(!langOpen)}
                                 style={{
-                                    background: "none", border: "1px solid rgba(200,173,127,0.3)", cursor: "pointer",
-                                    color: isDark ? "#C8AD7F" : "#888", fontSize: "0.75rem", padding: "4px 10px",
+                                    background: "none", border: "1px solid var(--line)", cursor: "pointer",
+                                    color: isDark ? "#6B5E52" : "#888", fontSize: "0.75rem", padding: "4px 10px",
                                     borderRadius: "4px", fontFamily: "var(--en)", letterSpacing: "0.05em",
                                 }}
                             >
@@ -98,7 +98,7 @@ export default function Navbar() {
                             {langOpen && (
                                 <div style={{
                                     position: "absolute", top: "100%", right: 0, marginTop: "8px",
-                                    background: isDark ? "#1a1a1a" : "#fff", border: "1px solid rgba(200,173,127,0.2)",
+                                    background: isDark ? "#FFFCF8" : "#fff", border: "1px solid var(--line)",
                                     borderRadius: "8px", overflow: "hidden", minWidth: "120px",
                                     boxShadow: "0 8px 24px rgba(0,0,0,0.15)", zIndex: 100,
                                 }}>
@@ -107,10 +107,10 @@ export default function Navbar() {
                                             onClick={() => setLangOpen(false)}
                                             style={{
                                                 display: "block", padding: "10px 16px", fontSize: "0.8rem",
-                                                color: l === currentLocale ? "#C8AD7F" : (isDark ? "#ccc" : "#666"),
+                                                color: l === currentLocale ? "#B85A38" : (isDark ? "#6B5E52" : "#666"),
                                                 fontWeight: l === currentLocale ? 600 : 400,
                                                 textDecoration: "none", transition: "background 0.2s",
-                                                background: l === currentLocale ? (isDark ? "rgba(200,173,127,0.1)" : "rgba(200,173,127,0.05)") : "transparent",
+                                                background: l === currentLocale ? (isDark ? "rgba(184,90,56,0.08)" : "rgba(184,90,56,0.05)") : "transparent",
                                             }}
                                         >
                                             {localeNames[l]}
@@ -134,7 +134,7 @@ export default function Navbar() {
                         {[0, 1, 2].map(i => (
                             <span key={i} style={{
                                 width: "20px", height: "1.5px",
-                                background: isDark ? "#C8AD7F" : "#2a2a2a",
+                                background: isDark ? "#1F1A17" : "#2a2a2a",
                                 transition: "all 0.3s",
                                 transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
                             }} />

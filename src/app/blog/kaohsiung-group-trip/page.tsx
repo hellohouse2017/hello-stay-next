@@ -94,7 +94,7 @@ const itineraries = [
 
 export default function TripGuidePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -120,11 +120,11 @@ export default function TripGuidePage() {
 
                 <Reveal>
                     <div style={{ marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C8AD7F", marginBottom: "12px" }}>2026-03-05</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-05</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
                             高雄團體旅遊行程推薦<br />2-4 天懶人包 · 9 種主題
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px 0" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
                         <p className="intro" style={{ fontSize: "0.88rem", color: "#999", lineHeight: 2 }}>
                             不管是親子出遊、公司旅遊、球隊移地訓練還是大學好友重聚，我們都幫你規劃好了。以包棟民宿為基地，搭配周邊景點與美食，住好吃好玩好。
                         </p>
@@ -134,13 +134,13 @@ export default function TripGuidePage() {
                 {itineraries.map(group => (
                     <Reveal key={group.days}>
                         <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                            <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "16px" }}>
+                            <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>
                                 {group.days}
                             </div>
 
                             <div style={{ display: "grid", gap: "20px" }}>
                                 {group.plans.map(plan => (
-                                    <div key={plan.name} style={{ padding: "20px", background: "#FAF8F5", borderRadius: "12px" }}>
+                                    <div key={plan.name} style={{ padding: "20px", background: "var(--bg)", borderRadius: "12px" }}>
                                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "#3D3830", marginBottom: "12px" }}>
                                             {plan.name}
                                         </h3>
@@ -150,7 +150,7 @@ export default function TripGuidePage() {
                                             {"day3" in plan && <p><strong>Day 3：</strong>{(plan as { day3: string }).day3}</p>}
                                             {"day4" in plan && <p><strong>Day 4：</strong>{(plan as { day4: string }).day4}</p>}
                                         </div>
-                                        <div style={{ marginTop: "10px", padding: "10px 14px", background: "#fff", borderRadius: "8px", fontSize: "0.78rem", color: "#C8AD7F" }}>
+                                        <div style={{ marginTop: "10px", padding: "10px 14px", background: "#fff", borderRadius: "8px", fontSize: "0.78rem", color: "var(--pri)" }}>
                                             💡 {plan.tips}
                                         </div>
                                     </div>
