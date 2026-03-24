@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidgetLoader from "@/components/ChatWidgetLoader";
+import LineFloatingCTA from "@/components/LineFloatingCTA";
 
 const notoSans = Noto_Sans_TC({
   subsets: ["latin"],
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />
+        <LineFloatingCTA lineUrl="https://lin.ee/atCiMQw" />
         <ChatWidgetLoader />
         <Script
           id="font-awesome"

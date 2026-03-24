@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import ProposalCard from "@/components/ProposalCard";
 
 export const metadata: Metadata = {
   title: "高雄包棟民宿推薦｜6-48人包棟$3,500起・鹽埕近駁二｜Hello Stay 你好哇",
@@ -269,6 +270,15 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══ SCENE 5.5: Proposal Card ═══ */}
+      <section className="scene-proposal" style={{ background: "var(--bg)", padding: "100px 0" }}>
+        <div className="w">
+          <Reveal>
+            <ProposalCard />
+          </Reveal>
         </div>
       </section>
 
