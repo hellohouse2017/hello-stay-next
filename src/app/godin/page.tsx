@@ -136,7 +136,6 @@ export default function GodinPage() {
             <LocationSection
                 propertyName={godin.name}
                 address={godin.address}
-                location={godin.location}
                 mapUrl={godin.mapUrl}
                 nearbySpots={godin.nearbySpots}
             />
