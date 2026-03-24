@@ -11,7 +11,7 @@ export default function NotFound() {
     return (
         <div style={{
             minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-            background: "#FAF8F5", padding: "28px", textAlign: "center",
+            background: "var(--bg)", padding: "28px", textAlign: "center",
         }}>
             <div style={{ maxWidth: "480px" }}>
                 <div style={{
@@ -48,7 +48,7 @@ export default function NotFound() {
 
                 <div style={{ marginTop: "40px" }}>
                     <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{
-                        fontSize: "0.8rem", color: "#C8AD7F", textDecoration: "none",
+                        fontSize: "0.8rem", color: "var(--pri)", textDecoration: "none",
                     }}>
                         或透過 LINE 聯繫我們 →
                     </a>

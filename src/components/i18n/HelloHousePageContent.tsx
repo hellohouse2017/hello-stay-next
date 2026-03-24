@@ -91,7 +91,7 @@ export default function HelloHousePageContent({ locale }: { locale: Locale }) {
                                 <Image src="/images/hellohouse/photo1.jpg" alt="Hello House" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
-                                <div className="label-d" style={{ color: "#C8AD7F" }}>About</div>
+                                <div className="label-d" style={{ color: "var(--pri)" }}>About</div>
                                 <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", marginBottom: "16px", letterSpacing: "0.06em" }}>{t.hellohouse.about_title}</h2>
                                 <div className="gold-line" style={{ marginBottom: "20px" }} />
                                 <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.2 }}>{t.hellohouse.about_desc}</p>

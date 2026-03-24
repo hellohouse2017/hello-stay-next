@@ -37,7 +37,7 @@ const sections = [
 推薦你好哇 + 溝頂合訂：兩棟僅距 30 公尺，各有獨立空間又能串場。非常適合婚禮迎娶、大家族旅遊。
 
 39-48 人（超大團體）
-推薦大智若愚：Hello Stay 第三館，全新電梯民宿，位於大港橋旁。一層三房一廳，可包層可包棟。2026 年即將開幕。`,
+推薦大智若愚：Hello Stay 第三館，全新電梯民宿，位於大港橋旁。一層三房一廳，可包層可包棟。2027 年中開幕。`,
     },
     {
         id: "facilities",
@@ -125,7 +125,7 @@ Hello Stay 官方預訂管道：
 
 export default function ArticlePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -151,11 +151,11 @@ export default function ArticlePage() {
 
                 <Reveal>
                     <div style={{ marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C8AD7F", marginBottom: "12px" }}>2026-03-01</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-01</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
                             高雄包棟民宿完全攻略<br />6-48 人怎麼選？
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px 0" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
                             在地經營 8 年的民宿主人，手把手教你挑選高雄包棟。
                         </p>

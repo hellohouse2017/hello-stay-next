@@ -43,7 +43,7 @@ const properties = [
 
 export default function TrafficPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Place", name: "你好哇寓所", address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 }, publicAccess: true },
                 { "@context": "https://schema.org", "@type": "Place", name: "溝頂民宿", address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 }, publicAccess: true },
@@ -54,13 +54,13 @@ export default function TrafficPage() {
                 {/* Header */}
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", fontWeight: 600 }}>
                             Getting Here
                         </div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
+                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.08em", color: "var(--text)" }}>
                             交通指南與停車
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     </div>
                 </Reveal>
 
@@ -70,7 +70,7 @@ export default function TrafficPage() {
                         <section style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                                 <div>
-                                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "4px" }}>{p.name}</h3>
+                                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "4px" }}>{p.name}</h3>
                                     <p style={{ fontSize: "0.82rem", color: "#999" }}>{p.addr}</p>
                                 </div>
                                 <a href={p.walkNav} target="_blank" rel="noreferrer" style={{
@@ -98,10 +98,10 @@ export default function TrafficPage() {
                 {/* 大眾運輸 */}
                 <Reveal>
                     <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "14px" }}>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600 }}>
                             Public Transit
                         </div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "20px" }}>大眾運輸指南</h3>
+                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "20px", fontWeight: 400 }}>大眾運輸指南</h3>
 
                         <div style={{ display: "grid", gap: "16px" }}>
                             {[
@@ -112,17 +112,17 @@ export default function TrafficPage() {
                             ].map(s => (
                                 <div key={s.step} style={{
                                     display: "flex", gap: "16px", alignItems: "flex-start",
-                                    padding: "16px", background: "#FAF8F5", borderRadius: "12px",
+                                    padding: "16px", background: "var(--bg)", borderRadius: "12px",
                                 }}>
                                     <div style={{
-                                        width: "36px", height: "36px", borderRadius: "50%", background: "#C8AD7F",
+                                        width: "36px", height: "36px", borderRadius: "50%", background: "var(--pri)",
                                         color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
                                         fontFamily: "var(--en)", fontSize: "0.75rem", fontWeight: 600, flexShrink: 0,
                                     }}>
                                         {s.step}
                                     </div>
                                     <div>
-                                        <div style={{ fontSize: "0.9rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>
+                                        <div style={{ fontSize: "0.9rem", color: "var(--text)", fontWeight: 500, marginBottom: "2px" }}>
                                             {s.icon} {s.title}
                                         </div>
                                         <div style={{ fontSize: "0.8rem", color: "#999" }}>{s.desc}</div>
@@ -131,7 +131,7 @@ export default function TrafficPage() {
                             ))}
                         </div>
 
-                        <div style={{ textAlign: "center", marginTop: "20px", padding: "14px", background: "#FAF8F5", borderRadius: "10px" }}>
+                        <div style={{ textAlign: "center", marginTop: "20px", padding: "14px", background: "var(--bg)", borderRadius: "10px" }}>
                             <p style={{ fontSize: "0.82rem", color: "#888" }}>
                                 🚗 自駕導航搜尋「你好哇寓所」即可
                             </p>
@@ -142,16 +142,16 @@ export default function TrafficPage() {
                 {/* 停車場 */}
                 <Reveal>
                     <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "14px" }}>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600 }}>
                             Parking
                         </div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "20px" }}>周邊停車場（依距離排序）</h3>
+                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "20px", fontWeight: 400 }}>周邊停車場（依距離排序）</h3>
 
                         <div style={{ display: "grid", gap: "12px" }}>
                             {parkingLots.map((lot, i) => (
                                 <a key={i} href={lot.nav} target="_blank" rel="noreferrer" style={{
                                     display: "flex", justifyContent: "space-between", alignItems: "center",
-                                    padding: "16px 18px", background: "#FAF8F5", borderRadius: "12px",
+                                    padding: "16px 18px", background: "var(--bg)", borderRadius: "12px",
                                     transition: "all 0.3s", textDecoration: "none",
                                 }}>
                                     <div>
@@ -159,7 +159,7 @@ export default function TrafficPage() {
                                         <div style={{ fontSize: "0.75rem", color: "#BEB5A8" }}>{lot.addr}</div>
                                     </div>
                                     <div style={{ textAlign: "right", flexShrink: 0 }}>
-                                        <div style={{ fontSize: "0.82rem", color: "#C8AD7F", fontWeight: 500 }}>{lot.price}</div>
+                                        <div style={{ fontSize: "0.82rem", color: "var(--pri)", fontWeight: 500 }}>{lot.price}</div>
                                         <div style={{ fontSize: "0.68rem", color: "#ccc", marginTop: "2px" }}>導航 →</div>
                                     </div>
                                 </a>

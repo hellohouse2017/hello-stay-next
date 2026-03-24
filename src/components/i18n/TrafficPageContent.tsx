@@ -30,7 +30,7 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
     ];
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             {getAlternateLinks("/traffic").map((link) => (
                 <link key={link.hreflang} rel="alternate" hrefLang={link.hreflang} href={link.href} />
             ))}
@@ -41,9 +41,9 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>{t.traffic.label}</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>{t.traffic.label}</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>{t.traffic.title}</h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     </div>
                 </Reveal>
 
@@ -72,8 +72,8 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "20px" }}>{t.traffic.transit_title}</h3>
                         <div style={{ display: "grid", gap: "16px" }}>
                             {steps.map(s => (
-                                <div key={s.step} style={{ display: "flex", gap: "16px", alignItems: "flex-start", padding: "16px", background: "#FAF8F5", borderRadius: "12px" }}>
-                                    <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "#C8AD7F", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--en)", fontSize: "0.75rem", fontWeight: 600, flexShrink: 0 }}>{s.step}</div>
+                                <div key={s.step} style={{ display: "flex", gap: "16px", alignItems: "flex-start", padding: "16px", background: "var(--bg)", borderRadius: "12px" }}>
+                                    <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "var(--pri)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--en)", fontSize: "0.75rem", fontWeight: 600, flexShrink: 0 }}>{s.step}</div>
                                     <div>
                                         <div style={{ fontSize: "0.9rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>{s.icon} {s.title}</div>
                                         <div style={{ fontSize: "0.8rem", color: "#999" }}>{s.desc}</div>
@@ -81,7 +81,7 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
                                 </div>
                             ))}
                         </div>
-                        <div style={{ textAlign: "center", marginTop: "20px", padding: "14px", background: "#FAF8F5", borderRadius: "10px" }}>
+                        <div style={{ textAlign: "center", marginTop: "20px", padding: "14px", background: "var(--bg)", borderRadius: "10px" }}>
                             <p style={{ fontSize: "0.82rem", color: "#888" }}>{t.traffic.driving_tip}</p>
                         </div>
                     </section>
@@ -93,13 +93,13 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "20px" }}>{t.traffic.parking_title}</h3>
                         <div style={{ display: "grid", gap: "12px" }}>
                             {parkingLots.map((lot, i) => (
-                                <a key={i} href={lot.nav} target="_blank" rel="noreferrer" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 18px", background: "#FAF8F5", borderRadius: "12px", transition: "all 0.3s", textDecoration: "none" }}>
+                                <a key={i} href={lot.nav} target="_blank" rel="noreferrer" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 18px", background: "var(--bg)", borderRadius: "12px", transition: "all 0.3s", textDecoration: "none" }}>
                                     <div>
                                         <div style={{ fontSize: "0.9rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>{lot.name}</div>
                                         <div style={{ fontSize: "0.75rem", color: "#BEB5A8" }}>{lot.addr}</div>
                                     </div>
                                     <div style={{ textAlign: "right", flexShrink: 0 }}>
-                                        <div style={{ fontSize: "0.82rem", color: "#C8AD7F", fontWeight: 500 }}>{lot.price}</div>
+                                        <div style={{ fontSize: "0.82rem", color: "var(--pri)", fontWeight: 500 }}>{lot.price}</div>
                                         <div style={{ fontSize: "0.68rem", color: "#ccc", marginTop: "2px" }}>{t.traffic.nav_arrow}</div>
                                     </div>
                                 </a>

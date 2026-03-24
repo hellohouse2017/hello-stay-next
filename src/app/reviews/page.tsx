@@ -32,7 +32,7 @@ const stats = { total: 87, rating: 4.9, five: 82, four: 4, three: 1 };
 
 export default function ReviewsPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "LodgingBusiness",
@@ -50,9 +50,9 @@ export default function ReviewsPage() {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>Guest Reviews</div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>住客真心話</h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", fontWeight: 600 }}>Guest Reviews</div>
+                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.08em", color: "var(--text)" }}>住客真心話</h1>
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     </div>
                 </Reveal>
 
@@ -67,7 +67,7 @@ export default function ReviewsPage() {
                                 { label: "4星", count: stats.four, pct: Math.round(stats.four / stats.total * 100) },
                             ].map(s => (
                                 <div key={s.label} style={{ textAlign: "center" }}>
-                                    <div style={{ fontSize: "0.75rem", color: "#C8AD7F" }}>{s.label}</div>
+                                    <div style={{ fontSize: "0.75rem", color: "var(--pri)" }}>{s.label}</div>
                                     <div style={{ fontSize: "1.1rem", fontWeight: 500, color: "#3D3830" }}>{s.pct}%</div>
                                 </div>
                             ))}
@@ -84,7 +84,7 @@ export default function ReviewsPage() {
                                         <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "#3D3830" }}>{r.author}</span>
                                         <span style={{ fontSize: "0.72rem", color: "#BEB5A8", marginLeft: "10px" }}>{r.group}</span>
                                     </div>
-                                    <span style={{ fontSize: "0.7rem", color: "#C8AD7F" }}>{r.date}</span>
+                                    <span style={{ fontSize: "0.7rem", color: "var(--pri)" }}>{r.date}</span>
                                 </div>
                                 <div style={{ fontSize: "0.75rem", marginBottom: "10px" }}>
                                     {"⭐".repeat(r.rating)}

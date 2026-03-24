@@ -44,7 +44,7 @@ const configs: Record<string, CapacityConfig> = {
         features: ["兩棟距離僅 30 公尺", "各有獨立空間又能串場", "雙廚房（可分工煮不同料理）", "雙麻將桌", "超大團體的最佳方案"],
         faq: [
             { q: "高雄30人包棟住哪裡？", a: "推薦Hello Stay兩棟合訂（你好哇寓所+溝頂民宿），共10+間房，最多38人。兩棟相距僅30公尺，各有獨立空間。30人每人約$930-$1,330，是高雄大團體包棟的最佳方案。" },
-            { q: "高雄30人以上的包棟民宿？", a: "Hello Stay兩棟合訂最多38人。你好哇（6間房/26人）+溝頂（5層樓/12人），距離30公尺。2026年第三館大智若愚開幕後可達48人。" },
+            { q: "高雄30人以上的包棟民宿？", a: "Hello Stay兩棟合訂最多38人。你好哇（6間房/26人）+溝頂（5層樓/12人），距離30公尺。2027年中第三館大智若愚開幕後可達48人。" },
         ],
     },
     "40": {
@@ -62,7 +62,7 @@ const configs: Record<string, CapacityConfig> = {
 
 function CapacityPage({ config }: { config: CapacityConfig }) {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "LodgingBusiness",
@@ -81,9 +81,9 @@ function CapacityPage({ config }: { config: CapacityConfig }) {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>Capacity Guide</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Capacity Guide</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄 {config.count} 人包棟住宿</h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999" }}>{config.range}｜{config.perPerson}</p>
                     </div>
                 </Reveal>
@@ -92,21 +92,21 @@ function CapacityPage({ config }: { config: CapacityConfig }) {
                     <div style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
                         <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>推薦方案</h2>
                         <div style={{ display: "grid", gap: "12px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "var(--bg)", borderRadius: "10px" }}>
                                 <span style={{ fontSize: "0.88rem", color: "#3D3830" }}>推薦館別</span>
-                                <Link href={config.propertyLink} style={{ fontSize: "0.88rem", color: "#C8AD7F", fontWeight: 500 }}>{config.property}</Link>
+                                <Link href={config.propertyLink} style={{ fontSize: "0.88rem", color: "var(--pri)", fontWeight: 500 }}>{config.property}</Link>
                             </div>
-                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "var(--bg)", borderRadius: "10px" }}>
                                 <span style={{ fontSize: "0.88rem", color: "#3D3830" }}>房間數</span>
                                 <span style={{ fontSize: "0.88rem", color: "#666" }}>{config.rooms}</span>
                             </div>
-                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "var(--bg)", borderRadius: "10px" }}>
                                 <span style={{ fontSize: "0.88rem", color: "#3D3830" }}>價格</span>
                                 <span style={{ fontSize: "0.88rem", color: "#666" }}>{config.price}</span>
                             </div>
-                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "var(--bg)", borderRadius: "10px" }}>
                                 <span style={{ fontSize: "0.88rem", color: "#3D3830" }}>每人均攤</span>
-                                <span style={{ fontSize: "0.88rem", color: "#C8AD7F", fontWeight: 500 }}>{config.perPerson}</span>
+                                <span style={{ fontSize: "0.88rem", color: "var(--pri)", fontWeight: 500 }}>{config.perPerson}</span>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@ function CapacityPage({ config }: { config: CapacityConfig }) {
                         <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>設備亮點</h2>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                             {config.features.map(f => (
-                                <span key={f} style={{ padding: "8px 16px", borderRadius: "20px", fontSize: "0.8rem", background: "#FAF8F5", color: "#3D3830" }}>✓ {f}</span>
+                                <span key={f} style={{ padding: "8px 16px", borderRadius: "20px", fontSize: "0.8rem", background: "var(--bg)", color: "#3D3830" }}>✓ {f}</span>
                             ))}
                         </div>
                     </div>
@@ -128,7 +128,7 @@ function CapacityPage({ config }: { config: CapacityConfig }) {
                         <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>適合場景</h2>
                         <div style={{ display: "grid", gap: "8px" }}>
                             {config.scenarios.map(s => (
-                                <div key={s} style={{ padding: "12px 16px", background: "#FAF8F5", borderRadius: "10px", fontSize: "0.85rem", color: "#666" }}>→ {s}</div>
+                                <div key={s} style={{ padding: "12px 16px", background: "var(--bg)", borderRadius: "10px", fontSize: "0.85rem", color: "#666" }}>→ {s}</div>
                             ))}
                         </div>
                     </div>

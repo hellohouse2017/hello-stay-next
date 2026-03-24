@@ -15,8 +15,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
-    const article = scheduledArticles.find(a => a.slug === slug);
+    const resolvedParams = await params;
+    const slug = resolvedParams?.slug;
+    if (!slug) return {};
+    const article = scheduledArticles.find(a => a?.slug === slug);
     if (!article) return {};
     return {
         title: article.title,
@@ -32,8 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ScheduledArticlePage({ params }: Props) {
-    const { slug } = await params;
-    const article = scheduledArticles.find(a => a.slug === slug);
+    const resolvedParams = await params;
+    const slug = resolvedParams?.slug;
+    if (!slug) notFound();
+    const article = scheduledArticles.find(a => a?.slug === slug);
     if (!article) notFound();
 
     // Check publish date
@@ -41,7 +45,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
     if (article.publishDate > today) notFound();
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -65,11 +69,11 @@ export default async function ScheduledArticlePage({ params }: Props) {
 
                 <Reveal>
                     <div style={{ marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C8AD7F", marginBottom: "12px" }}>{article.publishDate}</div>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>{article.publishDate}</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
                             {article.title}
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px 0" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>{article.description}</p>
                     </div>
                 </Reveal>
@@ -105,16 +109,16 @@ export default async function ScheduledArticlePage({ params }: Props) {
 
                 <Reveal>
                     <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "14px" }}>Recommended Stay</div>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px" }}>Recommended Stay</div>
                         <div style={{ display: "grid", gap: "10px" }}>
-                            <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "#FAF8F5" }}>
+                            <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
                                 <span style={{ fontSize: "1.3rem" }}>🏠</span>
                                 <div>
                                     <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>你好哇寓所</div>
                                     <div style={{ fontSize: "0.72rem", color: "#999" }}>6-26人・中島廚房・麻將桌</div>
                                 </div>
                             </Link>
-                            <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "#FAF8F5" }}>
+                            <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
                                 <span style={{ fontSize: "1.3rem" }}>🏡</span>
                                 <div>
                                     <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>溝頂民宿</div>

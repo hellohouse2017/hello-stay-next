@@ -50,7 +50,7 @@ const sections = [
 • 特色：一層三房一廳，可包層可包棟
 • 價格：依人數配置，適合超大團體
 • 適合：高雄團體住宿、球隊比賽、企業員旅
-• 2026 年全新開幕，設備最新`,
+• 2027 年中開幕，設備最新`,
     },
     {
         id: "yancheng",
@@ -138,7 +138,7 @@ Hello Stay 官方預訂管道：
 
 export default function ArticlePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -167,11 +167,11 @@ export default function ArticlePage() {
 
                 <Reveal>
                     <div style={{ marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C8AD7F", marginBottom: "12px" }}>2026-03-15</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-15</div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
                             高雄包棟民宿推薦<br />在地人精選 Top 3 包棟住宿
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px 0" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
                             在地經營 8 年的民宿主人，精選高雄鹽埕區最值得入住的包棟民宿。
                         </p>
@@ -193,7 +193,7 @@ export default function ArticlePage() {
 
                 <Reveal>
                     <section style={{ background: "linear-gradient(135deg, #2a2a2a 0%, #3D3830 100%)", borderRadius: "16px", padding: "36px 28px", marginBottom: "20px", textAlign: "center" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", color: "#C8AD7F", marginBottom: "12px" }}>BOOK NOW</div>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", color: "var(--pri)", marginBottom: "12px" }}>BOOK NOW</div>
                         <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", color: "#fff", marginBottom: "8px", letterSpacing: "0.06em" }}>
                             立即查詢高雄包棟民宿空房
                         </h2>
@@ -201,8 +201,8 @@ export default function ArticlePage() {
                             官方直訂最划算，免平台手續費
                         </p>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#C8AD7F", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link>
-                            <Link href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #C8AD7F", color: "#C8AD7F", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>LINE 諮詢</Link>
+                            <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "var(--pri)", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link>
+                            <Link href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid var(--pri)", color: "var(--pri)", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>LINE 諮詢</Link>
                         </div>
                     </section>
                 </Reveal>

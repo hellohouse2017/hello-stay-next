@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿｜6-48人鹽埕住宿・近駁二大港橋｜Hello Stay",
+  title: "高雄包棟民宿推薦｜6-48人包棟$3,500起・鹽埕近駁二｜Hello Stay 你好哇",
   description: "高雄鹽埕包棟民宿推薦 Hello Stay，三館6-48人任選。中島廚房、麻將、桌遊，近駁二與大港橋。平日 NT$10,000 起，Google 4.9 星，自2017年服務超過5000組旅客。馬上查空房",
   alternates: { canonical: "https://www.hello-stay.com" },
   openGraph: {
-    title: "高雄包棟民宿｜6-48人鹽埕住宿｜Hello Stay",
-    description: "高雄鹽埕包棟民宿，6-48人三館任選。附中島廚房、麻將、桌遊。平日 NT$10,000 起，近駁二大港橋，馬上查空房。",
+    title: "高雄包棟民宿推薦｜6-48人包棟$3,500起・鹽埕近駁二｜Hello Stay 你好哇",
+    description: "高雄鹽埕包棟民宿首選！三棟獨立空間可容6-48人，每人$583起。附中島廚房、麻將桌、投影機。步行5分鐘到駁二藝術特區。Google 4.9星・綜藝玩很大拍攝場地。LINE即時查空房→",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -36,200 +36,265 @@ export default function HomePage() {
             geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 },
             hasMap: "https://goo.gl/maps/qxGN4mpNP8qfRCB16",
             priceRange: "$$",
-            currenciesAccepted: "TWD",
-            paymentAccepted: "Cash, Bank Transfer, LINE Pay",
             checkinTime: "16:00", checkoutTime: "11:00",
-            numberOfRooms: 10, petsAllowed: false,
-            starRating: { "@type": "Rating", ratingValue: "4" },
-            amenityFeature: [
-              { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
-              { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
-              { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
-              { "@type": "LocationFeatureSpecification", name: "獨立衛浴", value: true },
-              { "@type": "LocationFeatureSpecification", name: "冷氣", value: true },
-              { "@type": "LocationFeatureSpecification", name: "電子密碼鎖", value: true },
-              { "@type": "LocationFeatureSpecification", name: "Netflix 聯網電視", value: true },
-              { "@type": "LocationFeatureSpecification", name: "洗衣機", value: true },
-              { "@type": "LocationFeatureSpecification", name: "製冰機", value: true },
-            ],
+            numberOfRooms: 10,
             aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "87", bestRating: "5" },
-            review: [
-              { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "T先生" }, reviewBody: "一樓的中島廚房真的太棒了！鍋碗瓢盆都很齊全，大家聚在一起煮火鍋喝酒，氣氛滿分。" },
-              { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "L小姐" }, reviewBody: "離駁二走路只要10分鐘。隔音意外的好，晚上睡覺很安靜，床墊支撐性也很夠。" },
-              { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "W先生" }, reviewBody: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。" },
-              { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "C小姐" }, reviewBody: "客廳有麻將太加分！還有電視可以看Netflix。每間都有獨立衛浴。" },
-            ],
-            sameAs: [
-              "https://www.instagram.com/hellostay2017/",
-              "https://www.facebook.com/HelloHouse2020",
-              "https://www.facebook.com/ruins.yencheng/",
-              "https://lin.ee/atCiMQw",
-            ],
-            isAccessibleForFree: false,
-            publicAccess: true,
-            smokingAllowed: false,
-            tourBookingPage: "https://www.hello-stay.com/book",
-            potentialAction: { "@type": "ReserveAction", target: { "@type": "EntryPoint", urlTemplate: "https://www.hello-stay.com/book" }, result: { "@type": "LodgingReservation", name: "包棟預約" } },
             containsPlace: [
               { "@type": "Accommodation", name: "你好哇寓所", description: "6-26人包棟，中島廚房、麻將桌、桌遊", numberOfBedrooms: 6, occupancy: { "@type": "QuantitativeValue", maxValue: 26 } },
               { "@type": "Accommodation", name: "溝頂民宿", description: "10-12人精緻獨棟，五層樓空間", numberOfBedrooms: 4, occupancy: { "@type": "QuantitativeValue", maxValue: 12 } },
               { "@type": "Accommodation", name: "大智若愚", description: "全新電梯民宿，最大48人，近大港橋", occupancy: { "@type": "QuantitativeValue", maxValue: 48 } },
             ],
-            speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-d .content", ".sec-cream h2", ".sec-cream p"] },
+            sameAs: [
+              "https://www.instagram.com/hellostay2017/",
+              "https://www.facebook.com/HelloHouse2020",
+              "https://lin.ee/atCiMQw",
+            ],
           },
           {
             "@context": "https://schema.org", "@type": "FAQPage",
             mainEntity: [
-              { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay（你好哇寓所＆溝頂民宿），位於高雄鹽埕區，Google評價4.9星。三館可容納6至48人，配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。自2017年營運至今，綜藝玩很大等節目指定拍攝場地。" } },
-              { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，提供6間房型（雙人房、四人房、六人房），全室獨立衛浴。兩棟合訂（你好哇＋溝頂）最高可接待38人。第三館大智若愚開幕後，三館聯訂最大容納48人。" } },
-              { "@type": "Question", name: "高雄20人包棟住宿推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "20人包棟推薦你好哇寓所，6-26人彈性方案。配備豪華中島廚房可煮火鍋、麻將打牌。位於鹽埕區，步行5分鐘到捷運鹽埕埔站，10分鐘到駁二藝術特區。" } },
-              { "@type": "Question", name: "高雄30人以上包棟怎麼訂？", acceptedAnswer: { "@type": "Answer", text: "30人以上可合訂你好哇寓所（26人）＋溝頂民宿（12人），兩棟僅距30公尺。大智若愚開幕後單棟即可容納48人。透過LINE官方帳號或官網查詢空房，享官方直訂最優惠價。" } },
-              { "@type": "Question", name: "高雄包棟民宿有停車場嗎？", acceptedAnswer: { "@type": "Answer", text: "周邊有6間停車場：大公路路邊（20:00-08:00免費）、富野路停車場（平日$30/H）、中正四路室內停車場等。自駕導航搜尋「你好哇寓所」即可。" } },
-              { "@type": "Question", name: "高雄包棟民宿可以帶寵物嗎？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所與溝頂民宿非寵物友善旅宿。經事前申請並經業主書面同意者（不接受入住當天詢問），酌收清潔費平日$800、假日$1,000。損壞仍需照價賠償。" } },
-              { "@type": "Question", name: "包棟民宿有廚房可以煮飯嗎？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所一樓配備豪華中島廚房，含IH爐、微波爐、冰箱、完整餐具。可自行採買食材料理，非常適合包棟聚餐、火鍋圍爐、烤肉派對。附近全聯超市步行3分鐘。" } },
-              { "@type": "Question", name: "怎麼從高鐵到你好哇寓所？", acceptedAnswer: { "@type": "Answer", text: "高鐵左營站→捷運紅線至美麗島站→轉橘線至鹽埕埔站（O2）→4號出口步行5分鐘即達。全程約30分鐘。自駕走國道一號中正交流道下，約15分鐘。" } },
-              { "@type": "Question", name: "附近有什麼景點好玩？", acceptedAnswer: { "@type": "Answer", text: "步行10分鐘到駁二藝術特區，8分鐘到大港橋（全台首座水平旋轉橋），鄰近棧貳庫、哈瑪星鐵道園區、高雄流行音樂中心。捷運可達西子灣、旗津、壽山動物園、衛武營。" } },
-              { "@type": "Question", name: "鹽埕區附近有什麼好吃的？", acceptedAnswer: { "@type": "Answer", text: "鹽埕區是高雄美食一級戰區：港園牛肉麵、鴨肉珍、阿囉哈滷味、大摳胖碳烤三明治、婆婆冰、小堤咖啡，超過30間在地老店步行可達。夜晚可去廢墟BAR、吧嗨等特色酒吧。" } },
-              { "@type": "Question", name: "包棟民宿入住方式是什麼？", acceptedAnswer: { "@type": "Answer", text: "電子密碼鎖自助入住，密碼於入住當日透過LINE傳送。入住時間16:00以後，退房時間11:00以前。入住時需出示身分證或護照辦理登記。" } },
-              { "@type": "Question", name: "包棟民宿押金多少？", acceptedAnswer: { "@type": "Answer", text: "入住時收取押金$5,000。退房後確認無設備損壞且未違反入住須知後，全數匯款退還。" } },
-              { "@type": "Question", name: "有什麼娛樂設施？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所提供：麻將、桌遊歡唱設備、43吋Netflix聯網電視、桌遊、製冰機。一樓開放式客廳可容納20人以上聚會。" } },
-              { "@type": "Question", name: "包棟民宿適合辦婚禮迎娶嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！寬敞一樓客廳是闖關遊戲最佳場地，絕佳自然採光讓婚攝隨手一拍都是大片。多房型供伴娘團入住，廚房可準備茶點。已接待過多場婚禮迎娶活動。" } },
-              { "@type": "Question", name: "包棟民宿適合企業移地訓練嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合企業off-site。獨立客廳可作會議空間，投影設備可借用，中島廚房可團隊聚餐。晚上圍爐煮火鍋凝聚團隊向心力。6-26人彈性容量，已服務過多組企業團隊。" } },
-              { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過LINE官方帳號或官網 www.hello-stay.com 預訂，免收平台手續費，還可享官方獨家優惠。平日溝頂民宿$10,000起。" } },
+              { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay（你好哇寓所＆溝頂民宿），位於高雄鹽埕區，Google評價4.9星。三館可容納6至48人，配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。" } },
+              { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，提供6間房型。三館聯訂最大容納48人。" } },
+              { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過LINE官方帳號或官網預訂，免收平台手續費。平日溝頂民宿$10,000起。" } },
             ],
-          },
-          {
-            "@context": "https://schema.org", "@type": "WebSite",
-            name: "Hello Stay 高雄包棟民宿",
-            url: "https://www.hello-stay.com",
-            potentialAction: { "@type": "SearchAction", target: { "@type": "EntryPoint", urlTemplate: "https://www.hello-stay.com/book?q={search_term_string}" }, "query-input": "required name=search_term_string" },
           },
         ])
       }} />
 
-      {/* ── Hero ── */}
-      <section className="hero-d">
-        <Image
-          src="/images/cover-bg.webp"
-          alt="Hello Stay 高雄包棟民宿"
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", opacity: 0.45 }}
-        />
-        <div className="overlay" />
-        <div className="content" style={{ padding: "0 28px" }}>
-          <div className="tagline" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.3s forwards" }}>
-            Kaohsiung · Yancheng · Since 2017
-          </div>
-          <h1 style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.5s forwards" }}>
-            高雄包棟民宿｜Hello Stay
+      {/* ═══ SCENE 1: Cinematic Hero ═══ */}
+      <section className="hero-cinema">
+        <div className="hero-cinema__media">
+          <Image
+            src="/images/hellohouse/photo1.webp"
+            alt="Hello Stay 高雄包棟民宿 — 溫暖客廳空間"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+          />
+          <div className="hero-cinema__overlay" />
+        </div>
+
+        <div className="hero-cinema__content">
+          <div className="hero-cinema__eyebrow">Since 2017 · 高雄鹽埕</div>
+          <h1 className="hero-cinema__title">
+            巷弄裡的包棟，<br />
+            <span className="hero-cinema__title--accent">屬於你們的空間</span>
           </h1>
-          <p className="sub" style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.7s forwards" }}>
-            6-48人鹽埕包棟・依人數與預算快速選館
+          <p className="hero-cinema__sub">
+            三棟獨立民宿・6 至 48 人<br />
+            中島廚房 / 麻將 / 投影 / 桌遊<br />
+            在這裡，時間是你們的。
           </p>
-          <div style={{ opacity: 0, animation: "fadeInUp 0.8s ease 0.9s forwards" }}>
-            <Link href="/book" className="btn-reserve">立即查詢空房</Link>
+          <div className="hero-cinema__actions">
+            <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" /></svg>
+              LINE 立即詢問
+            </a>
+            <Link href="/book" className="btn-ghost">查詢空房與報價</Link>
+          </div>
+          <div className="hero-cinema__badge">
+            ⭐ Google 4.9 星 · 5,000+ 組旅客
           </div>
         </div>
-        {/* Scroll hint */}
-        <div style={{ position: "absolute", bottom: "36px", left: "50%", transform: "translateX(-50%)", animation: "float 3s ease-in-out infinite" }}>
-          <div style={{ width: "1px", height: "40px", background: "linear-gradient(180deg, rgba(200,173,127,0.5), transparent)" }} />
+
+        <div className="hero-cinema__scroll">
+          <span>SCROLL</span>
+          <div className="hero-cinema__scroll-line" />
         </div>
       </section>
 
-      {/* ── Two Properties ── */}
-      <section className="sec-cream">
-        <div className="w" style={{ textAlign: "center", marginBottom: "60px" }}>
-          <Reveal>
-            <div className="label-d" style={{ color: "#8A8279" }}>Three Properties, One Philosophy</div>
-            <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "0.06em" }}>三館風格，一種堅持</h2>
-            <div className="gold-line" style={{ margin: "24px auto" }} />
-          </Reveal>
-        </div>
-
-        {/* 你好哇寓所 */}
+      {/* ═══ SCENE 2: Brand Statement ═══ */}
+      <section className="scene-brand">
         <div className="w">
           <Reveal>
-            <div className="grid-asym" style={{ marginBottom: "clamp(60px, 8vw, 100px)" }}>
-              <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                <Image src="/images/hellohouse/cover.webp" alt="你好哇寓所 中島廚房" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
-              </div>
-              <div>
-                <div className="label-d" style={{ color: "#C8AD7F" }}>01</div>
-                <h3 style={{ fontSize: "1.6rem", marginBottom: "16px", letterSpacing: "0.06em" }}>你好哇寓所</h3>
-                <div className="gold-line" style={{ marginBottom: "20px" }} />
-                <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
-                  6 至 26 人彈性包棟。豪宅級中島廚房、麻將、多元房型。老屋溫度與現代質感的完美融合。
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
-                  近駁二藝術特區・步行 10 分鐘
-                </p>
-                <Link href="/hellohouse" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#C8AD7F", letterSpacing: "0.1em", borderBottom: "1px solid rgba(200,173,127,0.3)", paddingBottom: "4px" }}>
-                  探索空間 →
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* 溝頂民宿 */}
-          <Reveal>
-            <div className="grid-asym grid-asym-r">
-              <div>
-                <div className="label-d" style={{ color: "#8A8279" }}>02</div>
-                <h3 style={{ fontSize: "1.6rem", marginBottom: "16px", letterSpacing: "0.06em" }}>溝頂民宿</h3>
-                <div className="gold-line" style={{ background: "#D4CBC0", marginBottom: "20px" }} />
-                <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
-                  10 至 12 人精緻獨棟。五層樓完整空間，溫馨家庭風格。小團體的高 CP 值首選。
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
-                  鹽埕靜謐巷弄・平日 $10,000 起
-                </p>
-                <Link href="/godin" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#8A8279", letterSpacing: "0.1em", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "4px" }}>
-                  探索空間 →
-                </Link>
-              </div>
-              <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 客廳空間" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* 大智若愚 */}
-          <Reveal>
-            <div className="grid-asym" style={{ marginTop: "clamp(60px, 8vw, 100px)" }}>
-              <div style={{ background: "#FAF8F5", borderRadius: "16px", padding: "40px 32px", textAlign: "center" }}>
-                <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.3em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "16px" }}>預計 2027 年底開放</div>
-                <div style={{ fontFamily: "var(--serif)", fontSize: "2rem", color: "#3D3830", letterSpacing: "0.1em", marginBottom: "12px" }}>大智若愚</div>
-                <div style={{ width: "40px", height: "1px", background: "#D4CBC0", margin: "0 auto" }} />
-              </div>
-              <div>
-                <div className="label-d" style={{ color: "#BEB5A8" }}>03</div>
-                <h3 style={{ fontSize: "1.6rem", marginBottom: "16px", letterSpacing: "0.06em" }}>大智若愚</h3>
-                <div className="gold-line" style={{ background: "#D4CBC0", marginBottom: "20px" }} />
-                <p style={{ fontSize: "0.92rem", color: "#8A8279", lineHeight: 2.1, marginBottom: "8px" }}>
-                  全新電梯民宿，最大可住 48 人。大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟。
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#767676", marginBottom: "28px" }}>
-                  大港橋旁・即將開幕
-                </p>
-                <Link href="/dazhi" style={{ fontFamily: "var(--serif)", fontSize: "0.85rem", color: "#A09282", letterSpacing: "0.1em", borderBottom: "1px solid rgba(0,0,0,0.1)", paddingBottom: "4px" }}>
-                  了解更多 →
-                </Link>
-              </div>
-            </div>
+            <p className="brand-statement">
+              「不只是住一晚，是創造<strong>一段回憶</strong>。」
+            </p>
+            <p className="brand-sub">
+              2017 年起，我們在高雄鹽埕的巷弄裡，<br />
+              用三棟風格各異的民宿，為超過五千組旅客打造專屬空間。
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <div className="cta-strip">
+      {/* ═══ SCENE 3: Three Properties — Immersive Gallery ═══ */}
+      <section className="scene-properties">
+        <div className="w" style={{ textAlign: "center", marginBottom: "clamp(40px, 6vw, 80px)" }}>
+          <Reveal>
+            <div className="scene-eyebrow">Three Properties</div>
+            <h2 className="scene-h2">三館風格，一種堅持</h2>
+          </Reveal>
+        </div>
+
+        {/* Property 1: 你好哇寓所 */}
         <Reveal>
-          <h3>找到屬於你的理想空間</h3>
-          <p>6 至 48 人彈性包棟，為每一場相聚量身打造。</p>
-          <Link href="/book" className="btn-reserve">查詢空房與報價</Link>
+          <div className="prop-card">
+            <div className="prop-card__img">
+              <Image
+                src="/images/hellohouse/cover.webp"
+                alt="你好哇寓所 — 中島廚房與客廳全景"
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div className="prop-card__body">
+              <span className="prop-card__num">01</span>
+              <h3 className="prop-card__name">你好哇寓所</h3>
+              <p className="prop-card__caption">Hello House · 6-26人</p>
+              <div className="prop-card__divider" />
+              <p className="prop-card__desc">
+                豪宅級中島廚房，麻將桌與 50+ 款桌遊，120 吋投影幕與 Switch。
+                老屋溫度遇上現代質感——這裡是你的私人招待所。
+              </p>
+              <div className="prop-card__tags">
+                <span>中島廚房</span><span>麻將桌</span><span>投影幕</span><span>6間套房</span>
+              </div>
+              <div className="prop-card__footer">
+                <span className="prop-card__price">平日 $3,500 起 · 每人 $583 起</span>
+                <Link href="/hellohouse" className="prop-card__link">探索空間 →</Link>
+              </div>
+            </div>
+          </div>
         </Reveal>
-      </div>
+
+        {/* Property 2: 溝頂民宿 */}
+        <Reveal>
+          <div className="prop-card prop-card--reverse">
+            <div className="prop-card__img">
+              <Image
+                src="/images/godin/cover-1.webp"
+                alt="溝頂民宿 — 五層獨棟空間"
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div className="prop-card__body">
+              <span className="prop-card__num">02</span>
+              <h3 className="prop-card__name">溝頂民宿</h3>
+              <p className="prop-card__caption">Godin House · 10-12人</p>
+              <div className="prop-card__divider" />
+              <p className="prop-card__desc">
+                五層樓整棟使用，專屬交誼廳可打麻將。
+                小團體的高 CP 值首選——整棟都是你的，打牌到天亮沒人管。
+              </p>
+              <div className="prop-card__tags">
+                <span>五層獨棟</span><span>麻將桌</span><span>4間套房</span><span>交誼廳</span>
+              </div>
+              <div className="prop-card__footer">
+                <span className="prop-card__price">平日 $10,000 起 · 每人 $833 起</span>
+                <Link href="/godin" className="prop-card__link">探索空間 →</Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Property 3: 大智若愚 */}
+        <Reveal>
+          <div className="prop-card prop-card--coming">
+            <div className="prop-card__img">
+              <Image
+                src="/images/dazhi/building-render.webp"
+                alt="大智若愚 — 全新電梯大樓民宿"
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="prop-card__coming-badge">2026 全新開幕</div>
+            </div>
+            <div className="prop-card__body">
+              <span className="prop-card__num" style={{ color: "var(--sec)" }}>03</span>
+              <h3 className="prop-card__name">大智若愚</h3>
+              <p className="prop-card__caption">Dazhi House · 最大48人</p>
+              <div className="prop-card__divider" style={{ background: "var(--sec)" }} />
+              <p className="prop-card__desc">
+                全新電梯大樓，大港橋旁、駁二大義倉庫群。
+                一層三房一廳，可包層可包棟——從部門旅遊到大型班遊都能容納。
+              </p>
+              <div className="prop-card__tags">
+                <span>電梯民宿</span><span>最大48人</span><span>可包層</span><span>大港橋旁</span>
+              </div>
+              <div className="prop-card__footer">
+                <span className="prop-card__price">依人數報價 · LINE 諮詢</span>
+                <Link href="/dazhi" className="prop-card__link" style={{ color: "var(--sec)" }}>了解更多 →</Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ═══ SCENE 4: Photo Strip ═══ */}
+      <section className="scene-strip">
+        <div className="strip-scroll">
+          {[
+            { src: "/images/hellohouse/bar-2.webp", alt: "中島廚房吧台" },
+            { src: "/images/hellohouse/photo2.webp", alt: "客廳聚會空間" },
+            { src: "/images/hellohouse/1301.webp", alt: "舒適房間" },
+            { src: "/images/godin/room1.webp", alt: "溝頂房間" },
+            { src: "/images/hellohouse/photo4.webp", alt: "桌遊時光" },
+            { src: "/images/godin/cover-2.webp", alt: "溝頂交誼廳" },
+          ].map((img, i) => (
+            <div key={i} className="strip-scroll__item">
+              <Image src={img.src} alt={img.alt} width={480} height={320} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ SCENE 5: Features Grid ═══ */}
+      <section className="scene-features">
+        <div className="w">
+          <Reveal>
+            <div className="scene-eyebrow">Why Hello Stay</div>
+            <h2 className="scene-h2" style={{ marginBottom: "clamp(40px, 6vw, 72px)" }}>為什麼選我們</h2>
+          </Reveal>
+          <div className="feat-grid">
+            {[
+              { icon: "🍳", title: "中島廚房", desc: "IH爐、冰箱、完整餐具。\n火鍋趴、聚餐、早午餐自己來。" },
+              { icon: "🀄", title: "麻將桌遊", desc: "手動麻將桌、50+款桌遊、\n120吋投影+Switch。" },
+              { icon: "🏠", title: "整棟包下", desc: "獨立空間不受打擾。\n打牌到天亮，沒人抗議。" },
+              { icon: "📍", title: "鹽埕黃金區", desc: "步行到駁二、大港橋。\n30+間在地老店走路可達。" },
+              { icon: "⭐", title: "4.9 星口碑", desc: "Google 4.9 星、5,000+組旅客。\n綜藝玩很大拍攝場地。" },
+              { icon: "💬", title: "LINE 即訂", desc: "LINE 即時回覆、查房報價。\n官方直訂最優惠。" },
+            ].map((f, i) => (
+              <Reveal key={i}>
+                <div className="feat-card">
+                  <div className="feat-card__icon">{f.icon}</div>
+                  <h3 className="feat-card__title">{f.title}</h3>
+                  <p className="feat-card__desc">{f.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SCENE 6: Final CTA ═══ */}
+      <section className="scene-cta">
+        <Image
+          src="/images/hellohouse/photo5.webp"
+          alt="Hello Stay 溫暖空間"
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        <div className="scene-cta__overlay" />
+        <div className="scene-cta__content">
+          <Reveal>
+            <h2>找到屬於你的空間</h2>
+            <p>6 至 48 人彈性包棟，為每一場相聚量身打造。</p>
+            <div className="scene-cta__buttons">
+              <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">
+                💬 LINE 查空房
+              </a>
+              <Link href="/book" className="btn-ghost btn-ghost--light">查詢空房與報價</Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }

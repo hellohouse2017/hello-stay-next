@@ -2,14 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import RoomGallery from "@/components/RoomGallery";
+import EquipmentGrid from "@/components/EquipmentGrid";
+import LocationSection from "@/components/LocationSection";
+import LineFloatingCTA from "@/components/LineFloatingCTA";
+import { godin } from "@/data/properties";
 
 export const metadata: Metadata = {
-    title: "溝頂民宿｜高雄鹽埕包棟民宿10-12人",
-    description: "高雄鹽埕區溝頂民宿，10-12人精緻包棟，鄰近大港橋與輕軌站。五層樓完整獨立空間，中島廚房、麻將、桌遊、投影機，適合好友揪團、家族旅遊。平日$10,000起。",
+    title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
+    description: "高雄鹽埕小團體包棟首選！10-12人五層獨棟，每人$833起。4間套房＋交誼廳麻將→LINE查空房",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
     openGraph: {
-        title: "溝頂民宿｜高雄鹽埕包棟民宿10-12人",
-        description: "五層樓獨棟包棟民宿，10-12人入住，溫馨家庭風格。平日$10,000起。近駁二大港橋。",
+        title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
+        description: "高雄鹽埕小團體包棟首選！10-12人五層獨棟全棟使用，每人最低$833起。4間套房＋交誼廳麻將・步行到駁二。平日$10,000起，Google好評→LINE查空房",
         url: "https://www.hello-stay.com/godin",
         images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
     },
@@ -73,187 +78,68 @@ export default function GodinPage() {
                 ])
             }} />
 
-            {/* ── Hero (B-style: clean photo, no overlay) ── */}
-            <section className="hero-b">
-                <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 共用空間" width={900} height={600} priority />
-                <h1>溝頂民宿｜高雄鹽埕10-12人獨棟包棟</h1>
-                <div className="sub">Godin House · A Quiet Retreat</div>
-                <p className="desc">
-                    鹽埕靜謐巷弄，五層樓獨棟空間，平日 $10,000 起。<br />
-                    10-12人包棟，附麻將、桌遊，近大港橋與駁二。
-                </p>
+            {/* ── Hero (Cinematic) ── */}
+            <section className="hero-cinema">
+                <div className="hero-cinema__media">
+                    <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 五層獨棟空間" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+                    <div className="hero-cinema__overlay" />
+                </div>
+                <div className="hero-cinema__content">
+                    <div className="hero-cinema__eyebrow">Godin House · A Quiet Retreat</div>
+                    <h1 className="hero-cinema__title">溝頂民宿</h1>
+                    <p className="hero-cinema__sub">
+                        10-12人五層獨棟 · 麻將 · 交誼廳 · 平日 $10,000 起
+                    </p>
+                    <div className="hero-cinema__actions">
+                        <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line">💬 LINE 查空房</a>
+                        <Link href="/book" className="btn-ghost">查詢空房與報價</Link>
+                    </div>
+                </div>
             </section>
 
             {/* ── Intro (asymmetric) ── */}
-            <section className="sec-warm" style={{ paddingTop: "0" }}>
-                <div className="w">
-                    <Reveal>
-                        <div className="grid-asym">
-                            <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/godin/cover-2.webp" alt="溝頂民宿 客廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div>
-                                <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#767676", marginBottom: "12px" }}>About</div>
-                                <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", marginBottom: "16px", letterSpacing: "0.06em", color: "#2a2a2a" }}>像回家一樣的旅行</h2>
-                                <div style={{ width: "40px", height: "1px", background: "#ddd", marginBottom: "20px" }} />
-                                <p style={{ fontSize: "0.92rem", color: "#999", lineHeight: 2.2 }}>
-                                    溝頂民宿是你好哇系列的精緻二館。整棟五層樓獨立使用，沒有外人打擾。
-                                    以溫馨家庭風格呈現，讓每一次入住都像回到自己的家。
-                                    平日 $10,000 起，是小團體包棟的超值首選。
-                                </p>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
-
-            {/* ── Room Details ── */}
-            <section style={{ background: "#fff", padding: "clamp(60px, 10vw, 100px) 0" }}>
+                  {/* ── Room Details — Interactive Gallery + Equipment ── */}
+            <section style={{ background: "var(--surface)", padding: "clamp(80px, 14vw, 160px) 0" }}>
                 <div className="w" style={{ marginBottom: "50px" }}>
                     <Reveal>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#767676", marginBottom: "12px" }}>Rooms</div>
-                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.06em", color: "#2a2a2a" }}>房型與空間介紹</h2>
-                        <p style={{ fontSize: "0.9rem", color: "#999", marginTop: "10px" }}>五層樓獨棟，4 間客房皆配備獨立衛浴、冷暖空調</p>
+                        <div className="scene-eyebrow">Rooms</div>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.08em", color: "var(--text)", fontWeight: 400 }}>房型與空間介紹</h2>
+                        <p style={{ fontSize: "0.9rem", color: "var(--muted)", marginTop: "10px" }}>五層樓獨棟，4 間客房皆配備獨立衛浴、冷暖空調<br />👆 點擊照片可放大瀏覽</p>
                     </Reveal>
                 </div>
 
-                {/* 1F 經典雙人房 */}
-                <div className="w">
-                    <Reveal>
-                        <div className="room-detail-card">
-                            <div className="room-detail-img">
-                                <Image src="/images/godin/room1.webp" alt="1F 經典雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div className="room-detail-info">
-                                <div className="room-floor-tag">1F</div>
-                                <h3>經典雙人房</h3>
-                                <p className="room-subtitle">一樓獨立空間，舒適安靜的休憩角落。</p>
-                                <div className="room-badges">
-                                    <span className="room-badge">15 m²</span>
-                                    <span className="room-badge gold">獨立衛浴</span>
-                                    <span className="room-badge">對外窗</span>
+                {godin.rooms.map((room, idx) => (
+                    <div key={room.id} className="w">
+                        <Reveal>
+                            <div className={`room-detail-card${idx % 2 === 1 ? ' reverse' : ''}`}>
+                                <div className="room-detail-img">
+                                    <RoomGallery images={room.images} roomName={room.name} />
                                 </div>
-                                <div className="room-amenities">
-                                    <span>🛏️ 標準雙人床 ×1</span>
-                                    <span>💻 工作桌椅</span>
-                                    <span>❄️ 冷暖空調</span>
-                                    <span>🚿 淋浴設備</span>
+                                <div className="room-detail-info">
+                                    <div className="room-floor-tag">{room.floor}</div>
+                                    <h3>{room.name}</h3>
+                                    <p className="room-subtitle">{room.subtitle}</p>
+                                    <div className="room-badges">
+                                        {room.badges.map(b => (
+                                            <span key={b.label} className={`room-badge${b.gold ? ' gold' : ''}`}>{b.label}</span>
+                                        ))}
+                                    </div>
+                                    <EquipmentGrid categories={room.equipment} />
                                 </div>
                             </div>
-                        </div>
-                    </Reveal>
-                </div>
-
-                {/* 2F 陽光四人房 */}
-                <div className="w">
-                    <Reveal>
-                        <div className="room-detail-card reverse">
-                            <div className="room-detail-img">
-                                <Image src="/images/godin/room2.webp" alt="2F 陽光四人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div className="room-detail-info">
-                                <div className="room-floor-tag">2F</div>
-                                <h3>陽光四人房</h3>
-                                <p className="room-subtitle">寬敞明亮，大面採光玻璃，適合家庭入住。</p>
-                                <div className="room-badges">
-                                    <span className="room-badge">18 m²</span>
-                                    <span className="room-badge gold">大面採光玻璃</span>
-                                    <span className="room-badge">獨立衛浴</span>
-                                </div>
-                                <div className="room-amenities">
-                                    <span>🛏️ 標準雙人床 ×2</span>
-                                    <span>🧴 衛浴備品齊全</span>
-                                    <span>💨 吹風機 / 空調</span>
-                                    <span>☀️ 自然採光</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-
-                {/* 3F 雅緻四人房 */}
-                <div className="w">
-                    <Reveal>
-                        <div className="room-detail-card">
-                            <div className="room-detail-img">
-                                <Image src="/images/godin/room3.webp" alt="3F 雅緻四人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div className="room-detail-info">
-                                <div className="room-floor-tag">3F</div>
-                                <h3>雅緻四人房</h3>
-                                <p className="room-subtitle">溫馨風格，獨立衛浴，安靜舒適。</p>
-                                <div className="room-badges">
-                                    <span className="room-badge">18 m²</span>
-                                    <span className="room-badge gold">大面採光玻璃</span>
-                                    <span className="room-badge">獨立衛浴</span>
-                                </div>
-                                <div className="room-amenities">
-                                    <span>🛏️ 標準雙人床 ×2</span>
-                                    <span>🧴 衛浴備品齊全</span>
-                                    <span>💨 吹風機 / 空調</span>
-                                    <span>☀️ 自然採光</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-
-                {/* 4F 公共交誼廳 */}
-                <div className="w">
-                    <Reveal>
-                        <div className="room-detail-card reverse">
-                            <div className="room-detail-img">
-                                <Image src="/images/godin/room4.webp" alt="4F 公共交誼廳" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div className="room-detail-info">
-                                <div className="room-floor-tag">4F</div>
-                                <h3>公共交誼廳</h3>
-                                <p className="room-subtitle">團聚歡樂空間，麻將、桌遊、沙發，最棒的交誼時光。</p>
-                                <div className="room-badges">
-                                    <span className="room-badge">24 m²</span>
-                                    <span className="room-badge gold">休閒麻將桌</span>
-                                    <span className="room-badge">獨立空調</span>
-                                </div>
-                                <div className="room-amenities">
-                                    <span>🀄 麻將 / 桌遊</span>
-                                    <span>🧊 RO飲水機 / 雙門冰箱</span>
-                                    <span>🍞 微波爐</span>
-                                    <span>📺 聯網電視</span>
-                                    <span>🛋️ 舒適沙發區</span>
-                                    <span>🚰 流理台</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-
-                {/* 5F 景觀雙人房 */}
-                <div className="w">
-                    <Reveal>
-                        <div className="room-detail-card">
-                            <div className="room-detail-img">
-                                <Image src="/images/godin/room5.webp" alt="5F 景觀雙人房" width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                            </div>
-                            <div className="room-detail-info">
-                                <div className="room-floor-tag">5F</div>
-                                <h3>景觀雙人房</h3>
-                                <p className="room-subtitle">頂樓視野開闊，落地窗街景，充足採光。</p>
-                                <div className="room-badges">
-                                    <span className="room-badge">15 m²</span>
-                                    <span className="room-badge gold">落地窗</span>
-                                    <span className="room-badge">獨立衛浴</span>
-                                </div>
-                                <div className="room-amenities">
-                                    <span>🛏️ 標準雙人床</span>
-                                    <span>📖 閱讀區</span>
-                                    <span>❄️ 冷暖空調</span>
-                                    <span>🏙️ 街景視野</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
+                        </Reveal>
+                    </div>
+                ))}
             </section>
+
+            {/* ── Location & Nearby ── */}
+            <LocationSection
+                propertyName={godin.name}
+                address={godin.address}
+                location={godin.location}
+                mapUrl={godin.mapUrl}
+                nearbySpots={godin.nearbySpots}
+            />
 
             {/* ── More photos ── */}
             <section className="sec-warm">
@@ -270,32 +156,32 @@ export default function GodinPage() {
                 </div>
             </section>
 
-            {/* ── CTA (B-style: soft) ── */}
-            <section style={{ background: "#fff", padding: "80px 28px", textAlign: "center" }}>
+            {/* ── CTA ── */}
+            <section style={{ background: "var(--surface)", padding: "clamp(100px, 14vw, 160px) 28px", textAlign: "center" }}>
                 <Reveal>
-                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.2rem, 3vw, 1.6rem)", letterSpacing: "0.06em", color: "#2a2a2a", marginBottom: "12px" }}>
+                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.2rem, 3vw, 1.6rem)", letterSpacing: "0.08em", color: "var(--text)", marginBottom: "12px", fontWeight: 400 }}>
                         小團體的完美包棟體驗
                     </h3>
-                    <p style={{ fontSize: "0.88rem", color: "#767676", marginBottom: "30px" }}>
+                    <p style={{ fontSize: "0.88rem", color: "var(--muted)", marginBottom: "36px" }}>
                         平日 $10,000 起 · 12 人以內
                     </p>
-                    <Link href="/book" style={{
-                        display: "inline-block", padding: "14px 44px",
-                        border: "1px solid #2a2a2a", color: "#2a2a2a",
-                        fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.12em",
-                        transition: "all 0.4s",
-                    }}>
-                        查詢空房
-                    </Link>
+                    <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+                        <a href={godin.lineUrl} target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">
+                            💬 LINE 詢問空房
+                        </a>
+                        <Link href="/book" className="btn-ghost" style={{ color: "var(--text)", borderColor: "var(--line)" }}>
+                            自助查空房
+                        </Link>
+                    </div>
                 </Reveal>
             </section>
 
             {/* ── Related Blog ── */}
-            <section style={{ padding: "60px 28px", background: "#FAF8F5" }}>
+            <section style={{ padding: "clamp(60px, 10vw, 100px) 28px", background: "var(--bg)" }}>
                 <div className="w" style={{ maxWidth: "780px" }}>
                     <Reveal>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px", textAlign: "center" }}>Related Articles</div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", textAlign: "center", marginBottom: "24px", letterSpacing: "0.06em" }}>相關旅宿攻略</h3>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", textAlign: "center", fontWeight: 600 }}>Related Articles</div>
+                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)", textAlign: "center", marginBottom: "24px", letterSpacing: "0.08em", fontWeight: 400 }}>相關旅宿攻略</h3>
                         <div style={{ display: "grid", gap: "10px" }}>
                             {[
                                 { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
@@ -313,11 +199,14 @@ export default function GodinPage() {
                             ))}
                         </div>
                         <div style={{ textAlign: "center", marginTop: "16px" }}>
-                            <Link href="/blog" style={{ fontSize: "0.75rem", color: "#C8AD7F", textDecoration: "none", letterSpacing: "0.1em" }}>瀏覽所有攻略 →</Link>
+                            <Link href="/blog" style={{ fontSize: "0.75rem", color: "var(--pri)", textDecoration: "none", letterSpacing: "0.1em" }}>瀏覽所有攻略 →</Link>
                         </div>
                     </Reveal>
                 </div>
             </section>
+
+            {/* ── LINE Floating CTA ── */}
+            <LineFloatingCTA lineUrl={godin.lineUrl} message="幫你查空房 💬" />
         </>
     );
 }

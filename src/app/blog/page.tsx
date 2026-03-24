@@ -39,14 +39,14 @@ const articles = [...existingArticles, ...publishedScheduled].sort((a, b) => b.d
 
 export default function BlogIndex() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={{ "@context": "https://schema.org", "@type": "CollectionPage", name: "Hello Stay 旅宿攻略", description: "高雄包棟民宿攻略、鹽埕美食地圖、團體旅遊行程推薦", url: "https://www.hello-stay.com/blog", mainEntity: { "@type": "ItemList", itemListElement: articles.map((a, i) => ({ "@type": "ListItem", position: i + 1, url: `https://www.hello-stay.com/blog/${a.slug}`, name: a.title })) } }} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>Local Insights</div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>旅宿攻略</h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", fontWeight: 600 }}>Local Insights</div>
+                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.08em", color: "var(--text)" }}>旅宿攻略</h1>
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>在地經營 8 年，最道地的高雄旅遊情報</p>
                     </div>
                 </Reveal>
@@ -54,15 +54,15 @@ export default function BlogIndex() {
                     {articles.map(a => (
                         <Reveal key={a.slug}>
                             <Link href={`/blog/${a.slug}`} style={{ textDecoration: "none", display: "block" }}>
-                                <article style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", transition: "all 0.3s" }}>
+                                <article style={{ background: "var(--surface)", borderRadius: "4px", padding: "28px 24px", border: "1px solid var(--line)", transition: "all 0.3s" }}>
                                     <div style={{ display: "flex", gap: "14px", alignItems: "flex-start" }}>
                                         <span style={{ fontSize: "1.8rem", flexShrink: 0 }}>{a.emoji}</span>
                                         <div style={{ flex: 1 }}>
-                                            <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.15em", color: "#C8AD7F", marginBottom: "6px" }}>{a.date}</div>
-                                            <h2 style={{ fontFamily: "var(--serif)", fontSize: "1rem", color: "#3D3830", marginBottom: "8px", letterSpacing: "0.04em" }}>{a.title}</h2>
+                                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.15em", color: "var(--pri)", marginBottom: "6px" }}>{a.date}</div>
+                                            <h2 style={{ fontFamily: "var(--serif)", fontSize: "1rem", color: "var(--text)", marginBottom: "8px", letterSpacing: "0.06em" }}>{a.title}</h2>
                                             <p style={{ fontSize: "0.78rem", color: "#999", lineHeight: 1.8, marginBottom: "10px" }}>{a.excerpt}</p>
                                             <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
-                                                {a.tags.map(t => (<span key={t} style={{ padding: "3px 10px", borderRadius: "14px", fontSize: "0.65rem", background: "#FAF8F5", color: "#8A8279" }}>{t}</span>))}
+                                                {a.tags.map(t => (<span key={t} style={{ padding: "3px 10px", borderRadius: "4px", fontSize: "0.65rem", background: "var(--bg)", color: "var(--muted)" }}>{t}</span>))}
                                             </div>
                                         </div>
                                     </div>

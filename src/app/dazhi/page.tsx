@@ -4,12 +4,12 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "大智若愚｜高雄鹽埕包棟民宿最大48人電梯館",
-    description: "高雄鹽埕區最大規模包棟民宿，電梯直達，最多容納48人。近駁二藝術特區、大港橋。一層三房一廳獨立空間，可包層可包棟。企業團建、班遊首選，立即詢問報價！",
+    title: "大智若愚｜高雄大型包棟48人・電梯民宿2027新開｜大港橋旁鹽埕",
+    description: "高雄最大包棟民宿！最多48人入住，全新電梯大樓。一層三房一廳，獨立樓層。緊鄰大港橋＆駁二，適合企業團建、大家族旅遊、球隊移訓→LINE查空房",
     alternates: { canonical: "https://www.hello-stay.com/dazhi" },
     openGraph: {
-        title: "大智若愚｜高雄鹽埕包棟民宿最大48人電梯館",
-        description: "大港橋旁全新電梯民宿，一層三房一廳，可包層可包棟，最大48人。企業團建、班遊首選。",
+        title: "大智若愚｜高雄大型包棟48人・電梯民宿2027新開｜大港橋旁鹽埕",
+        description: "高雄最大包棟民宿！最多48人，全新電梯大樓，緊鄰大港橋＆駁二→LINE查空房",
         url: "https://www.hello-stay.com/dazhi",
         images: [{ url: "https://www.hello-stay.com/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
     },
@@ -19,7 +19,7 @@ export default function DazhiPage() {
     return (
         <div style={{
             minHeight: "100vh",
-            background: "#FAF8F5",
+            background: "var(--bg)",
             paddingTop: "calc(var(--nav-h) + 20px)",
             paddingBottom: "80px",
         }}>
@@ -40,8 +40,8 @@ export default function DazhiPage() {
                 {/* Hero render */}
                 <Reveal>
                     <div style={{
-                        borderRadius: "20px", overflow: "hidden",
-                        marginBottom: "50px", boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
+                        borderRadius: "4px", overflow: "hidden",
+                        marginBottom: "50px", border: "1px solid var(--line)",
                     }}>
                         <Image
                             src="/images/dazhi/building-render.webp"
@@ -58,19 +58,19 @@ export default function DazhiPage() {
                     <Reveal>
                         {/* Coming Soon pill */}
                         <div style={{
-                            display: "inline-block", padding: "8px 24px", borderRadius: "40px",
-                            background: "#F0ECE6", fontFamily: "var(--en)", fontSize: "0.6rem",
-                            letterSpacing: "0.35em", textTransform: "uppercase", color: "#A09282",
-                            marginBottom: "40px",
+                            display: "inline-block", padding: "8px 24px", borderRadius: "4px",
+                            background: "var(--surface)", fontFamily: "var(--sans)", fontSize: "0.6rem",
+                            letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--muted)",
+                            marginBottom: "40px", fontWeight: 600,
                         }}>
-                            預計 2027 年底開放
+                            預計 2027 年中後開幕
                         </div>
                     </Reveal>
 
                     <Reveal>
                         <h1 style={{
                             fontFamily: "var(--serif)", fontSize: "clamp(2.4rem, 7vw, 4.2rem)",
-                            fontWeight: 400, color: "#3D3830", letterSpacing: "0.12em",
+                            fontWeight: 400, color: "var(--text)", letterSpacing: "0.12em",
                             marginBottom: "20px", lineHeight: 1.3,
                         }}>
                             大智若愚｜高雄鹽埕最大48人電梯包棟
@@ -79,8 +79,8 @@ export default function DazhiPage() {
 
                     <Reveal>
                         <p style={{
-                            fontFamily: "var(--en)", fontSize: "0.68rem", letterSpacing: "0.3em",
-                            textTransform: "uppercase", color: "#BEB5A8", marginBottom: "50px",
+                            fontFamily: "var(--sans)", fontSize: "0.68rem", letterSpacing: "0.3em",
+                            textTransform: "uppercase", color: "var(--muted)", marginBottom: "50px", opacity: 0.6,
                         }}>
                             Dazhi Ruoyu · A Wise Retreat
                         </p>
@@ -97,22 +97,22 @@ export default function DazhiPage() {
                     {/* Location highlight */}
                     <Reveal>
                         <div style={{
-                            background: "#fff", borderRadius: "20px", padding: "36px 32px",
-                            boxShadow: "0 4px 30px rgba(0,0,0,0.03)", marginBottom: "32px",
+                            background: "var(--surface)", borderRadius: "4px", padding: "36px 32px",
+                            border: "1px solid var(--line)", marginBottom: "32px",
                         }}>
                             <div style={{
-                                fontSize: "0.65rem", fontFamily: "var(--en)", letterSpacing: "0.25em",
-                                textTransform: "uppercase", color: "#BEB5A8", marginBottom: "14px",
+                                fontSize: "0.6rem", fontFamily: "var(--sans)", letterSpacing: "0.35em",
+                                textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600,
                             }}>
                                 Location
                             </div>
                             <p style={{
-                                fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830",
-                                letterSpacing: "0.06em", lineHeight: 1.8,
+                                fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)",
+                                letterSpacing: "0.08em", lineHeight: 1.8,
                             }}>
                                 大港橋旁 · 駁二大義倉庫群
                             </p>
-                            <p style={{ fontSize: "0.82rem", color: "#BEB5A8", marginTop: "8px" }}>
+                            <p style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "8px" }}>
                                 高雄最精華的港灣地段，步出門即是藝文散步路線
                             </p>
                         </div>
@@ -131,15 +131,15 @@ export default function DazhiPage() {
                                 { icon: "👥", title: "最大 48 人", sub: "超大團體首選" },
                             ].map(f => (
                                 <div key={f.title} style={{
-                                    background: "#fff", borderRadius: "16px", padding: "28px 20px",
-                                    boxShadow: "0 2px 16px rgba(0,0,0,0.02)", textAlign: "center",
+                                    background: "var(--surface)", borderRadius: "4px", padding: "28px 20px",
+                                    border: "1px solid var(--line)", textAlign: "center",
                                 }}>
                                     <div style={{ fontSize: "1.6rem", marginBottom: "10px" }}>{f.icon}</div>
                                     <div style={{
-                                        fontFamily: "var(--serif)", fontSize: "0.95rem", color: "#3D3830",
-                                        letterSpacing: "0.04em", marginBottom: "4px",
+                                        fontFamily: "var(--serif)", fontSize: "0.95rem", color: "var(--text)",
+                                        letterSpacing: "0.06em", marginBottom: "4px", fontWeight: 400,
                                     }}>{f.title}</div>
-                                    <div style={{ fontSize: "0.75rem", color: "#BEB5A8" }}>{f.sub}</div>
+                                    <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>{f.sub}</div>
                                 </div>
                             ))}
                         </div>
@@ -148,7 +148,7 @@ export default function DazhiPage() {
                     {/* Description */}
                     <Reveal>
                         <p style={{
-                            fontSize: "0.92rem", color: "#A09282", lineHeight: 2.3,
+                            fontSize: "0.92rem", color: "var(--muted)", lineHeight: 2.3,
                             marginBottom: "50px",
                         }}>
                             Hello Stay 第三館即將登場。<br />
@@ -161,20 +161,10 @@ export default function DazhiPage() {
                     {/* CTAs */}
                     <Reveal>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/" style={{
-                                padding: "14px 36px", borderRadius: "40px",
-                                border: "1px solid #D4CBC0", color: "#8A8279",
-                                fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em",
-                                transition: "all 0.3s",
-                            }}>
+                            <Link href="/" className="btn-ghost" style={{ color: "var(--muted)", borderColor: "var(--line)" }}>
                                 返回首頁
                             </Link>
-                            <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{
-                                padding: "14px 36px", borderRadius: "40px",
-                                background: "#06C755", border: "1px solid #06C755", color: "#fff",
-                                fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em",
-                                transition: "all 0.3s",
-                            }}>
+                            <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" className="btn-line btn-line--lg">
                                 LINE 搶先預約
                             </a>
                         </div>

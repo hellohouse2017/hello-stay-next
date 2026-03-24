@@ -16,20 +16,20 @@ export const metadata: Metadata = {
 
 export default function AgreementPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: "入住須知與住宿契約", description: "你好哇寓所與溝頂民宿的住宿契約書、押金規定、取消退費政策及生活規範。", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" } }} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
 
                 {/* Header */}
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
                             House Rules & Agreement
                         </div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
                             入住須知與住宿契約
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
                             適用於你好哇寓所 & 溝頂民宿・訂房前請詳閱
                         </p>
@@ -188,7 +188,7 @@ export default function AgreementPage() {
                             ].map((r, i) => (
                                 <div key={i} style={{
                                     display: "flex", justifyContent: "space-between", padding: "13px 18px",
-                                    background: i % 2 === 0 ? "#FAF8F5" : "#fff", fontSize: "0.82rem",
+                                    background: i % 2 === 0 ? "var(--bg)" : "#fff", fontSize: "0.82rem",
                                 }}>
                                     <span style={{ color: "#666" }}>{r.item}</span>
                                     <span style={{ color: "#c44", fontWeight: 500, textAlign: "right" }}>{r.fee}</span>
@@ -230,14 +230,14 @@ const h3Style: React.CSSProperties = {
     fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "16px",
 };
 const timeBox: React.CSSProperties = {
-    textAlign: "center", padding: "20px", background: "#FAF8F5", borderRadius: "12px",
+    textAlign: "center", padding: "20px", background: "var(--bg)", borderRadius: "12px",
 };
 const timeNum: React.CSSProperties = {
     fontFamily: "var(--serif)", fontSize: "1.8rem", color: "#3D3830", marginBottom: "4px",
 };
 const timeSub: React.CSSProperties = { fontSize: "0.78rem", color: "#BEB5A8" };
 const ruleBox: React.CSSProperties = {
-    padding: "16px 18px", background: "#FAF8F5", borderRadius: "10px",
+    padding: "16px 18px", background: "var(--bg)", borderRadius: "10px",
 };
 const clauseStyle: React.CSSProperties = {
     fontSize: "0.78rem", color: "#666", lineHeight: 1.9, marginBottom: "4px", paddingLeft: "16px",
@@ -257,7 +257,7 @@ function RuleOption({ text, active, muted }: { text: string; active?: boolean; m
     return (
         <div style={{
             padding: "14px 18px", borderRadius: "10px", fontSize: "0.82rem", lineHeight: 1.8,
-            background: active ? "rgba(76,175,80,0.06)" : "#FAF8F5",
+            background: active ? "rgba(76,175,80,0.06)" : "var(--bg)",
             color: active ? "#2e7d32" : muted ? "#bbb" : "#666",
             border: active ? "1px solid rgba(76,175,80,0.2)" : "1px solid transparent",
             fontWeight: active ? 500 : 400,
@@ -270,7 +270,7 @@ function ProhibitedItem({ icon, text }: { icon: string; text: string }) {
     return (
         <div style={{
             display: "flex", gap: "12px", alignItems: "flex-start",
-            padding: "14px 16px", background: "#FAF8F5", borderRadius: "10px",
+            padding: "14px 16px", background: "var(--bg)", borderRadius: "10px",
         }}>
             <span style={{ fontSize: "1.2rem", flexShrink: 0 }}>{icon}</span>
             <span style={{ fontSize: "0.82rem", color: "#555", lineHeight: 1.9 }}>{text}</span>

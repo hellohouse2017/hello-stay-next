@@ -62,20 +62,20 @@ const packages = [
 
 export default function PackagesPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "#FAF8F5", minHeight: "100vh" }}>
+        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[{ "@context": "https://schema.org", "@type": "Service", provider: { "@type": "LodgingBusiness", name: "Hello Stay" }, name: "高雄包棟方案", description: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對，量身打造高雄鹽埕區包棟方案。", areaServed: { "@type": "Place", name: "高雄鹽埕區" }, serviceType: "包棟住宿", hasOfferCatalog: { "@type": "OfferCatalog", name: "包棟方案列表", itemListElement: packages.map((p, i) => ({ "@type": "Offer", position: i + 1, name: p.title, description: p.desc })) } }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "高雄包棟一晚多少錢？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿平日$10,000起（10人），你好哇寓所依人數$12,000-$28,000。平均每人$800-$1,500。" } }, { "@type": "Question", name: "適合辦什麼活動？", acceptedAnswer: { "@type": "Answer", text: "企業移地訓練、婚禮迎娶、家族旅遊、球隊比賽、朋友派對、生日趴、畢業旅行等都適合。" } }, { "@type": "Question", name: "最多可以住幾個人？", acceptedAnswer: { "@type": "Answer", text: "三館聯訂最多可容納近80人。單館最大是大智若愚48人，你好哇寓所26人，溝頂12人。" } }] }]} />
             <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
 
                 {/* Header */}
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
                             One House, Infinite Possibilities
                         </div>
                         <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
                             一棟民宿・無限可能
                         </h1>
-                        <div style={{ width: "40px", height: "1px", background: "#C8AD7F", margin: "20px auto" }} />
+                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
                             無論什麼場合，我們都能為你量身打造
                         </p>
@@ -99,7 +99,7 @@ export default function PackagesPage() {
                                 { icon: "📍", text: "鄰近捷運與駁二" },
                             ].map(f => (
                                 <div key={f.text} style={{
-                                    textAlign: "center", padding: "16px 12px", background: "#FAF8F5", borderRadius: "12px",
+                                    textAlign: "center", padding: "16px 12px", background: "var(--bg)", borderRadius: "12px",
                                 }}>
                                     <div style={{ fontSize: "1.4rem", marginBottom: "6px" }}>{f.icon}</div>
                                     <div style={{ fontSize: "0.8rem", color: "#666" }}>{f.text}</div>
@@ -144,7 +144,7 @@ export default function PackagesPage() {
                         background: "#161618", borderRadius: "16px", padding: "32px 28px", marginBottom: "24px",
                         textAlign: "center",
                     }}>
-                        <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8AD7F", marginBottom: "12px" }}>
+                        <div style={{ fontSize: "0.6rem", fontFamily: "var(--en)", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
                             Secret Venue
                         </div>
                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", color: "#fff", marginBottom: "12px" }}>
@@ -156,7 +156,7 @@ export default function PackagesPage() {
                         </p>
                         <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{
                             display: "inline-block", padding: "12px 28px", borderRadius: "8px",
-                            background: "#C8AD7F", color: "#161618", fontFamily: "var(--serif)",
+                            background: "var(--pri)", color: "#161618", fontFamily: "var(--serif)",
                             fontSize: "0.85rem", fontWeight: 500, letterSpacing: "0.06em",
                         }}>
                             LINE 洽詢派對方案
