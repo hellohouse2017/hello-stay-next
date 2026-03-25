@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const PROPERTIES = [
     { id: "hellohouse", name: "你好哇寓所", capacity: "6-26人", price: "依人數彈性報價", perPerson: 0, features: "中島廚房・手動麻將" },
-    { id: "godin", name: "溝頂民宿", capacity: "10-12人", price: "平日$10,000起", perPerson: 0, features: "五層獨棟・交誼廳" },
+    { id: "godin", name: "溝頂民宿", capacity: "10-12人", price: "平日$8,000起", perPerson: 0, features: "五層獨棟・交誼廳" },
     { id: "dazhi", name: "大智若愚", capacity: "20-48人", price: "依人數彈性報價", perPerson: 0, features: "電梯大樓・可包層" },
 ];
 
