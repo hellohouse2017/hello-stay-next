@@ -76,7 +76,7 @@ export default function HelloHousePage() {
                     {
                         "@context": "https://schema.org", "@type": "FAQPage",
                         mainEntity: [
-                            { "@type": "Question", name: "你好哇寓所有哪些房型？", acceptedAnswer: { "@type": "Answer", text: "提供雙人房、四人房、六人房，共6間房。全室獨立衛浴、乾濕分離。其中有網美吊椅房型，非常適合拍照打卡。" } },
+                            { "@type": "Question", name: "你好哇寓所有哪些房型？", acceptedAnswer: { "@type": "Answer", text: "提供雙人房、四人房、六人房，多間獨立套房彈性配置。全室獨立衛浴、乾濕分離。其中有網美吊椅房型，非常適合拍照打卡。" } },
                             { "@type": "Question", name: "你好哇寓所有被電視節目拍過嗎？", acceptedAnswer: { "@type": "Answer", text: "是的！曾上過「我們回家吧2」（曾寶儀主持）、「綜藝玩很大」（吳宗憲、KID）、「我的明星村長」（卜學亮、郭泓志）等多個知名節目，是劇組與明星的一致首選民宿。" } },
                             { "@type": "Question", name: "廚房設備有哪些？", acceptedAnswer: { "@type": "Answer", text: "一樓豪華中島廚房配備：IH爐、微波爐、冰箱、完整鍋碗瓢盆、餐具、調味料架。可同時4-6人下廚。適合煮火鍋、包水餃、做早餐。" } },
                             { "@type": "Question", name: "包棟可以容納多少人？", acceptedAnswer: { "@type": "Answer", text: "彈性方案6至26人。兩棟合訂（你好哇＋溝頂）最高可接待38人，三館聯訂最大48人。" } },
