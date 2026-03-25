@@ -5,14 +5,14 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "高雄好友聚會包棟｜打麻將·煮火鍋·生日派對｜Hello Stay",
-    description: "高雄好友聚會包棟推薦！你好哇寓所有全自動麻將桌、中島廚房煮火鍋、Netflix電視。6-26人包棟每人$583起，鹽埕區駁二旁。",
+    description: "高雄好友聚會包棟推薦！你好哇寓所有手動麻將桌、中島廚房煮火鍋、Netflix電視。6-26人包棟每人$583起，鹽埕區駁二旁。",
     alternates: { canonical: "https://www.hello-stay.com/occasion/friends-gathering" },
 };
 export default function Page() {
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                { "@type": "Question", name: "高雄有可以打麻將的包棟嗎？", acceptedAnswer: { "@type": "Answer", text: "有！你好哇寓所配備全自動麻將桌，6-26人包棟。還有中島廚房（可煮火鍋）、桌遊、Netflix電視。鹽埕區步行10分鐘到駁二，Google 4.9星。" } },
+                { "@type": "Question", name: "高雄有可以打麻將的包棟嗎？", acceptedAnswer: { "@type": "Answer", text: "有！你好哇寓所與溝頂民宿皆配備手動麻將桌，6-26人包棟。還有中島廚房（可煮火鍋）、桌遊、Netflix電視。鹽埕區步行10分鐘到駁二，Google 4.9星。" } },
             ]}} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 20px 80px" }}>
                 <Reveal><div style={{ textAlign: "center", marginBottom: "40px" }}>
@@ -32,7 +32,7 @@ export default function Page() {
                     <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "12px" }}>聚會設備</h2>
                     <div style={{ display: "grid", gap: "8px" }}>
                         {[
-                            { icon: "🀄", title: "全自動麻將桌", desc: "不用自己洗牌！打到天亮也可以" },
+                            { icon: "🀄", title: "手動麻將桌", desc: "你好哇＆溝頂兩館均有，打到天亮也可以" },
                             { icon: "🍲", title: "中島廚房煮火鍋", desc: "IH爐×2、製冰機、完整鍋碗，自備食材就能煮" },
                             { icon: "🎮", title: "桌遊之夜", desc: "多款桌遊，適合破冰和暖場" },
                             { icon: "📺", title: "Netflix 電視", desc: "43吋聯網電視，看電影追劇" },

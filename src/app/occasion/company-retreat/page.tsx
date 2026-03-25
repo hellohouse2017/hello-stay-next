@@ -34,7 +34,7 @@ export default function Page() {
                     <div style={{ display: "grid", gap: "8px" }}>
                         {[
                             { icon: "🍳", title: "Team Cooking", desc: "中島廚房分組料理比賽，IH爐×2、完整鍋碗瓢盆" },
-                            { icon: "🀄", title: "麻將 Team Building", desc: "全自動麻將桌，部門對抗賽" },
+                            { icon: "🀄", title: "麻將 Team Building", desc: "手動麻將桌，部門對抗賽" },
                             { icon: "🎮", title: "桌遊之夜", desc: "多款桌遊，配合Netflix電視觀影" },
                             { icon: "📍", title: "駁二一日遊", desc: "步行10分鐘到駁二藝術特區，可安排團隊行程" },
                             { icon: "💰", title: "性價比極高", desc: "20人均攤每人$900-$1,100，含整棟空間和所有設備" },

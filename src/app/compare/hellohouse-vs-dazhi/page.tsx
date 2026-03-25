@@ -44,7 +44,7 @@ export default function Page() {
                                 ["房間數", "6 間套房", "16+ 間"],
                                 ["電梯", "❌", "✅"],
                                 ["廚房", "✅ 豪華中島廚房", "規劃中"],
-                                ["麻將桌", "✅ 全自動", "規劃中"],
+                                ["麻將桌", "✅ 手動", "規劃中"],
                                 ["最適合", "家庭·婚禮·企業團建", "企業員旅·球隊·大家族"],
                             ].map(([label, a, b], i) => (
                                 <tr key={label} style={{ borderBottom: "1px solid #F5F1ED", background: i % 2 === 0 ? "#FDFCFB" : "#fff" }}>
