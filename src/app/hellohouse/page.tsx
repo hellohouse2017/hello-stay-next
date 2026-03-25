@@ -10,11 +10,11 @@ import { hellohouse } from "@/data/properties";
 
 export const metadata: Metadata = {
     title: "你好哇寓所｜高雄包棟民宿6-26人・中島廚房/麻將/投影｜平日$3,500起",
-    description: "高雄鹽埕6-26人包棟首選！獨棟三層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人最低$583起，Google 4.9星。綜藝玩很大拍攝場地→LINE查空房",
+    description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.9星。綜藝玩很大拍攝場地→LINE查空房",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
     openGraph: {
         title: "你好哇寓所｜高雄包棟民宿6-26人・中島廚房/麻將/投影｜平日$3,500起",
-        description: "高雄鹽埕6-26人包棟首選！獨棟三層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人最低$583起，Google 4.9星→LINE查空房",
+        description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.9星→LINE查空房",
         url: "https://www.hello-stay.com/hellohouse",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "你好哇寓所 高雄包棟民宿" }],
     },

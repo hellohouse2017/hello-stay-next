@@ -68,7 +68,7 @@ const sections = [
     {
         id: "size", title: "球隊規模方案", content: `12 人以下（系隊 / 社會隊）
 → 溝頂民宿：五層樓獨棟，平日 $10,000
-→ 每人 $833/晚
+→ 每人 $800/晚
 
 12-26 人（校隊 / 大型社會隊）
 → 你好哇寓所：6 間房 + 大客廳
@@ -92,7 +92,7 @@ export default function SportsPage() {
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄球隊比賽住宿推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-sports-team", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#schedule"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "高雄球隊比賽住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦包棟民宿，12人溝頂$10,000/晚（每人$833），20人你好哇每人不到$1,000。有製冰機冰敷、洗衣機洗球衣、廚房煮高蛋白餐、客廳戰術討論。近捷運到高雄巨蛋20分鐘、澄清湖棒球場40分鐘。" } },
+                        { "@type": "Question", name: "高雄球隊比賽住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦包棟民宿，10人溝頂$8,000/晚（每人$800），22人你好哇每人$909起。有製冰機冰敷、洗衣機洗球衣、廚房煮高蛋白餐、客廳戰術討論。近捷運到高雄巨蛋20分鐘、澄清湖棒球場40分鐘。" } },
                         { "@type": "Question", name: "高雄系隊比賽包棟住宿有什麼設備？", acceptedAnswer: { "@type": "Answer", text: "製冰機（冰敷必備）、洗衣機（多天賽程洗球衣）、中島廚房（煮賽前營養餐）、55吋電視可接筆電（播放戰術影片）、客廳可開賽後檢討會。全部免費使用。" } },
                     ]
                 },

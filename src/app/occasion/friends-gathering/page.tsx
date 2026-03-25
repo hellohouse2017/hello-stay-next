@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "高雄好友聚會包棟｜打麻將·煮火鍋·生日派對｜Hello Stay",
-    description: "高雄好友聚會包棟推薦！你好哇寓所有手動麻將桌、中島廚房煮火鍋、Netflix電視。6-26人包棟每人$583起，鹽埕區駁二旁。",
+    description: "高雄好友聚會包棟推薦！你好哇寓所有手動麻將桌、中島廚房煮火鍋、Netflix電視。6-26人包棟每人$909起，鹽埕區駁二旁。",
     alternates: { canonical: "https://www.hello-stay.com/occasion/friends-gathering" },
 };
 export default function Page() {
