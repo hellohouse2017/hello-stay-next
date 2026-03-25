@@ -10,11 +10,11 @@ import { godin } from "@/data/properties";
 
 export const metadata: Metadata = {
     title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
-    description: "高雄鹽埕小團體包棟首選！10-12人五層獨棟，每人$833起。4間套房＋交誼廳麻將→LINE查空房",
+    description: "高雄鹽埕小團體包棟首選！6-12人五層獨棟，每人$800起。4間套房＋交誼廳麻將→LINE查空房",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
     openGraph: {
         title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
-        description: "高雄鹽埕小團體包棟首選！10-12人五層獨棟全棟使用，每人最低$833起。4間套房＋交誼廳麻將・步行到駁二。平日$10,000起，Google好評→LINE查空房",
+        description: "高雄鹽埕小團體包棟首選！6-12人五層獨棟全棟使用，每人$800起。4間套房＋交誼廳麻將・步行到駁二。平日$8,000起，Google好評→LINE查空房",
         url: "https://www.hello-stay.com/godin",
         images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
     },
@@ -182,7 +182,7 @@ export default function GodinPage() {
                             <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "20px" }}>FAQ</div>
                             {[
                                 { q: "溝頂民宿可以住幾人？", a: "一般配置 6–10 人最舒適，最多可接待 12 人。五層樓獨棟全棟包場，每層樓分配清楚，不用搶廁所。" },
-                                { q: "溝頂民宿平日多少錢？", a: "平日 $10,000 起（10人平均每人 $1,000）。週末假日另計。官方 LINE 直訂免平台手續費，比 AsiaYo 便宜 15–20%。" },
+                                { q: "溝頂民宿平日多少錢？", a: "平日 $8,000 起（10人平均每人 $800）。週末假日另計。官方 LINE 直訂免平台手續費，比 AsiaYo 便宜 15–20%。" },
                                 { q: "溝頂民宿在哪裡？離駁二多遠？", a: "位於高雄市鹽埕區，距你好哇寓所步行30秒。步行10分鐘到駁二藝術特區，步行8分鐘到大港橋，捷運鹽埕埔站步行5分鐘。" },
                                 { q: "溝頂民宿適合帶長輩嗎？", a: "適合！五層樓格局讓長輩住低樓層、年輕人住高樓層，各有活動空間。如需電梯，建議詢問大智若愚（有電梯，可容20–48人）。" },
                                 { q: "溝頂民宿有廚房嗎？", a: "有簡易流理臺與微波爐，可加熱食物但不可明火、無電磁爐。若需要豪華中島廚房（IH爐×2、製冰機、完整鍋具），可選擇你好哇寓所，兩棟距離僅30秒。" },

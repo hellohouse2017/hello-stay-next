@@ -56,7 +56,7 @@ export default function KaohsiungWholeHousePage() {
                     <div style={{ fontSize: "0.88rem", color: "#3D3830", lineHeight: 2 }}>
                         高雄鹽埕區有 3 間包棟民宿可選，全部步行到駁二藝術特區 10 分鐘：<br />
                         • <strong>6–12人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選，平日$10,000起）<br />
-                        • <strong>6–26人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌，每人$583起）<br />
+                        • <strong>6–26人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌，每人$909起）<br />
                         • <strong>20–48人</strong>→ <Link href="/dazhi" style={{ color: "var(--pri)" }}>大智若愚</Link>（電梯大樓，2027年開幕）<br />
                         • <strong>38人以上</strong>→ 兩棟/三館合訂，最高近80人
                     </div>
@@ -115,7 +115,7 @@ export default function KaohsiungWholeHousePage() {
                         <tbody>
                             {[
                                 ["人數", "6–26", "6–12", "20–48"],
-                                ["每人", "$583起", "$833起", "即將公布"],
+                                ["每人", "$909起", "$800起", "即將公布"],
                                 ["廚房", "✅ 豪華", "✅ 基本", "規劃中"],
                                 ["麻將", "✅", "❌", "規劃中"],
                                 ["電梯", "❌", "❌", "✅"],

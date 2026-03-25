@@ -19,7 +19,7 @@ type CapacityConfig = {
 const configs: Record<string, CapacityConfig> = {
     "10": {
         count: 10, range: "6-12 人", property: "溝頂民宿", propertyLink: "/godin",
-        price: "平日 $10,000 起", perPerson: "每人約 $1,000", rooms: "五層樓獨棟，各層獨立衛浴",
+        price: "平日 $8,000 起", perPerson: "每人 $800 起", rooms: "五層樓獨棟，各層獨立衛浴",
         scenarios: ["小家庭旅遊", "情侶雙人遊", "好友小聚", "球隊移訓", "攝影外拍"],
         features: ["五層樓獨立使用", "每層獨立衛浴", "4F 交誼廳 + 麻將桌", "步行 10 分鐘到駁二", "附近 6+ 停車場"],
         faq: [
@@ -29,7 +29,7 @@ const configs: Record<string, CapacityConfig> = {
     },
     "20": {
         count: 20, range: "13-26 人", property: "你好哇寓所", propertyLink: "/hellohouse",
-        price: "依人數 $12,000-$28,000", perPerson: "每人約 $700-$1,400", rooms: "6 間房，彈性配置",
+        price: "依人數 $12,000-$20,000", perPerson: "每人 $909 起", rooms: "6 間房，彈性配置",
         scenarios: ["企業 off-site 團建", "大學畢業旅行", "家族旅遊", "婚禮迎娶", "生日派對"],
         features: ["豪華中島廚房", "麻將桌", "43 吋 Netflix 電視", "製冰機", "洗衣機", "曾上綜藝玩很大"],
         faq: [
@@ -39,7 +39,7 @@ const configs: Record<string, CapacityConfig> = {
     },
     "30": {
         count: 30, range: "27-38 人", property: "兩棟合訂（你好哇 + 溝頂）", propertyLink: "/hellohouse",
-        price: "兩棟合計約 $28,000-$40,000", perPerson: "每人約 $930-$1,330", rooms: "共 10+ 間房",
+        price: "兩棟合計約 $20,000-$30,000", perPerson: "每人 $800 起", rooms: "共 10+ 間房",
         scenarios: ["大家族旅遊", "公司全體旅遊", "球隊 + 教練團", "婚禮包棟", "跨年派對"],
         features: ["兩棟距離僅 30 公尺", "各有獨立空間又能串場", "雙廚房（可分工煮不同料理）", "雙麻將桌", "超大團體的最佳方案"],
         faq: [
@@ -49,7 +49,7 @@ const configs: Record<string, CapacityConfig> = {
     },
     "40": {
         count: 40, range: "39-48 人", property: "大智若愚（三館聯訂）", propertyLink: "/dazhi",
-        price: "三館聯訂約 $45,000-$65,000", perPerson: "每人約 $940-$1,350", rooms: "三棟共 16+ 間房",
+        price: "三館聯訂約 $35,000-$55,000", perPerson: "每人 $750 起", rooms: "三棟共 16+ 間房",
         scenarios: ["企業全體旅遊", "大型畢業旅行", "40 人以上家族聚會", "跨年 / 連假大團出遊", "球隊聯賽移訓"],
         features: ["三館聯訂最大 48 人", "電梯直達每層（大智若愚）", "一層三房一廳可包層", "三棟皆位於鹽埕區步行範圍", "大港橋旁・近駁二大義倉庫群"],
         faq: [
