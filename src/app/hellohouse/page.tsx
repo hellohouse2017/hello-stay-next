@@ -179,7 +179,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="scene-eyebrow">Rooms</div>
                         <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.08em", fontWeight: 400 }}>房型與空間介紹</h2>
-                        <p style={{ fontSize: "0.9rem", color: "var(--muted)", marginTop: "10px" }}>全館 6 間客房皆配備獨立筒床墊、乾濕分離衛浴、聯網電視與冷暖空調<br />👆 點擊照片可放大瀏覽</p>
+                        <p style={{ fontSize: "0.9rem", color: "var(--muted)", marginTop: "10px" }}>全館客房皆配備獨立筒床墊、乾濕分離衛浴、聯網電視與冷暖空調<br />👆 點擊照片可放大瀏覽</p>
                     </Reveal>
                 </div>
 
@@ -315,7 +315,7 @@ export default function HelloHousePage() {
                                     <tbody>
                                         {[
                                             ["容納人數", "6–26 人", "6–12 人", "20–48 人"],
-                                            ["房間數", "6 間套房", "4 間", "依配置"],
+                                            ["房間數", "多間套房", "4 間", "依配置"],
                                             ["中島廚房", "✅", "✅", "✅"],
                                             ["麻將桌", "✅", "❌", "❌"],
                                             ["電梯", "❌", "❌", "✅"],

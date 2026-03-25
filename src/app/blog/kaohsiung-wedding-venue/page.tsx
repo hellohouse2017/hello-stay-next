@@ -28,7 +28,7 @@ const sections = [
 • 中島廚房可備茶點、甜點塔
 
 樓上房間（準備空間）
-• 6 間房讓新娘、伴娘團分別準備
+• 多間房讓新娘、伴娘團分別準備
 • 吊椅房拍照超美，網美風格
 • 每間獨立衛浴，化妝不用排隊
 
@@ -66,7 +66,7 @@ const sections = [
     {
         id: "cost", title: "費用估算", content: `包棟住宿（前一晚 + 當天早上）
 • 你好哇寓所：依人數 $12,000-$28,000
-• 含 6 間房、全部公共空間使用
+• 含多間房、全部公共空間使用
 
 相比飯店
 • 飯店迎娶場地租借：$15,000-$30,000（不含住宿）
@@ -83,8 +83,8 @@ export default function WeddingPage() {
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄婚禮迎娶包棟推薦", description: "包棟民宿是婚禮迎娶最佳選擇，寬敞客廳適合闖關，自然採光婚攝大片。", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-wedding-venue", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#space"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "高雄哪裡適合辦婚禮迎娶？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區的包棟民宿，如你好哇寓所。一樓大客廳可容納20人以上闖關遊戲，6間房供伴娘團前一晚入住，中島廚房備茶點。自然採光讓婚攝隨手一拍就是大片。費用含住宿+場地，比飯店省$10,000以上。" } },
-                        { "@type": "Question", name: "包棟民宿辦迎娶一晚多少？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所依人數$12,000-$28,000，含6間房和全部公共空間。相比飯店場地租借$15,000-$30,000還不含住宿，包棟CP值高出很多。" } },
+                        { "@type": "Question", name: "高雄哪裡適合辦婚禮迎娶？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區的包棟民宿，如你好哇寓所。一樓大客廳可容納20人以上闖關遊戲，多間房供伴娘團前一晚入住，中島廚房備茶點。自然採光讓婚攝隨手一拍就是大片。費用含住宿+場地，比飯店省$10,000以上。" } },
+                        { "@type": "Question", name: "包棟民宿辦迎娶一晚多少？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所依人數$12,000-$28,000，含多間房和全部公共空間。相比飯店場地租借$15,000-$30,000還不含住宿，包棟CP值高出很多。" } },
                     ]
                 },
             ]} />
