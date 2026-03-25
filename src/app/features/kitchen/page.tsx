@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "有廚房的高雄包棟民宿｜中島廚房煮火鍋煮飯｜Hello Stay",
-    description: "想找有廚房的高雄包棟？你好哇寓所有豪華中島廚房（IH爐×2、完整鍋碗）可同時4-6人下廚。溝頂民宿有基本廚房。鹽埕區駁二旁。",
+    description: "想找有廚房的高雄包棟？你好哇寓所有豪華中島廚房（IH爐×2、完整鍋碗）可同時4-6人下廚。溝頂民宿有簡易流理臺與微波爐（不可明火）。鹽埕區駁二旁。",
     alternates: { canonical: "https://www.hello-stay.com/features/kitchen" },
 };
 export default function Page() {

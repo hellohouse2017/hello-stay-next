@@ -186,7 +186,7 @@ export default function HomePage() {
                 <span>五層獨棟</span><span>麻將桌</span><span>4間套房</span><span>交誼廳</span>
               </div>
               <div className="prop-card__footer">
-                <span className="prop-card__price">平日 $10,000 起</span>
+                <span className="prop-card__price">平日 $8,000 起</span>
                 <Link href="/godin" className="prop-card__link">探索空間 →</Link>
               </div>
             </div>

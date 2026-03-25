@@ -391,7 +391,7 @@ export const godin: Property = {
     highlights: [
         { icon: '🏠', title: '五層樓獨棟', desc: '整棟獨立使用，沒有外人打擾。' },
         { icon: '🀄', title: '專屬麻將桌', desc: '4F 交誼廳附麻將、桌遊、沙發。' },
-        { icon: '💰', title: '超值包棟', desc: '平日 $10,000 起，10 人平均每人 $1,000。' },
+        { icon: '💰', title: '超值包棟', desc: '平日 $8,000 起，10 人平均每人 $800。' },
     ],
     reviews: [
         { text: '很適合家族出遊，五層樓每家人住一層互不干擾，4 樓打麻將到天亮！', author: '陳先生', rating: 5 },
