@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const properties = [
-    { name: "你好哇寓所", link: "/hellohouse", capacity: "6–26 人", price: "$12,000–$34,800", perPerson: "每人$909起", rooms: "(5+1) 間套房", floors: "透天 4 層樓", kitchen: "✅ 豪華中島廚房", mahjong: "✅ 手動", elevator: "❌", parking: "附近停車場", bbq: "❌", best: "家庭聚會·婚禮·企業團建", lineUrl: "https://lin.ee/atCiMQw" },
+    { name: "你好哇寓所", link: "/hellohouse", capacity: "6–26 人", price: "$12,000–$34,800", perPerson: "每人$909起", rooms: "多間獨立套房", floors: "透天 4 層樓", kitchen: "✅ 豪華中島廚房", mahjong: "✅ 手動", elevator: "❌", parking: "附近停車場", bbq: "❌", best: "家庭聚會·婚禮·企業團建", lineUrl: "https://lin.ee/atCiMQw" },
     { name: "溝頂民宿", link: "/godin", capacity: "6–12 人", price: "$8,000–$18,400", perPerson: "每人$800起", rooms: "4 間套房", floors: "透天 5 層樓", kitchen: "❌ 簡易流理臺（微波爐）", mahjong: "✅ 手動", elevator: "❌", parking: "附近停車場", bbq: "❌", best: "小家庭·帶長輩·好友小聚", lineUrl: "https://lin.ee/atCiMQw" },
     { name: "大智若愚", link: "/dazhi", capacity: "20–48 人", price: "即將公布", perPerson: "預估 $800–$1,200", rooms: "一層三間套房", floors: "透天多層樓", kitchen: "規劃中", mahjong: "規劃中", elevator: "✅ 電梯", parking: "附近停車場", bbq: "規劃中", best: "企業員旅·球隊·大家族", lineUrl: "https://lin.ee/atCiMQw" },
 ];

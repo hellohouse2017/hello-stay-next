@@ -55,7 +55,7 @@ export default function HomePage() {
             "@context": "https://schema.org", "@type": "FAQPage",
             mainEntity: [
               { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay（你好哇寓所＆溝頂民宿），位於高雄鹽埕區，Google評價4.9星。三館可容納6至48人，配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。" } },
-              { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，提供6間房型。三館聯訂最大容納48人。" } },
+              { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，多間獨立套房彈性配置。三館聯訂最大容納48人。" } },
               { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過LINE官方帳號或官網預訂，免收平台手續費。平日溝頂民宿$10,000起。" } },
             ],
           },
@@ -151,7 +151,7 @@ export default function HomePage() {
                 老屋溫度遇上現代質感——這裡是你的私人招待所。
               </p>
               <div className="prop-card__tags">
-                <span>中島廚房</span><span>麻將桌</span><span>聚會客廳</span><span>6間套房</span>
+                <span>中島廚房</span><span>麻將桌</span><span>聚會客廳</span><span>多間套房</span>
               </div>
               <div className="prop-card__footer">
                 <span className="prop-card__price">依人數彈性配置 · LINE 諮詢</span>
