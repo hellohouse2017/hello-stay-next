@@ -1,0 +1,36 @@
+name: 每月深度內容豐富化
+
+on:
+  schedule:
+    # 每月 1 號與 15 號 04:07 UTC 執行
+    - cron: '7 4 1,15 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  monthly-enrich:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 程式碼
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 設定 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安裝依賴
+        run: npm ci
+
+      - name: 設定 Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: 執行每月深度更新
+        run: npx tsx scripts/content-enrichment.ts

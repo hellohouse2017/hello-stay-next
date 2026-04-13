@@ -9,6 +9,7 @@
     "lint": "eslint",
     "update:daily": "tsx scripts/daily-update.ts",
     "update:weekly": "tsx scripts/weekly-refresh.ts",
+    "enrich:monthly": "tsx scripts/content-enrichment.ts",
     "seo:analyze": "tsx scripts/seo-driven-update.ts"
   },
   "dependencies": {
