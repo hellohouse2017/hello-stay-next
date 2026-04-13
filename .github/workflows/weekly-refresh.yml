@@ -27,10 +27,11 @@ jobs:
       - name: 安裝依賴
         run: npm ci
 
-      - name: SEO 數據分析
-        run: npx tsx scripts/seo-driven-update.ts
+      - name: SEO 數據分析（可選）
+        run: npx tsx scripts/seo-driven-update.ts || echo "SEO 分析失敗，繼續執行更新"
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        continue-on-error: true
 
       - name: 執行每週更新
         run: npx tsx scripts/weekly-refresh.ts
