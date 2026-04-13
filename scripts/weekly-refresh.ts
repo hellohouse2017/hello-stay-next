@@ -53,17 +53,56 @@ const refreshStrategies = [
   }
 ]
 
+/**
+ * 讀取 SEO 優先清單
+ */
+function loadSeoPriorityList(): string[] {
+  const priorityPath = path.join(process.cwd(), 'scripts/seo-priority-list.json')
+
+  if (!fs.existsSync(priorityPath)) {
+    return []
+  }
+
+  try {
+    const data = JSON.parse(fs.readFileSync(priorityPath, 'utf-8'))
+    return data.priorities.map((p: { slug: string; priority: number; reason: string }) => `${p.slug}.mdx`)
+  } catch (e) {
+    console.log('⚠️ 無法讀取 SEO 優先清單，使用隨機選擇')
+    return []
+  }
+}
+
 async function weeklyRefresh() {
   console.log('🔄 開始每週內容更新...\n')
 
   const files = fs.readdirSync(articlesDir).filter(f => f.endsWith('.mdx'))
+  const priorityFiles = loadSeoPriorityList()
 
-  // 隨機選擇 5-10 篇文章
+  let selectedFiles: string[] = []
+
+  // 優先選擇 SEO 清單中的文章
+  if (priorityFiles.length > 0) {
+    console.log(`🎯 SEO 優先清單: ${priorityFiles.length} 篇`)
+
+    // 先選擇優先清單中的文章（最多 5 篇）
+    const priorityToUpdate = priorityFiles.slice(0, 5).filter(f => files.includes(f))
+    selectedFiles.push(...priorityToUpdate)
+
+    console.log(`  ✅ 選擇優先文章: ${priorityToUpdate.length} 篇`)
+  }
+
+  // 如果不足 5 篇，隨機補充
   const numToUpdate = Math.floor(Math.random() * 6) + 5 // 5-10
-  const shuffled = files.sort(() => Math.random() - 0.5)
-  const selectedFiles = shuffled.slice(0, numToUpdate)
+  if (selectedFiles.length < numToUpdate) {
+    const remaining = files.filter(f => !selectedFiles.includes(f))
+    const shuffled = remaining.sort(() => Math.random() - 0.5)
+    const additionalFiles = shuffled.slice(0, numToUpdate - selectedFiles.length)
+    selectedFiles.push(...additionalFiles)
 
-  console.log(`📝 選擇 ${selectedFiles.length} 篇文章進行更新\n`)
+    console.log(`  ✅ 隨機補充: ${additionalFiles.length} 篇`)
+  }
+
+  console.log(`\n📝 總計選擇 ${selectedFiles.length} 篇文章進行更新\n`)
 
   const updatedFiles: string[] = []
 

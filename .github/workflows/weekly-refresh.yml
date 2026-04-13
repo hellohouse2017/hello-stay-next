@@ -27,6 +27,11 @@ jobs:
       - name: 安裝依賴
         run: npm ci
 
+      - name: SEO 數據分析
+        run: npx tsx scripts/seo-driven-update.ts
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
       - name: 執行每週更新
         run: npx tsx scripts/weekly-refresh.ts
 
