@@ -18,7 +18,7 @@ const today = new Date().toISOString().slice(0, 10)
 
 interface UpdateRule {
   pattern: RegExp
-  replacement: (match: string) => string
+  replacement: (match: string, ...args: any[]) => string
   description: string
 }
 
