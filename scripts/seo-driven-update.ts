@@ -86,7 +86,7 @@ async function analyzeSeoData(): Promise<ArticlePriority[]> {
     const impressions = page.impressions || 0
 
     // 找出昨天的排名
-    const previousPage = yesterday?.topPages?.find(p => p.page === page.page)
+    const previousPage = yesterday?.topPages?.find((p: any) => p.page === page.page)
     const previousRank = previousPage?.position || 0
 
     // 優先級 1: 排名下降 > 5 名（緊急）
@@ -191,13 +191,20 @@ function displayAnalysis(priorities: ArticlePriority[]) {
  */
 function exportPriorityList(priorities: ArticlePriority[]) {
   const outputPath = path.join(process.cwd(), 'scripts/seo-priority-list.json')
+  const generatedAt = new Date().toISOString()
 
   const output = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     priorities: priorities.map(p => ({
       slug: p.slug,
       priority: p.priority,
-      reason: p.reason
+      reason: p.reason,
+      currentRank: p.currentRank,
+      previousRank: p.previousRank,
+      ctr: p.ctr,
+      clicks: p.clicks,
+      impressions: p.impressions,
+      generatedAt
     }))
   }
 
