@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "update:daily": "tsx scripts/daily-update.ts",
+    "update:weekly": "tsx scripts/weekly-refresh.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -27,6 +29,7 @@
     "puppeteer": "^24.39.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

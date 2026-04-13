@@ -1,0 +1,28 @@
+# Phase 1: MDX 內容分離測試部署
+
+## 變更摘要
+- 新增 MDX 支援，實現內容與程式碼分離
+- 測試遷移 1 篇文章（kaohsiung-mahjong-stay）
+- 保持 URL 結構和 SEO metadata 完整性
+- 與現有 scheduled-articles 系統共存
+
+## 技術變更
+- 安裝 next-mdx-remote, gray-matter, reading-time
+- 新增 src/content/articles/ 目錄
+- 新增 src/lib/articles.ts 工具函數
+- 修改 src/app/blog/[slug]/page.tsx 支援雙模式
+
+## SEO 安全性
+- ✅ URL 不變
+- ✅ Canonical URL 保持
+- ✅ Meta tags 完整
+- ✅ JSON-LD 保留
+
+## 測試重點
+1. 訪問 /blog/kaohsiung-mahjong-stay 確認正常顯示
+2. 檢查頁面原始碼確認 SEO metadata
+3. 用 Google Search Console 檢查索引狀態
+4. 觀察 3-7 天確認無排名影響
+
+## 回滾方案
+如有問題可立即回滾到上一個 commit

@@ -1,0 +1,33 @@
+name: 每週內容更新
+
+on:
+  schedule:
+    # 每週一凌晨 3:17 執行
+    - cron: '17 3 * * 1'
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  weekly-refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 程式碼
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 設定 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安裝依賴
+        run: npm ci
+
+      - name: 執行每週更新
+        run: npx tsx scripts/weekly-refresh.ts
+
+      - name: 設定 Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
