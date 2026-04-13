@@ -1,0 +1,63 @@
+/* MDX Content Styles */
+.mdx-content h2 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: #3D3830;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.mdx-content h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: #3D3830;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.mdx-content p {
+  margin-bottom: 16px;
+}
+
+.mdx-content ul,
+.mdx-content ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.mdx-content li {
+  margin-bottom: 8px;
+}
+
+.mdx-content a {
+  color: var(--pri);
+  text-decoration: underline;
+}
+
+.mdx-content a:hover {
+  opacity: 0.8;
+}
+
+.mdx-content code {
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.mdx-content pre {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.mdx-content blockquote {
+  border-left: 3px solid var(--pri);
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #666;
+  font-style: italic;
+}

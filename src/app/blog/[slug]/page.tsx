@@ -1,4 +1,5 @@
 import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articles";
+import { getArticleBySlug, getAllArticleSlugs } from "@/lib/articles";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
@@ -9,15 +10,35 @@ import { notFound } from "next/navigation";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Generate static pages only for published articles
+// Generate static pages for both scheduled articles and MDX articles
 export async function generateStaticParams() {
-    return getPublishedArticles(scheduledArticles).map(a => ({ slug: a.slug }));
+    const scheduledSlugs = getPublishedArticles(scheduledArticles).map(a => ({ slug: a.slug }));
+    const mdxSlugs = getAllArticleSlugs().map(slug => ({ slug }));
+    return [...scheduledSlugs, ...mdxSlugs];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const resolvedParams = await params;
     const slug = resolvedParams?.slug;
     if (!slug) return {};
+
+    // Try MDX first
+    const mdxArticle = await getArticleBySlug(slug);
+    if (mdxArticle) {
+        return {
+            title: mdxArticle.title,
+            description: mdxArticle.description,
+            alternates: { canonical: mdxArticle.canonical },
+            openGraph: {
+                title: mdxArticle.title,
+                description: mdxArticle.description,
+                url: mdxArticle.canonical,
+                type: "article",
+            },
+        };
+    }
+
+    // Fallback to scheduled articles
     const article = scheduledArticles.find(a => a?.slug === slug);
     if (!article) return {};
     return {
@@ -37,6 +58,83 @@ export default async function ScheduledArticlePage({ params }: Props) {
     const resolvedParams = await params;
     const slug = resolvedParams?.slug;
     if (!slug) notFound();
+
+    // Try MDX first
+    const mdxArticle = await getArticleBySlug(slug);
+    if (mdxArticle) {
+        return (
+            <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+                <JsonLd data={[
+                    {
+                        "@context": "https://schema.org", "@type": "Article",
+                        headline: mdxArticle.title,
+                        description: mdxArticle.description,
+                        author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
+                        publisher: { "@type": "Organization", name: "Hello Stay", url: "https://www.hello-stay.com" },
+                        datePublished: mdxArticle.date,
+                        mainEntityOfPage: mdxArticle.canonical,
+                    },
+                ]} />
+                <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
+                    <Breadcrumb items={[{ name: "旅宿攻略", href: "/blog" }, { name: mdxArticle.title.split("｜")[0] || mdxArticle.title, href: `/blog/${slug}` }]} />
+
+                    <Reveal>
+                        <div style={{ marginBottom: "40px" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>{mdxArticle.date}</div>
+                            <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>
+                                {mdxArticle.title}
+                            </h1>
+                            <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
+                            <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>{mdxArticle.description}</p>
+                        </div>
+                    </Reveal>
+
+                    <Reveal>
+                        <article style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                            <div style={{ fontSize: "0.88rem", color: "#666", lineHeight: 2.2 }} className="mdx-content">
+                                {mdxArticle.content}
+                            </div>
+                        </article>
+                    </Reveal>
+
+                    <RelatedArticles current={slug} currentTags={mdxArticle.tags} />
+
+                    <Reveal>
+                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px" }}>Recommended Stay</div>
+                            <div style={{ display: "grid", gap: "10px" }}>
+                                <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
+                                    <span style={{ fontSize: "1.3rem" }}>🏠</span>
+                                    <div>
+                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>你好哇寓所</div>
+                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6-26人・中島廚房・麻將桌</div>
+                                    </div>
+                                </Link>
+                                <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
+                                    <span style={{ fontSize: "1.3rem" }}>🏡</span>
+                                    <div>
+                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>溝頂民宿</div>
+                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>10-12人・五層獨棟・溫馨家庭風</div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    </Reveal>
+
+                    <Reveal>
+                        <div style={{ textAlign: "center", marginTop: "20px" }}>
+                            <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
+                                <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link>
+                                <Link href="/blog" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>更多攻略</Link>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </div>
+        );
+    }
+
+    // Fallback to scheduled articles
     const article = scheduledArticles.find(a => a?.slug === slug);
     if (!article) notFound();
 
