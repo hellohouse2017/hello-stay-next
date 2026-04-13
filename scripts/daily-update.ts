@@ -24,33 +24,27 @@ interface UpdateRule {
 
 // 更新規則
 const rules: UpdateRule[] = [
-  // 年份更新：2026 → 2027
+  // 年份更新：只更新明確的舊年份到當前年份
+  // 例如：2026 → 2027（如果現在是 2027 年）
   {
-    pattern: /2026/g,
-    replacement: () => currentYear.toString(),
-    description: '更新年份到當前年份'
-  },
-
-  // 標題中的年份
-  {
-    pattern: /title: "(.*)2026(.*?)"/g,
-    replacement: (match) => match.replace('2026', currentYear.toString()),
-    description: '更新標題中的年份'
-  },
-
-  // 跨年日期：12/31 → 更新到今年
-  {
-    pattern: /12\/31/g,
+    pattern: /\b2026\b/g,
     replacement: () => {
-      const thisYearNYE = new Date(currentYear, 11, 31)
-      const now = new Date()
-      // 如果今年跨年已過，更新到明年
-      if (now > thisYearNYE) {
-        return `12/31`
-      }
-      return `12/31`
+      // 只有當前年份 > 2026 時才更新
+      return currentYear > 2026 ? currentYear.toString() : '2026'
     },
-    description: '更新跨年日期'
+    description: '更新 2026 年份到當前年份'
+  },
+
+  // 標題中的年份（更保守的更新）
+  {
+    pattern: /(title: ".*?)2026(.*?")/g,
+    replacement: (match, before, after) => {
+      if (currentYear > 2026) {
+        return `${before}${currentYear}${after}`
+      }
+      return match
+    },
+    description: '更新標題中的 2026 年份'
   }
 ]
 

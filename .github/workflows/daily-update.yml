@@ -6,6 +6,9 @@ on:
     - cron: '57 2 * * *'
   workflow_dispatch: # 允許手動觸發
 
+permissions:
+  contents: write  # 需要寫入權限才能 push
+
 jobs:
   daily-update:
     runs-on: ubuntu-latest
