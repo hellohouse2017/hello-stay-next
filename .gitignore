@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# automation artifacts (puppeteer / playwright / CDP scripts)
+scripts/.chrome-profile/
+scripts/generated-articles-output.txt
+scripts/screencast.mp4
+scripts/app-review-screenshots/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
