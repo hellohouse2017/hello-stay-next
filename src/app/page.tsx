@@ -57,7 +57,32 @@ export default function HomePage() {
               { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay（你好哇寓所＆溝頂民宿），位於高雄鹽埕區，Google評價4.9星。三館可容納6至48人，配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。" } },
               { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，多間獨立套房彈性配置。三館聯訂最大容納48人。" } },
               { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過LINE官方帳號或官網預訂，免收平台手續費。平日溝頂民宿$10,000起。" } },
+              { "@type": "Question", name: "Hello Stay 三間民宿各自可以住多少人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所 6-26 人，溝頂民宿 10-12 人，大智若愚最大 48 人。三館聯訂可容納近 80 人。" } },
+              { "@type": "Question", name: "距離駁二藝術特區多遠？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所與溝頂民宿步行約 10 分鐘到駁二藝術特區；大智若愚位於大港橋旁，緊鄰駁二大義倉庫群。" } },
+              { "@type": "Question", name: "有提供哪些娛樂設施？", acceptedAnswer: { "@type": "Answer", text: "豪宅級中島廚房（IH爐、冰箱、完整餐具）、麻將桌、桌遊、43吋 Netflix 聯網電視、製冰機、洗衣機。一樓開放式客廳可容納 20 人以上聚會。" } },
+              { "@type": "Question", name: "入住方式是什麼？", acceptedAnswer: { "@type": "Answer", text: "電子密碼鎖自助入住，密碼於入住當日透過 LINE 傳送。入住時間 16:00 以後，退房時間 11:00 以前。" } },
+              { "@type": "Question", name: "怎麼從高鐵到 Hello Stay？", acceptedAnswer: { "@type": "Answer", text: "高鐵左營站 → 捷運紅線至美麗島站 → 轉橘線至鹽埕埔站（O2）→ 4號出口步行 5 分鐘。全程約 30 分鐘。" } },
+              { "@type": "Question", name: "可以帶寵物嗎？", acceptedAnswer: { "@type": "Answer", text: "非寵物友善旅宿。經事前申請並書面同意者，酌收清潔費平日 $800、假日 $1,000。" } },
+              { "@type": "Question", name: "Hello Stay 是合法民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "是的。你好哇寓所（高雄市民宿 131-1 號）與溝頂民宿（高雄市民宿 163 號）皆為合法登記民宿，並依法投保富邦產險公共意外責任險。" } },
+              { "@type": "Question", name: "包棟民宿適合辦婚禮迎娶嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合。寬敞一樓客廳適合闖關遊戲，絕佳自然採光適合婚攝，多房型供伴娘團入住。曾服務多組迎娶與婚禮前夜派對。" } },
             ],
+          },
+          {
+            "@context": "https://schema.org", "@type": "WebSite",
+            "@id": "https://www.hello-stay.com/#website",
+            url: "https://www.hello-stay.com",
+            name: "Hello Stay 高雄包棟民宿",
+            inLanguage: ["zh-Hant", "en", "ja", "ko", "vi"],
+            publisher: { "@id": "https://www.hello-stay.com/#lodging" },
+            potentialAction: {
+              "@type": "SearchAction",
+              target: { "@type": "EntryPoint", urlTemplate: "https://www.hello-stay.com/book?date={search_term_string}" },
+              "query-input": "required name=search_term_string",
+            },
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: [".hero-cinema__content", "h1", "h2"],
+            },
           },
         ])
       }} />

@@ -7,7 +7,10 @@ export const metadata: Metadata = {
     openGraph: { type: "website", locale: "vi_VN", url: "https://www.hello-stay.com/vi", siteName: "Hello Stay Cao Hùng" },
     alternates: {
         canonical: "https://www.hello-stay.com/vi",
-        languages: Object.fromEntries(getAlternateLinks("").map(l => [l.hreflang, l.href])),
+        languages: {
+            ...Object.fromEntries(getAlternateLinks("").map(l => [l.hreflang, l.href])),
+            "x-default": "https://www.hello-stay.com",
+        },
     },
     robots: { index: true, follow: true },
 };

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
+import { getAlternateLinks } from "@/i18n/config";
 
 const notoSans = Noto_Sans_TC({
   subsets: ["latin"],
@@ -46,7 +47,13 @@ export const metadata: Metadata = {
     images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://www.hello-stay.com" },
+  alternates: {
+    canonical: "https://www.hello-stay.com",
+    languages: {
+      ...Object.fromEntries(getAlternateLinks("").map(l => [l.hreflang, l.href])),
+      "x-default": "https://www.hello-stay.com",
+    },
+  },
   other: {
     "geo.region": "TW-KHH",
     "geo.placename": "高雄市鹽埕區",
