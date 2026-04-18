@@ -71,6 +71,11 @@ export default function HelloHousePage() {
                             { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "W先生" }, reviewBody: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。" },
                         ],
                         tourBookingPage: "https://www.hello-stay.com/book",
+                        potentialAction: {
+                            "@type": "ReserveAction",
+                            target: { "@type": "EntryPoint", urlTemplate: "https://lin.ee/tUNnRLw", inLanguage: "zh-Hant", actionPlatform: ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"] },
+                            result: { "@type": "LodgingReservation", name: "你好哇寓所包棟預訂" },
+                        },
                         speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-d .content", ".sec-cream h2", ".sec-cream p", "h1", "table"] },
                     },
                     {
@@ -84,6 +89,13 @@ export default function HelloHousePage() {
                             { "@type": "Question", name: "附近有什麼好玩景點？", acceptedAnswer: { "@type": "Answer", text: "步行即達駁二藝術特區、大港橋、棧貳庫、哈瑪星鐵道園區。鄰近愛河、西子灣、壽山動物園、旗津渡輪。" } },
                             { "@type": "Question", name: "有廚房和娛樂設施嗎？", acceptedAnswer: { "@type": "Answer", text: "一樓大型中島廚房（含IH爐、冰箱、完整餐具），麻將、桌遊歡唱設備、43吋Netflix聯網電視、製冰機。" } },
                             { "@type": "Question", name: "隔音好嗎？睡覺會不會吵？", acceptedAnswer: { "@type": "Answer", text: "隔音非常好，住客評價「隔音意外的好，晚上睡覺很安靜」。但位於住宅區，23:00後請降低音量，為鄰居著想。" } },
+                        ],
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "BreadcrumbList",
+                        itemListElement: [
+                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                            { "@type": "ListItem", position: 2, name: "你好哇寓所", item: "https://www.hello-stay.com/hellohouse" },
                         ],
                     },
                 ])

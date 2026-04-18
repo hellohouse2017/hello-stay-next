@@ -48,6 +48,13 @@ export default function DazhiPage() {
                             { "@type": "Question", name: "高雄40人以上包棟住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦大智若愚，高雄最大容量包棟民宿，最多48人，位於鹽埕區大港橋旁，全新電梯大樓，步行到駁二藝術特區約12分鐘，預計2027年開幕。" } },
                         ],
                     },
+                    {
+                        "@context": "https://schema.org", "@type": "BreadcrumbList",
+                        itemListElement: [
+                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                            { "@type": "ListItem", position: 2, name: "大智若愚", item: "https://www.hello-stay.com/dazhi" },
+                        ],
+                    },
                 ])
             }} />
 

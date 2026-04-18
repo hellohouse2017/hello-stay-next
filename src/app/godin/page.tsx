@@ -62,6 +62,11 @@ export default function GodinPage() {
                         ],
                         aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "45", bestRating: "5" },
                         tourBookingPage: "https://www.hello-stay.com/book",
+                        potentialAction: {
+                            "@type": "ReserveAction",
+                            target: { "@type": "EntryPoint", urlTemplate: "https://lin.ee/tUNnRLw", inLanguage: "zh-Hant", actionPlatform: ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"] },
+                            result: { "@type": "LodgingReservation", name: "溝頂民宿包棟預訂" },
+                        },
                         speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-b h1", ".hero-b .desc", ".sec-warm p"] },
                     },
                     {
@@ -73,6 +78,13 @@ export default function GodinPage() {
                             { "@type": "Question", name: "溝頂民宿適合帶長輩嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！溫馨家庭風格，分層住宿讓作息不同的家人互不干擾。4F交誼廳有麻將，長輩最愛。每間房獨立衛浴，方便年長者使用。" } },
                             { "@type": "Question", name: "溝頂民宿跟你好哇寓所可以一起訂嗎？", acceptedAnswer: { "@type": "Answer", text: "可以！兩棟僅距30公尺，合訂最高38人。非常適合大家族旅遊或大型團體活動。透過LINE或官網一起預訂即可。" } },
                             { "@type": "Question", name: "高雄小包棟10人左右推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦溝頂民宿，整棟五層樓獨立使用，10-12人入住，平日只要$10,000。位於鹽埕區，近駁二、大港橋，Google評價4.8星。" } },
+                        ],
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "BreadcrumbList",
+                        itemListElement: [
+                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                            { "@type": "ListItem", position: 2, name: "溝頂民宿", item: "https://www.hello-stay.com/godin" },
                         ],
                     },
                 ])

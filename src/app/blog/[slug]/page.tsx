@@ -69,10 +69,27 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         "@context": "https://schema.org", "@type": "Article",
                         headline: mdxArticle.title,
                         description: mdxArticle.description,
+                        image: ["https://www.hello-stay.com/images/cover-bg.webp"],
                         author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
-                        publisher: { "@type": "Organization", name: "Hello Stay", url: "https://www.hello-stay.com" },
+                        publisher: {
+                            "@type": "Organization",
+                            name: "Hello Stay",
+                            url: "https://www.hello-stay.com",
+                            logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
+                        },
                         datePublished: mdxArticle.date,
+                        dateModified: mdxArticle.date,
+                        inLanguage: "zh-Hant",
+                        keywords: (mdxArticle.tags || []).join(", "),
                         mainEntityOfPage: mdxArticle.canonical,
+                    },
+                    {
+                        "@context": "https://schema.org", "@type": "BreadcrumbList",
+                        itemListElement: [
+                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                            { "@type": "ListItem", position: 2, name: "旅宿攻略", item: "https://www.hello-stay.com/blog" },
+                            { "@type": "ListItem", position: 3, name: mdxArticle.title.split("｜")[0] || mdxArticle.title, item: mdxArticle.canonical },
+                        ],
                     },
                 ]} />
                 <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
@@ -149,10 +166,27 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     "@context": "https://schema.org", "@type": "Article",
                     headline: article.title,
                     description: article.description,
+                    image: ["https://www.hello-stay.com/images/cover-bg.webp"],
                     author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
-                    publisher: { "@type": "Organization", name: "Hello Stay", url: "https://www.hello-stay.com" },
+                    publisher: {
+                        "@type": "Organization",
+                        name: "Hello Stay",
+                        url: "https://www.hello-stay.com",
+                        logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
+                    },
                     datePublished: article.publishDate,
+                    dateModified: article.publishDate,
+                    inLanguage: "zh-Hant",
+                    keywords: (article.tags || []).join(", "),
                     mainEntityOfPage: `https://www.hello-stay.com/blog/${slug}`,
+                },
+                {
+                    "@context": "https://schema.org", "@type": "BreadcrumbList",
+                    itemListElement: [
+                        { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                        { "@type": "ListItem", position: 2, name: "旅宿攻略", item: "https://www.hello-stay.com/blog" },
+                        { "@type": "ListItem", position: 3, name: article.title.split("：")[0] || article.title, item: `https://www.hello-stay.com/blog/${slug}` },
+                    ],
                 },
                 ...(article.faq ? [{
                     "@context": "https://schema.org", "@type": "FAQPage",

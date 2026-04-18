@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { getAlternateLinks } from "@/i18n/config";
 
 const notoSans = Noto_Sans_TC({
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <LineFloatingCTA lineUrl="https://lin.ee/atCiMQw" />
         <ChatWidgetLoader />
+        <AnalyticsTracker />
         <Script
           id="font-awesome"
           strategy="lazyOnload"
