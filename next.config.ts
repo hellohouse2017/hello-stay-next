@@ -27,6 +27,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ===== 多語系頁面 trailing slash → 正規 URL（修正 GSC 重新導向錯誤）=====
+      { source: "/en/", destination: "/en", permanent: true },
+      { source: "/ja/", destination: "/ja", permanent: true },
+      { source: "/ko/", destination: "/ko", permanent: true },
+      { source: "/vi/", destination: "/vi", permanent: true },
+      // 多語系子頁面 trailing slash（預防性）
+      { source: "/en/:path*/", destination: "/en/:path*", permanent: true },
+      { source: "/ja/:path*/", destination: "/ja/:path*", permanent: true },
+      { source: "/ko/:path*/", destination: "/ko/:path*", permanent: true },
+      { source: "/vi/:path*/", destination: "/vi/:path*", permanent: true },
+
       // ===== GSC 涵蓋範圍報告中的 404 URL =====
       { source: "/index", destination: "/", permanent: true },
       { source: "/index/", destination: "/", permanent: true },
