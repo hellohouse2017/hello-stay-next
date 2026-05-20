@@ -2,27 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import { parkingLots } from "@/data/parking-lots";
 
 export const metadata: Metadata = {
-    title: "交通指南與停車資訊 | 你好哇寓所 & 溝頂民宿",
-    description: "前往你好哇寓所及溝頂民宿的完整交通指南｜開車導航、周邊停車場位置與收費、高雄捷運鹽埕埔站步行路線。高鐵左營站轉乘方式、機場接駁建議，讓您輕鬆抵達鹽埕區包棟民宿。",
+    title: "高雄包棟民宿交通停車指南｜鹽埕埔站・附近停車場｜Hello Stay",
+    description: "前往 Hello Stay 高雄包棟民宿的交通與停車指南｜捷運鹽埕埔站步行 5 分鐘、鹽埕區周邊停車場、高鐵左營站轉乘與自駕導航一次看。適合先查路線再預訂包棟。",
     alternates: { canonical: "https://www.hello-stay.com/traffic" },
     openGraph: {
-        title: "交通指南與停車資訊 | Hello Stay",
-        description: "如何前往你好哇寓所、溝頂民宿，鄰近停車場與捷運資訊。",
+        title: "高雄包棟民宿交通停車指南 | Hello Stay",
+        description: "如何前往 Hello Stay，捷運鹽埕埔站、停車場與自駕導航資訊一次看。",
         url: "https://www.hello-stay.com/traffic",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 交通指南" }],
     },
 };
-
-const parkingLots = [
-    { name: "大公路路邊停車", addr: "大公路與七賢三路周邊", price: "20:00-08:00 免費", nav: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路七賢三路口" },
-    { name: "富野路停車場", addr: "富野路 78 號", price: "平日 $30/H・假日 $50/H", nav: "https://maps.google.com/?cid=1856535064860438519" },
-    { name: "富野路停車場 (二)", addr: "富野路 27 號", price: "平日 $40/H・假日 $50/H", nav: "https://maps.google.com/?cid=18149634423983651854" },
-    { name: "中正四路停車場", addr: "中正四路 274 號", price: "室內平面・免曬太陽", nav: "https://maps.google.com/?cid=2933515461281075928" },
-    { name: "富野路停車場 (三)", addr: "富野路 170 號", price: "06:00-22:00（非24H）", nav: "https://maps.google.com/?cid=14869428468779387843" },
-    { name: "大仁路停車場", addr: "大仁路 10 號", price: "室內多層停車場", nav: "https://maps.google.com/?cid=4456456276069017907" },
-];
 
 const properties = [
     {
@@ -61,7 +53,40 @@ export default function TrafficPage() {
                             交通指南與停車
                         </h1>
                         <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
+                        <p style={{ fontSize: "0.84rem", color: "#999", lineHeight: 1.9, maxWidth: "520px", margin: "0 auto" }}>
+                            想找交通方便的高雄包棟民宿？Hello Stay 位於鹽埕區，捷運鹽埕埔站步行約 5 分鐘，走路也能到鹽埕美食、駁二與大港橋。
+                        </p>
                     </div>
+                </Reveal>
+
+                <Reveal>
+                    <section style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
+                            高雄包棟民宿推薦
+                        </div>
+                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
+                            如果你還在挑哪一間適合，可以先看{" "}
+                            <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                高雄包棟民宿推薦 Hello Stay
+                            </Link>
+                            {" "}首頁，或從{" "}
+                            <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                包棟方案整理
+                            </Link>
+                            {" "}依人數與需求選館別，再回來確認交通與停車。
+                        </p>
+                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                            <Link href="/" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                                回首頁看三館
+                            </Link>
+                            <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                                包棟方案整理
+                            </Link>
+                            <Link href="/book" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "#161618", color: "#fff", textDecoration: "none" }}>
+                                查詢空房
+                            </Link>
+                        </div>
+                    </section>
                 </Reveal>
 
                 {/* Property locations */}
@@ -141,7 +166,7 @@ export default function TrafficPage() {
 
                 {/* 停車場 */}
                 <Reveal>
-                    <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "40px" }}>
+                    <section id="parking" style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "40px" }}>
                         <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600 }}>
                             Parking
                         </div>
@@ -170,13 +195,20 @@ export default function TrafficPage() {
 
                 {/* CTA */}
                 <Reveal>
-                    <div style={{ textAlign: "center" }}>
+                    <div style={{ textAlign: "center", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
                         <Link href="/book" style={{
                             padding: "14px 32px", borderRadius: "10px", background: "#161618",
                             color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem",
-                            letterSpacing: "0.08em",
+                            letterSpacing: "0.08em", textDecoration: "none",
                         }}>
                             查詢空房
+                        </Link>
+                        <Link href="/compare" style={{
+                            padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0",
+                            color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem",
+                            letterSpacing: "0.08em", textDecoration: "none",
+                        }}>
+                            比較三館差異
                         </Link>
                     </div>
                 </Reveal>

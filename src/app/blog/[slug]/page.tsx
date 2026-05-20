@@ -1,20 +1,26 @@
 import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articles";
-import { getArticleBySlug, getAllArticleSlugs } from "@/lib/articles";
+import { getArticleBySlug, getAllArticleSlugs, hasArticleSourceFile } from "@/lib/articles";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
-import { notFound } from "next/navigation";
+import PropertyLinksBlock from "@/components/PropertyLinksBlock";
+import HomepageIntentBlock from "@/components/HomepageIntentBlock";
+import { notFound, permanentRedirect } from "next/navigation";
+import { getPrunedBlogRedirect, isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
 
 type Props = { params: Promise<{ slug: string }> };
 
 // Generate static pages for both scheduled articles and MDX articles
 export async function generateStaticParams() {
-    const scheduledSlugs = getPublishedArticles(scheduledArticles).map(a => ({ slug: a.slug }));
-    const mdxSlugs = getAllArticleSlugs().map(slug => ({ slug }));
-    return [...scheduledSlugs, ...mdxSlugs];
+    const scheduledSlugs = getPublishedArticles(scheduledArticles)
+        .filter(article => !isPrunedBlogSlug(article.slug))
+        .map(a => a.slug);
+    const mdxSlugs = getAllArticleSlugs()
+        .filter(slug => !isPrunedBlogSlug(slug))
+    return Array.from(new Set([...scheduledSlugs, ...mdxSlugs])).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -23,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!slug) return {};
 
     // Try MDX first
-    const mdxArticle = await getArticleBySlug(slug);
+    const mdxArticle = hasArticleSourceFile(slug) ? await getArticleBySlug(slug) : null;
     if (mdxArticle) {
         return {
             title: mdxArticle.title,
@@ -58,9 +64,12 @@ export default async function ScheduledArticlePage({ params }: Props) {
     const resolvedParams = await params;
     const slug = resolvedParams?.slug;
     if (!slug) notFound();
+    if (isPrunedBlogSlug(slug)) {
+        permanentRedirect(getPrunedBlogRedirect(slug));
+    }
 
     // Try MDX first
-    const mdxArticle = await getArticleBySlug(slug);
+    const mdxArticle = hasArticleSourceFile(slug) ? await getArticleBySlug(slug) : null;
     if (mdxArticle) {
         return (
             <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
@@ -78,7 +87,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
                         },
                         datePublished: mdxArticle.date,
-                        dateModified: mdxArticle.date,
+                        dateModified: mdxArticle.dateModified || mdxArticle.date,
                         inLanguage: "zh-Hant",
                         keywords: (mdxArticle.tags || []).join(", "),
                         mainEntityOfPage: mdxArticle.canonical,
@@ -114,29 +123,27 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         </article>
                     </Reveal>
 
-                    <RelatedArticles current={slug} currentTags={mdxArticle.tags} />
-
                     <Reveal>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px" }}>Recommended Stay</div>
-                            <div style={{ display: "grid", gap: "10px" }}>
-                                <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
-                                    <span style={{ fontSize: "1.3rem" }}>🏠</span>
-                                    <div>
-                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>你好哇寓所</div>
-                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6-26人・中島廚房・麻將桌</div>
-                                    </div>
-                                </Link>
-                                <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
-                                    <span style={{ fontSize: "1.3rem" }}>🏡</span>
-                                    <div>
-                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>溝頂民宿</div>
-                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>10-12人・五層獨棟・溫馨家庭風</div>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
+                        <HomepageIntentBlock
+                            eyebrow="Article To Home"
+                            title="如果這篇剛好解到你的問題，下一步就是回首頁比館別"
+                            actions={[
+                                { href: "/", label: "高雄包棟民宿推薦首頁" },
+                                { href: "/compare", label: "高雄包棟推薦比較" },
+                                { href: "/book", label: "查詢空房與報價", solid: true },
+                            ]}
+                        >
+                            很多人是先從攻略文章找到我們，再回到{" "}
+                            <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                高雄包棟民宿推薦 Hello Stay
+                            </Link>
+                            {" "}看三館差異。如果你已經知道自己的重點是人數、廚房、麻將或鹽埕地點，現在就可以直接進首頁或比較頁。
+                        </HomepageIntentBlock>
                     </Reveal>
+
+                    <PropertyLinksBlock />
+
+                    <RelatedArticles current={slug} currentTags={mdxArticle.tags} />
 
                     <Reveal>
                         <div style={{ textAlign: "center", marginTop: "20px" }}>
@@ -175,7 +182,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
                     },
                     datePublished: article.publishDate,
-                    dateModified: article.publishDate,
+                    dateModified: article.dateModified || article.publishDate,
                     inLanguage: "zh-Hant",
                     keywords: (article.tags || []).join(", "),
                     mainEntityOfPage: `https://www.hello-stay.com/blog/${slug}`,
@@ -237,29 +244,27 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     </Reveal>
                 )}
 
-                <RelatedArticles current={slug} currentTags={article.tags} />
-
                 <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px" }}>Recommended Stay</div>
-                        <div style={{ display: "grid", gap: "10px" }}>
-                            <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
-                                <span style={{ fontSize: "1.3rem" }}>🏠</span>
-                                <div>
-                                    <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>你好哇寓所</div>
-                                    <div style={{ fontSize: "0.72rem", color: "#999" }}>6-26人・中島廚房・麻將桌</div>
-                                </div>
-                            </Link>
-                            <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px", borderRadius: "10px", background: "var(--bg)" }}>
-                                <span style={{ fontSize: "1.3rem" }}>🏡</span>
-                                <div>
-                                    <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>溝頂民宿</div>
-                                    <div style={{ fontSize: "0.72rem", color: "#999" }}>10-12人・五層獨棟・溫馨家庭風</div>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
+                    <HomepageIntentBlock
+                        eyebrow="Article To Home"
+                        title="看完攻略後，直接回首頁挑館別最快"
+                        actions={[
+                            { href: "/", label: "高雄包棟推薦首頁" },
+                            { href: "/kaohsiung-whole-house", label: "依需求看包棟方案" },
+                            { href: "/book", label: "查詢空房與報價", solid: true },
+                        ]}
+                    >
+                        如果你是從這篇內容頁一路看下來，通常已經知道自己在找什麼了。這時候直接回{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟民宿推薦
+                        </Link>
+                        {" "}首頁，比一直在文章裡跳來跳去更快進入訂房判斷。
+                    </HomepageIntentBlock>
                 </Reveal>
+
+                <PropertyLinksBlock />
+
+                <RelatedArticles current={slug} currentTags={article.tags} />
 
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "20px" }}>

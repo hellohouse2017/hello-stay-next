@@ -4,12 +4,12 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-    title: "大智若愚｜高雄大型包棟48人・電梯民宿2027新開｜大港橋旁鹽埕",
-    description: "高雄最大包棟民宿！最多48人入住，全新電梯大樓。一層三房一廳，獨立樓層。緊鄰大港橋＆駁二，適合企業團建、大家族旅遊、球隊移訓→LINE查空房",
+    title: "大智若愚｜高雄大型包棟48人・電梯民宿2027即將開幕｜大港橋旁鹽埕｜Hello Stay",
+    description: "高雄最大電梯包棟民宿「大智若愚」！預計 2027 年中正式開幕。座落鹽埕大港橋旁、緊鄰駁二大義倉庫群。全新電梯大樓，提供一層三房一廳的獨立樓層設計，最大可容納 48 人入住。非常適合企業員工旅遊、大型家族聚會或運動球隊移地訓練！",
     alternates: { canonical: "https://www.hello-stay.com/dazhi" },
     openGraph: {
-        title: "大智若愚｜高雄大型包棟48人・電梯民宿2027新開｜大港橋旁鹽埕",
-        description: "高雄最大包棟民宿！最多48人，全新電梯大樓，緊鄰大港橋＆駁二→LINE查空房",
+        title: "大智若愚｜高雄大型包棟48人・電梯民宿2027即將開幕｜大港橋旁鹽埕｜Hello Stay",
+        description: "高雄最大包棟民宿「大智若愚」！最多 48 人入住，全新電梯大樓，緊鄰大港橋與駁二藝術特區。獨立樓層設計，適合企業團建、家族旅遊、球隊住宿，歡迎 LINE 搶先登記早鳥諮詢。",
         url: "https://www.hello-stay.com/dazhi",
         images: [{ url: "https://www.hello-stay.com/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
     },
@@ -68,7 +68,7 @@ export default function DazhiPage() {
                     }}>
                         <Image
                             src="/images/dazhi/building-render.webp"
-                            alt="大智若愚 外觀設計圖"
+                            alt="大智若愚民宿大樓外觀 3D 渲染設計圖，全新電梯大樓包棟包層民宿，大港橋與駁二大義倉庫群旁，預計 2027 年中開幕"
                             width={720} height={720}
                             className="img-cover"
                             style={{ width: "100%", height: "auto" }}
@@ -86,7 +86,7 @@ export default function DazhiPage() {
                             letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--muted)",
                             marginBottom: "40px", fontWeight: 600,
                         }}>
-                            預計 2027 年中後開幕
+                            預計 2027 年中開幕
                         </div>
                     </Reveal>
 

@@ -10,18 +10,18 @@ import { hellohouse } from "@/data/properties";
 
 export const metadata: Metadata = {
     title: "你好哇寓所｜高雄包棟民宿6-26人・中島廚房/麻將/投影｜平日$3,500起",
-    description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.9星。綜藝玩很大拍攝場地→LINE查空房",
+    description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.5星、75則評論。綜藝玩很大拍攝場地→LINE查空房",
     alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
     openGraph: {
         title: "你好哇寓所｜高雄包棟民宿6-26人・中島廚房/麻將/投影｜平日$3,500起",
-        description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.9星→LINE查空房",
+        description: "高雄鹽埕6-26人包棟首選！獨棟四層空間，附豪華中島廚房、手動麻將桌、桌遊、120吋投影。步行5分鐘到駁二。每人$909起，Google 4.5星、75則評論→LINE查空房",
         url: "https://www.hello-stay.com/hellohouse",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "你好哇寓所 高雄包棟民宿" }],
     },
 };
 
 const galleryImages = [
-    { src: "/images/hellohouse/photo1.webp", alt: "你好哇寓所 客廳空間" },
+    { src: "/images/hellohouse/photo1.webp", alt: "你好哇寓所 一樓中島廚房交誼空間" },
     { src: "/images/hellohouse/photo2.webp", alt: "你好哇寓所 廚房設備" },
     { src: "/images/hellohouse/photo3.webp", alt: "你好哇寓所 房間" },
     { src: "/images/hellohouse/1000.webp", alt: "你好哇寓所 空間細節" },
@@ -32,8 +32,8 @@ const galleryImages = [
 const reviews = [
     { text: "一樓的中島廚房真的太棒了！鍋碗瓢盆都很齊全，大家聚在一起煮火鍋喝酒，氣氛滿分。", author: "T 先生" },
     { text: "離駁二走路只要10分鐘。隔音意外的好，晚上睡覺很安靜，床墊支撐性也很夠。", author: "L 小姐" },
-    { text: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。", author: "W 先生" },
-    { text: "客廳有麻將太加分！還有電視可以看 Netflix。每間都有獨立衛浴。", author: "C 小姐" },
+    { text: "老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心.電子鎖密碼入住超方便。", author: "W 先生" },
+    { text: "一樓空間有手動麻將太加分！還有電視可以看 Netflix。每間都有獨立衛浴。", author: "C 小姐" },
 ];
 
 export default function HelloHousePage() {
@@ -64,7 +64,7 @@ export default function HelloHousePage() {
                             { "@type": "LocationFeatureSpecification", name: "洗衣機", value: true },
                             { "@type": "LocationFeatureSpecification", name: "電子密碼鎖", value: true },
                         ],
-                        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "87", bestRating: "5" },
+                        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.5", reviewCount: "75", bestRating: "5" },
                         review: [
                             { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "T先生" }, reviewBody: "一樓的中島廚房真的太棒了！鍋碗瓢盆都很齊全，大家聚在一起煮火鍋喝酒，氣氛滿分。" },
                             { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "L小姐" }, reviewBody: "離駁二走路只要10分鐘。隔音意外的好，晚上睡覺很安靜，床墊支撐性也很夠。" },
@@ -85,6 +85,7 @@ export default function HelloHousePage() {
                             { "@type": "Question", name: "你好哇寓所有被電視節目拍過嗎？", acceptedAnswer: { "@type": "Answer", text: "是的！曾上過「我們回家吧2」（曾寶儀主持）、「綜藝玩很大」（吳宗憲、KID）、「我的明星村長」（卜學亮、郭泓志）等多個知名節目，是劇組與明星的一致首選民宿。" } },
                             { "@type": "Question", name: "廚房設備有哪些？", acceptedAnswer: { "@type": "Answer", text: "一樓豪華中島廚房配備：IH爐、微波爐、冰箱、完整鍋碗瓢盆、餐具、調味料架。可同時4-6人下廚。適合煮火鍋、包水餃、做早餐。" } },
                             { "@type": "Question", name: "包棟可以容納多少人？", acceptedAnswer: { "@type": "Answer", text: "彈性方案6至26人。兩棟合訂（你好哇＋溝頂）最高可接待38人，三館聯訂最大48人。" } },
+                            { "@type": "Question", name: "高雄20人包棟住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦你好哇寓所。20人入住最常見，房型彈性高，一樓有中島廚房與麻將桌，平日約18,000至22,000元，平均每人約900至1,100元，適合公司 outing、大家庭與好友聚會。" } },
                             { "@type": "Question", name: "哪裡訂房最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方訂房最優惠！透過 LINE 官方帳號或官網 www.hello-stay.com 預訂，免收平台手續費。" } },
                             { "@type": "Question", name: "附近有什麼好玩景點？", acceptedAnswer: { "@type": "Answer", text: "步行即達駁二藝術特區、大港橋、棧貳庫、哈瑪星鐵道園區。鄰近愛河、西子灣、壽山動物園、旗津渡輪。" } },
                             { "@type": "Question", name: "有廚房和娛樂設施嗎？", acceptedAnswer: { "@type": "Answer", text: "一樓大型中島廚房（含IH爐、冰箱、完整餐具），麻將、桌遊歡唱設備、43吋Netflix聯網電視、製冰機。" } },
@@ -106,7 +107,7 @@ export default function HelloHousePage() {
                 <div className="hero-cinema__media">
                     <Image
                       src="/images/hellohouse/cover.webp"
-                      alt="你好哇寓所"
+                      alt="Hello Stay 你好哇寓所獨棟老宅民宿外觀，專注於 6 至 26 人的高雄獨立包棟住宿空間"
                       fill
                       priority
                       sizes="100vw"
@@ -137,7 +138,7 @@ export default function HelloHousePage() {
                     <Reveal>
                         <div className="grid-asym" style={{ marginBottom: "0" }}>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/hellohouse/photo1.webp" alt="你好哇寓所 大廳" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/hellohouse/photo1.webp" alt="Hello Stay 你好哇寓所一樓挑高公共空間，備有豪華中島廚房、高腳椅吧台、手動麻將桌與聯網電視，提供多人歡聚派對娛樂" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                             <div>
                                 <div className="scene-eyebrow">About</div>
@@ -146,7 +147,7 @@ export default function HelloHousePage() {
                                 <p style={{ fontSize: "0.92rem", color: "var(--muted)", lineHeight: 2.2 }}>
                                     座落於高雄鹽埕區核心，「你好哇・寓所」是您探索港都的最佳基地。
                                     我們專注於 6 至 26 人的獨立包棟空間。
-                                    在這裡沒有外人的打擾，只有您與親朋好友在寬敞的中島廚房圍爐、在客廳歡笑的珍貴時刻。
+                                    在這裡沒有外人的打擾，只有您與親朋好友在寬敞的豪華中島廚房圍爐、在吧台交誼空間歡聚暢聊的珍貴時刻。
                                 </p>
                             </div>
                         </div>
@@ -303,7 +304,7 @@ export default function HelloHousePage() {
                             <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
                                 <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
                                     <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
-                                    <span>適合 <strong>6–26 人</strong>包棟，可兩棟合訂最高 38 人</span>
+                                    <span>適合 <strong>6–26 人</strong>包棟，20 人入住常見方案約每人 $900–$1,100</span>
                                 </div>
                                 <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
                                     <span style={{ color: "var(--pri)", minWidth: "20px" }}>🍳</span>
@@ -360,6 +361,7 @@ export default function HelloHousePage() {
                         { q: "哪裡訂房最便宜？", a: "官方訂房最優惠！透過 LINE 或網站預訂，免收平台手續費，比 Booking.com、AsiaYo 便宜 15–20%。" },
                         { q: "附近有什麼好玩景點？", a: "步行即達駁二藝術特區（10分鐘）、大港橋（8分鐘）、棧貳庫（15分鐘）。鄰近愛河、西子灣、壽山動物園，捷運鹽埕埔站步行 5 分鐘。" },
                         { q: "包棟可以容納多少人？", a: "彈性方案 6 至 26 人。若需要更多人，可與溝頂民宿兩棟合訂，最高接待 38 人。超過 38 人可詢問大智若愚方案（20–48人）。" },
+                        { q: "高雄20人包棟住哪裡？", a: "推薦你好哇寓所。20 人入住最常見，房型彈性高，一樓有中島廚房與麻將桌，平日約 $18,000–$22,000，平均每人約 $900–$1,100，適合公司 outing、大家庭與好友聚會。" },
                         { q: "有廚房或娛樂設施嗎？", a: "一樓大型中島廚房配備 IH 感應爐×2、大容量冰箱、微波爐、製冰機、完整鍋碗瓢盆。娛樂設施有手動麻將桌、桌遊、Netflix 電視。" },
                         { q: "你好哇寓所在哪裡？交通方便嗎？", a: "位於高雄市鹽埕區大公路70巷8號。捷運鹽埕埔站步行 5 分鐘，步行 10 分鐘到駁二藝術特區，開車到高雄火車站約 10 分鐘。附近有多處停車場。" },
                         { q: "可以在你好哇寓所開伙煮飯嗎？", a: "可以！一樓中島廚房開放住客使用，配備 IH 爐、微波爐、完整餐具。步行 3 分鐘有全聯超市，步行 1 分鐘有大溝頂傳統市場，採買食材非常方便。" },
@@ -387,8 +389,8 @@ export default function HelloHousePage() {
                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)", textAlign: "center", marginBottom: "24px", letterSpacing: "0.08em", fontWeight: 400 }}>相關旅宿攻略</h3>
                         <div style={{ display: "grid", gap: "10px" }}>
                             {[
-                                { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
-                                { href: "/blog/kaohsiung-bnb-recommendation", emoji: "⭐", title: "高雄包棟民宿推薦 Top 3", desc: "在地人精選" },
+                                { href: "/compare", emoji: "🏠", title: "三館完整比較", desc: "人數設備一次看懂" },
+                                { href: "/kaohsiung-whole-house", emoji: "⭐", title: "高雄包棟總覽", desc: "依人數與場景快速選房" },
                                 { href: "/blog/kaohsiung-kitchen-bnb", emoji: "🍳", title: "有廚房的民宿推薦", desc: "中島廚房・火鍋趴" },
                                 { href: "/blog/kaohsiung-family-reunion", emoji: "👨‍👩‍👧‍👦", title: "家族旅遊包棟推薦", desc: "三代同堂・長輩友善" },
                             ].map(a => (

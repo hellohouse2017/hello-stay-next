@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
     const content = `# Hello Stay — Group Accommodation in Kaohsiung, Taiwan
 
-> A premium group-stay brand in Yancheng District, Kaohsiung. Three properties hosting 6 to 48 guests. Serving 5,000+ groups since 2017. Google rating 4.9 stars.
+> A premium group-stay brand in Yancheng District, Kaohsiung. Three properties hosting 6 to 48 guests. Serving 5,000+ groups since 2017. Main Google listing (Hello House) rating: 4.5 stars.
 
 ## Basic Info
 - Website: https://www.hello-stay.com
@@ -35,7 +35,7 @@ export async function GET() {
 - Price: From TWD 10,000/night (weekday)
 - Page: https://www.hello-stay.com/godin
 
-### Dazhi (大智若愚) — Opening 2026
+### Dazhi (大智若愚) — Planned opening in mid-2027
 - Capacity: Up to 48 guests
 - Location: Next to Dagangqiao Bridge, Pier-2 Art District
 - Highlights: Brand-new elevator building, 3 rooms + living room per floor
@@ -84,7 +84,7 @@ A: Godin House from TWD 10,000/night (10 guests). Hello House TWD 12,000-28,000 
 ## Safety & Legality
 - Legal B&B Registration: Hello House (No. 131-1), Godin House (No. 163)
 - Public Liability Insurance: Fubon Insurance
-- Google Rating: 4.9 stars (200+ reviews)
+- Google Rating: Hello House listing, 4.5 stars (75 reviews)
 - Track Record: 5,000+ groups hosted since 2017
 
 ## Sitemap

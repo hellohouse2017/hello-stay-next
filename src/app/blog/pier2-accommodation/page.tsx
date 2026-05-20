@@ -56,14 +56,14 @@ const sections = [
 📍 大公路70巷8號（步行駁二 10 分鐘）
 👥 6-26 人包棟
 🏷 有廚房、麻將、桌遊桌
-📊 Google 4.9 星 / 87 則評價
+📊 Google 4.5 星 / 75 則評論
 💰 平日 $12,000 起
 
 溝頂民宿
 📍 大公路70巷6-2號（步行駁二 10 分鐘）
 👥 10-12 人獨棟
 🏷 五層樓、家庭風格
-📊 Google 4.8 星 / 45 則評價
+✨ 家庭旅遊、小團體包棟首選
 💰 平日 $10,000 起
 
 兩棟合訂可接待 38 人，非常適合大團體。` },
@@ -94,7 +94,7 @@ export default function Pier2Page() {
                 { "@context": "https://schema.org", "@type": "Article", headline: "駁二住宿推薦｜步行10分鐘到駁二的包棟民宿", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/pier2-accommodation", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#location", "#stay"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "駁二附近有推薦的住宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，步行10分鐘到駁二。如你好哇寓所，6-26人包棟，Google4.9星。鹽埕區本身就是美食區，比住駁二旁更方便、選擇更多。" } },
+                        { "@type": "Question", name: "駁二附近有推薦的住宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，步行10分鐘到駁二。如你好哇寓所，6-26人包棟，Google 4.5星。鹽埕區本身就是美食區，比住駁二旁更方便、選擇更多。" } },
                         { "@type": "Question", name: "駁二藝術特區要門票嗎？", acceptedAnswer: { "@type": "Answer", text: "駁二倉庫群免費入場。大港橋免費，每日整點旋轉。部分展覽和VR體驗另計。建議平日造訪人少，傍晚16:00-18:00光線最美拍照最好。" } },
                     ]
                 },

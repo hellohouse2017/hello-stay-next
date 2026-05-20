@@ -3,7 +3,7 @@ import { getAlternateLinks } from "@/i18n/config";
 
 export const metadata: Metadata = {
     title: { default: "Kaohsiung Private Villa Rental | Hello Stay | 6-48 Guests", template: "%s | Hello Stay Kaohsiung" },
-    description: "Hello Stay offers three premium private villas in Kaohsiung's Yancheng district. Island kitchen, mahjong, near Pier-2 Art Center. Google 4.9 stars.",
+    description: "Hello Stay offers three premium private villas in Kaohsiung's Yancheng district. Island kitchen, mahjong, near Pier-2 Art Center, serving group stays since 2017.",
     openGraph: { type: "website", locale: "en_US", url: "https://www.hello-stay.com/en", siteName: "Hello Stay Kaohsiung" },
     alternates: {
         canonical: "https://www.hello-stay.com/en",

@@ -126,6 +126,7 @@
     "info_packages": "Gói lưu trú",
     "info_blog": "Cẩm nang du lịch",
     "info_reviews": "Đánh giá của khách",
+    "info_about": "Câu chuyện thương hiệu",
     "contact": "Contact",
     "hellohouse_name": "Hello House",
     "hellohouse_addr": "📍 Số 8, Hẻm 70 Đại Công Lộ, Diêm Trình, Cao Hùng",
@@ -135,5 +136,26 @@
     "godin_reg": "🏛️ Giấy phép lưu trú hợp pháp: Cao Hùng số 163",
     "insurance": "🛡️ Toàn bộ cơ sở được bảo hiểm trách nhiệm công cộng Fubon, yên tâm lưu trú"
   },
-  "lang_switcher": "🌐 Ngôn ngữ"
+  "lang_switcher": "🌐 Ngôn ngữ",
+  "guide": {
+    "meta_title": "【Du Lịch Cao Hùng】Cẩm Nang Khám Phá Pier-2 & Trải Nghiệm Biệt Thự Riêng | Hello Stay",
+    "meta_desc": "Khám phá quận Diêm Trình, Cao Hùng! Chỉ 20 phút đi tàu điện từ ga Zuoying, đi bộ 10 phút đến Pier-2. Thuê biệt thự nguyên căn Hello Stay với bếp đảo và mạt chược.",
+    "hero_title": "Cẩm Nang Du Lịch Nhóm & Biệt Thự Riêng Cao Hùng",
+    "hero_sub": "Nghệ thuật Pier-2, ẩm thực Diêm Trình, và trải nghiệm thuê biệt thự trọn gói",
+    "section1_title": "Riêng Tư Tuyệt Đối, Gắn Kết Yêu Thương",
+    "section1_desc": "Hello Stay mang đến không gian thuê trọn căn 100% riêng tư, hoàn toàn không có người lạ. Tự do nấu nướng tại gian bếp đảo rộng rãi, cùng nhau quây quản bên bàn mạt chược truyền thống, hay xem những bộ phim yêu thích trên TV thông minh màn hình lớn. Đây là lựa chọn hoàn hảo cho các chuyến du lịch gia đình, hội nhóm bạn bè hoặc kỳ nghỉ doanh nghiệp.",
+    "section2_title": "Di Chuyển Thuận Tiện & Dễ Dàng",
+    "section2_desc": "Từ Sân bay Quốc tế Cao Hùng (KHH) hoặc Ga Tàu cao tốc Zuoying, bạn chỉ cần đi MRT thẳng đến ga Diêm Trình Phố (Yanchengpu Station - O2), ra cửa số 4 đi bộ 5 phút là tới nơi. Không cần lo lắng về việc thuê xe tự lái phức tạp. Đối với khách đi xe riêng, chúng tôi cũng cung cấp hướng dẫn đỗ xe chi tiết tại các bãi lân cận.",
+    "section3_title": "Nghệ Thuật Pier-2 & Ẩm Thực Đường Phố Trong Tầm Tay",
+    "section3_desc": "Chỉ mất 10 phút đi bộ để đến Khu nghệ thuật Pier-2 nổi tiếng, cầu xoay Đại Cảng và khu kho Đại Nghĩa. Xung quanh khu phố cổ Diêm Trình, bạn có thể thưởng thức cơm vịt truyền thống, trà sữa huyền thoại và đá bào trái cây. Đặc biệt, siêu thị lớn (PX Mart) và các cửa hàng tiện lợi đều ở rất gần, vô cùng tiện lợi để mua sắm thực phẩm cho các bữa tiệc tối.",
+    "section4_title": "Câu Hỏi Thường Gặp (FAQ)",
+    "faq_q1": "Chúng tôi có thể trao đổi bằng tiếng Anh hoặc ngôn ngữ khác không?",
+    "faq_a1": "Có! Chúng tôi hỗ trợ bằng tiếng Anh, tiếng Nhật, tiếng Hàn và tiếng Việt qua tài khoản LINE chính thức hoặc Email (hellohouse2017@gmail.com) để hỗ trợ bạn tốt nhất.",
+    "faq_q2": "Chúng tôi có thể gửi hành lý trước giờ check-in hoặc sau check-out không?",
+    "faq_a2": "Có, nếu thông báo trước, bạn có thể gửi hành lý tại khu vực chung ở tầng 1 để tự do dạo chơi mà không cần mang vác nặng.",
+    "faq_q3": "Điện áp và loại phích cắm ở Đài Loan là gì?",
+    "faq_a3": "Đài Loan sử dụng điện áp 110V và phích cắm 2 chân dẹt loại A (giống Nhật Bản và Mỹ). Vui lòng chuẩn bị đầu chuyển đổi nếu thiết bị của bạn dùng chân tròn.",
+    "cta_title": "Bắt Đầu Chuyến Đi Cao Hùng Của Bạn Ngay Hôm Nay",
+    "cta_sub": "Tạo nên những kỷ niệm đáng nhớ cùng những người thân yêu. Hello House và Godin House luôn sẵn sàng đón tiếp bạn."
+  }
 }

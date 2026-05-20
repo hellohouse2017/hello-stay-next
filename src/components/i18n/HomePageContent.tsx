@@ -55,7 +55,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     <Reveal>
                         <div className="grid-asym" style={{ marginBottom: "clamp(60px, 8vw, 100px)" }}>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/hellohouse/cover.jpg" alt="Hello House" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
+                                <Image src="/images/hellohouse/cover.jpg" alt={locale === "zh" ? "Hello Stay 你好哇寓所高雄包棟民宿 1F 公共交誼空間與豪華中島廚房全景，提供 6-26 人頂級獨立派對聚會空間" : "Hello House B&B Kaohsiung - 1F open common area and luxury island kitchen for 6-26 guests private group stay."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
                             </div>
                             <div>
                                 <div className="label-d" style={{ color: "var(--pri)" }}>01</div>
@@ -92,7 +92,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                                 </Link>
                             </div>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/godin/cover-1.jpg" alt="Godin House" width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/godin/cover-1.jpg" alt={locale === "zh" ? "溝頂民宿 Godin House 高雄包棟推薦，五層獨棟溫馨客房與 4F 專屬麻將沙發交誼廳，適合 10-12 人小團體" : "Godin House B&B Kaohsiung - Independent 5-story private villa B&B with cozy bedrooms and 4F lounge for 10-12 guests."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                         </div>
                     </Reveal>

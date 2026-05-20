@@ -29,8 +29,8 @@ export async function GET(req: NextRequest) {
     // Static pages
     const staticUrls = [
         "/", "/hellohouse", "/godin", "/dazhi", "/book",
-        "/explore", "/traffic", "/packages", "/reviews",
-        "/blog", "/capacity/10", "/capacity/20", "/capacity/30",
+        "/kaohsiung-whole-house", "/compare", "/explore", "/traffic", "/packages", "/reviews",
+        "/blog",
     ].map(p => `${HOST}${p}`);
 
     const allUrls = [...staticUrls, ...blogUrls];

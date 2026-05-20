@@ -9,12 +9,12 @@ import LineFloatingCTA from "@/components/LineFloatingCTA";
 import { godin } from "@/data/properties";
 
 export const metadata: Metadata = {
-    title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
-    description: "高雄鹽埕小團體包棟首選！6-12人五層獨棟，每人$800起。4間套房＋交誼廳麻將→LINE查空房",
+    title: "鹽埕民宿推薦｜溝頂民宿 10-12人五層獨棟包棟・近駁二｜Hello Stay",
+    description: "高雄鹽埕民宿推薦「溝頂民宿」！專為 10-12 人小團體打造的五層獨棟包棟空間。配備獨立套房衛浴、手動麻將、舒適交誼廳。步行 5 分鐘即達捷運鹽埕埔站、10 分鐘到駁二藝術特區。平日 NT$8,000 起，立即線上直訂免手續費！",
     alternates: { canonical: "https://www.hello-stay.com/godin" },
     openGraph: {
-        title: "溝頂民宿｜高雄小包棟10-12人・五層獨棟$10,000起｜近駁二鹽埕",
-        description: "高雄鹽埕小團體包棟首選！6-12人五層獨棟全棟使用，每人$800起。4間套房＋交誼廳麻將・步行到駁二。平日$8,000起，Google好評→LINE查空房",
+        title: "鹽埕民宿推薦｜溝頂民宿 10-12人五層獨棟包棟・近駁二｜Hello Stay",
+        description: "高雄鹽埕小團體包棟首選「溝頂民宿」，五層樓獨立空間包棟，附獨立套房衛浴、手動麻將與交誼廳，平日 NT$8,000 起，步行即達駁二與捷運站，直訂免手續費。",
         url: "https://www.hello-stay.com/godin",
         images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
     },
@@ -48,9 +48,13 @@ export default function GodinPage() {
                         alternateName: ["Godin House", "溝頂", "Hello Stay 二館"],
                         url: "https://www.hello-stay.com/godin",
                         telephone: "+886-932-828-922",
-                        description: "高雄鹽埕區精緻獨棟包棟民宿，五層樓完整空間，10-12人家庭出遊首選。溫馨家庭風格，平日$10,000起。步行10分鐘到駁二藝術特區。",
+                        description: "高雄鹽埕區精緻獨棟包棟民宿，五層樓完整空間，10-12人家庭出遊首選。溫馨家庭風格，步行10分鐘到駁二藝術特區。",
                         address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
                         geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 },
+                        sameAs: [
+                            "https://www.google.com/maps/search/?api=1&query=%E6%BA%9溝%E9%A0%82%E6%B0%91%E5%AE%BF",
+                            "https://lin.ee/atCiMQw"
+                        ],
                         priceRange: "$", checkinTime: "16:00", checkoutTime: "11:00",
                         numberOfRooms: 4, petsAllowed: false,
                         amenityFeature: [
@@ -60,7 +64,6 @@ export default function GodinPage() {
                             { "@type": "LocationFeatureSpecification", name: "冷氣", value: true },
                             { "@type": "LocationFeatureSpecification", name: "電子密碼鎖", value: true },
                         ],
-                        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "45", bestRating: "5" },
                         tourBookingPage: "https://www.hello-stay.com/book",
                         potentialAction: {
                             "@type": "ReserveAction",
@@ -73,11 +76,11 @@ export default function GodinPage() {
                         "@context": "https://schema.org", "@type": "FAQPage",
                         mainEntity: [
                             { "@type": "Question", name: "溝頂民宿可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿為五層樓獨棟，可容納10-12人入住。1F經典雙人房、2F陽光四人房、3F雅緻四人房、5F景觀雙人房，4F為交誼廳。" } },
-                            { "@type": "Question", name: "溝頂民宿平日多少錢？", acceptedAnswer: { "@type": "Answer", text: "平日$10,000起，含整棟五層樓獨立使用。是10人左右小團體包棟的超值首選，平均每人只要$1,000。" } },
+                            { "@type": "Question", name: "溝頂民宿平日多少錢？", acceptedAnswer: { "@type": "Answer", text: "實際會依日期與入住人數報價，小團體方案約從 $8,000 起。適合 10 人左右的小團體包棟，可直接透過 LINE 或官網查詢日期與報價。" } },
                             { "@type": "Question", name: "溝頂民宿在哪裡？", acceptedAnswer: { "@type": "Answer", text: "位於高雄鹽埕區大公路70巷6-2號，鄰近捷運鹽埕埔站O2（步行5分鐘），步行至駁二藝術特區約10分鐘。與你好哇寓所僅距30公尺。" } },
                             { "@type": "Question", name: "溝頂民宿適合帶長輩嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！溫馨家庭風格，分層住宿讓作息不同的家人互不干擾。4F交誼廳有麻將，長輩最愛。每間房獨立衛浴，方便年長者使用。" } },
                             { "@type": "Question", name: "溝頂民宿跟你好哇寓所可以一起訂嗎？", acceptedAnswer: { "@type": "Answer", text: "可以！兩棟僅距30公尺，合訂最高38人。非常適合大家族旅遊或大型團體活動。透過LINE或官網一起預訂即可。" } },
-                            { "@type": "Question", name: "高雄小包棟10人左右推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦溝頂民宿，整棟五層樓獨立使用，10-12人入住，平日只要$10,000。位於鹽埕區，近駁二、大港橋，Google評價4.8星。" } },
+                            { "@type": "Question", name: "高雄小包棟10人左右推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦溝頂民宿，整棟五層樓獨立使用，10-12人入住，位於鹽埕區，近駁二、大港橋，適合家庭與小團體包棟。" } },
                         ],
                     },
                     {
@@ -93,14 +96,14 @@ export default function GodinPage() {
             {/* ── Hero (Cinematic) ── */}
             <section className="hero-cinema">
                 <div className="hero-cinema__media">
-                    <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 五層獨棟空間" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+                    <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 Godin House 五層獨棟外觀實景，座落高雄鹽埕安靜巷弄，適合 10-12 人精緻家庭團體包棟" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
                     <div className="hero-cinema__overlay" />
                 </div>
                 <div className="hero-cinema__content">
                     <div className="hero-cinema__eyebrow">Godin House · A Quiet Retreat</div>
                     <h1 className="hero-cinema__title">溝頂民宿</h1>
                     <p className="hero-cinema__sub">
-                        10-12人五層獨棟 · 麻將 · 交誼廳 · 平日 $10,000 起
+                        鹽埕民宿 · 10-12人五層獨棟 · 麻將 · 交誼廳
                     </p>
                     <div className="hero-cinema__actions">
                         <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line">💬 LINE 查空房</a>
@@ -159,7 +162,11 @@ export default function GodinPage() {
                         <div className="grid-3">
                             {["/images/godin/cover-3.webp", "/images/godin/cover-4.webp", "/images/godin/cover-bg.webp"].map((src, i) => (
                                 <div key={src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                    <Image src={src} alt={["溝頂民宿 客廳交誼空間", "溝頂民宿 溫馨房型實景", "溝頂民宿 五層樓獨棟外觀"][i]} width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                    <Image src={src} alt={[
+                                        "溝頂民宿 Godin House 4F 專屬公共交誼廳客廳沙發空間，配備休閒麻將桌與桌遊，提供完美的小包棟娛樂",
+                                        "溝頂民宿 Godin House 溫馨舒適的採光四人房型實景，提供家庭親子出遊極佳的高 CP 值舒適床具與乾濕分離獨立衛浴",
+                                        "溝頂民宿 Godin House 位於高雄鹽埕區大公路巷弄的五層獨棟老宅民宿外觀全景，鄰近捷運鹽埕埔站交通方便"
+                                    ][i]} width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                             ))}
                         </div>
@@ -200,7 +207,7 @@ export default function GodinPage() {
                                 { q: "溝頂民宿有廚房嗎？", a: "有簡易流理臺與微波爐，可加熱食物但不可明火、無電磁爐。若需要豪華中島廚房（IH爐×2、製冰機、完整鍋具），可選擇你好哇寓所，兩棟距離僅30秒。" },
                                 { q: "溝頂民宿跟你好哇寓所有什麼不同？", a: "溝頂：6–12人，五層獨棟透天，適合家庭/小聚。你好哇寓所：6–26人，三層空間，中島廚房+麻將桌，適合企業/婚禮。可兩棟合訂，最高38人。" },
                                 { q: "溝頂民宿停車方便嗎？", a: "附近有多處收費停車場，開車約3–5分鐘車程。鹽埕區建議以步行/捷運為主，捷運鹽埕埔站步行5分鐘，景點全在步行範圍內。" },
-                                { q: "高雄小包棟10人左右推薦哪裡？", a: "推薦溝頂民宿！五層獨棟，4間套房，10人包棟每人約$1,000，位於鹽埕區黃金地段，步行到駁二、大港橋，Google評價4.8星以上。" },
+                                { q: "高雄小包棟10人左右推薦哪裡？", a: "推薦溝頂民宿！五層獨棟，4間套房，10人包棟每人約$1,000，位於鹽埕區黃金地段，步行到駁二、大港橋，適合家庭與小團體入住。" },
                             ].map(faq => (
                                 <Reveal key={faq.q}>
                                     <div style={{ padding: "18px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
@@ -243,8 +250,8 @@ export default function GodinPage() {
                         <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)", textAlign: "center", marginBottom: "24px", letterSpacing: "0.08em", fontWeight: 400 }}>相關旅宿攻略</h3>
                         <div style={{ display: "grid", gap: "10px" }}>
                             {[
-                                { href: "/blog/kaohsiung-group-stay-guide", emoji: "🏠", title: "高雄包棟民宿完全攻略", desc: "6-48人怎麼選？" },
-                                { href: "/blog/kaohsiung-bnb-recommendation", emoji: "⭐", title: "高雄包棟民宿推薦 Top 3", desc: "在地人精選" },
+                                { href: "/compare", emoji: "🏠", title: "三館完整比較", desc: "人數設備一次看懂" },
+                                { href: "/kaohsiung-whole-house", emoji: "⭐", title: "高雄包棟總覽", desc: "依人數與場景快速選房" },
                                 { href: "/blog/pier2-accommodation", emoji: "🎨", title: "駁二住宿推薦", desc: "步行 10 分鐘到駁二" },
                                 { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
                             ].map(a => (

@@ -1,9 +1,6 @@
 name: 每週內容更新
 
 on:
-  schedule:
-    # 每週一凌晨 3:17 執行
-    - cron: '17 3 * * 1'
   workflow_dispatch: # 允許手動觸發
 
 permissions:

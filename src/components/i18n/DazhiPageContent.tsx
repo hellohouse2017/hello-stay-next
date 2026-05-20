@@ -22,7 +22,15 @@ export default function DazhiPageContent({ locale }: { locale: Locale }) {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px" }}>
                 <Reveal>
                     <div style={{ borderRadius: "20px", overflow: "hidden", marginBottom: "50px", boxShadow: "0 8px 40px rgba(0,0,0,0.08)" }}>
-                        <Image src="/images/dazhi/building-render.webp" alt="大智若愚" width={720} height={720} className="img-cover" style={{ width: "100%", height: "auto" }} priority />
+                        <Image 
+                            src="/images/dazhi/building-render.webp" 
+                            alt={locale === "zh" ? "大智若愚民宿大樓外觀 3D 渲染設計圖，全新電梯大樓包棟包層民宿，座落高雄鹽埕駁二大義區與大港橋旁" : "Great Wisdom B&B (Dazhi) by Hello Stay - 3D architectural rendering of the brand new elevator building, located near Pier-2 Art Center and Great Harbor Bridge in Yancheng."} 
+                            width={720} 
+                            height={720} 
+                            className="img-cover" 
+                            style={{ width: "100%", height: "auto" }} 
+                            priority 
+                        />
                     </div>
                 </Reveal>
                 <div style={{ textAlign: "center" }}>

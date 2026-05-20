@@ -126,6 +126,7 @@
     "info_packages": "Villa Packages",
     "info_blog": "Travel Guide",
     "info_reviews": "Guest Reviews",
+    "info_about": "About Us",
     "contact": "Contact",
     "hellohouse_name": "Hello House",
     "hellohouse_addr": "📍 No. 8, Lane 70, Dagong Rd., Yancheng, Kaohsiung",
@@ -135,5 +136,26 @@
     "godin_reg": "🏛️ Licensed B&B Registration: Kaohsiung No. 163",
     "insurance": "🛡️ All properties are insured with Fubon public liability insurance for your peace of mind"
   },
-  "lang_switcher": "🌐 Language"
+  "lang_switcher": "🌐 Language",
+  "guide": {
+    "meta_title": "【Kaohsiung Travel】Guide to Pier-2 Art Center & Private Villa Stays | Hello Stay",
+    "meta_desc": "Explore Kaohsiung Yancheng district! 20 mins by MRT from Zuoying High-Speed Rail Station, 10 mins walk to Pier-2 Art Center. Stay at Hello Stay premium private villa with island kitchen and mahjong.",
+    "hero_title": "Kaohsiung Private Group Travel Guide",
+    "hero_sub": "Pier-2 Art Center, Yancheng Food, and the Ultimate Private Villa Experience",
+    "section1_title": "Complete Privacy, Perfect Gatherings",
+    "section1_desc": "Hello Stay offers a 100% private villa rental with no other guests sharing your space. Cook together in our spacious island kitchen, play and chat around our manual mahjong table, or stream your favorite shows on our large Smart TV. It is the perfect choice for family reunions, group getaways, friend gatherings, or corporate retreats.",
+    "section2_title": "Hassle-Free Transportation & Access",
+    "section2_desc": "Arrive easily from Kaohsiung International Airport (KHH) or Zuoying HSR Station via the MRT metro system. We are just a 5-minute walk from Yanchengpu Station (O2) Exit 4. No need to worry about the stress of foreign driving or renting a car. For guests arriving by car, we also provide detailed local parking information.",
+    "section3_title": "Art & Yancheng Street Food Within Walking Distance",
+    "section3_desc": "Walk just 10 minutes to reach Kaohsiung's iconic Pier-2 Art Center, the Great Harbor Bridge rotary show, and Dayi Warehouse cluster. Around the historical Yancheng neighborhood, taste traditional duck rice, legendary milk teas, and delicious shaved ice. A major supermarket (PX Mart) and local convenience stores are also a short walk away, making it easy to stock up for late-night drinks and snacks.",
+    "section4_title": "Frequently Asked Questions (FAQ)",
+    "faq_q1": "Can we communicate in English or other languages?",
+    "faq_a1": "Yes! We offer support in English, Japanese, and Korean via our official LINE account or through Email (hellohouse2017@gmail.com). Feel free to contact us anytime.",
+    "faq_q2": "Can we store our luggage before check-in or after check-out?",
+    "faq_a2": "Yes, with prior notice, we can store your bags on the 1st floor common area, allowing you to explore the city luggage-free.",
+    "faq_q3": "What is the voltage and plug type in Taiwan?",
+    "faq_a3": "Taiwan uses a 110V voltage and Type A flat two-pin plug (same as Japan and USA). Most dual-voltage electronics can be plugged in directly.",
+    "cta_title": "Begin Your Kaohsiung Adventure Today",
+    "cta_sub": "Create unforgettable memories with your loved ones. Hello House and Godin House are ready to welcome you."
+  }
 }

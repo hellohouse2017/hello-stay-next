@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
 import PropertyLinksBlock from "@/components/PropertyLinksBlock";
+import HomepageIntentBlock from "@/components/HomepageIntentBlock";
 
 export const metadata: Metadata = {
     title: "高雄有廚房的民宿推薦｜中島廚房・包棟煮飯・火鍋趴",
@@ -98,7 +99,47 @@ export default function KitchenPage() {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Breadcrumb items={[{ name: "旅宿攻略", href: "/blog" }, { name: "有廚房的民宿", href: "/blog/kaohsiung-kitchen-bnb" }]} />
                 <Reveal><div style={{ marginBottom: "40px" }}><div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-06</div><h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>高雄有廚房的民宿推薦<br />中島廚房・火鍋趴・聚餐</h1><div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} /></div></Reveal>
-                {sections.map(s => (<Reveal key={s.id}><section id={s.id} style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}><h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>{s.title}</h2><div style={{ fontSize: "0.88rem", color: "#666", lineHeight: 2.2, whiteSpace: "pre-line" }}>{s.content}</div></section></Reveal>))}
+                <Reveal>
+                    <HomepageIntentBlock
+                        eyebrow="Kitchen Search CTA"
+                        title="找有廚房的民宿，最後還是會回到哪一間最適合包棟"
+                        actions={[
+                            { href: "/", label: "高雄包棟民宿推薦首頁" },
+                            { href: "/hellohouse", label: "直接看你好哇寓所" },
+                            { href: "/book", label: "查詢空房與報價", solid: true },
+                        ]}
+                    >
+                        如果你這次搜尋是想找能煮火鍋、做早餐、晚上繼續聚的住宿，最快的入口通常不是單看這篇，而是先回{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟民宿推薦 Hello Stay
+                        </Link>
+                        ，再確認哪一館的廚房與人數最適合你們。
+                    </HomepageIntentBlock>
+                </Reveal>
+                {sections.map((s, idx) => (
+                    <div key={s.id}>
+                        <Reveal><section id={s.id} style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}><h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>{s.title}</h2><div style={{ fontSize: "0.88rem", color: "#666", lineHeight: 2.2, whiteSpace: "pre-line" }}>{s.content}</div></section></Reveal>
+                        {idx === 1 && (
+                            <Reveal>
+                                <HomepageIntentBlock
+                                    eyebrow="Mid Article CTA"
+                                    title="看完廚房配備，就該直接回首頁比館別"
+                                    actions={[
+                                        { href: "/", label: "高雄包棟推薦首頁" },
+                                        { href: "/compare", label: "比較三館設備差異" },
+                                        { href: "/book", label: "查詢空房與報價", solid: true },
+                                    ]}
+                                >
+                                    如果你在意的是中島廚房、可開伙空間和聚餐動線，直接回{" "}
+                                    <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                        高雄包棟推薦
+                                    </Link>
+                                    {" "}看三館，再搭配比較頁確認就會很快。
+                                </HomepageIntentBlock>
+                            </Reveal>
+                        )}
+                    </div>
+                ))}
                 <PropertyLinksBlock />
                 <RelatedArticles current="kaohsiung-kitchen-bnb" />
                 <Reveal><div style={{ textAlign: "center", marginTop: "20px", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}><Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link><Link href="/blog" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>更多攻略</Link></div></Reveal>

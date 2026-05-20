@@ -1,0 +1,91 @@
+import { buildRankingReport, findLatestGSCDate, type ISeoSnapshot } from '@/modules/seo/infrastructure/seo-ranking';
+
+export type SeoRankingData = {
+    date: string;
+    totalClicks: number;
+    totalImpressions: number;
+    avgPosition: number;
+    avgCtr: number;
+    topQueries: ISeoSnapshot['topQueries'];
+    targetKeywords: ISeoSnapshot['targetKeywords'];
+    topPages: ISeoSnapshot['topPages'];
+};
+
+type RankingSnapshotFetcher = (date: string) => Promise<ISeoSnapshot | null>;
+type RankingDataFetcher = (targetDate: string) => Promise<Omit<SeoRankingData, 'date'> | null>;
+type RankingSnapshotSaver = (date: string, data: Omit<ISeoSnapshot, 'date' | 'createdAt'>) => Promise<unknown>;
+
+export type BuildSeoRankingSectionOptions = {
+    pageFilter?: string;
+    fetchData: RankingDataFetcher;
+    saveSnapshot: RankingSnapshotSaver;
+    getSnapshot: RankingSnapshotFetcher;
+    errorPrefix: string;
+    connect?: () => Promise<unknown>;
+    findLatestDate?: typeof findLatestGSCDate;
+};
+
+export type BuildSeoRankingSectionResult = {
+    report: string;
+    rankingData: SeoRankingData | null;
+    rankingError: string | null;
+};
+
+export function getDaysAgoDateString(daysAgo: number): string {
+    const d = new Date();
+    d.setDate(d.getDate() - daysAgo);
+    return d.toISOString().split('T')[0];
+}
+
+export async function buildSeoRankingSection(options: BuildSeoRankingSectionOptions): Promise<BuildSeoRankingSectionResult> {
+    const { pageFilter, fetchData, saveSnapshot, getSnapshot, errorPrefix } = options;
+    const connect = options.connect || (async () => undefined);
+    const findLatestDate = options.findLatestDate || findLatestGSCDate;
+
+    let report = '';
+    let rankingData: SeoRankingData | null = null;
+    let rankingError: string | null = null;
+
+    try {
+        await connect();
+
+        const latestDate = await findLatestDate(pageFilter);
+        if (!latestDate) {
+            report += `\n⚠️ GSC 最近 7 天都沒有數據\n`;
+            rankingError = 'No GSC data available in last 7 days';
+            return { report, rankingData, rankingError };
+        }
+
+        const dataDate = latestDate.date;
+        if (latestDate.daysAgo > 3) {
+            report += `\n⚠️ GSC 數據延遲中，目前最新為 ${latestDate.daysAgo} 天前 (${dataDate})\n`;
+        }
+
+        const gscData = await fetchData(dataDate);
+        if (!gscData) {
+            report += `\n⚠️ GSC 數據暫時無法取得\n`;
+            rankingError = 'fetchGSCData returned null';
+            return { report, rankingData, rankingError };
+        }
+
+        await saveSnapshot(dataDate, gscData);
+
+        const yesterdayDate = getDaysAgoDateString(latestDate.daysAgo + 1);
+        const lastWeekDate = getDaysAgoDateString(latestDate.daysAgo + 7);
+        const [yesterday, lastWeek] = await Promise.all([
+            getSnapshot(yesterdayDate),
+            getSnapshot(lastWeekDate),
+        ]);
+
+        const todaySnapshot: ISeoSnapshot = { date: dataDate, ...gscData, createdAt: new Date() };
+        report += buildRankingReport(todaySnapshot, yesterday, lastWeek);
+        rankingData = { date: dataDate, ...gscData };
+    } catch (error) {
+        const msg = error instanceof Error ? error.message : String(error);
+        console.error(`${errorPrefix} Ranking data error:`, msg);
+        report += `\n⚠️ 排名數據錯誤: ${msg}\n`;
+        rankingError = msg;
+    }
+
+    return { report, rankingData, rankingError };
+}

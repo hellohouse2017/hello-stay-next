@@ -5,10 +5,11 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
 import PropertyLinksBlock from "@/components/PropertyLinksBlock";
+import HomepageIntentBlock from "@/components/HomepageIntentBlock";
 
 export const metadata: Metadata = {
     title: "高雄麻將民宿推薦｜麻將・包棟打牌到天亮",
-    description: "高雄有麻將的包棟民宿推薦！麻將免洗牌，打到凌晨也不怕吵。同時有廚房可煮宵夜。鹽埕區6-26人包棟。",
+    description: "高雄有麻將的包棟民宿推薦！備有手動麻將桌，打到凌晨也不怕吵。同時有廚房可煮宵夜。鹽埕區6-26人包棟。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-mahjong-stay" },
 };
 
@@ -16,7 +17,7 @@ const sections = [
     {
         id: "why", title: "打麻將就是要在包棟民宿", content: `去外面的麻將館？太沒氣氛了。在包棟民宿打麻將才是正解：
 
-• 麻將 — 免洗牌，摸牌速度翻倍
+• 麻將 — 傳統手動洗牌，大家邊洗邊聊更有溫度
 • 不限時 — 想打到幾點就幾點，不像外面有營業時間
 • 打累了直接睡 — 上樓就是房間，不用開車回家
 • 邊打邊吃 — 廚房煮宵夜端到桌邊，零食飲料無限供應
@@ -60,8 +61,7 @@ const sections = [
 
 ⚠️ 請注意
 • 23:00 後降低音量（麻將碰胡的叫聲要控制 😆）
-• 不要用力拍桌（麻將是精密機器）
-• 如果卡牌請不要硬拆，通知管理員處理
+• 不要用力拍桌（愛護手動麻將桌與牌具）
 • 結束後將牌清回桌面，椅子歸位
 
 💰 損壞賠償
@@ -84,7 +84,48 @@ export default function MahjongPage() {
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Breadcrumb items={[{ name: "旅宿攻略", href: "/blog" }, { name: "麻將民宿推薦", href: "/blog/kaohsiung-mahjong-stay" }]} />
                 <Reveal><div style={{ marginBottom: "40px" }}><div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", color: "var(--pri)", marginBottom: "12px" }}>2026-03-06</div><h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.04em", color: "#2a2a2a", lineHeight: 1.6 }}>高雄麻將民宿推薦<br />麻將・打牌到天亮</h1><div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} /></div></Reveal>
-                {sections.map(s => (<Reveal key={s.id}><section id={s.id} style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}><h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>{s.title}</h2><div style={{ fontSize: "0.88rem", color: "#666", lineHeight: 2.2, whiteSpace: "pre-line" }}>{s.content}</div></section></Reveal>))}
+                <Reveal>
+                    <HomepageIntentBlock
+                        eyebrow="Mahjong Search CTA"
+                        title="搜尋麻將民宿的人，通常也在找能整團包棟的地方"
+                        actions={[
+                            { href: "/", label: "高雄包棟民宿推薦首頁" },
+                            { href: "/compare", label: "比較三館差異" },
+                            { href: "/book", label: "查詢空房與報價", solid: true },
+                        ]}
+                    >
+                        如果你在找的是能打麻將、能吃宵夜、打完直接上樓睡的住宿，那就不只是麻將桌而已，還要一起看整體空間。
+                        最快的方式是先回{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟民宿推薦 Hello Stay
+                        </Link>
+                        ，再決定哪一館最適合你們這團。
+                    </HomepageIntentBlock>
+                </Reveal>
+                {sections.map((s, idx) => (
+                    <div key={s.id}>
+                        <Reveal><section id={s.id} style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}><h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>{s.title}</h2><div style={{ fontSize: "0.88rem", color: "#666", lineHeight: 2.2, whiteSpace: "pre-line" }}>{s.content}</div></section></Reveal>
+                        {idx === 1 && (
+                            <Reveal>
+                                <HomepageIntentBlock
+                                    eyebrow="Mid Article CTA"
+                                    title="麻將只是入口，真正要比的是整體包棟體驗"
+                                    actions={[
+                                        { href: "/", label: "高雄包棟推薦首頁" },
+                                        { href: "/kaohsiung-whole-house", label: "依人數看包棟方案" },
+                                        { href: "/book", label: "查詢空房與報價", solid: true },
+                                    ]}
+                                >
+                                    看完麻將配備之後，建議直接回{" "}
+                                    <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                        高雄包棟推薦
+                                    </Link>
+                                    {" "}或依人數看方案，才會知道你們這團是比較適合你好哇寓所還是溝頂民宿。
+                                </HomepageIntentBlock>
+                            </Reveal>
+                        )}
+                    </div>
+                ))}
                 <PropertyLinksBlock />
                 <RelatedArticles current="kaohsiung-mahjong-stay" />
                 <Reveal><div style={{ textAlign: "center", marginTop: "20px", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}><Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>查詢空房</Link><Link href="/blog" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" }}>更多攻略</Link></div></Reveal>

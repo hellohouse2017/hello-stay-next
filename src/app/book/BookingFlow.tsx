@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 const BNB_API = process.env.NEXT_PUBLIC_BNB_API || "https://bnb-mgmt-system.vercel.app";
 
@@ -82,12 +83,41 @@ export default function BookingPage() {
                         Check Availability
                     </div>
                     <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
-                        查詢空房
+                        高雄包棟民宿查詢空房與報價
                     </h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     <p style={{ fontSize: "0.88rem", color: "#999", lineHeight: 1.9 }}>
-                        選擇日期即時查看兩館空房狀況
+                        輸入日期與人數，快速查看 Hello Stay 兩館空房狀況
                     </p>
+                </div>
+
+                <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "24px" }}>
+                    <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
+                        官方直訂
+                    </div>
+                    <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
+                        正在找{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟民宿推薦 Hello Stay
+                        </Link>
+                        {" "}嗎？這裡可以先查日期與人數，再決定適合的館別；
+                        如果還想先比較，也可以看{" "}
+                        <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            包棟方案整理
+                        </Link>
+                        。
+                    </p>
+                    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                        <Link href="/hellohouse" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                            你好哇寓所 6-26人
+                        </Link>
+                        <Link href="/godin" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                            溝頂民宿 6-12人
+                        </Link>
+                        <Link href="/compare" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                            比較三館差異
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Date Picker */}

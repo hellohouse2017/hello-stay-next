@@ -50,7 +50,7 @@ export interface Property {
     capacity: { min: number; max: number };
     startPrice: number;
     priceUnit: string;
-    rating: { value: string; count: string };
+    rating?: { value: string; count: string } | null;
     address: string;
     addressFull: { street: string; district: string; city: string; zip: string };
     location: { lat: number; lng: number };
@@ -77,11 +77,11 @@ export const hellohouse: Property = {
     name: '你好哇寓所',
     nameEn: 'Hello House',
     tagline: 'Hello House · Est. 2017',
-    description: '座落於高雄鹽埕區核心，專注於 6 至 26 人的獨立包棟空間。在這裡沒有外人的打擾，只有您與親朋好友在寬敞的中島廚房圍爐、在客廳歡笑的珍貴時刻。',
+    description: '座落於高雄鹽埕區核心，專注於 6 至 26 人的獨立包棟空間。在這裡沒有外人的打擾，只有您與親朋好友在寬敞的豪華中島廚房與吧台交誼空間備餐圍爐、歡聚暢聊的珍貴時刻。',
     capacity: { min: 6, max: 26 },
     startPrice: 10000,
     priceUnit: '平日起',
-    rating: { value: '4.9', count: '87' },
+    rating: { value: '4.5', count: '75' },
     address: '高雄市鹽埕區大公路70巷8號',
     addressFull: { street: '大公路70巷8號', district: '鹽埕區', city: '高雄市', zip: '803' },
     location: { lat: 22.62497, lng: 120.28459 },
@@ -93,22 +93,22 @@ export const hellohouse: Property = {
     coverImage: '/images/hellohouse/cover.webp',
     lineUrl: 'https://lin.ee/atCiMQw',
     galleryImages: [
-        { src: '/images/hellohouse/photo1.webp', alt: '你好哇寓所 客廳空間' },
-        { src: '/images/hellohouse/photo2.webp', alt: '你好哇寓所 廚房設備' },
-        { src: '/images/hellohouse/photo3.webp', alt: '你好哇寓所 房間' },
-        { src: '/images/hellohouse/photo4.webp', alt: '你好哇寓所 空間細節' },
-        { src: '/images/hellohouse/photo5.webp', alt: '你好哇寓所 環境' },
-        { src: '/images/hellohouse/bar-2.webp', alt: '你好哇寓所 吧台區' },
+        { src: '/images/hellohouse/photo1.webp', alt: 'Hello Stay 你好哇寓所一樓挑高寬敞的豪華中島廚房與交誼聚會大空間全景，採溫馨奢華的暖色調設計，適合 10-26 人團體包棟備餐與歡聚。' },
+        { src: '/images/hellohouse/photo2.webp', alt: 'Hello Stay 你好哇寓所配備豪宅級開放式中島廚房，包含雙口 IH 爐、雙門大冰箱、微波爐、烤箱及完整鍋碗瓢盆餐具，為高雄開伙包棟首選。' },
+        { src: '/images/hellohouse/photo3.webp', alt: 'Hello Stay 你好哇寓所高質感客房，配備高級獨立筒床墊與柔軟寢具，每房皆有對外採光玻璃窗，提供極致安靜的高品質睡眠。' },
+        { src: '/images/hellohouse/photo4.webp', alt: 'Hello Stay 你好哇寓所精緻磨石子樓梯與現代質感吊椅等室內裝潢細節，展現高雄老屋改造包棟民宿的獨特藝術美感。' },
+        { src: '/images/hellohouse/photo5.webp', alt: 'Hello Stay 你好哇寓所座落於高雄鹽埕區安靜巷弄的獨棟老宅民宿外觀全景，鄰近駁二藝術特區與捷運鹽埕埔站。' },
+        { src: '/images/hellohouse/bar-2.webp', alt: 'Hello Stay 你好哇寓所 1F 公共空間的精緻中島吧台與高腳椅，點綴優雅吊燈，是親友小酌、準備點心與悠閒交流的極佳微醺氛圍空間。' },
     ],
     rooms: [
         {
             id: 'hh-1f', floor: '1F', name: '公共空間', subtitle: '寬敞舒適的交誼核心，大家聚在一起最棒的空間。',
             size: '56 m²', capacity: 0, highlight: '豪華中島廚房',
             images: [
-                { src: '/images/hellohouse/1000.webp', alt: '1F 公共空間 — 中島廚房與交誼區' },
-                { src: '/images/hellohouse/photo1.webp', alt: '1F 客廳全景' },
-                { src: '/images/hellohouse/photo2.webp', alt: '1F 廚房設備近拍' },
-                { src: '/images/hellohouse/bar-2.webp', alt: '1F 吧台與酒水區' },
+                { src: '/images/hellohouse/1000.webp', alt: 'Hello Stay 你好哇寓所 1F 挑高公共空間，將奢華中島廚房、高腳椅吧台與寬敞聚會交誼區連成一體，打造無阻隔的 20 人聚會大空間。' },
+                { src: '/images/hellohouse/photo1.webp', alt: 'Hello Stay 你好哇寓所 1樓中島廚房與寬敞交誼空間全景，採光充足，備有手動麻將桌、桌遊、撲克牌及 43 吋聯網電視，歡聚娛樂首選。' },
+                { src: '/images/hellohouse/photo2.webp', alt: 'Hello Stay 你好哇寓所 1樓開放式中島廚房近拍，設備包含專業雙口 IH 爐、高效抽油煙機、RO 逆滲透飲水機與微波爐。' },
+                { src: '/images/hellohouse/bar-2.webp', alt: 'Hello Stay 你好哇寓所 1樓精緻吧台與高腳椅區，旁設雙門大冰箱與微波爐，方便儲存冰鎮飲料與準備派對點心。' },
             ],
             badges: [
                 { label: '56 m²' },
@@ -141,7 +141,7 @@ export const hellohouse: Property = {
             id: 'hh-1201', floor: '2F', name: '1201 雙人房', subtitle: '標準舒適空間，溫馨的休憩角落。',
             size: '24 m²', capacity: 2,
             images: [
-                { src: '/images/hellohouse/1201.webp', alt: '2F-1201 雙人房' },
+                { src: '/images/hellohouse/1201.webp', alt: 'Hello Stay 你好哇寓所 2F 1201 溫馨雙人房，配置標準雙人床獨立筒床墊、簡約書桌椅、對外氣密窗與乾濕分離獨立衛浴。' },
             ],
             badges: [
                 { label: '24 m²' },
@@ -168,7 +168,7 @@ export const hellohouse: Property = {
             id: 'hh-1202', floor: '2F', name: '1202 四人房', subtitle: '極佳採光與網美設施，拍照打卡首選。',
             size: '40 m²', capacity: 4, highlight: '網美吊椅房',
             images: [
-                { src: '/images/hellohouse/1202.webp', alt: '2F-1202 四人房 — 網美吊椅房' },
+                { src: '/images/hellohouse/1202.webp', alt: 'Hello Stay 你好哇寓所 2F 1202 網美四人房，配置兩張標準雙人床獨立筒床墊、質感沙發與極具特色的白色針織吊椅。' },
             ],
             badges: [
                 { label: '40 m²' },
@@ -194,7 +194,7 @@ export const hellohouse: Property = {
             id: 'hh-1302', floor: '3F', name: '1302 六人房', subtitle: '寬敞團體空間，適合家庭或好朋友同住。',
             size: '48 m²', capacity: 6,
             images: [
-                { src: '/images/hellohouse/1302.webp', alt: '3F-1302 六人房' },
+                { src: '/images/hellohouse/1302.webp', alt: 'Hello Stay 你好哇寓所 3F 1302 寬敞六人房，備有三張標準雙人床、書桌椅、聯網電視與大面落地玻璃採光窗。' },
             ],
             badges: [
                 { label: '48 m²' },
@@ -220,7 +220,7 @@ export const hellohouse: Property = {
             id: 'hh-1401', floor: '4F', name: '1401 雙人房', subtitle: '雅緻高樓層視野，享受安靜的私人時光。',
             size: '24 m²', capacity: 2,
             images: [
-                { src: '/images/hellohouse/1401.webp', alt: '4F-1401 雙人房' },
+                { src: '/images/hellohouse/1401.webp', alt: 'Hello Stay 你好哇寓所 4F 1401 雅緻雙人房，享有高樓層開闊視野與對外落地窗，房內設有精緻雙人沙發與茶几。' },
             ],
             badges: [
                 { label: '24 m²' },
@@ -241,7 +241,7 @@ export const hellohouse: Property = {
             id: 'hh-1402', floor: '4F', name: '1402 六人房', subtitle: '高樓層大空間，視野開闊，團體入住首選。',
             size: '45 m²', capacity: 6,
             images: [
-                { src: '/images/hellohouse/1402.webp', alt: '4F-1402 六人房' },
+                { src: '/images/hellohouse/1402.webp', alt: 'Hello Stay 你好哇寓所 4F 1402 景觀六人房，備有三張雙人床、大面玻璃落地窗，適合家庭旅遊或團體包棟入住。' },
             ],
             badges: [
                 { label: '45 m²' },
@@ -283,7 +283,7 @@ export const hellohouse: Property = {
         { text: '一樓的中島廚房真的太棒了！鍋碗瓢盆都很齊全，大家聚在一起煮火鍋喝酒，氣氛滿分。', author: 'T 先生', rating: 5 },
         { text: '離駁二走路只要10分鐘。隔音意外的好，晚上睡覺很安靜，床墊支撐性也很夠。', author: 'L 小姐', rating: 5 },
         { text: '老闆非常熱情親切。合法的民宿，消防設施都有，住得很安心。電子鎖密碼入住超方便。', author: 'W 先生', rating: 5 },
-        { text: '客廳有麻將太加分！還有電視可以看 Netflix。每間都有獨立衛浴。', author: 'C 小姐', rating: 5 },
+        { text: '一樓公共空間有手動麻將太加分！還有電視可以看 Netflix。每間都有獨立衛浴。', author: 'C 小姐', rating: 5 },
     ],
     mediaAppearances: [
         { show: '我們回家吧 2', cast: '曾寶儀', url: 'http://www.youtube.com/watch?v=L09FRVlfPgU' },
@@ -304,7 +304,7 @@ export const godin: Property = {
     capacity: { min: 10, max: 12 },
     startPrice: 10000,
     priceUnit: '平日起',
-    rating: { value: '4.8', count: '45' },
+    rating: null,
     address: '高雄市鹽埕區大公路70巷6-2號',
     addressFull: { street: '大公路70巷6-2號', district: '鹽埕區', city: '高雄市', zip: '803' },
     location: { lat: 22.6244, lng: 120.2822 },
@@ -316,15 +316,15 @@ export const godin: Property = {
     coverImage: '/images/godin/cover-1.webp',
     lineUrl: 'https://lin.ee/atCiMQw',
     galleryImages: [
-        { src: '/images/godin/cover-3.webp', alt: '溝頂民宿 客廳交誼空間' },
-        { src: '/images/godin/cover-4.webp', alt: '溝頂民宿 溫馨房型實景' },
-        { src: '/images/godin/cover-bg.webp', alt: '溝頂民宿 五層樓獨棟外觀' },
+        { src: '/images/godin/cover-3.webp', alt: '溝頂民宿 (Godin House) 溫馨家庭風客廳交誼廳，備有舒適沙發、休閒麻將桌與桌遊，是 10-12 人包棟旅客的專屬娛樂天堂。' },
+        { src: '/images/godin/cover-4.webp', alt: '溝頂民宿 (Godin House) 雅緻客房實景，大面採光窗搭配木質地板與日系極簡色調，營造如家一般的溫馨住宿氛圍。' },
+        { src: '/images/godin/cover-bg.webp', alt: '溝頂民宿 (Godin House) 座落於高雄鹽埕區大公路的五層獨棟老宅民宿外觀，提供給小團體完全獨立、無他人干擾的包棟體驗。' },
     ],
     rooms: [
         {
             id: 'gd-1f', floor: '1F', name: '經典雙人房', subtitle: '一樓獨立空間，舒適安靜的休憩角落。',
             size: '15 m²', capacity: 2,
-            images: [{ src: '/images/godin/room1.webp', alt: '1F 經典雙人房' }],
+            images: [{ src: '/images/godin/room1.webp', alt: '溝頂民宿 (Godin House) 1F 經典雙人房，設有舒適標準雙人床、獨立衛浴、冷暖空調與簡約工作桌椅，安靜清幽。' }],
             badges: [{ label: '15 m²' }, { label: '獨立衛浴', gold: true }, { label: '對外窗' }],
             equipment: [
                 { category: '睡眠', icon: '🛏️', items: [{ icon: '🛏️', label: '標準雙人床 ×1' }]},
@@ -334,7 +334,7 @@ export const godin: Property = {
         {
             id: 'gd-2f', floor: '2F', name: '陽光四人房', subtitle: '寬敞明亮，大面採光玻璃，適合家庭入住。',
             size: '18 m²', capacity: 4,
-            images: [{ src: '/images/godin/room2.webp', alt: '2F 陽光四人房' }],
+            images: [{ src: '/images/godin/room2.webp', alt: '溝頂民宿 (Godin House) 2F 陽光四人房，採大面採光玻璃設計，設有兩張標準雙人床與獨立衛浴，適合家庭親子同住。' }],
             badges: [{ label: '18 m²' }, { label: '大面採光玻璃', gold: true }, { label: '獨立衛浴' }],
             equipment: [
                 { category: '睡眠', icon: '🛏️', items: [{ icon: '🛏️', label: '標準雙人床 ×2' }]},
@@ -344,7 +344,7 @@ export const godin: Property = {
         {
             id: 'gd-3f', floor: '3F', name: '雅緻四人房', subtitle: '溫馨風格，獨立衛浴，安靜舒適。',
             size: '18 m²', capacity: 4,
-            images: [{ src: '/images/godin/room3.webp', alt: '3F 雅緻四人房' }],
+            images: [{ src: '/images/godin/room3.webp', alt: '溝頂民宿 (Godin House) 3F 雅緻四人房，溫馨極簡風格，配置兩張雙人床、大對外採光窗與獨立衛浴，通風採光極佳。' }],
             badges: [{ label: '18 m²' }, { label: '大面採光玻璃', gold: true }, { label: '獨立衛浴' }],
             equipment: [
                 { category: '睡眠', icon: '🛏️', items: [{ icon: '🛏️', label: '標準雙人床 ×2' }]},
@@ -354,7 +354,7 @@ export const godin: Property = {
         {
             id: 'gd-4f', floor: '4F', name: '公共交誼廳', subtitle: '團聚歡樂空間，麻將、桌遊、沙發，最棒的交誼時光。',
             size: '24 m²', capacity: 0, highlight: '休閒麻將桌',
-            images: [{ src: '/images/godin/room4.webp', alt: '4F 公共交誼廳' }],
+            images: [{ src: '/images/godin/room4.webp', alt: '溝頂民宿 (Godin House) 4F 專屬公共交誼廳，備有休閒麻將桌、聯網電視、沙發區，並設有雙門冰箱、微波爐與流理台。' }],
             badges: [{ label: '24 m²' }, { label: '休閒麻將桌', gold: true }, { label: '獨立空調' }],
             equipment: [
                 { category: '娛樂', icon: '🎮', items: [
@@ -372,7 +372,7 @@ export const godin: Property = {
         {
             id: 'gd-5f', floor: '5F', name: '景觀雙人房', subtitle: '頂樓視野開闊，落地窗街景，充足採光。',
             size: '15 m²', capacity: 2,
-            images: [{ src: '/images/godin/room5.webp', alt: '5F 景觀雙人房' }],
+            images: [{ src: '/images/godin/room5.webp', alt: '溝頂民宿 (Godin House) 5F 景觀雙人房，位於頂樓視野開闊，擁有落地窗陽台街景與專屬閱讀工作椅，採光極佳。' }],
             badges: [{ label: '15 m²' }, { label: '落地窗', gold: true }, { label: '獨立衛浴' }],
             equipment: [
                 { category: '睡眠', icon: '🛏️', items: [{ icon: '🛏️', label: '標準雙人床' }]},

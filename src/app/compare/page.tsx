@@ -4,12 +4,12 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿比較｜你好哇 vs 溝頂 vs 大智若愚｜人數·設備·價格一次看",
-    description: "高雄3間包棟民宿完整比較：你好哇寓所(6-26人)、溝頂民宿(6-12人)、大智若愚(20-48人)。依人數、設備、價格選出最適合你的包棟方案。",
+    title: "高雄包棟推薦怎麼選？3 間鹽埕包棟比較｜Hello Stay",
+    description: "想找高雄包棟推薦？一次比較 Hello Stay 三館：依人數、廚房、麻將、交通與預算，快速選出適合的包棟民宿，再直接查空房。",
     alternates: { canonical: "https://www.hello-stay.com/compare" },
     openGraph: {
-        title: "高雄包棟民宿比較｜3間館完整比較表",
-        description: "依人數、設備、預算，幫你快速選出最適合的高雄包棟民宿。",
+        title: "高雄包棟推薦怎麼選？3 間鹽埕包棟比較",
+        description: "依人數、廚房、麻將、交通與預算，快速選出適合的高雄包棟民宿。",
         url: "https://www.hello-stay.com/compare",
     },
 };
@@ -53,11 +53,42 @@ export default function ComparePage() {
                 <Reveal>
                     <div style={{ textAlign: "center", marginBottom: "40px" }}>
                         <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Compare Properties</div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿比較</h1>
+                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟推薦比較</h1>
                         <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                         <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>
-                            依人數、設備、預算，幫你快速選出最適合的包棟方案。<br />三間都在高雄鹽埕區，步行可達駁二藝術特區。
+                            依人數、廚房、麻將、交通與預算，幫你快速選出最適合的包棟方案。<br />三間都在高雄鹽埕區，步行可達駁二藝術特區。
                         </p>
+                    </div>
+                </Reveal>
+
+                <Reveal>
+                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
+                            高雄包棟民宿推薦
+                        </div>
+                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
+                            如果你正在比較高雄包棟民宿推薦，最省時間的方式是先看人數，再看要不要廚房、麻將桌、電梯與停車動線。
+                            也可以先回{" "}
+                            <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                首頁看三館
+                            </Link>
+                            {" "}或看{" "}
+                            <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                                包棟方案整理
+                            </Link>
+                            ，再回來比較細節。
+                        </p>
+                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                            <Link href="/" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                                回首頁看三館
+                            </Link>
+                            <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                                依需求看包棟
+                            </Link>
+                            <Link href="/book" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "#161618", color: "#fff", textDecoration: "none" }}>
+                                直接查空房
+                            </Link>
+                        </div>
                     </div>
                 </Reveal>
 
@@ -115,20 +146,15 @@ export default function ComparePage() {
                     </div>
                 </Reveal>
 
-                {/* Individual Compare Links */}
                 <Reveal>
                     <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>詳細比較</h2>
+                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>直接看館別介紹</h2>
                         <div style={{ display: "grid", gap: "8px" }}>
-                            {[
-                                { href: "/compare/hellohouse-vs-godin", title: "你好哇寓所 vs 溝頂民宿", desc: "6–26人 vs 6–12人，中島廚房 vs 五層獨棟" },
-                                { href: "/compare/hellohouse-vs-dazhi", title: "你好哇寓所 vs 大智若愚", desc: "6–26人 vs 20–48人，現在預訂 vs 2027開幕" },
-                                { href: "/compare/godin-vs-dazhi", title: "溝頂民宿 vs 大智若愚", desc: "6–12人 vs 20–48人，小家庭 vs 大企業團" },
-                            ].map(a => (
-                                <Link key={a.href} href={a.href} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none" }}>
+                            {properties.map(property => (
+                                <Link key={property.link} href={property.link} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none" }}>
                                     <div>
-                                        <div style={{ fontSize: "0.88rem", color: "#3D3830", fontWeight: 500 }}>{a.title}</div>
-                                        <div style={{ fontSize: "0.75rem", color: "#999", marginTop: "4px" }}>{a.desc}</div>
+                                        <div style={{ fontSize: "0.88rem", color: "#3D3830", fontWeight: 500 }}>{property.name}</div>
+                                        <div style={{ fontSize: "0.75rem", color: "#999", marginTop: "4px" }}>{property.capacity}｜{property.best}</div>
                                     </div>
                                     <span style={{ color: "var(--pri)", fontSize: "0.8rem" }}>→</span>
                                 </Link>
@@ -156,14 +182,14 @@ export default function ComparePage() {
                         <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>依需求找包棟</h2>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "8px" }}>
                             {[
-                                { href: "/capacity/10", label: "🏠 10人包棟" },
-                                { href: "/capacity/20", label: "🏡 20人包棟" },
-                                { href: "/capacity/30", label: "🏘️ 30人包棟" },
-                                { href: "/capacity/40", label: "🏢 40人包棟" },
-                                { href: "/features/kitchen", label: "🍳 有廚房" },
-                                { href: "/features/parking", label: "🅿️ 方便停車" },
-                                { href: "/occasion/family-trip", label: "👨‍👩‍👧‍👦 家庭旅遊" },
-                                { href: "/occasion/company-retreat", label: "💼 企業團建" },
+                                { href: "/godin", label: "🏠 10人包棟" },
+                                { href: "/hellohouse", label: "🏡 20人包棟" },
+                                { href: "/kaohsiung-whole-house#capacity-30", label: "🏘️ 30人包棟" },
+                                { href: "/dazhi", label: "🏢 40人包棟" },
+                                { href: "/blog/kaohsiung-kitchen-bnb#kitchen", label: "🍳 有廚房" },
+                                { href: "/traffic#parking", label: "🅿️ 方便停車" },
+                                { href: "/kaohsiung-whole-house#need-family-trip", label: "👨‍👩‍👧‍👦 家庭旅遊" },
+                                { href: "/kaohsiung-whole-house#need-company-retreat", label: "💼 企業團建" },
                             ].map(l => (
                                 <Link key={l.href} href={l.href} style={{ padding: "12px 16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", fontSize: "0.82rem", color: "#3D3830" }}>{l.label}</Link>
                             ))}
@@ -175,6 +201,7 @@ export default function ComparePage() {
                 <Reveal>
                     <div style={{ textAlign: "center", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
                         <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>查詢空房</Link>
+                        <Link href="/" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>回首頁看三館</Link>
                         <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">💬 LINE 詢問</a>
                     </div>
                 </Reveal>

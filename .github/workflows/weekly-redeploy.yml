@@ -1,9 +1,6 @@
 name: Weekly Blog Redeploy
 
 on:
-  schedule:
-    # Every Monday at 00:00 UTC (08:00 Taiwan time)
-    - cron: '0 0 * * 1'
   workflow_dispatch: # Allow manual trigger
 
 jobs:

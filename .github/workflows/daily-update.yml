@@ -1,9 +1,6 @@
 name: 自動更新內容
 
 on:
-  schedule:
-    # 每天凌晨 2:57 執行（避開整點高峰）
-    - cron: '57 2 * * *'
   workflow_dispatch: # 允許手動觸發
 
 permissions:

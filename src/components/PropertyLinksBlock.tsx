@@ -2,14 +2,33 @@ import Link from "next/link";
 
 /**
  * PropertyLinksBlock — Blog 文章用的館別導覽區塊
- * 提供主要館別頁、人數落地頁、查房三類內鏈
+ * 提供首頁／方案頁、館別頁、人數落地頁、查房四類內鏈
  * 放在 RelatedArticles 之前，增加文章→交易頁的內鏈密度
  */
 export default function PropertyLinksBlock() {
     return (
         <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
             <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>
-                Hello Stay 三館
+                高雄包棟民宿推薦
+            </div>
+            <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.9, marginBottom: "18px" }}>
+                正在找能開伙、打麻將、走路吃鹽埕美食的{" "}
+                <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                    高雄包棟民宿推薦 Hello Stay
+                </Link>
+                {" "}嗎？三館可住 6-48 人，也可以先看{" "}
+                <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                    高雄包棟方案整理
+                </Link>
+                ，再直接查空房。
+            </p>
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "20px" }}>
+                <Link href="/" style={{ fontSize: "0.78rem", padding: "7px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                    高雄包棟民宿首頁
+                </Link>
+                <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "7px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
+                    依需求看包棟方案
+                </Link>
             </div>
             <div style={{ display: "grid", gap: "10px", marginBottom: "20px" }}>
                 <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>

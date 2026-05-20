@@ -36,8 +36,9 @@ export default function Footer() {
                             <Link href={`${prefix}/traffic`} style={{ fontSize: "0.82rem" }}>{t.footer.info_traffic}</Link>
                             <Link href={`${prefix}/explore`} style={{ fontSize: "0.82rem" }}>{t.footer.info_explore}</Link>
                             <Link href={`${prefix}/packages`} style={{ fontSize: "0.82rem" }}>{t.footer.info_packages}</Link>
-                            <Link href={`${prefix}/blog`} style={{ fontSize: "0.82rem" }}>{t.footer.info_blog}</Link>
+                            <Link href={currentLocale === "zh" ? "/blog" : `${prefix}/guide`} style={{ fontSize: "0.82rem" }}>{t.footer.info_blog}</Link>
                             <Link href={`${prefix}/reviews`} style={{ fontSize: "0.82rem" }}>{t.footer.info_reviews}</Link>
+                            <Link href={`${prefix}/about`} style={{ fontSize: "0.82rem" }}>{t.footer.info_about}</Link>
                         </div>
                     </div>
                     <div>

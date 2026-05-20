@@ -11,19 +11,14 @@ interface ArticleInfo {
 // 所有文章（靜態 + 動態排程的）合併在此
 const allArticles: ArticleInfo[] = [
     // 原始靜態文章
-    { slug: "kaohsiung-bnb-recommendation", title: "高雄包棟民宿推薦 Top 3", emoji: "⭐", tags: ["包棟", "民宿", "推薦", "攻略"] },
-    { slug: "kaohsiung-group-stay-guide", title: "高雄包棟民宿完全攻略", emoji: "🏠", tags: ["包棟", "攻略"] },
-    { slug: "yancheng-food-guide", title: "鹽埕區美食地圖 30 間", emoji: "🍜", tags: ["美食", "鹽埕"] },
     { slug: "kaohsiung-group-trip", title: "團體旅遊行程 9 主題", emoji: "📋", tags: ["行程", "團體"] },
     { slug: "kaohsiung-wedding-venue", title: "婚禮迎娶包棟推薦", emoji: "💒", tags: ["婚禮", "迎娶"] },
     { slug: "kaohsiung-offsite-teambuilding", title: "企業 Off-site 團建", emoji: "💼", tags: ["企業", "團建"] },
-    { slug: "kaohsiung-graduation-trip", title: "畢業旅行包棟推薦", emoji: "🎓", tags: ["畢旅", "學生"] },
     { slug: "pier2-accommodation", title: "駁二住宿推薦", emoji: "🎨", tags: ["駁二", "住宿"] },
     { slug: "kaohsiung-nye-stay", title: "高雄跨年包棟", emoji: "🎆", tags: ["跨年", "派對"] },
     { slug: "kaohsiung-mahjong-stay", title: "麻將民宿推薦", emoji: "🀄", tags: ["麻將", "娛樂"] },
     { slug: "kaohsiung-kitchen-bnb", title: "有廚房的民宿推薦", emoji: "🍳", tags: ["廚房", "火鍋"] },
     { slug: "kaohsiung-family-reunion", title: "家族旅遊包棟推薦", emoji: "👨‍👩‍👧‍👦", tags: ["家族", "親子"] },
-    { slug: "kaohsiung-sports-team", title: "球隊比賽住宿推薦", emoji: "⚾", tags: ["球隊", "比賽"] },
     // Q1 排程文章
     { slug: "kaohsiung-6-person-stay", title: "6 人住宿推薦", emoji: "👥", tags: ["包棟", "6人"] },
     { slug: "kaohsiung-10-person-stay", title: "10 人包棟怎麼選", emoji: "🏠", tags: ["包棟", "10人"] },

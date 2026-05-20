@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import HomepageIntentBlock from "@/components/HomepageIntentBlock";
 
 export const metadata: Metadata = {
-    title: "周邊探索 | 景點・美食・行程推薦 | 你好哇寓所 & 溝頂民宿",
-    description: "鹽埕區周邊景點、美食地圖與行程推薦｜駁二藝術特區、大港橋、西子灣、旗津渡輪，30間以上在地必吃老店，9條主題行程一次看。入住包棟民宿，步出門即可探索高雄最有故事的街區。",
+    title: "鹽埕美食地圖 | 周邊景點・行程推薦 | Hello Stay",
+    description: "鹽埕區美食地圖、周邊景點與高雄行程推薦｜駁二藝術特區、大港橋、西子灣、旗津渡輪，30 間以上在地必吃老店一次看。入住 Hello Stay 包棟民宿，步出門就能吃遍鹽埕。",
     alternates: { canonical: "https://www.hello-stay.com/explore" },
     openGraph: {
-        title: "周邊探索 | 景點・美食・行程 | Hello Stay",
-        description: "駁二、大港橋、西子灣，30+間必吃老店，行程推薦一次看。",
+        title: "鹽埕美食地圖 | 景點・美食・行程 | Hello Stay",
+        description: "駁二、大港橋、西子灣，30+ 間鹽埕必吃老店與高雄行程推薦一次看。",
         url: "https://www.hello-stay.com/explore",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 周邊探索" }],
     },
@@ -110,6 +111,25 @@ export default function ExplorePage() {
                     </div>
                 </Reveal>
 
+                <Reveal>
+                    <HomepageIntentBlock
+                        eyebrow="Food Search Intent"
+                        title="找鹽埕美食的人，最後常常也在找住哪裡最順"
+                        actions={[
+                            { href: "/", label: "高雄包棟民宿推薦首頁" },
+                            { href: "/kaohsiung-whole-house", label: "高雄包棟推薦整理" },
+                            { href: "/book", label: "查詢空房與報價", solid: true },
+                        ]}
+                    >
+                        如果你是因為鹽埕美食、駁二或大港橋找到這一頁，住宿其實很容易一起卡住。
+                        住在鹽埕區核心的{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟民宿推薦 Hello Stay
+                        </Link>
+                        ，白天吃、晚上走、回來還能繼續聚，會比住遠一點再拉車回來輕鬆很多。
+                    </HomepageIntentBlock>
+                </Reveal>
+
                 {/* ─── 景點 ─── */}
                 <Reveal>
                     <section style={cardStyle}>
@@ -155,6 +175,28 @@ export default function ExplorePage() {
                             ))}
                         </div>
                     </section>
+                </Reveal>
+
+                <Reveal>
+                    <HomepageIntentBlock
+                        eyebrow="Stay Near The Food"
+                        title="吃飽喝足不用跑遠，回包棟休息才是鹽埕玩法"
+                        actions={[
+                            { href: "/", label: "高雄包棟民宿推薦 Hello Stay" },
+                            { href: "/compare", label: "比較三館差異" },
+                            { href: "/book", label: "查詢空房與報價", solid: true },
+                        ]}
+                    >
+                        想找走路就能吃到鹽埕老店、回住宿還能開伙打麻將的{" "}
+                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟推薦
+                        </Link>
+                        {" "}嗎？三館可住 6-48 人，適合家族旅遊、朋友聚會與團體包棟；如果你還在比較人數與設備，也可以先看{" "}
+                        <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
+                            高雄包棟方案整理
+                        </Link>
+                        。
+                    </HomepageIntentBlock>
                 </Reveal>
 
                 {/* ─── 行程推薦 ─── */}

@@ -1,9 +1,6 @@
 name: 每月深度內容豐富化
 
 on:
-  schedule:
-    # 每月 1 號與 15 號 04:07 UTC 執行
-    - cron: '7 4 1,15 * *'
   workflow_dispatch:
 
 permissions:

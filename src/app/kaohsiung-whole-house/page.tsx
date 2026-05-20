@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "高雄包棟民宿推薦 2025｜6-48人包棟方案·比較·價格｜Hello Stay",
-    description: "高雄包棟民宿完整指南：依人數(6-48人)、設備(廚房/麻將/電梯)、用途(家庭/企業/婚禮)推薦最適合的包棟方案。鹽埕區駁二旁，Google 4.9星。",
+    description: "高雄包棟民宿完整指南：依人數(6-48人)、設備(廚房/麻將/電梯)、用途(家庭/企業/婚禮)推薦最適合的包棟方案。鹽埕區駁二旁。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
         title: "高雄包棟民宿推薦｜6-48人完整方案",
@@ -24,6 +24,76 @@ const faqs = [
 ];
 
 export default function KaohsiungWholeHousePage() {
+    const capacityCards = [
+        {
+            id: "capacity-10",
+            href: "/godin",
+            count: "10人包棟",
+            range: "6–12 人",
+            rec: "溝頂民宿",
+            price: "$10,000起",
+            summary: "小家庭或 10 人左右聚會，優先看五層獨棟的溝頂民宿。",
+            detail: "每層分開休息、低樓層給長輩，最適合家庭出遊與好友小聚。",
+        },
+        {
+            id: "capacity-20",
+            href: "/hellohouse",
+            count: "20人包棟",
+            range: "13–26 人",
+            rec: "你好哇寓所",
+            price: "$12,000起",
+            summary: "20 人上下的聚餐、公司 outing 或婚禮前住，首選你好哇寓所。",
+            detail: "中島廚房、麻將桌與多間套房一起到位，20 人入住最剛好。",
+        },
+        {
+            id: "capacity-30",
+            href: "/compare",
+            count: "30人包棟",
+            range: "27–38 人",
+            rec: "兩棟合訂",
+            price: "$28,000起",
+            summary: "27–38 人建議直接走你好哇＋溝頂兩棟合訂，空間最靈活。",
+            detail: "兩棟步行 30 秒，可分房休息也能一起聚餐，婚禮與大家族最常用這個方案。",
+        },
+        {
+            id: "capacity-40",
+            href: "/dazhi",
+            count: "40人包棟",
+            range: "39–48 人",
+            rec: "大智若愚",
+            price: "$45,000起",
+            summary: "40 人以上團體先看大智若愚，電梯與大容量是核心優勢。",
+            detail: "企業員旅、球隊與大型家族，可先用大智若愚評估 20–48 人配置。",
+        },
+    ] as const;
+
+    const occasionCards = [
+        {
+            id: "need-family-trip",
+            href: "/compare",
+            emoji: "👨‍👩‍👧‍👦",
+            label: "家庭旅遊",
+            summary: "6-12 人帶長輩優先看溝頂，13-26 人聚餐選你好哇",
+            detail: "三代同堂超過 26 人可走兩棟合訂，保留各自休息空間。",
+        },
+        {
+            id: "need-company-retreat",
+            href: "/compare",
+            emoji: "💼",
+            label: "企業團建",
+            summary: "10-20 人先看你好哇，20 人以上同步評估大智若愚",
+            detail: "需要共煮、聚餐與多人分房時，主比較頁最適合先快速篩選。",
+        },
+        {
+            id: "need-friends-gathering",
+            href: "/hellohouse",
+            emoji: "🎉",
+            label: "好友聚會",
+            summary: "麻將、火鍋、桌遊與 Netflix 優先看你好哇寓所",
+            detail: "6-12 人想要簡單獨棟，也可以再看溝頂民宿的五層空間。",
+        },
+    ] as const;
+
     return (
         <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
@@ -47,7 +117,7 @@ export default function KaohsiungWholeHousePage() {
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
                     <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿推薦</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>6–48人包棟方案｜鹽埕區駁二旁｜Google 4.9★</p>
+                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>6–48人包棟方案｜鹽埕區駁二旁｜2017 年起服務超過 5,000 組旅客</p>
                 </div></Reveal>
 
                 {/* Quick Answer for AI */}
@@ -66,18 +136,17 @@ export default function KaohsiungWholeHousePage() {
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
                     <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>依人數找包棟</h2>
                     <div style={{ display: "grid", gap: "8px" }}>
-                        {[
-                            { href: "/capacity/10", count: "6–12人", rec: "溝頂民宿", price: "$10,000起" },
-                            { href: "/capacity/20", count: "13–26人", rec: "你好哇寓所", price: "$12,000起" },
-                            { href: "/capacity/30", count: "27–38人", rec: "兩棟合訂", price: "$28,000起" },
-                            { href: "/capacity/40", count: "39–48人", rec: "三館聯訂", price: "$45,000起" },
-                        ].map(c => (
-                            <Link key={c.href} href={c.href} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none" }}>
-                                <div>
-                                    <span style={{ fontSize: "0.88rem", color: "#3D3830", fontWeight: 500 }}>{c.count}</span>
-                                    <span style={{ fontSize: "0.78rem", color: "#999", marginLeft: "8px" }}>推薦 {c.rec}</span>
+                        {capacityCards.map(card => (
+                            <Link key={card.id} id={card.id} href={card.href} style={{ padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", display: "grid", gap: "6px" }}>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px", flexWrap: "wrap" }}>
+                                    <div>
+                                        <span style={{ fontSize: "0.88rem", color: "#3D3830", fontWeight: 500 }}>{card.count}</span>
+                                        <span style={{ fontSize: "0.78rem", color: "#999", marginLeft: "8px" }}>{card.range}｜推薦 {card.rec}</span>
+                                    </div>
+                                    <span style={{ fontSize: "0.78rem", color: "var(--pri)" }}>{card.price} →</span>
                                 </div>
-                                <span style={{ fontSize: "0.78rem", color: "var(--pri)" }}>{c.price} →</span>
+                                <div style={{ fontSize: "0.8rem", color: "#666", lineHeight: 1.8 }}>{card.summary}</div>
+                                <div style={{ fontSize: "0.74rem", color: "#999", lineHeight: 1.7 }}>{card.detail}</div>
                             </Link>
                         ))}
                     </div>
@@ -86,16 +155,25 @@ export default function KaohsiungWholeHousePage() {
                 {/* By Need */}
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
                     <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>依需求找包棟</h2>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    <div style={{ display: "grid", gap: "8px", marginBottom: "12px" }}>
+                        {occasionCards.map(card => (
+                            <Link key={card.id} id={card.id} href={card.href} style={{ padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", color: "#3D3830", display: "grid", gap: "6px" }}>
+                                <div style={{ fontSize: "0.88rem", fontWeight: 500, display: "flex", alignItems: "center", gap: "8px" }}>
+                                    <span>{card.emoji}</span>
+                                    <span>{card.label}</span>
+                                </div>
+                                <div style={{ fontSize: "0.78rem", color: "#666", lineHeight: 1.8 }}>{card.summary}</div>
+                                <div style={{ fontSize: "0.74rem", color: "#999", lineHeight: 1.7 }}>{card.detail}</div>
+                            </Link>
+                        ))}
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "8px" }}>
                         {[
-                            { href: "/features/kitchen", emoji: "🍳", label: "有廚房" },
-                            { href: "/features/parking", emoji: "🅿️", label: "方便停車" },
-                            { href: "/occasion/family-trip", emoji: "👨‍👩‍👧‍👦", label: "家庭旅遊" },
-                            { href: "/occasion/company-retreat", emoji: "💼", label: "企業團建" },
-                            { href: "/occasion/friends-gathering", emoji: "🎉", label: "好友聚會" },
+                            { href: "/blog/kaohsiung-kitchen-bnb#kitchen", emoji: "🍳", label: "有廚房" },
+                            { href: "/traffic#parking", emoji: "🅿️", label: "方便停車" },
                             { href: "/compare", emoji: "📊", label: "完整比較表" },
                         ].map(l => (
-                            <Link key={l.href} href={l.href} style={{ padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", fontSize: "0.82rem", color: "#3D3830", display: "flex", alignItems: "center", gap: "8px" }}>
+                            <Link key={l.href} href={l.href} style={{ padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", fontSize: "0.82rem", color: "#3D3830", display: "flex", alignItems: "center", gap: "8px", justifyContent: "center" }}>
                                 <span>{l.emoji}</span> {l.label}
                             </Link>
                         ))}
@@ -150,8 +228,8 @@ export default function KaohsiungWholeHousePage() {
                     <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>相關攻略</h2>
                     <div style={{ display: "grid", gap: "8px" }}>
                         {[
-                            { href: "/blog/kaohsiung-group-stay-guide", title: "高雄包棟民宿完全攻略" },
-                            { href: "/blog/kaohsiung-bnb-recommendation", title: "高雄包棟民宿推薦 Top 3" },
+                            { href: "/blog/kaohsiung-family-reunion", title: "家族旅遊包棟推薦" },
+                            { href: "/blog/kaohsiung-group-trip", title: "高雄團體旅遊行程推薦" },
                             { href: "/blog/kaohsiung-kitchen-bnb", title: "有廚房的高雄民宿推薦" },
                             { href: "/blog/kaohsiung-mahjong-stay", title: "高雄麻將民宿推薦" },
                         ].map(a => (

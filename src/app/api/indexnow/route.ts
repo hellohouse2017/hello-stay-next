@@ -66,8 +66,8 @@ export async function GET(req: NextRequest) {
 
     const allPages = [
         "/", "/hellohouse", "/godin", "/dazhi", "/book",
-        "/explore", "/traffic", "/packages", "/reviews",
-        "/blog", "/capacity/10", "/capacity/20", "/capacity/30",
+        "/kaohsiung-whole-house", "/compare", "/explore", "/traffic", "/packages", "/reviews",
+        "/blog",
     ];
 
     const fullUrls = allPages.map(p => `${HOST}${p}`);

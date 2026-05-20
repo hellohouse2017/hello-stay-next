@@ -5,12 +5,12 @@ import Reveal from "@/components/Reveal";
 import ProposalCard from "@/components/ProposalCard";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜6-48人鹽埕包棟・近駁二｜Hello Stay 你好哇",
-  description: "高雄鹽埕包棟民宿推薦 Hello Stay，三館6-48人任選。中島廚房、麻將、桌遊，近駁二與大港橋。平日 NT$10,000 起，Google 4.9 星，自2017年服務超過5000組旅客。馬上查空房",
+  title: "【包棟$8,000起】高雄包棟民宿推薦 Hello Stay｜6-48人三館・中島廚房/麻將・官方直訂免手續費",
+  description: "高雄包棟民宿首選 Hello Stay！平日包棟最低 $8,000 起，提供 6-48 人三館獨立空間。配備豪華中島廚房、手動麻將桌、娛樂桌遊，步行 5-10 分鐘即達駁二藝術特區、大港橋與鹽埕美食。官方 LINE 直訂享最優惠報價、免收平台服務費！",
   alternates: { canonical: "https://www.hello-stay.com" },
   openGraph: {
-    title: "高雄包棟民宿推薦｜6-48人鹽埕包棟・近駁二｜Hello Stay 你好哇",
-    description: "高雄鹽埕包棟民宿首選！三棟獨立空間可容6-48人，提供中島廚房、麻將桌、投影機。步行5分鐘到駁二藝術特區。Google 4.9星・綜藝玩很大拍攝場地。LINE即時查空房→",
+    title: "【包棟$8,000起】高雄包棟民宿推薦 Hello Stay｜6-48人三館・中島廚房/麻將・官方直訂免手續費",
+    description: "高雄包棟民宿首選 Hello Stay！平日包棟 $8,000 起，6-48人三館任選。附中島廚房、麻將、桌遊，步行即達駁二大港橋。官方直訂免收平台手續費，馬上查空房！",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -25,12 +25,13 @@ export default function HomePage() {
           {
             "@context": "https://schema.org", "@type": "LodgingBusiness",
             "@id": "https://www.hello-stay.com/#lodging",
-            name: "Hello Stay 你好哇寓所 & 溝頂民宿 & 大智若愚",
-            alternateName: ["你好哇寓所", "Hello House", "溝頂民宿", "Godin House", "大智若愚"],
+            name: "Hello Stay 高雄包棟",
+            parentOrganization: { "@type": "Organization", "@id": "https://www.hello-stay.com/#organization" },
+            alternateName: ["Hello Stay", "Hello Stay 高雄包棟"],
             url: "https://www.hello-stay.com",
             telephone: "+886-932-828-922",
             email: "hellohouse2017@gmail.com",
-            description: "高雄鹽埕區質感包棟民宿，三館可容納6至48人。配備中島廚房、麻將與桌遊設備，步行10分鐘到駁二藝術特區。自2017年起服務超過5,000組旅客，Google評價4.9星。",
+            description: "高雄鹽埕區質感包棟民宿，三館可容納6至48人。配備中島廚房、麻將與桌遊設備，步行10分鐘到駁二藝術特區。自2017年起服務超過5,000組旅客。",
             slogan: "高雄鹽埕・質感包棟旅宿",
             foundingDate: "2017",
             address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
@@ -39,7 +40,14 @@ export default function HomePage() {
             priceRange: "$$",
             checkinTime: "16:00", checkoutTime: "11:00",
             numberOfRooms: 10,
-            aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "87", bestRating: "5" },
+            amenityFeature: [
+              { "@type": "LocationFeatureSpecification", name: "Kitchen", value: true },
+              { "@type": "LocationFeatureSpecification", name: "Free Wi-Fi", value: true },
+              { "@type": "LocationFeatureSpecification", name: "Air conditioning", value: true },
+              { "@type": "LocationFeatureSpecification", name: "Self check-in", value: true },
+              { "@type": "LocationFeatureSpecification", name: "Mahjong table", value: true },
+              { "@type": "LocationFeatureSpecification", name: "Streaming TV", value: true },
+            ],
             containsPlace: [
               { "@type": "Accommodation", name: "你好哇寓所", description: "6-26人包棟，中島廚房、麻將桌、桌遊", numberOfBedrooms: 6, occupancy: { "@type": "QuantitativeValue", maxValue: 26 } },
               { "@type": "Accommodation", name: "溝頂民宿", description: "10-12人精緻獨棟，五層樓空間", numberOfBedrooms: 4, occupancy: { "@type": "QuantitativeValue", maxValue: 12 } },
@@ -62,7 +70,25 @@ export default function HomePage() {
             "@context": "https://schema.org", "@type": "Organization",
             "@id": "https://www.hello-stay.com/#organization",
             name: "Hello Stay",
-            alternateName: ["你好哇寓所", "Hello House", "Hello Stay 高雄包棟"],
+            alternateName: ["Hello Stay", "Hello Stay 高雄包棟"],
+            subOrganization: [
+              {
+                "@type": "LodgingBusiness",
+                "@id": "https://www.hello-stay.com/#lodging",
+                name: "你好哇寓所",
+                address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                telephone: "+886-932-828-922",
+                sameAs: ["https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U"]
+              },
+              {
+                "@type": "LodgingBusiness",
+                "@id": "https://www.hello-stay.com/godin/#lodging",
+                name: "溝頂民宿",
+                address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
+                telephone: "+886-932-828-922",
+                sameAs: ["https://www.google.com/maps/search/?api=1&query=%E6%BA%9溝%E9%A0%82%E6%B0%91%E5%AE%BF"]
+              }
+            ],
             url: "https://www.hello-stay.com",
             logo: "https://www.hello-stay.com/images/cover-bg.webp",
             foundingDate: "2017",
@@ -87,17 +113,17 @@ export default function HomePage() {
           {
             "@context": "https://schema.org", "@type": "FAQPage",
             mainEntity: [
-              { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay（你好哇寓所＆溝頂民宿），位於高雄鹽埕區，Google評價4.9星。三館可容納6至48人，配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。" } },
+              { "@type": "Question", name: "高雄有推薦的包棟民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦 Hello Stay，位於高雄鹽埕區，三館可容納6至48人。主館你好哇寓所目前 Google 評價 4.5 星（75 則評論），並配備中島廚房、麻將桌、桌遊，步行10分鐘到駁二藝術特區。" } },
               { "@type": "Question", name: "你好哇寓所最多可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所最多可容納26人，多間獨立套房彈性配置。三館聯訂最大容納48人。" } },
-              { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過LINE官方帳號或官網預訂，免收平台手續費。平日溝頂民宿$10,000起。" } },
+              { "@type": "Question", name: "高雄包棟民宿哪裡訂最便宜？", acceptedAnswer: { "@type": "Answer", text: "官方直訂最優惠！透過 LINE 官方帳號或官網預訂，免收平台手續費，還能直接依人數與日期取得包棟報價。" } },
               { "@type": "Question", name: "Hello Stay 三間民宿各自可以住多少人？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所 6-26 人，溝頂民宿 10-12 人，大智若愚最大 48 人。三館聯訂可容納近 80 人。" } },
               { "@type": "Question", name: "距離駁二藝術特區多遠？", acceptedAnswer: { "@type": "Answer", text: "你好哇寓所與溝頂民宿步行約 10 分鐘到駁二藝術特區；大智若愚位於大港橋旁，緊鄰駁二大義倉庫群。" } },
-              { "@type": "Question", name: "有提供哪些娛樂設施？", acceptedAnswer: { "@type": "Answer", text: "豪宅級中島廚房（IH爐、冰箱、完整餐具）、麻將桌、桌遊、43吋 Netflix 聯網電視、製冰機、洗衣機。一樓開放式客廳可容納 20 人以上聚會。" } },
+              { "@type": "Question", name: "有提供哪些娛樂設施？", acceptedAnswer: { "@type": "Answer", text: "豪宅級中島廚房（IH爐、冰箱、完整餐具）、麻將桌、桌遊、43吋 Netflix 聯網電視、製冰機、洗衣機。一樓開放式中島廚房與交誼大空間可容納 20 人以上聚會。" } },
               { "@type": "Question", name: "入住方式是什麼？", acceptedAnswer: { "@type": "Answer", text: "電子密碼鎖自助入住，密碼於入住當日透過 LINE 傳送。入住時間 16:00 以後，退房時間 11:00 以前。" } },
               { "@type": "Question", name: "怎麼從高鐵到 Hello Stay？", acceptedAnswer: { "@type": "Answer", text: "高鐵左營站 → 捷運紅線至美麗島站 → 轉橘線至鹽埕埔站（O2）→ 4號出口步行 5 分鐘。全程約 30 分鐘。" } },
               { "@type": "Question", name: "可以帶寵物嗎？", acceptedAnswer: { "@type": "Answer", text: "非寵物友善旅宿。經事前申請並書面同意者，酌收清潔費平日 $800、假日 $1,000。" } },
               { "@type": "Question", name: "Hello Stay 是合法民宿嗎？", acceptedAnswer: { "@type": "Answer", text: "是的。你好哇寓所（高雄市民宿 131-1 號）與溝頂民宿（高雄市民宿 163 號）皆為合法登記民宿，並依法投保富邦產險公共意外責任險。" } },
-              { "@type": "Question", name: "包棟民宿適合辦婚禮迎娶嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合。寬敞一樓客廳適合闖關遊戲，絕佳自然採光適合婚攝，多房型供伴娘團入住。曾服務多組迎娶與婚禮前夜派對。" } },
+              { "@type": "Question", name: "包棟民宿適合辦婚禮迎娶嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合。寬敞的一樓中島廚房與交誼大空間適合闖關遊戲，絕佳自然採光適合婚攝，多房型供伴娘團入住。曾服務多組迎娶與婚禮前夜派對。" } },
             ],
           },
           {
@@ -125,7 +151,7 @@ export default function HomePage() {
         <div className="hero-cinema__media">
           <Image
             src="/images/hellohouse/photo1.webp"
-            alt="Hello Stay 高雄包棟民宿 — 溫暖客廳空間"
+            alt="Hello Stay 高雄包棟民宿你好哇寓所一樓挑高寬敞的豪華中島廚房與交誼大空間全景，適合多人在此備餐、打麻將與歡聚"
             fill
             priority
             sizes="100vw"
@@ -135,15 +161,15 @@ export default function HomePage() {
         </div>
 
         <div className="hero-cinema__content">
-          <div className="hero-cinema__eyebrow">Since 2017 · 高雄鹽埕</div>
+          <div className="hero-cinema__eyebrow">Since 2017 · 高雄包棟民宿推薦 · 鹽埕</div>
           <h1 className="hero-cinema__title">
-            巷弄裡的包棟，<br />
-            <span className="hero-cinema__title--accent">屬於你們的空間</span>
+            高雄包棟民宿推薦，<br />
+            <span className="hero-cinema__title--accent">6-48 人都住得自在</span>
           </h1>
           <p className="hero-cinema__sub">
             三棟獨立民宿・6 至 48 人<br />
-            中島廚房 / 麻將 / 投影 / 桌遊<br />
-            在這裡，時間是你們的。
+            中島廚房 / 麻將 / 桌遊 / 官方直訂<br />
+            步行可達鹽埕美食、駁二與大港橋
           </p>
           <div className="hero-cinema__actions">
             <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line">
@@ -153,7 +179,7 @@ export default function HomePage() {
             <Link href="/book" className="btn-ghost">查詢空房與報價</Link>
           </div>
           <div className="hero-cinema__badge">
-            ⭐ Google 4.9 星 · 5,000+ 組旅客
+            ⭐ 主館你好哇寓所 Google 4.5 星 · 75 則評論
           </div>
         </div>
 
@@ -193,7 +219,7 @@ export default function HomePage() {
             <div className="prop-card__img">
               <Image
                 src="/images/hellohouse/cover.webp"
-                alt="你好哇寓所 — 中島廚房與客廳全景"
+                alt="Hello Stay 你好哇寓所高雄包棟首選，一樓大容量開放式中島廚房與交誼吧台無阻隔的歡聚空間"
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
                 style={{ objectFit: "cover" }}
@@ -209,7 +235,7 @@ export default function HomePage() {
                 老屋溫度遇上現代質感——這裡是你的私人招待所。
               </p>
               <div className="prop-card__tags">
-                <span>中島廚房</span><span>麻將桌</span><span>聚會客廳</span><span>多間套房</span>
+                <span>中島廚房</span><span>麻將桌</span><span>聚會空間</span><span>多間套房</span>
               </div>
               <div className="prop-card__footer">
                 <span className="prop-card__price">依人數彈性配置 · LINE 諮詢</span>
@@ -225,7 +251,7 @@ export default function HomePage() {
             <div className="prop-card__img">
               <Image
                 src="/images/godin/cover-1.webp"
-                alt="溝頂民宿 — 五層獨棟空間"
+                alt="溝頂民宿 Godin House 高雄鹽埕 10-12 人超值獨棟包棟民宿外觀，享有完全無外人打擾的私人空間"
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
                 style={{ objectFit: "cover" }}
@@ -257,12 +283,12 @@ export default function HomePage() {
             <div className="prop-card__img">
               <Image
                 src="/images/dazhi/building-render.webp"
-                alt="大智若愚 — 全新電梯大樓民宿"
+                alt="大智若愚民宿大樓外觀 3D 渲染設計圖，全新電梯包層包棟民宿，鄰近大港橋與駁二大義倉庫群"
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
                 style={{ objectFit: "cover" }}
               />
-              <div className="prop-card__coming-badge">2026 全新開幕</div>
+              <div className="prop-card__coming-badge">2027 年中開幕</div>
             </div>
             <div className="prop-card__body">
               <span className="prop-card__num" style={{ color: "var(--sec)" }}>03</span>
@@ -289,12 +315,12 @@ export default function HomePage() {
       <section className="scene-strip">
         <div className="strip-scroll">
           {[
-            { src: "/images/hellohouse/bar-2.webp", alt: "中島廚房吧台" },
-            { src: "/images/hellohouse/photo2.webp", alt: "客廳聚會空間" },
-            { src: "/images/hellohouse/1301.webp", alt: "舒適房間" },
-            { src: "/images/godin/room1.webp", alt: "溝頂房間" },
-            { src: "/images/hellohouse/1000.webp", alt: "舒適空間" },
-            { src: "/images/godin/cover-2.webp", alt: "溝頂交誼廳" },
+            { src: "/images/hellohouse/bar-2.webp", alt: "Hello Stay 你好哇寓所一樓精緻的中島吧台與高腳椅，適合親友小酌聊天與品嚐鹽埕美食" },
+            { src: "/images/hellohouse/photo2.webp", alt: "Hello Stay 你好哇寓所一樓開放式交誼空間與手動麻將桌，提供旅客豐富的室內休閒活動選擇" },
+            { src: "/images/hellohouse/1301.webp", alt: "Hello Stay 你好哇寓所客房配備標準雙人床獨立筒床墊，營造如家般舒適與安穩的極致睡眠環境" },
+            { src: "/images/godin/room1.webp", alt: "溝頂民宿溫馨優雅的客房室內設計，採光通風良好，配備一級冷暖空調與獨立衛浴設備" },
+            { src: "/images/hellohouse/1000.webp", alt: "Hello Stay 你好哇寓所一樓豪華中島廚房與大餐桌，備有完整餐具與 IH 爐適合多人開伙聚餐" },
+            { src: "/images/godin/cover-2.webp", alt: "溝頂民宿四樓公共沙發交誼廳與休閒麻將桌，是 10-12 人團體包棟聊天娛樂的高 CP 值首選空間" },
           ].map((img, i) => (
             <div key={i} className="strip-scroll__item">
               <Image src={img.src} alt={img.alt} width={480} height={320} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
@@ -315,7 +341,7 @@ export default function HomePage() {
               { icon: "🏠", title: "整棟包下", desc: "三館皆為獨立空間。\n不跟別人共用，完全屬於你們。" },
               { icon: "👥", title: "6-48人彈性", desc: "從小家庭到企業團建。\n三館任選或合訂，最高近80人。" },
               { icon: "📍", title: "鹽埕黃金區", desc: "步行到駁二、大港橋。\n30+間在地老店走路可達。" },
-              { icon: "⭐", title: "4.9 星口碑", desc: "Google 4.9 星、5,000+組旅客。\n綜藝玩很大拍攝場地。" },
+              { icon: "⭐", title: "主館 Google 評價", desc: "你好哇寓所 Google 4.5 星、75 則評論。\n綜藝玩很大拍攝場地。" },
               { icon: "💰", title: "直訂最划算", desc: "官方LINE直訂免平台手續費。\n比OTA便宜15-20%。" },
               { icon: "💬", title: "LINE 即訂", desc: "LINE 即時回覆、查房報價。\n30秒產出包棟提案。" },
             ].map((f, i) => (
@@ -344,8 +370,8 @@ export default function HomePage() {
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center" }}>
                 <Link href="/compare" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>📊 三館比較</Link>
                 <Link href="/kaohsiung-whole-house" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>🏠 包棟總覽</Link>
-                <Link href="/occasion/family-trip" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>👨‍👩‍👧‍👦 家庭旅遊</Link>
-                <Link href="/occasion/company-retreat" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>💼 企業團建</Link>
+                <Link href="/kaohsiung-whole-house#need-family-trip" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>👨‍👩‍👧‍👦 家庭旅遊</Link>
+                <Link href="/kaohsiung-whole-house#need-company-retreat" style={{ padding: "8px 16px", borderRadius: "8px", border: "1px solid #E8E0D4", color: "#8A8279", fontSize: "0.78rem", textDecoration: "none" }}>💼 企業團建</Link>
               </div>
             </div>
           </Reveal>
@@ -356,7 +382,7 @@ export default function HomePage() {
       <section className="scene-cta">
         <Image
           src="/images/hellohouse/photo5.webp"
-          alt="Hello Stay 溫暖空間"
+          alt="Hello Stay 高雄包棟民宿精緻溫馨的高質感客房環境，點綴溫暖燈光讓旅人如回到家一般"
           fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
