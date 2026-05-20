@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
-import { hellohouse, godin } from "@/data/properties";
+
 
 /* ── Types ── */
 interface PropertyCard {

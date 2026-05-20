@@ -1,4 +1,5 @@
 #!/usr/bin/env npx tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * SEO 活動文章批次產生器
  * 使用 GPT-5.4 via LiteLLM 生成 24 篇高雄活動 SEO 文章

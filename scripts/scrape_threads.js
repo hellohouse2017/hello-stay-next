@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 // 寫在 workspace 專案目錄下的 scripts 中
-const path = require('path');
 
 async function runPlaywright() {
   const { chromium } = require('playwright');

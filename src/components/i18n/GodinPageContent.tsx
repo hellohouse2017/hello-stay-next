@@ -108,7 +108,7 @@ export default function GodinPageContent({ locale }: { locale: Locale }) {
                         <Reveal>
                             <div className={`room-detail-card${i % 2 === 1 ? " reverse" : ""}`}>
                                 <div className="room-detail-img">
-                                    <Image src={floor.img} alt={(floor as any).imgAlt || floor.label} width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                    <Image src={floor.img} alt={(floor as { imgAlt?: string }).imgAlt || floor.label} width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                                 <div className="room-detail-info">
                                     <div className="room-floor-tag">{floor.num}</div>

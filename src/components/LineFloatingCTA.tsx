@@ -60,8 +60,11 @@ export default function LineFloatingCTA({ lineUrl, message = '幫你查空房 �
                 className="line-floating-btn"
                 aria-label="LINE 詢問空房"
                 onClick={() => {
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                        (window as any).gtag('event', 'line_cta_click', { event_category: 'conversion' });
+                    if (typeof window !== 'undefined') {
+                        const win = window as Window & { gtag?: (type: string, action: string, options?: Record<string, unknown>) => void };
+                        if (win.gtag) {
+                            win.gtag('event', 'line_cta_click', { event_category: 'conversion' });
+                        }
                     }
                 }}
             >

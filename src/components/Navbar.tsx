@@ -12,9 +12,11 @@ export default function Navbar() {
     const [langOpen, setLangOpen] = useState(false);
     const path = usePathname();
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => { setMounted(true); }, []);
 
     // Close menu on route change
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => { setOpen(false); setLangOpen(false); }, [path]);
 
     // Detect current locale from path

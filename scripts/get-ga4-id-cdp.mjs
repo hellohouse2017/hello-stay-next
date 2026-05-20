@@ -1,6 +1,5 @@
 import { chromium } from 'playwright';
-import path from 'path';
-import fs from 'fs';
+import fs from 'fs/promises';
 
 async function main() {
   console.log("Connecting to existing Chrome instance on port 9222...");

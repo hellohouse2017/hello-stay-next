@@ -34,7 +34,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Helper: find and click button by text content
 async function clickButton(page, textMatch, options = {}) {
-  const { scroll = false, timeout = 5000 } = options;
+  const { scroll = false } = options;
   const buttons = await page.$$("button");
   for (const btn of buttons) {
     try {

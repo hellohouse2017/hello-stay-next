@@ -18,7 +18,7 @@ import { createInterface } from "readline";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SCREENSHOTS_DIR = join(__dirname, "app-review-screenshots");
 const APP_ICON_PATH = join(__dirname, "app-icon-1024.png");
-const SCREENCAST_PATH = join(__dirname, "screencast.mp4");
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const APP_ID = "917849677648910";
@@ -53,20 +53,7 @@ async function waitForLoad(page, ms = 8000) {
   } catch { /* ignore timeout */ }
 }
 
-async function setInputValue(page, selector, value) {
-  return await page.evaluate((sel, val) => {
-    const input = document.querySelector(sel);
-    if (!input) return false;
-    const nativeSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype, 'value'
-    ).set;
-    nativeSetter.call(input, val);
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-    input.dispatchEvent(new Event('change', { bubbles: true }));
-    input.dispatchEvent(new Event('blur', { bubbles: true }));
-    return true;
-  }, selector, value);
-}
+
 
 async function setInputByLabel(page, labelText, value) {
   return await page.evaluate((label, val) => {

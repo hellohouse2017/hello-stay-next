@@ -146,7 +146,7 @@ export default function HelloHousePageContent({ locale }: { locale: Locale }) {
                         <Reveal>
                             <div className={`room-detail-card${i % 2 === 1 ? " reverse" : ""}`}>
                                 <div className="room-detail-img">
-                                    <Image src={room.img} alt={(room as any).imgAlt || room.name} width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                    <Image src={room.img} alt={(room as { imgAlt?: string }).imgAlt || room.name} width={700} height={500} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                                 </div>
                                 <div className="room-detail-info">
                                     <div className="room-floor-tag">{room.floor}</div>

@@ -20,21 +20,6 @@ export const metadata: Metadata = {
     },
 };
 
-const rooms = [
-    { src: "/images/godin/room1.webp", alt: "1F 經典雙人房" },
-    { src: "/images/godin/room2.webp", alt: "2F 陽光四人房" },
-    { src: "/images/godin/room3.webp", alt: "3F 雅緻四人房" },
-    { src: "/images/godin/room4.webp", alt: "4F 公共交誼廳" },
-    { src: "/images/godin/room5.webp", alt: "5F 景觀雙人房" },
-];
-
-const floors = [
-    { num: "1F", label: "經典雙人房", desc: "一樓獨立空間，舒適雙人住宿" },
-    { num: "2F", label: "陽光四人房", desc: "寬敞明亮，適合家庭入住" },
-    { num: "3F", label: "雅緻四人房", desc: "溫馨風格，獨立衛浴" },
-    { num: "4F", label: "公共交誼廳", desc: "客廳、麻將，團聚歡樂空間" },
-    { num: "5F", label: "景觀雙人房", desc: "頂樓視野，充足採光" },
-];
 
 export default function GodinPage() {
     return (

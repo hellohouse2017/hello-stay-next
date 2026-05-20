@@ -86,7 +86,7 @@ async function analyzeSeoData(): Promise<ArticlePriority[]> {
     const impressions = page.impressions || 0
 
     // 找出昨天的排名
-    const previousPage = yesterday?.topPages?.find((p: any) => p.page === page.page)
+    const previousPage = yesterday?.topPages?.find((p: { page: string }) => p.page === page.page)
     const previousRank = previousPage?.position || 0
 
     // 優先級 1: 排名下降 > 5 名（緊急）

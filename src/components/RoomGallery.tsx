@@ -35,7 +35,11 @@ export default function RoomGallery({ images, roomName }: RoomGalleryProps) {
         isDragging.current = false;
         const diff = startX.current - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) {
-            diff > 0 ? next() : prev();
+            if (diff > 0) {
+                next();
+            } else {
+                prev();
+            }
         }
     };
 

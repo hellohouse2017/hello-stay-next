@@ -35,7 +35,7 @@ export default function ProposalCard() {
         `\n請幫我查空房和報價，謝謝！`
     );
 
-    const lineUrl = `https://lin.ee/atCiMQw`;
+    const lineUrl = `https://line.me/R/msg/text/?${lineMessage}`;
 
     if (generated) {
         return (

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Locale, locales } from "@/i18n/config";
 
@@ -38,7 +38,7 @@ export default function ChatWidget() {
             ariaLabel: "Booking Assistant",
             title: "Booking Assistant",
             subTitle: "Support in English",
-            welcome: <>Interested in checking availability, pricing, or booking a room?<br />Contact us via <span style={{ color: "var(--c-accent)" }}>Email</span> or <span style={{ color: "var(--c-accent)" }}>LINE</span>. We'll reply promptly!</>,
+            welcome: <>Interested in checking availability, pricing, or booking a room?<br />Contact us via <span style={{ color: "var(--c-accent)" }}>Email</span> or <span style={{ color: "var(--c-accent)" }}>LINE</span>. We&apos;ll reply promptly!</>,
             features: [
                 { icon: "fa-envelope", text: "24h Email Support" },
                 { icon: "fa-bolt", text: "Fast Response" },
@@ -232,9 +232,12 @@ export default function ChatWidget() {
                                     boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
                                 }}
                                 onClick={() => {
-                                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                                        const eventName = currentContent.primaryBtn.isEmail ? 'email_cta_click' : 'line_cta_click';
-                                        (window as any).gtag('event', eventName, { event_category: 'conversion' });
+                                    if (typeof window !== 'undefined') {
+                                        const win = window as Window & { gtag?: (type: string, action: string, options?: Record<string, unknown>) => void };
+                                        if (win.gtag) {
+                                            const eventName = currentContent.primaryBtn.isEmail ? 'email_cta_click' : 'line_cta_click';
+                                            win.gtag('event', eventName, { event_category: 'conversion' });
+                                        }
                                     }
                                 }}
                             >
@@ -261,8 +264,11 @@ export default function ChatWidget() {
                                         boxShadow: "0 3px 10px rgba(6, 199, 85, 0.2)",
                                     }}
                                     onClick={() => {
-                                        if (typeof window !== 'undefined' && (window as any).gtag) {
-                                            (window as any).gtag('event', 'line_cta_click', { event_category: 'conversion' });
+                                        if (typeof window !== 'undefined') {
+                                            const win = window as Window & { gtag?: (type: string, action: string, options?: Record<string, unknown>) => void };
+                                            if (win.gtag) {
+                                                win.gtag('event', 'line_cta_click', { event_category: 'conversion' });
+                                            }
                                         }
                                     }}
                                 >
