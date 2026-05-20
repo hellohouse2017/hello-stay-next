@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     description: "高雄鹽埕區三館包棟民宿，6至48人彈性方案。",
     images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -72,6 +73,10 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "VccBLBmoWAgu_Hn0562s8itv58XjH6QGshmI26mY32o",
+    other: {
+      ...(process.env.NAVER_SITE_VERIFICATION ? { "naver-site-verification": [process.env.NAVER_SITE_VERIFICATION] } : {}),
+      ...(process.env.YAHOO_SITE_VERIFICATION ? { "y_key": [process.env.YAHOO_SITE_VERIFICATION] } : {}),
+    }
   },
 };
 

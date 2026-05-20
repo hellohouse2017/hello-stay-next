@@ -10,6 +10,7 @@ Hello Stay 民宿的官方網站前台。
 - **Version Control**: Git
 
 ## 最近變更
+- 2026-05-20: 執行高轉化率 SEO 文章擴充與國際搜尋引擎收錄計畫。1. 在 `src/data/scheduled-articles.ts` 中手動撰寫並植入 6 篇與現有 32 篇文章完全無重疊的高意圖 SEO 攻略文，包含：「高雄演唱會包棟」、「大港開唱後勤」、「港澳星馬包車指南」、「高雄跨年包棟」、「結婚迎娶包棟」以及「學生畢旅/班遊包棟」，精準打擊高含金量搜尋；2. 在 `src/app/layout.tsx` 的 metadata 區塊新增 `naver-site-verification` 與 `y_key` 標籤，並綁定環境變數，以利日韓兩大搜尋引擎（Naver / Yahoo Japan）收錄網站；3. 同步產出 4 篇帶有 UTM 追蹤連結的論壇/社群導流文案，可直接應用於 Dcard、Threads 與 FB 旅遊社團，完善流量攔截與追蹤機制。
 - 2026-05-20: 全面清查並修復專案中剩餘的 ESLint 警告，包含移除 `src/app/godin/page.tsx`、`src/components/MoneyPageTemplate.tsx` 與 `src/components/ProposalCard.tsx` 中未使用的變數及引入；修正 `src/components/RoomGallery.tsx` 中未使用表達式（Unused expression）的錯誤；在 `src/app/admin/social/page.tsx` 中加入停用 `no-img-element` 的規則以容許外部圖片載入；同時清理 `scripts/` 目錄下多個 `.mjs` 和 `.js` 腳本中未使用變數與 `require` 相關的警告，達成 `npm run lint` 零錯誤與零警告的完美健康狀態。
 - 2026-05-20: 成功透過實體 Chrome 瀏覽器自動化技術，繞過 Google 登入安全限制，將新撰寫的台灣旅遊攻略長文 (/blog/taiwan-travel-foreign-guide) 提交至 Google Search Console (GSC) 並順利觸發「要求建立索引」，成功將網址加入優先檢索佇列，加速搜索引擎及 AI 引擎的抓取與收錄。
 - 2026-05-20: 清查並修復全站核心前端元件的 ESLint / TypeScript 型別錯誤。包含修正 Navbar 中 useEffect 內的 setState 警告、ChatWidget 中的 unescaped 符號及 gtag 轉型（並清理未使用的 useEffect 引入）、LineFloatingCTA 中的 gtag safe casting、以及 GodinPageContent/HelloHousePageContent 中 room/floor 的 as any 型別安全轉型；清空所有 src 下的 ESLint 語法錯誤，使 npm run build:local 生產環境打包與 TypeScript 型別檢查 100% 成功通過。
