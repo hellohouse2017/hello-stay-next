@@ -1,296 +1,151 @@
-"use client";
-import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { CalendarDays, ChevronRight, Hotel, ShieldCheck } from "lucide-react";
 
-const BNB_API = process.env.NEXT_PUBLIC_BNB_API || "https://bnb-mgmt-system.vercel.app";
+import { properties } from "@/data/properties";
 
-interface AvailResult {
-    bnbName: string;
-    available: boolean;
+const bookingBase = "https://booking.hello-stay.com/booking";
+
+type Entrance = {
+  name: string;
+  detail: string;
+  property: string;
+  image?: string;
+  alt?: string;
+  splitImages?: { src: string; alt: string; label: string }[];
+};
+
+function buildBookingHref(property?: string) {
+  const url = new URL(bookingBase);
+  if (property) url.searchParams.set("property", property);
+  return url.toString();
 }
 
-export default function BookingPage() {
-    const [checkIn, setCheckIn] = useState("");
-    const [checkOut, setCheckOut] = useState("");
-    const [guests, setGuests] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState<AvailResult[] | null>(null);
-    const [error, setError] = useState("");
+const entrances: Entrance[] = [
+  {
+    name: "你好哇寓所",
+    detail: "6-26 人\n中島廚房\n婚禮迎娶與中大型團體",
+    image: properties[0]?.coverImage || "/images/hellohouse/cover.webp",
+    alt: "你好哇寓所公共空間",
+    property: "你好哇寓所",
+  },
+  {
+    name: "溝頂民宿",
+    detail: "4-12 人小團體\n標準 12 人\n可依正式方案彈性確認",
+    image: properties[1]?.coverImage || "/images/godin/cover-1.webp",
+    alt: "溝頂民宿五層獨棟空間",
+    property: "溝頂民宿",
+  },
+  {
+    name: "雙館包棟",
+    detail: "你好哇＋溝頂\n雙館合併查詢\n適合多人團體",
+    splitImages: [
+      { src: properties[0]?.coverImage || "/images/hellohouse/cover.webp", alt: "你好哇寓所", label: "你好哇寓所" },
+      { src: properties[1]?.coverImage || "/images/godin/cover-1.webp", alt: "溝頂民宿", label: "溝頂民宿" },
+    ],
+    property: "雙館包棟",
+  },
+];
 
-    // Min date = today
-    const today = new Date().toISOString().split("T")[0];
+const steps = [
+  {
+    title: "館別差異",
+    text: "先把人數與空間需求對上 館別就會更清楚。",
+    icon: Hotel,
+  },
+  {
+    title: "即時報價",
+    text: "日期 人數 館別 可售狀態與總價都會在官方訂房站顯示。",
+    icon: CalendarDays,
+  },
+  {
+    title: "完成預訂",
+    text: "Email 驗證 合約簽署 付款與訂單查詢都在同一個系統內完成。",
+    icon: ShieldCheck,
+  },
+];
 
-    const handleCheck = async () => {
-        if (!checkIn || !checkOut) {
-            setError("請選擇入住和退房日期");
-            return;
-        }
-        if (checkOut <= checkIn) {
-            setError("退房日期必須晚於入住日期");
-            return;
-        }
-        setError("");
-        setLoading(true);
-        setResults(null);
-
-        try {
-            const res = await fetch(
-                `${BNB_API}/api/web/availability?checkIn=${checkIn}&checkOut=${checkOut}`
-            );
-            const data = await res.json();
-            if (data.error) {
-                setError(data.error);
-            } else {
-                setResults(data.results);
-            }
-        } catch {
-            setError("查詢失敗，請稍後再試");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const nights = checkIn && checkOut && checkOut > checkIn
-        ? Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / 86400000)
-        : 0;
-
-    const openChat = () => {
-        const chatBtn = document.querySelector("[data-chat-toggle]") as HTMLButtonElement;
-        if (chatBtn) chatBtn.click();
-    };
-
-    // 產生 LINE 預填訊息連結（帶日期、人數、來源標籤）
-    const getLineBookingUrl = () => {
-        const parts: string[] = ["我想預訂"];
-        if (checkIn && checkOut) {
-            const fmtIn = checkIn.replace(/^\d{4}-/, '').replace('-', '/');
-            const fmtOut = checkOut.replace(/^\d{4}-/, '').replace('-', '/');
-            parts.push(`${fmtIn}~${fmtOut}`);
-        }
-        if (guests) parts.push(`${guests}人`);
-        parts.push("#來源官網");
-        const msg = encodeURIComponent(parts.join(" "));
-        return `https://line.me/R/oaMessage/@hellostay/?${msg}`;
-    };
-
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <div className="w" style={{ maxWidth: "600px", padding: "0 28px 80px" }}>
-
-                {/* Header */}
-                <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                    <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                        Check Availability
-                    </div>
-                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
-                        高雄包棟民宿查詢空房與報價
-                    </h1>
-                    <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                    <p style={{ fontSize: "0.88rem", color: "#999", lineHeight: 1.9 }}>
-                        輸入日期與人數，快速查看 Hello Stay 兩館空房狀況
-                    </p>
-                </div>
-
-                <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "24px" }}>
-                    <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                        官方直訂
-                    </div>
-                    <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
-                        正在找{" "}
-                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                            高雄包棟民宿推薦 Hello Stay
-                        </Link>
-                        {" "}嗎？這裡可以先查日期與人數，再決定適合的館別；
-                        如果還想先比較，也可以看{" "}
-                        <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                            包棟方案整理
-                        </Link>
-                        。
-                    </p>
-                    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                        <Link href="/hellohouse" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                            你好哇寓所 6-26人
-                        </Link>
-                        <Link href="/godin" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                            溝頂民宿 6-12人
-                        </Link>
-                        <Link href="/compare" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                            比較三館差異
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Date Picker */}
-                <div style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", marginBottom: "24px" }}>
-
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "24px" }}>
-                        <div>
-                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
-                                入住日期
-                            </label>
-                            <input
-                                type="date"
-                                value={checkIn}
-                                min={today}
-                                onChange={e => { setCheckIn(e.target.value); setResults(null); }}
-                                style={{
-                                    width: "100%", padding: "14px 16px", border: "1px solid #e5e2dd",
-                                    borderRadius: "10px", fontSize: "0.95rem", fontFamily: "var(--sans)",
-                                    color: "#2a2a2a", outline: "none", transition: "border 0.3s",
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
-                                退房日期
-                            </label>
-                            <input
-                                type="date"
-                                value={checkOut}
-                                min={checkIn || today}
-                                onChange={e => { setCheckOut(e.target.value); setResults(null); }}
-                                style={{
-                                    width: "100%", padding: "14px 16px", border: "1px solid #e5e2dd",
-                                    borderRadius: "10px", fontSize: "0.95rem", fontFamily: "var(--sans)",
-                                    color: "#2a2a2a", outline: "none", transition: "border 0.3s",
-                                }}
-                            />
-                        </div>
-                    </div>
-
-                    {nights > 0 && (
-                        <p style={{ fontSize: "0.82rem", color: "#767676", textAlign: "center", marginBottom: "20px" }}>
-                            共 {nights} 晚
-                        </p>
-                    )}
-
-                    {/* Guest Count */}
-                    <div style={{ marginBottom: "24px" }}>
-                        <label style={{ display: "block", fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "8px" }}>
-                            入住人數
-                        </label>
-                        <input
-                            type="number"
-                            min="1"
-                            max="38"
-                            value={guests}
-                            placeholder="例如 12"
-                            onChange={e => setGuests(e.target.value)}
-                            style={{
-                                width: "100%", padding: "14px 16px", border: "1px solid #e5e2dd",
-                                borderRadius: "10px", fontSize: "0.95rem", fontFamily: "var(--sans)",
-                                color: "#2a2a2a", outline: "none", transition: "border 0.3s",
-                            }}
-                        />
-                    </div>
-
-                    <button
-                        onClick={handleCheck}
-                        disabled={loading || !checkIn || !checkOut}
-                        style={{
-                            width: "100%", padding: "16px", border: "none", borderRadius: "10px",
-                            background: loading ? "#ddd" : "#161618", color: "#fff",
-                            fontFamily: "var(--serif)", fontSize: "0.9rem", letterSpacing: "0.1em",
-                            cursor: loading ? "not-allowed" : "pointer", transition: "all 0.3s",
-                        }}
-                    >
-                        {loading ? "查詢中⋯" : "查詢空房"}
-                    </button>
-
-                    {error && (
-                        <p style={{ color: "#c44", fontSize: "0.85rem", textAlign: "center", marginTop: "16px" }}>
-                            {error}
-                        </p>
-                    )}
-                </div>
-
-                {/* Results */}
-                {results && (
-                    <div style={{ animation: "fadeInUp 0.5s ease" }}>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", marginBottom: "24px" }}>
-                            <div style={{ fontSize: "0.72rem", fontFamily: "var(--en)", letterSpacing: "0.15em", textTransform: "uppercase", color: "#767676", marginBottom: "16px" }}>
-                                {checkIn} → {checkOut} · {nights} 晚
-                            </div>
-
-                            {results.map(r => (
-                                <div key={r.bnbName} style={{
-                                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                                    padding: "18px 0",
-                                    borderBottom: "1px solid rgba(0,0,0,0.05)",
-                                }}>
-                                    <div>
-                                        <div style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "#2a2a2a", marginBottom: "2px" }}>
-                                            {r.bnbName}
-                                        </div>
-                                        <div style={{ fontSize: "0.78rem", color: "#767676" }}>
-                                            {r.bnbName === "你好哇寓所" ? "6-26人" : "6-12人"}
-                                        </div>
-                                    </div>
-                                    <div style={{
-                                        padding: "6px 16px", borderRadius: "20px", fontSize: "0.82rem", fontWeight: 500,
-                                        background: r.available ? "rgba(76,175,80,0.08)" : "rgba(244,67,54,0.06)",
-                                        color: r.available ? "#2e7d32" : "#c62828",
-                                    }}>
-                                        {r.available ? "✓ 有空房" : "✕ 已滿房"}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* CTA */}
-                        {results.some(r => r.available) && (
-                            <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", textAlign: "center" }}>
-                                <p style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "#2a2a2a", marginBottom: "6px" }}>
-                                    太好了，有空房！
-                                </p>
-                                <p style={{ fontSize: "0.82rem", color: "#999", marginBottom: "24px" }}>
-                                    請透過以下方式完成預訂
-                                </p>
-                                <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                                    <a href={getLineBookingUrl()} target="_blank" rel="noreferrer" style={{
-                                        display: "inline-flex", alignItems: "center", gap: "8px",
-                                        padding: "14px 32px", border: "none", borderRadius: "10px",
-                                        background: "#06C755", color: "#fff", fontFamily: "var(--serif)",
-                                        fontSize: "0.9rem", letterSpacing: "0.08em",
-                                        transition: "all 0.3s", textDecoration: "none",
-                                    }}>
-                                        💬 加入 LINE 立即預訂
-                                    </a>
-                                    <button onClick={openChat} style={{
-                                        padding: "14px 28px", border: "1px solid #e5e2dd", borderRadius: "10px",
-                                        background: "transparent", color: "#2a2a2a", fontFamily: "var(--serif)",
-                                        fontSize: "0.85rem", letterSpacing: "0.08em", cursor: "pointer",
-                                        transition: "all 0.3s",
-                                    }}>
-                                        線上諮詢
-                                    </button>
-                                </div>
-                                <p style={{ fontSize: "0.75rem", color: "#999", marginTop: "16px" }}>
-                                    加入 LINE 後，AI 小幫手會即時幫您查詢空房與報價 🔑
-                                </p>
-                            </div>
-                        )}
-
-                        {results.every(r => !r.available) && (
-                            <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", textAlign: "center" }}>
-                                <p style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "#2a2a2a", marginBottom: "6px" }}>
-                                    很抱歉，這段日期已滿房
-                                </p>
-                                <p style={{ fontSize: "0.82rem", color: "#999", marginBottom: "20px" }}>
-                                    建議更換日期，或聯繫我們協助安排
-                                </p>
-                                <button onClick={openChat} style={{
-                                    padding: "14px 28px", border: "1px solid #161618", borderRadius: "10px",
-                                    background: "transparent", color: "#2a2a2a", fontFamily: "var(--serif)",
-                                    fontSize: "0.85rem", letterSpacing: "0.08em", cursor: "pointer",
-                                }}>
-                                    💬 聯繫我們
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
+export default function BookingFlow() {
+  return (
+    <main className="book-bridge">
+      <section className="book-bridge__hero">
+        <div className="book-bridge__copy">
+          <p className="book-bridge__eyebrow">Hello Stay Official Booking</p>
+          <h1>官方空房與報價入口</h1>
+          <p>
+            <span>依館別進入官方訂房站</span>
+            <span>日期 人數與即時總價都會直接顯示</span>
+            <span>驗證 簽署與付款也在同一個系統完成</span>
+          </p>
+          <div className="book-bridge__actions">
+            <a href={buildBookingHref("你好哇寓所")}>
+              進官方訂房站
+              <ChevronRight size={16} />
+            </a>
+            <Link href="/compare">看三館比較</Link>
+          </div>
         </div>
-    );
+
+        <div className="book-bridge__media">
+          <Image
+            src={properties[0]?.coverImage || "/images/hellohouse/cover.webp"}
+            alt="Hello Stay 你好哇寓所"
+            fill
+            priority
+            sizes="(max-width: 900px) 100vw, 48vw"
+          />
+          <div>
+            <span>鹽埕區 / 近駁二</span>
+            <strong>官網選館別  booking 站查價</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="book-bridge__steps" aria-label="訂房流程">
+        {steps.map((step) => {
+          const Icon = step.icon;
+          return (
+            <article key={step.title}>
+              <Icon size={18} />
+              <h2>{step.title}</h2>
+              <p>{step.text}</p>
+            </article>
+          );
+        })}
+      </section>
+
+      <section className="book-bridge__entrances" aria-labelledby="book-entrances-title">
+        <div className="book-bridge__section-head">
+          <p className="book-bridge__eyebrow">Choose Property</p>
+          <h2 id="book-entrances-title">依館別進入官方訂房站</h2>
+        </div>
+
+        <div className="book-bridge__grid">
+          {entrances.map((item) => (
+            <article className="book-bridge__card" key={item.name}>
+              <div className="book-bridge__card-image">
+                {"splitImages" in item && item.splitImages ? (
+                  <div className="book-bridge__split">
+                    {item.splitImages.map((image) => (
+                      <div className="book-bridge__split-pane" key={image.label}>
+                        <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 50vw, 16vw" />
+                        <em>{image.label}</em>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <Image src={item.image!} alt={item.alt!} fill sizes="(max-width: 900px) 100vw, 33vw" />
+                )}
+              </div>
+              <div className="book-bridge__card-body">
+                <h3>{item.name}</h3>
+                <p>{item.detail}</p>
+                <a href={buildBookingHref(item.property)}>查這館空房</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }

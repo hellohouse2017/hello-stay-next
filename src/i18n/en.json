@@ -82,14 +82,14 @@
     "step3_title": "Transfer Orange Line → Yanchengpu Station",
     "step3_desc": "Transfer to the Orange Line at Formosa Boulevard, one stop to Yanchengpu (O2)",
     "step4_title": "5-Minute Walk to Arrive",
-    "step4_desc": "Take Exit 4, walk about 5 minutes to reach us",
-    "driving_tip": "🚗 For driving, search \"Hello House Kaohsiung\" in your GPS",
-    "parking_title": "Nearby Parking (by distance)",
+    "step4_desc": "Walk about 5 minutes from O2 Exit 2",
+    "driving_tip": "🚗 Check the nearby street parking first, then open the parking map",
+    "parking_title": "Nearby Parking",
     "nav_btn": "Navigate",
     "nav_arrow": "Navigate →",
     "cta_btn": "Check Availability",
     "meta_title": "Directions & Parking | Hello House & Godin House",
-    "meta_desc": "Complete directions to Hello House and Godin House in Kaohsiung. Driving, parking, MRT routes from Zuoying HSR Station. Walk 5 minutes from Yanchengpu Station (O2)."
+    "meta_desc": "Directions to Hello House and Godin House in Kaohsiung. MRT routes from Zuoying HSR Station, parking options, and a 5-minute walk from Yanchengpu Station (O2 Exit 2)."
   },
   "dazhi": {
     "coming_soon": "Expected to Open · Late 2027",
@@ -108,8 +108,8 @@
     "meta_desc": "Dazhi Ruoyu — Brand new elevator villa near Dagang Bridge. 3 rooms per floor, up to 48 guests. Expected late 2027."
   },
   "book": {
-    "meta_title": "Check Availability & Pricing | Hello Stay Kaohsiung",
-    "meta_desc": "Instantly check availability and pricing for Kaohsiung private villa rentals. Select your dates and group size for automatic pricing."
+    "meta_title": "Hello Stay Booking | Choose a Property and Check Availability",
+    "meta_desc": "/book lets you compare properties first, then continue to booking.hello-stay.com/booking to check availability, see pricing, and complete your reservation."
   },
   "footer": {
     "brand": "Hello Stay",

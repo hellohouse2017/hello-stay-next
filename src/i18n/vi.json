@@ -82,14 +82,14 @@
     "step3_title": "Chuyển tuyến cam → Ga Diêm Trình Phố",
     "step3_desc": "Chuyển sang tuyến cam tại Formosa Boulevard, 1 ga đến Diêm Trình Phố (O2)",
     "step4_title": "Đi bộ 5 phút là đến",
-    "step4_desc": "Ra cửa số 4, đi bộ khoảng 5 phút là đến nơi",
-    "driving_tip": "🚗 Lái xe tìm \"Hello House Kaohsiung\" trên GPS",
-    "parking_title": "Bãi đỗ xe gần đó (theo khoảng cách)",
+    "step4_desc": "Ra cửa O2 số 2, đi bộ khoảng 5 phút là đến nơi",
+    "driving_tip": "🚗 Hãy xem trước các chỗ đỗ xe trên phố, nếu hết chỗ thì dùng bãi đỗ xe gần đó",
+    "parking_title": "Bãi đỗ xe gần đó",
     "nav_btn": "Dẫn đường",
     "nav_arrow": "Dẫn đường →",
     "cta_btn": "Kiểm tra phòng trống",
     "meta_title": "Hướng dẫn đi lại & Đỗ xe | Hello House & Godin House",
-    "meta_desc": "Hướng dẫn đầy đủ đến Hello House và Godin House tại Cao Hùng. Lái xe, đỗ xe, tuyến MRT từ ga Tả Doanh. Đi bộ 5 phút từ ga Diêm Trình Phố (O2)."
+    "meta_desc": "Hướng dẫn đi đến Hello House và Godin House tại Cao Hùng. Tuyến MRT từ ga Tả Doanh, chỗ đỗ xe gần đó, và đi bộ 5 phút từ ga Diêm Trình Phố (O2) cửa số 2."
   },
   "dazhi": {
     "coming_soon": "Dự kiến khai trương · Cuối năm 2027",
@@ -108,8 +108,8 @@
     "meta_desc": "Dazhi Ruoyu — Biệt thự thang máy mới gần cầu Đại Cảng. 3 phòng/tầng, tối đa 48 khách. Dự kiến khai trương cuối năm 2027."
   },
   "book": {
-    "meta_title": "Kiểm tra phòng trống & Báo giá | Hello Stay Cao Hùng",
-    "meta_desc": "Kiểm tra phòng trống và giá ngay lập tức cho biệt thự riêng tại Cao Hùng. Chọn ngày và số khách để tự động tính giá."
+    "meta_title": "Đặt phòng chính thức Hello Stay | Chọn nhà rồi sang booking",
+    "meta_desc": "/book là trang đặt phòng chính thức của Hello Stay. Xem khác biệt giữa các nhà trước, sau đó vào booking.hello-stay.com/booking để kiểm tra phòng, giá, xác thực, ký hợp đồng và thanh toán."
   },
   "footer": {
     "brand": "Hello Stay",
@@ -145,7 +145,7 @@
     "section1_title": "Riêng Tư Tuyệt Đối, Gắn Kết Yêu Thương",
     "section1_desc": "Hello Stay mang đến không gian thuê trọn căn 100% riêng tư, hoàn toàn không có người lạ. Tự do nấu nướng tại gian bếp đảo rộng rãi, cùng nhau quây quản bên bàn mạt chược truyền thống, hay xem những bộ phim yêu thích trên TV thông minh màn hình lớn. Đây là lựa chọn hoàn hảo cho các chuyến du lịch gia đình, hội nhóm bạn bè hoặc kỳ nghỉ doanh nghiệp.",
     "section2_title": "Di Chuyển Thuận Tiện & Dễ Dàng",
-    "section2_desc": "Từ Sân bay Quốc tế Cao Hùng (KHH) hoặc Ga Tàu cao tốc Zuoying, bạn chỉ cần đi MRT thẳng đến ga Diêm Trình Phố (Yanchengpu Station - O2), ra cửa số 4 đi bộ 5 phút là tới nơi. Không cần lo lắng về việc thuê xe tự lái phức tạp. Đối với khách đi xe riêng, chúng tôi cũng cung cấp hướng dẫn đỗ xe chi tiết tại các bãi lân cận.",
+    "section2_desc": "Từ Sân bay Quốc tế Cao Hùng (KHH) hoặc Ga Tàu cao tốc Zuoying, bạn chỉ cần đi MRT thẳng đến ga Diêm Trình Phố (Yanchengpu Station - O2), ra cửa số 2 đi bộ 5 phút là tới nơi. Không cần lo lắng về việc thuê xe tự lái phức tạp. Đối với khách đi xe riêng, chúng tôi cũng cung cấp hướng dẫn đỗ xe tại các bãi lân cận.",
     "section3_title": "Nghệ Thuật Pier-2 & Ẩm Thực Đường Phố Trong Tầm Tay",
     "section3_desc": "Chỉ mất 10 phút đi bộ để đến Khu nghệ thuật Pier-2 nổi tiếng, cầu xoay Đại Cảng và khu kho Đại Nghĩa. Xung quanh khu phố cổ Diêm Trình, bạn có thể thưởng thức cơm vịt truyền thống, trà sữa huyền thoại và đá bào trái cây. Đặc biệt, siêu thị lớn (PX Mart) và các cửa hàng tiện lợi đều ở rất gần, vô cùng tiện lợi để mua sắm thực phẩm cho các bữa tiệc tối.",
     "section4_title": "Câu Hỏi Thường Gặp (FAQ)",

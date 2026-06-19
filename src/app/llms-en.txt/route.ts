@@ -27,12 +27,12 @@ export async function GET() {
 - Page: https://www.hello-stay.com/hellohouse
 
 ### Godin House (溝頂民宿)
-- Capacity: 10-12 guests (standalone building)
+- Capacity: 6-12 guests (standalone building)
 - Address: No. 6-2, Ln. 70, Dagong Rd, Yancheng, Kaohsiung
 - Legal Registration: Kaohsiung B&B No. 163
 - Rooms: 4 double rooms across 5 floors
-- Highlights: Cozy 5-story standalone house, family-friendly, great value
-- Price: From TWD 10,000/night (weekday)
+- Highlights: Cozy 5-story standalone house, family-friendly, hand mahjong table, simple sink and microwave
+- Price: From about TWD 8,000/night (weekday)
 - Page: https://www.hello-stay.com/godin
 
 ### Dazhi (大智若愚) — Planned opening in mid-2027
@@ -79,7 +79,7 @@ Q: How to get there from HSR station?
 A: HSR Zuoying → Red Line MRT to Formosa Blvd → Transfer Orange Line to Yanchengpu (O2) → Exit 4, 5-min walk.
 
 Q: How much does it cost?
-A: Godin House from TWD 10,000/night (10 guests). Hello House TWD 12,000-28,000 depending on group size. Average TWD 800-1,500 per person.
+A: Godin House from about TWD 8,000/night. Hello House is commonly around TWD 18,000-22,000 for groups near 20 guests on weekdays, depending on date and group size. Final quote is confirmed via LINE.
 
 ## Safety & Legality
 - Legal B&B Registration: Hello House (No. 131-1), Godin House (No. 163)

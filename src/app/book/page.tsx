@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import BookingFlow from "./BookingFlow";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿空房查詢與報價｜6-26人・10-12人官方直訂｜Hello Stay",
-    description: "即時查詢 Hello Stay 高雄包棟民宿空房與報價｜輸入日期與人數，快速查看你好哇寓所(6-26人)、溝頂民宿(6-12人)是否有房。官方直訂、LINE 洽詢、自助入住。",
+    title: "Hello Stay 官方訂房｜選館別查空房與報價",
+    description: "先選館別，再前往 Hello Stay 官方 booking 站 查空房、看總價並完成預訂。",
     alternates: { canonical: "https://www.hello-stay.com/book" },
     openGraph: {
-        title: "高雄包棟民宿空房查詢與報價 | Hello Stay",
-        description: "輸入日期與人數，快速查詢高雄包棟民宿空房與報價。",
+        title: "Hello Stay 官方訂房 | 選館別查空房與報價",
+        description: "先選館別，再前往官方 booking 站 查空房與報價。",
         url: "https://www.hello-stay.com/book",
-        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 查詢空房" }],
+        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 訂房入口" }],
     },
     robots: { index: true, follow: true },
 };
@@ -24,13 +24,13 @@ export default function BookPage() {
                         {
                             "@context": "https://schema.org",
                             "@type": "WebPage",
-                            name: "高雄包棟民宿空房查詢與報價",
-                            description: "即時查詢高雄包棟民宿空房與報價",
+                            name: "Hello Stay 訂房入口",
+                            description: "先選館別，再前往官方 booking 站 查空房與報價。",
                             url: "https://www.hello-stay.com/book",
                             isPartOf: { "@type": "WebSite", name: "Hello Stay 高雄包棟民宿", url: "https://www.hello-stay.com" },
                             potentialAction: {
                                 "@type": "ReserveAction",
-                                target: "https://www.hello-stay.com/book",
+                                target: "https://booking.hello-stay.com/booking",
                                 result: { "@type": "LodgingReservation", name: "Hello Stay 包棟預訂" },
                             },
                         },
@@ -40,18 +40,55 @@ export default function BookPage() {
                             mainEntity: [
                                 {
                                     "@type": "Question",
-                                    name: "高雄包棟民宿可以先查空房再決定館別嗎？",
-                                    acceptedAnswer: { "@type": "Answer", text: "可以。先輸入日期與人數，就能快速查看你好哇寓所與溝頂民宿是否有空房，再依人數與設備需求決定要訂哪一館。" },
+                                    name: "這個頁面可以直接完成訂房嗎？",
+                                    acceptedAnswer: { "@type": "Answer", text: "不能直接在這頁完成訂房。這裡會先帶你前往 booking.hello-stay.com/booking 查空房、看價格並完成預訂。" },
                                 },
                                 {
                                     "@type": "Question",
                                     name: "查到有空房後要怎麼預訂？",
-                                    acceptedAnswer: { "@type": "Answer", text: "查到有空房後，可以直接加入 Hello Stay LINE 官方帳號洽詢，確認人數、價格與入住細節後完成預訂。" },
+                                    acceptedAnswer: { "@type": "Answer", text: "進入 booking.hello-stay.com/booking 後 選日期、人數與館別，完成 Email 驗證、簽署與付款即可。" },
                                 },
                                 {
                                     "@type": "Question",
                                     name: "Hello Stay 的高雄包棟民宿適合幾人？",
-                                    acceptedAnswer: { "@type": "Answer", text: "你好哇寓所適合 6 至 26 人，溝頂民宿適合 6 至 12 人；若是更大團體，也可以先看 Hello Stay 官網的包棟方案整理。" },
+                                    acceptedAnswer: { "@type": "Answer", text: "你好哇寓所適合 6 至 26 人，溝頂民宿適合 10 至 12 人；更大團體可以直接查看雙館方案。" },
+                                },
+                            ],
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "HowTo",
+                                    name: "如何完成 Hello Stay 官方訂房",
+                                    description: "先選館別，再前往 booking 站查空房、看價格並完成預訂。",
+                            totalTime: "PT5M",
+                            step: [
+                                {
+                                    "@type": "HowToStep",
+                                    position: 1,
+                                    name: "選館別",
+                                    text: "依人數與空間需求選擇你好哇寓所、溝頂民宿或雙館包棟。",
+                                    url: "https://www.hello-stay.com/book",
+                                },
+                                {
+                                    "@type": "HowToStep",
+                                    position: 2,
+                                    name: "前往 booking 站",
+                                    text: "點擊按鈕前往 booking.hello-stay.com/booking，並帶入預設館別。",
+                                    url: "https://booking.hello-stay.com/booking",
+                                },
+                                {
+                                    "@type": "HowToStep",
+                                    position: 3,
+                                    name: "輸入日期與人數",
+                                    text: "在 booking 站選入住日期、退房日期與實際人數，查看即時方案與總價。",
+                                    url: "https://booking.hello-stay.com/booking",
+                                },
+                                {
+                                    "@type": "HowToStep",
+                                    position: 4,
+                                    name: "完成驗證與付款",
+                                    text: "完成 Email 驗證、合約簽署與付款，訂單就會成立。",
+                                    url: "https://booking.hello-stay.com/booking",
                                 },
                             ],
                         },

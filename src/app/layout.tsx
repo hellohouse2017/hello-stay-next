@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     default: "高雄包棟民宿｜6-48人鹽埕住宿・近駁二大港橋｜Hello Stay",
     template: "%s | Hello Stay 高雄包棟民宿",
   },
-  description: "高雄鹽埕包棟民宿推薦 Hello Stay，三館6-48人任選。中島廚房、麻將、桌遊，近駁二與大港橋。平日 NT$10,000 起，自2017年服務超過5000組旅客。馬上查空房",
+  description: "高雄鹽埕包棟民宿推薦 Hello Stay，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官網判斷館別，官方訂房站查空房與報價。",
   authors: [{ name: "Hello Stay" }],
   openGraph: {
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     title: "高雄包棟民宿｜6-48人鹽埕住宿｜Hello Stay",
-    description: "高雄鹽埕包棟民宿，6-48人三館任選。附中島廚房、麻將、桌遊。平日 NT$10,000 起，近駁二大港橋，馬上查空房。",
+    description: "高雄鹽埕包棟民宿，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官方訂房站查空房與報價。",
     images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 高雄包棟民宿" }],
   },
   twitter: {

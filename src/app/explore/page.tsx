@@ -1,259 +1,306 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import HomepageIntentBlock from "@/components/HomepageIntentBlock";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-    title: "鹽埕美食地圖 | 周邊景點・行程推薦 | Hello Stay",
-    description: "鹽埕區美食地圖、周邊景點與高雄行程推薦｜駁二藝術特區、大港橋、西子灣、旗津渡輪，30 間以上在地必吃老店一次看。入住 Hello Stay 包棟民宿，步出門就能吃遍鹽埕。",
-    alternates: { canonical: "https://www.hello-stay.com/explore" },
-    openGraph: {
-        title: "鹽埕美食地圖 | 景點・美食・行程 | Hello Stay",
-        description: "駁二、大港橋、西子灣，30+ 間鹽埕必吃老店與高雄行程推薦一次看。",
-        url: "https://www.hello-stay.com/explore",
-        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 周邊探索" }],
-    },
+  title: "鹽埕周邊探索｜住 Hello Stay 可以怎麼玩、怎麼吃",
+  description:
+    "把鹽埕美食、步行景點與簡單行程排法整理成同一頁，讓客人先知道住在 Hello Stay 周邊的旅行節奏。",
+  alternates: { canonical: "https://www.hello-stay.com/explore" },
+  openGraph: {
+    title: "鹽埕周邊探索｜住 Hello Stay 可以怎麼玩、怎麼吃",
+    description: "步行景點、在地美食與行程節奏一次整理。",
+    url: "https://www.hello-stay.com/explore",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/hellohouse/photo5.webp",
+        width: 1200,
+        height: 630,
+        alt: "Hello Stay 鹽埕周邊探索",
+      },
+    ],
+  },
 };
 
-/* ── Data ── */
-const attractions = [
-    { name: "駁二藝術特區", dist: "步行 10 分", desc: "高雄最知名藝術園區，創意裝置與週末市集" },
-    { name: "高雄大港橋", dist: "步行 8 分", desc: "全台首座水平旋轉橋，下午 3 點有開合秀" },
-    { name: "高雄流行音樂中心", dist: "步行 12 分", desc: "前衛蜂巢建築，愛河灣最耀眼地標" },
-    { name: "棧貳庫 KW2", dist: "步行 15 分", desc: "百年碼頭倉庫，純白旋轉木馬與無敵海景" },
-    { name: "哈瑪星鐵道文化園區", dist: "步行 12 分", desc: "大草皮、舊鐵軌，親子放風箏野餐好去處" },
-    { name: "西子灣風景區", dist: "捷運 10 分", desc: "高雄賞夕陽首選，坐在防波堤聽海浪" },
-    { name: "打狗英國領事館", dist: "捷運 15 分", desc: "紅磚英式建築，俯瞰西子灣海景配下午茶" },
-    { name: "壽山動物園", dist: "車程 10 分", desc: "全新整修園區，空中漫步長廊與水豚君" },
-    { name: "旗津高雄燈塔", dist: "渡輪 15 分", desc: "純白百年燈塔，現有景觀咖啡廳" },
-    { name: "旗津彩虹教堂", dist: "渡輪 15 分", desc: "色彩繽紛幾何建築，IG 打卡聖地" },
-    { name: "衛武營藝術中心", dist: "捷運橘線直達", desc: "世界最大單一屋頂劇院，榕樹意象建築" },
-    { name: "高雄市立美術館", dist: "輕軌直達", desc: "廣闊戶外雕塑公園與湖泊，遠離塵囂" },
-    { name: "高雄市立圖書館總館", dist: "輕軌直達", desc: "全球首座懸吊式綠建築，夜晚如珠寶盒" },
-    { name: "蓮池潭 龍虎塔", dist: "車程 20 分", desc: "最具代表的傳統景點，入龍喉出虎口" },
+const exploreCards = [
+  {
+    id: "explore-walkable",
+    kicker: "WALKABLE",
+    title: "住在步行生活圈",
+    summary: "真正有價值的不是景點很多，而是晚餐、散步、宵夜、回民宿這條路線可以不用再搭車。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "Hello Stay 館外巷弄與鹽埕步行生活圈",
+    },
+    linkLabel: "查看步行重點",
+  },
+  {
+    id: "explore-food",
+    kicker: "LOCAL FOOD",
+    title: "吃的密度很高",
+    summary: "鹽埕的優勢不是單一名店，而是早餐、小吃、酒吧、冰品和宵夜都在同一個生活圈內。",
+    image: {
+      src: "/images/hellohouse/photo1.webp",
+      alt: "Hello Stay 適合外帶回館聚餐的鹽埕美食節奏",
+    },
+    linkLabel: "查看美食節奏",
+  },
+  {
+    id: "explore-itinerary",
+    kicker: "TRIP FLOW",
+    title: "行程安排可以很鬆",
+    summary: "這裡適合把行程排成白天出去、傍晚散步、晚上回民宿繼續聚，而不是從早到晚一直趕車。",
+    image: {
+      src: "/images/godin/cover-3.webp",
+      alt: "住 Hello Stay 後回館聚會的旅行節奏",
+    },
+    linkLabel: "查看行程節奏",
+  },
 ];
 
-const foodCategories = [
-    {
-        title: "鹽埕區熱門酒吧",
-        icon: "🍸",
-        items: ["廢墟 BAR", "吧嗨 Bar High", "空白酒吧", "大溝頂老街酒場", "港思酒研所", "鼓山老酒吧"],
+const detailCards = [
+  {
+    id: "explore-walkable",
+    kicker: "WALKABLE",
+    title: "這個區域最大的優勢，是住和玩可以接在一起",
+    description:
+      "如果住宿離景點太遠，晚上回館就很容易散掉。Hello Stay 在鹽埕的優勢，是駁二、大港橋、捷運鹽埕埔站、奶茶街和幾家老店都能串成同一條步行動線，整趟旅程比較完整。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "鹽埕步行生活圈與 Hello Stay 住宿位置",
     },
-    {
-        title: "經典小吃 & 下酒菜",
-        icon: "🍢",
-        items: ["阿囉哈滷味", "大溝頂虱目魚", "黃家肉燥飯", "鹹酥雞", "無名攤蚵仔煎", "豆花"],
+    specs: [
+      { label: "駁二藝術特區", value: "步行約 10 分鐘" },
+      { label: "大港橋", value: "步行約 8 分鐘" },
+      { label: "鹽埕埔站 O2", value: "步行約 5 分鐘" },
+      { label: "回館節奏", value: "不用特地再拉車" },
+    ],
+    groups: [
+      {
+        title: "住客最有感的地方",
+        items: ["晚餐吃完還能順路散步", "喝完再慢慢走回民宿", "白天景點和晚上聚會不會被切開"],
+      },
+      {
+        title: "適合這樣玩",
+        items: ["下午駁二", "傍晚大港橋", "晚上回館續攤", "隔天早上再去吃早餐店"],
+      },
+    ],
+    action: { href: "/traffic", label: "看交通與步行動線" },
+  },
+  {
+    id: "explore-food",
+    kicker: "LOCAL FOOD",
+    title: "鹽埕的吃法，不是收集清單，是找適合帶回館的節奏",
+    description:
+      "對團體客來說，真正好用的不是『打卡了幾間』，而是知道什麼適合現場吃、什麼適合外帶回去。像鴨肉珍、港園牛肉麵、婆婆冰、奶茶街、酒吧與宵夜攤，會讓晚上在館內聚會更完整。",
+    image: {
+      src: "/images/hellohouse/photo1.webp",
+      alt: "Hello Stay 公共空間與外帶美食回館的情境",
     },
-    {
-        title: "特色早餐",
-        icon: "🌅",
-        items: ["大摳胖碳烤三明治", "鄧記肉圓", "阿昌虱目魚"],
+    specs: [
+      { label: "正餐關鍵字", value: "鴨肉珍 港園牛肉麵 葉家肉粥" },
+      { label: "甜點冰品", value: "婆婆冰 阿綿麻糬" },
+      { label: "酒吧與宵夜", value: "老街酒場與鹽埕夜間生活圈" },
+      { label: "最實用玩法", value: "外帶回館聚" },
+    ],
+    groups: [
+      {
+        title: "適合現場吃",
+        items: ["老店熱食", "早餐店", "下午茶與冰品"],
+      },
+      {
+        title: "適合帶回館",
+        items: ["滷味", "啤酒與宵夜", "火鍋食材", "超商與全聯補貨"],
+      },
+    ],
+    action: { href: "/packages", label: "看聚會型入住方案" },
+  },
+  {
+    id: "explore-itinerary",
+    kicker: "TRIP FLOW",
+    title: "這裡適合排成白天出門 晚上回館的旅程節奏",
+    description:
+      "鹽埕不是那種一定要塞滿整天景點的地方。對包棟客更好的方式，通常是白天走一段、晚上留時間回民宿吃東西、聊天、打麻將或繼續喝。這跟住飯店的節奏完全不同。",
+    image: {
+      src: "/images/godin/cover-3.webp",
+      alt: "回館聚會與住宿後旅行節奏",
     },
-    {
-        title: "必吃正餐",
-        icon: "🥘",
-        items: ["港園牛肉麵", "鴨肉珍 / 鴨肉本", "Kyomo Pasta", "葉家肉粥", "銀座日本料理", "阿進切仔麵", "小堤咖啡", "新濱・駅前", "高雄婆婆冰"],
-    },
-    {
-        title: "夜市推薦",
-        icon: "🏮",
-        items: ["鹽埕夜市", "六合夜市", "瑞豐夜市"],
-    },
-    {
-        title: "生活便利",
-        icon: "🏪",
-        items: ["自助洗衣店", "全聯福利中心", "全家便利商店", "7-11", "菸酒專賣"],
-    },
+    specs: [
+      { label: "2 天 1 夜", value: "駁二 + 大港橋 + 館內聚會" },
+      { label: "3 天 2 夜", value: "再加西子灣 旗津或高流" },
+      { label: "家庭客", value: "白天走景點 晚上館內慢住" },
+      { label: "朋友團", value: "白天散步 晚上宵夜麻將" },
+    ],
+    groups: [
+      {
+        title: "最實際的排法",
+        items: ["不要一天排太滿", "把館內時間留下來", "旅程的記憶點通常在晚上"],
+      },
+      {
+        title: "這也是包棟和飯店的差異",
+        items: ["飯店比較像睡覺點", "包棟本身是行程的一部分", "館內活動和外出行程互相補強"],
+      },
+    ],
+    action: { href: "/compare", label: "看哪一館更符合你們的節奏" },
+  },
 ];
 
-const itineraries = [
-    {
-        days: "2天1夜", plans: [
-            { name: "親子放電", emoji: "👶", desc: "駁二小火車 → 港園牛肉麵 → 壽山動物園" },
-            { name: "網美打卡", emoji: "📸", desc: "大港橋旋轉秀 → Pier No.1 高空酒吧 → 民宿桌遊" },
-            { name: "吃貨攻略", emoji: "🍜", desc: "奶茶一條街 → 鴨肉珍 → 阿囉哈滷味 → 阿綿麻糬" },
-        ]
-    },
-    {
-        days: "3天2夜", plans: [
-            { name: "文化慢旅", emoji: "🏛️", desc: "鹽埕老街 → 愛河貢多拉 → 打狗英國領事館 → 中島廚房" },
-            { name: "海港風情", emoji: "⛴️", desc: "駁二倉庫群 → 渡輪旗津 → 高雄燈塔 → 流行音樂中心" },
-            { name: "輕鬆休閒", emoji: "☕", desc: "睡飽 → Kyomo Pasta → 新濱・駅前 → 滿足賦歸" },
-        ]
-    },
-    {
-        days: "4天3夜", plans: [
-            { name: "港都全覽", emoji: "🌊", desc: "旗津一日遊 → 西子灣夕陽 → 龍貓隧道 → 瑞豐夜市" },
-            { name: "藝文深度", emoji: "🎨", desc: "駁二 VR → 衛武營 → 高雄美術館 → 內惟藝術中心" },
-            { name: "購物血拼", emoji: "🛍️", desc: "新崛江 → SKM Park Outlets → 漢神巨蛋 → 義享天地" },
-        ]
-    },
+const facts = [
+  { label: "生活圈重點", value: "駁二 大港橋 鹽埕埔站" },
+  { label: "吃的節奏", value: "現場吃與外帶回館並存" },
+  { label: "典型玩法", value: "白天出門 晚上回館聚" },
+  { label: "旅行感受", value: "住和玩能自然接在一起" },
+];
+
+const guides = [
+  "鹽埕的優勢在於步行生活圈完整",
+  "景點 美食與回館節奏能自然串在一起",
+  "對包棟客來說 館內時間和外出行程一樣重要",
+  "交通與館別可再搭配其他頁面一起看",
+];
+
+const fit = [
+  { label: "適合對象", value: "想先確認地點與生活圈的人" },
+  { label: "最常在意", value: "步行景點與美食節奏" },
+  { label: "延伸頁面", value: "交通頁 或選館頁" },
+  { label: "旅程節奏", value: "白天出門 晚上回館聚" },
+];
+
+const locationSpots = [
+  { name: "駁二藝術特區", detail: "步行 10 分鐘" },
+  { name: "大港橋", detail: "步行 8 分鐘" },
+  { name: "捷運鹽埕埔站", detail: "步行 5 分鐘" },
+  { name: "鴨肉珍", detail: "步行 3 分鐘" },
+  { name: "婆婆冰", detail: "步行約 5 分鐘" },
+  { name: "7-ELEVEN / 全聯", detail: "補貨很方便" },
+];
+
+const galleryImages = [
+  {
+    src: "/images/hellohouse/photo5.webp",
+    alt: "Hello Stay 館外巷弄與鹽埕生活圈",
+    caption: "步行生活圈",
+  },
+  {
+    src: "/images/hellohouse/photo2.webp",
+    alt: "你好哇寓所中島廚房與外帶回館聚餐情境",
+    caption: "外帶回館聚餐",
+  },
+  {
+    src: "/images/godin/room4.webp",
+    alt: "溝頂民宿交誼廳與回館後團體活動",
+    caption: "晚上回館的節奏",
+  },
+];
+
+const faqs = [
+  {
+    question: "住在 Hello Stay 周邊，最方便的景點是哪幾個？",
+    answer: "最直覺的是駁二藝術特區、大港橋和鹽埕老街生活圈，因為都能步行完成，不需要再安排車程。",
+  },
+  {
+    question: "鹽埕的美食適合怎麼吃比較合理？",
+    answer: "白天吃幾間老店，晚上把適合外帶的宵夜、酒水或甜點帶回館內，通常比一直在外面跑更適合團體客。",
+  },
+  {
+    question: "喜歡這個生活圈後 還要看什麼",
+    answer: "交通停車頁會補足抵達方式 三館比較頁則能把人數與公共空間差異看得更清楚",
+  },
 ];
 
 export default function ExplorePage() {
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <JsonLd data={[{ "@context": "https://schema.org", "@type": "TouristDestination", name: "高雄鹽埕區", description: "高雄最有文化底蘊的美食街區，步行可達駁二藝術特區、大港橋、棧貳庫。30間以上在地老店，入住包棟民宿即可步出門探索。", touristType: ["家庭旅遊", "團體旅遊", "文化旅遊", "美食之旅"], geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "高雄鹽埕區有什麼景點？", acceptedAnswer: { "@type": "Answer", text: "步行可達駁二藝術特區（10分鐘）、大港橋（8分鐘）、棧貳庫（15分鐘）、高雄流行音樂中心（12分鐘）、西子灣（捷運10分鐘）。" } }, { "@type": "Question", name: "鹽埕區有什麼好吃的？", acceptedAnswer: { "@type": "Answer", text: "超過30間在地老店：港園牛肉麵、鴨肉珍、阿囉哈滷味、大摳胖碳烤三明治、婆婆冰等，步行即達。" } }, { "@type": "Question", name: "住鹽埕區交通方便嗎？", acceptedAnswer: { "@type": "Answer", text: "非常方便。捷運鹽埕埔站步行5分鐘，輕軌也在附近。高鐵左營站搭捷運約30分鐘可達。" } }] }]} />
-            <div className="w" style={{ maxWidth: "780px", padding: "0 28px 80px" }}>
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "TouristDestination",
+            name: "高雄鹽埕生活圈",
+            description: "適合步行散步、美食聚集與港區景點連動的高雄住宿生活圈。",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          },
+        ]}
+      />
 
-                {/* Header */}
-                <Reveal>
-                    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={labelEn}>Explore Kaohsiung</div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
-                            周邊探索
-                        </h1>
-                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                        <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>
-                            景點 · 美食 · 主題行程  ─  步出門就開始旅行
-                        </p>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <HomepageIntentBlock
-                        eyebrow="Food Search Intent"
-                        title="找鹽埕美食的人，最後常常也在找住哪裡最順"
-                        actions={[
-                            { href: "/", label: "高雄包棟民宿推薦首頁" },
-                            { href: "/kaohsiung-whole-house", label: "高雄包棟推薦整理" },
-                            { href: "/book", label: "查詢空房與報價", solid: true },
-                        ]}
-                    >
-                        如果你是因為鹽埕美食、駁二或大港橋找到這一頁，住宿其實很容易一起卡住。
-                        住在鹽埕區核心的{" "}
-                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                            高雄包棟民宿推薦 Hello Stay
-                        </Link>
-                        ，白天吃、晚上走、回來還能繼續聚，會比住遠一點再拉車回來輕鬆很多。
-                    </HomepageIntentBlock>
-                </Reveal>
-
-                {/* ─── 景點 ─── */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Nearby Attractions" />
-                        <h2 style={h2Style}>🗺️ 周邊景點</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                            {attractions.map(a => (
-                                <div key={a.name} style={{
-                                    padding: "16px 14px", background: "var(--bg)", borderRadius: "12px",
-                                }}>
-                                    <div style={{ fontFamily: "var(--serif)", fontSize: "0.92rem", color: "#3D3830", marginBottom: "4px" }}>{a.name}</div>
-                                    <div style={{ fontSize: "0.7rem", color: "var(--pri)", marginBottom: "6px", fontWeight: 500 }}>{a.dist}</div>
-                                    <div style={{ fontSize: "0.75rem", color: "#999", lineHeight: 1.7 }}>{a.desc}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* ─── 美食 ─── */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Local Food Map" />
-                        <h2 style={h2Style}>🍽️ 鹽埕美食地圖</h2>
-                        <p style={{ fontSize: "0.82rem", color: "#999", lineHeight: 1.9, marginBottom: "20px" }}>
-                            住在美食的中心點！從早餐虱目魚到深夜特色酒吧，走路就能吃遍米其林推薦與在地人私藏名單。推薦外帶回民宿中島廚房，吹冷氣享受包棟聚餐。
-                        </p>
-                        <div style={{ display: "grid", gap: "16px" }}>
-                            {foodCategories.map(cat => (
-                                <div key={cat.title}>
-                                    <div style={{ fontSize: "0.88rem", fontWeight: 600, color: "#3D3830", marginBottom: "10px" }}>
-                                        {cat.icon} {cat.title}
-                                    </div>
-                                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                                        {cat.items.map(item => (
-                                            <span key={item} style={{
-                                                padding: "6px 14px", borderRadius: "20px", background: "var(--bg)",
-                                                fontSize: "0.78rem", color: "#666",
-                                            }}>{item}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                </Reveal>
-
-                <Reveal>
-                    <HomepageIntentBlock
-                        eyebrow="Stay Near The Food"
-                        title="吃飽喝足不用跑遠，回包棟休息才是鹽埕玩法"
-                        actions={[
-                            { href: "/", label: "高雄包棟民宿推薦 Hello Stay" },
-                            { href: "/compare", label: "比較三館差異" },
-                            { href: "/book", label: "查詢空房與報價", solid: true },
-                        ]}
-                    >
-                        想找走路就能吃到鹽埕老店、回住宿還能開伙打麻將的{" "}
-                        <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                            高雄包棟推薦
-                        </Link>
-                        {" "}嗎？三館可住 6-48 人，適合家族旅遊、朋友聚會與團體包棟；如果你還在比較人數與設備，也可以先看{" "}
-                        <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                            高雄包棟方案整理
-                        </Link>
-                        。
-                    </HomepageIntentBlock>
-                </Reveal>
-
-                {/* ─── 行程推薦 ─── */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Recommended Itineraries" />
-                        <h2 style={h2Style}>📋 主題行程推薦</h2>
-                        <div style={{ display: "grid", gap: "24px" }}>
-                            {itineraries.map(group => (
-                                <div key={group.days}>
-                                    <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                                        {group.days}
-                                    </div>
-                                    <div style={{ display: "grid", gap: "10px" }}>
-                                        {group.plans.map(p => (
-                                            <div key={p.name} style={{
-                                                display: "flex", gap: "14px", alignItems: "flex-start",
-                                                padding: "16px", background: "var(--bg)", borderRadius: "12px",
-                                            }}>
-                                                <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>{p.emoji}</span>
-                                                <div>
-                                                    <div style={{ fontFamily: "var(--serif)", fontSize: "0.9rem", color: "#3D3830", marginBottom: "4px" }}>{p.name}</div>
-                                                    <div style={{ fontSize: "0.78rem", color: "#999", lineHeight: 1.7 }}>{p.desc}</div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* CTA */}
-                <Reveal>
-                    <div style={{ textAlign: "center", marginTop: "20px" }}>
-                        <p style={{ fontSize: "0.85rem", color: "#999", marginBottom: "20px" }}>
-                            住在最好的位置，開啟你的高雄旅行
-                        </p>
-                        <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/book" style={ctaDark}>查詢空房</Link>
-                            <Link href="/traffic" style={ctaOutline}>交通停車</Link>
-                        </div>
-                    </div>
-                </Reveal>
-            </div>
-        </div>
-    );
-}
-
-/* ── Shared ── */
-const labelEn: React.CSSProperties = { fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" };
-const cardStyle: React.CSSProperties = { background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" };
-const h2Style: React.CSSProperties = { fontFamily: "var(--serif)", fontSize: "1.2rem", color: "#3D3830", marginBottom: "20px" };
-const ctaDark: React.CSSProperties = { padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" };
-const ctaOutline: React.CSSProperties = { padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em" };
-
-function SectionLabel({ en }: { en: string }) {
-    return <div style={{ fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#BEB5A8", marginBottom: "14px" }}>{en}</div>;
+      <PropertyShowcasePage
+        hero={{
+          kicker: "EXPLORE YANCHENG",
+          title: "住在鹽埕 很適合這樣玩",
+          lead:
+            "駁二 大港橋 鹽埕老街與在地美食都在步行範圍 住在這裡的感覺不是趕行程 而是白天出去 晚上回館繼續聚",
+          image: {
+            src: "/images/hellohouse/photo5.webp",
+            alt: "Hello Stay 周邊探索與鹽埕生活圈主視覺",
+          },
+          stats: [
+            { label: "步行生活圈", value: "駁二 大港橋 鹽埕埔站" },
+            { label: "旅遊方式", value: "白天出門 晚上回館聚" },
+            { label: "吃的重點", value: "老店密度高 外帶回館方便" },
+            { label: "地點感受", value: "住和玩接得很順" },
+          ],
+          primaryAction: { href: "/compare", label: "比較三館位置與需求" },
+          secondaryAction: { href: "/traffic", label: "看交通與停車" },
+        }}
+        overview={{
+          kicker: "AREA GUIDE",
+          title: "鹽埕的旅遊節奏",
+          intro: "景點 生活機能和回館時間可以自然接在一起",
+          columns: 3,
+          cards: exploreCards,
+        }}
+        details={{
+          kicker: "STAY FLOW",
+          title: "住在這裡的旅行節奏",
+          intro: "把住客會真的用到的步行動線、美食節奏和行程安排拆開來看，會比單純列清單更有用。",
+          cards: detailCards,
+          factsTitle: "周邊重點整理",
+          facts,
+          guidesTitle: "旅遊重點",
+          guides,
+          fitTitle: "適合對象",
+          fit,
+        }}
+        gallery={{
+          kicker: "SCENES",
+          title: "住和玩是接在一起的",
+          intro: "這幾個畫面代表的不是單一景點，而是這區最實際的使用方式。",
+          columns: 3,
+          images: galleryImages,
+        }}
+        faq={{
+          kicker: "FAQ",
+          title: "周邊探索常見問題",
+          intro: "客人最常問的玩法邏輯",
+          items: faqs,
+        }}
+        location={{
+          kicker: "NEARBY",
+          title: "步行範圍先記這些就夠了",
+          intro: "第一次住鹽埕 把這幾個點記起來就很夠用",
+          cardTitle: "Hello Stay 周邊生活圈",
+          address: "高雄市鹽埕區大公路巷弄周邊",
+          description:
+            "以 Hello Stay 為中心，步行就能串起景點、美食和補給。對團體旅客來說，這種不用一直集合再搭車的動線會輕鬆很多。",
+          spots: locationSpots,
+        }}
+        final={{
+          kicker: "PROPERTIES",
+          title: "生活圈對了 館別差異會更清楚",
+          body:
+            "接著看的通常會是人數 公共空間與房型配置 這些差異會直接影響住起來的感受",
+          primaryAction: { href: "/compare", label: "看三館比較" },
+          secondaryAction: { href: "/book", label: "查空房與報價" },
+        }}
+      />
+    </>
+  );
 }

@@ -1,263 +1,1045 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
-import RoomGallery from "@/components/RoomGallery";
-import EquipmentGrid from "@/components/EquipmentGrid";
-import LocationSection from "@/components/LocationSection";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
 import { godin } from "@/data/properties";
 
+const bookingHref = "https://booking.hello-stay.com/booking?property=%E6%BA%9D%E9%A0%82%E6%B0%91%E5%AE%BF";
+
 export const metadata: Metadata = {
-    title: "鹽埕民宿推薦｜溝頂民宿 10-12人五層獨棟包棟・近駁二｜Hello Stay",
-    description: "高雄鹽埕民宿推薦「溝頂民宿」！專為 10-12 人小團體打造的五層獨棟包棟空間。配備獨立套房衛浴、手動麻將、舒適交誼廳。步行 5 分鐘即達捷運鹽埕埔站、10 分鐘到駁二藝術特區。平日 NT$8,000 起，立即線上直訂免手續費！",
-    alternates: { canonical: "https://www.hello-stay.com/godin" },
-    openGraph: {
-        title: "鹽埕民宿推薦｜溝頂民宿 10-12人五層獨棟包棟・近駁二｜Hello Stay",
-        description: "高雄鹽埕小團體包棟首選「溝頂民宿」，五層樓獨立空間包棟，附獨立套房衛浴、手動麻將與交誼廳，平日 NT$8,000 起，步行即達駁二與捷運站，直訂免手續費。",
-        url: "https://www.hello-stay.com/godin",
-        images: [{ url: "https://www.hello-stay.com/images/godin/cover-1.webp", width: 1200, height: 630, alt: "溝頂民宿" }],
-    },
+  title: "鹽埕民宿推薦｜溝頂民宿 4-12人五層獨棟包棟・近駁二｜Hello Stay",
+  description:
+    "高雄鹽埕民宿推薦「溝頂民宿」。適合 4-12 人小團體的五層獨棟包棟空間，四間客房皆有獨立衛浴，附麻將交誼廳與簡易備餐設備。",
+  alternates: { canonical: "https://www.hello-stay.com/godin" },
+  openGraph: {
+    title: "鹽埕民宿推薦｜溝頂民宿 4-12人五層獨棟包棟・近駁二｜Hello Stay",
+    description:
+      "高雄鹽埕小團體包棟首選「溝頂民宿」，四間客房皆有獨立衛浴，4F 設交誼廳、麻將桌與簡易備餐空間。",
+    url: "https://www.hello-stay.com/godin",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/godin/cover-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "溝頂民宿",
+      },
+    ],
+  },
 };
 
+const heroStats = [
+  { label: "入住人數", value: "4-12 人" },
+  { label: "客房配置", value: "雙人房 2 間 四人房 2 間" },
+  { label: "衛浴", value: "四間客房皆有獨立衛浴" },
+  { label: "公共空間", value: "4F 交誼廳與簡易備餐" },
+];
+
+const houseFacts = [
+  { label: "交誼設備", value: "麻將 桌遊 沙發 聯網電視" },
+  { label: "備餐設備", value: "RO 飲水機 雙門冰箱 微波爐 流理台" },
+  { label: "入住配置", value: "冷暖空調 Wi-Fi 自助入住" },
+  { label: "衛浴說明", value: "1F 2F 3F 5F 為客房獨立衛浴，4F 無衛浴" },
+];
+
+const stayGuides = [
+  "1F 與 5F 為雙人房，2F 與 3F 為四人房",
+  "四間客房皆有獨立衛浴，4F 公共交誼廳無衛浴",
+  "4F 為整團聊天 麻將 桌遊與簡易備餐空間",
+  "如需補寢具或彈性加人，建議直接用 LINE 確認當次方案",
+];
+
+const fitGuides = [
+  { label: "適合人數", value: "4-12 人家庭旅行 小型朋友聚會" },
+  { label: "適合需求", value: "想住同一棟 又希望房間分層休息" },
+  { label: "不必期待", value: "大型廚房或超大宴客空間" },
+  { label: "整棟節奏", value: "白天出門 晚上回 4F 集合最順" },
+];
+
+const actualGallery = [
+  { src: "/images/godin/room1.webp", alt: "溝頂民宿 1F 經典雙人房實景" },
+  { src: "/images/godin/room2.webp", alt: "溝頂民宿 2F 陽光四人房實景" },
+  { src: "/images/godin/room3.webp", alt: "溝頂民宿 3F 雅緻四人房實景" },
+  { src: "/images/godin/room4.webp", alt: "溝頂民宿 4F 公共交誼廳實景" },
+  { src: "/images/godin/room5.webp", alt: "溝頂民宿 5F 景觀雙人房實景" },
+];
+
+const nearbyHighlights = godin.nearbySpots.slice(0, 6);
+
+const getRoomId = (room: (typeof godin.rooms)[number]) => `room-${room.id}`;
+
+const getBathroomLabel = (room: (typeof godin.rooms)[number]) =>
+  room.capacity > 0 ? "獨立衛浴" : "公共空間無衛浴";
+
+const getUseLabel = (room: (typeof godin.rooms)[number]) =>
+  room.capacity > 0 ? `${room.capacity} 人入住` : "團聚與備餐";
+
+const getHighlightLabel = (room: (typeof godin.rooms)[number]) =>
+  room.highlight ?? room.badges.find((badge) => badge.gold)?.label ?? room.badges[0]?.label ?? "空間細節";
+
+const pageStyles = String.raw`
+.godin-page {
+  --ink: #1f1a16;
+  --text: #5f584f;
+  --muted: #8f8579;
+  --line: #e6ddd0;
+  --paper: #f6f1e8;
+  --card: #fffdf9;
+  --accent: #2d5a44;
+  --accent-soft: #dce9df;
+  --overlay: rgba(15, 14, 12, 0.42);
+  padding-bottom: 96px;
+  background: linear-gradient(180deg, #f7f2ea 0%, #f4efe6 100%);
+  color: var(--ink);
+}
+
+.godin-page * {
+  box-sizing: border-box;
+}
+
+.godin-page a {
+  text-decoration: none;
+}
+
+.godin-shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.godin-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.godin-hero {
+  padding-top: calc(var(--nav-h) + 24px);
+}
+
+.godin-hero__frame {
+  position: relative;
+  min-height: min(760px, calc(100vh - var(--nav-h) - 36px));
+  overflow: hidden;
+  border-radius: 8px;
+  background: #25211d;
+  box-shadow: 0 32px 84px rgba(31, 26, 22, 0.18);
+}
+
+.godin-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.godin-hero__media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(18, 17, 15, 0.78) 0%, rgba(18, 17, 15, 0.44) 44%, rgba(18, 17, 15, 0.14) 76%),
+    linear-gradient(0deg, rgba(18, 17, 15, 0.2), rgba(18, 17, 15, 0.04));
+}
+
+.godin-hero__media img,
+.godin-overview-card__image img,
+.godin-room-card__media img,
+.godin-gallery__image img {
+  object-fit: cover;
+}
+
+.godin-hero__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-content: end;
+  min-height: min(760px, calc(100vh - var(--nav-h) - 36px));
+  padding: clamp(32px, 5vw, 64px);
+}
+
+.godin-hero__copy {
+  display: grid;
+  gap: 22px;
+  width: min(560px, 100%);
+}
+
+.godin-hero__copy .godin-kicker {
+  color: rgba(236, 244, 236, 0.9);
+}
+
+.godin-hero h1 {
+  margin: 0;
+  color: #fffaf2;
+  font-size: clamp(2.9rem, 5vw, 5.6rem);
+  font-weight: 780;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.godin-hero__lead {
+  margin: 0;
+  color: rgba(255, 250, 242, 0.86);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.godin-hero__actions,
+.godin-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.godin-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fffaf2;
+  font-size: 0.92rem;
+  font-weight: 760;
+  backdrop-filter: blur(14px);
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.godin-button:hover {
+  transform: translateY(-1px);
+}
+
+.godin-button--primary {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+}
+
+.godin-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.godin-hero__stats article {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.godin-hero__stats span {
+  color: rgba(255, 250, 242, 0.7);
+  font-size: 0.76rem;
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+.godin-hero__stats strong {
+  color: #fffaf2;
+  font-size: 0.98rem;
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.godin-section {
+  padding-top: 84px;
+}
+
+.godin-section__head {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.godin-section__head h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 760;
+  line-height: 1.12;
+}
+
+.godin-section__head p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.godin-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.godin-overview-card {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 249, 0.92);
+  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+}
+
+.godin-overview-card__image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: #e8dfd0;
+}
+
+.godin-overview-card__body {
+  display: grid;
+  gap: 8px;
+}
+
+.godin-overview-card__body span {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 760;
+}
+
+.godin-overview-card__body strong {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 760;
+  line-height: 1.45;
+}
+
+.godin-overview-card__body p,
+.godin-overview-card__link {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.godin-overview-card__link {
+  color: var(--accent);
+  font-weight: 720;
+}
+
+.godin-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) 340px;
+  gap: 26px;
+  align-items: start;
+}
+
+.godin-room-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.godin-room-card {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 16px 42px rgba(31, 26, 22, 0.06);
+}
+
+.godin-room-card__media {
+  position: relative;
+  min-height: 260px;
+  background: #e8dfd0;
+}
+
+.godin-room-card__body {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  padding: 22px 24px;
+}
+
+.godin-room-card__head {
+  display: grid;
+  gap: 8px;
+}
+
+.godin-room-card__floor {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 760;
+}
+
+.godin-room-card__head h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.46rem;
+  font-weight: 760;
+  line-height: 1.22;
+}
+
+.godin-room-card__head p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.godin-room-card__specs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.godin-room-card__spec {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px;
+  background: #faf6ef;
+}
+
+.godin-room-card__spec span,
+.godin-facts-card span,
+.godin-fit-card span,
+.godin-location-card span,
+.godin-location-list span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+.godin-room-card__spec strong,
+.godin-facts-card strong,
+.godin-fit-card strong,
+.godin-location-card strong,
+.godin-location-list strong {
+  color: var(--ink);
+  font-size: 0.96rem;
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.godin-room-card__amenities {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.godin-amenity-box {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffaf4;
+}
+
+.godin-amenity-box h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 760;
+}
+
+.godin-amenity-box ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.godin-amenity-box li {
+  position: relative;
+  padding-left: 14px;
+  color: var(--text);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.godin-amenity-box li::before {
+  position: absolute;
+  top: 0.58rem;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  content: "";
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.godin-side-stack {
+  display: grid;
+  gap: 16px;
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+
+.godin-facts-card,
+.godin-fit-card,
+.godin-location-card,
+.godin-location-list,
+.godin-final {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+}
+
+.godin-facts-card,
+.godin-fit-card,
+.godin-location-card {
+  padding: 20px;
+}
+
+.godin-facts-card h3,
+.godin-fit-card h3,
+.godin-location-card h3 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 760;
+}
+
+.godin-facts-list,
+.godin-fit-list {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--line);
+}
+
+.godin-facts-list article,
+.godin-fit-list article {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  background: #fffaf4;
+}
+
+.godin-guides {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.godin-guides li {
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.godin-location-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.godin-location-card a {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 760;
+}
+
+.godin-location-list {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.godin-location-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  background: #fffaf4;
+}
+
+.godin-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.godin-gallery__item {
+  display: grid;
+  gap: 8px;
+}
+
+.godin-gallery__image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: #e8dfd0;
+  box-shadow: 0 10px 28px rgba(31, 26, 22, 0.05);
+}
+
+.godin-gallery__item figcaption {
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 720;
+}
+
+.godin-final {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 88px;
+  padding: 28px 30px;
+  background: #1f1a16;
+}
+
+.godin-final .godin-kicker {
+  color: rgba(228, 238, 228, 0.9);
+}
+
+.godin-final h2 {
+  margin: 0 0 12px;
+  color: #fffaf2;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 760;
+  line-height: 1.16;
+}
+
+.godin-final p {
+  margin: 0;
+  color: rgba(255, 250, 242, 0.78);
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.godin-final .godin-button {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 1180px) {
+  .godin-overview-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .godin-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .godin-hero__stats,
+  .godin-room-card__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .godin-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .godin-side-stack {
+    position: static;
+  }
+
+  .godin-room-card {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .godin-shell {
+    width: calc(100% - 28px);
+  }
+
+  .godin-hero__frame,
+  .godin-hero__content {
+    min-height: 620px;
+  }
+
+  .godin-overview-grid,
+  .godin-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .godin-room-card {
+    grid-template-columns: 1fr;
+  }
+
+  .godin-room-card__media {
+    min-height: 240px;
+  }
+
+  .godin-final {
+    display: grid;
+  }
+}
+
+@media (max-width: 640px) {
+  .godin-hero {
+    padding-top: calc(var(--nav-h) + 14px);
+  }
+
+  .godin-hero__frame,
+  .godin-hero__content {
+    min-height: 560px;
+  }
+
+  .godin-hero__content {
+    padding: 22px;
+  }
+
+  .godin-hero h1 {
+    font-size: 2.7rem;
+  }
+
+  .godin-hero__stats,
+  .godin-overview-grid,
+  .godin-room-card__specs,
+  .godin-room-card__amenities,
+  .godin-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .godin-section {
+    padding-top: 68px;
+  }
+
+  .godin-location-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .godin-button,
+  .godin-final .godin-button {
+    width: 100%;
+  }
+
+  .godin-hero__actions,
+  .godin-final__actions {
+    display: grid;
+  }
+}
+`;
 
 export default function GodinPage() {
-    return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{
-                __html: JSON.stringify([
-                    {
-                        "@context": "https://schema.org", "@type": "LodgingBusiness",
-                        "@id": "https://www.hello-stay.com/godin/#lodging",
-                        name: "溝頂民宿 Godin House",
-                        alternateName: ["Godin House", "溝頂", "Hello Stay 二館"],
-                        url: "https://www.hello-stay.com/godin",
-                        telephone: "+886-932-828-922",
-                        description: "高雄鹽埕區精緻獨棟包棟民宿，五層樓完整空間，10-12人家庭出遊首選。溫馨家庭風格，步行10分鐘到駁二藝術特區。",
-                        address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
-                        geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 },
-                        sameAs: [
-                            "https://www.google.com/maps/search/?api=1&query=%E6%BA%9溝%E9%A0%82%E6%B0%91%E5%AE%BF",
-                            "https://lin.ee/atCiMQw"
-                        ],
-                        priceRange: "$", checkinTime: "16:00", checkoutTime: "11:00",
-                        numberOfRooms: 4, petsAllowed: false,
-                        amenityFeature: [
-                            { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
-                            { "@type": "LocationFeatureSpecification", name: "獨立衛浴", value: true },
-                            { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
-                            { "@type": "LocationFeatureSpecification", name: "冷氣", value: true },
-                            { "@type": "LocationFeatureSpecification", name: "電子密碼鎖", value: true },
-                        ],
-                        tourBookingPage: "https://www.hello-stay.com/book",
-                        potentialAction: {
-                            "@type": "ReserveAction",
-                            target: { "@type": "EntryPoint", urlTemplate: "https://lin.ee/tUNnRLw", inLanguage: "zh-Hant", actionPlatform: ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"] },
-                            result: { "@type": "LodgingReservation", name: "溝頂民宿包棟預訂" },
-                        },
-                        speakable: { "@type": "SpeakableSpecification", cssSelector: [".hero-b h1", ".hero-b .desc", ".sec-warm p"] },
-                    },
-                    {
-                        "@context": "https://schema.org", "@type": "FAQPage",
-                        mainEntity: [
-                            { "@type": "Question", name: "溝頂民宿可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "溝頂民宿為五層樓獨棟，可容納10-12人入住。1F經典雙人房、2F陽光四人房、3F雅緻四人房、5F景觀雙人房，4F為交誼廳。" } },
-                            { "@type": "Question", name: "溝頂民宿平日多少錢？", acceptedAnswer: { "@type": "Answer", text: "實際會依日期與入住人數報價，小團體方案約從 $8,000 起。適合 10 人左右的小團體包棟，可直接透過 LINE 或官網查詢日期與報價。" } },
-                            { "@type": "Question", name: "溝頂民宿在哪裡？", acceptedAnswer: { "@type": "Answer", text: "位於高雄鹽埕區大公路70巷6-2號，鄰近捷運鹽埕埔站O2（步行5分鐘），步行至駁二藝術特區約10分鐘。與你好哇寓所僅距30公尺。" } },
-                            { "@type": "Question", name: "溝頂民宿適合帶長輩嗎？", acceptedAnswer: { "@type": "Answer", text: "非常適合！溫馨家庭風格，分層住宿讓作息不同的家人互不干擾。4F交誼廳有麻將，長輩最愛。每間房獨立衛浴，方便年長者使用。" } },
-                            { "@type": "Question", name: "溝頂民宿跟你好哇寓所可以一起訂嗎？", acceptedAnswer: { "@type": "Answer", text: "可以！兩棟僅距30公尺，合訂最高38人。非常適合大家族旅遊或大型團體活動。透過LINE或官網一起預訂即可。" } },
-                            { "@type": "Question", name: "高雄小包棟10人左右推薦哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦溝頂民宿，整棟五層樓獨立使用，10-12人入住，位於鹽埕區，近駁二、大港橋，適合家庭與小團體包棟。" } },
-                        ],
-                    },
-                    {
-                        "@context": "https://schema.org", "@type": "BreadcrumbList",
-                        itemListElement: [
-                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
-                            { "@type": "ListItem", position: 2, name: "溝頂民宿", item: "https://www.hello-stay.com/godin" },
-                        ],
-                    },
-                ])
-            }} />
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "LodgingBusiness",
+              "@id": "https://www.hello-stay.com/godin/#lodging",
+              name: "溝頂民宿 Godin House",
+              alternateName: ["Godin House", "溝頂", "Hello Stay 二館"],
+              url: "https://www.hello-stay.com/godin",
+              telephone: "+886-932-828-922",
+              description:
+                "高雄鹽埕區五層樓獨棟包棟民宿，四間客房皆有獨立衛浴，適合 4-12 人家庭或小團體入住。",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "大公路70巷6-2號",
+                addressLocality: "鹽埕區",
+                addressRegion: "高雄市",
+                postalCode: "803",
+                addressCountry: "TW",
+              },
+              geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 },
+              checkinTime: "16:00",
+              checkoutTime: "11:00",
+              numberOfRooms: 4,
+              petsAllowed: false,
+              amenityFeature: [
+                { "@type": "LocationFeatureSpecification", name: "四間客房皆有獨立衛浴", value: true },
+                { "@type": "LocationFeatureSpecification", name: "4F 公共交誼廳", value: true },
+                { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
+                { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+              ],
+            },
+          ]),
+        }}
+      />
 
-            {/* ── Hero (Cinematic) ── */}
-            <section className="hero-cinema">
-                <div className="hero-cinema__media">
-                    <Image src="/images/godin/cover-1.webp" alt="溝頂民宿 Godin House 五層獨棟外觀實景，座落高雄鹽埕安靜巷弄，適合 10-12 人精緻家庭團體包棟" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
-                    <div className="hero-cinema__overlay" />
+      <main className="godin-page">
+        <section className="godin-hero">
+          <div className="godin-shell">
+            <div className="godin-hero__frame">
+              <div className="godin-hero__media">
+                <Image
+                  src="/images/godin/cover-1.webp"
+                  alt="溝頂民宿 4F 交誼廳實景"
+                  fill
+                  priority
+                  loading="eager"
+                  fetchPriority="high"
+                  unoptimized
+                  sizes="100vw"
+                />
+              </div>
+
+              <div className="godin-hero__content">
+                <div className="godin-hero__copy">
+                  <p className="godin-kicker">GODIN HOUSE</p>
+                  <h1>溝頂民宿</h1>
+                  <p className="godin-hero__lead">
+                    五層獨棟包棟，適合家庭旅行與小團體入住。四間客房皆有獨立衛浴，4F 是整團共用的交誼廳與簡易備餐空間。
+                  </p>
+
+                  <div className="godin-hero__actions">
+                    <a className="godin-button godin-button--primary" href={bookingHref} target="_blank" rel="noreferrer">
+                      查看空房與報價
+                    </a>
+                    <a className="godin-button" href={godin.lineUrl} target="_blank" rel="noreferrer">
+                      LINE 詢問
+                    </a>
+                  </div>
                 </div>
-                <div className="hero-cinema__content">
-                    <div className="hero-cinema__eyebrow">Godin House · A Quiet Retreat</div>
-                    <h1 className="hero-cinema__title">溝頂民宿</h1>
-                    <p className="hero-cinema__sub">
-                        鹽埕民宿 · 10-12人五層獨棟 · 麻將 · 交誼廳
+
+                <div className="godin-hero__stats">
+                  {heroStats.map((item) => (
+                    <article key={item.label}>
+                      <span>{item.label}</span>
+                      <strong>{item.value}</strong>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="godin-section">
+          <div className="godin-shell">
+            <div className="godin-section__head">
+              <p className="godin-kicker">ROOM GUIDE</p>
+              <h2>房型與整棟安排</h2>
+              <p>每層用途 人數與衛浴配置都整理在這裡。</p>
+            </div>
+
+            <div className="godin-overview-grid">
+              {godin.rooms.map((room) => (
+                <a className="godin-overview-card" href={`#${getRoomId(room)}`} key={room.id}>
+                  <div className="godin-overview-card__image">
+                    <Image
+                      src={room.images[0]?.src ?? godin.coverImage}
+                      alt={room.images[0]?.alt ?? room.name}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
+                    />
+                  </div>
+                  <div className="godin-overview-card__body">
+                    <span>{room.floor}</span>
+                    <strong>{room.name}</strong>
+                    <p>
+                      {getUseLabel(room)} · {room.size} · {getBathroomLabel(room)}
                     </p>
-                    <div className="hero-cinema__actions">
-                        <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line">💬 LINE 查空房</a>
-                        <Link href="/book" className="btn-ghost">查詢空房與報價</Link>
-                    </div>
-                </div>
-            </section>
+                    <span className="godin-overview-card__link">實景與設備</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* ── Intro (asymmetric) ── */}
-                  {/* ── Room Details — Interactive Gallery + Equipment ── */}
-            <section style={{ background: "var(--surface)", padding: "clamp(80px, 14vw, 160px) 0" }}>
-                <div className="w" style={{ marginBottom: "50px" }}>
-                    <Reveal>
-                        <div className="scene-eyebrow">Rooms</div>
-                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.8rem)", letterSpacing: "0.08em", color: "var(--text)", fontWeight: 400 }}>房型與空間介紹</h2>
-                        <p style={{ fontSize: "0.9rem", color: "var(--muted)", marginTop: "10px" }}>五層樓獨棟，4 間客房皆配備獨立衛浴、冷暖空調<br />👆 點擊照片可放大瀏覽</p>
-                    </Reveal>
-                </div>
+        <section className="godin-section">
+          <div className="godin-shell">
+            <div className="godin-section__head">
+              <p className="godin-kicker">ROOM DETAILS</p>
+              <h2>逐層房型與設備</h2>
+              <p>每層的用途 坪數 衛浴與設備都整理在這裡。</p>
+            </div>
 
-                {godin.rooms.map((room, idx) => (
-                    <div key={room.id} className="w">
-                        <Reveal>
-                            <div className={`room-detail-card${idx % 2 === 1 ? ' reverse' : ''}`}>
-                                <div className="room-detail-img">
-                                    <RoomGallery images={room.images} roomName={room.name} />
-                                </div>
-                                <div className="room-detail-info">
-                                    <div className="room-floor-tag">{room.floor}</div>
-                                    <h3>{room.name}</h3>
-                                    <p className="room-subtitle">{room.subtitle}</p>
-                                    <div className="room-badges">
-                                        {room.badges.map(b => (
-                                            <span key={b.label} className={`room-badge${b.gold ? ' gold' : ''}`}>{b.label}</span>
-                                        ))}
-                                    </div>
-                                    <EquipmentGrid categories={room.equipment} />
-                                </div>
-                            </div>
-                        </Reveal>
+            <div className="godin-detail-layout">
+              <div className="godin-room-stack">
+                {godin.rooms.map((room) => (
+                  <article className="godin-room-card" id={getRoomId(room)} key={room.id}>
+                    <div className="godin-room-card__media">
+                      <Image
+                        src={room.images[0]?.src ?? godin.coverImage}
+                        alt={room.images[0]?.alt ?? room.name}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 820px) 100vw, 320px"
+                      />
                     </div>
+
+                    <div className="godin-room-card__body">
+                      <div className="godin-room-card__head">
+                        <span className="godin-room-card__floor">{room.floor}</span>
+                        <h3>{room.name}</h3>
+                        <p>{room.subtitle}</p>
+                      </div>
+
+                      <div className="godin-room-card__specs">
+                        <article className="godin-room-card__spec">
+                          <span>用途</span>
+                          <strong>{getUseLabel(room)}</strong>
+                        </article>
+                        <article className="godin-room-card__spec">
+                          <span>空間</span>
+                          <strong>{room.size}</strong>
+                        </article>
+                        <article className="godin-room-card__spec">
+                          <span>衛浴</span>
+                          <strong>{getBathroomLabel(room)}</strong>
+                        </article>
+                        <article className="godin-room-card__spec">
+                          <span>亮點</span>
+                          <strong>{getHighlightLabel(room)}</strong>
+                        </article>
+                      </div>
+
+                      <div className="godin-room-card__amenities">
+                        {room.equipment.map((category) => (
+                          <section className="godin-amenity-box" key={category.category}>
+                            <h4>{category.category}</h4>
+                            <ul>
+                              {category.items.map((item) => (
+                                <li key={`${category.category}-${item.label}`}>
+                                  {item.label}
+                                  {item.detail ? ` ${item.detail}` : ""}
+                                </li>
+                              ))}
+                            </ul>
+                          </section>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
                 ))}
-            </section>
+              </div>
 
-            {/* ── Location & Nearby ── */}
-            <LocationSection
-                propertyName={godin.name}
-                address={godin.address}
-                mapUrl={godin.mapUrl}
-                nearbySpots={godin.nearbySpots}
-            />
+              <aside className="godin-side-stack">
+                <section className="godin-facts-card">
+                  <h3>整棟設備</h3>
+                  <div className="godin-facts-list">
+                    {houseFacts.map((item) => (
+                      <article key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{item.value}</strong>
+                      </article>
+                    ))}
+                  </div>
+                </section>
 
-            {/* ── More photos ── */}
-            <section className="sec-warm">
-                <div className="w">
-                    <Reveal>
-                        <div className="grid-3">
-                            {["/images/godin/cover-3.webp", "/images/godin/cover-4.webp", "/images/godin/cover-bg.webp"].map((src, i) => (
-                                <div key={src} className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                    <Image src={src} alt={[
-                                        "溝頂民宿 Godin House 4F 專屬公共交誼廳客廳沙發空間，配備休閒麻將桌與桌遊，提供完美的小包棟娛樂",
-                                        "溝頂民宿 Godin House 溫馨舒適的採光四人房型實景，提供家庭親子出遊極佳的高 CP 值舒適床具與乾濕分離獨立衛浴",
-                                        "溝頂民宿 Godin House 位於高雄鹽埕區大公路巷弄的五層獨棟老宅民宿外觀全景，鄰近捷運鹽埕埔站交通方便"
-                                    ][i]} width={400} height={300} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
-                                </div>
-                            ))}
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
+                <section className="godin-facts-card">
+                  <h3>入住重點</h3>
+                  <ul className="godin-guides">
+                    {stayGuides.map((note) => (
+                      <li key={note}>{note}</li>
+                    ))}
+                  </ul>
+                </section>
 
-            {/* ── AEO Quick Summary + FAQ ── */}
-            <section className="sec-cream">
-                <div className="w" style={{ maxWidth: "700px" }}>
-                    <Reveal>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>一眼看懂</div>
-                            <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
-                                    <span>適合 <strong>6–12 人</strong>小團體包棟，五層樓獨棟獨立使用</span>
-                                </div>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>🏡</span>
-                                    <span>4 間套房 + 頂樓露台，<strong>長輩友善</strong>，低樓層無障礙動線</span>
-                                </div>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>📍</span>
-                                    <span>鹽埕區，與你好哇寓所步行 <strong>30 秒</strong>，可兩棟合訂最高 38 人</span>
-                                </div>
-                            </div>
-                        </div>
-                    </Reveal>
-                    <Reveal>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
-                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "20px" }}>FAQ</div>
-                            {[
-                                { q: "溝頂民宿可以住幾人？", a: "一般配置 6–10 人最舒適，最多可接待 12 人。五層樓獨棟全棟包場，每層樓分配清楚，不用搶廁所。" },
-                                { q: "溝頂民宿平日多少錢？", a: "平日 $8,000 起（10人平均每人 $800）。週末假日另計。官方 LINE 直訂免平台手續費，比 AsiaYo 便宜 15–20%。" },
-                                { q: "溝頂民宿在哪裡？離駁二多遠？", a: "位於高雄市鹽埕區，距你好哇寓所步行30秒。步行10分鐘到駁二藝術特區，步行8分鐘到大港橋，捷運鹽埕埔站步行5分鐘。" },
-                                { q: "溝頂民宿適合帶長輩嗎？", a: "適合！五層樓格局讓長輩住低樓層、年輕人住高樓層，各有活動空間。如需電梯，建議詢問大智若愚（有電梯，可容20–48人）。" },
-                                { q: "溝頂民宿有廚房嗎？", a: "有簡易流理臺與微波爐，可加熱食物但不可明火、無電磁爐。若需要豪華中島廚房（IH爐×2、製冰機、完整鍋具），可選擇你好哇寓所，兩棟距離僅30秒。" },
-                                { q: "溝頂民宿跟你好哇寓所有什麼不同？", a: "溝頂：6–12人，五層獨棟透天，適合家庭/小聚。你好哇寓所：6–26人，三層空間，中島廚房+麻將桌，適合企業/婚禮。可兩棟合訂，最高38人。" },
-                                { q: "溝頂民宿停車方便嗎？", a: "附近有多處收費停車場，開車約3–5分鐘車程。鹽埕區建議以步行/捷運為主，捷運鹽埕埔站步行5分鐘，景點全在步行範圍內。" },
-                                { q: "高雄小包棟10人左右推薦哪裡？", a: "推薦溝頂民宿！五層獨棟，4間套房，10人包棟每人約$1,000，位於鹽埕區黃金地段，步行到駁二、大港橋，適合家庭與小團體入住。" },
-                            ].map(faq => (
-                                <Reveal key={faq.q}>
-                                    <div style={{ padding: "18px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                                        <div style={{ fontWeight: 500, fontSize: "0.92rem", marginBottom: "6px", color: "#3D3830" }}>{faq.q}</div>
-                                        <div style={{ fontSize: "0.85rem", color: "var(--muted)", lineHeight: 2 }}>{faq.a}</div>
-                                    </div>
-                                </Reveal>
-                            ))}
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
+                <section className="godin-fit-card">
+                  <h3>適合的入住方式</h3>
+                  <div className="godin-fit-list">
+                    {fitGuides.map((item) => (
+                      <article key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{item.value}</strong>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </section>
 
-            {/* ── CTA ── */}
-            <section style={{ background: "var(--surface)", padding: "clamp(100px, 14vw, 160px) 28px", textAlign: "center" }}>
-                <Reveal>
-                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.2rem, 3vw, 1.6rem)", letterSpacing: "0.08em", color: "var(--text)", marginBottom: "12px", fontWeight: 400 }}>
-                        小團體的完美包棟體驗
-                    </h3>
-                    <p style={{ fontSize: "0.88rem", color: "var(--muted)", marginBottom: "36px" }}>
-                        平日 $10,000 起 · 12 人以內
-                    </p>
-                    <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-                        <a href={godin.lineUrl} target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">
-                            💬 LINE 詢問空房
-                        </a>
-                        <Link href="/book" className="btn-ghost" style={{ color: "var(--text)", borderColor: "var(--line)" }}>
-                            自助查空房
-                        </Link>
-                    </div>
-                </Reveal>
-            </section>
+        <section className="godin-section">
+          <div className="godin-shell">
+            <div className="godin-section__head">
+              <p className="godin-kicker">GALLERY</p>
+              <h2>實景照片</h2>
+              <p>館內實景都整理在這裡。</p>
+            </div>
 
+            <div className="godin-gallery">
+              {actualGallery.map((image, index) => (
+                <figure className="godin-gallery__item" key={image.src}>
+                  <div className="godin-gallery__image">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
+                    />
+                  </div>
+                  <figcaption>{godin.rooms[index]?.floor} {godin.rooms[index]?.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* ── Related Blog ── */}
-            <section style={{ padding: "clamp(60px, 10vw, 100px) 28px", background: "var(--bg)" }}>
-                <div className="w" style={{ maxWidth: "780px" }}>
-                    <Reveal>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", textAlign: "center", fontWeight: 600 }}>Related Articles</div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)", textAlign: "center", marginBottom: "24px", letterSpacing: "0.08em", fontWeight: 400 }}>相關旅宿攻略</h3>
-                        <div style={{ display: "grid", gap: "10px" }}>
-                            {[
-                                { href: "/compare", emoji: "🏠", title: "三館完整比較", desc: "人數設備一次看懂" },
-                                { href: "/kaohsiung-whole-house", emoji: "⭐", title: "高雄包棟總覽", desc: "依人數與場景快速選房" },
-                                { href: "/blog/pier2-accommodation", emoji: "🎨", title: "駁二住宿推薦", desc: "步行 10 分鐘到駁二" },
-                                { href: "/blog/kaohsiung-mahjong-stay", emoji: "🀄", title: "麻將民宿推薦", desc: "打牌到天亮" },
-                            ].map(a => (
-                                <Link key={a.href} href={a.href} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
-                                    <span style={{ fontSize: "1.3rem" }}>{a.emoji}</span>
-                                    <div>
-                                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500 }}>{a.title}</div>
-                                        <div style={{ fontSize: "0.72rem", color: "#999" }}>{a.desc}</div>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
-                        <div style={{ textAlign: "center", marginTop: "16px" }}>
-                            <Link href="/blog" style={{ fontSize: "0.75rem", color: "var(--pri)", textDecoration: "none", letterSpacing: "0.1em" }}>瀏覽所有攻略 →</Link>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
+        <section className="godin-section">
+          <div className="godin-shell">
+            <div className="godin-section__head">
+              <p className="godin-kicker">LOCATION</p>
+              <h2>住在鹽埕哪一段</h2>
+              <p>從大公路巷內出發，步行可到駁二、大港橋、捷運鹽埕埔站與幾家在地小吃。</p>
+            </div>
 
-            {/* ── LINE Floating CTA ── */}
-            <LineFloatingCTA lineUrl={godin.lineUrl} message="幫你查空房 💬" />
-        </>
-    );
+            <div className="godin-detail-layout">
+              <section className="godin-location-card">
+                <h3>地址</h3>
+                <strong>{godin.address}</strong>
+                <p>如果這次重點是鹽埕行程、駁二散步與一群人回民宿續攤，這個位置會很順。</p>
+                <a href={godin.mapUrl} target="_blank" rel="noreferrer">
+                  在 Google Maps 開啟
+                </a>
+              </section>
+
+              <div className="godin-location-list">
+                {nearbyHighlights.map((spot) => (
+                  <article key={`${spot.name}-${spot.walkMinutes}`}>
+                    <span>{spot.name}</span>
+                    <strong>{spot.walkMinutes > 0 ? `步行 ${spot.walkMinutes} 分鐘` : "捷運可達"}</strong>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="godin-final godin-shell">
+          <div>
+            <p className="godin-kicker">BOOKING</p>
+            <h2>確認日期與人數後查空房</h2>
+            <p>如果房型 人數與整棟配置都符合 日期與報價就會是最後的判斷重點。</p>
+          </div>
+          <div className="godin-final__actions">
+            <a className="godin-button godin-button--primary" href={bookingHref} target="_blank" rel="noreferrer">
+              查這館空房
+            </a>
+            <a className="godin-button" href={godin.lineUrl} target="_blank" rel="noreferrer">
+              LINE 詢問
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <LineFloatingCTA lineUrl={godin.lineUrl} />
+    </>
+  );
 }

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="停車場示意">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8f2e8"/>
+      <stop offset="1" stop-color="#eef1ec"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#1f1a16" flood-opacity=".15"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <path d="M165 585H1035" stroke="#d8cbb9" stroke-width="16" stroke-linecap="round"/>
+  <path d="M210 238H1000M210 392H1000M210 546H1000" stroke="#e1d6c6" stroke-width="7"/>
+  <path d="M330 205V575M520 205V575M710 205V575M900 205V575" stroke="#e1d6c6" stroke-width="7"/>
+  <g filter="url(#shadow)">
+    <rect x="455" y="110" width="290" height="290" rx="48" fill="#2d5a44"/>
+    <path d="M545 312V190h72c49 0 82 29 82 72s-33 72-82 72h-38v-44h36c22 0 36-10 36-28s-14-28-36-28h-22v78z" fill="#fffdf9"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="268" y="492" width="360" height="86" rx="43" fill="#fffdf9" stroke="#e1d6c6" stroke-width="6"/>
+    <circle cx="350" cy="582" r="30" fill="#1f1a16"/>
+    <circle cx="548" cy="582" r="30" fill="#1f1a16"/>
+    <path d="M315 492l58-68h134l64 68" fill="#fffdf9" stroke="#e1d6c6" stroke-width="6"/>
+  </g>
+  <path d="M777 516h135" stroke="#c8a056" stroke-width="16" stroke-linecap="round"/>
+  <path d="M842 452l70 64-70 64" fill="none" stroke="#c8a056" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

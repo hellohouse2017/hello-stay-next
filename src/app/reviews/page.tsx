@@ -1,192 +1,292 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import Link from "next/link";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿評價｜主館 Google 4.5 星・75 則評論｜Hello Stay",
-    description: "想看高雄包棟民宿評價？這裡整理主館你好哇寓所 Google 4.5 星、75 則評論，並搭配 Hello Stay 各館實際住客回饋，方便先看口碑再查空房。",
-    alternates: { canonical: "https://www.hello-stay.com/reviews" },
-    openGraph: {
-        title: "高雄包棟民宿評價｜主館 Google 4.5 星・75 則評論",
-        description: "整理主館你好哇寓所 Google 評價與 Hello Stay 各館住宿回饋，先看口碑再選館。",
-        url: "https://www.hello-stay.com/reviews",
-        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 住客評價" }],
-    },
+  title: "Hello Stay 住客評價｜高雄包棟民宿真實入住回饋",
+  description:
+    "整理主館 Google 評價重點與各館實際住客回饋 讓你在看房型之外 也能理解真實入住感受與常見稱讚點",
+  alternates: { canonical: "https://www.hello-stay.com/reviews" },
+  openGraph: {
+    title: "Hello Stay 住客評價｜高雄包棟民宿真實入住回饋",
+    description: "住客最常提到的空間感 位置便利性與入住體驗",
+    url: "https://www.hello-stay.com/reviews",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+        width: 1200,
+        height: 630,
+        alt: "Hello Stay 住客評價",
+      },
+    ],
+  },
 };
 
-const reviews = [
-    { author: "林小姐", rating: 5, date: "2025-12", property: "你好哇寓所", group: "家族旅遊 18 人", text: "三代同堂的家庭旅遊，體驗太棒了。廚房很大，我們直接在中島煮火鍋，比在外面吃更有家的感覺。阿公阿嬤打麻將打到不想回家，整體乾淨度和入住流程也很順。" },
-    { author: "陳先生", rating: 5, date: "2025-11", property: "你好哇寓所", group: "大學畢旅 22 人", text: "畢旅住包棟真的最划算，每人不到一千塊。客廳空間很大，晚上通宵玩桌遊也不擁擠，走路十分鐘就到駁二，附近美食又多，很適合一群同學住在一起。" },
-    { author: "王小姐", rating: 5, date: "2025-10", property: "你好哇寓所", group: "婚禮迎娶", text: "在你好哇辦迎娶的體驗很好。一樓客廳很適合闖關遊戲，採光對婚攝非常友善，前一晚伴娘團住在這裡一起準備，整個流程很順。" },
-    { author: "張先生", rating: 5, date: "2025-09", property: "溝頂民宿", group: "球隊比賽 12 人", text: "系隊比賽來高雄住溝頂，五層樓空間很夠用。大家可以分層休息，四樓交誼廳集合開會也方便。宵夜買回來後用微波爐加熱、冰箱冰飲料很實用，住起來很自由。" },
-    { author: "李小姐", rating: 5, date: "2025-08", property: "你好哇寓所", group: "公司團建 16 人", text: "公司 off-site 選你好哇很適合。白天在客廳開會，晚上大家圍在中島廚房煮火鍋，團隊互動感比住飯店高很多。鹽埕區美食密度也很高。" },
-    { author: "黃先生", rating: 5, date: "2025-07", property: "你好哇寓所", group: "朋友聚會 14 人", text: "一群朋友年度聚會住這裡很剛好。晚上煮火鍋配啤酒，接著打麻將到很晚，隔天走去駁二散步消化，行程完全不用趕。" },
-    { author: "劉小姐", rating: 5, date: "2025-06", property: "溝頂民宿", group: "家庭旅遊 8 人", text: "帶爸媽和小孩來住溝頂，每層樓都有自己的節奏，不會互相打擾。小孩喜歡附近景點，長輩則喜歡待在交誼空間聊天打麻將，家庭旅行很省心。" },
-    { author: "周先生", rating: 5, date: "2025-05", property: "你好哇寓所", group: "跨年派對 20 人", text: "跨年夜在你好哇寓所辦倒數很有氣氛，中島廚房準備火鍋，晚點再一起走去港邊看煙火。比起飯店分房，大家都待在同一個空間更有過節感。" },
-    { author: "吳小姐", rating: 4, date: "2025-04", property: "溝頂民宿", group: "朋友小聚 6 人", text: "溝頂很乾淨舒服，大家各自有房間又能在四樓集合聊天。走路就到大溝頂市場和駁二，位置很好，適合小團體慢慢玩鹽埕。" },
-    { author: "蔡先生", rating: 5, date: "2025-03", property: "你好哇寓所", group: "劇組拍攝", text: "劇組取景來住你好哇，空間夠大、光線好，巷弄也很有味道。業主配合度高，設備齊全，確實是很適合拍攝和多人進出的場地。" },
+const voiceCards = [
+  {
+    id: "reviews-space",
+    kicker: "SPACE FEEL",
+    title: "大家最常提到空間感",
+    summary: "真正讓客人留下印象的，不是『漂亮』這種空話，而是一起煮、一起玩、一起住的流暢感。",
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "你好哇寓所公共空間與住客使用情境",
+    },
+    linkLabel: "查看評價重點",
+  },
+  {
+    id: "reviews-location",
+    kicker: "LOCATION",
+    title: "位置方便也是固定高分點",
+    summary: "鹽埕區步行生活圈、駁二、大港橋和美食密度，常常是評價裡反覆出現的關鍵字。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "Hello Stay 鹽埕生活圈與館外步行環境",
+    },
+    linkLabel: "查看位置回饋",
+  },
+  {
+    id: "reviews-trust",
+    kicker: "TRUST",
+    title: "入住體驗順不順很重要",
+    summary: "自助入住、環境乾淨、溝通明確，這些細節比過度包裝更能建立信任。",
+    image: {
+      src: "/images/godin/cover-3.webp",
+      alt: "溝頂民宿交誼廳與入住體驗",
+    },
+    linkLabel: "查看入住回饋",
+  },
 ];
 
-const stats = { total: 75, rating: 4.5, hosted: "5,000+" };
+const detailCards = [
+  {
+    id: "reviews-space",
+    kicker: "HELLO HOUSE",
+    title: "你好哇寓所的評價多半圍繞在聚會體驗",
+    description:
+      "主館 Google 4.5 星、75 則評論的高頻內容，不是單純說房間乾淨，而是反覆提到中島廚房、多人聚會、麻將、迎娶採光與整體聚在一起的感覺。這代表它真正的價值被客人感受到。",
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "你好哇寓所中島廚房與大型聚會空間",
+    },
+    specs: [
+      { label: "Google 評價", value: "4.5 / 75 則" },
+      { label: "最常被提到", value: "中島廚房 麻將 聚會空間" },
+      { label: "常見族群", value: "家族旅遊 畢旅 迎娶 公司團建" },
+      { label: "整體印象", value: "住在一起的體驗感很強" },
+    ],
+    groups: [
+      {
+        title: "典型回饋",
+        items: [
+          "廚房很大，大家真的會聚在一起煮東西",
+          "晚上打麻將、玩桌遊很有團體感",
+          "迎娶和婚攝動線很順",
+        ],
+      },
+      {
+        title: "這代表什麼",
+        items: ["你好哇不是只賣床位", "真正賣的是多人一起使用的公共空間", "適合聚會型和活動型入住"],
+      },
+    ],
+    action: { href: "/hellohouse", label: "看你好哇寓所房型" },
+  },
+  {
+    id: "reviews-location",
+    kicker: "YANCHENG",
+    title: "鹽埕位置感受，實際上比想像中更影響滿意度",
+    description:
+      "客人常常不是只因為館內設備滿意，而是因為住下來後發現駁二、大港橋、捷運站與在地美食真的可以步行完成。這會讓整趟旅程更鬆，不需要一直移動。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "Hello Stay 鹽埕區生活圈與步行便利性",
+    },
+    specs: [
+      { label: "常見關鍵字", value: "駁二 大港橋 鹽埕埔站" },
+      { label: "旅程感受", value: "吃喝散步回館很順" },
+      { label: "對誰特別有感", value: "家庭旅遊 朋友小聚 外地旅客" },
+      { label: "不是賣點包裝", value: "是真正被走出來的動線" },
+    ],
+    groups: [
+      {
+        title: "客人實際會說",
+        items: ["走路就能去駁二", "附近吃的很多", "晚上回來續攤很方便"],
+      },
+      {
+        title: "這件事的價值",
+        items: ["減少交通焦慮", "提高晚上的聚會完整度", "讓住宿和行程連成一件事"],
+      },
+    ],
+    action: { href: "/explore", label: "看周邊生活圈" },
+  },
+  {
+    id: "reviews-trust",
+    kicker: "GODIN HOUSE",
+    title: "溝頂民宿的好評重點，是簡單、直覺、住起來省心",
+    description:
+      "溝頂民宿沒有主館那麼強烈的派對感 它被稱讚的通常是整棟獨立 分層休息 4F 可以集合 每間客房有獨立衛浴 還有整體乾淨與入住體驗順暢 這種評價對小團體反而很有說服力",
+    image: {
+      src: "/images/godin/cover-1.webp",
+      alt: "溝頂民宿交誼空間與整棟入住體驗",
+    },
+    specs: [
+      { label: "常見回饋", value: "乾淨 安靜 獨棟入住順" },
+      { label: "最有感配置", value: "四間客房獨立衛浴" },
+      { label: "公共空間角色", value: "4F 集合聊天與麻將" },
+      { label: "適合族群", value: "家庭旅遊 小團體 朋友小聚" },
+    ],
+    groups: [
+      {
+        title: "典型回饋",
+        items: ["分層住不會互相打擾", "四樓集合很方便", "位置安靜但生活機能好"],
+      },
+      {
+        title: "這代表什麼",
+        items: ["溝頂賣的是整棟獨立與入住節奏簡單", "不是要拿來和大型聚會型館別硬比", "更適合小團體快速決策"],
+      },
+    ],
+    action: { href: "/godin", label: "看溝頂民宿房型" },
+  },
+];
+
+const facts = [
+  { label: "主館 Google", value: "4.5 星 75 則評論" },
+  { label: "高頻關鍵字", value: "空間 地點 乾淨 好住" },
+  { label: "主館評價主軸", value: "聚會感與中島廚房" },
+  { label: "溝頂評價主軸", value: "獨棟直覺與分層休息" },
+];
+
+const guides = [
+  "Google 4.5 星 75 則評論指的是主館你好哇寓所",
+  "其他館別以官網整理的入住回饋補充",
+  "評價最有價值的地方 是看空間感受有沒有真的被住客提到",
+  "房型與設備仍以各館頁資訊為準",
+];
+
+const fit = [
+  { label: "適合對象", value: "想先看口碑的人" },
+  { label: "最常在意", value: "空間好不好用 地點順不順" },
+  { label: "延伸頁面", value: "比較頁 或各館頁" },
+  { label: "下訂前確認", value: "房型與設備" },
+];
+
+const galleryImages = [
+  {
+    src: "/images/hellohouse/photo2.webp",
+    alt: "你好哇寓所中島廚房與住客常提到的聚會體驗",
+    caption: "主館高頻評價點",
+  },
+  {
+    src: "/images/godin/room4.webp",
+    alt: "溝頂民宿 4F 交誼廳與住客常提到的集合空間",
+    caption: "溝頂高頻評價點",
+  },
+  {
+    src: "/images/hellohouse/photo5.webp",
+    alt: "鹽埕館外步行生活圈與交通便利性",
+    caption: "位置高頻評價點",
+  },
+];
 
 const faqs = [
-    {
-        q: "Hello Stay 的 Google 4.5 星是三館合併評價嗎？",
-        a: "不是。這裡標示的 Google 4.5 星、75 則評論，指的是主館「你好哇寓所」的 Google 商家評價；其他館別則以官網整理的住客回饋與入住分享為主。",
-    },
-    {
-        q: "住客最常提到哪些優點？",
-        a: "你好哇寓所最常被提到的是中島廚房、麻將、多人聚會空間與地點方便；溝頂民宿則常被提到五層樓分層住宿、交誼空間與小團體家庭旅行的舒適度。",
-    },
-    {
-        q: "看完評價後，下一步該做什麼？",
-        a: "如果你已經確定日期與人數，直接去 /book 查空房；若還在比較館別，先去 /compare 看三館差異，效率會比只看評論高。",
-    },
+  {
+    question: "Google 4.5 星和 75 則評論，是不是三館合在一起？",
+    answer: "不是。這個數字是主館你好哇寓所的 Google 商家評價，其他館別則以官網整理的入住回饋與實際使用感受補充。",
+  },
+  {
+    question: "住客最常稱讚什麼？",
+    answer: "你好哇最常被提到中島廚房、多人聚會空間與迎娶採光；溝頂則是整棟獨立、每間客房獨立衛浴與 4F 交誼空間。",
+  },
+  {
+    question: "評價對上需求後 還要看什麼",
+    answer: "三館比較頁會更清楚 館頁則能補足房型與設備 日期確定後再看空房與報價",
+  },
 ];
 
 export default function ReviewsPage() {
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <JsonLd data={[
-                {
-                    "@context": "https://schema.org",
-                    "@type": "CollectionPage",
-                    name: "Hello Stay 住客評價",
-                    url: "https://www.hello-stay.com/reviews",
-                    description: "整理主館你好哇寓所的 Google 評論摘錄，以及 Hello Stay 各館的住客回饋。",
-                    about: [
-                        { "@type": "LodgingBusiness", name: "你好哇寓所 Hello House" },
-                        { "@type": "LodgingBusiness", name: "溝頂民宿 Godin House" },
-                    ],
-                },
-                {
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    mainEntity: faqs.map((faq) => ({
-                        "@type": "Question",
-                        name: faq.q,
-                        acceptedAnswer: { "@type": "Answer", text: faq.a },
-                    })),
-                },
-            ]} />
-            <div className="w" style={{ maxWidth: "760px", padding: "0 28px 80px" }}>
-                <Reveal>
-                    <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", fontWeight: 600 }}>
-                            Guest Reviews
-                        </div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.08em", color: "var(--text)" }}>
-                            高雄包棟民宿評價
-                        </h1>
-                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                        <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9, maxWidth: "560px", margin: "0 auto" }}>
-                            先看評價，再決定要不要查空房。這裡整理主館 Google 評價與各館常見住客回饋，避免只看照片就下決定。
-                        </p>
-                    </div>
-                </Reveal>
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Hello Stay 住客評價",
+            url: "https://www.hello-stay.com/reviews",
+            description: "整理 Hello Stay 主館 Google 評價與各館住客回饋。",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          },
+        ]}
+      />
 
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "24px" }}>
-                        <div style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "10px" }}>
-                            評價怎麼看
-                        </div>
-                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
-                            如果你還在選館，先看{" "}
-                            <Link href="/compare" style={{ color: "var(--pri)", textDecoration: "underline" }}>三館比較</Link>
-                            {" "}與{" "}
-                            <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>完整方案整理</Link>
-                            。這一頁主要用來確認口碑與實際入住感受，不是用來取代比較頁。
-                        </p>
-                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                            <Link href="/compare" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>比較三館差異</Link>
-                            <Link href="/hellohouse" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>看主館你好哇寓所</Link>
-                            <Link href="/book" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "#161618", color: "#fff", textDecoration: "none" }}>查詢空房</Link>
-                        </div>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: "14px", marginBottom: "24px" }}>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", textAlign: "center" }}>
-                            <div style={{ fontSize: "2.6rem", fontFamily: "var(--en)", fontWeight: 300, color: "#3D3830" }}>{stats.rating}</div>
-                            <div style={{ fontSize: "1.05rem", marginBottom: "6px" }}>★★★★☆</div>
-                            <div style={{ fontSize: "0.78rem", color: "#999", lineHeight: 1.7 }}>主館你好哇寓所<br />Google 評價 {stats.total} 則</div>
-                        </div>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", textAlign: "center" }}>
-                            <div style={{ fontSize: "2rem", fontFamily: "var(--en)", fontWeight: 300, color: "#3D3830" }}>{stats.hosted}</div>
-                            <div style={{ fontSize: "0.78rem", color: "#999", lineHeight: 1.7 }}>自 2017 年起<br />服務旅客組數</div>
-                        </div>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", textAlign: "center" }}>
-                            <div style={{ fontSize: "0.92rem", fontWeight: 500, color: "#3D3830", marginBottom: "8px" }}>最常被提到</div>
-                            <div style={{ fontSize: "0.78rem", color: "#999", lineHeight: 1.8 }}>中島廚房・麻將・地點方便・多人聚會空間</div>
-                        </div>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "22px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "24px", borderLeft: "4px solid var(--pri)" }}>
-                        <div style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "10px" }}>重要說明</div>
-                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9 }}>
-                            這頁顯示的 Google 4.5 星、75 則評論，只代表主館「你好哇寓所」的 Google 商家口碑；
-                            溝頂民宿目前則以官網整理的入住回饋為主，避免把不同館別的評價混成同一個分數。
-                        </p>
-                    </div>
-                </Reveal>
-
-                <div style={{ display: "grid", gap: "16px" }}>
-                    {reviews.map((review, index) => (
-                        <Reveal key={index}>
-                            <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "12px" }}>
-                                    <div>
-                                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", marginBottom: "6px" }}>
-                                            <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "#3D3830" }}>{review.author}</span>
-                                            <span style={{ fontSize: "0.72rem", color: "#BEB5A8" }}>{review.group}</span>
-                                        </div>
-                                        <div style={{ display: "inline-flex", padding: "4px 10px", borderRadius: "999px", background: "var(--bg)", fontSize: "0.72rem", color: "#8A8279" }}>
-                                            {review.property}
-                                        </div>
-                                    </div>
-                                    <span style={{ fontSize: "0.7rem", color: "var(--pri)", whiteSpace: "nowrap" }}>{review.date}</span>
-                                </div>
-                                <div style={{ fontSize: "0.75rem", marginBottom: "10px" }}>
-                                    {"⭐".repeat(review.rating)}
-                                </div>
-                                <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 2 }}>{review.text}</p>
-                            </div>
-                        </Reveal>
-                    ))}
-                </div>
-
-                <Reveal>
-                    <section style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginTop: "28px", marginBottom: "28px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "18px" }}>
-                            FAQ
-                        </div>
-                        {faqs.map((faq) => (
-                            <div key={faq.q} style={{ padding: "16px 0", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                                <div style={{ fontWeight: 500, fontSize: "0.92rem", marginBottom: "6px", color: "#3D3830" }}>{faq.q}</div>
-                                <div style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9 }}>{faq.a}</div>
-                            </div>
-                        ))}
-                    </section>
-                </Reveal>
-
-                <Reveal>
-                    <div style={{ textAlign: "center", marginTop: "30px" }}>
-                        <p style={{ fontSize: "0.82rem", color: "#999", marginBottom: "16px" }}>看完評價後，直接用日期與人數確認房況會更準確。</p>
-                        <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>
-                                查詢空房
-                            </Link>
-                            <a href="https://g.page/r/CQvfS4dZvVleEBM/review" target="_blank" rel="noopener noreferrer" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>
-                                留下你的評價
-                            </a>
-                        </div>
-                    </div>
-                </Reveal>
-            </div>
-        </div>
-    );
+      <PropertyShowcasePage
+        hero={{
+          kicker: "GUEST FEEDBACK",
+          title: "住客通常記得什麼",
+          lead:
+            "照片會告訴你空間長什麼樣 評價會告訴你住起來到底怎麼樣 這裡整理的是住客最常提到的真實感受",
+          image: {
+            src: "/images/hellohouse/photo2.webp",
+            alt: "Hello Stay 住客評價主視覺與中島廚房空間",
+          },
+          stats: [
+            { label: "主館評價", value: "Google 4.5 星 75 則" },
+            { label: "高頻稱讚", value: "聚會空間與地點方便" },
+            { label: "溝頂重點", value: "獨棟直覺與分層休息" },
+            { label: "延伸頁面", value: "房型與設備" },
+          ],
+          primaryAction: { href: "/compare", label: "比較三館差異" },
+          secondaryAction: { href: "/book", label: "直接查日期與空房" },
+        }}
+        overview={{
+          kicker: "WHAT GUESTS NOTICE",
+          title: "住客最常留下印象的三件事",
+          intro: "有價值的評價 會直接說出客人怎麼用空間 怎麼感受地點",
+          columns: 3,
+          cards: voiceCards,
+        }}
+        details={{
+          kicker: "REVIEW SIGNALS",
+          title: "評價反映出的館別特色",
+          intro: "把高頻回饋和它代表的館別價值拆開看 差異會更清楚",
+          cards: detailCards,
+          factsTitle: "口碑重點整理",
+          facts,
+          guidesTitle: "評價重點",
+          guides,
+          fitTitle: "適合對象",
+          fit,
+        }}
+        gallery={{
+          kicker: "VISUAL PROOF",
+          title: "評價對應到的實際空間",
+          intro: "把客人最常提到的空間直接對回照片，比單獨看字句更容易理解。",
+          columns: 3,
+          images: galleryImages,
+        }}
+        faq={{
+          kicker: "FAQ",
+          title: "評價相關常見問題",
+          intro: "分數來源 館別差異與常見問題",
+          items: faqs,
+        }}
+        final={{
+          kicker: "BOOKING",
+          title: "館別與房型會更關鍵",
+          body:
+            "如果口碑方向符合需求 接著看的會是房型配置 設備細節與日期報價",
+          primaryAction: { href: "/compare", label: "看三館比較" },
+          secondaryAction: { href: "/book", label: "查空房與報價" },
+        }}
+      />
+    </>
+  );
 }

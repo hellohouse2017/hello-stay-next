@@ -68,6 +68,7 @@ export default function RoomGallery({ images, roomName }: RoomGalleryProps) {
                     width={700}
                     height={500}
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="eager"
                     className="img-cover"
                     style={{ cursor: 'zoom-in' }}
                 />
@@ -99,7 +100,7 @@ export default function RoomGallery({ images, roomName }: RoomGalleryProps) {
                                 height={500}
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="img-cover"
-                                loading={i === 0 ? undefined : 'lazy'}
+                                loading={i === 0 ? 'eager' : 'lazy'}
                             />
                         </div>
                     ))}

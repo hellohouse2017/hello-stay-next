@@ -16,7 +16,7 @@ export default function PropertyLinksBlock() {
                 <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
                     高雄包棟民宿推薦 Hello Stay
                 </Link>
-                {" "}嗎？三館可住 6-48 人，也可以先看{" "}
+                {" "}嗎？三館可住 6-48 人，也可以先比較{" "}
                 <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
                     高雄包棟方案整理
                 </Link>

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Locale, locales } from '@/i18n/config';
 
@@ -9,53 +8,21 @@ interface LineFloatingCTAProps {
     message?: string;
 }
 
-export default function LineFloatingCTA({ lineUrl, message = '幫你查空房 💬' }: LineFloatingCTAProps) {
-    const [visible, setVisible] = useState(false);
-    const [showBubble, setShowBubble] = useState(false);
-    const [dismissed, setDismissed] = useState(false);
+export default function LineFloatingCTA({ lineUrl }: LineFloatingCTAProps) {
     const pathname = usePathname() || "";
 
     // Detect current locale
     const currentLocale: Locale = (locales.find(l => l !== "zh" && pathname.startsWith(`/${l}/`)) || 
                                   (locales.find(l => l !== "zh" && pathname === `/${l}`) || "zh")) as Locale;
 
-    useEffect(() => {
-        // Fade in after 3 seconds
-        const timer1 = setTimeout(() => setVisible(true), 3000);
+    const isHomePage = pathname === "/" || pathname === "/zh" || pathname === "/zh/";
 
-        // Show message bubble after scrolling 30%
-        const handleScroll = () => {
-            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-            if (scrollPercent > 0.3 && !dismissed) {
-                setShowBubble(true);
-            }
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        return () => {
-            clearTimeout(timer1);
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [dismissed]);
-
-    // ONLY show for Chinese (zh) locale to avoid language/LINE clutter for foreign travelers
+    // Only keep the floating LINE entry on the homepage.
     if (currentLocale !== "zh") return null;
-    if (!visible) return null;
+    if (!isHomePage) return null;
 
     return (
-        <div className={`line-floating-cta ${visible ? 'show' : ''}`}>
-            {/* Message bubble */}
-            {showBubble && !dismissed && (
-                <div className="line-bubble">
-                    <span>{message}</span>
-                    <button className="line-bubble-close"
-                        onClick={(e) => { e.stopPropagation(); setDismissed(true); setShowBubble(false); }}
-                        aria-label="關閉提示"
-                    >✕</button>
-                </div>
-            )}
-
-            {/* LINE button */}
+        <div className="line-floating-cta show">
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="line-floating-btn"
                 aria-label="LINE 詢問空房"

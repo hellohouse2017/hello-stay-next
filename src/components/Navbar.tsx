@@ -6,6 +6,12 @@ import { createPortal } from "react-dom";
 import type { Locale } from "@/i18n/config";
 import { locales, localeNames, getLocalePath } from "@/i18n/config";
 
+type NavLink = {
+    href: string;
+    label: string;
+    cta?: boolean;
+};
+
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -26,124 +32,123 @@ export default function Navbar() {
     // Get the path without locale prefix for language switching
     const pathWithoutLocale = currentLocale === "zh" ? path : path.replace(`/${currentLocale}`, "") || "/";
 
-    // B-style (zen light) for godin, D-style (dark gold) for everything else
-    const isZen = path.endsWith("/godin");
-    const isDark = !isZen;
-
-    const links = [
+    const propertyLinks: NavLink[] = [
         { href: `${prefix}/hellohouse`, label: currentLocale === "zh" ? "你好哇寓所" : "Hello House" },
         { href: `${prefix}/godin`, label: currentLocale === "zh" ? "溝頂民宿" : "Godin House" },
         { href: `${prefix}/dazhi`, label: "大智若愚" },
+    ];
+
+    const zhPlanningLinks: NavLink[] = [
+        { href: "/compare", label: "三館比較" },
+        { href: "/packages", label: "方案" },
+        { href: "/traffic", label: "交通" },
+    ];
+
+    const links: NavLink[] = [
+        ...propertyLinks,
+        ...(currentLocale === "zh" ? zhPlanningLinks : []),
         { href: `${prefix}/book`, label: currentLocale === "zh" ? "預訂" : "Book", cta: true },
     ];
 
     // Mobile menu portal - renders outside nav to avoid nav's height/overflow constraints
     const mobileMenu = open && mounted ? createPortal(
-        <div style={{
-            position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 9999,
-            background: isDark ? "rgba(247,243,238,0.98)" : "rgba(252,251,249,0.98)",
-            backdropFilter: "blur(20px)",
-            display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "28px",
-            boxSizing: "border-box",
-        }}>
-            {/* Close button */}
+        <div className="mobile-menu-panel">
             <button
                 onClick={() => setOpen(false)}
                 aria-label="關閉選單"
-                style={{
-                    position: "absolute", top: "20px", right: "20px",
-                    background: "none", border: "none", cursor: "pointer",
-                    fontSize: "28px", lineHeight: 1,
-                    color: isDark ? "#B85A38" : "#2a2a2a",
-                    padding: "8px",
-                }}
-            >✕</button>
+                className="mobile-menu-close"
+            >
+                ×
+            </button>
+            <Link href={prefix || "/"} onClick={() => setOpen(false)} className="mobile-menu-brand">
+                Hello Stay
+            </Link>
             {links.map((l, i) => (
                 <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-                    style={{
-                        fontFamily: "var(--serif)", fontSize: "1.4rem", letterSpacing: "0.1em",
-                        color: isDark ? (l.cta ? "#B85A38" : "#1F1A17") : (l.cta ? "#2a2a2a" : "#888"),
-                        opacity: 0, animation: `fadeInUp 0.5s ease ${i * 0.1}s forwards`,
-                        textDecoration: "none",
-                    }}
-                >{l.label}</Link>
+                    className={l.cta ? "mobile-menu-link mobile-menu-link--cta" : "mobile-menu-link"}
+                    style={{ animationDelay: `${i * 0.06}s` }}
+                >
+                    {l.label}
+                </Link>
             ))}
+            <div className="mobile-menu-langs" aria-label="語言切換">
+                {locales.map(l => (
+                    <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
+                        onClick={() => setOpen(false)}
+                        className={l === currentLocale ? "mobile-menu-lang active" : "mobile-menu-lang"}
+                    >
+                        {localeNames[l]}
+                    </Link>
+                ))}
+            </div>
         </div>,
         document.body
     ) : null;
 
     return (
         <>
-            <nav className={isDark ? "nav-d" : "nav-b"}>
-                <div className="w" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
-                    <Link href={prefix || "/"} className="logo">Hello Stay</Link>
-
-                    {/* Desktop */}
-                    <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-                        {links.map(l => (
-                            <Link key={l.href} href={l.href} className={l.cta ? "cta-link" : ""}>
-                                {l.label}
-                            </Link>
-                        ))}
-                        {/* Language Switcher */}
-                        <div style={{ position: "relative" }}>
-                            <button
-                                onClick={() => setLangOpen(!langOpen)}
-                                style={{
-                                    background: "none", border: "1px solid var(--line)", cursor: "pointer",
-                                    color: isDark ? "#6B5E52" : "#888", fontSize: "0.75rem", padding: "4px 10px",
-                                    borderRadius: "4px", fontFamily: "var(--en)", letterSpacing: "0.05em",
-                                }}
-                            >
-                                🌐 {localeNames[currentLocale]}
-                            </button>
-                            {langOpen && (
-                                <div style={{
-                                    position: "absolute", top: "100%", right: 0, marginTop: "8px",
-                                    background: isDark ? "#FFFCF8" : "#fff", border: "1px solid var(--line)",
-                                    borderRadius: "8px", overflow: "hidden", minWidth: "120px",
-                                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)", zIndex: 100,
-                                }}>
-                                    {locales.map(l => (
-                                        <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
-                                            onClick={() => setLangOpen(false)}
-                                            style={{
-                                                display: "block", padding: "10px 16px", fontSize: "0.8rem",
-                                                color: l === currentLocale ? "#B85A38" : (isDark ? "#6B5E52" : "#666"),
-                                                fontWeight: l === currentLocale ? 600 : 400,
-                                                textDecoration: "none", transition: "background 0.2s",
-                                                background: l === currentLocale ? (isDark ? "rgba(184,90,56,0.08)" : "rgba(184,90,56,0.05)") : "transparent",
-                                            }}
-                                        >
-                                            {localeNames[l]}
-                                        </Link>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Mobile toggle */}
-                    <button
-                        className="mobile-toggle"
-                        onClick={() => setOpen(!open)}
-                        aria-label="選單"
-                        style={{
-                            background: "none", border: "none", cursor: "pointer",
-                            display: "flex", flexDirection: "column", gap: "5px", padding: "8px",
-                        }}
-                    >
-                        {[0, 1, 2].map(i => (
-                            <span key={i} style={{
-                                width: "20px", height: "1.5px",
-                                background: isDark ? "#1F1A17" : "#2a2a2a",
-                                transition: "all 0.3s",
-                                transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
-                            }} />
-                        ))}
-                    </button>
+            <header className="site-header nav-d">
+                <div className="site-announcement">
+                    <span>Official Booking</span>
+                    <strong>Hello Stay 高雄鹽埕包棟民宿</strong>
+                    <span>官網選館別｜訂房站查空房與報價</span>
                 </div>
-            </nav>
+                <nav className="site-nav">
+                    <div className="w site-nav__inner">
+                        <Link href={prefix || "/"} className="logo site-logo">
+                            <span>Hello Stay</span>
+                            <small>Kaohsiung Private Stays</small>
+                        </Link>
+
+                        <div className="desktop-nav site-nav__links">
+                            {links.map(l => (
+                                <Link key={l.href} href={l.href} className={l.cta ? "cta-link" : ""}>
+                                    {l.label}
+                                </Link>
+                            ))}
+                            <div className="language-menu">
+                                <button
+                                    onClick={() => setLangOpen(!langOpen)}
+                                    className="language-menu__button"
+                                    aria-expanded={langOpen}
+                                    aria-haspopup="menu"
+                                >
+                                    <span aria-hidden="true">⌘</span>
+                                    {localeNames[currentLocale]}
+                                </button>
+                                {langOpen && (
+                                    <div className="language-menu__panel" role="menu">
+                                        {locales.map(l => (
+                                            <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
+                                                onClick={() => setLangOpen(false)}
+                                                className={l === currentLocale ? "language-menu__item active" : "language-menu__item"}
+                                                role="menuitem"
+                                            >
+                                                {localeNames[l]}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <button
+                            className="mobile-toggle"
+                            onClick={() => setOpen(!open)}
+                            aria-label="選單"
+                            aria-expanded={open}
+                        >
+                            {[0, 1, 2].map(i => (
+                                <span key={i}
+                                    style={{
+                                        transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
+                                    }}
+                                />
+                            ))}
+                        </button>
+                    </div>
+                </nav>
+            </header>
             {mobileMenu}
         </>
     );

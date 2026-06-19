@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿推薦 2025｜6-48人包棟方案·比較·價格｜Hello Stay",
+    title: "高雄包棟民宿推薦 2026｜6-48人包棟方案·比較·價格｜Hello Stay",
     description: "高雄包棟民宿完整指南：依人數(6-48人)、設備(廚房/麻將/電梯)、用途(家庭/企業/婚禮)推薦最適合的包棟方案。鹽埕區駁二旁。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
@@ -31,7 +31,7 @@ export default function KaohsiungWholeHousePage() {
             count: "10人包棟",
             range: "6–12 人",
             rec: "溝頂民宿",
-            price: "$10,000起",
+            price: "$8,000起",
             summary: "小家庭或 10 人左右聚會，優先看五層獨棟的溝頂民宿。",
             detail: "每層分開休息、低樓層給長輩，最適合家庭出遊與好友小聚。",
         },
@@ -61,7 +61,7 @@ export default function KaohsiungWholeHousePage() {
             count: "40人包棟",
             range: "39–48 人",
             rec: "大智若愚",
-            price: "$45,000起",
+            price: "即將公布",
             summary: "40 人以上團體先看大智若愚，電梯與大容量是核心優勢。",
             detail: "企業員旅、球隊與大型家族，可先用大智若愚評估 20–48 人配置。",
         },
@@ -125,7 +125,7 @@ export default function KaohsiungWholeHousePage() {
                     <div style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>高雄包棟怎麼選</div>
                     <div style={{ fontSize: "0.88rem", color: "#3D3830", lineHeight: 2 }}>
                         高雄鹽埕區有 3 間包棟民宿可選，全部步行到駁二藝術特區 10 分鐘：<br />
-                        • <strong>6–12人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選，平日$10,000起）<br />
+                        • <strong>6–12人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選，平日$8,000起）<br />
                         • <strong>6–26人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌，每人$909起）<br />
                         • <strong>20–48人</strong>→ <Link href="/dazhi" style={{ color: "var(--pri)" }}>大智若愚</Link>（電梯大樓，2027年開幕）<br />
                         • <strong>38人以上</strong>→ 兩棟/三館合訂，最高近80人
@@ -194,8 +194,8 @@ export default function KaohsiungWholeHousePage() {
                             {[
                                 ["人數", "6–26", "6–12", "20–48"],
                                 ["每人", "$909起", "$800起", "即將公布"],
-                                ["廚房", "✅ 豪華", "✅ 基本", "規劃中"],
-                                ["麻將", "✅", "❌", "規劃中"],
+                                ["廚房", "✅ 豪華中島", "簡易流理臺", "規劃中"],
+                                ["麻將", "✅ 手動", "✅ 手動", "規劃中"],
                                 ["電梯", "❌", "❌", "✅"],
                             ].map(([l, a, b, c], i) => (
                                 <tr key={l} style={{ borderBottom: "1px solid #F5F1ED", background: i % 2 === 0 ? "#FDFCFB" : "#fff" }}>

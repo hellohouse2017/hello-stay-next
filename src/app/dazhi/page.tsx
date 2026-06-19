@@ -1,233 +1,282 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
+
+const lineUrl = "https://lin.ee/atCiMQw";
 
 export const metadata: Metadata = {
-    title: "大智若愚｜高雄大型包棟48人・電梯民宿2027即將開幕｜大港橋旁鹽埕｜Hello Stay",
-    description: "高雄最大電梯包棟民宿「大智若愚」！預計 2027 年中正式開幕。座落鹽埕大港橋旁、緊鄰駁二大義倉庫群。全新電梯大樓，提供一層三房一廳的獨立樓層設計，最大可容納 48 人入住。非常適合企業員工旅遊、大型家族聚會或運動球隊移地訓練！",
-    alternates: { canonical: "https://www.hello-stay.com/dazhi" },
-    openGraph: {
-        title: "大智若愚｜高雄大型包棟48人・電梯民宿2027即將開幕｜大港橋旁鹽埕｜Hello Stay",
-        description: "高雄最大包棟民宿「大智若愚」！最多 48 人入住，全新電梯大樓，緊鄰大港橋與駁二藝術特區。獨立樓層設計，適合企業團建、家族旅遊、球隊住宿，歡迎 LINE 搶先登記早鳥諮詢。",
-        url: "https://www.hello-stay.com/dazhi",
-        images: [{ url: "https://www.hello-stay.com/images/dazhi/building-render.webp", width: 1200, height: 630, alt: "大智若愚" }],
-    },
+  title: "大智若愚｜高雄全新電梯包層與大型包棟規劃・大港橋旁｜Hello Stay",
+  description:
+    "大智若愚為 Hello Stay 規劃中的大型館別，主打電梯動線、一層三房一廳、可包層可包棟，適合 20-48 人團體先登記需求。",
+  alternates: { canonical: "https://www.hello-stay.com/dazhi" },
+  openGraph: {
+    title: "大智若愚｜高雄全新電梯包層與大型包棟規劃・大港橋旁｜Hello Stay",
+    description:
+      "大港橋旁規劃中的大型團體館別，重點是電梯、一層三房一廳、可包層可包棟，適合 20-48 人團體先追蹤。",
+    url: "https://www.hello-stay.com/dazhi",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/dazhi/building-render.webp",
+        width: 1200,
+        height: 630,
+        alt: "大智若愚建築規劃示意",
+      },
+    ],
+  },
 };
 
+const heroStats = [
+  { label: "規劃容量", value: "20-48 人" },
+  { label: "空間方向", value: "一層三房一廳" },
+  { label: "動線重點", value: "全新電梯大樓" },
+  { label: "使用方式", value: "可包層 可包棟" },
+];
+
+const overviewCards = [
+  {
+    id: "dazhi-floor-plan",
+    kicker: "FLOOR PLAN",
+    title: "一層三房一廳",
+    summary: "可從單層評估，也能往上擴成多層與大型團體安排。",
+    image: {
+      src: "/images/dazhi/building-render.webp",
+      alt: "大智若愚建築規劃示意圖",
+    },
+    linkLabel: "看這個規劃",
+  },
+  {
+    id: "dazhi-elevator",
+    kicker: "ACCESS",
+    title: "電梯動線",
+    summary: "未來會是 Hello Stay 第一個以電梯為前提規劃的館別，對長輩與大件行李更友善。",
+    image: {
+      src: "/images/dazhi/building-original.webp",
+      alt: "大智若愚建築原始外觀參考",
+    },
+    linkLabel: "看這個重點",
+  },
+  {
+    id: "dazhi-group-fit",
+    kicker: "GROUP FIT",
+    title: "大型團體優先追蹤",
+    summary: "如果你常常超過 26 人，或不想再拆雙館，這會是更直接的大型團體方向。",
+    image: {
+      src: "/images/dazhi/building-render.webp",
+      alt: "大智若愚大型團體館別規劃示意",
+    },
+    linkLabel: "看適合情境",
+  },
+];
+
+const detailCards = [
+  {
+    id: "dazhi-floor-plan",
+    kicker: "FLOOR PLAN",
+    title: "一層三房一廳規劃",
+    description: "目前已知方向是一層三房一廳，可依人數評估只租單層，或擴大到多層與整棟。",
+    image: {
+      src: "/images/dazhi/building-render.webp",
+      alt: "大智若愚一層三房一廳規劃示意",
+    },
+    specs: [
+      { label: "使用方式", value: "單層或整棟規劃" },
+      { label: "基本單位", value: "一層三房一廳" },
+      { label: "適合人數", value: "6-10 人起可先評估包層" },
+      { label: "目前狀態", value: "細節規劃中" },
+    ],
+    groups: [
+      {
+        title: "現在已知",
+        items: ["一層三房一廳", "可包層 可包棟", "會保留團體公共空間"],
+      },
+      {
+        title: "適合需求",
+        items: ["預算想先從單層開始", "不想跟其他旅客共用", "需要分層安排團員"],
+      },
+    ],
+  },
+  {
+    id: "dazhi-elevator",
+    kicker: "ACCESS",
+    title: "電梯與大型行李動線",
+    description: "這一館最明確的差異，不是文青風格，而是電梯帶來的實用性，特別適合長輩同行與器材較多的團體。",
+    image: {
+      src: "/images/dazhi/building-original.webp",
+      alt: "大智若愚電梯建築規劃參考",
+    },
+    specs: [
+      { label: "動線重點", value: "電梯大樓" },
+      { label: "適合情境", value: "長輩同行 器材較多 大型行李" },
+      { label: "相較現有館別", value: "唯一規劃電梯" },
+      { label: "目前狀態", value: "開放前可先登記需求" },
+    ],
+    groups: [
+      {
+        title: "誰最需要",
+        items: ["企業員旅", "球隊或活動團體", "有長輩同行的家族旅行"],
+      },
+      {
+        title: "客人最會問",
+        items: ["有沒有電梯", "能不能減少搬行李", "能不能分層安排還保有公共區"],
+      },
+    ],
+  },
+  {
+    id: "dazhi-group-fit",
+    kicker: "GROUP FIT",
+    title: "給 20-48 人團體的第三選項",
+    description: "如果現在兩館加起來還是不夠直觀，或你不想拆成多筆安排，大智若愚會是未來更直接的解法。",
+    image: {
+      src: "/images/dazhi/building-render.webp",
+      alt: "大智若愚大型包棟規劃示意",
+    },
+    specs: [
+      { label: "規劃容量", value: "20-48 人" },
+      { label: "主要客群", value: "企業 家族 球隊 活動團體" },
+      { label: "決策時機", value: "先留日期與人數" },
+      { label: "現在建議", value: "先登記 不先承諾未定細節" },
+    ],
+    groups: [
+      {
+        title: "適合追蹤",
+        items: ["常常超過 26 人", "希望單館處理", "重視電梯和大型團體動線"],
+      },
+      {
+        title: "現在先不要誤會",
+        items: ["還未正式開放訂房", "房價與實際房內設備尚未最終公告", "目前以需求登記為主"],
+      },
+    ],
+  },
+];
+
+const houseFacts = [
+  { label: "館別定位", value: "大型團體與電梯動線優先" },
+  { label: "空間方向", value: "一層三房一廳 可包層 可包棟" },
+  { label: "人數級距", value: "20-48 人為主" },
+  { label: "目前狀態", value: "尚未正式開放 以需求登記為主" },
+];
+
+const stayGuides = [
+  "目前已知的是電梯 大型容量與包層方向",
+  "細部設備與房價仍以正式公告為準",
+  "近期入住仍以你好哇 溝頂或雙館方案為主",
+  "可先留下日期 人數與包層需求",
+];
+
+const fitGuides = [
+  { label: "適合團體", value: "企業員旅 大型家族 球隊 活動住宿" },
+  { label: "核心優勢", value: "電梯與大型行李動線" },
+  { label: "人數情境", value: "超過 26 人時更直觀" },
+  { label: "目前方式", value: "留下需求與預計日期" },
+];
+
+const galleryImages = [
+  {
+    src: "/images/dazhi/building-render.webp",
+    alt: "大智若愚建築渲染規劃圖",
+    caption: "建築規劃示意",
+  },
+  {
+    src: "/images/dazhi/building-original.webp",
+    alt: "大智若愚建築原始外觀參考",
+    caption: "基地外觀參考",
+  },
+];
+
+const locationSpots = [
+  { name: "大港橋", detail: "步行可達" },
+  { name: "駁二大義倉庫群", detail: "步行可達" },
+  { name: "鹽埕港灣散步路線", detail: "館外就是行程核心" },
+  { name: "大型團體集合", detail: "比一般散住旅館更直觀" },
+];
+
 export default function DazhiPage() {
-    return (
-        <div style={{
-            minHeight: "100vh",
-            background: "var(--bg)",
-            paddingTop: "calc(var(--nav-h) + 20px)",
-            paddingBottom: "80px",
-        }}>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{
-                __html: JSON.stringify([
-                    {
-                        "@context": "https://schema.org", "@type": "LodgingBusiness",
-                        "@id": "https://www.hello-stay.com/dazhi/#lodging",
-                        name: "大智若愚 Dazhi Ruoyu", url: "https://www.hello-stay.com/dazhi",
-                        telephone: "+886-932-828-922",
-                        description: "高雄全新電梯包棟民宿，位於大港橋旁、駁二大義倉庫群。一層三房一廳，可包層可包棟，最大可住48人。即將開幕。",
-                        address: { "@type": "PostalAddress", addressLocality: "鹽埕區", addressRegion: "高雄市", postalCode: "803", addressCountry: "TW" },
-                        geo: { "@type": "GeoCoordinates", latitude: 22.6190, longitude: 120.2850 },
-                        checkinTime: "16:00", checkoutTime: "11:00",
-                        petsAllowed: false,
-                        tourBookingPage: "https://www.hello-stay.com/book",
-                        speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".dazhi-summary", ".dazhi-faq"] },
-                    },
-                    {
-                        "@context": "https://schema.org", "@type": "FAQPage",
-                        mainEntity: [
-                            { "@type": "Question", name: "大智若愚可以住幾人？", acceptedAnswer: { "@type": "Answer", text: "最多可接待 48 人，最低建議 20 人包棟。可依人數選擇包層（單層）或包棟（全棟），彈性配置高雄最大容量包棟方案。" } },
-                            { "@type": "Question", name: "大智若愚什麼時候開幕？", acceptedAnswer: { "@type": "Answer", text: "預計 2027 年中正式開幕。目前開放搶先預約，早鳥享有優先排程與諮詢服務，建議透過 LINE 官方帳號登記。" } },
-                            { "@type": "Question", name: "大智若愚有電梯嗎？", acceptedAnswer: { "@type": "Answer", text: "是的！大智若愚是 Hello Stay 三館中唯一有電梯的民宿，特別適合帶長輩、行動不便者，或需要搬運大量行李的大型企業團隊。" } },
-                            { "@type": "Question", name: "大智若愚適合什麼樣的活動？", acceptedAnswer: { "@type": "Answer", text: "最適合：大型家族旅遊（三代同堂）、企業員工旅遊、球隊/運動隊集訓住宿、同學會/同事聚會。20–48人靈活配置，可包層或整棟使用。" } },
-                            { "@type": "Question", name: "高雄40人以上包棟住哪裡？", acceptedAnswer: { "@type": "Answer", text: "推薦大智若愚，高雄最大容量包棟民宿，最多48人，位於鹽埕區大港橋旁，全新電梯大樓，步行到駁二藝術特區約12分鐘，預計2027年開幕。" } },
-                        ],
-                    },
-                    {
-                        "@context": "https://schema.org", "@type": "BreadcrumbList",
-                        itemListElement: [
-                            { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
-                            { "@type": "ListItem", position: 2, name: "大智若愚", item: "https://www.hello-stay.com/dazhi" },
-                        ],
-                    },
-                ])
-            }} />
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "LodgingBusiness",
+              "@id": "https://www.hello-stay.com/dazhi/#lodging",
+              name: "大智若愚 Dazhi Ruoyu",
+              url: "https://www.hello-stay.com/dazhi",
+              telephone: "+886-932-828-922",
+              description:
+                "高雄鹽埕大港橋旁規劃中的大型電梯館別，方向為一層三房一廳，可包層可包棟，適合 20-48 人團體先登記需求。",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "鹽埕區",
+                addressRegion: "高雄市",
+                postalCode: "803",
+                addressCountry: "TW",
+              },
+              geo: { "@type": "GeoCoordinates", latitude: 22.619, longitude: 120.285 },
+              petsAllowed: false,
+            },
+          ]),
+        }}
+      />
 
-            <div className="w" style={{ maxWidth: "720px", padding: "0 28px" }}>
-
-                {/* Hero render */}
-                <Reveal>
-                    <div style={{
-                        borderRadius: "4px", overflow: "hidden",
-                        marginBottom: "50px", border: "1px solid var(--line)",
-                    }}>
-                        <Image
-                            src="/images/dazhi/building-render.webp"
-                            alt="大智若愚民宿大樓外觀 3D 渲染設計圖，全新電梯大樓包棟包層民宿，大港橋與駁二大義倉庫群旁，預計 2027 年中開幕"
-                            width={720} height={720}
-                            className="img-cover"
-                            style={{ width: "100%", height: "auto" }}
-                            priority
-                        />
-                    </div>
-                </Reveal>
-
-                <div style={{ textAlign: "center" }}>
-                    <Reveal>
-                        {/* Coming Soon pill */}
-                        <div style={{
-                            display: "inline-block", padding: "8px 24px", borderRadius: "4px",
-                            background: "var(--surface)", fontFamily: "var(--sans)", fontSize: "0.6rem",
-                            letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--muted)",
-                            marginBottom: "40px", fontWeight: 600,
-                        }}>
-                            預計 2027 年中開幕
-                        </div>
-                    </Reveal>
-
-                    <Reveal>
-                        <h1 style={{
-                            fontFamily: "var(--serif)", fontSize: "clamp(2.4rem, 7vw, 4.2rem)",
-                            fontWeight: 400, color: "var(--text)", letterSpacing: "0.12em",
-                            marginBottom: "20px", lineHeight: 1.3,
-                        }}>
-                            大智若愚｜高雄鹽埕最大48人電梯包棟
-                        </h1>
-                    </Reveal>
-
-                    <Reveal>
-                        <p style={{
-                            fontFamily: "var(--sans)", fontSize: "0.68rem", letterSpacing: "0.3em",
-                            textTransform: "uppercase", color: "var(--muted)", marginBottom: "50px", opacity: 0.6,
-                        }}>
-                            Dazhi Ruoyu · A Wise Retreat
-                        </p>
-                    </Reveal>
-
-                    {/* Organic divider */}
-                    <Reveal>
-                        <div style={{
-                            width: "80px", height: "2px", margin: "0 auto 50px",
-                            background: "linear-gradient(90deg, transparent, #D4CBC0, transparent)",
-                        }} />
-                    </Reveal>
-
-                    {/* Location highlight */}
-                    <Reveal>
-                        <div style={{
-                            background: "var(--surface)", borderRadius: "4px", padding: "36px 32px",
-                            border: "1px solid var(--line)", marginBottom: "32px",
-                        }}>
-                            <div style={{
-                                fontSize: "0.6rem", fontFamily: "var(--sans)", letterSpacing: "0.35em",
-                                textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600,
-                            }}>
-                                Location
-                            </div>
-                            <p style={{
-                                fontFamily: "var(--serif)", fontSize: "1.15rem", color: "var(--text)",
-                                letterSpacing: "0.08em", lineHeight: 1.8,
-                            }}>
-                                大港橋旁 · 駁二大義倉庫群
-                            </p>
-                            <p style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "8px" }}>
-                                高雄最精華的港灣地段，步出門即是藝文散步路線
-                            </p>
-                        </div>
-                    </Reveal>
-
-                    {/* Feature cards */}
-                    <Reveal>
-                        <div style={{
-                            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px",
-                            marginBottom: "40px",
-                        }}>
-                            {[
-                                { icon: "🏗️", title: "全新電梯民宿", sub: "現代化電梯大樓" },
-                                { icon: "🏠", title: "一層三房一廳", sub: "獨立樓層空間" },
-                                { icon: "🔑", title: "可包層 · 可包棟", sub: "靈活包棟方案" },
-                                { icon: "👥", title: "最大 48 人", sub: "超大團體首選" },
-                            ].map(f => (
-                                <div key={f.title} style={{
-                                    background: "var(--surface)", borderRadius: "4px", padding: "28px 20px",
-                                    border: "1px solid var(--line)", textAlign: "center",
-                                }}>
-                                    <div style={{ fontSize: "1.6rem", marginBottom: "10px" }}>{f.icon}</div>
-                                    <div style={{
-                                        fontFamily: "var(--serif)", fontSize: "0.95rem", color: "var(--text)",
-                                        letterSpacing: "0.06em", marginBottom: "4px", fontWeight: 400,
-                                    }}>{f.title}</div>
-                                    <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>{f.sub}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </Reveal>
-
-                    {/* Description */}
-                    <Reveal>
-                        <p style={{
-                            fontSize: "0.92rem", color: "var(--muted)", lineHeight: 2.3,
-                            marginBottom: "50px",
-                        }}>
-                            Hello Stay 第三館即將登場。<br />
-                            全新電梯建築，座落大港橋旁黃金地段。<br />
-                            以「大智若愚」為名，追求外拙內秀的空間哲學。<br />
-                            敬請期待。
-                        </p>
-                    </Reveal>
-
-                    {/* AEO Quick Summary */}
-                    <Reveal>
-                        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", marginBottom: "20px" }}>
-                            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>一眼看懂</div>
-                            <div style={{ display: "grid", gap: "12px", marginBottom: "24px" }}>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>👥</span>
-                                    <span>適合 <strong>20–48 人</strong>超大團體，高雄最大容量包棟</span>
-                                </div>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>🛗</span>
-                                    <span>全新電梯民宿，近大港橋，<strong>2027年中開幕</strong></span>
-                                </div>
-                                <div style={{ display: "flex", gap: "12px", fontSize: "0.88rem", color: "#3D3830" }}>
-                                    <span style={{ color: "var(--pri)", minWidth: "20px" }}>📍</span>
-                                    <span>鹽埕區，可包層/包棟，適合球隊・企業員旅・大家族</span>
-                                </div>
-                            </div>
-                            {[
-                                { q: "大智若愚可以住幾人？", a: "最多可接待 48 人，最低建議 20 人包棟。可依人數選擇包層（單層）或包棟（全棟），彈性配置高雄最大容量包棟方案。" },
-                                { q: "大智若愚什麼時候開幕？", a: "預計 2027 年中正式開幕。目前開放搶先預約，早鳥享有優先排程與諮詢服務，建議透過 LINE 官方帳號登記。" },
-                                { q: "大智若愚有電梯嗎？", a: "是的！大智若愚是 Hello Stay 三館中唯一有電梯的民宿，特別適合帶長輩、行動不便者，或需要搬運大量行李的大型企業團隊。" },
-                                { q: "大智若愚適合什麼樣的活動？", a: "最適合：大型家族旅遊（三代同堂）、企業員工旅遊、球隊/運動隊集訓住宿、同學會/同事聚會。20–48人靈活配置，可包層或整棟使用。" },
-                                { q: "大智若愚跟你好哇寓所有什麼不同？", a: "你好哇寓所：6–26人，已開幕，中島廚房+麻將桌，適合中型團體。大智若愚：20–48人，2027年開幕，電梯設備，適合超大團體。可同步詢問兩館搭配方案。" },
-                                { q: "大智若愚在哪裡？交通如何？", a: "位於高雄鹽埕區大港橋旁，距捷運鹽埕埔站步行8分鐘，開車到高雄火車站約10分鐘，步行到駁二藝術特區約12分鐘。附近有多處停車場。" },
-                            ].map(faq => (
-                                <div key={faq.q} style={{ padding: "15px 0", borderBottom: "1px solid #F5F1ED" }}>
-                                    <div style={{ fontWeight: 500, fontSize: "0.88rem", marginBottom: "5px", color: "#3D3830" }}>{faq.q}</div>
-                                    <div style={{ fontSize: "0.82rem", color: "var(--muted)", lineHeight: 1.9 }}>{faq.a}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </Reveal>
-
-                    {/* CTAs */}
-                    <Reveal>
-                        <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/" className="btn-ghost" style={{ color: "var(--muted)", borderColor: "var(--line)" }}>
-                                返回首頁
-                            </Link>
-                            <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" className="btn-line btn-line--lg">
-                                LINE 搶先預約
-                            </a>
-                        </div>
-                    </Reveal>
-                </div>
-            </div>
-        </div>
-    );
+      <PropertyShowcasePage
+        hero={{
+          status: "規劃中",
+          kicker: "DAZHI RUOYU",
+          title: "大智若愚",
+          lead:
+            "大智若愚目前仍在規劃階段 已知方向是電梯大樓 一層三房一廳 可包層可包棟 適合 20-48 人大型團體留意",
+          image: {
+            src: "/images/dazhi/building-render.webp",
+            alt: "大智若愚建築規劃渲染圖",
+          },
+          stats: heroStats,
+          primaryAction: { href: lineUrl, label: "LINE 登記需求", external: true },
+          secondaryAction: { href: "/compare", label: "看現有館別" },
+        }}
+        overview={{
+          kicker: "PLANNING GUIDE",
+          title: "目前規劃重點",
+          intro: "只公開已確認的方向",
+          columns: 3,
+          cards: overviewCards,
+        }}
+        details={{
+          kicker: "PLANNING DETAILS",
+          title: "目前已公開資訊",
+          intro: "空間方向 動線與適合團體都整理在這裡",
+          cards: detailCards,
+          factsTitle: "目前已知",
+          facts: houseFacts,
+          guidesTitle: "目前重點",
+          guides: stayGuides,
+          fitTitle: "適合團體",
+          fit: fitGuides,
+        }}
+        gallery={{
+          kicker: "REFERENCE",
+          title: "目前視覺參考",
+          intro: "現階段只有規劃圖與建築參考，正式房內實景仍待未來更新。",
+          columns: 2,
+          images: galleryImages,
+        }}
+        location={{
+          kicker: "LOCATION",
+          title: "大港橋旁的港灣地段",
+          intro: "位置重點很清楚，就是給想把港灣、駁二與大型團體活動排在一起的人。",
+          cardTitle: "區位方向",
+          address: "高雄市鹽埕區大港橋旁・駁二大義倉庫群周邊",
+          description: "如果你的團體行程本來就會集中在大港橋、駁二和愛河灣，這個位置的價值會比一般旅館更直接。",
+          spots: locationSpots,
+        }}
+        final={{
+          kicker: "REGISTER",
+          title: "大型團體可以先留下需求",
+          body: "留下預計日期、人數、是否希望包層，以及你最在意的是電梯、容量還是團體動線。等正式開放時，對接速度會快很多。",
+          primaryAction: { href: lineUrl, label: "LINE 登記需求", external: true },
+          secondaryAction: { href: "/", label: "回首頁看現有館別" },
+        }}
+      />
+    </>
+  );
 }

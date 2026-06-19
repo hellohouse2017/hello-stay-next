@@ -4,15 +4,7 @@ import { getAlternateLinks } from "@/i18n/config";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-
-const parkingLots = [
-    { name: "大公路路邊停車", addr: "大公路與七賢三路周邊", price: "20:00-08:00 FREE", nav: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路七賢三路口" },
-    { name: "富野路停車場", addr: "富野路 78 號", price: "$30-50/H", nav: "https://maps.google.com/?cid=1856535064860438519" },
-    { name: "富野路停車場 (2)", addr: "富野路 27 號", price: "$40-50/H", nav: "https://maps.google.com/?cid=18149634423983651854" },
-    { name: "中正四路停車場", addr: "中正四路 274 號", price: "Indoor", nav: "https://maps.google.com/?cid=2933515461281075928" },
-    { name: "富野路停車場 (3)", addr: "富野路 170 號", price: "06:00-22:00", nav: "https://maps.google.com/?cid=14869428468779387843" },
-    { name: "大仁路停車場", addr: "大仁路 10 號", price: "Multi-level", nav: "https://maps.google.com/?cid=4456456276069017907" },
-];
+import { parkingLots } from "@/data/parking-lots";
 
 const properties = [
     { name: "你好哇寓所 / Hello House", addr: "高雄市鹽埕區大公路 70 巷 8 號", walkNav: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking" },

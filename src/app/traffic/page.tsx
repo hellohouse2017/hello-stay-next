@@ -1,218 +1,307 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 import { parkingLots } from "@/data/parking-lots";
 
 export const metadata: Metadata = {
     title: "高雄包棟民宿交通停車指南｜鹽埕埔站・附近停車場｜Hello Stay",
-    description: "前往 Hello Stay 高雄包棟民宿的交通與停車指南｜捷運鹽埕埔站步行 5 分鐘、鹽埕區周邊停車場、高鐵左營站轉乘與自駕導航一次看。適合先查路線再預訂包棟。",
-    alternates: { canonical: "https://www.hello-stay.com/traffic" },
-    openGraph: {
-        title: "高雄包棟民宿交通停車指南 | Hello Stay",
-        description: "如何前往 Hello Stay，捷運鹽埕埔站、停車場與自駕導航資訊一次看。",
-        url: "https://www.hello-stay.com/traffic",
-        images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 交通指南" }],
-    },
+    description:
+    "Hello Stay 高雄鹽埕包棟民宿交通停車指南｜捷運鹽埕埔站步行約 5 分鐘 高鐵左營轉捷運 自駕停車與下車位置一次看",
+  alternates: { canonical: "https://www.hello-stay.com/traffic" },
+  openGraph: {
+    title: "高雄包棟民宿交通停車指南 | Hello Stay",
+    description: "捷運 高鐵 自駕停車 叫車下車 Hello Stay 交通資訊一次看",
+    url: "https://www.hello-stay.com/traffic",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/traffic/parking.svg",
+        width: 1200,
+        height: 760,
+        alt: "Hello Stay 交通與停車示意",
+      },
+    ],
+  },
 };
 
-const properties = [
-    {
-        name: "你好哇寓所",
-        addr: "高雄市鹽埕區大公路 70 巷 8 號",
-        mapUrl: "https://goo.gl/maps/qxGN4mpNP8qfRCB16",
-        walkNav: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking",
-        embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d920.5!2d120.2823!3d22.6245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5L2g5aW95ZOH5a-T5omA!5e0!3m2!1szh-TW!2stw!4v1",
+const routeCards = [
+  {
+    id: "traffic-mrt",
+    kicker: "MRT",
+    title: "搭捷運",
+    summary: "鹽埕埔站 O2 二號出口 步行約 5 分鐘",
+    image: {
+      src: "/images/traffic/mrt.svg",
+      alt: "捷運到鹽埕埔站示意",
     },
-    {
-        name: "溝頂民宿",
-        addr: "高雄市鹽埕區大公路 70 巷 6-2 號",
-        mapUrl: "https://goo.gl/maps/placeholder",
-        walkNav: "https://www.google.com/maps/dir/?api=1&destination=溝頂民宿+高雄&travelmode=walking",
-        embedUrl: "",
+    description: ["搭橘線到鹽埕埔站", "從 O2 二號出口出站後直接步行"],
+    specs: [
+      { label: "下車站", value: "鹽埕埔站 O2" },
+      { label: "出口", value: "O2 二號出口" },
+      { label: "步行", value: "約 5 分鐘" },
+      { label: "適合", value: "無車旅客" },
+    ],
+    groups: [
+      {
+        title: "走法",
+        items: ["搭捷運到鹽埕埔站", "從 O2 二號出口出站", "沿大公路步行到 70 巷"],
+      },
+      {
+        title: "記住這句",
+        items: ["鹽埕埔站 O2", "二號出口", "沿大公路走到 70 巷"],
+      },
+    ],
+    action: {
+      href: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking",
+      label: "開啟步行導航",
+      external: true,
     },
+  },
+  {
+    id: "traffic-hsr",
+    kicker: "HSR",
+    title: "搭高鐵",
+    summary: "左營站轉紅線與橘線 到鹽埕埔再步行",
+    image: {
+      src: "/images/traffic/hsr.svg",
+      alt: "高鐵轉捷運到鹽埕埔示意",
+    },
+    description: ["高鐵到左營後轉捷運", "一路轉到鹽埕埔再步行進巷"],
+    specs: [
+      { label: "高鐵", value: "左營站" },
+      { label: "紅線", value: "到美麗島站" },
+      { label: "橘線", value: "到鹽埕埔站" },
+      { label: "最後", value: "步行約 5 分鐘" },
+    ],
+    groups: [
+      {
+        title: "轉乘",
+        items: ["高鐵左營站", "轉捷運紅線到美麗島", "再轉橘線到鹽埕埔"],
+      },
+      {
+        title: "適合",
+        items: ["外縣市旅客", "無車同行", "不想處理停車"],
+      },
+    ],
+  },
+  {
+    id: "traffic-parking",
+    kicker: "PARKING",
+    title: "自駕停車",
+    summary: "先找路邊車格 沒位再開下面的停車地圖",
+    image: {
+      src: "/images/traffic/parking.svg",
+      alt: "自駕停車示意",
+    },
+    description: ["兩館都在巷弄內", "停好車再步行進巷最方便"],
+    specs: [
+      { label: "路邊車格", value: "大公路 七賢三路 富野路周邊" },
+      { label: "收費停車場", value: "下方都有地圖連結" },
+      { label: "下車", value: "依共用地圖紅箭頭處" },
+      { label: "進館", value: "停好後步行入內" },
+    ],
+    groups: [
+      {
+        title: "停車順序",
+        items: ["先找大公路、七賢三路與富野路周邊路邊車格", "沒有位置再看收費停車場", "下面每個停車點都能直接開 Google Maps"],
+      },
+      {
+        title: "先別做",
+        items: ["不要久停巷口", "不要期待直接停到門口", "先下車 再去找車位"],
+      },
+    ],
+    action: { href: "#traffic-map", label: "看所有停車地圖" },
+  },
+  {
+    id: "traffic-dropoff",
+    kicker: "DROPOFF",
+    title: "叫車下車",
+    summary: "直接定位大公路 70 巷 下車後步行",
+    image: {
+      src: "/images/traffic/dropoff.svg",
+      alt: "叫車下車後步行示意",
+    },
+    description: ["計程車或 Uber 直接定位", "先下車 再沿巷內步行進館"],
+    specs: [
+      { label: "定位", value: "館名或地址" },
+      { label: "下車", value: "依共用地圖紅箭頭處" },
+      { label: "步行", value: "約 1 分鐘" },
+      { label: "適合", value: "多人行李" },
+    ],
+    groups: [
+      {
+        title: "叫車定位",
+        items: ["館名或地址", "大公路 70 巷", "下車後步行進巷"],
+      },
+      {
+        title: "到達",
+        items: ["確認門牌", "車輛不能直達門口", "同行者直接步行入內"],
+      },
+    ],
+    action: {
+      href: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路70巷8號",
+      label: "開啟下車點",
+      external: true,
+    },
+  },
 ];
 
+const trafficFacts = [
+  { label: "兩館位置", value: "大公路 70 巷" },
+  { label: "捷運", value: "鹽埕埔站 O2" },
+  { label: "步行", value: "約 5 分鐘" },
+  { label: "停車", value: "路邊車格優先" },
+];
+
+const beforeArrival = [
+  "館別地址",
+  "停車地圖",
+  "大公路 70 巷下車處",
+  "停車地圖",
+];
+
+const bestFor = [
+  { label: "捷運旅客", value: "鹽埕埔站 O2" },
+  { label: "高鐵旅客", value: "左營轉捷運" },
+  { label: "自駕旅客", value: "先停車再步行" },
+  { label: "多人行李", value: "共用下車點" },
+];
+
+const faqs = [
+  {
+    question: "鹽埕埔站到民宿要走多久",
+    answer: "從 O2 二號出口出站後步行約 5 分鐘即可到大公路 70 巷",
+  },
+  {
+    question: "高鐵左營站怎麼到 Hello Stay",
+    answer: "高鐵左營站轉捷運紅線到美麗島 再轉橘線到鹽埕埔站",
+  },
+  {
+    question: "開車停哪裡比較方便",
+    answer: "先找大公路、七賢三路與富野路周邊路邊車格，沒有位置再點下面的 Google Maps 看國際會議中心地下室、鹽埕立體停車場（大仁路）、文武聖殿停車場與富野路兩個收費停車場。",
+    links: parkingLots.map((lot) => ({
+      href: lot.nav,
+      label: lot.name,
+      external: true,
+    })),
+  },
+  {
+    question: "車可以直接開到門口嗎",
+    answer: "不行 民宿在巷弄內 車輛無法直接駛入館門口 請依共用地圖紅箭頭下車處步行入內",
+  },
+];
+
+const locationSpots = parkingLots.map((lot) => ({
+  name: lot.name,
+  detail: lot.price,
+  href: lot.nav,
+}));
+
 export default function TrafficPage() {
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <JsonLd data={[
-                { "@context": "https://schema.org", "@type": "Place", name: "你好哇寓所", address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 }, publicAccess: true },
-                { "@context": "https://schema.org", "@type": "Place", name: "溝頂民宿", address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "高雄市", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 }, publicAccess: true },
-                { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "怎麼從高鐵到你好哇寓所？", acceptedAnswer: { "@type": "Answer", text: "高鐵左營站 → 捷運紅線至美麗島站 → 轉橘線至鹽埕埔站 (O2) → 4號出口步行 5 分鐘即達。全程約30分鐘。" } }, { "@type": "Question", name: "附近有停車場嗎？", acceptedAnswer: { "@type": "Answer", text: "周邊有6間停車場。大公路路邊晚上8點至早上8點免費，富野路停車場平日$30/小時。" } }, { "@type": "Question", name: "可以搭捷運到嗎？", acceptedAnswer: { "@type": "Answer", text: "可以。捷運橘線鹽埕埔站(O2) 4號出口步行5分鐘即達。" } }] },
-            ]} />
-            <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "如何前往 Hello Stay 高雄包棟民宿",
+            description: "搭捷運到鹽埕埔站 O2 二號出口後步行前往 Hello Stay 高雄鹽埕包棟民宿",
+            totalTime: "PT30M",
+            step: [
+              { "@type": "HowToStep", position: 1, name: "抵達高雄捷運鹽埕埔站" },
+              { "@type": "HowToStep", position: 2, name: "從 O2 二號出口出站" },
+              { "@type": "HowToStep", position: 3, name: "步行到大公路 70 巷" },
+              { "@type": "HowToStep", position: 4, name: "依館別門牌入住" },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: Array.isArray(faq.answer) ? faq.answer.join(" ") : faq.answer },
+            })),
+          },
+        ]}
+      />
 
-                {/* Header */}
-                <Reveal>
-                    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px", fontWeight: 600 }}>
-                            Getting Here
-                        </div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.08em", color: "var(--text)" }}>
-                            交通指南與停車
-                        </h1>
-                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                        <p style={{ fontSize: "0.84rem", color: "#999", lineHeight: 1.9, maxWidth: "520px", margin: "0 auto" }}>
-                            想找交通方便的高雄包棟民宿？Hello Stay 位於鹽埕區，捷運鹽埕埔站步行約 5 分鐘，走路也能到鹽埕美食、駁二與大港橋。
-                        </p>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <section style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                            高雄包棟民宿推薦
-                        </div>
-                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
-                            如果你還在挑哪一間適合，可以先看{" "}
-                            <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                                高雄包棟民宿推薦 Hello Stay
-                            </Link>
-                            {" "}首頁，或從{" "}
-                            <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                                包棟方案整理
-                            </Link>
-                            {" "}依人數與需求選館別，再回來確認交通與停車。
-                        </p>
-                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                            <Link href="/" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                                回首頁看三館
-                            </Link>
-                            <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                                包棟方案整理
-                            </Link>
-                            <Link href="/book" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "#161618", color: "#fff", textDecoration: "none" }}>
-                                查詢空房
-                            </Link>
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* Property locations */}
-                {properties.map(p => (
-                    <Reveal key={p.name}>
-                        <section style={{ background: "#fff", borderRadius: "16px", padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                                <div>
-                                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "4px" }}>{p.name}</h3>
-                                    <p style={{ fontSize: "0.82rem", color: "#999" }}>{p.addr}</p>
-                                </div>
-                                <a href={p.walkNav} target="_blank" rel="noreferrer" style={{
-                                    padding: "10px 18px", borderRadius: "8px", background: "#4285F4",
-                                    color: "#fff", fontSize: "0.78rem", fontWeight: 500,
-                                    display: "flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap",
-                                }}>
-                                    <i className="fa-solid fa-location-dot" /> 導航
-                                </a>
-                            </div>
-                            {/* Embedded map */}
-                            <div style={{ borderRadius: "12px", overflow: "hidden", height: "200px", background: "#eee" }}>
-                                <iframe
-                                    src={`https://www.google.com/maps?q=${encodeURIComponent(p.addr)}&output=embed`}
-                                    width="100%" height="200"
-                                    style={{ border: "none" }}
-                                    loading="lazy"
-                                    title={`${p.name} 地圖`}
-                                />
-                            </div>
-                        </section>
-                    </Reveal>
-                ))}
-
-                {/* 大眾運輸 */}
-                <Reveal>
-                    <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600 }}>
-                            Public Transit
-                        </div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "20px", fontWeight: 400 }}>大眾運輸指南</h3>
-
-                        <div style={{ display: "grid", gap: "16px" }}>
-                            {[
-                                { step: "1", icon: "🚄", title: "高鐵 → 左營站", desc: "搭乘高鐵至左營站" },
-                                { step: "2", icon: "🚇", title: "捷運紅線 → 美麗島站", desc: "左營站上車，搭至美麗島站" },
-                                { step: "3", icon: "🔄", title: "轉乘橘線 → 鹽埕埔站", desc: "美麗島站轉橘線，一站即達鹽埕埔站（O2）" },
-                                { step: "4", icon: "🚶", title: "步行 5 分鐘抵達", desc: "從 4 號出口步行約 5 分鐘即可到達" },
-                            ].map(s => (
-                                <div key={s.step} style={{
-                                    display: "flex", gap: "16px", alignItems: "flex-start",
-                                    padding: "16px", background: "var(--bg)", borderRadius: "12px",
-                                }}>
-                                    <div style={{
-                                        width: "36px", height: "36px", borderRadius: "50%", background: "var(--pri)",
-                                        color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-                                        fontFamily: "var(--en)", fontSize: "0.75rem", fontWeight: 600, flexShrink: 0,
-                                    }}>
-                                        {s.step}
-                                    </div>
-                                    <div>
-                                        <div style={{ fontSize: "0.9rem", color: "var(--text)", fontWeight: 500, marginBottom: "2px" }}>
-                                            {s.icon} {s.title}
-                                        </div>
-                                        <div style={{ fontSize: "0.8rem", color: "#999" }}>{s.desc}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div style={{ textAlign: "center", marginTop: "20px", padding: "14px", background: "var(--bg)", borderRadius: "10px" }}>
-                            <p style={{ fontSize: "0.82rem", color: "#888" }}>
-                                🚗 自駕導航搜尋「你好哇寓所」即可
-                            </p>
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* 停車場 */}
-                <Reveal>
-                    <section id="parking" style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "14px", fontWeight: 600 }}>
-                            Parking
-                        </div>
-                        <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", color: "var(--text)", marginBottom: "20px", fontWeight: 400 }}>周邊停車場（依距離排序）</h3>
-
-                        <div style={{ display: "grid", gap: "12px" }}>
-                            {parkingLots.map((lot, i) => (
-                                <a key={i} href={lot.nav} target="_blank" rel="noreferrer" style={{
-                                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                                    padding: "16px 18px", background: "var(--bg)", borderRadius: "12px",
-                                    transition: "all 0.3s", textDecoration: "none",
-                                }}>
-                                    <div>
-                                        <div style={{ fontSize: "0.9rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>{lot.name}</div>
-                                        <div style={{ fontSize: "0.75rem", color: "#BEB5A8" }}>{lot.addr}</div>
-                                    </div>
-                                    <div style={{ textAlign: "right", flexShrink: 0 }}>
-                                        <div style={{ fontSize: "0.82rem", color: "var(--pri)", fontWeight: 500 }}>{lot.price}</div>
-                                        <div style={{ fontSize: "0.68rem", color: "#ccc", marginTop: "2px" }}>導航 →</div>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* CTA */}
-                <Reveal>
-                    <div style={{ textAlign: "center", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                        <Link href="/book" style={{
-                            padding: "14px 32px", borderRadius: "10px", background: "#161618",
-                            color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem",
-                            letterSpacing: "0.08em", textDecoration: "none",
-                        }}>
-                            查詢空房
-                        </Link>
-                        <Link href="/compare" style={{
-                            padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0",
-                            color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem",
-                            letterSpacing: "0.08em", textDecoration: "none",
-                        }}>
-                            比較三館差異
-                        </Link>
-                    </div>
-                </Reveal>
-            </div>
-        </div>
-    );
+      <PropertyShowcasePage
+        hero={{
+          kicker: "TRAFFIC",
+          title: "到 Hello Stay 很簡單",
+          lead: ["如果你是搭捷運、坐高鐵、自己開車或叫車", "兩館都在大公路 70 巷", "車輛不能直達館門口，停好車再步行最順"],
+          image: {
+            src: "/images/traffic/parking.svg",
+            alt: "Hello Stay 交通與停車示意",
+          },
+          stats: trafficFacts,
+          primaryAction: {
+            href: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking",
+            label: "開啟導航",
+            external: true,
+          },
+          secondaryAction: { href: "#traffic-map", label: "看共用地圖" },
+        }}
+        overview={{
+          kicker: "ACCESS GUIDE",
+          title: "依交通工具看路線",
+          intro: "依交通方式查看對應路線",
+          columns: 4,
+          cards: routeCards.map((card) => ({
+            id: card.id,
+            kicker: card.kicker,
+            title: card.title,
+            summary: card.summary,
+            image: card.image,
+            linkLabel: null,
+          })),
+        }}
+        details={{
+          kicker: "ROUTE DETAILS",
+          title: "實際怎麼走",
+          intro: "兩館同一生活圈 實際上就是把交通工具分開看",
+          cards: routeCards.map((card) => ({
+            id: card.id,
+            kicker: card.kicker,
+            title: card.title,
+            description: card.description,
+            image: card.image,
+            specs: card.specs,
+            groups: card.groups,
+            action: card.action,
+          })),
+          factsTitle: "抵達重點",
+          facts: trafficFacts,
+          guidesTitle: "出發前可先存",
+          guides: beforeArrival,
+          fitTitle: "常見到達方式",
+          fit: bestFor,
+        }}
+        faq={{
+          kicker: "FAQ",
+          title: "交通與停車常見問題",
+          intro: "只留客人真的會用到的問題",
+          items: faqs,
+        }}
+        location={{
+          id: "traffic-map",
+          kicker: "MAP",
+          title: "共用地圖與停車選項",
+          intro: "點圖可放大 下面每個停車點也能直接開地圖",
+          cardTitle: "兩館地址",
+          address: "高雄市鹽埕區大公路 70 巷 8 號 / 6-2 號",
+          description: ["你好哇寓所與溝頂民宿距離很近", "車輛無法直接開到館門口 請依地圖紅箭頭下車處步行入內", "下面每個停車點都能直接開地圖"],
+          image: {
+            src: "/images/traffic/guide.png",
+            alt: "民宿交通指引圖 溝頂 你好哇寓所 共用地圖",
+          },
+          imageLabel: "點開放大檢視民宿交通指引圖",
+          spots: locationSpots,
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路70巷8號",
+          mapLabel: "開啟 Google Maps",
+        }}
+      />
+    </>
+  );
 }

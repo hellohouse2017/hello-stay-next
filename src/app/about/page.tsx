@@ -1,286 +1,311 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-    title: "關於 Hello Stay｜深耕高雄鹽埕的質感包棟民宿品牌",
-    description: "了解高雄包棟民宿品牌 Hello Stay 的創立故事與服務理念。我們自 2017 年起深耕鹽埕，旗下包含合法館別「你好哇寓所」與「溝頂民宿」，提供 6-48 人家庭出遊、企業包棟的高質感空間，以「家」的溫度承接您的珍貴時光。",
-    openGraph: {
-        title: "關於 Hello Stay｜深耕高雄鹽埕的質感包棟民宿品牌",
-        description: "Hello Stay 創立故事、服務理念與合法民宿認證。",
-        url: "https://www.hello-stay.com/about",
-        images: [{ url: "/images/cover-bg.webp", width: 1200, height: 630, alt: "About Hello Stay" }],
-    },
+  title: "關於 Hello Stay｜高雄鹽埕包棟民宿品牌與三館定位",
+  description:
+    "從品牌起點、三館定位到安全承諾，一次看懂 Hello Stay 為什麼專注在高雄鹽埕區做團體包棟住宿。",
+  alternates: { canonical: "https://www.hello-stay.com/about" },
+  openGraph: {
+    title: "關於 Hello Stay｜高雄鹽埕包棟民宿品牌與三館定位",
+    description: "了解 Hello Stay 的品牌起點、三館角色分工與合法安全承諾。",
+    url: "https://www.hello-stay.com/about",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+        width: 1200,
+        height: 630,
+        alt: "Hello Stay 品牌故事",
+      },
+    ],
+  },
 };
+
+const brandCards = [
+  {
+    id: "about-origin",
+    kicker: "ORIGIN",
+    title: "從鹽埕老屋開始",
+    summary: "Hello Stay 不是先想做很多館，而是先想解決團體旅客住飯店被拆散的問題。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "Hello Stay 鹽埕老屋與巷弄生活圈",
+    },
+    linkLabel: "查看品牌起點",
+  },
+  {
+    id: "about-portfolio",
+    kicker: "PORTFOLIO",
+    title: "三館各自有角色",
+    summary: "你好哇、溝頂和大智若愚不是重複館型，而是對應不同人數和不同使用情境。",
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "Hello Stay 三館定位與公共空間代表畫面",
+    },
+    linkLabel: "查看三館定位",
+  },
+  {
+    id: "about-safety",
+    kicker: "ASSURANCE",
+    title: "合法與安全先講清楚",
+    summary: "合法民宿登記、公共意外責任險與消防設備，不是附帶提一句，而是客人能不能放心下訂的前提。",
+    image: {
+      src: "/images/godin/cover-1.webp",
+      alt: "Hello Stay 合法民宿與安全承諾代表畫面",
+    },
+    linkLabel: "查看安全承諾",
+  },
+];
+
+const detailCards = [
+  {
+    id: "about-origin",
+    kicker: "ORIGIN",
+    title: "品牌起點不是做設計，是解決團體住宿的痛點",
+    description:
+      "很多家庭、同學會和公司團體不是真的在找最豪華的房，而是在找一個可以住在一起、吃在一起、晚上還能繼續聚的地方。Hello Stay 就是從這個需求開始，在鹽埕慢慢把適合團體入住的空間整理出來。",
+    image: {
+      src: "/images/hellohouse/photo5.webp",
+      alt: "Hello Stay 品牌起點與鹽埕街區",
+    },
+    specs: [
+      { label: "創立起點", value: "2017 年起深耕鹽埕" },
+      { label: "品牌出發點", value: "解決團體被拆房與缺少公共空間" },
+      { label: "服務主軸", value: "家庭 朋友 企業 團體包棟" },
+      { label: "地點選擇", value: "鹽埕生活圈與景點步行範圍" },
+    ],
+    groups: [
+      {
+        title: "我們一開始就在意",
+        items: ["大家能不能住在一起", "公共空間夠不夠直覺", "周邊步行生活圈夠不夠完整"],
+      },
+      {
+        title: "後來延伸出的館別方向",
+        items: ["館別都以包棟邏輯規劃", "人數與設備差異會被放在前面", "不是把所有客人都塞進同一種館型"],
+      },
+    ],
+  },
+  {
+    id: "about-portfolio",
+    kicker: "PORTFOLIO",
+    title: "三館分工很清楚，不是同一頁文案換名字",
+    description:
+      "你好哇寓所主打大型公共空間與中島廚房，溝頂民宿主打小團體整棟獨立與四間客房獨立衛浴，大智若愚則是面向更大型團體的電梯與包層規劃。這樣分，是為了讓客人更快找到適合自己的空間。",
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "Hello Stay 三館定位與公共空間",
+    },
+    specs: [
+      { label: "你好哇寓所", value: "6-26 人 中島廚房與大型聚會" },
+      { label: "溝頂民宿", value: "4-12 人 分層客房與獨立衛浴" },
+      { label: "大智若愚", value: "20-48 人 電梯與包層規劃" },
+      { label: "雙館包棟", value: "大型團體不拆單" },
+    ],
+    groups: [
+      {
+        title: "客人選館時真的在比",
+        items: ["人數級距", "房型和衛浴配置", "公共空間大小", "有沒有廚房或電梯"],
+      },
+      {
+        title: "現在的館別安排",
+        items: ["館別差異先被講清楚", "房型頁補完整設備資訊", "日期與報價回到訂房站確認"],
+      },
+    ],
+  },
+  {
+    id: "about-safety",
+    kicker: "ASSURANCE",
+    title: "合法營運、安全設備與保險，是我們先交代的底線",
+    description:
+      "團體住宿不是只看照片 館別是否合法 是否投保公共意外責任險 消防與清潔是不是有基本水準 這些都會直接影響旅客敢不敢訂 Hello Stay 會把這些資訊公開呈現",
+    image: {
+      src: "/images/godin/cover-3.webp",
+      alt: "Hello Stay 安全與合法承諾",
+    },
+    specs: [
+      { label: "合法館別", value: "你好哇寓所 民宿 131-1 號" },
+      { label: "合法館別", value: "溝頂民宿 民宿 163 號" },
+      { label: "保險", value: "富邦產險公共意外責任險" },
+      { label: "安全基本盤", value: "消防設備與高溫清潔" },
+    ],
+    groups: [
+      {
+        title: "這些資訊為什麼重要",
+        items: ["團體入住風險高於單人旅宿", "家庭與企業會更在意合法性", "不是只有漂亮照片就能成立信任"],
+      },
+      {
+        title: "我們的基本原則",
+        items: ["合法登記", "定期消防檢查", "公共責任保險", "備品高溫清潔處理"],
+      },
+    ],
+  },
+];
+
+const facts = [
+  { label: "品牌重點", value: "高雄鹽埕區團體包棟" },
+  { label: "選館基準", value: "人數 設備 房型" },
+  { label: "館別結構", value: "你好哇 溝頂 大智若愚" },
+  { label: "決策底線", value: "合法 安全 位置與空間好用" },
+];
+
+const guides = [
+  "Hello Stay 以團體包棟住宿為主軸",
+  "三館各自對應不同人數與使用方式",
+  "合法登記與安全承諾公開呈現",
+  "房型與設備細節仍以各館頁為準",
+];
+
+const fit = [
+  { label: "適合對象", value: "第一次認識 Hello Stay 的客人" },
+  { label: "重點內容", value: "品牌起點 三館分工 安全承諾" },
+  { label: "延伸頁面", value: "三館比較 或各館頁" },
+  { label: "更多資訊", value: "房型與設備會在各館頁完整介紹" },
+];
+
+const galleryImages = [
+  {
+    src: "/images/hellohouse/cover.webp",
+    alt: "你好哇寓所外觀與館別代表畫面",
+    caption: "你好哇寓所",
+  },
+  {
+    src: "/images/godin/cover-1.webp",
+    alt: "溝頂民宿外觀與館別代表畫面",
+    caption: "溝頂民宿",
+  },
+  {
+    src: "/images/dazhi/building-render.webp",
+    alt: "大智若愚規劃示意圖",
+    caption: "大智若愚",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hello Stay 是訂房平台，還是自己的館別品牌？",
+    answer: "是自己的館別品牌 官網會先把館別差異整理清楚 再連到官方訂房站查日期與報價",
+  },
+  {
+    question: "三館是不是只是大小不同？",
+    answer: "不是。除了人數不同，三館的核心差在公共空間、廚房、衛浴配置與入住動線，所以要分開設計、分開介紹。",
+  },
+  {
+    question: "如果我想快速知道哪一館適合我 應該去哪裡",
+    answer: "直接去 /compare 最快；如果你已經知道自己偏小團或大團，也可以直接進 /godin 或 /hellohouse。",
+  },
+];
 
 export default function AboutPage() {
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <JsonLd data={{
-                "@context": "https://schema.org",
-                "@graph": [
-                    {
-                        "@type": "AboutPage",
-                        "@id": "https://www.hello-stay.com/about/#webpage",
-                        "url": "https://www.hello-stay.com/about",
-                        "name": "關於 Hello Stay - 品牌故事與理念",
-                        "description": "了解 Hello Stay 高雄包棟民宿的創立背景、旗下合法民宿登記證及營運理念。",
-                        "mainEntity": {
-                            "@type": "Organization",
-                            "@id": "https://www.hello-stay.com/#organization",
-                            "name": "Hello Stay",
-                            "url": "https://www.hello-stay.com",
-                            "logo": "https://www.hello-stay.com/images/cover-bg.webp",
-                            "foundingDate": "2017",
-                            "subOrganization": [
-                                {
-                                    "@type": "LodgingBusiness",
-                                    "@id": "https://www.hello-stay.com/#lodging",
-                                    "name": "你好哇寓所",
-                                    "alternateName": ["Hello House", "Hello Stay 主館"],
-                                    "address": {
-                                        "@type": "PostalAddress",
-                                        "streetAddress": "大公路70巷8號",
-                                        "addressLocality: ": "鹽埕區",
-                                        "addressRegion": "高雄市",
-                                        "postalCode": "803",
-                                        "addressCountry": "TW"
-                                    },
-                                    "telephone": "+886-932-828-922",
-                                    "sameAs": [
-                                        "https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U"
-                                    ]
-                                },
-                                {
-                                    "@type": "LodgingBusiness",
-                                    "@id": "https://www.hello-stay.com/godin/#lodging",
-                                    "name": "溝頂民宿",
-                                    "alternateName": ["Godin House", "Hello Stay 二館"],
-                                    "address": {
-                                        "@type": "PostalAddress",
-                                        "streetAddress": "大公路70巷6-2號",
-                                        "addressLocality": "鹽埕區",
-                                        "addressRegion": "高雄市",
-                                        "postalCode": "803",
-                                        "addressCountry": "TW"
-                                    },
-                                    "telephone": "+886-932-828-922",
-                                    "sameAs": [
-                                        "https://www.google.com/maps/search/?api=1&query=%E6%BA%9溝%E9%A0%82%E6%B0%91%E5%AE%BF"
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }} />
-            
-            <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
-                
-                {/* Header */}
-                <Reveal>
-                    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                            Our Story & Values
-                        </div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>
-                            關於 Hello Stay
-                        </h1>
-                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                        <p style={{ fontSize: "0.85rem", color: "#BEB5A8", lineHeight: 1.9, fontStyle: "italic" }}>
-                            「三館風格，一種堅持」—— 讓每一次聚會都像回到了家。
-                        </p>
-                    </div>
-                </Reveal>
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "@id": "https://www.hello-stay.com/about/#webpage",
+            url: "https://www.hello-stay.com/about",
+            name: "關於 Hello Stay",
+            description: "Hello Stay 高雄鹽埕包棟民宿品牌故事、三館定位與安全承諾。",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://www.hello-stay.com/#organization",
+            name: "Hello Stay",
+            url: "https://www.hello-stay.com",
+            foundingDate: "2017",
+            subOrganization: [
+              {
+                "@type": "LodgingBusiness",
+                name: "你好哇寓所",
+                url: "https://www.hello-stay.com/hellohouse",
+              },
+              {
+                "@type": "LodgingBusiness",
+                name: "溝頂民宿",
+                url: "https://www.hello-stay.com/godin",
+              },
+              {
+                "@type": "LodgingBusiness",
+                name: "大智若愚",
+                url: "https://www.hello-stay.com/dazhi",
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          },
+        ]}
+      />
 
-                {/* Brand Story */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Origin of Hello Stay" />
-                        <h3 style={h3Style}>🏡 品牌故事：從一間老屋的溫暖延伸</h3>
-                        <div style={contentStyle}>
-                            <p>
-                                創立於 2017 年，<strong>Hello Stay</strong> 的誕生源於一個單純的初衷：
-                                <em>「我們能不能在高雄最有人情味的鹽埕老街區，為遠道而來的旅人打造一個真正能『聚在一起』的家？」</em>
-                            </p>
-                            <p>
-                                許多人在計畫團體旅行時常面臨兩難 —— 住飯店會被分散在不同的房間，聚會聊天缺乏私密性；而傳統的民宿又常常面臨設備不齊或鄰里吵鬧的窘境。
-                            </p>
-                            <p>
-                                於是，我們以老街區的舊建建築為起點，逐步修復並改建，創造了今日的 <strong>Hello Stay 旅宿品牌</strong>。
-                                過去數年來，我們已服務超過 5,000 組家庭、畢業旅行與企業團隊，陪伴無數旅客在高雄度過了充滿笑聲的溫馨假期。
-                            </p>
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* Brand Core Values */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Our Core Philosophy" />
-                        <h3 style={h3Style}>✨ 我們的核心堅持</h3>
-                        <div style={{ display: "grid", gap: "16px", marginTop: "16px" }}>
-                            <ValueItem
-                                icon="🤝"
-                                title="無干擾的完全私密空間"
-                                desc="一天只接待一組預訂。在入住期間，整棟空間、客廳與娛樂配備完全由您的團體獨享，沒有外人打擾，您可以和最親密的親友自在放鬆。"
-                            />
-                            <ValueItem
-                                icon="🍳"
-                                title="豐富的生活機能配置"
-                                desc="配備頂級開放式中島廚房（你好哇寓所）或流理台設備（溝頂民宿），並備齊餐具與基本調味；更提供麻將桌、桌遊、聯網電視等，滿足聚會的一切需求。"
-                            />
-                            <ValueItem
-                                icon="🛡️"
-                                title="合規與安全第一"
-                                desc="旗下所有營運館別均依法取得中華民國「合法民宿登記證」，全館裝設合格消防設備，並投保公共意外責任險，讓您的假期住得舒適，更住得安心。"
-                            />
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* Sub-Properties Summary */}
-                <Reveal>
-                    <section style={cardStyle}>
-                        <SectionLabel en="Our Properties" />
-                        <h3 style={h3Style}>🏛️ 旗下合法館別一覽</h3>
-                        <p style={{ fontSize: "0.78rem", color: "#999", marginBottom: "20px", lineHeight: 1.8 }}>
-                            Hello Stay 目前提供三種不同風格與容納人數的館別，滿足不同規模的包棟需求：
-                        </p>
-                        
-                        <div style={{ display: "grid", gap: "20px" }}>
-                            
-                            {/* Property 1 */}
-                            <div style={propItemStyle}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
-                                    <h4 style={propNameStyle}>主館｜你好哇寓所</h4>
-                                    <span style={regTagStyle}>民宿 131-1 號</span>
-                                </div>
-                                <p style={propDescStyle}>
-                                    <strong>適合人數：</strong>6 - 26 人<br />
-                                    <strong>館別特色：</strong>五層樓獨棟，設有寬敞的 56 m² 豪華中島廚房交誼廳、手動麻將桌、桌遊、網美吊椅房。每間房間均設有乾濕分離獨立衛浴。<br />
-                                    <strong>詳細地址：</strong>高雄市鹽埕區大公路70巷8號
-                                </p>
-                                <Link href="/hellohouse" style={propLinkStyle}>深入了解 你好哇寓所 →</Link>
-                            </div>
-
-                            {/* Property 2 */}
-                            <div style={propItemStyle}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
-                                    <h4 style={propNameStyle}>二館｜溝頂民宿</h4>
-                                    <span style={regTagStyle}>民宿 163 號</span>
-                                </div>
-                                <p style={propDescStyle}>
-                                    <strong>適合人數：</strong>10 - 12 人<br />
-                                    <strong>館別特色：</strong>五層樓溫馨小家庭包棟。4 樓設有專屬公共交誼廳，配備麻將桌、桌遊、沙發及簡易流理台（RO 飲水機、雙門冰箱與微波爐，不可開伙）。<br />
-                                    <strong>詳細地址：</strong>高雄市鹽埕區大公路70巷6-2號
-                                </p>
-                                <Link href="/godin" style={propLinkStyle}>深入了解 溝頂民宿 →</Link>
-                            </div>
-
-                            {/* Property 3 */}
-                            <div style={propItemStyle}>
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
-                                    <h4 style={propNameStyle}>三館｜大智若愚</h4>
-                                    <span style={{ ...regTagStyle, background: "#E8F0FE", color: "#1565C0" }}>預計 2027 開幕</span>
-                                </div>
-                                <p style={propDescStyle}>
-                                    <strong>適合人數：</strong>最大 48 人<br />
-                                    <strong>館別特色：</strong>座落於鹽埕大港橋旁。全新電梯民宿，規劃一層三房一廳的獨立樓層設計，提供無障礙梯位，極適合公司大型團建或大家族同遊。<br />
-                                    <strong>詳細地址：</strong>高雄市鹽埕區大智路旁近大港橋
-                                </p>
-                                <Link href="/dazhi" style={propLinkStyle}>深入了解 大智若愚 →</Link>
-                            </div>
-                            
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* Legal & Safety Declaration */}
-                <Reveal>
-                    <section style={{ ...cardStyle, background: "#FFF8F8", border: "1px solid #F5DEDE" }}>
-                        <SectionLabel en="Safety & Insurance" />
-                        <h3 style={{ ...h3Style, color: "#9B2C2C" }}>🛡️ 安全承諾與公共責任保險</h3>
-                        <div style={{ fontSize: "0.82rem", color: "#555", lineHeight: 2 }}>
-                            <p>
-                                為保障每位入住旅客的安全，Hello Stay 旗下所有民宿皆：
-                            </p>
-                            <p>• 依法投保 <strong>富邦產物保險公共意外責任險</strong>，保險額度符合政府最高規範。</p>
-                            <p>• 定期進行消防安全設備安檢申報，全館備有合格滅火器、偵煙探測器與緊急照明指示燈。</p>
-                            <p>• 客房及公共區域床單備品均委託專業清潔廠高溫洗滌殺菌，提供潔淨無憂的起居環境。</p>
-                        </div>
-                    </section>
-                </Reveal>
-
-                {/* CTA */}
-                <Reveal>
-                    <div style={{ textAlign: "center", marginTop: "30px" }}>
-                        <p style={{ fontSize: "0.85rem", color: "#999", marginBottom: "20px" }}>
-                            正在規劃高雄的包棟旅程？讓 Hello Stay 成為您的落腳之處
-                        </p>
-                        <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link href="/book" style={{
-                                padding: "14px 32px", borderRadius: "10px", background: "#161618",
-                                color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em",
-                            }}>查詢空房</Link>
-                            <a href="https://lin.ee/atCiMQw" target="_blank" rel="noreferrer" style={{
-                                padding: "14px 32px", borderRadius: "10px", background: "#06C755",
-                                color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em",
-                            }}>LINE 聯絡管家</a>
-                        </div>
-                    </div>
-                </Reveal>
-            </div>
-        </div>
-    );
-}
-
-/* ── Shared Styles ── */
-const cardStyle: React.CSSProperties = {
-    background: "#fff", borderRadius: "16px", padding: "32px 28px",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px",
-};
-const h3Style: React.CSSProperties = {
-    fontFamily: "var(--serif)", fontSize: "1.1rem", color: "#3D3830", marginBottom: "16px",
-};
-const contentStyle: React.CSSProperties = {
-    fontSize: "0.85rem", color: "#666", lineHeight: 2, display: "grid", gap: "14px",
-};
-const propItemStyle: React.CSSProperties = {
-    padding: "20px", background: "var(--bg)", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.02)",
-};
-const propNameStyle: React.CSSProperties = {
-    fontSize: "0.95rem", color: "#3D3830", fontWeight: 600,
-};
-const regTagStyle: React.CSSProperties = {
-    fontSize: "0.7rem", padding: "4px 8px", background: "#F5F2EB", color: "#8E7D65", borderRadius: "4px", fontWeight: 500,
-};
-const propDescStyle: React.CSSProperties = {
-    fontSize: "0.8rem", color: "#666", lineHeight: 1.8, margin: "10px 0 14px",
-};
-const propLinkStyle: React.CSSProperties = {
-    fontSize: "0.78rem", color: "#B85A38", fontWeight: 500, textDecoration: "none",
-};
-
-/* ── Sub-components ── */
-function SectionLabel({ en }: { en: string }) {
-    return (
-        <div style={{
-            fontFamily: "var(--en)", fontSize: "0.65rem", letterSpacing: "0.2em",
-            textTransform: "uppercase", color: "#BEB5A8", marginBottom: "14px",
-        }}>{en}</div>
-    );
-}
-
-function ValueItem({ icon, title, desc }: { icon: string; title: string; desc: string }) {
-    return (
-        <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-            <span style={{ fontSize: "1.3rem", padding: "10px", background: "var(--bg)", borderRadius: "10px", lineHeight: 1 }}>{icon}</span>
-            <div>
-                <h4 style={{ fontSize: "0.88rem", fontWeight: 600, color: "#3D3830", marginBottom: "4px" }}>{title}</h4>
-                <p style={{ fontSize: "0.8rem", color: "#666", lineHeight: 1.7 }}>{desc}</p>
-            </div>
-        </div>
-    );
+      <PropertyShowcasePage
+        hero={{
+          kicker: "ABOUT HELLO STAY",
+          title: "認識 Hello Stay",
+          lead:
+            "Hello Stay 以高雄鹽埕團體包棟住宿為主軸 三館分別對應不同人數與空間需求 合法登記與安全承諾也一併公開",
+          image: {
+            src: "/images/hellohouse/cover.webp",
+            alt: "Hello Stay 品牌與館別主視覺",
+          },
+          stats: [
+            { label: "品牌起點", value: "2017 年起深耕鹽埕" },
+            { label: "館別方向", value: "小團 大團 大型團體分流" },
+            { label: "共同原則", value: "包棟邏輯 合法安全" },
+            { label: "品牌輪廓", value: "角色清楚 不做重複館型" },
+          ],
+          primaryAction: { href: "/compare", label: "看三館比較" },
+          secondaryAction: { href: "/book", label: "直接查日期與空房" },
+        }}
+        overview={{
+          kicker: "BRAND GUIDE",
+          title: "品牌核心",
+          intro: "從起點 三館分工到安全承諾",
+          columns: 3,
+          cards: brandCards,
+        }}
+        details={{
+          kicker: "WHAT DEFINES US",
+          title: "為什麼客人會選 Hello Stay",
+          intro: "重點不在形容詞 而在館別定位與住宿邏輯",
+          cards: detailCards,
+          factsTitle: "品牌重點整理",
+          facts,
+          guidesTitle: "品牌輪廓",
+          guides,
+          fitTitle: "適合對象",
+          fit,
+        }}
+        gallery={{
+          kicker: "OUR STAYS",
+          title: "目前館別方向",
+          intro: "三館不是同一個模板換名字，而是依不同團體需求分別設計。",
+          columns: 3,
+          images: galleryImages,
+        }}
+        faq={{
+          kicker: "FAQ",
+          title: "品牌常見問題",
+          intro: "客人最常問的品牌問題",
+          items: faqs,
+        }}
+        final={{
+          kicker: "PROPERTIES",
+          title: "真正影響入住決定的是館別差異",
+          body:
+            "人數 公共空間 房型配置與設備條件 會比品牌介紹更直接影響入住判斷",
+          primaryAction: { href: "/compare", label: "看三館比較" },
+          secondaryAction: { href: "/packages", label: "看情境方案" },
+        }}
+      />
+    </>
+  );
 }

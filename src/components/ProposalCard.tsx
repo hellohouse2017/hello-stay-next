@@ -39,83 +39,56 @@ export default function ProposalCard() {
 
     if (generated) {
         return (
-            <div style={{
-                background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-                borderRadius: "20px", padding: "32px", maxWidth: "480px", margin: "0 auto",
-                color: "#fff", boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-            }}>
-                <div style={{ textAlign: "center", marginBottom: "24px" }}>
-                    <div style={{ fontSize: "2rem", marginBottom: "8px" }}>🏠</div>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: "4px" }}>你的包棟提案</h3>
-                    <p style={{ fontSize: "0.72rem", opacity: 0.6 }}>by Hello Stay</p>
+            <div className="proposal-card proposal-card--done">
+                <div className="proposal-card__header">
+                    <span className="proposal-card__eyebrow">Hello Stay Proposal</span>
+                    <h3>你的包棟提案</h3>
+                    <p>確認後可直接用 LINE 傳給管家</p>
                 </div>
 
-                <div style={{
-                    background: "rgba(255,255,255,0.08)", borderRadius: "14px",
-                    padding: "20px", marginBottom: "16px", backdropFilter: "blur(10px)",
-                }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", fontSize: "0.8rem" }}>
-                        <div>
-                            <div style={{ opacity: 0.5, fontSize: "0.65rem", marginBottom: "4px" }}>日期</div>
-                            <div style={{ fontWeight: 600 }}>{dates || "待確認"}</div>
-                        </div>
-                        <div>
-                            <div style={{ opacity: 0.5, fontSize: "0.65rem", marginBottom: "4px" }}>人數</div>
-                            <div style={{ fontWeight: 600 }}>{guests} 人</div>
-                        </div>
-                        <div>
-                            <div style={{ opacity: 0.5, fontSize: "0.65rem", marginBottom: "4px" }}>場景</div>
-                            <div style={{ fontWeight: 600 }}>{scenario}</div>
-                        </div>
-                        <div>
-                            <div style={{ opacity: 0.5, fontSize: "0.65rem", marginBottom: "4px" }}>每人預估</div>
-                            <div style={{ fontWeight: 600, color: "#06C755" }}>
-                                {recommended.perPerson ? `$${recommended.perPerson}起` : "依報價"}
-                            </div>
-                        </div>
+                <div className="proposal-summary">
+                    <div>
+                        <span>日期</span>
+                        <strong>{dates || "待確認"}</strong>
+                    </div>
+                    <div>
+                        <span>人數</span>
+                        <strong>{guests} 人</strong>
+                    </div>
+                    <div>
+                        <span>場景</span>
+                        <strong>{scenario}</strong>
+                    </div>
+                    <div>
+                        <span>報價</span>
+                        <strong>{recommended.perPerson ? `$${recommended.perPerson}起` : "依報價"}</strong>
                     </div>
                 </div>
 
-                <div style={{
-                    background: "rgba(6,199,85,0.12)", borderRadius: "14px",
-                    padding: "16px", marginBottom: "16px", border: "1px solid rgba(6,199,85,0.2)",
-                }}>
-                    <div style={{ fontSize: "0.7rem", opacity: 0.6, marginBottom: "8px" }}>💡 系統推薦</div>
-                    <div style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "4px" }}>{recommended.name}</div>
-                    <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>
+                <div className="proposal-recommendation">
+                    <span>推薦館別</span>
+                    <strong>{recommended.name}</strong>
+                    <p>
                         {recommended.capacity}｜{recommended.features}
-                    </div>
+                    </p>
                 </div>
 
                 {needs.length > 0 && (
-                    <div style={{ marginBottom: "20px" }}>
-                        <div style={{ fontSize: "0.7rem", opacity: 0.5, marginBottom: "8px" }}>需求清單</div>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                    <div className="proposal-needs">
+                        <span>需求清單</span>
+                        <div>
                             {needs.map(n => (
-                                <span key={n} style={{
-                                    fontSize: "0.68rem", padding: "4px 10px",
-                                    background: "rgba(255,255,255,0.1)", borderRadius: "20px",
-                                }}>✓ {n}</span>
+                                <small key={n}>{n}</small>
                             ))}
                         </div>
                     </div>
                 )}
 
-                <a href={lineUrl} target="_blank" rel="noopener noreferrer" style={{
-                    display: "block", textAlign: "center", padding: "14px",
-                    background: "#06C755", color: "#fff", borderRadius: "12px",
-                    fontSize: "0.9rem", fontWeight: 700, textDecoration: "none",
-                    marginBottom: "10px",
-                }}>
-                    💬 用 LINE 發送這個提案
+                <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="proposal-line">
+                    用 LINE 發送這個提案
                 </a>
 
-                <button onClick={() => { setGenerated(false); setStep(0); }} style={{
-                    display: "block", width: "100%", padding: "10px",
-                    background: "transparent", border: "1px solid rgba(255,255,255,0.2)",
-                    color: "#fff", borderRadius: "12px", fontSize: "0.78rem",
-                    cursor: "pointer", opacity: 0.6,
-                }}>
+                <button onClick={() => { setGenerated(false); setStep(0); }} className="proposal-secondary">
                     重新填寫
                 </button>
             </div>
@@ -123,131 +96,77 @@ export default function ProposalCard() {
     }
 
     return (
-        <div style={{
-            background: "#fff", borderRadius: "20px", padding: "32px",
-            maxWidth: "480px", margin: "0 auto",
-            boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
-        }}>
-            <div style={{ textAlign: "center", marginBottom: "28px" }}>
-                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#2a2a2a", marginBottom: "6px" }}>
-                    30秒產出包棟提案
-                </h3>
-                <p style={{ fontSize: "0.75rem", color: "#999" }}>選完直接傳 LINE 給朋友決定</p>
-                {/* Progress bar */}
-                <div style={{ display: "flex", gap: "4px", marginTop: "16px" }}>
+        <div className="proposal-card">
+            <div className="proposal-card__header">
+                <span className="proposal-card__eyebrow">Quick Proposal</span>
+                <h3>30 秒產出包棟提案</h3>
+                <p>用真實日期、人數與需求，整理成 LINE 詢問訊息</p>
+                <div className="proposal-progress" aria-label={`目前第 ${step + 1} 步，共 4 步`}>
                     {[0, 1, 2, 3].map(i => (
-                        <div key={i} style={{
-                            flex: 1, height: "3px", borderRadius: "2px",
-                            background: i <= step ? "#06C755" : "#E8E0D4",
-                            transition: "background 0.3s",
-                        }} />
+                        <span key={i} className={i <= step ? "active" : ""} />
                     ))}
                 </div>
             </div>
 
-            {/* Step 0: Guests */}
             {step === 0 && (
-                <div>
-                    <label style={{ fontSize: "0.85rem", color: "#555", fontWeight: 500 }}>
-                        👥 幾個人入住？
-                    </label>
-                    <div style={{ display: "flex", alignItems: "center", gap: "16px", margin: "16px 0" }}>
-                        <button onClick={() => setGuests(Math.max(2, guests - 1))} style={btnStyle}>−</button>
-                        <span style={{ fontSize: "2rem", fontWeight: 700, color: "#2a2a2a", minWidth: "60px", textAlign: "center" }}>{guests}</span>
-                        <button onClick={() => setGuests(Math.min(48, guests + 1))} style={btnStyle}>+</button>
+                <div className="proposal-step">
+                    <label>幾個人入住？</label>
+                    <div className="proposal-counter">
+                        <button onClick={() => setGuests(Math.max(2, guests - 1))}>−</button>
+                        <strong>{guests}</strong>
+                        <button onClick={() => setGuests(Math.min(48, guests + 1))}>+</button>
                     </div>
                     <input type="range" min={2} max={48} value={guests} onChange={e => setGuests(+e.target.value)}
-                        style={{ width: "100%", accentColor: "#06C755" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.65rem", color: "#bbb", marginTop: "4px" }}>
+                        className="proposal-range" />
+                    <div className="proposal-scale">
                         <span>2人</span><span>12人</span><span>26人</span><span>48人</span>
                     </div>
-                    <button onClick={() => setStep(1)} style={nextBtnStyle}>下一步 →</button>
+                    <button onClick={() => setStep(1)} className="proposal-primary">下一步</button>
                 </div>
             )}
 
-            {/* Step 1: Dates */}
             {step === 1 && (
-                <div>
-                    <label style={{ fontSize: "0.85rem", color: "#555", fontWeight: 500 }}>
-                        📅 預計入住日期
-                    </label>
+                <div className="proposal-step">
+                    <label>預計入住日期</label>
                     <input type="date" value={dates} onChange={e => setDates(e.target.value)}
-                        style={{
-                            width: "100%", padding: "14px", marginTop: "12px",
-                            border: "2px solid #E8E0D4", borderRadius: "12px",
-                            fontSize: "1rem", outline: "none",
-                        }} />
-                    <p style={{ fontSize: "0.72rem", color: "#bbb", marginTop: "8px" }}>
-                        💡 平日（週一至四）更便宜，約省 30%
-                    </p>
-                    <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
-                        <button onClick={() => setStep(0)} style={{ ...nextBtnStyle, background: "#eee", color: "#666", flex: 1 }}>← 上一步</button>
-                        <button onClick={() => setStep(2)} style={{ ...nextBtnStyle, flex: 2 }}>下一步 →</button>
+                        className="proposal-input" />
+                    <p>平日通常比較好安排，也更容易取得優惠報價。</p>
+                    <div className="proposal-actions">
+                        <button onClick={() => setStep(0)} className="proposal-secondary">上一步</button>
+                        <button onClick={() => setStep(2)} className="proposal-primary">下一步</button>
                     </div>
                 </div>
             )}
 
-            {/* Step 2: Scenario */}
             {step === 2 && (
-                <div>
-                    <label style={{ fontSize: "0.85rem", color: "#555", fontWeight: 500 }}>
-                        🎯 這次旅行的目的？
-                    </label>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginTop: "12px" }}>
+                <div className="proposal-step">
+                    <label>這次旅行的目的？</label>
+                    <div className="proposal-options">
                         {SCENARIOS.map(s => (
-                            <button key={s} onClick={() => setScenario(s)} style={{
-                                padding: "12px", borderRadius: "10px",
-                                border: scenario === s ? "2px solid #06C755" : "1px solid #E8E0D4",
-                                background: scenario === s ? "#E8F5E9" : "#fff",
-                                fontSize: "0.82rem", cursor: "pointer", color: "#444",
-                            }}>{s}</button>
+                            <button key={s} onClick={() => setScenario(s)} className={scenario === s ? "active" : ""}>{s}</button>
                         ))}
                     </div>
-                    <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
-                        <button onClick={() => setStep(1)} style={{ ...nextBtnStyle, background: "#eee", color: "#666", flex: 1 }}>← 上一步</button>
-                        <button onClick={() => setStep(3)} disabled={!scenario} style={{ ...nextBtnStyle, flex: 2, opacity: scenario ? 1 : 0.4 }}>下一步 →</button>
+                    <div className="proposal-actions">
+                        <button onClick={() => setStep(1)} className="proposal-secondary">上一步</button>
+                        <button onClick={() => setStep(3)} disabled={!scenario} className="proposal-primary">下一步</button>
                     </div>
                 </div>
             )}
 
-            {/* Step 3: Needs */}
             {step === 3 && (
-                <div>
-                    <label style={{ fontSize: "0.85rem", color: "#555", fontWeight: 500 }}>
-                        📋 特殊需求（可多選）
-                    </label>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginTop: "12px" }}>
+                <div className="proposal-step">
+                    <label>特殊需求（可多選）</label>
+                    <div className="proposal-options">
                         {needOptions.map(n => (
-                            <button key={n} onClick={() => setNeeds(prev => prev.includes(n) ? prev.filter(x => x !== n) : [...prev, n])} style={{
-                                padding: "10px", borderRadius: "10px",
-                                border: needs.includes(n) ? "2px solid #06C755" : "1px solid #E8E0D4",
-                                background: needs.includes(n) ? "#E8F5E9" : "#fff",
-                                fontSize: "0.78rem", cursor: "pointer", color: "#444",
-                            }}>{needs.includes(n) ? "✓ " : ""}{n}</button>
+                            <button key={n} onClick={() => setNeeds(prev => prev.includes(n) ? prev.filter(x => x !== n) : [...prev, n])} className={needs.includes(n) ? "active" : ""}>{n}</button>
                         ))}
                     </div>
-                    <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
-                        <button onClick={() => setStep(2)} style={{ ...nextBtnStyle, background: "#eee", color: "#666", flex: 1 }}>← 上一步</button>
-                        <button onClick={() => setGenerated(true)} style={{
-                            ...nextBtnStyle, flex: 2, background: "#06C755",
-                            fontSize: "0.9rem", fontWeight: 700,
-                        }}>✨ 產生提案</button>
+                    <div className="proposal-actions">
+                        <button onClick={() => setStep(2)} className="proposal-secondary">上一步</button>
+                        <button onClick={() => setGenerated(true)} className="proposal-line">產生提案</button>
                     </div>
                 </div>
             )}
         </div>
     );
 }
-
-const btnStyle: React.CSSProperties = {
-    width: "44px", height: "44px", borderRadius: "50%",
-    border: "2px solid #E8E0D4", background: "#fff",
-    fontSize: "1.2rem", cursor: "pointer", color: "#2a2a2a",
-};
-
-const nextBtnStyle: React.CSSProperties = {
-    width: "100%", padding: "14px", marginTop: "16px",
-    background: "#2a2a2a", color: "#fff", border: "none",
-    borderRadius: "12px", fontSize: "0.85rem",
-    cursor: "pointer", fontWeight: 500,
-};

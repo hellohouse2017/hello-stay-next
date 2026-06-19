@@ -1,211 +1,271 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-    title: "高雄包棟推薦怎麼選？3 間鹽埕包棟比較｜Hello Stay",
-    description: "想找高雄包棟推薦？一次比較 Hello Stay 三館：依人數、廚房、麻將、交通與預算，快速選出適合的包棟民宿，再直接查空房。",
-    alternates: { canonical: "https://www.hello-stay.com/compare" },
-    openGraph: {
-        title: "高雄包棟推薦怎麼選？3 間鹽埕包棟比較",
-        description: "依人數、廚房、麻將、交通與預算，快速選出適合的高雄包棟民宿。",
-        url: "https://www.hello-stay.com/compare",
-    },
+  title: "高雄包棟推薦怎麼選？Hello Stay 三館比較｜鹽埕民宿",
+  description:
+    "比較你好哇寓所、溝頂民宿與大智若愚。依人數、房型、衛浴、廚房、公共空間與電梯需求，快速找到適合的高雄鹽埕包棟民宿。",
+  alternates: { canonical: "https://www.hello-stay.com/compare" },
+  openGraph: {
+    title: "高雄包棟推薦怎麼選？Hello Stay 三館比較",
+    description: "依人數、房型、衛浴、廚房與公共空間，快速比較 Hello Stay 三個館別。",
+    url: "https://www.hello-stay.com/compare",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+        width: 1200,
+        height: 630,
+        alt: "Hello Stay 三館比較",
+      },
+    ],
+  },
 };
 
 const properties = [
-    { name: "你好哇寓所", link: "/hellohouse", capacity: "6–26 人", price: "$12,000–$34,800", perPerson: "每人$909起", rooms: "多間獨立套房", floors: "透天 4 層樓", kitchen: "✅ 豪華中島廚房", mahjong: "✅ 手動", elevator: "❌", parking: "附近停車場", bbq: "❌", best: "家庭聚會·婚禮·企業團建", lineUrl: "https://lin.ee/atCiMQw" },
-    { name: "溝頂民宿", link: "/godin", capacity: "6–12 人", price: "$8,000–$18,400", perPerson: "每人$800起", rooms: "4 間套房", floors: "透天 5 層樓", kitchen: "❌ 簡易流理臺（微波爐）", mahjong: "✅ 手動", elevator: "❌", parking: "附近停車場", bbq: "❌", best: "小家庭·帶長輩·好友小聚", lineUrl: "https://lin.ee/atCiMQw" },
-    { name: "大智若愚", link: "/dazhi", capacity: "20–48 人", price: "即將公布", perPerson: "預估 $800–$1,200", rooms: "一層三間套房", floors: "透天多層樓", kitchen: "規劃中", mahjong: "規劃中", elevator: "✅ 電梯", parking: "附近停車場", bbq: "規劃中", best: "企業員旅·球隊·大家族", lineUrl: "https://lin.ee/atCiMQw" },
+  {
+    id: "compare-hellohouse",
+    kicker: "HELLO HOUSE",
+    title: "你好哇寓所",
+    summary: ["6-26 人", "中島廚房 大型交誼空間", "適合聚餐 迎娶 慶生"],
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "你好哇寓所 1F 中島廚房與大型交誼空間",
+    },
+    description: ["想一起吃飯 聊天 辦活動", "1F 中島廚房與大型交誼空間是主角"],
+    specs: [
+      { label: "適合人數", value: "6-26 人" },
+      { label: "房型", value: "雙人房 2 間 四人房 1 間 六人房 2 間" },
+      { label: "衛浴", value: "客房皆有獨立衛浴" },
+      { label: "設備", value: "中島廚房 麻將 桌遊 聯網電視" },
+    ],
+    groups: [
+      {
+        title: "適合",
+        items: ["13 人以上團體", "需要大型公共空間", "想開伙或聚餐", "婚禮迎娶與慶生聚會"],
+      },
+      {
+        title: "入住前留意",
+        items: ["房間分配是否符合睡法", "是否需要補寢具", "樓梯動線是否適合長輩"],
+      },
+    ],
+    action: { href: "/hellohouse", label: "看你好哇房型與設備" },
+  },
+  {
+    id: "compare-godin",
+    kicker: "GODIN HOUSE",
+    title: "溝頂民宿",
+    summary: ["4-12 人", "五層獨棟 四間客房", "每間客房都有獨立衛浴"],
+    image: {
+      src: "/images/godin/cover-1.webp",
+      alt: "溝頂民宿 4F 交誼廳與整棟分層空間",
+    },
+    description: ["想住同一棟 各自好睡", "四間客房都有獨立衛浴", "4F 是交誼廳"],
+    specs: [
+      { label: "適合人數", value: "4-12 人" },
+      { label: "房型", value: "雙人房 2 間 四人房 2 間" },
+      { label: "衛浴", value: "四間客房皆有獨立衛浴" },
+      { label: "設備", value: "4F 交誼廳 麻將 冰箱 微波爐" },
+    ],
+    groups: [
+      {
+        title: "適合",
+        items: ["家庭旅行", "小型朋友聚會", "想整棟獨立", "希望每間客房都有衛浴"],
+      },
+      {
+        title: "入住前留意",
+        items: ["4F 公共交誼廳無衛浴", "無法開伙", "超過 12 人需改看其他方案"],
+      },
+    ],
+    action: { href: "/godin", label: "看溝頂房型與設備" },
+  },
+  {
+    id: "compare-dazhi",
+    kicker: "DAZHI RUOYU",
+    title: "大智若愚",
+    summary: ["20-48 人規劃中", "電梯 一層三房一廳", "適合大型團體需求登記"],
+    image: {
+      src: "/images/dazhi/building-render.webp",
+      alt: "大智若愚電梯大樓與大型團體館別規劃",
+    },
+    description: ["大型團體與電梯動線需求", "目前規劃中", "可先留下需求"],
+    specs: [
+      { label: "規劃人數", value: "20-48 人" },
+      { label: "空間", value: "一層三房一廳" },
+      { label: "動線", value: "電梯大樓" },
+      { label: "狀態", value: "規劃中 可先登記需求" },
+    ],
+    groups: [
+      {
+        title: "適合",
+        items: ["大型家族旅行", "企業員旅", "球隊與活動團體", "重視電梯與行李動線"],
+      },
+      {
+        title: "入住前留意",
+        items: ["尚未正式開放訂房", "實際房價與房內設備待公告", "近期入住以你好哇或溝頂為主"],
+      },
+    ],
+    action: { href: "/dazhi", label: "看大智若愚規劃" },
+  },
+];
+
+const comparisonFacts = [
+  { label: "4-12 人", value: "溝頂 四房獨棟" },
+  { label: "6-26 人", value: "你好哇 中島廚房" },
+  { label: "20-48 人", value: "大智若愚 電梯規劃" },
+  { label: "要開伙", value: "你好哇更完整" },
+];
+
+const bookingNotes = [
+  "近期入住以 你好哇或溝頂 為主",
+  "需要廚房時 你好哇優勢更明確",
+  "每房獨立衛浴時 溝頂更直觀",
+  "需要電梯或 26 人以上 可詢問大智若愚或雙館",
+];
+
+const fit = [
+  { label: "你好哇寓所", value: "聚餐 迎娶 慶生" },
+  { label: "溝頂民宿", value: "家庭 小團體 分層休息" },
+  { label: "大智若愚", value: "大型團體 電梯需求" },
+  { label: "雙館安排", value: "人數超過單館時詢問" },
+];
+
+const galleryImages = [
+  {
+    src: "/images/hellohouse/1000.webp",
+    alt: "你好哇寓所大型公共空間",
+    caption: "你好哇寓所 中島廚房與大型交誼區",
+  },
+  {
+    src: "/images/godin/cover-1.webp",
+    alt: "溝頂民宿交誼廳與整棟分層空間",
+    caption: "溝頂民宿 五層獨棟與 4F 交誼廳",
+  },
+  {
+    src: "/images/dazhi/building-render.webp",
+    alt: "大智若愚大型團體與電梯館別規劃",
+    caption: "大智若愚 電梯大樓與大型團體規劃",
+  },
 ];
 
 const faqs = [
-    { q: "高雄包棟民宿怎麼選？", a: "先確認人數：6-12人選溝頂（五層獨棟，適合帶長輩）；6-26人選你好哇寓所（中島廚房+麻將桌，適合聚會）；20-48人選大智若愚（電梯大樓，適合企業團體）。再依設備需求（廚房/麻將/停車）做最終決定。" },
-    { q: "三間民宿都在哪裡？", a: "三間都在高雄鹽埕區，你好哇與溝頂步行僅30秒，大智若愚在大港橋旁。距駁二藝術特區步行10–12分鐘、捷運鹽埕埔站步行5–8分鐘。" },
-    { q: "可以同時預訂多間嗎？", a: "可以！兩棟合訂（你好哇+溝頂）最多38人，三館聯訂最多可容納近80人。適合大型家族旅遊、企業全體旅遊、跨年派對。" },
-    { q: "哪間最便宜？", a: "以每人均攤計算，你好哇寓所26人包棟每人約$583最划算。溝頂民宿12人包棟每人約$833。官方LINE直訂免平台手續費，比AsiaYo/Booking便宜15-20%。" },
-    { q: "有廚房可以煮火鍋嗎？", a: "你好哇寓所有豪華中島廚房（IH爐×2、冰箱、完整鍋碗）可同時4-6人下廚。溝頂民宿僅有簡易流理臺與微波爐，可加熱但不可明火或使用電磁爐。大智若愚的廚房規劃中。" },
+  {
+    question: "10 人小團體看哪一館",
+    answer: "多數情況會落在溝頂民宿 整棟獨立 房間分層 四間客房都有獨立衛浴 如果也需要大型廚房與聚餐空間 再比較你好哇寓所",
+  },
+  {
+    question: "哪一館適合聚餐迎娶",
+    answer: "你好哇寓所最明確 1F 有中島廚房 吧台與大型交誼空間 很適合聚餐 迎娶 慶生和多人同聚",
+  },
+  {
+    question: "大智若愚現在可以直接訂嗎",
+    answer: "大智若愚仍在規劃中 適合大型團體先登記需求 近期入住仍以你好哇 溝頂 或雙館安排為主",
+  },
 ];
 
 export default function ComparePage() {
-    return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <JsonLd data={[
-                {
-                    "@context": "https://schema.org", "@type": "ItemList",
-                    name: "高雄包棟民宿比較", description: "Hello Stay 三間高雄包棟民宿完整比較",
-                    itemListElement: properties.map((p, i) => ({
-                        "@type": "ListItem", position: i + 1,
-                        item: { "@type": "LodgingBusiness", name: p.name, url: `https://www.hello-stay.com${p.link}` },
-                    })),
-                },
-                {
-                    "@context": "https://schema.org", "@type": "FAQPage",
-                    mainEntity: faqs.map(f => ({
-                        "@type": "Question", name: f.q,
-                        acceptedAnswer: { "@type": "Answer", text: f.a },
-                    })),
-                },
-            ]} />
+  return (
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "高雄包棟民宿三館比較",
+            description: "Hello Stay 你好哇寓所、溝頂民宿與大智若愚比較",
+            itemListElement: properties.map((item, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "LodgingBusiness",
+                name: item.title,
+                url:
+                  item.id === "compare-hellohouse"
+                    ? "https://www.hello-stay.com/hellohouse"
+                    : item.id === "compare-godin"
+                      ? "https://www.hello-stay.com/godin"
+                      : "https://www.hello-stay.com/dazhi",
+              },
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          },
+        ]}
+      />
 
-            <div className="w" style={{ maxWidth: "900px", padding: "0 20px 80px" }}>
-                <Reveal>
-                    <div style={{ textAlign: "center", marginBottom: "40px" }}>
-                        <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Compare Properties</div>
-                        <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟推薦比較</h1>
-                        <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                        <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>
-                            依人數、廚房、麻將、交通與預算，幫你快速選出最適合的包棟方案。<br />三間都在高雄鹽埕區，步行可達駁二藝術特區。
-                        </p>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>
-                            高雄包棟民宿推薦
-                        </div>
-                        <p style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.9, marginBottom: "16px" }}>
-                            如果你正在比較高雄包棟民宿推薦，最省時間的方式是先看人數，再看要不要廚房、麻將桌、電梯與停車動線。
-                            也可以先回{" "}
-                            <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                                首頁看三館
-                            </Link>
-                            {" "}或看{" "}
-                            <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                                包棟方案整理
-                            </Link>
-                            ，再回來比較細節。
-                        </p>
-                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                            <Link href="/" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                                回首頁看三館
-                            </Link>
-                            <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                                依需求看包棟
-                            </Link>
-                            <Link href="/book" style={{ fontSize: "0.78rem", padding: "8px 14px", borderRadius: "20px", background: "#161618", color: "#fff", textDecoration: "none" }}>
-                                直接查空房
-                            </Link>
-                        </div>
-                    </div>
-                </Reveal>
-
-                {/* Quick Answer */}
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px", borderLeft: "4px solid var(--pri)" }}>
-                        <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>快速結論</div>
-                        <div style={{ fontSize: "0.88rem", color: "#3D3830", lineHeight: 2 }}>
-                            <strong>6–12人小團體</strong>→ 溝頂民宿（五層獨棟，帶長輩首選）<br />
-                            <strong>6–26人聚會</strong>→ 你好哇寓所（中島廚房＋麻將，性價比最高）<br />
-                            <strong>20–48人大團體</strong>→ 大智若愚（電梯民宿，企業員旅首選）
-                        </div>
-                    </div>
-                </Reveal>
-
-                {/* HTML Comparison Table */}
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 12px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px", overflowX: "auto" }}>
-                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px", paddingLeft: "8px" }}>完整比較表</h2>
-                        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
-                            <thead>
-                                <tr style={{ borderBottom: "2px solid #F5F1ED" }}>
-                                    <th style={{ textAlign: "left", padding: "10px 8px", color: "#999", fontWeight: 500 }}>項目</th>
-                                    {properties.map(p => (
-                                        <th key={p.name} style={{ textAlign: "center", padding: "10px 8px", color: "#3D3830", fontWeight: 600 }}>
-                                            <Link href={p.link} style={{ color: "var(--pri)", textDecoration: "none" }}>{p.name}</Link>
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {[
-                                    { label: "人數", key: "capacity" },
-                                    { label: "價格", key: "price" },
-                                    { label: "每人均攤", key: "perPerson" },
-                                    { label: "房間數", key: "rooms" },
-                                    { label: "樓層", key: "floors" },
-                                    { label: "廚房", key: "kitchen" },
-                                    { label: "麻將桌", key: "mahjong" },
-                                    { label: "電梯", key: "elevator" },
-                                    { label: "停車", key: "parking" },
-                                    { label: "最適合", key: "best" },
-                                ].map((row, i) => (
-                                    <tr key={row.label} style={{ borderBottom: "1px solid #F5F1ED", background: i % 2 === 0 ? "#FDFCFB" : "#fff" }}>
-                                        <td style={{ padding: "12px 8px", color: "#666", fontWeight: 500 }}>{row.label}</td>
-                                        {properties.map(p => (
-                                            <td key={p.name} style={{ padding: "12px 8px", textAlign: "center", color: "#3D3830" }}>
-                                                {(p as Record<string, string>)[row.key]}
-                                            </td>
-                                        ))}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </Reveal>
-
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>直接看館別介紹</h2>
-                        <div style={{ display: "grid", gap: "8px" }}>
-                            {properties.map(property => (
-                                <Link key={property.link} href={property.link} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none" }}>
-                                    <div>
-                                        <div style={{ fontSize: "0.88rem", color: "#3D3830", fontWeight: 500 }}>{property.name}</div>
-                                        <div style={{ fontSize: "0.75rem", color: "#999", marginTop: "4px" }}>{property.capacity}｜{property.best}</div>
-                                    </div>
-                                    <span style={{ color: "var(--pri)", fontSize: "0.8rem" }}>→</span>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </Reveal>
-
-                {/* FAQ */}
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>常見問題</h2>
-                        {faqs.map(f => (
-                            <div key={f.q} style={{ padding: "14px 0", borderBottom: "1px solid #F5F1ED" }}>
-                                <div style={{ fontSize: "0.88rem", fontWeight: 500, color: "#3D3830", marginBottom: "6px" }}>{f.q}</div>
-                                <div style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.9 }}>{f.a}</div>
-                            </div>
-                        ))}
-                    </div>
-                </Reveal>
-
-                {/* Related Pages */}
-                <Reveal>
-                    <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                        <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>依需求找包棟</h2>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "8px" }}>
-                            {[
-                                { href: "/godin", label: "🏠 10人包棟" },
-                                { href: "/hellohouse", label: "🏡 20人包棟" },
-                                { href: "/kaohsiung-whole-house#capacity-30", label: "🏘️ 30人包棟" },
-                                { href: "/dazhi", label: "🏢 40人包棟" },
-                                { href: "/blog/kaohsiung-kitchen-bnb#kitchen", label: "🍳 有廚房" },
-                                { href: "/traffic#parking", label: "🅿️ 方便停車" },
-                                { href: "/kaohsiung-whole-house#need-family-trip", label: "👨‍👩‍👧‍👦 家庭旅遊" },
-                                { href: "/kaohsiung-whole-house#need-company-retreat", label: "💼 企業團建" },
-                            ].map(l => (
-                                <Link key={l.href} href={l.href} style={{ padding: "12px 16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", fontSize: "0.82rem", color: "#3D3830" }}>{l.label}</Link>
-                            ))}
-                        </div>
-                    </div>
-                </Reveal>
-
-                {/* CTA */}
-                <Reveal>
-                    <div style={{ textAlign: "center", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                        <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>查詢空房</Link>
-                        <Link href="/" style={{ padding: "14px 32px", borderRadius: "10px", border: "1px solid #D4CBC0", color: "#8A8279", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>回首頁看三館</Link>
-                        <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">💬 LINE 詢問</a>
-                    </div>
-                </Reveal>
-            </div>
-        </div>
-    );
+      <PropertyShowcasePage
+        hero={{
+          kicker: "COMPARE STAYS",
+          title: "三館差異一次看",
+          lead: ["人數 房型 衛浴 廚房 公共空間放在同一排看", "三館差異會很清楚"],
+          image: {
+            src: "/images/hellohouse/cover.webp",
+            alt: "Hello Stay 三館比較主視覺",
+          },
+          stats: [
+            { label: "4-12 人", value: "溝頂民宿 四房獨棟" },
+            { label: "6-26 人", value: "你好哇寓所 中島廚房" },
+            { label: "20-48 人", value: "大智若愚 電梯規劃" },
+            { label: "比較重點", value: "房型 衛浴 設備 公共空間" },
+          ],
+          primaryAction: { href: "/book", label: "查空房與報價" },
+          secondaryAction: { href: "/packages", label: "看入住情境" },
+        }}
+        overview={{
+          kicker: "QUICK COMPARE",
+          title: "三館快速對照",
+          columns: 3,
+          cards: properties.map((item) => ({
+            id: item.id,
+            kicker: item.kicker,
+            title: item.title,
+            summary: item.summary,
+            image: item.image,
+            linkLabel: "看館別細節",
+          })),
+        }}
+        details={{
+          kicker: "PROPERTY DETAILS",
+          title: "房型 設備 空間",
+          cards: properties.map((item) => ({
+            id: item.id,
+            kicker: item.kicker,
+            title: item.title,
+            description: item.description,
+            image: item.image,
+            specs: item.specs,
+            groups: item.groups,
+            action: item.action,
+          })),
+          factsTitle: "快速對照",
+          facts: comparisonFacts,
+          guidesTitle: "入住前留意",
+          guides: bookingNotes,
+          fitTitle: "典型需求",
+          fit,
+        }}
+        gallery={{
+          kicker: "VISUAL DIFFERENCE",
+          title: "三館空間感差異",
+          columns: 3,
+          images: galleryImages,
+        }}
+        faq={{
+          kicker: "FAQ",
+          title: "三館比較常見問題",
+          items: faqs,
+        }}
+      />
+    </>
+  );
 }
