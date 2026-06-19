@@ -17,7 +17,7 @@ import { buildElapsedSection, buildMainGa4Section, buildMainSeoHealthIntro } fro
 import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runtime';
 
 const SITE_URL = 'https://www.hello-stay.com';
-const GA4_MEASUREMENT_ID = 'G-N2LV3SSTPF';
+const GA4_MEASUREMENT_ID = 'G-LKVWPNVH5M';
 const GA4_PROPERTY_ID_HEADER = 'x-seo-ga4-property-id';
 const GOOGLE_OAUTH_CLIENT_ID_HEADER = 'x-seo-google-oauth-client-id';
 const GOOGLE_OAUTH_CLIENT_SECRET_HEADER = 'x-seo-google-oauth-client-secret';

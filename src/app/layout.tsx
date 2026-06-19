@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-N2LV3SSTPF"
+          src="https://www.googletagmanager.com/gtag/js?id=G-LKVWPNVH5M"
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-N2LV3SSTPF');
+            gtag('config', 'G-LKVWPNVH5M');
           `}
         </Script>
         <Navbar />

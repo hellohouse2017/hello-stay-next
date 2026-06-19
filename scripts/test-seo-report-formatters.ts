@@ -62,7 +62,7 @@ async function main() {
     assert.match(noPageSpeed, /PageSpeed API 額度暫時不足/);
 
     const ga4Configured = buildMainGa4Section({
-        measurementId: 'G-N2LV3SSTPF',
+        measurementId: 'G-LKVWPNVH5M',
         siteTagDetected: true,
         propertyIdConfigured: true,
         oauthConfigured: true,
@@ -75,7 +75,7 @@ async function main() {
         dataApiError: null,
     });
     assert.match(ga4Configured, /GA4 狀態/);
-    assert.match(ga4Configured, /✅ 前台埋碼: G-N2LV3SSTPF/);
+    assert.match(ga4Configured, /✅ 前台埋碼: G-LKVWPNVH5M/);
     assert.match(ga4Configured, /來源拆分/);
     assert.match(ga4Configured, /Organic Search: Sessions 42 \/ Users 30 \/ Pageviews 99/);
     assert.match(ga4Configured, /AI Assistants: Sessions 6 \/ Users 5 \/ Pageviews 12/);
@@ -84,7 +84,7 @@ async function main() {
     assert.match(ga4Configured, /Google AI Overviews \/ AI Mode 目前仍算在 Organic Search/);
 
     const ga4MissingConfig = buildMainGa4Section({
-        measurementId: 'G-N2LV3SSTPF',
+        measurementId: 'G-LKVWPNVH5M',
         siteTagDetected: true,
         propertyIdConfigured: false,
         oauthConfigured: false,
@@ -99,7 +99,7 @@ async function main() {
     assert.match(ga4MissingConfig, /還需補齊 Property ID 與 OAuth 設定/);
 
     const ga4MissingTag = buildMainGa4Section({
-        measurementId: 'G-N2LV3SSTPF',
+        measurementId: 'G-LKVWPNVH5M',
         siteTagDetected: false,
         propertyIdConfigured: true,
         oauthConfigured: true,

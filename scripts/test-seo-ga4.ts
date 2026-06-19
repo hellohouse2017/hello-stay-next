@@ -156,9 +156,9 @@ async function main() {
 
     const siteTagDetected = await inspectGa4MeasurementTag({
         siteUrl: 'https://www.hello-stay.com',
-        measurementId: 'G-N2LV3SSTPF',
+        measurementId: 'G-LKVWPNVH5M',
         fetchImpl: async () => new Response(
-            '<script src="https://www.googletagmanager.com/gtag/js?id=G-N2LV3SSTPF"></script><script>gtag(\'config\', \'G-N2LV3SSTPF\');</script>',
+            '<script src="https://www.googletagmanager.com/gtag/js?id=G-LKVWPNVH5M"></script><script>gtag(\'config\', \'G-LKVWPNVH5M\');</script>',
             { status: 200 }
         ),
     });
@@ -166,7 +166,7 @@ async function main() {
 
     const siteTagMissing = await inspectGa4MeasurementTag({
         siteUrl: 'https://www.hello-stay.com',
-        measurementId: 'G-N2LV3SSTPF',
+        measurementId: 'G-LKVWPNVH5M',
         fetchImpl: async () => new Response('<html><body>no tag</body></html>', { status: 200 }),
     });
     assert.equal(siteTagMissing, false);
@@ -174,7 +174,7 @@ async function main() {
     await assert.rejects(
         () => inspectGa4MeasurementTag({
             siteUrl: 'https://www.hello-stay.com',
-            measurementId: 'G-N2LV3SSTPF',
+            measurementId: 'G-LKVWPNVH5M',
             fetchImpl: async () => new Response('down', { status: 503 }),
         }),
         /GA4 site tag 503: down/

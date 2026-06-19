@@ -39,7 +39,7 @@ async function main() {
         },
         rankingError: 'gsc timeout',
         ga4: {
-            measurementId: 'G-N2LV3SSTPF',
+            measurementId: 'G-LKVWPNVH5M',
             siteTagDetected: true,
             propertyIdConfigured: false,
             oauthConfigured: true,
@@ -94,7 +94,7 @@ async function main() {
         },
         rankingError: 'gsc timeout',
         ga4: {
-            measurementId: 'G-N2LV3SSTPF',
+            measurementId: 'G-LKVWPNVH5M',
             siteTagDetected: true,
             propertyIdConfigured: false,
             oauthConfigured: true,
