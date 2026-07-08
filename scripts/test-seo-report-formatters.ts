@@ -10,6 +10,7 @@ import {
 async function main() {
     const mainIntro = buildMainSeoHealthIntro({
         timestamp: '2026/05/12 16:00:00',
+        triggerSource: 'external-script',
         robotsOk: true,
         sitemap: { ok: true, pageCount: 9 },
         pagesWithJsonLd: 7,
@@ -31,6 +32,8 @@ async function main() {
     });
     assert.match(mainIntro, /SEO 健康日報/);
     assert.match(mainIntro, /✅ robots\.txt/);
+    assert.match(mainIntro, /🧭 觸發來源: external-script/);
+    assert.match(mainIntro, /Asia\/Taipei 同日最多 1 次/);
     assert.match(mainIntro, /✅ sitemap\.xml \(9 頁\)/);
     assert.match(mainIntro, /✅ JSON-LD: 7\/9 頁/);
     assert.match(mainIntro, /📄 <b>首頁<\/b> \(\//);
@@ -38,6 +41,7 @@ async function main() {
 
     const ruinsIntro = buildRuinsSeoHealthIntro({
         timestamp: '2026/05/12 16:00:00',
+        triggerSource: 'vercel-cron',
         robotsOk: false,
         sitemap: { ok: true, pageCount: 12 },
         llms: { ok: true, msg: '✅ llms.txt (AI 搜尋優化)' },
@@ -45,6 +49,7 @@ async function main() {
     });
     assert.match(ruinsIntro, /廢墟酒吧 SEO 健康日報/);
     assert.match(ruinsIntro, /❌ robots\.txt/);
+    assert.match(ruinsIntro, /🧭 觸發來源: vercel-cron/);
     assert.match(ruinsIntro, /✅ llms\.txt/);
     assert.match(ruinsIntro, /⚠️ JSON-LD: 4\/5 頁/);
     assert.match(ruinsIntro, /⚠️ 有問題需要處理/);

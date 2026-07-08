@@ -16,7 +16,7 @@ export default function PropertyLinksBlock() {
                 <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
                     高雄包棟民宿推薦 Hello Stay
                 </Link>
-                {" "}嗎？三館可住 6-48 人，也可以先比較{" "}
+                {" "}嗎？三館各自對應不同人數，也可以先比較{" "}
                 <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
                     高雄包棟方案整理
                 </Link>
@@ -35,21 +35,21 @@ export default function PropertyLinksBlock() {
                     <span style={{ fontSize: "1.3rem" }}>🏠</span>
                     <div>
                         <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>你好哇寓所</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6–26人・中島廚房・麻將桌・鹽埕</div>
+                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6–26 人・中島廚房・麻將桌・鹽埕</div>
                     </div>
                 </Link>
                 <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>
                     <span style={{ fontSize: "1.3rem" }}>🏡</span>
                     <div>
                         <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>溝頂民宿</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6–12人・五層獨棟・頂樓露台・長輩友善</div>
+                        <div style={{ fontSize: "0.72rem", color: "#999" }}>4–12 人・五層獨棟・頂樓露台・長輩友善</div>
                     </div>
                 </Link>
                 <Link href="/dazhi" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>
                     <span style={{ fontSize: "1.3rem" }}>🏢</span>
                     <div>
                         <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>大智若愚</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>20–48人・全新電梯・近大港橋</div>
+                        <div style={{ fontSize: "0.72rem", color: "#999" }}>尚未開放訂房・電梯需求可先登記</div>
                     </div>
                 </Link>
             </div>
@@ -57,10 +57,10 @@ export default function PropertyLinksBlock() {
                 <div style={{ fontSize: "0.72rem", color: "#999", marginBottom: "10px" }}>依人數查詢</div>
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                     {[
-                        { href: "/capacity/10", label: "10人包棟" },
-                        { href: "/capacity/20", label: "20人包棟" },
-                        { href: "/capacity/30", label: "30人包棟" },
-                        { href: "/capacity/40", label: "40人包棟" },
+                        { href: "/capacity/10", label: "10 人左右" },
+                        { href: "/capacity/20", label: "20 人左右" },
+                        { href: "/capacity/30", label: "30 人左右" },
+                        { href: "/capacity/40", label: "40 人以上" },
                     ].map(({ href, label }) => (
                         <Link key={href} href={href} style={{ fontSize: "0.78rem", padding: "6px 14px", borderRadius: "20px", border: "1px solid #D4CBC0", color: "#8A8279", textDecoration: "none" }}>
                             {label}

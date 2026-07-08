@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import HomeTemplateExperience from "@/components/HomeTemplateExperience";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦 Hello Stay｜鹽埕 6-48 人・官方訂房查空房與報價",
+  title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費｜Hello Stay",
   description:
-    "Hello Stay 高雄鹽埕包棟民宿，提供你好哇寓所 6-26 人、溝頂民宿 10-12 人與大型團體方案。依人數與空間需求選館別，再查日期、人數、空房與報價。",
+    "Hello Stay 提供高雄鹽埕包棟住宿與雙館包棟方案，近駁二、大港橋與鹽埕埔站。先依人數快速選館，再查空房、報價與官方直訂免手續費資訊。",
   alternates: { canonical: "https://www.hello-stay.com" },
   openGraph: {
-    title: "高雄包棟民宿推薦 Hello Stay｜鹽埕 6-48 人・官方訂房查空房與報價",
+    title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費｜Hello Stay",
     description:
-      "高雄鹽埕包棟民宿，依人數與空間需求比較你好哇寓所、溝頂民宿與大型團體方案，再查空房與總價。",
+      "高雄包棟民宿推薦品牌 Hello Stay，近駁二、大港橋與鹽埕埔站，先依人數快速選館，再查空房與官方直訂報價。",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -28,7 +28,7 @@ const homeStructuredData = [
     telephone: "+886-932-828-922",
     email: "hellohouse2017@gmail.com",
     description:
-      "高雄鹽埕區質感包棟民宿，三館可容納6至48人。配備中島廚房、麻將與桌遊設備，步行10分鐘到駁二藝術特區。自2017年起服務超過5,000組旅客。",
+      "高雄鹽埕區質感包棟民宿，目前可訂 4 至 26 人包棟方案，另有大型團體與電梯需求的未來館別規劃。配備中島廚房、麻將與桌遊設備，步行 10 分鐘可到駁二藝術特區。",
     slogan: "高雄鹽埕・質感包棟旅宿",
     foundingDate: "2017",
     address: {
@@ -64,14 +64,14 @@ const homeStructuredData = [
       {
         "@type": "Accommodation",
         name: "溝頂民宿",
-        description: "10-12人精緻獨棟，五層樓空間",
+        description: "4-12 人整棟包棟，四間客房皆有獨立衛浴，4F 為交誼廳與簡易備餐空間",
         numberOfBedrooms: 4,
         occupancy: { "@type": "QuantitativeValue", maxValue: 12 },
       },
       {
         "@type": "Accommodation",
         name: "大智若愚",
-        description: "規劃中的電梯包層 / 包棟民宿，預計 2027 年中開幕，最大48人",
+        description: "尚未開放訂房的電梯包層 / 包棟規劃，未來以正式公告內容為準",
         occupancy: { "@type": "QuantitativeValue", maxValue: 48 },
       },
     ],

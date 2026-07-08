@@ -275,7 +275,7 @@ export const hellohouse: Property = {
         { icon: '⛴️', name: '旗津渡輪', walkMinutes: 0, category: 'attraction', description: '捷運 + 渡輪 20 分鐘' },
     ],
     highlights: [
-        { icon: '🍳', title: '豪宅級中島廚房', desc: '開放式空間，IH 爐、微波爐、完整餐具，聚餐煮火鍋首選。' },
+        { icon: '🍳', title: '豪華中島廚房', desc: '開放式空間，IH 爐、微波爐、完整餐具，聚餐煮火鍋首選。' },
         { icon: '🀄', title: '專屬娛樂設施', desc: '手動麻將桌、43" 聯網電視，讓派對時光絕無冷場。' },
         { icon: '🛏️', title: '多元舒適房型', desc: '雙人至六人房靈活配置，全室乾濕分離衛浴，更有網美吊椅房型。' },
     ],
@@ -301,7 +301,7 @@ export const godin: Property = {
     nameEn: 'Godin House',
     tagline: 'Godin House · A Quiet Retreat',
     description: '溝頂民宿是你好哇系列的精緻二館。整棟五層樓獨立使用，沒有外人打擾。以溫馨家庭風格呈現，讓每一次入住都像回到自己的家。',
-    capacity: { min: 4, max: 14 },
+    capacity: { min: 4, max: 12 },
     startPrice: 5800,
     priceUnit: '平日起',
     rating: null,
@@ -316,7 +316,7 @@ export const godin: Property = {
     coverImage: '/images/godin/cover-1.webp',
     lineUrl: 'https://lin.ee/atCiMQw',
     galleryImages: [
-        { src: '/images/godin/cover-3.webp', alt: '溝頂民宿 (Godin House) 溫馨家庭風客廳交誼廳，備有舒適沙發、休閒麻將桌與桌遊，是 10-12 人包棟旅客的專屬娛樂天堂。' },
+        { src: '/images/godin/cover-3.webp', alt: '溝頂民宿 (Godin House) 溫馨家庭風客廳交誼廳，備有舒適沙發、休閒麻將桌與桌遊，是 4-12 人包棟旅客的專屬娛樂天堂。' },
         { src: '/images/godin/cover-4.webp', alt: '溝頂民宿 (Godin House) 雅緻客房實景，大面採光窗搭配木質地板與日系極簡色調，營造如家一般的溫馨住宿氛圍。' },
         { src: '/images/godin/cover-bg.webp', alt: '溝頂民宿 (Godin House) 座落於高雄鹽埕區大公路的五層獨棟老宅民宿外觀，提供給小團體完全獨立、無他人干擾的包棟體驗。' },
     ],

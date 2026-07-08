@@ -3,13 +3,13 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "高雄包棟推薦怎麼選？Hello Stay 三館比較｜鹽埕民宿",
+  title: "高雄包棟推薦怎麼選？Hello Stay 館別、人數與設備比較",
   description:
-    "比較你好哇寓所、溝頂民宿與大智若愚。依人數、房型、衛浴、廚房、公共空間與電梯需求，快速找到適合的高雄鹽埕包棟民宿。",
+    "想找高雄包棟推薦？這頁直接比較 Hello Stay 館別、人數、房型、衛浴、廚房、公共空間與電梯需求，快速找到適合的高雄團體住宿與高雄家族旅遊包棟方案。",
   alternates: { canonical: "https://www.hello-stay.com/compare" },
   openGraph: {
-    title: "高雄包棟推薦怎麼選？Hello Stay 三館比較",
-    description: "依人數、房型、衛浴、廚房與公共空間，快速比較 Hello Stay 三個館別。",
+    title: "高雄包棟推薦怎麼選？Hello Stay 館別、人數與設備比較",
+    description: "直接比較高雄包棟推薦方案，從人數、設備到館別差異，快速找到適合的高雄團體住宿。",
     url: "https://www.hello-stay.com/compare",
     images: [
       {
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 const properties = [
   {
     id: "compare-hellohouse",
-    kicker: "HELLO HOUSE",
+    kicker: "你好哇寓所",
     title: "你好哇寓所",
-    summary: ["6-26 人", "中島廚房 大型交誼空間", "適合聚餐 迎娶 慶生"],
+    summary: ["6-26 人", "中島廚房與大型公共空間", "適合聚餐 迎娶 慶生"],
     image: {
       src: "/images/hellohouse/1000.webp",
       alt: "你好哇寓所 1F 中島廚房與大型交誼空間",
@@ -53,7 +53,7 @@ const properties = [
   },
   {
     id: "compare-godin",
-    kicker: "GODIN HOUSE",
+    kicker: "溝頂民宿",
     title: "溝頂民宿",
     summary: ["4-12 人", "五層獨棟 四間客房", "每間客房都有獨立衛浴"],
     image: {
@@ -81,19 +81,19 @@ const properties = [
   },
   {
     id: "compare-dazhi",
-    kicker: "DAZHI RUOYU",
+    kicker: "大智若愚",
     title: "大智若愚",
-    summary: ["20-48 人規劃中", "電梯 一層三房一廳", "適合大型團體需求登記"],
+    summary: ["20-48 人", "尚未開放訂房", "電梯 一層三房一廳"],
     image: {
       src: "/images/dazhi/building-render.webp",
       alt: "大智若愚電梯大樓與大型團體館別規劃",
     },
-    description: ["大型團體與電梯動線需求", "目前規劃中", "可先留下需求"],
+    description: ["大型團體與電梯動線需求", "尚未開放訂房", "可先留下需求"],
     specs: [
       { label: "規劃人數", value: "20-48 人" },
       { label: "空間", value: "一層三房一廳" },
       { label: "動線", value: "電梯大樓" },
-      { label: "狀態", value: "規劃中 可先登記需求" },
+      { label: "狀態", value: "尚未開放訂房 可先登記需求" },
     ],
     groups: [
       {
@@ -112,15 +112,15 @@ const properties = [
 const comparisonFacts = [
   { label: "4-12 人", value: "溝頂 四房獨棟" },
   { label: "6-26 人", value: "你好哇 中島廚房" },
-  { label: "20-48 人", value: "大智若愚 電梯規劃" },
+  { label: "尚未開放訂房", value: "大智若愚 電梯大樓" },
   { label: "要開伙", value: "你好哇更完整" },
 ];
 
 const bookingNotes = [
-  "近期入住以 你好哇或溝頂 為主",
+  "近期入住請先看你好哇或溝頂",
   "需要廚房時 你好哇優勢更明確",
   "每房獨立衛浴時 溝頂更直觀",
-  "需要電梯或 26 人以上 可詢問大智若愚或雙館",
+  "近期入住看雙館；未來電梯需求可登記大智若愚",
 ];
 
 const fit = [
@@ -159,7 +159,7 @@ const faqs = [
   },
   {
     question: "大智若愚現在可以直接訂嗎",
-    answer: "大智若愚仍在規劃中 適合大型團體先登記需求 近期入住仍以你好哇 溝頂 或雙館安排為主",
+    answer: "大智若愚目前尚未開放訂房。近期入住請先看你好哇、溝頂或雙館；若在意電梯與大型團體動線，可先登記需求。",
   },
 ];
 
@@ -171,8 +171,8 @@ export default function ComparePage() {
           {
             "@context": "https://schema.org",
             "@type": "ItemList",
-            name: "高雄包棟民宿三館比較",
-            description: "Hello Stay 你好哇寓所、溝頂民宿與大智若愚比較",
+            name: "Hello Stay 館別怎麼選",
+            description: "先分清目前可訂館別，再看尚未開放訂房的大智若愚。",
             itemListElement: properties.map((item, index) => ({
               "@type": "ListItem",
               position: index + 1,
@@ -205,25 +205,35 @@ export default function ComparePage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "COMPARE STAYS",
-          title: "三館差異一次看",
-          lead: ["人數 房型 衛浴 廚房 公共空間放在同一排看", "三館差異會很清楚"],
+          kicker: "三館比較",
+          title: "高雄包棟推薦怎麼選？",
+          lead: [
+            "先看目前可訂的兩館，",
+            "再看尚未開放訂房的大智若愚。",
+            "如果你現在在比高雄包棟推薦、",
+            "高雄團體住宿或家族旅遊包棟，這頁會最快。",
+          ],
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 三館比較主視覺",
           },
           stats: [
-            { label: "4-12 人", value: "溝頂民宿 四房獨棟" },
-            { label: "6-26 人", value: "你好哇寓所 中島廚房" },
-            { label: "20-48 人", value: "大智若愚 電梯規劃" },
-            { label: "比較重點", value: "房型 衛浴 設備 公共空間" },
+            { label: "目前可訂", value: "溝頂民宿 與 你好哇寓所" },
+            { label: "尚未開放訂房", value: "大智若愚" },
+            { label: "比較重點", value: "人數 房型 衛浴 設備" },
+            { label: "下一步", value: "先看目前可訂再談規劃" },
           ],
-          primaryAction: { href: "/book", label: "查空房與報價" },
+          primaryAction: { href: "/book", label: "查詢空房與報價" },
           secondaryAction: { href: "/packages", label: "看入住情境" },
         }}
         overview={{
-          kicker: "QUICK COMPARE",
-          title: "三館快速對照",
+          kicker: "三館速看",
+          title: "目前可訂與尚未開放訂房",
+          intro: [
+            "先看目前可訂的兩館，",
+            "再補看尚未開放訂房的大智若愚。",
+            "人數與設備需求一對上，館別就會很快收斂。",
+          ],
           columns: 3,
           cards: properties.map((item) => ({
             id: item.id,
@@ -236,7 +246,12 @@ export default function ComparePage() {
         }}
         details={{
           kicker: "PROPERTY DETAILS",
-          title: "房型 設備 空間",
+          title: "房型、設備與目前狀態",
+          intro: [
+            "先分清目前可訂與尚未開放訂房，",
+            "再比住起來的節奏。",
+            "這也是多數人在找高雄包棟推薦時真正會卡住的地方。",
+          ],
           cards: properties.map((item) => ({
             id: item.id,
             kicker: item.kicker,
@@ -255,13 +270,13 @@ export default function ComparePage() {
           fit,
         }}
         gallery={{
-          kicker: "VISUAL DIFFERENCE",
+          kicker: "空間對照",
           title: "三館空間感差異",
           columns: 3,
           images: galleryImages,
         }}
         faq={{
-          kicker: "FAQ",
+          kicker: "常見問題",
           title: "三館比較常見問題",
           items: faqs,
         }}

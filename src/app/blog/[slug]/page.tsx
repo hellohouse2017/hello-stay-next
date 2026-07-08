@@ -12,6 +12,65 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getPrunedBlogRedirect, isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
 
 type Props = { params: Promise<{ slug: string }> };
+type ArticleFaq = { q: string; a: string };
+
+const DEFAULT_ARTICLE_IMAGE = "https://www.hello-stay.com/images/cover-bg.webp";
+
+function getArticleSection(tags?: string[]) {
+    return tags?.[0];
+}
+
+function estimateWordCount(text: string) {
+    const plainText = text.replace(/\s+/g, " ").trim();
+    if (!plainText) {
+        return 0;
+    }
+
+    const cjkCount = (plainText.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu) || []).length;
+    const latinWordCount = plainText
+        .replace(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu, " ")
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
+
+    return cjkCount + latinWordCount;
+}
+
+function getScheduledArticleWordCount(article: { sections: Array<{ content: string }> }) {
+    return estimateWordCount(article.sections.map((section) => section.content).join(" "));
+}
+
+function buildFaqSchema(faq?: ArticleFaq[]) {
+    if (!faq || faq.length === 0) {
+        return [];
+    }
+
+    return [{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+    }];
+}
+
+function FaqSection({ faq }: { faq: ArticleFaq[] }) {
+    return (
+        <Reveal>
+            <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
+                <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px", letterSpacing: "0.04em" }}>常見問答</h2>
+                {faq.map((item, index) => (
+                    <div key={`${item.q}-${index}`} style={{ marginBottom: index < faq.length - 1 ? "20px" : 0 }}>
+                        <h3 style={{ fontSize: "0.92rem", color: "#3D3830", marginBottom: "8px", fontWeight: 500 }}>Q: {item.q}</h3>
+                        <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 2 }}>A: {item.a}</p>
+                    </div>
+                ))}
+            </section>
+        </Reveal>
+    );
+}
 
 // Generate static pages for both scheduled articles and MDX articles
 export async function generateStaticParams() {
@@ -78,18 +137,20 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         "@context": "https://schema.org", "@type": "Article",
                         headline: mdxArticle.title,
                         description: mdxArticle.description,
-                        image: ["https://www.hello-stay.com/images/cover-bg.webp"],
+                        image: [DEFAULT_ARTICLE_IMAGE],
                         author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
                         publisher: {
                             "@type": "Organization",
                             name: "Hello Stay",
                             url: "https://www.hello-stay.com",
-                            logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
+                            logo: { "@type": "ImageObject", url: DEFAULT_ARTICLE_IMAGE },
                         },
                         datePublished: mdxArticle.date,
                         dateModified: mdxArticle.dateModified || mdxArticle.date,
                         inLanguage: "zh-Hant",
                         keywords: (mdxArticle.tags || []).join(", "),
+                        articleSection: getArticleSection(mdxArticle.tags),
+                        wordCount: mdxArticle.wordCount,
                         mainEntityOfPage: mdxArticle.canonical,
                     },
                     {
@@ -100,6 +161,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             { "@type": "ListItem", position: 3, name: mdxArticle.title.split("｜")[0] || mdxArticle.title, item: mdxArticle.canonical },
                         ],
                     },
+                    ...buildFaqSchema(mdxArticle.faq),
                 ]} />
                 <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                     <Breadcrumb items={[{ name: "旅宿攻略", href: "/blog" }, { name: mdxArticle.title.split("｜")[0] || mdxArticle.title, href: `/blog/${slug}` }]} />
@@ -122,6 +184,8 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             </div>
                         </article>
                     </Reveal>
+
+                    {mdxArticle.faq && mdxArticle.faq.length > 0 ? <FaqSection faq={mdxArticle.faq} /> : null}
 
                     <Reveal>
                         <HomepageIntentBlock
@@ -173,18 +237,20 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     "@context": "https://schema.org", "@type": "Article",
                     headline: article.title,
                     description: article.description,
-                    image: ["https://www.hello-stay.com/images/cover-bg.webp"],
+                    image: [DEFAULT_ARTICLE_IMAGE],
                     author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
                     publisher: {
                         "@type": "Organization",
                         name: "Hello Stay",
                         url: "https://www.hello-stay.com",
-                        logo: { "@type": "ImageObject", url: "https://www.hello-stay.com/images/cover-bg.webp" },
+                        logo: { "@type": "ImageObject", url: DEFAULT_ARTICLE_IMAGE },
                     },
                     datePublished: article.publishDate,
                     dateModified: article.dateModified || article.publishDate,
                     inLanguage: "zh-Hant",
                     keywords: (article.tags || []).join(", "),
+                    articleSection: getArticleSection(article.tags),
+                    wordCount: getScheduledArticleWordCount(article),
                     mainEntityOfPage: `https://www.hello-stay.com/blog/${slug}`,
                 },
                 {
@@ -195,13 +261,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         { "@type": "ListItem", position: 3, name: article.title.split("：")[0] || article.title, item: `https://www.hello-stay.com/blog/${slug}` },
                     ],
                 },
-                ...(article.faq ? [{
-                    "@context": "https://schema.org", "@type": "FAQPage",
-                    mainEntity: article.faq.map(f => ({
-                        "@type": "Question", name: f.q,
-                        acceptedAnswer: { "@type": "Answer", text: f.a },
-                    })),
-                }] : []),
+                ...buildFaqSchema(article.faq),
             ]} />
             <div className="w" style={{ maxWidth: "720px", padding: "0 28px 80px" }}>
                 <Breadcrumb items={[{ name: "旅宿攻略", href: "/blog" }, { name: article.title.split("：")[0] || article.title, href: `/blog/${slug}` }]} />
@@ -230,19 +290,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     </Reveal>
                 ))}
 
-                {article.faq && article.faq.length > 0 && (
-                    <Reveal>
-                        <section style={{ background: "#fff", borderRadius: "16px", padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-                            <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px", letterSpacing: "0.04em" }}>常見問答</h2>
-                            {article.faq.map((f, i) => (
-                                <div key={i} style={{ marginBottom: i < article.faq!.length - 1 ? "20px" : 0 }}>
-                                    <h3 style={{ fontSize: "0.92rem", color: "#3D3830", marginBottom: "8px", fontWeight: 500 }}>Q: {f.q}</h3>
-                                    <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 2 }}>A: {f.a}</p>
-                                </div>
-                            ))}
-                        </section>
-                    </Reveal>
-                )}
+                {article.faq && article.faq.length > 0 ? <FaqSection faq={article.faq} /> : null}
 
                 <Reveal>
                     <HomepageIntentBlock

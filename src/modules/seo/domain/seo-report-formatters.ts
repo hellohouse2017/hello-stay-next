@@ -16,16 +16,19 @@ export type MainGa4SectionStatus = 'configured' | 'missing_config' | 'error';
 
 export function buildMainSeoHealthIntro(options: {
     timestamp: string;
+    triggerSource: string;
     robotsOk: boolean;
     sitemap: SitemapCheckResult;
     pagesWithJsonLd: number;
     totalPages: number;
     pagesWithIssues: PageMetadataCheck[];
 }): string {
-    const { timestamp, robotsOk, sitemap, pagesWithJsonLd, totalPages, pagesWithIssues } = options;
+    const { timestamp, triggerSource, robotsOk, sitemap, pagesWithJsonLd, totalPages, pagesWithIssues } = options;
 
     let report = `📊 <b>SEO 健康日報</b>\n`;
     report += `🕐 ${timestamp}\n`;
+    report += `🧭 觸發來源: ${triggerSource}\n`;
+    report += `🔁 推播策略: Asia/Taipei 同日最多 1 次（force=1 可覆蓋）\n`;
     report += `──────────────\n`;
     report += `${robotsOk ? '✅' : '❌'} robots.txt\n`;
     report += `${sitemap.ok ? '✅' : '❌'} sitemap.xml (${sitemap.pageCount} 頁)\n`;
@@ -48,15 +51,18 @@ export function buildMainSeoHealthIntro(options: {
 
 export function buildRuinsSeoHealthIntro(options: {
     timestamp: string;
+    triggerSource: string;
     robotsOk: boolean;
     sitemap: SitemapCheckResult;
     llms: LlmsCheckResult;
     jsonLd: JsonLdCoverageResult;
 }): string {
-    const { timestamp, robotsOk, sitemap, llms, jsonLd } = options;
+    const { timestamp, triggerSource, robotsOk, sitemap, llms, jsonLd } = options;
 
     let report = `📊 <b>廢墟酒吧 SEO 健康日報</b>\n`;
     report += `🕐 ${timestamp}\n`;
+    report += `🧭 觸發來源: ${triggerSource}\n`;
+    report += `🔁 推播策略: Asia/Taipei 同日最多 1 次（force=1 可覆蓋）\n`;
     report += `──────────────\n`;
     report += `${robotsOk ? '✅' : '❌'} robots.txt\n`;
     report += `${sitemap.ok ? '✅' : '❌'} sitemap.xml (${sitemap.pageCount} 頁)\n`;

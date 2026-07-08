@@ -8,6 +8,9 @@ import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { getAlternateLinks } from "@/i18n/config";
+import { buildGa4InitScript } from "@/lib/ai-assistant-referrers";
+
+const GA4_MEASUREMENT_ID = "G-LKVWPNVH5M";
 
 const notoSans = Noto_Sans_TC({
   subsets: ["latin"],
@@ -26,24 +29,24 @@ const notoSerif = Noto_Serif_TC({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hello-stay.com"),
   title: {
-    default: "高雄包棟民宿｜6-48人鹽埕住宿・近駁二大港橋｜Hello Stay",
-    template: "%s | Hello Stay 高雄包棟民宿",
+    default: "高雄包棟民宿｜Hello Stay",
+    template: "%s | Hello Stay",
   },
-  description: "高雄鹽埕包棟民宿推薦 Hello Stay，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官網判斷館別，官方訂房站查空房與報價。",
+  description: "高雄鹽埕包棟民宿推薦 Hello Stay，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官網先幫你判斷館別，再查空房與報價。",
   authors: [{ name: "Hello Stay" }],
   openGraph: {
     type: "website",
     locale: "zh_TW",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
-    title: "高雄包棟民宿｜6-48人鹽埕住宿｜Hello Stay",
-    description: "高雄鹽埕包棟民宿，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官方訂房站查空房與報價。",
+    title: "高雄包棟民宿｜Hello Stay",
+    description: "高雄鹽埕包棟民宿，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，先查空房與報價。",
     images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 高雄包棟民宿" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "高雄包棟民宿推薦 | Hello Stay",
-    description: "高雄鹽埕區三館包棟民宿，6至48人彈性方案。",
+    description: "高雄鹽埕區三館包棟民宿，依人數選擇最適合的方案。",
     images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
 
@@ -95,16 +98,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LKVWPNVH5M"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-LKVWPNVH5M');
-          `}
+          {buildGa4InitScript(GA4_MEASUREMENT_ID)}
         </Script>
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>

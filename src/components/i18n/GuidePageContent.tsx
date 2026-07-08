@@ -71,7 +71,7 @@ export default function GuidePageContent({ locale }: { locale: Locale }) {
                     <Reveal>
                         <div className="grid-asym grid-asym-r" style={{ alignItems: "center", marginBottom: "60px" }}>
                             <div>
-                                <div className="label-d" style={{ color: "#8A8279", fontSize: "0.75rem", letterSpacing: "0.2em" }}>EASY ACCESS</div>
+                                <div className="label-d" style={{ color: "#8A8279", fontSize: "0.75rem", letterSpacing: "0.2em" }}>交通便利</div>
                                 <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "#3D3830", marginBottom: "20px", fontWeight: 400 }}>
                                     {t.guide.section2_title}
                                 </h2>

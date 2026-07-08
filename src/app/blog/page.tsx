@@ -7,13 +7,13 @@ import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articl
 import { isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
 
 export const metadata: Metadata = {
-  title: "旅宿攻略｜高雄包棟民宿情境 設備與交通整理",
+  title: "高雄包棟民宿怎麼選？情境、設備與交通整理",
   description:
-    "把 Hello Stay 的攻略內容重排成更好理解的入口 依旅遊目的 設備需求與人數問題找文章 不再只是日期清單",
+    "把 Hello Stay 的攻略內容重排成更好理解的入口，直接依旅遊目的、設備需求與人數問題找文章。",
   alternates: { canonical: "https://www.hello-stay.com/blog" },
   openGraph: {
-    title: "旅宿攻略｜高雄包棟民宿情境 設備與交通整理",
-    description: "從家族旅遊 企業團建 婚禮迎娶到廚房 麻將與交通 直接從需求切入",
+    title: "高雄包棟民宿怎麼選？情境、設備與交通整理",
+    description: "從家族旅遊、企業團建、婚禮迎娶到廚房、麻將與交通，直接從需求切入。",
     url: "https://www.hello-stay.com/blog",
     images: [
       {
@@ -46,8 +46,8 @@ type ArticleBucket = {
 const buckets: ArticleBucket[] = [
   {
     id: "bucket-scenarios",
-    kicker: "TRAVEL SCENARIOS",
-    title: "旅程類型",
+    kicker: "旅遊情境",
+    title: "依旅程找文章",
     intro: "如果你是在找這次旅程到底該怎麼安排 從情境入口切入會最快",
     articleSlugs: [
       "kaohsiung-family-reunion",
@@ -58,7 +58,7 @@ const buckets: ArticleBucket[] = [
   },
   {
     id: "bucket-features",
-    kicker: "FEATURES",
+    kicker: "設備玩法",
     title: "找設備或玩法",
     intro: "很多客人不是先問哪一館，而是先問有沒有廚房、麻將、跨年空間或駁二步行圈。",
     articleSlugs: [
@@ -70,7 +70,7 @@ const buckets: ArticleBucket[] = [
   },
   {
     id: "bucket-practical",
-    kicker: "PRACTICAL",
+    kicker: "實用資訊",
     title: "交通相關問題",
     intro: "這類文章不是在講浪漫，而是在講真的會卡住旅客的事。",
     articleSlugs: ["taiwan-travel-foreign-guide"],
@@ -765,9 +765,9 @@ export default async function BlogIndex() {
                 <div className="blog-hero__copy">
                   <p className="blog-pill">HELLO STAY JOURNAL</p>
                   <p className="blog-kicker">LOCAL INSIGHTS</p>
-                  <h1>把住宿問題整理清楚</h1>
+                  <h1>高雄包棟民宿怎麼選？從攻略直接找到適合頁面</h1>
                   <p className="blog-hero__lead">
-                    文章依家族旅遊 企業團建 婚禮迎娶 廚房 麻將與交通重新整理 不用先知道關鍵字 也能直接找到對應內容
+                    文章依家族旅遊、企業團建、婚禮迎娶、廚房、麻將與交通重新整理。你不用先知道關鍵字，也能直接找到對應內容，再一路接回比較頁、館別頁與官方訂房。
                   </p>
 
                   <div className="blog-actions">
@@ -782,19 +782,19 @@ export default async function BlogIndex() {
 
                 <div className="blog-hero__stats">
                   <article>
-                    <span>內容用途</span>
-                    <strong>整理住宿相關問題</strong>
+                    <span>你現在要找的</span>
+                    <strong>住宿、設備與交通問題</strong>
                   </article>
                   <article>
                     <span>常見入口</span>
                     <strong>情境 設備 交通與生活圈</strong>
                   </article>
                   <article>
-                    <span>閱讀方式</span>
-                    <strong>依需求找到對應主題</strong>
+                    <span>怎麼讀</span>
+                    <strong>直接從需求找到對應主題</strong>
                   </article>
                   <article>
-                    <span>接著看</span>
+                    <span>下一步</span>
                     <strong>三館比較與房型頁</strong>
                   </article>
                 </div>
@@ -836,7 +836,7 @@ export default async function BlogIndex() {
 
                 <aside className="blog-side">
                   <section className="blog-side-card">
-                    <h3>閱讀方向</h3>
+                    <h3>先看什麼</h3>
                     <div className="blog-side-list">
                       <article>
                         <span>情境</span>
@@ -847,7 +847,7 @@ export default async function BlogIndex() {
                         <strong>廚房 麻將 交通與生活圈</strong>
                       </article>
                       <article>
-                        <span>接著看</span>
+                        <span>下一步</span>
                         <strong>三館比較 房型設備與空房報價</strong>
                       </article>
                     </div>
@@ -874,8 +874,8 @@ export default async function BlogIndex() {
           <div className="blog-shell">
             <div className="blog-section__head">
               <p className="blog-kicker">READ BY NEED</p>
-              <h2>用需求找文章</h2>
-              <p>不同旅程在意的事情不同 直接從需求切入會更快</p>
+              <h2>依需求找文章</h2>
+              <p>不同旅程在意的事情不同，直接從需求切入會更快。</p>
             </div>
 
             <div className="blog-buckets">
@@ -928,7 +928,7 @@ export default async function BlogIndex() {
 
         <section className="blog-final blog-shell">
           <div>
-            <p className="blog-kicker">NEXT STEP</p>
+            <p className="blog-kicker">下一步</p>
             <h2>攻略看完 去選館</h2>
             <p>
               知道自己這次在找什麼之後 就直接回館別比較 看房型設備 或查日期與空房

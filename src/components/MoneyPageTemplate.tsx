@@ -60,7 +60,7 @@ export default function MoneyPageTemplate({
                             letterSpacing: "0.08em", textDecoration: "none",
                             boxShadow: "0 4px 20px rgba(6,199,85,0.3)",
                         }}>
-                            💬 LINE 立即詢問
+                            💬 LINE 線上客服
                         </a>
                     </Reveal>
                 </div>
@@ -118,7 +118,7 @@ export default function MoneyPageTemplate({
                                                 flex: 1, textAlign: "center", padding: "10px",
                                                 background: "#06C755", color: "#fff", borderRadius: "8px",
                                                 fontSize: "0.78rem", textDecoration: "none", fontWeight: 600,
-                                            }}>LINE 詢問</a>
+                                            }}>LINE 線上客服</a>
                                             <Link href={`/${p.slug}`} style={{
                                                 flex: 1, textAlign: "center", padding: "10px",
                                                 border: "1px solid #ddd", color: "#666", borderRadius: "8px",
@@ -176,7 +176,7 @@ export default function MoneyPageTemplate({
                             padding: "14px 44px", background: "#06C755", color: "#fff",
                             borderRadius: "6px", fontSize: "0.85rem", fontWeight: 600,
                             textDecoration: "none", letterSpacing: "0.08em",
-                        }}>💬 LINE 立即詢問</a>
+                        }}>💬 LINE 線上客服</a>
                         <Link href="/book" style={{
                             padding: "14px 44px", border: "1px solid #2a2a2a", color: "#2a2a2a",
                             fontSize: "0.85rem", textDecoration: "none", letterSpacing: "0.08em",

@@ -6,14 +6,14 @@ import { hellohouse } from "@/data/properties";
 const bookingHref = "https://booking.hello-stay.com/booking?property=%E4%BD%A0%E5%A5%BD%E5%93%87%E5%AF%93%E6%89%80";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜你好哇寓所 6-26人中島廚房包棟・鹽埕｜Hello Stay",
+  title: "你好哇寓所｜高雄 6-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
   description:
-    "高雄鹽埕包棟民宿「你好哇寓所」。6-26 人入住，主打 1F 中島廚房與大型交誼空間，適合家族旅行、朋友聚會、迎娶與多人聚餐。",
+    "高雄 6-26 人包棟民宿「你好哇寓所」，位於鹽埕區，主打 1F 中島廚房、大型交誼空間與麻將桌。適合家族旅行、朋友聚會、迎娶、慶生與多人聚餐。",
   alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
   openGraph: {
-    title: "高雄包棟民宿推薦｜你好哇寓所 6-26人中島廚房包棟・鹽埕｜Hello Stay",
+    title: "你好哇寓所｜高雄 6-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
     description:
-      "你好哇寓所提供 6-26 人包棟，重點是 1F 中島廚房、吧台與大型交誼空間，再搭配雙人房、四人房與六人房。",
+      "你好哇寓所提供高雄 6-26 人包棟，重點是中島廚房、吧台、大型交誼空間與麻將桌，適合多人聚會與家族旅遊。",
     url: "https://www.hello-stay.com/hellohouse",
     images: [
       {
@@ -45,7 +45,7 @@ const stayGuides = [
   "1F 是整團一起備餐、吃飯、聊天、打麻將的核心空間",
   "2F 有雙人房與四人房，3F 與 4F 以多人房型為主",
   "公共空間會直接影響這館的使用感受",
-  "如需迎娶、補寢具或彈性加人，建議直接用 LINE 確認當次方案",
+  "如需迎娶、補寢具或需要加床，請先透過 LINE 確認當次方案",
 ];
 
 const fitGuides = [
@@ -126,22 +126,31 @@ export default function HelloHousePage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "HELLO HOUSE",
-          title: "你好哇寓所",
-          lead:
-            "六間房搭配 1F 中島廚房與大型交誼空間，重點不是單純能睡幾個人，而是整團能不能一起吃飯、聊天、備餐與活動。",
+          kicker: "主館導覽",
+          title: "你好哇寓所｜6-26 人高雄鹽埕包棟民宿",
+          lead: [
+            "六間房搭配 1F 中島廚房",
+            "與大型交誼空間。",
+            "重點不是單純能睡幾個人，",
+            "而是整團能不能一起吃飯、聊天、備餐與活動。",
+          ],
           image: {
             src: "/images/hellohouse/1000.webp",
             alt: "你好哇寓所 1F 中島廚房與交誼空間",
           },
           stats: heroStats,
-          primaryAction: { href: bookingHref, label: "查看空房與報價", external: true },
-          secondaryAction: { href: hellohouse.lineUrl, label: "LINE 詢問方案", external: true },
+          primaryAction: { href: bookingHref, label: "查詢空房與報價", external: true },
+          secondaryAction: { href: hellohouse.lineUrl, label: "LINE 線上客服", external: true },
         }}
         overview={{
-          kicker: "ROOM GUIDE",
+          kicker: "房型指南",
           title: "公共空間與各房型",
-          intro: "1F 聚會與廚房是多數客人最先在意的重點 再搭配各房床位與衛浴會更容易判斷",
+          intro: [
+            "1F 的中島廚房與交誼空間，",
+            "通常是大家最先在意的重點。",
+            "再看各房床位與衛浴，",
+            "會更快判斷適不適合。",
+          ],
           columns: 3,
           cards: hellohouse.rooms.map((room) => ({
             id: getRoomId(room),
@@ -155,9 +164,12 @@ export default function HelloHousePage() {
           })),
         }}
         details={{
-          kicker: "ROOM DETAILS",
+          kicker: "房型細節",
           title: "公共空間與各房型設備",
-          intro: "每層的入住人數 坪數 衛浴與設備都整理在這裡",
+          intro: [
+            "每層的入住人數、坪數、衛浴與設備，",
+            "都整理在這裡。",
+          ],
           cards: hellohouse.rooms.map((room) => ({
             id: getRoomId(room),
             kicker: room.floor,
@@ -186,19 +198,26 @@ export default function HelloHousePage() {
           fit: fitGuides,
         }}
         gallery={{
-          kicker: "GALLERY",
+          kicker: "實景照片",
           title: "實景照片",
-          intro: "館內與館外的實際畫面都整理在這裡",
+          intro: "館內與館外的實際畫面都整理在這裡。",
           columns: 3,
           images: actualGallery,
         }}
         location={{
-          kicker: "LOCATION",
+          kicker: "周邊位置",
           title: "住在鹽埕哪一段",
-          intro: "從大公路巷內走出去，捷運、駁二與鹽埕小吃都在步行範圍。",
+          intro: [
+            "從大公路巷內走出去，",
+            "捷運、駁二與鹽埕小吃都在步行範圍。",
+          ],
           cardTitle: "地址",
           address: hellohouse.address,
-          description: "如果這次行程會穿插駁二散步、鹽埕吃東西，晚上又要回民宿聚餐，這個位置會很順。",
+          description: [
+            "如果這次行程會穿插駁二散步、鹽埕吃東西，",
+            "晚上又要回民宿聚餐，",
+            "這個位置會很順。",
+          ],
           mapUrl: hellohouse.mapUrl,
           spots: nearbyHighlights.map((spot) => ({
             name: spot.name,
@@ -206,11 +225,15 @@ export default function HelloHousePage() {
           })),
         }}
         final={{
-          kicker: "BOOKING",
+          kicker: "訂房提醒",
           title: "確認日期與人數後再查空房",
-          body: "如果最在意的是一起吃飯 備餐和聊天 1F 公共空間與房型配置通常會最影響決定",
+          body: [
+            "如果最在意的是一起吃飯、備餐和聊天，",
+            "1F 公共空間與房型配置，",
+            "通常會最影響決定。",
+          ],
           primaryAction: { href: bookingHref, label: "查這館空房", external: true },
-          secondaryAction: { href: hellohouse.lineUrl, label: "LINE 詢問方案", external: true },
+          secondaryAction: { href: hellohouse.lineUrl, label: "LINE 線上客服", external: true },
         }}
       />
     </>

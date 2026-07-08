@@ -92,7 +92,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                                 </Link>
                             </div>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/godin/cover-1.jpg" alt={locale === "zh" ? "溝頂民宿 Godin House 高雄包棟推薦，五層獨棟溫馨客房與 4F 專屬麻將沙發交誼廳，適合 10-12 人小團體" : "Godin House B&B Kaohsiung - Independent 5-story private villa B&B with cozy bedrooms and 4F lounge for 10-12 guests."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
+                                <Image src="/images/godin/cover-1.jpg" alt={locale === "zh" ? "溝頂民宿 Godin House 高雄包棟推薦，五層獨棟溫馨客房與 4F 專屬麻將沙發交誼廳，適合 4-12 人小團體" : "Godin House B&B Kaohsiung - Independent 5-story private villa B&B with cozy bedrooms and 4F lounge for 4-12 guests."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" className="img-cover" />
                             </div>
                         </div>
                     </Reveal>

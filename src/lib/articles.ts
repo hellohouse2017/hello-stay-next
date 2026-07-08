@@ -17,10 +17,55 @@ export interface ArticleMetadata {
   tags: string[]
   excerpt: string
   slug: string
+  faq?: Array<{ q: string; a: string }>
+  wordCount: number
 }
 
 export interface Article extends ArticleMetadata {
   content: ReactNode
+}
+
+function normalizeFaq(value: unknown): Array<{ q: string; a: string }> | undefined {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+
+  const faq = value
+    .map((item) => {
+      if (!item || typeof item !== 'object') {
+        return null
+      }
+
+      const q = 'q' in item && typeof item.q === 'string' ? item.q.trim() : ''
+      const a = 'a' in item && typeof item.a === 'string' ? item.a.trim() : ''
+      return q && a ? { q, a } : null
+    })
+    .filter((item): item is { q: string; a: string } => item !== null)
+
+  return faq.length > 0 ? faq : undefined
+}
+
+function estimateWordCount(markdown: string): number {
+  const plainText = markdown
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[#>*_\-\n\r]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  if (!plainText) {
+    return 0
+  }
+
+  const cjkCount = (plainText.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu) || []).length
+  const latinWordCount = plainText
+    .replace(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .length
+
+  return cjkCount + latinWordCount
 }
 
 function getArticlePath(slug: string): string {
@@ -59,6 +104,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       emoji: data.emoji,
       tags: data.tags || [],
       excerpt: data.excerpt,
+      faq: normalizeFaq(data.faq),
+      wordCount: estimateWordCount(content),
       content: mdxContent,
     }
   } catch (error) {
@@ -92,7 +139,7 @@ export async function getAllArticles(): Promise<ArticleMetadata[]> {
     slugs.map(async (slug) => {
       const fullPath = path.join(articlesDirectory, `${slug}.mdx`)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data } = matter(fileContents)
+      const { data, content } = matter(fileContents)
 
       return {
         slug,
@@ -104,6 +151,8 @@ export async function getAllArticles(): Promise<ArticleMetadata[]> {
         emoji: data.emoji,
         tags: data.tags || [],
         excerpt: data.excerpt,
+        faq: normalizeFaq(data.faq),
+        wordCount: estimateWordCount(content),
       }
     })
   )

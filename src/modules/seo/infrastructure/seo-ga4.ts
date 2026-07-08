@@ -1,3 +1,5 @@
+import { AI_ASSISTANT_MEDIUM } from '@/lib/ai-assistant-referrers';
+
 export interface Ga4TrafficSummary {
     sessions: number;
     users: number;
@@ -42,8 +44,6 @@ type GoogleRefreshTokenResponse = {
     error?: string;
     error_description?: string;
 };
-
-const AI_ASSISTANT_MEDIUM = 'ai-assistant';
 
 function buildExactStringFilter(fieldName: string, value: string) {
     return {

@@ -3,6 +3,14 @@
         {
             "path": "/api/cron/indexnow",
             "schedule": "0 2 * * *"
+        },
+        {
+            "path": "/api/cron/seo-health",
+            "schedule": "30 11 * * *"
+        },
+        {
+            "path": "/api/cron/seo-health-ruins",
+            "schedule": "35 11 * * *"
         }
     ]
 }

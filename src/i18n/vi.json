@@ -17,7 +17,7 @@
     "section_title": "Ba phong cách, một cam kết",
     "hellohouse_desc": "Cho thuê riêng linh hoạt 6–26 khách. Bếp đảo sang trọng, bàn mạt chược, đa dạng loại phòng. Sự hòa quyện hoàn hảo giữa nét cổ kính và sự tiện nghi hiện đại.",
     "hellohouse_location": "Gần Khu nghệ thuật Pier-2 · Đi bộ 10 phút",
-    "godin_desc": "Biệt thự boutique cho 10–12 khách. Không gian riêng tư 5 tầng, không khí gia đình ấm cúng. Lựa chọn giá trị nhất cho nhóm nhỏ.",
+    "godin_desc": "Biệt thự riêng cho 4-12 khách. Không gian 5 tầng riêng tư với 4 phòng có phòng tắm riêng, thêm lounge tầng 4 và khu chuẩn bị đồ ăn đơn giản.",
     "godin_location": "Hẻm yên tĩnh Diêm Trình · Từ NT$10.000/đêm",
     "dazhi_coming": "Dự kiến khai trương · Cuối năm 2027",
     "dazhi_desc": "Tòa nhà mới có thang máy, tối đa 48 khách. Cạnh cầu Đại Cảng, sát khu kho Đại Nghĩa Pier-2. Thuê theo tầng hoặc toàn tòa.",
@@ -27,8 +27,8 @@
     "cta_title": "Tìm không gian lý tưởng của bạn",
     "cta_sub": "Linh hoạt từ 6 đến 48 khách, thiết kế riêng cho mọi buổi họp mặt.",
     "cta_btn": "Kiểm tra phòng trống & Báo giá",
-    "meta_title": "Biệt thự riêng Cao Hùng | Hello Stay | 6-48 khách",
-    "meta_desc": "Hello Stay cung cấp 3 biệt thự riêng cao cấp tại quận Diêm Trình, Cao Hùng: Hello House (6-26 khách), Godin House (10-12 khách), Đại Trí (tối đa 48 khách). Bếp đảo, mạt chược, gần Pier-2. Google 4.9 sao."
+    "meta_title": "Biệt thự riêng Cao Hùng | Hello Stay",
+    "meta_desc": "Hello Stay cung cấp chỗ ở riêng cho nhóm tại quận Diêm Trình, Cao Hùng. Hiện có thể đặt Hello House (6-26 khách) và Godin House (4-12 khách); Dazhi vẫn đang trong giai đoạn quy hoạch và chưa mở đặt phòng."
   },
   "hellohouse": {
     "tagline": "Hello House · Est. 2017",
@@ -60,7 +60,7 @@
   "godin": {
     "title": "Godin House",
     "tagline": "Godin House · A Quiet Retreat",
-    "hero_desc": "Ẩn mình trong con hẻm yên tĩnh Diêm Trình, tòa nhà 5 tầng độc lập mang đến trải nghiệm lưu trú ấm cúng cho 10-12 khách.",
+    "hero_desc": "Ẩn mình trong con hẻm yên tĩnh Diêm Trình, tòa nhà 5 tầng độc lập mang đến trải nghiệm lưu trú ấm cúng cho 4-12 khách.",
     "about_title": "Du lịch như trở về nhà",
     "about_desc": "Godin House là cơ sở thứ hai tinh tế của gia đình Hello Stay. Toàn bộ tòa nhà 5 tầng để bạn sử dụng riêng. Thiết kế theo phong cách gia đình ấm áp, mỗi lần ở đều như về nhà. Từ NT$10.000 ngày thường — giá trị nhất cho thuê nhóm nhỏ.",
     "rooms_title": "Phòng & Không gian",
@@ -68,8 +68,8 @@
     "cta_title": "Trải nghiệm hoàn hảo cho nhóm nhỏ",
     "cta_sub": "Từ NT$10.000/đêm · Tối đa 12 khách",
     "cta_btn": "Kiểm tra phòng trống",
-    "meta_title": "Godin House | Biệt thự boutique Cao Hùng | 10-12 khách",
-    "meta_desc": "Biệt thự boutique 5 tầng tại quận Diêm Trình, Cao Hùng. Godin House cho 10-12 khách, phong cách gia đình ấm cúng. Từ NT$10.000/đêm. Gần Pier-2."
+    "meta_title": "Godin House | Biệt thự riêng Cao Hùng | 4-12 khách",
+    "meta_desc": "Biệt thự riêng 5 tầng tại quận Diêm Trình, Cao Hùng. Godin House cho 4-12 khách, có 4 phòng tắm riêng, phòng sinh hoạt chung và khu chuẩn bị đồ ăn đơn giản. Gần Pier-2."
   },
   "traffic": {
     "label": "Getting Here",

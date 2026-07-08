@@ -15,6 +15,10 @@ export interface RuinsSeoHealthRoutePayload {
     ranking: Awaited<ReturnType<typeof fetchRuinsGSCData>> | null;
     rankingError: string | null;
     alertSent: boolean;
+    alertSuppressed: boolean;
+    triggerSource: string;
+    forceSend: boolean;
+    previousAlertAt: string | null;
 }
 
 export function buildRuinsSeoHealthRoutePayload(payload: RuinsSeoHealthRoutePayload): RuinsSeoHealthRoutePayload {

@@ -3,12 +3,12 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "關於 Hello Stay｜高雄鹽埕包棟民宿品牌與三館定位",
+  title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
   description:
     "從品牌起點、三館定位到安全承諾，一次看懂 Hello Stay 為什麼專注在高雄鹽埕區做團體包棟住宿。",
   alternates: { canonical: "https://www.hello-stay.com/about" },
   openGraph: {
-    title: "關於 Hello Stay｜高雄鹽埕包棟民宿品牌與三館定位",
+    title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
     description: "了解 Hello Stay 的品牌起點、三館角色分工與合法安全承諾。",
     url: "https://www.hello-stay.com/about",
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const brandCards = [
   {
     id: "about-origin",
-    kicker: "ORIGIN",
+    kicker: "品牌起點",
     title: "從鹽埕老屋開始",
     summary: "Hello Stay 不是先想做很多館，而是先想解決團體旅客住飯店被拆散的問題。",
     image: {
@@ -36,7 +36,7 @@ const brandCards = [
   },
   {
     id: "about-portfolio",
-    kicker: "PORTFOLIO",
+    kicker: "三館分工",
     title: "三館各自有角色",
     summary: "你好哇、溝頂和大智若愚不是重複館型，而是對應不同人數和不同使用情境。",
     image: {
@@ -47,7 +47,7 @@ const brandCards = [
   },
   {
     id: "about-safety",
-    kicker: "ASSURANCE",
+    kicker: "安全承諾",
     title: "合法與安全先講清楚",
     summary: "合法民宿登記、公共意外責任險與消防設備，不是附帶提一句，而是客人能不能放心下訂的前提。",
     image: {
@@ -61,7 +61,7 @@ const brandCards = [
 const detailCards = [
   {
     id: "about-origin",
-    kicker: "ORIGIN",
+    kicker: "品牌起點",
     title: "品牌起點不是做設計，是解決團體住宿的痛點",
     description:
       "很多家庭、同學會和公司團體不是真的在找最豪華的房，而是在找一個可以住在一起、吃在一起、晚上還能繼續聚的地方。Hello Stay 就是從這個需求開始，在鹽埕慢慢把適合團體入住的空間整理出來。",
@@ -88,8 +88,8 @@ const detailCards = [
   },
   {
     id: "about-portfolio",
-    kicker: "PORTFOLIO",
-    title: "三館分工很清楚，不是同一頁文案換名字",
+    kicker: "三館分工",
+    title: "三館各自對應不同人數與空間需求",
     description:
       "你好哇寓所主打大型公共空間與中島廚房，溝頂民宿主打小團體整棟獨立與四間客房獨立衛浴，大智若愚則是面向更大型團體的電梯與包層規劃。這樣分，是為了讓客人更快找到適合自己的空間。",
     image: {
@@ -115,7 +115,7 @@ const detailCards = [
   },
   {
     id: "about-safety",
-    kicker: "ASSURANCE",
+    kicker: "安全承諾",
     title: "合法營運、安全設備與保險，是我們先交代的底線",
     description:
       "團體住宿不是只看照片 館別是否合法 是否投保公共意外責任險 消防與清潔是不是有基本水準 這些都會直接影響旅客敢不敢訂 Hello Stay 會把這些資訊公開呈現",
@@ -143,9 +143,9 @@ const detailCards = [
 ];
 
 const facts = [
-  { label: "品牌重點", value: "高雄鹽埕區團體包棟" },
+  { label: "我們在做什麼", value: "高雄鹽埕區團體包棟" },
   { label: "選館基準", value: "人數 設備 房型" },
-  { label: "館別結構", value: "你好哇 溝頂 大智若愚" },
+  { label: "目前館別", value: "你好哇 溝頂 大智若愚" },
   { label: "決策底線", value: "合法 安全 位置與空間好用" },
 ];
 
@@ -248,10 +248,10 @@ export default function AboutPage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "ABOUT HELLO STAY",
-          title: "認識 Hello Stay",
+          kicker: "關於品牌",
+          title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
           lead:
-            "Hello Stay 以高雄鹽埕團體包棟住宿為主軸 三館分別對應不同人數與空間需求 合法登記與安全承諾也一併公開",
+            "Hello Stay 以高雄鹽埕團體包棟住宿為主軸。三館分別對應不同人數與空間需求，合法登記與安全承諾也一併公開。",
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 品牌與館別主視覺",
@@ -266,42 +266,42 @@ export default function AboutPage() {
           secondaryAction: { href: "/book", label: "直接查日期與空房" },
         }}
         overview={{
-          kicker: "BRAND GUIDE",
-          title: "品牌核心",
-          intro: "從起點 三館分工到安全承諾",
+          kicker: "品牌怎麼開始",
+          title: "品牌怎麼開始",
+          intro: "從起點、定位到安全承諾",
           columns: 3,
           cards: brandCards,
         }}
         details={{
-          kicker: "WHAT DEFINES US",
+          kicker: "為什麼客人會選",
           title: "為什麼客人會選 Hello Stay",
-          intro: "重點不在形容詞 而在館別定位與住宿邏輯",
+          intro: "重點不在形容詞，而在館別定位與住宿邏輯。",
           cards: detailCards,
           factsTitle: "品牌重點整理",
           facts,
-          guidesTitle: "品牌輪廓",
+          guidesTitle: "品牌定位",
           guides,
           fitTitle: "適合對象",
           fit,
         }}
         gallery={{
-          kicker: "OUR STAYS",
+          kicker: "目前館別方向",
           title: "目前館別方向",
           intro: "三館不是同一個模板換名字，而是依不同團體需求分別設計。",
           columns: 3,
           images: galleryImages,
         }}
         faq={{
-          kicker: "FAQ",
+          kicker: "常見問題",
           title: "品牌常見問題",
           intro: "客人最常問的品牌問題",
           items: faqs,
         }}
         final={{
-          kicker: "PROPERTIES",
+          kicker: "下一步",
           title: "真正影響入住決定的是館別差異",
           body:
-            "人數 公共空間 房型配置與設備條件 會比品牌介紹更直接影響入住判斷",
+            "人數、公共空間、房型配置與設備條件，會比品牌介紹更直接影響入住判斷。",
           primaryAction: { href: "/compare", label: "看三館比較" },
           secondaryAction: { href: "/packages", label: "看情境方案" },
         }}

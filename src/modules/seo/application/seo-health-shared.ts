@@ -1,4 +1,10 @@
-import { buildRankingReport, findLatestGSCDate, type ISeoSnapshot } from '@/modules/seo/infrastructure/seo-ranking';
+import {
+    buildRankingReport,
+    buildTrendRankingReport,
+    findLatestGSCDate,
+    type ISeoSnapshot,
+    type SeoTrendReport,
+} from '@/modules/seo/infrastructure/seo-ranking';
 
 export type SeoRankingData = {
     date: string;
@@ -9,15 +15,15 @@ export type SeoRankingData = {
     topQueries: ISeoSnapshot['topQueries'];
     targetKeywords: ISeoSnapshot['targetKeywords'];
     topPages: ISeoSnapshot['topPages'];
+    trendReport: SeoTrendReport;
 };
 
 type RankingSnapshotFetcher = (date: string) => Promise<ISeoSnapshot | null>;
-type RankingDataFetcher = (targetDate: string) => Promise<Omit<SeoRankingData, 'date'> | null>;
 type RankingSnapshotSaver = (date: string, data: Omit<ISeoSnapshot, 'date' | 'createdAt'>) => Promise<unknown>;
 
-export type BuildSeoRankingSectionOptions = {
+export type BuildSeoRankingSectionOptions<TRankingData extends Omit<ISeoSnapshot, 'date' | 'createdAt'>> = {
     pageFilter?: string;
-    fetchData: RankingDataFetcher;
+    fetchData: (targetDate: string) => Promise<TRankingData | null>;
     saveSnapshot: RankingSnapshotSaver;
     getSnapshot: RankingSnapshotFetcher;
     errorPrefix: string;
@@ -25,11 +31,15 @@ export type BuildSeoRankingSectionOptions = {
     findLatestDate?: typeof findLatestGSCDate;
 };
 
-export type BuildSeoRankingSectionResult = {
+export type BuildSeoRankingSectionResult<TRankingData extends Omit<ISeoSnapshot, 'date' | 'createdAt'>> = {
     report: string;
-    rankingData: SeoRankingData | null;
+    rankingData: (TRankingData & { date: string }) | null;
     rankingError: string | null;
 };
+
+function hasTrendReport(data: Omit<ISeoSnapshot, 'date' | 'createdAt'>): data is SeoRankingData {
+    return 'trendReport' in data;
+}
 
 export function getDaysAgoDateString(daysAgo: number): string {
     const d = new Date();
@@ -37,13 +47,13 @@ export function getDaysAgoDateString(daysAgo: number): string {
     return d.toISOString().split('T')[0];
 }
 
-export async function buildSeoRankingSection(options: BuildSeoRankingSectionOptions): Promise<BuildSeoRankingSectionResult> {
+export async function buildSeoRankingSection<TRankingData extends Omit<ISeoSnapshot, 'date' | 'createdAt'>>(options: BuildSeoRankingSectionOptions<TRankingData>): Promise<BuildSeoRankingSectionResult<TRankingData>> {
     const { pageFilter, fetchData, saveSnapshot, getSnapshot, errorPrefix } = options;
     const connect = options.connect || (async () => undefined);
     const findLatestDate = options.findLatestDate || findLatestGSCDate;
 
     let report = '';
-    let rankingData: SeoRankingData | null = null;
+    let rankingData: (TRankingData & { date: string }) | null = null;
     let rankingError: string | null = null;
 
     try {
@@ -77,8 +87,20 @@ export async function buildSeoRankingSection(options: BuildSeoRankingSectionOpti
             getSnapshot(lastWeekDate),
         ]);
 
-        const todaySnapshot: ISeoSnapshot = { date: dataDate, ...gscData, createdAt: new Date() };
-        report += buildRankingReport(todaySnapshot, yesterday, lastWeek);
+        const todaySnapshot: ISeoSnapshot = {
+            date: dataDate,
+            totalClicks: gscData.totalClicks,
+            totalImpressions: gscData.totalImpressions,
+            avgPosition: gscData.avgPosition,
+            avgCtr: gscData.avgCtr,
+            topQueries: gscData.topQueries,
+            targetKeywords: gscData.targetKeywords,
+            topPages: gscData.topPages,
+            createdAt: new Date(),
+        };
+        report += hasTrendReport(gscData)
+            ? buildTrendRankingReport(dataDate, gscData)
+            : buildRankingReport(todaySnapshot, yesterday, lastWeek);
         rankingData = { date: dataDate, ...gscData };
     } catch (error) {
         const msg = error instanceof Error ? error.message : String(error);

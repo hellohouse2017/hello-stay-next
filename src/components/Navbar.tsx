@@ -91,7 +91,7 @@ export default function Navbar() {
                 <div className="site-announcement">
                     <span>Official Booking</span>
                     <strong>Hello Stay 高雄鹽埕包棟民宿</strong>
-                    <span>官網選館別｜訂房站查空房與報價</span>
+                    <span>官網看方案｜訂房站查空房與報價</span>
                 </div>
                 <nav className="site-nav">
                     <div className="w site-nav__inner">

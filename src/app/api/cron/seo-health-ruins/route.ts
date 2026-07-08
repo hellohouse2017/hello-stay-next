@@ -13,6 +13,7 @@ import { buildSeoRankingSection } from '@/modules/seo/application/seo-health-sha
 import { checkJsonLdCoverage, checkLlmsTxt, checkRobotsTxt, checkSitemapXml } from '@/modules/seo/domain/seo-page-health';
 import { fetchPageSpeedReport } from '@/modules/seo/infrastructure/seo-pagespeed';
 import { buildRuinsSeoHealthRouteErrorPayload, buildRuinsSeoHealthRoutePayload } from '@/modules/seo/application/seo-health-ruins-route-payload';
+import { isForceAlertSend, resolveSeoAlertDispatch, resolveSeoTriggerSource } from '@/modules/seo/application/seo-alert-delivery';
 import { appendOptionalReportSection, buildRuinsSeoHealthOpsState } from '@/modules/seo/application/seo-ops-service';
 import { buildElapsedSection, buildPageSpeedSection, buildRuinsSeoHealthIntro } from '@/modules/seo/domain/seo-report-formatters';
 import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runtime';
@@ -22,6 +23,23 @@ export const maxDuration = 60;
 const SITE_URL = 'https://ruins.hello-stay.com';
 const LOCALE_PAGES = ['/zh', '/en', '/ja', '/ko', '/vi'];
 
+function buildRequestDebugInfo(request: Request, options: { triggerSource: string; forceSend: boolean }) {
+    return {
+        triggerSource: options.triggerSource,
+        forceSend: options.forceSend,
+        url: request.url,
+        userAgent: request.headers.get('user-agent') || '',
+        authorizationPresent: !!request.headers.get('authorization'),
+        xVercelCron: request.headers.get('x-vercel-cron') || '',
+        xSeoTriggerSource: request.headers.get('x-seo-trigger-source') || '',
+        xSeoForceSend: request.headers.get('x-seo-force-send') || '',
+        xForwardedFor: request.headers.get('x-forwarded-for') || '',
+        xForwardedHost: request.headers.get('x-forwarded-host') || '',
+        xForwardedProto: request.headers.get('x-forwarded-proto') || '',
+        host: request.headers.get('host') || '',
+    };
+}
+
 export async function GET(request: Request) {
     const unauthorizedResponse = await defaultSeoRouteRuntime.authorizer.authorize(request);
     if (unauthorizedResponse && process.env.NODE_ENV === 'production') {
@@ -30,6 +48,19 @@ export async function GET(request: Request) {
 
     try {
         const startTime = Date.now();
+        const nowIso = new Date().toISOString();
+        await connectToDatabase();
+        const previousState = await defaultSeoRouteRuntime.opsStateStore.readRuins();
+        const forceSend = isForceAlertSend(request);
+        const triggerSource = resolveSeoTriggerSource(request);
+        const alertDispatch = resolveSeoAlertDispatch({
+            lastAlertAt: previousState?.lastAlertAt,
+            nowIso,
+            forceSend,
+        });
+        const requestDebugInfo = buildRequestDebugInfo(request, { triggerSource, forceSend });
+
+        console.info('[SEO] seo-health-ruins request received', requestDebugInfo);
         const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
 
         // ── Part 1: 健康檢查 ──
@@ -43,6 +74,7 @@ export async function GET(request: Request) {
 
         let report = buildRuinsSeoHealthIntro({
             timestamp: now,
+            triggerSource,
             robotsOk,
             sitemap: sitemapResult,
             llms: llmsResult,
@@ -74,9 +106,18 @@ export async function GET(request: Request) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
         report += buildElapsedSection(elapsed);
 
-        // 推送到廢墟專屬 Telegram
-        const alertSent = await defaultSeoRouteRuntime.notifier.notifyRuins(report);
-        const nowIso = new Date().toISOString();
+        let alertSent = false;
+        if (alertDispatch.shouldSend) {
+            alertSent = await defaultSeoRouteRuntime.notifier.notifyRuins(report);
+        } else {
+            console.info('[SEO] seo-health-ruins alert suppressed', {
+                lastAlertAt: previousState?.lastAlertAt || null,
+                reason: alertDispatch.reason,
+                triggerSource,
+                requestDebugInfo,
+            });
+        }
+
         const state = buildRuinsSeoHealthOpsState({
             nowIso,
             alertSent,
@@ -103,6 +144,10 @@ export async function GET(request: Request) {
             ranking: rankingData,
             rankingError,
             alertSent,
+            alertSuppressed: alertDispatch.alertSuppressed,
+            triggerSource,
+            forceSend,
+            previousAlertAt: previousState?.lastAlertAt || null,
         }));
     } catch (error) {
         console.error('[Cron] seo-health-ruins error:', error);

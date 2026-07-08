@@ -21,6 +21,8 @@ async function main() {
             notifyRuins: async () => false,
         },
         opsStateStore: {
+            readMain: async () => null,
+            readRuins: async () => null,
             persistMain: async (state) => state,
             persistRuins: async (state) => state,
         },

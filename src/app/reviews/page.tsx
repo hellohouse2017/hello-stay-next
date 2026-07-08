@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const voiceCards = [
   {
     id: "reviews-space",
-    kicker: "SPACE FEEL",
+    kicker: "空間感",
     title: "大家最常提到空間感",
     summary: "真正讓客人留下印象的，不是『漂亮』這種空話，而是一起煮、一起玩、一起住的流暢感。",
     image: {
@@ -36,7 +36,7 @@ const voiceCards = [
   },
   {
     id: "reviews-location",
-    kicker: "LOCATION",
+    kicker: "地點便利",
     title: "位置方便也是固定高分點",
     summary: "鹽埕區步行生活圈、駁二、大港橋和美食密度，常常是評價裡反覆出現的關鍵字。",
     image: {
@@ -47,7 +47,7 @@ const voiceCards = [
   },
   {
     id: "reviews-trust",
-    kicker: "TRUST",
+    kicker: "入住順暢",
     title: "入住體驗順不順很重要",
     summary: "自助入住、環境乾淨、溝通明確，這些細節比過度包裝更能建立信任。",
     image: {
@@ -61,7 +61,7 @@ const voiceCards = [
 const detailCards = [
   {
     id: "reviews-space",
-    kicker: "HELLO HOUSE",
+    kicker: "你好哇寓所",
     title: "你好哇寓所的評價多半圍繞在聚會體驗",
     description:
       "主館 Google 4.5 星、75 則評論的高頻內容，不是單純說房間乾淨，而是反覆提到中島廚房、多人聚會、麻將、迎娶採光與整體聚在一起的感覺。這代表它真正的價值被客人感受到。",
@@ -93,7 +93,7 @@ const detailCards = [
   },
   {
     id: "reviews-location",
-    kicker: "YANCHENG",
+    kicker: "鹽埕位置",
     title: "鹽埕位置感受，實際上比想像中更影響滿意度",
     description:
       "客人常常不是只因為館內設備滿意，而是因為住下來後發現駁二、大港橋、捷運站與在地美食真的可以步行完成。這會讓整趟旅程更鬆，不需要一直移動。",
@@ -121,7 +121,7 @@ const detailCards = [
   },
   {
     id: "reviews-trust",
-    kicker: "GODIN HOUSE",
+    kicker: "溝頂民宿",
     title: "溝頂民宿的好評重點，是簡單、直覺、住起來省心",
     description:
       "溝頂民宿沒有主館那麼強烈的派對感 它被稱讚的通常是整棟獨立 分層休息 4F 可以集合 每間客房有獨立衛浴 還有整體乾淨與入住體驗順暢 這種評價對小團體反而很有說服力",
@@ -229,10 +229,10 @@ export default function ReviewsPage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "GUEST FEEDBACK",
-          title: "住客通常記得什麼",
+          kicker: "住客回饋",
+          title: "高雄包棟民宿評價最常提到：空間、位置與入住順暢度",
           lead:
-            "照片會告訴你空間長什麼樣 評價會告訴你住起來到底怎麼樣 這裡整理的是住客最常提到的真實感受",
+            "照片會告訴你空間長什麼樣，評價會告訴你住起來到底怎麼樣。這裡整理的是住客最常提到的真實感受，讓你在看高雄包棟民宿評價時更快判斷館別差異。",
           image: {
             src: "/images/hellohouse/photo2.webp",
             alt: "Hello Stay 住客評價主視覺與中島廚房空間",
@@ -247,15 +247,15 @@ export default function ReviewsPage() {
           secondaryAction: { href: "/book", label: "直接查日期與空房" },
         }}
         overview={{
-          kicker: "WHAT GUESTS NOTICE",
+          kicker: "住客最常提到",
           title: "住客最常留下印象的三件事",
           intro: "有價值的評價 會直接說出客人怎麼用空間 怎麼感受地點",
           columns: 3,
           cards: voiceCards,
         }}
         details={{
-          kicker: "REVIEW SIGNALS",
-          title: "評價反映出的館別特色",
+          kicker: "評價重點",
+          title: "評價反映出的使用感受",
           intro: "把高頻回饋和它代表的館別價值拆開看 差異會更清楚",
           cards: detailCards,
           factsTitle: "口碑重點整理",
@@ -266,23 +266,23 @@ export default function ReviewsPage() {
           fit,
         }}
         gallery={{
-          kicker: "VISUAL PROOF",
+          kicker: "實際空間",
           title: "評價對應到的實際空間",
           intro: "把客人最常提到的空間直接對回照片，比單獨看字句更容易理解。",
           columns: 3,
           images: galleryImages,
         }}
         faq={{
-          kicker: "FAQ",
+          kicker: "常見問題",
           title: "評價相關常見問題",
           intro: "分數來源 館別差異與常見問題",
           items: faqs,
         }}
         final={{
-          kicker: "BOOKING",
-          title: "館別與房型會更關鍵",
+          kicker: "下一步",
+          title: "館別與房型才是關鍵",
           body:
-            "如果口碑方向符合需求 接著看的會是房型配置 設備細節與日期報價",
+            "如果口碑方向符合需求，下一步會是房型配置、設備細節與日期報價。",
           primaryAction: { href: "/compare", label: "看三館比較" },
           secondaryAction: { href: "/book", label: "查空房與報價" },
         }}

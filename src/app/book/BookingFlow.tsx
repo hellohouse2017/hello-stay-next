@@ -24,21 +24,21 @@ function buildBookingHref(property?: string) {
 const entrances: Entrance[] = [
   {
     name: "你好哇寓所",
-    detail: "6-26 人\n中島廚房\n婚禮迎娶與中大型團體",
+    detail: "6-26 人\n依人數幫我推薦\n婚禮迎娶與中大型團體",
     image: properties[0]?.coverImage || "/images/hellohouse/cover.webp",
     alt: "你好哇寓所公共空間",
     property: "你好哇寓所",
   },
   {
     name: "溝頂民宿",
-    detail: "4-12 人小團體\n標準 12 人\n可依正式方案彈性確認",
+    detail: "4-12 人小團體\n我已經知道要住哪一館\n可先看獨棟空間",
     image: properties[1]?.coverImage || "/images/godin/cover-1.webp",
     alt: "溝頂民宿五層獨棟空間",
     property: "溝頂民宿",
   },
   {
     name: "雙館包棟",
-    detail: "你好哇＋溝頂\n雙館合併查詢\n適合多人團體",
+    detail: "你好哇＋溝頂\n想看雙館包棟\n適合多人團體",
     splitImages: [
       { src: properties[0]?.coverImage || "/images/hellohouse/cover.webp", alt: "你好哇寓所", label: "你好哇寓所" },
       { src: properties[1]?.coverImage || "/images/godin/cover-1.webp", alt: "溝頂民宿", label: "溝頂民宿" },
@@ -49,18 +49,18 @@ const entrances: Entrance[] = [
 
 const steps = [
   {
-    title: "館別差異",
-    text: "先把人數與空間需求對上 館別就會更清楚。",
+    title: "先選館別",
+    text: "先把日期與人數輸入，系統會先幫你抓對應館別與目前試算總價。",
     icon: Hotel,
   },
   {
-    title: "即時報價",
-    text: "日期 人數 館別 可售狀態與總價都會在官方訂房站顯示。",
+    title: "查看空房與總價",
+    text: "日期、人數與目前試算總價都會在官方訂房站顯示。",
     icon: CalendarDays,
   },
   {
-    title: "完成預訂",
-    text: "Email 驗證 合約簽署 付款與訂單查詢都在同一個系統內完成。",
+    title: "完成驗證與付款",
+    text: "Email 驗證、合約簽署、付款與訂單查詢都在同一個系統內完成。",
     icon: ShieldCheck,
   },
 ];
@@ -70,16 +70,16 @@ export default function BookingFlow() {
     <main className="book-bridge">
       <section className="book-bridge__hero">
         <div className="book-bridge__copy">
-          <p className="book-bridge__eyebrow">Hello Stay Official Booking</p>
-          <h1>官方空房與報價入口</h1>
+          <p className="book-bridge__eyebrow">官方訂房入口</p>
+          <h1>先選館別，再查空房與報價</h1>
           <p>
-            <span>依館別進入官方訂房站</span>
-            <span>日期 人數與即時總價都會直接顯示</span>
-            <span>驗證 簽署與付款也在同一個系統完成</span>
+            <span>先看要住哪一館</span>
+            <span>再看日期與人數對應的目前試算總價</span>
+            <span>驗證、簽署與付款也在同一個系統完成</span>
           </p>
           <div className="book-bridge__actions">
             <a href={buildBookingHref("你好哇寓所")}>
-              進官方訂房站
+              查詢空房與報價
               <ChevronRight size={16} />
             </a>
             <Link href="/compare">看三館比較</Link>
@@ -96,7 +96,7 @@ export default function BookingFlow() {
           />
           <div>
             <span>鹽埕區 / 近駁二</span>
-            <strong>官網選館別  booking 站查價</strong>
+            <strong>先選館別 再到 booking 站查價</strong>
           </div>
         </div>
       </section>
@@ -116,8 +116,8 @@ export default function BookingFlow() {
 
       <section className="book-bridge__entrances" aria-labelledby="book-entrances-title">
         <div className="book-bridge__section-head">
-          <p className="book-bridge__eyebrow">Choose Property</p>
-          <h2 id="book-entrances-title">依館別進入官方訂房站</h2>
+          <p className="book-bridge__eyebrow">先看哪種安排</p>
+          <h2 id="book-entrances-title">依需求先選館別</h2>
         </div>
 
         <div className="book-bridge__grid">
@@ -140,7 +140,7 @@ export default function BookingFlow() {
               <div className="book-bridge__card-body">
                 <h3>{item.name}</h3>
                 <p>{item.detail}</p>
-                <a href={buildBookingHref(item.property)}>查這館空房</a>
+                <a href={buildBookingHref(item.property)}>查詢空房</a>
               </div>
             </article>
           ))}

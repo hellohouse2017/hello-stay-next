@@ -33,6 +33,10 @@ async function main() {
         },
         rankingError: null,
         alertSent: false,
+        alertSuppressed: true,
+        triggerSource: 'vercel-cron',
+        forceSend: false,
+        previousAlertAt: '2026-05-12T00:30:00.000Z',
     });
 
     assert.deepEqual(payload, {
@@ -66,6 +70,10 @@ async function main() {
         },
         rankingError: null,
         alertSent: false,
+        alertSuppressed: true,
+        triggerSource: 'vercel-cron',
+        forceSend: false,
+        previousAlertAt: '2026-05-12T00:30:00.000Z',
     });
 
     console.log('✅ Ruins SEO health route payload tests passed');

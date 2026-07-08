@@ -8,7 +8,7 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "高雄企業移地訓練住宿｜Off-site 團建・會議包棟推薦",
-    description: "高雄包棟民宿是企業 off-site 團建最佳場地。獨立客廳當會議室，中島廚房團隊聚餐，6-48人彈性方案。白天開會晚上圍爐，凝聚向心力。",
+    description: "高雄包棟民宿是企業 off-site 團建最佳場地。獨立客廳當會議室，中島廚房團隊聚餐，依館別與日期安排彈性方案。白天開會晚上圍爐，凝聚向心力。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-offsite-teambuilding" },
 };
 
@@ -67,8 +67,8 @@ Day 2
 → 兩棟合訂，各有獨立空間
 → 白天一棟開會、一棟休息，互不干擾
 
-39-48 人
-→ 大智若愚（第三館）即將開幕，現代電梯大樓` },
+39 人以上近期入住
+→ 先詢問雙棟聯訂與分房安排；大智若愚目前規劃中，尚未開放訂房` },
     {
         id: "cases", title: "實際客戶案例", content: `案例 1：科技新創 15 人 off-site
 「我們從台北飛高雄做年度策略會議，在你好哇住了兩晚。白天開會很有效率，晚上圍爐煮火鍋喝啤酒，是公司成立以來最有凝聚力的一次活動。」
@@ -87,7 +87,7 @@ export default function OffsitePage() {
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄企業移地訓練住宿｜Off-site 團建包棟推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-offsite-teambuilding", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#setup"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "高雄企業off-site住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區你好哇寓所，客廳可當會議室（20+人），55吋電視投影，中島廚房coffee break和團隊聚餐。6-48人彈性方案，場地+住宿一價全包。比飯店會議室+住宿省30%以上。" } },
+                        { "@type": "Question", name: "高雄企業off-site住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區你好哇寓所，客廳可當會議室（20+人），55吋電視投影，中島廚房coffee break和團隊聚餐。依館別與日期安排彈性方案，場地+住宿一價全包。比飯店會議室+住宿省30%以上。" } },
                         { "@type": "Question", name: "高雄團建活動推薦什麼？", acceptedAnswer: { "@type": "Answer", text: "白天策略工作坊後，推薦：中島廚房團隊料理時間、麻將策略訓練、駁二藝術特區戶外活動、旗津單車一日遊。包棟民宿的好處是不用移動場地，所有活動在同一棟樓。" } },
                     ]
                 },

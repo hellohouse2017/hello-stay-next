@@ -4,8 +4,8 @@ import { useState } from "react";
 
 const PROPERTIES = [
     { id: "hellohouse", name: "你好哇寓所", capacity: "6-26人", price: "依人數彈性報價", perPerson: 0, features: "中島廚房・手動麻將" },
-    { id: "godin", name: "溝頂民宿", capacity: "10-12人", price: "平日$8,000起", perPerson: 0, features: "五層獨棟・交誼廳" },
-    { id: "dazhi", name: "大智若愚", capacity: "20-48人", price: "依人數彈性報價", perPerson: 0, features: "電梯大樓・可包層" },
+    { id: "godin", name: "溝頂民宿", capacity: "4-12人", price: "平日$8,000起", perPerson: 0, features: "五層獨棟・交誼廳" },
+    { id: "dazhi", name: "大智若愚", capacity: "規劃中", price: "尚未開放訂房", perPerson: 0, features: "電梯大樓・未來可包層" },
 ];
 
 const SCENARIOS = ["家庭旅遊", "朋友聚會", "公司團建", "慶生派對", "班遊", "球隊移訓", "其他"];
@@ -100,7 +100,7 @@ export default function ProposalCard() {
             <div className="proposal-card__header">
                 <span className="proposal-card__eyebrow">Quick Proposal</span>
                 <h3>30 秒產出包棟提案</h3>
-                <p>用真實日期、人數與需求，整理成 LINE 詢問訊息</p>
+                <p>用真實日期、人數與需求，整理成 LINE 聯絡訊息</p>
                 <div className="proposal-progress" aria-label={`目前第 ${step + 1} 步，共 4 步`}>
                     {[0, 1, 2, 3].map(i => (
                         <span key={i} className={i <= step ? "active" : ""} />

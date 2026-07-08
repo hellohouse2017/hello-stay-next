@@ -29,6 +29,10 @@ export interface SeoHealthRoutePayload {
         error: string | null;
     };
     alertSent: boolean;
+    alertSuppressed: boolean;
+    triggerSource: string;
+    forceSend: boolean;
+    previousAlertAt: string | null;
 }
 
 export function buildSeoHealthRoutePayload(payload: SeoHealthRoutePayload): SeoHealthRoutePayload {

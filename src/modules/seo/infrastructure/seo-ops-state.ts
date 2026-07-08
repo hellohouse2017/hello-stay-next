@@ -2,6 +2,7 @@ import mongoose, { Schema, type Model } from 'mongoose';
 
 export const SEO_HEALTH_STATE_KEY = 'seo_health_status';
 export const RUINS_SEO_HEALTH_STATE_KEY = 'ruins_seo_health_status';
+const TAIPEI_TIME_ZONE = 'Asia/Taipei';
 
 export interface ContentOpsState {
     status?: 'healthy' | 'failed';
@@ -11,6 +12,22 @@ export interface ContentOpsState {
     alertSent?: boolean;
     summary?: Record<string, unknown>;
     message?: string;
+}
+
+function formatDateKeyInTimeZone(input: string | Date, timeZone: string): string {
+    const date = input instanceof Date ? input : new Date(input);
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+        timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+    const parts = formatter.formatToParts(date);
+    const year = parts.find((part) => part.type === 'year')?.value || '0000';
+    const month = parts.find((part) => part.type === 'month')?.value || '00';
+    const day = parts.find((part) => part.type === 'day')?.value || '00';
+
+    return `${year}-${month}-${day}`;
 }
 
 interface OpsStateDocument {
@@ -36,6 +53,14 @@ export function mergeOpsStateWithAlert<T extends OpsStateWithAlert>(nextState: T
         ...nextState,
         lastAlertAt: nextState.lastAlertAt ?? prevState?.lastAlertAt,
     };
+}
+
+export function hasAlertSentOnTaipeiDate(lastAlertAt?: string, now: string | Date = new Date()): boolean {
+    if (!lastAlertAt) {
+        return false;
+    }
+
+    return formatDateKeyInTimeZone(lastAlertAt, TAIPEI_TIME_ZONE) === formatDateKeyInTimeZone(now, TAIPEI_TIME_ZONE);
 }
 
 export async function readOpsState<T>(key: string): Promise<T | null> {

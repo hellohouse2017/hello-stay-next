@@ -64,7 +64,7 @@ const stays: StayOption[] = [
     href: "/godin",
     image: godin.coverImage,
     imageAlt: "溝頂民宿五層樓獨棟高雄鹽埕包棟空間",
-    capacity: "4-14 人",
+    capacity: "4-12 人",
     planSummary: "2-4 房級距，標準 12 人",
     location: "鹽埕老街生活圈，出門就是在地美食",
     bookingProperty: "溝頂民宿",
@@ -82,8 +82,8 @@ const stays: StayOption[] = [
       { src: godin.coverImage, alt: "溝頂民宿五層獨棟空間", label: "溝頂民宿" },
     ],
     capacity: "27-36 人",
-    planSummary: "你好哇 + 溝頂，最多 36 人",
-    location: "兩館都在鹽埕區，距離 5 公尺",
+    planSummary: "你好哇＋溝頂，最多 36 人",
+    location: "兩館步行約 30 秒，鹽埕同區",
     bookingProperty: "雙館包棟",
     guestGuide: "27-36 人優先",
     bestFor: "26 人以上團體\n需要 6 間房以上\n不想拆成兩筆訂房",
@@ -169,10 +169,9 @@ export default function HomeTemplateExperience() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guestCount, setGuestCount] = useState("");
-  const [property, setProperty] = useState<BookingProperty>("");
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 
-  const selectedProperty = property || suggestProperty(guestCount);
+  const selectedProperty = suggestProperty(guestCount);
   const bookingHref = buildBookingHref({ property: selectedProperty, checkIn, checkOut, guestCount });
 
   useEffect(() => {
@@ -245,21 +244,19 @@ export default function HomeTemplateExperience() {
         </div>
 
         <div className="hs-hero__content">
-          <p className="hs-eyebrow">Hello Stay Official Booking</p>
+          <p className="hs-eyebrow">官方訂房入口</p>
           <h1 id="home-hero-title">
-            高雄鹽埕包棟民宿
+            高雄包棟民宿推薦
             <br />
-            先查日期與人數
-            <br />
-            再選適合館別
+            輸入日期與人數直接選館
           </h1>
           <p className="hs-hero__lead">
-            <span>溝頂民宿 4-12 人</span>
-            <span>你好哇寓所 6-26 人</span>
-            <span>雙館包棟 27-36 人</span>
+            <span>先查日期與實際需要床位的人數，快速找出適合的高雄包棟住宿</span>
+            <span>系統會直接帶你看適合的館別、空房與報價</span>
           </p>
 
           <div className="hs-book-panel" aria-label="快速查詢空房與報價">
+            <p className="hs-book-panel__prompt">你想怎麼選？依人數幫我推薦</p>
             <div className="hs-book-panel__grid">
               <label>
                 <span>入住</span>
@@ -286,21 +283,15 @@ export default function HomeTemplateExperience() {
                   onChange={(event) => setGuestCount(event.target.value)}
                 />
               </label>
-              <label>
-                <span>館別</span>
-                <select value={property} onChange={(event) => setProperty(event.target.value as BookingProperty)}>
-                  <option value="">自動建議</option>
-                  <option value="你好哇寓所">你好哇寓所</option>
-                  <option value="溝頂民宿">溝頂民宿</option>
-                  <option value="雙館包棟">雙館包棟</option>
-                </select>
-              </label>
             </div>
             <div className="hs-book-panel__action">
               <p>
-                {selectedProperty ? `目前建議 ${selectedProperty}` : "可先輸入日期與人數"}
+                {selectedProperty ? `依人數幫你推薦 ${selectedProperty}` : "先輸入日期與實際需要床位的人數"}
               </p>
-              <Link href={bookingHref}>查看空房與報價</Link>
+              <div className="hs-book-panel__links">
+                <Link href={bookingHref}>依人數幫我推薦</Link>
+                <Link href="/compare">我已經知道要住哪一館</Link>
+              </div>
             </div>
           </div>
 
@@ -308,7 +299,7 @@ export default function HomeTemplateExperience() {
             <span>官方直訂</span>
             <span>不收平台手續費</span>
             <span>查空房與報價</span>
-            <span>LINE 詢問</span>
+            <span>LINE 線上客服</span>
           </div>
         </div>
       </section>
@@ -320,7 +311,7 @@ export default function HomeTemplateExperience() {
         </div>
         <div>
           <strong>多人包棟</strong>
-          <span>4 人到 36 人皆可安排</span>
+          <span>4 人到 36 人可安排</span>
         </div>
         <div>
           <strong>即時報價</strong>
@@ -334,7 +325,7 @@ export default function HomeTemplateExperience() {
 
       <section className="hs-section hs-stays" aria-labelledby="stay-compare-title">
         <div className="hs-section__head">
-          <p className="hs-eyebrow">Choose Your Stay</p>
+          <p className="hs-eyebrow">入住方案</p>
           <h2 id="stay-compare-title">
             依人數與需求
             <br />
@@ -399,7 +390,7 @@ export default function HomeTemplateExperience() {
                     ))}
                   </div>
                   <div className="hs-stay-card__actions">
-                    <Link href={stay.href}>{stay.id === "dual" ? "看雙館方案" : "看館別"}</Link>
+                    <Link href={stay.href}>{stay.id === "dual" ? "看雙館方案" : "看房型"}</Link>
                     <Link href={href}>{stay.id === "dual" ? "查雙館空房" : "查這館空房"}</Link>
                   </div>
                 </div>
@@ -416,7 +407,7 @@ export default function HomeTemplateExperience() {
           <p>查空房 報價 驗證 與付款都在 booking.hello-stay.com/booking 完成</p>
         </div>
         <div>
-          <Link href={bookingHref}>查看空房與報價</Link>
+          <Link href={bookingHref}>查詢空房與報價</Link>
           <Link href="/book">查看訂房方式</Link>
         </div>
       </section>

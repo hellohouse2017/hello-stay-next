@@ -474,6 +474,10 @@ h4 {
   line-height: 1.85;
 }
 
+.book-bridge__card-body p {
+  white-space: pre-line;
+}
+
 .book-bridge__actions {
   display: flex;
   flex-wrap: wrap;
@@ -4456,9 +4460,18 @@ h4 {
 
 .hs-book-panel__action {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
+}
+
+.hs-book-panel__prompt {
+  margin: 0 0 14px;
+  color: #1d6b5f;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
 }
 
 .hs-book-panel__action p {
@@ -4468,7 +4481,13 @@ h4 {
   line-height: 1.5;
 }
 
-.hs-book-panel__action a,
+.hs-book-panel__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hs-book-panel__links a,
 .hs-stay-card__actions a,
 .hs-final-cta a {
   display: inline-flex;
@@ -4484,11 +4503,17 @@ h4 {
   text-transform: uppercase;
 }
 
-.hs-book-panel__action a {
+.hs-book-panel__links a {
   flex: 0 0 auto;
   padding: 12px 20px;
   background: #29251f;
   color: #fffdfa;
+}
+
+.hs-book-panel__links a:last-child {
+  background: #fff;
+  color: #29251f;
+  border: 1px solid #d6cabb;
 }
 
 .hs-flow {

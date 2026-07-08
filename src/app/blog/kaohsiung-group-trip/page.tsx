@@ -110,7 +110,7 @@ export default function TripGuidePage() {
                 {
                     "@context": "https://schema.org", "@type": "FAQPage",
                     mainEntity: [
-                        { "@type": "Question", name: "高雄團體旅遊住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，如Hello Stay你好哇寓所。步行可達駁二、大港橋，附近30+間美食老店。包棟有廚房、麻將桌、桌遊，晚上不用出門也能玩。6-48人彈性方案。" } },
+                        { "@type": "Question", name: "高雄團體旅遊住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，如 Hello Stay 你好哇寓所。步行可達駁二、大港橋，附近 30+ 間美食老店。包棟有廚房、麻將桌、桌遊，晚上不用出門也能玩。依人數安排彈性方案。" } },
                         { "@type": "Question", name: "高雄親子旅遊2天1夜怎麼排？", acceptedAnswer: { "@type": "Answer", text: "Day1：駁二小火車→港園牛肉麵→壽山動物園→民宿煮晚餐。Day2：大摳胖碳烤三明治→棧貳庫旋轉木馬→大港橋旋轉秀。住包棟民宿小孩可以盡情跑跳不怕吵。" } },
                         { "@type": "Question", name: "高雄3天2夜行程推薦？", acceptedAnswer: { "@type": "Answer", text: "推薦文化慢旅路線：Day1鹽埕老街→愛河貢多拉。Day2打狗英國領事館→旗津渡輪→燈塔咖啡廳→民宿麻將桌遊。Day3衛武營藝術中心。住在鹽埕區的包棟民宿，景點全在步行或捷運範圍內。" } },
                     ],

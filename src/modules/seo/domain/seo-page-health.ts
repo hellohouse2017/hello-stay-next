@@ -29,6 +29,14 @@ export type PageMetadataCheck = {
     issues: string[];
 };
 
+function containsCjk(text: string): boolean {
+    return /[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/.test(text);
+}
+
+function getDescriptionMinimumLength(description: string): number {
+    return containsCjk(description) ? 50 : 80;
+}
+
 export async function checkRobotsTxt(siteUrl: string, fetchImpl: SeoFetch = fetch): Promise<boolean> {
     try {
         const res = await fetchImpl(`${siteUrl}/robots.txt`, { next: { revalidate: 0 } });
@@ -104,7 +112,7 @@ export async function inspectPageMetadata(
         const desc = descMatch?.[1] || '';
         const hasDescription = desc.length > 0;
         if (!hasDescription) issues.push('❌ 缺少 meta description');
-        else if (desc.length < 80) issues.push(`⚠️ description 太短 (${desc.length}字)`);
+        else if (desc.length < getDescriptionMinimumLength(desc)) issues.push(`⚠️ description 太短 (${desc.length}字)`);
         else if (desc.length > 200) issues.push(`⚠️ description 太長 (${desc.length}字)`);
 
         const hasJsonLd = html.includes('application/ld+json');

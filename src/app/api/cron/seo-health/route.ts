@@ -12,6 +12,7 @@ import {
 import { buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
 import { checkRobotsTxt, checkSitemapXml, inspectPageMetadata, type PageMetadataCheck } from '@/modules/seo/domain/seo-page-health';
 import { buildSeoHealthRouteErrorPayload, buildSeoHealthRoutePayload } from '@/modules/seo/application/seo-health-route-payload';
+import { isForceAlertSend, resolveSeoAlertDispatch, resolveSeoTriggerSource } from '@/modules/seo/application/seo-alert-delivery';
 import { appendOptionalReportSection, buildMainSeoHealthOpsState } from '@/modules/seo/application/seo-ops-service';
 import { buildElapsedSection, buildMainGa4Section, buildMainSeoHealthIntro } from '@/modules/seo/domain/seo-report-formatters';
 import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runtime';
@@ -36,6 +37,23 @@ const PAGES = [
     { path: '/packages', name: '包棟方案' },
 ];
 
+function buildRequestDebugInfo(request: Request, options: { triggerSource: string; forceSend: boolean }) {
+    return {
+        triggerSource: options.triggerSource,
+        forceSend: options.forceSend,
+        url: request.url,
+        userAgent: request.headers.get('user-agent') || '',
+        authorizationPresent: !!request.headers.get('authorization'),
+        xVercelCron: request.headers.get('x-vercel-cron') || '',
+        xSeoTriggerSource: request.headers.get('x-seo-trigger-source') || '',
+        xSeoForceSend: request.headers.get('x-seo-force-send') || '',
+        xForwardedFor: request.headers.get('x-forwarded-for') || '',
+        xForwardedHost: request.headers.get('x-forwarded-host') || '',
+        xForwardedProto: request.headers.get('x-forwarded-proto') || '',
+        host: request.headers.get('host') || '',
+    };
+}
+
 export async function GET(request: Request) {
     const unauthorizedResponse = await defaultSeoRouteRuntime.authorizer.authorize(request);
     if (unauthorizedResponse && process.env.NODE_ENV === 'production') {
@@ -44,6 +62,19 @@ export async function GET(request: Request) {
 
     try {
         const startTime = Date.now();
+        const nowIso = new Date().toISOString();
+        await connectToDatabase();
+        const previousState = await defaultSeoRouteRuntime.opsStateStore.readMain();
+        const forceSend = isForceAlertSend(request);
+        const triggerSource = resolveSeoTriggerSource(request);
+        const alertDispatch = resolveSeoAlertDispatch({
+            lastAlertAt: previousState?.lastAlertAt,
+            nowIso,
+            forceSend,
+        });
+        const requestDebugInfo = buildRequestDebugInfo(request, { triggerSource, forceSend });
+
+        console.info('[SEO] seo-health request received', requestDebugInfo);
 
         const [pageResults, sitemapResult, robotsOk] = await Promise.all([
             Promise.all(PAGES.map((page) => inspectPageMetadata(SITE_URL, page.path, page.name))),
@@ -66,6 +97,7 @@ export async function GET(request: Request) {
 
         let report = buildMainSeoHealthIntro({
             timestamp: now,
+            triggerSource,
             robotsOk,
             sitemap: sitemapResult,
             pagesWithJsonLd,
@@ -151,7 +183,8 @@ export async function GET(request: Request) {
         // ── Part 2: GSC 排名追蹤 ──────────────────────────
         const rankingSection = await buildSeoRankingSection({
             connect: connectToDatabase,
-            fetchData: fetchGSCData,
+            pageFilter: 'https://www.hello-stay.com',
+            fetchData: (targetDate) => fetchGSCData(targetDate, { pageFilter: 'https://www.hello-stay.com' }),
             saveSnapshot,
             getSnapshot,
             errorPrefix: '[SEO]',
@@ -169,8 +202,18 @@ export async function GET(request: Request) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
         report += buildElapsedSection(elapsed);
 
-        const alertSent = await defaultSeoRouteRuntime.notifier.notifyMain(report);
-        const nowIso = new Date().toISOString();
+        let alertSent = false;
+        if (alertDispatch.shouldSend) {
+            alertSent = await defaultSeoRouteRuntime.notifier.notifyMain(report);
+        } else {
+            console.info('[SEO] seo-health alert suppressed', {
+                lastAlertAt: previousState?.lastAlertAt || null,
+                reason: alertDispatch.reason,
+                triggerSource,
+                requestDebugInfo,
+            });
+        }
+
         const state = buildMainSeoHealthOpsState({
             nowIso,
             alertSent,
@@ -213,6 +256,10 @@ export async function GET(request: Request) {
                 error: ga4Error,
             },
             alertSent,
+            alertSuppressed: alertDispatch.alertSuppressed,
+            triggerSource,
+            forceSend,
+            previousAlertAt: previousState?.lastAlertAt || null,
         }));
     } catch (error) {
         console.error('[Cron] seo-health error:', error);

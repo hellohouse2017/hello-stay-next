@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const exploreCards = [
   {
     id: "explore-walkable",
-    kicker: "WALKABLE",
+    kicker: "步行圈",
     title: "住在步行生活圈",
     summary: "真正有價值的不是景點很多，而是晚餐、散步、宵夜、回民宿這條路線可以不用再搭車。",
     image: {
@@ -36,7 +36,7 @@ const exploreCards = [
   },
   {
     id: "explore-food",
-    kicker: "LOCAL FOOD",
+    kicker: "在地美食",
     title: "吃的密度很高",
     summary: "鹽埕的優勢不是單一名店，而是早餐、小吃、酒吧、冰品和宵夜都在同一個生活圈內。",
     image: {
@@ -47,7 +47,7 @@ const exploreCards = [
   },
   {
     id: "explore-itinerary",
-    kicker: "TRIP FLOW",
+    kicker: "行程節奏",
     title: "行程安排可以很鬆",
     summary: "這裡適合把行程排成白天出去、傍晚散步、晚上回民宿繼續聚，而不是從早到晚一直趕車。",
     image: {
@@ -233,8 +233,8 @@ export default function ExplorePage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "EXPLORE YANCHENG",
-          title: "住在鹽埕 很適合這樣玩",
+          kicker: "鹽埕周邊",
+          title: "住在鹽埕，很適合這樣玩",
           lead:
             "駁二 大港橋 鹽埕老街與在地美食都在步行範圍 住在這裡的感覺不是趕行程 而是白天出去 晚上回館繼續聚",
           image: {
@@ -251,14 +251,14 @@ export default function ExplorePage() {
           secondaryAction: { href: "/traffic", label: "看交通與停車" },
         }}
         overview={{
-          kicker: "AREA GUIDE",
+          kicker: "鹽埕旅遊節奏",
           title: "鹽埕的旅遊節奏",
           intro: "景點 生活機能和回館時間可以自然接在一起",
           columns: 3,
           cards: exploreCards,
         }}
         details={{
-          kicker: "STAY FLOW",
+          kicker: "旅行節奏",
           title: "住在這裡的旅行節奏",
           intro: "把住客會真的用到的步行動線、美食節奏和行程安排拆開來看，會比單純列清單更有用。",
           cards: detailCards,
@@ -270,20 +270,20 @@ export default function ExplorePage() {
           fit,
         }}
         gallery={{
-          kicker: "SCENES",
+          kicker: "住和玩接在一起",
           title: "住和玩是接在一起的",
           intro: "這幾個畫面代表的不是單一景點，而是這區最實際的使用方式。",
           columns: 3,
           images: galleryImages,
         }}
         faq={{
-          kicker: "FAQ",
+          kicker: "常見問題",
           title: "周邊探索常見問題",
           intro: "客人最常問的玩法邏輯",
           items: faqs,
         }}
         location={{
-          kicker: "NEARBY",
+          kicker: "步行範圍",
           title: "步行範圍先記這些就夠了",
           intro: "第一次住鹽埕 把這幾個點記起來就很夠用",
           cardTitle: "Hello Stay 周邊生活圈",
@@ -293,10 +293,10 @@ export default function ExplorePage() {
           spots: locationSpots,
         }}
         final={{
-          kicker: "PROPERTIES",
+          kicker: "下一步",
           title: "生活圈對了 館別差異會更清楚",
           body:
-            "接著看的通常會是人數 公共空間與房型配置 這些差異會直接影響住起來的感受",
+            "下一步通常會看人數、公共空間與房型配置，這些差異會直接影響住起來的感受",
           primaryAction: { href: "/compare", label: "看三館比較" },
           secondaryAction: { href: "/book", label: "查空房與報價" },
         }}

@@ -8,7 +8,7 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "駁二住宿推薦｜步行 10 分鐘到駁二的鹽埕區包棟民宿",
-    description: "想住駁二附近？鹽埕區的包棟民宿步行10分鐘到駁二藝術特區、8分鐘到大港橋。比西子灣更方便、比市區更有文化味。6-48人包棟。",
+    description: "想住駁二附近？鹽埕區的包棟民宿步行10分鐘到駁二藝術特區、8分鐘到大港橋。比西子灣更方便、比市區更有文化味。依人數安排包棟。",
     alternates: { canonical: "https://www.hello-stay.com/blog/pier2-accommodation" },
 };
 
@@ -61,10 +61,10 @@ const sections = [
 
 溝頂民宿
 📍 大公路70巷6-2號（步行駁二 10 分鐘）
-👥 10-12 人獨棟
+👥 4-12 人獨棟
 🏷 五層樓、家庭風格
 ✨ 家庭旅遊、小團體包棟首選
-💰 平日 $10,000 起
+💰 平日約 $8,000 起
 
 兩棟合訂可接待 38 人，非常適合大團體。` },
     {

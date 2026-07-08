@@ -17,18 +17,18 @@
     "section_title": "Three Styles, One Commitment",
     "hellohouse_desc": "Flexible private rental for 6–26 guests. Luxurious island kitchen, mahjong table, and diverse room types. A perfect blend of heritage charm and modern comfort.",
     "hellohouse_location": "Near Pier-2 Art Center · 10 min walk",
-    "godin_desc": "Boutique standalone for 10–12 guests. Five-story private space with a cozy, home-like atmosphere. Best value for small groups.",
+    "godin_desc": "Standalone stay for 4-12 guests. A five-story private space with four ensuite rooms, plus a 4F lounge and simple prep area for small groups.",
     "godin_location": "Quiet Yancheng alley · From NT$10,000/night",
-    "dazhi_coming": "Expected to Open · Late 2027",
-    "dazhi_desc": "Brand new elevator building, up to 48 guests. Next to Dagang Bridge and Pier-2 Dayi Warehouses. Three rooms per floor, book by floor or entire building.",
+    "dazhi_coming": "In Planning · Not Yet Bookable",
+    "dazhi_desc": "A future elevator building plan next to Dagang Bridge and Pier-2 Dayi Warehouses. Floor and whole-building options will be announced when details are finalized.",
     "dazhi_location": "By Dagang Bridge · Opening Soon",
     "explore_link": "Explore →",
     "learn_more": "Learn More →",
     "cta_title": "Find Your Ideal Space",
-    "cta_sub": "Flexible hosting for 6 to 48 guests, tailored for every gathering.",
+    "cta_sub": "Current bookable options fit 4 to 26 guests, matched to your group size and trip type.",
     "cta_btn": "Check Availability & Pricing",
-    "meta_title": "Kaohsiung Private Villa Rental | Hello Stay | 6-48 Guests",
-    "meta_desc": "Hello Stay offers three premium private villas in Kaohsiung's Yancheng district: Hello House (6-26 guests), Godin House (10-12 guests), and Dazhi (up to 48). Island kitchen, mahjong, near Pier-2. Google 4.9 stars."
+    "meta_title": "Kaohsiung Private Villa Rental | Hello Stay",
+    "meta_desc": "Hello Stay offers premium group stays in Kaohsiung's Yancheng district. Current bookable options are Hello House (6-26 guests) and Godin House (4-12 guests); Dazhi is still in planning and not yet open for booking."
   },
   "hellohouse": {
     "tagline": "Hello House · Est. 2017",
@@ -68,8 +68,8 @@
     "cta_title": "The Perfect Small Group Retreat",
     "cta_sub": "From NT$10,000/night · Up to 12 guests",
     "cta_btn": "Check Availability",
-    "meta_title": "Godin House | Kaohsiung Boutique Private Villa | 10-12 Guests",
-    "meta_desc": "Boutique five-story private villa in Kaohsiung's Yancheng district. Godin House accommodates 10-12 guests with cozy family style. From NT$10,000/night. Near Pier-2."
+    "meta_title": "Godin House | Kaohsiung Private Villa | 4-12 Guests",
+    "meta_desc": "Five-story private villa in Kaohsiung's Yancheng district. Godin House accommodates 4-12 guests with four ensuite rooms, a cozy lounge, and simple prep space. Near Pier-2."
   },
   "traffic": {
     "label": "Getting Here",
@@ -92,7 +92,7 @@
     "meta_desc": "Directions to Hello House and Godin House in Kaohsiung. MRT routes from Zuoying HSR Station, parking options, and a 5-minute walk from Yanchengpu Station (O2 Exit 2)."
   },
   "dazhi": {
-    "coming_soon": "Expected to Open · Late 2027",
+    "coming_soon": "In Planning · Not Yet Bookable",
     "title": "Dazhi Ruoyu",
     "tagline": "Dazhi Ruoyu · A Wise Retreat",
     "location_label": "Location",
@@ -105,7 +105,7 @@
     "desc": "Hello Stay's third property is on the way.\nA brand new elevator building in a prime harbor location.\nNamed 'Dazhi Ruoyu' — a philosophy of understated elegance.\nStay tuned.",
     "cta_home": "Back to Home", "cta_line": "Reserve via LINE",
     "meta_title": "Dazhi Ruoyu | New Elevator Villa in Kaohsiung",
-    "meta_desc": "Dazhi Ruoyu — Brand new elevator villa near Dagang Bridge. 3 rooms per floor, up to 48 guests. Expected late 2027."
+    "meta_desc": "Dazhi Ruoyu is a future elevator property near Dagang Bridge. It is still in planning and not yet open for booking; final room setup and pricing will be announced later."
   },
   "book": {
     "meta_title": "Hello Stay Booking | Choose a Property and Check Availability",

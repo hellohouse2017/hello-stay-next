@@ -8,7 +8,7 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "高雄跨年包棟推薦｜倒數派對・煙火觀賞・包棟民宿",
-    description: "高雄跨年住包棟民宿，在頂樓看義大世界煙火！中島廚房準備跨年大餐，麻將遊同樂，隔天睡到自然醒。鹽埕區6-48人包棟。",
+    description: "高雄跨年住包棟民宿，在頂樓看義大世界煙火！中島廚房準備跨年大餐，麻將遊同樂，隔天睡到自然醒。鹽埕區團體包棟很適合。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-nye-stay" },
 };
 
@@ -77,7 +77,7 @@ export default function NYEPage() {
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄跨年包棟推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-nye-stay", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#fireworks"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "高雄跨年住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區包棟民宿。中島廚房煮跨年大餐，麻將遊同樂，步行15分鐘到高雄港看煙火，23:30出門倒數完走回來睡。不用開車、不用人擠人。6-48人包棟方案。" } },
+                        { "@type": "Question", name: "高雄跨年住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦鹽埕區包棟民宿。中島廚房煮跨年大餐，麻將遊同樂，步行15分鐘到高雄港看煙火，23:30出門倒數完走回來睡。不用開車、不用人擠人。團體包棟方案最方便。" } },
                         { "@type": "Question", name: "高雄跨年看煙火哪裡最好？", acceptedAnswer: { "@type": "Answer", text: "義大世界煙火（999秒，全台最長）、高雄港跨年市集、愛河畔。住鹽埕區步行10-15分鐘可達高雄港和愛河，跨年不用塞車。" } },
                     ]
                 },

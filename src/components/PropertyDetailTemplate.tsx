@@ -210,7 +210,7 @@ export default function PropertyDetailTemplate({
                 <div className="pd-room-table">
                   {planningCards?.map((item) => (
                     <article key={item.title}>
-                      <span>規劃中</span>
+                      <span>尚未開放訂房</span>
                       <strong>{item.title}</strong>
                       <p>{item.description}</p>
                     </article>

@@ -6,14 +6,14 @@ import { godin } from "@/data/properties";
 const bookingHref = "https://booking.hello-stay.com/booking?property=%E6%BA%9D%E9%A0%82%E6%B0%91%E5%AE%BF";
 
 export const metadata: Metadata = {
-  title: "鹽埕民宿推薦｜溝頂民宿 4-12人五層獨棟包棟・近駁二｜Hello Stay",
+  title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運｜Hello Stay",
   description:
-    "高雄鹽埕民宿推薦「溝頂民宿」。適合 4-12 人小團體的五層獨棟包棟空間，四間客房皆有獨立衛浴，附麻將交誼廳與簡易備餐設備。",
+    "高雄鹽埕民宿推薦「溝頂民宿」，適合 4-12 人包棟。五層獨棟空間、四間客房皆有獨立衛浴，步行可到駁二與鹽埕埔站，適合家庭旅遊與朋友小聚。",
   alternates: { canonical: "https://www.hello-stay.com/godin" },
   openGraph: {
-    title: "鹽埕民宿推薦｜溝頂民宿 4-12人五層獨棟包棟・近駁二｜Hello Stay",
+    title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運｜Hello Stay",
     description:
-      "高雄鹽埕小團體包棟首選「溝頂民宿」，四間客房皆有獨立衛浴，4F 設交誼廳、麻將桌與簡易備餐空間。",
+      "高雄鹽埕小團體包棟首選「溝頂民宿」，適合 4-12 人，四間客房皆有獨立衛浴，4F 設交誼廳、麻將桌與簡易備餐空間，步行可到駁二與捷運。",
     url: "https://www.hello-stay.com/godin",
     images: [
       {
@@ -44,7 +44,7 @@ const stayGuides = [
   "1F 與 5F 為雙人房，2F 與 3F 為四人房",
   "四間客房皆有獨立衛浴，4F 公共交誼廳無衛浴",
   "4F 為整團聊天 麻將 桌遊與簡易備餐空間",
-  "如需補寢具或彈性加人，建議直接用 LINE 確認當次方案",
+  "如需補寢具或需要加床，請先用 LINE 確認當次方案",
 ];
 
 const fitGuides = [
@@ -796,18 +796,18 @@ export default function GodinPage() {
 
               <div className="godin-hero__content">
                 <div className="godin-hero__copy">
-                  <p className="godin-kicker">GODIN HOUSE</p>
-                  <h1>溝頂民宿</h1>
+                  <p className="godin-kicker">溝頂民宿</p>
+                  <h1>溝頂民宿｜鹽埕 4-12 人小團體包棟</h1>
                   <p className="godin-hero__lead">
-                    五層獨棟包棟，適合家庭旅行與小團體入住。四間客房皆有獨立衛浴，4F 是整團共用的交誼廳與簡易備餐空間。
+                    五層獨棟包棟，適合家庭旅行與小團體入住。四間客房皆有獨立衛浴，4F 是整團共用的交誼廳與簡易備餐空間。想找鹽埕民宿推薦或高雄小團體包棟，這館會是很直覺的選擇。
                   </p>
 
                   <div className="godin-hero__actions">
                     <a className="godin-button godin-button--primary" href={bookingHref} target="_blank" rel="noreferrer">
-                      查看空房與報價
+                      查詢空房與報價
                     </a>
                     <a className="godin-button" href={godin.lineUrl} target="_blank" rel="noreferrer">
-                      LINE 詢問
+                      LINE 線上客服
                     </a>
                   </div>
                 </div>
@@ -828,9 +828,9 @@ export default function GodinPage() {
         <section className="godin-section">
           <div className="godin-shell">
             <div className="godin-section__head">
-              <p className="godin-kicker">ROOM GUIDE</p>
+              <p className="godin-kicker">房型指南</p>
               <h2>房型與整棟安排</h2>
-              <p>每層用途 人數與衛浴配置都整理在這裡。</p>
+              <p>每層用途、人數與衛浴配置都整理在這裡。</p>
             </div>
 
             <div className="godin-overview-grid">
@@ -862,9 +862,9 @@ export default function GodinPage() {
         <section className="godin-section">
           <div className="godin-shell">
             <div className="godin-section__head">
-              <p className="godin-kicker">ROOM DETAILS</p>
+              <p className="godin-kicker">房型細節</p>
               <h2>逐層房型與設備</h2>
-              <p>每層的用途 坪數 衛浴與設備都整理在這裡。</p>
+              <p>每層的用途、坪數、衛浴與設備都整理在這裡。</p>
             </div>
 
             <div className="godin-detail-layout">
@@ -968,7 +968,7 @@ export default function GodinPage() {
         <section className="godin-section">
           <div className="godin-shell">
             <div className="godin-section__head">
-              <p className="godin-kicker">GALLERY</p>
+              <p className="godin-kicker">實景照片</p>
               <h2>實景照片</h2>
               <p>館內實景都整理在這裡。</p>
             </div>
@@ -995,7 +995,7 @@ export default function GodinPage() {
         <section className="godin-section">
           <div className="godin-shell">
             <div className="godin-section__head">
-              <p className="godin-kicker">LOCATION</p>
+              <p className="godin-kicker">交通位置</p>
               <h2>住在鹽埕哪一段</h2>
               <p>從大公路巷內出發，步行可到駁二、大港橋、捷運鹽埕埔站與幾家在地小吃。</p>
             </div>
@@ -1024,7 +1024,7 @@ export default function GodinPage() {
 
         <section className="godin-final godin-shell">
           <div>
-            <p className="godin-kicker">BOOKING</p>
+            <p className="godin-kicker">訂房提醒</p>
             <h2>確認日期與人數後查空房</h2>
             <p>如果房型 人數與整棟配置都符合 日期與報價就會是最後的判斷重點。</p>
           </div>
@@ -1033,7 +1033,7 @@ export default function GodinPage() {
               查這館空房
             </a>
             <a className="godin-button" href={godin.lineUrl} target="_blank" rel="noreferrer">
-              LINE 詢問
+              LINE 線上客服
             </a>
           </div>
         </section>

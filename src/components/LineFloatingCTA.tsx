@@ -25,7 +25,7 @@ export default function LineFloatingCTA({ lineUrl }: LineFloatingCTAProps) {
         <div className="line-floating-cta show">
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="line-floating-btn"
-                aria-label="LINE 詢問空房"
+                aria-label="LINE 聯絡客服"
                 onClick={() => {
                     if (typeof window !== 'undefined') {
                         const win = window as Window & { gtag?: (type: string, action: string, options?: Record<string, unknown>) => void };
