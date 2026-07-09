@@ -10,6 +10,7 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 import HomepageIntentBlock from "@/components/HomepageIntentBlock";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPrunedBlogRedirect, isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
+import { getBlogTranslationLanguages } from "@/data/blog-translations";
 
 type Props = { params: Promise<{ slug: string }> };
 type ArticleFaq = { q: string; a: string };
@@ -93,7 +94,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return {
             title: mdxArticle.title,
             description: mdxArticle.description,
-            alternates: { canonical: mdxArticle.canonical },
+            alternates: {
+                canonical: mdxArticle.canonical,
+                languages: getBlogTranslationLanguages(slug, mdxArticle.canonical),
+            },
             openGraph: {
                 title: mdxArticle.title,
                 description: mdxArticle.description,

@@ -5,11 +5,17 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
 import PropertyLinksBlock from "@/components/PropertyLinksBlock";
+import { getBlogTranslationLanguages } from "@/data/blog-translations";
+
+const CANONICAL = "https://www.hello-stay.com/blog/pier2-accommodation";
 
 export const metadata: Metadata = {
     title: "駁二住宿推薦｜步行 10 分鐘到駁二的鹽埕區包棟民宿",
     description: "想住駁二附近？鹽埕區的包棟民宿步行10分鐘到駁二藝術特區、8分鐘到大港橋。比西子灣更方便、比市區更有文化味。依人數安排包棟。",
-    alternates: { canonical: "https://www.hello-stay.com/blog/pier2-accommodation" },
+    alternates: {
+        canonical: CANONICAL,
+        languages: getBlogTranslationLanguages("pier2-accommodation", CANONICAL),
+    },
 };
 
 const sections = [

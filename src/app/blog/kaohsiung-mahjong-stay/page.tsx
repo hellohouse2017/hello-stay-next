@@ -6,11 +6,17 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RelatedArticles from "@/components/RelatedArticles";
 import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 import HomepageIntentBlock from "@/components/HomepageIntentBlock";
+import { getBlogTranslationLanguages } from "@/data/blog-translations";
+
+const CANONICAL = "https://www.hello-stay.com/blog/kaohsiung-mahjong-stay";
 
 export const metadata: Metadata = {
     title: "高雄麻將民宿推薦｜麻將・包棟打牌到天亮",
     description: "高雄有麻將的包棟民宿推薦！備有手動麻將桌，打到凌晨也不怕吵。同時有廚房可煮宵夜。鹽埕區6-26人包棟。",
-    alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-mahjong-stay" },
+    alternates: {
+        canonical: CANONICAL,
+        languages: getBlogTranslationLanguages("kaohsiung-mahjong-stay", CANONICAL),
+    },
 };
 
 const sections = [

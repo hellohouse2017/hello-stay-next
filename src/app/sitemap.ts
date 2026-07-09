@@ -3,6 +3,7 @@ import { getPublishedArticles, scheduledArticles } from "@/data/scheduled-articl
 import { getAllArticles } from "@/lib/articles";
 import { locales, localeHreflang, getLocalePath } from "@/i18n/config";
 import { isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
+import { BLOG_TRANSLATIONS } from "@/data/blog-translations";
 
 const baseUrl = "https://www.hello-stay.com";
 
@@ -79,5 +80,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
     }
 
-    return [...entries, ...articleEntries.values()];
+    const translatedBlogEntries: MetadataRoute.Sitemap = Object.entries(BLOG_TRANSLATIONS).flatMap(
+        ([slug, translations]) => {
+            const zhUrl = `${baseUrl}/blog/${slug}`;
+            return translations.map((translation) => ({
+                url: `${baseUrl}${translation.path}`,
+                lastModified: articleEntries.get(slug)?.lastModified || "2026-07-08",
+                changeFrequency: "monthly" as const,
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        "zh-Hant": zhUrl,
+                        [translation.locale]: `${baseUrl}${translation.path}`,
+                        "x-default": zhUrl,
+                    },
+                },
+            }));
+        }
+    );
+
+    return [...entries, ...articleEntries.values(), ...translatedBlogEntries];
 }
