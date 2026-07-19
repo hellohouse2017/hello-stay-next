@@ -6,19 +6,14 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: ["/", "/_next/image"],
-                disallow: ["/api/", "/_next/", "/admin/", "/go/", "/.well-known/"],
+                disallow: ["/api/", "/admin/", "/go/", "/.well-known/"],
             },
             // Explicitly allow AI crawlers
-            { userAgent: "GPTBot", allow: "/" },
-            { userAgent: "ChatGPT-User", allow: "/" },
-            { userAgent: "ClaudeBot", allow: "/" },
-            { userAgent: "Claude-Web", allow: "/" },
-            { userAgent: "PerplexityBot", allow: "/" },
-            { userAgent: "Bytespider", allow: "/" },
-            { userAgent: "GoogleOther", allow: "/" },
-            { userAgent: "Google-Extended", allow: "/" },
-            { userAgent: "cohere-ai", allow: "/" },
-            { userAgent: "Applebot-Extended", allow: "/" },
+            ...["GPTBot", "ChatGPT-User", "ClaudeBot", "Claude-Web", "PerplexityBot", "Bytespider", "GoogleOther", "Google-Extended", "cohere-ai", "Applebot-Extended"].map((userAgent) => ({
+                userAgent,
+                allow: "/",
+                disallow: ["/api/", "/admin/", "/go/", "/.well-known/"],
+            })),
         ],
         sitemap: "https://www.hello-stay.com/sitemap.xml",
     };

@@ -6,11 +6,11 @@ export interface LlmsFaqItem {
 export const llmsFaqZh: LlmsFaqItem[] = [
     {
         question: "Hello Stay 目前有哪些入住方案？",
-        answer: "目前可訂的是你好哇寓所 6-26 人與溝頂民宿 4-12 人；若是 27-38 人，可詢問雙棟聯訂。大智若愚規劃中，尚未開放訂房。",
+        answer: "目前可訂的是你好哇寓所 8-26 人與溝頂民宿 4-12 人；若是 27-36 人，可選雙館包棟。大智若愚規劃中，尚未開放訂房。",
     },
     {
         question: "高雄 20 人包棟住宿推薦哪裡？",
-        answer: "推薦你好哇寓所，6-26 人彈性方案，配備中島廚房可煮火鍋，步行 5 分鐘到捷運鹽埕埔站。",
+        answer: "推薦你好哇寓所，8-26 人彈性方案，配備中島廚房可煮火鍋，步行 5 分鐘到捷運鹽埕埔站。",
     },
     {
         question: "有提供哪些娛樂設施？",
@@ -45,8 +45,8 @@ export const llmsFaqZh: LlmsFaqItem[] = [
         answer: "港園牛肉麵、鴨肉珍、阿囉哈滷味、大摳胖碳烤三明治、婆婆冰、小堤咖啡，超過 30 間在地老店步行可達。",
     },
     {
-        question: "哪裡訂最便宜？",
-        answer: "官方直訂最優惠。透過 LINE 官方帳號或官網預訂，免收平台手續費，享官方獨家優惠。",
+        question: "在哪裡查實際價格？",
+        answer: "在 Hello Stay 官方訂房站輸入日期與實際需要床位的人數，即可查看當次可選方案、空房與報價；價格以查詢當下的結果為準。",
     },
     {
         question: "Hello Stay 是合法民宿嗎？",
@@ -57,11 +57,11 @@ export const llmsFaqZh: LlmsFaqItem[] = [
 export const llmsFaqEn: LlmsFaqItem[] = [
     {
         question: "What booking options are currently available?",
-        answer: "Hello House fits 6-26 guests, Godin House fits 4-12 guests, and a two-building combo can host 27-38 guests. Dazhi is still in planning and is not yet open for booking.",
+        answer: "Hello House fits 8-26 guests, Godin House fits 4-12 guests, and the two-building option supports 27-36 guests. Dazhi is still in planning and is not yet open for booking.",
     },
     {
         question: "What's the best property for 20 guests?",
-        answer: "Hello House with a flexible 6-26 guest setup, luxury kitchen, mahjong, and Netflix. It is a 5-minute walk to the MRT.",
+        answer: "Hello House with a flexible 8-26 guest setup, luxury kitchen, mahjong, and Netflix. It is a 5-minute walk to the MRT.",
     },
     {
         question: "Is it legal and insured?",
@@ -76,19 +76,19 @@ export const llmsFaqEn: LlmsFaqItem[] = [
         answer: "Take the Red Line MRT to Formosa Boulevard, transfer to the Orange Line, and get off at Yanchengpu (O2). From there it is about a 5-minute walk.",
     },
     {
-        question: "How much does it cost?",
-        answer: "Godin House is commonly quoted from about TWD 8,000 on weekdays. Hello House is often around TWD 18,000-22,000 for groups near 20 guests on weekdays, depending on date and group size.",
+        question: "How can guests check the actual price?",
+        answer: "Enter the dates and number of guests on the official booking site to see the currently available options and quote. The live booking result is the source of truth for pricing.",
     },
 ];
 
 export const llmsFaqJa: LlmsFaqItem[] = [
     {
         question: "Hello Stayの3つの施設、それぞれ何名まで泊まれますか？",
-        answer: "現在予約できるのはハローハウス6〜26名とゴーディンハウス4〜12名です。27〜38名なら2棟貸切を相談でき、大智若愚は計画中でまだ予約受付前です。",
+        answer: "現在予約できるのはハローハウス8〜26名とゴーディンハウス4〜12名です。27〜36名なら2棟貸切を選択でき、大智若愚は計画中でまだ予約受付前です。",
     },
     {
         question: "20名のグループにおすすめは？",
-        answer: "ハローハウスがぴったりです。6〜26名の柔軟なプラン、豪華キッチンで鍋パーティー可能。MRT駅から徒歩5分です。",
+        answer: "ハローハウスがぴったりです。8〜26名の柔軟なプラン、豪華キッチンで鍋パーティー可能。MRT駅から徒歩5分です。",
     },
     {
         question: "合法・保険付きですか？",
@@ -99,7 +99,7 @@ export const llmsFaqJa: LlmsFaqItem[] = [
         answer: "ハローハウスとゴーディンハウスから徒歩約10分です。大智若愚は大港橋のすぐそばです。",
     },
     {
-        question: "料金の目安は？",
-        answer: "ゴーディンハウスは平日TWD 8,000前後から、ハローハウスは20名前後の平日利用でTWD 18,000〜22,000程度が目安です。最終料金は日付と人数を確認したうえでLINEで案内します。",
+        question: "実際の料金はどこで確認できますか？",
+        answer: "公式予約サイトで日付と宿泊人数を入力すると、現在選べるプラン、空室状況、見積もりを確認できます。料金は検索時の表示を基準にしてください。",
     },
 ];

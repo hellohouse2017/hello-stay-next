@@ -2,18 +2,26 @@ import type { Metadata } from "next";
 import type { Room } from "@/data/properties";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 import { hellohouse } from "@/data/properties";
+import { getAlternateLanguageMap } from "@/i18n/config";
+import { publicStayFacts } from "@/data/public-stay-facts";
 
 const bookingHref = "https://booking.hello-stay.com/booking?property=%E4%BD%A0%E5%A5%BD%E5%93%87%E5%AF%93%E6%89%80";
+const pier2WalkMinutes = hellohouse.nearbySpots.find((spot) => spot.name === "駁二藝術特區")?.walkMinutes ?? 10;
+const dagangWalkMinutes = hellohouse.nearbySpots.find((spot) => spot.name.includes("大港橋"))?.walkMinutes ?? 12;
+const mrtWalkMinutes = hellohouse.nearbySpots.find((spot) => spot.name.includes("鹽埕埔站"))?.walkMinutes ?? 5;
 
 export const metadata: Metadata = {
-  title: "你好哇寓所｜高雄 6-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
+  title: "你好哇寓所｜高雄 8-26 人包棟民宿・有廚房與麻將桌",
   description:
-    "高雄 6-26 人包棟民宿「你好哇寓所」，位於鹽埕區，主打 1F 中島廚房、大型交誼空間與麻將桌。適合家族旅行、朋友聚會、迎娶、慶生與多人聚餐。",
-  alternates: { canonical: "https://www.hello-stay.com/hellohouse" },
+    "高雄 8-26 人包棟民宿「你好哇寓所」，位於鹽埕區，主打 1F 中島廚房、大型交誼空間與麻將桌。適合家族旅行、朋友聚會、迎娶、慶生與多人聚餐。",
+  alternates: {
+    canonical: "https://www.hello-stay.com/hellohouse",
+    languages: getAlternateLanguageMap("/hellohouse"),
+  },
   openGraph: {
-    title: "你好哇寓所｜高雄 6-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
+    title: "你好哇寓所｜高雄 8-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
     description:
-      "你好哇寓所提供高雄 6-26 人包棟，重點是中島廚房、吧台、大型交誼空間與麻將桌，適合多人聚會與家族旅遊。",
+      "你好哇寓所提供高雄 8-26 人包棟，重點是中島廚房、吧台、大型交誼空間與麻將桌，適合多人聚會與家族旅遊。",
     url: "https://www.hello-stay.com/hellohouse",
     images: [
       {
@@ -27,13 +35,14 @@ export const metadata: Metadata = {
 };
 
 const heroStats = [
-  { label: "入住人數", value: "6-26 人" },
-  { label: "客房配置", value: "雙人房 2 間 四人房 1 間 六人房 2 間" },
+  { label: "入住人數", value: "8-26 人" },
   { label: "公共空間", value: "1F 中島廚房與大型交誼區" },
+  { label: "步行圈", value: `駁二 ${pier2WalkMinutes} 分鐘 / 捷運 ${mrtWalkMinutes} 分鐘` },
   { label: "衛浴", value: "客房皆有獨立衛浴" },
 ];
 
 const houseFacts = [
+  { label: "客房配置", value: `雙人房 ${publicStayFacts.hellohouse.bedroomLayout.double} 間 四人房 ${publicStayFacts.hellohouse.bedroomLayout.quadruple} 間 六人房 ${publicStayFacts.hellohouse.bedroomLayout.sixPerson} 間` },
   { label: "公共空間", value: "1F 挑高交誼區 中島廚房 吧台" },
   { label: "開伙設備", value: "IH 爐 RO 飲水機 雙門冰箱 烤箱 微波爐 鍋碗餐具" },
   { label: "娛樂設備", value: "手動麻將 桌遊 撲克牌 43 吋聯網電視" },
@@ -43,7 +52,7 @@ const houseFacts = [
 
 const stayGuides = [
   "1F 是整團一起備餐、吃飯、聊天、打麻將的核心空間",
-  "2F 有雙人房與四人房，3F 與 4F 以多人房型為主",
+  "2F 有雙人房與四人房，3F 有雙人房與六人房，4F 有雙人房與六人房",
   "公共空間會直接影響這館的使用感受",
   "如需迎娶、補寢具或需要加床，請先透過 LINE 確認當次方案",
 ];
@@ -53,15 +62,48 @@ const fitGuides = [
   { label: "最有感優勢", value: "中島廚房與多人交誼空間" },
   { label: "常見用途", value: "慶生 聚餐 火鍋 宵夜 迎娶" },
   { label: "選館重點", value: "重視大家能不能聚在同一個空間" },
+  { label: "不一定適合", value: "只想找小型整棟，或非常在意電梯與無樓梯動線" },
 ];
 
 const actualGallery = [
-  { src: "/images/hellohouse/photo1.webp", alt: "你好哇寓所 1F 交誼空間全景", caption: "1F 交誼空間" },
-  { src: "/images/hellohouse/photo2.webp", alt: "你好哇寓所中島廚房設備", caption: "中島廚房" },
-  { src: "/images/hellohouse/photo3.webp", alt: "你好哇寓所客房實景", caption: "客房質感" },
-  { src: "/images/hellohouse/bar-2.webp", alt: "你好哇寓所吧台與高腳椅", caption: "吧台角落" },
-  { src: "/images/hellohouse/photo4.webp", alt: "你好哇寓所樓梯與空間細節", caption: "空間細節" },
-  { src: "/images/hellohouse/photo5.webp", alt: "你好哇寓所館外巷弄外觀", caption: "館外外觀" },
+  { src: "/images/hellohouse/cover.webp", alt: "你好哇寓所一樓中島廚房全景", caption: "中島廚房全景" },
+  { src: "/images/hellohouse/1000.webp", alt: "你好哇寓所一樓中島廚房與備餐設備", caption: "廚房設備" },
+  { src: "/images/hellohouse/1201.webp", alt: "你好哇寓所二樓 1201 雙人房", caption: "1201 雙人房" },
+  { src: "/images/hellohouse/1202.webp", alt: "你好哇寓所二樓 1202 四人房", caption: "1202 四人房" },
+  { src: "/images/hellohouse/1301.webp", alt: "你好哇寓所三樓 1301 雙人房", caption: "1301 雙人房" },
+  { src: "/images/hellohouse/1302.webp", alt: "你好哇寓所三樓 1302 六人房", caption: "1302 六人房" },
+  { src: "/images/hellohouse/1402.webp", alt: "你好哇寓所四樓 1402 六人房", caption: "1402 六人房" },
+];
+
+const faqItems = [
+  {
+    question: "你好哇寓所適合幾人入住？",
+    answer: "這館適合 8-26 人包棟；如果是 13-26 人的家族旅遊、朋友聚會、迎娶或公司 outing，通常會先看這館。",
+    links: [{ href: "/compare", label: "看三館比較" }],
+  },
+  {
+    question: "可以自己下廚或煮火鍋嗎？",
+    answer: "可以。1F 有雙口 IH 爐、RO 飲水機、雙門冰箱、烤箱、微波爐與完整鍋碗餐具，適合煮火鍋、宵夜或簡單聚餐。",
+    links: [{ href: "/blog/kaohsiung-kitchen-bnb#kitchen", label: "看廚房設備" }],
+  },
+  {
+    question: "可以打麻將嗎？",
+    answer: "可以。1F 公共空間有手動麻將桌、桌遊與聯網電視，晚上回館後最常用到的就是這一區。",
+    links: [{ href: "/blog/kaohsiung-mahjong-stay", label: "看麻將入住攻略" }],
+  },
+  {
+    question: "走路到駁二、大港橋和捷運多久？",
+    answer: `從館內走出去，步行約 ${pier2WalkMinutes} 分鐘到駁二藝術特區、約 ${dagangWalkMinutes} 分鐘到大港橋 / 棧貳庫、約 ${mrtWalkMinutes} 分鐘到捷運鹽埕埔站 O2。`,
+    links: [{ href: "/traffic", label: "看交通與停車" }],
+  },
+  {
+    question: "哪種團體最適合這館？",
+    answer: "最適合會一起吃飯、聊天、備餐、打麻將或辦活動的團體。如果你更在意每層分開休息、只要小型整棟，先比較溝頂民宿會更快。",
+    links: [
+      { href: "/godin", label: "看溝頂民宿" },
+      { href: "/book", label: "直接查日期與空房" },
+    ],
+  },
 ];
 
 const nearbyHighlights = hellohouse.nearbySpots.slice(0, 6);
@@ -92,7 +134,7 @@ export default function HelloHousePage() {
               url: "https://www.hello-stay.com/hellohouse",
               telephone: "+886-932-828-922",
               description:
-                "高雄鹽埕區 6-26 人包棟民宿，主打 1F 中島廚房、交誼空間、麻將與多元房型，適合多人聚會與家族旅行。",
+                "高雄鹽埕區 8-26 人包棟民宿，主打 1F 中島廚房、交誼空間、麻將與多元房型，適合多人聚會與家族旅行。",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "大公路70巷8號",
@@ -113,12 +155,33 @@ export default function HelloHousePage() {
                 { "@type": "LocationFeatureSpecification", name: "客房獨立衛浴", value: true },
                 { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
               ],
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.5",
-                reviewCount: "75",
-                bestRating: "5",
-              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqItems.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: { "@type": "Answer", text: item.answer },
+              })),
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "首頁",
+                  item: "https://www.hello-stay.com/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "你好哇寓所",
+                  item: "https://www.hello-stay.com/hellohouse",
+                },
+              ],
             },
           ]),
         }}
@@ -127,13 +190,8 @@ export default function HelloHousePage() {
       <PropertyShowcasePage
         hero={{
           kicker: "主館導覽",
-          title: "你好哇寓所｜6-26 人高雄鹽埕包棟民宿",
-          lead: [
-            "六間房搭配 1F 中島廚房",
-            "與大型交誼空間。",
-            "重點不是單純能睡幾個人，",
-            "而是整團能不能一起吃飯、聊天、備餐與活動。",
-          ],
+          title: "你好哇寓所",
+          lead: `適合 8-26 人包棟。設有中島廚房與大型交誼空間，步行約 ${pier2WalkMinutes} 分鐘到駁二、${mrtWalkMinutes} 分鐘到捷運鹽埕埔站。`,
           image: {
             src: "/images/hellohouse/1000.webp",
             alt: "你好哇寓所 1F 中島廚房與交誼空間",
@@ -203,6 +261,12 @@ export default function HelloHousePage() {
           intro: "館內與館外的實際畫面都整理在這裡。",
           columns: 3,
           images: actualGallery,
+        }}
+        faq={{
+          kicker: "常見問題",
+          title: "你訂這館前通常會先確認這幾件事",
+          intro: "先把設備、步行圈與適合情境回答清楚，查空房時會快很多。",
+          items: faqItems,
         }}
         location={{
           kicker: "周邊位置",

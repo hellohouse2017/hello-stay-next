@@ -16,11 +16,13 @@ const LAST_MODIFIED_MAP: Record<string, string> = {
     "/traffic": "2026-03-24",
     "/agreement": "2026-03-24",
     "/explore": "2026-03-24",
+    "/explore/food": "2026-07-14",
+    "/explore/spots": "2026-07-14",
     "/packages": "2026-03-24",
     "/reviews": "2026-03-24",
     "/kaohsiung-whole-house": "2026-03-25",
     "/compare": "2026-03-25",
-    "/blog": "2026-05-19",
+    "/blog": "2026-07-14",
     "/about": "2026-05-20",
     "/guide": "2026-05-20",
 };
@@ -48,6 +50,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/traffic`, lastModified: getLastModified("/traffic"), changeFrequency: "monthly", priority: 0.7, alternates: buildAlternates("/traffic") },
         { url: `${baseUrl}/agreement`, lastModified: getLastModified("/agreement"), changeFrequency: "monthly", priority: 0.6 },
         { url: `${baseUrl}/explore`, lastModified: getLastModified("/explore"), changeFrequency: "weekly", priority: 0.8 },
+        { url: `${baseUrl}/explore/food`, lastModified: getLastModified("/explore/food"), changeFrequency: "monthly", priority: 0.75 },
+        { url: `${baseUrl}/explore/spots`, lastModified: getLastModified("/explore/spots"), changeFrequency: "monthly", priority: 0.75 },
         { url: `${baseUrl}/packages`, lastModified: getLastModified("/packages"), changeFrequency: "weekly", priority: 0.8 },
         { url: `${baseUrl}/reviews`, lastModified: getLastModified("/reviews"), changeFrequency: "monthly", priority: 0.7 },
         { url: `${baseUrl}/kaohsiung-whole-house`, lastModified: getLastModified("/kaohsiung-whole-house"), changeFrequency: "weekly", priority: 0.9 },
@@ -99,5 +103,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     );
 
-    return [...entries, ...articleEntries.values(), ...translatedBlogEntries];
+    const localizedCorePaths = ["", "/hellohouse", "/godin", "/dazhi", "/book", "/traffic", "/guide"];
+    const translatedCoreEntries: MetadataRoute.Sitemap = locales
+        .filter((locale) => locale !== "zh")
+        .flatMap((locale) => localizedCorePaths.map((path) => ({
+            url: `${baseUrl}${getLocalePath(locale, path)}`,
+            lastModified: getLastModified(path),
+            changeFrequency: path === "/book" ? "daily" as const : "weekly" as const,
+            priority: path === "/book" || path === "/hellohouse" || path === "/godin" ? 0.8 : 0.6,
+            alternates: buildAlternates(path),
+        })));
+
+    return [...entries, ...translatedCoreEntries, ...articleEntries.values(), ...translatedBlogEntries];
 }

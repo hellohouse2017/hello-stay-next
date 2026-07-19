@@ -4,6 +4,26 @@ type TelegramSendOptions = {
     missingConfigContext?: string;
 };
 
+const TELEGRAM_SAFE_MESSAGE_LENGTH = 3800;
+
+export function splitTelegramMessage(text: string, maxLength = TELEGRAM_SAFE_MESSAGE_LENGTH): string[] {
+    if (text.length <= maxLength) return [text];
+
+    const chunks: string[] = [];
+    let current = "";
+    for (const line of text.split("\n")) {
+        const candidate = current ? `${current}\n${line}` : line;
+        if (candidate.length <= maxLength) {
+            current = candidate;
+            continue;
+        }
+        if (current) chunks.push(current);
+        current = line;
+    }
+    if (current) chunks.push(current);
+    return chunks.length > 0 ? chunks : [text.slice(0, maxLength)];
+}
+
 function shouldWarnMissingTelegramConfig(): boolean {
     return process.env.NODE_ENV !== 'test';
 }
@@ -33,16 +53,21 @@ async function sendTelegramMessageViaConfig(
     }
 
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const chunks = splitTelegramMessage(text);
+    const reportId = `seo-${new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14)}`;
     try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
-        });
+        for (const [index, chunk] of chunks.entries()) {
+            const header = `🆔 ${reportId} · ${index + 1}/${chunks.length}\n`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: header + chunk, parse_mode: 'HTML' }),
+            });
 
-        if (!response.ok) {
-            await logTelegramApiError(response, 'sendMessage');
-            return false;
+            if (!response.ok) {
+                await logTelegramApiError(response, 'sendMessage');
+                return false;
+            }
         }
 
         return true;

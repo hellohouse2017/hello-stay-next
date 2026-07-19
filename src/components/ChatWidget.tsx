@@ -17,7 +17,7 @@ export default function ChatWidget() {
             ariaLabel: "LINE 訂房助手",
             title: "訂房小助手",
             subTitle: "24 小時即時回覆",
-            welcome: <>想查空房、報價、或預訂房間？<br />加入 LINE 官方帳號，AI 小幫手<span style={{ color: "var(--c-accent)" }}>即時幫您服務</span>。</>,
+            welcome: <>想查空房、報價、或預訂房間？<br />加入 LINE 官方帳號，AI 小幫手<span style={{ color: "var(--pri)" }}>即時幫您服務</span>。</>,
             features: [
                 { icon: "fa-bolt", text: "即時回覆" },
                 { icon: "fa-magnifying-glass", text: "查空房報價" },
@@ -38,7 +38,7 @@ export default function ChatWidget() {
             ariaLabel: "Booking Assistant",
             title: "Booking Assistant",
             subTitle: "Support in English",
-            welcome: <>Interested in checking availability, pricing, or booking a room?<br />Contact us via <span style={{ color: "var(--c-accent)" }}>Email</span> or <span style={{ color: "var(--c-accent)" }}>LINE</span>. We&apos;ll reply promptly!</>,
+            welcome: <>Interested in checking availability, pricing, or booking a room?<br />Contact us via <span style={{ color: "var(--pri)" }}>Email</span> or <span style={{ color: "var(--pri)" }}>LINE</span>. We&apos;ll reply promptly!</>,
             features: [
                 { icon: "fa-envelope", text: "24h Email Support" },
                 { icon: "fa-bolt", text: "Fast Response" },
@@ -62,7 +62,7 @@ export default function ChatWidget() {
             ariaLabel: "予約サポート",
             title: "予約アシスタント",
             subTitle: "日本語対応サポート",
-            welcome: <>空室状況、料金確認、またはご予約をご希望ですか？<br /><span style={{ color: "var(--c-accent)" }}>メール</span>または<span style={{ color: "var(--c-accent)" }}>LINE</span>でお気軽にお問い合わせください。</>,
+            welcome: <>空室状況、料金確認、またはご予約をご希望ですか？<br /><span style={{ color: "var(--pri)" }}>メール</span>または<span style={{ color: "var(--pri)" }}>LINE</span>でお気軽にお問い合わせください。</>,
             features: [
                 { icon: "fa-envelope", text: "メール対応 (24h)" },
                 { icon: "fa-bolt", text: "迅速な対応" },
@@ -86,7 +86,7 @@ export default function ChatWidget() {
             ariaLabel: "예약 지원",
             title: "예약 도우미",
             subTitle: "한국어 대응 가능",
-            welcome: <>공실 확인, 요금 문의 또는 예약 진행을 원하십니까?<br /><span style={{ color: "var(--c-accent)" }}>이메일</span>이나 <span style={{ color: "var(--c-accent)" }}>LINE</span>으로 언제든 문의해 주세요.</>,
+            welcome: <>공실 확인, 요금 문의 또는 예약 진행을 원하십니까?<br /><span style={{ color: "var(--pri)" }}>이메일</span>이나 <span style={{ color: "var(--pri)" }}>LINE</span>으로 언제든 문의해 주세요.</>,
             features: [
                 { icon: "fa-envelope", text: "이메일 지원 (24h)" },
                 { icon: "fa-bolt", text: "신속한 답변" },
@@ -110,7 +110,7 @@ export default function ChatWidget() {
             ariaLabel: "Hỗ trợ đặt phòng",
             title: "Trợ lý Đặt phòng",
             subTitle: "Hỗ trợ tiếng Việt",
-            welcome: <>Kiểm tra phòng trống, báo giá hoặc đặt phòng?<br />Liên hệ qua <span style={{ color: "var(--c-accent)" }}>Email</span> hoặc <span style={{ color: "var(--c-accent)" }}>LINE</span> để hỗ trợ nhanh nhất.</>,
+            welcome: <>Kiểm tra phòng trống, báo giá hoặc đặt phòng?<br />Liên hệ qua <span style={{ color: "var(--pri)" }}>Email</span> hoặc <span style={{ color: "var(--pri)" }}>LINE</span> để hỗ trợ nhanh nhất.</>,
             features: [
                 { icon: "fa-envelope", text: "Hỗ trợ Email 24h" },
                 { icon: "fa-bolt", text: "Hồi đáp nhanh" },
@@ -146,7 +146,7 @@ export default function ChatWidget() {
                     right: "30px",
                     width: "60px",
                     height: "60px",
-                    backgroundColor: "var(--c-accent)",
+                    backgroundColor: "var(--pri)",
                     color: "white",
                     fontSize: "24px",
                     border: "none",
@@ -183,12 +183,12 @@ export default function ChatWidget() {
                     >
                         <div
                             className="w-9 h-9 rounded-full flex items-center justify-center text-sm"
-                            style={{ backgroundColor: "rgba(197,160,101,0.15)", color: "var(--c-accent)" }}
+                            style={{ backgroundColor: "rgba(197,160,101,0.15)", color: "var(--pri)" }}
                         >
                             <i className="fa-solid fa-concierge-bell" />
                         </div>
                         <div>
-                            <div className="font-bold text-sm" style={{ color: "var(--c-accent)" }}>{currentContent.title}</div>
+                            <div className="font-bold text-sm" style={{ color: "var(--pri)" }}>{currentContent.title}</div>
                             <div className="text-[0.65rem]" style={{ color: "rgba(255,255,255,0.4)" }}>{currentContent.subTitle}</div>
                         </div>
                     </div>
@@ -208,7 +208,7 @@ export default function ChatWidget() {
                                     className="flex items-center gap-2 px-3 py-2 rounded-lg"
                                     style={{ backgroundColor: "rgba(255,255,255,0.04)", fontSize: "0.78rem", color: "rgba(255,255,255,0.55)" }}
                                 >
-                                    <i className={`fa-solid ${item.icon}`} style={{ color: "var(--c-accent)", fontSize: "0.7rem", opacity: 0.7 }} />
+                                    <i className={`fa-solid ${item.icon}`} style={{ color: "var(--pri)", fontSize: "0.7rem", opacity: 0.7 }} />
                                     {item.text}
                                 </div>
                             ))}
@@ -225,7 +225,7 @@ export default function ChatWidget() {
                                 style={{
                                     background: currentContent.primaryBtn.isLine 
                                         ? "linear-gradient(135deg, #06C755 0%, #05B34B 100%)" 
-                                        : "linear-gradient(135deg, var(--c-accent) 0%, #b8945a 100%)",
+                                        : "linear-gradient(135deg, var(--pri) 0%, #b8945a 100%)",
                                     color: currentContent.primaryBtn.isLine ? "#ffffff" : "#1a1a1a",
                                     textDecoration: "none",
                                     letterSpacing: "0.05em",

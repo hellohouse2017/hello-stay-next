@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: "高雄團體旅遊行程推薦｜2-4 天懶人包 9 種主題",
     description: "親子放電、網美打卡、吃貨攻略、文化慢旅...9 種主題行程，從 2 天 1 夜到 4 天 3 夜全規劃。住包棟民宿搭配周邊景點美食。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-group-trip" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-group-trip" },
 };
 
 const itineraries = [
@@ -95,7 +96,7 @@ const itineraries = [
 
 export default function TripGuidePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",

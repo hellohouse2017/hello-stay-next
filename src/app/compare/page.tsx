@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
+import { publicStayFacts } from "@/data/public-stay-facts";
 
 export const metadata: Metadata = {
-  title: "高雄包棟推薦怎麼選？Hello Stay 館別、人數與設備比較",
+  title: "Hello Stay 館別比較｜你好哇寓所、溝頂與雙館方案",
   description:
-    "想找高雄包棟推薦？這頁直接比較 Hello Stay 館別、人數、房型、衛浴、廚房、公共空間與電梯需求，快速找到適合的高雄團體住宿與高雄家族旅遊包棟方案。",
+    "比較 Hello Stay 你好哇寓所、溝頂民宿與雙館方案的人數、房型、衛浴、廚房與公共空間；大智若愚目前僅列規劃狀態，不開放訂房。",
   alternates: { canonical: "https://www.hello-stay.com/compare" },
   openGraph: {
-    title: "高雄包棟推薦怎麼選？Hello Stay 館別、人數與設備比較",
-    description: "直接比較高雄包棟推薦方案，從人數、設備到館別差異，快速找到適合的高雄團體住宿。",
+    title: "Hello Stay 館別比較｜你好哇寓所、溝頂與雙館方案",
+    description: "直接比較 Hello Stay 各住宿方案的人數、房型、設備與開放狀態。",
     url: "https://www.hello-stay.com/compare",
     images: [
       {
@@ -27,15 +28,15 @@ const properties = [
     id: "compare-hellohouse",
     kicker: "你好哇寓所",
     title: "你好哇寓所",
-    summary: ["6-26 人", "中島廚房與大型公共空間", "適合聚餐 迎娶 慶生"],
+    summary: ["8-26 人", "中島廚房與大型公共空間", "適合聚餐 迎娶 慶生"],
     image: {
       src: "/images/hellohouse/1000.webp",
       alt: "你好哇寓所 1F 中島廚房與大型交誼空間",
     },
     description: ["想一起吃飯 聊天 辦活動", "1F 中島廚房與大型交誼空間是主角"],
     specs: [
-      { label: "適合人數", value: "6-26 人" },
-      { label: "房型", value: "雙人房 2 間 四人房 1 間 六人房 2 間" },
+      { label: "適合人數", value: "8-26 人" },
+      { label: "房型", value: `雙人房 ${publicStayFacts.hellohouse.bedroomLayout.double} 間 四人房 ${publicStayFacts.hellohouse.bedroomLayout.quadruple} 間 六人房 ${publicStayFacts.hellohouse.bedroomLayout.sixPerson} 間` },
       { label: "衛浴", value: "客房皆有獨立衛浴" },
       { label: "設備", value: "中島廚房 麻將 桌遊 聯網電視" },
     ],
@@ -111,7 +112,7 @@ const properties = [
 
 const comparisonFacts = [
   { label: "4-12 人", value: "溝頂 四房獨棟" },
-  { label: "6-26 人", value: "你好哇 中島廚房" },
+  { label: "8-26 人", value: "你好哇 中島廚房" },
   { label: "尚未開放訂房", value: "大智若愚 電梯大樓" },
   { label: "要開伙", value: "你好哇更完整" },
 ];
@@ -206,13 +207,8 @@ export default function ComparePage() {
       <PropertyShowcasePage
         hero={{
           kicker: "三館比較",
-          title: "高雄包棟推薦怎麼選？",
-          lead: [
-            "先看目前可訂的兩館，",
-            "再看尚未開放訂房的大智若愚。",
-            "如果你現在在比高雄包棟推薦、",
-            "高雄團體住宿或家族旅遊包棟，這頁會最快。",
-          ],
+          title: "住宿比較",
+          lead: "依人數、房間配置與公共空間比較目前方案。大智若愚仍在規劃中。",
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 三館比較主視覺",

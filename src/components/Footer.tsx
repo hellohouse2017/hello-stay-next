@@ -25,20 +25,28 @@ export default function Footer() {
                         <div className="footer-d__links">
                             <Link href={`${prefix}/hellohouse`}>{t.footer.prop_hellohouse}</Link>
                             <Link href={`${prefix}/godin`}>{t.footer.prop_godin}</Link>
-                            <Link href={`${prefix}/dazhi`}>{t.footer.prop_dazhi}</Link>
+                            <Link href={`${prefix}/dazhi`}>
+                                {currentLocale === "zh" ? `${t.footer.prop_dazhi}（規劃中）` : t.footer.prop_dazhi}
+                            </Link>
                             <Link href={`${prefix}/book`}>{t.footer.prop_book}</Link>
                         </div>
                     </div>
                     <div className="footer-d__col">
                         <div className="footer-d__title">{t.footer.info}</div>
                         <div className="footer-d__links">
-                            <Link href={`${prefix}/agreement`}>{t.footer.info_agreement}</Link>
+                            <Link href="/agreement">{t.footer.info_agreement}</Link>
                             <Link href={`${prefix}/traffic`}>{t.footer.info_traffic}</Link>
-                            <Link href={`${prefix}/explore`}>{t.footer.info_explore}</Link>
-                            <Link href={`${prefix}/packages`}>{t.footer.info_packages}</Link>
+                            <Link href="/explore">{t.footer.info_explore}</Link>
+                            {currentLocale === "zh" ? (
+                                <>
+                                    <Link href="/explore/food">鹽埕美食</Link>
+                                    <Link href="/explore/spots">周邊景點</Link>
+                                </>
+                            ) : null}
+                            <Link href="/packages">{t.footer.info_packages}</Link>
                             <Link href={currentLocale === "zh" ? "/blog" : `${prefix}/guide`}>{t.footer.info_blog}</Link>
-                            <Link href={`${prefix}/reviews`}>{t.footer.info_reviews}</Link>
-                            <Link href={`${prefix}/about`}>{t.footer.info_about}</Link>
+                            <Link href="/reviews">{t.footer.info_reviews}</Link>
+                            <Link href="/about">{t.footer.info_about}</Link>
                         </div>
                     </div>
                     <div className="footer-d__col">

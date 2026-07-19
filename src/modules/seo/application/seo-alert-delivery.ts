@@ -5,7 +5,7 @@ const FORCE_SEND_HEADER = 'x-seo-force-send';
 
 export interface SeoAlertDispatchDecision {
     alertSuppressed: boolean;
-    reason: 'already_sent_today' | null;
+    reason: 'already_sent_today' | 'new_critical' | 'recovery' | null;
     shouldSend: boolean;
 }
 
@@ -50,8 +50,21 @@ export function resolveSeoAlertDispatch(options: {
     forceSend: boolean;
     lastAlertAt?: string;
     nowIso: string;
+    previousCriticalFingerprints?: string[];
+    currentCriticalFingerprints?: string[];
+    previousHealthy?: boolean;
+    currentHealthy?: boolean;
 }): SeoAlertDispatchDecision {
     const { forceSend, lastAlertAt, nowIso } = options;
+
+    if (!forceSend) {
+        const previous = new Set(options.previousCriticalFingerprints || []);
+        const hasNewCritical = (options.currentCriticalFingerprints || []).some((fingerprint) => !previous.has(fingerprint));
+        if (hasNewCritical) return { shouldSend: true, alertSuppressed: false, reason: 'new_critical' };
+        if (options.previousHealthy === false && options.currentHealthy === true) {
+            return { shouldSend: true, alertSuppressed: false, reason: 'recovery' };
+        }
+    }
 
     if (!forceSend && hasAlertSentOnTaipeiDate(lastAlertAt, nowIso)) {
         return {

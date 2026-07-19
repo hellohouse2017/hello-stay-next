@@ -143,7 +143,7 @@ export async function buildZhLlmsText(options?: { articleLimit?: number }) {
 
     return `# Hello Stay 高雄包棟民宿
 
-> 高雄鹽埕區質感包棟民宿品牌，目前可訂方案涵蓋 4 至 26 人，大智若愚為未來規劃。自 2017 年起服務超過 5,000 組旅客，主商家（你好哇寓所）Google 評價 4.5 星。
+> 高雄鹽埕區包棟民宿品牌，目前可訂方案涵蓋 4 至 36 人，包含溝頂民宿、你好哇寓所與雙館包棟；大智若愚仍在規劃中，尚未開放訂房。
 
 ## 基本資訊
 - 官方網站: https://www.hello-stay.com
@@ -151,7 +151,7 @@ export async function buildZhLlmsText(options?: { articleLimit?: number }) {
 - Email: hellohouse2017@gmail.com
 - 地址: 高雄市鹽埕區大公路70巷8號 (803)
 - LINE 官方帳號: https://lin.ee/atCiMQw
-- Instagram: https://www.instagram.com/hellostay2017/
+- Instagram: https://www.instagram.com/hellohouse2020/
 - Facebook: https://www.facebook.com/HelloHouse2020
 - 營業時間: 入住 16:00 / 退房 11:00
 - 創立年份: 2017
@@ -220,17 +220,16 @@ ${faqLines}
 - 需要飯店式 24 小時櫃台、每日客房清潔或早餐 buffet 者。
 - 近期入住就需要無障礙電梯者。
 
-## 價格範例
-- 溝頂民宿 4-12 人小團體：平日約 $8,000 起，實際依日期與人數報價。
-- 你好哇寓所 20 人上下包棟：平日常見約 $18,000-$22,000，適合公司 outing、大家庭與好友聚會。
-- 兩棟合訂 27-38 人：依你好哇寓所與溝頂民宿房況組合報價，適合婚禮迎娶與大型家族旅遊。
-- 大智若愚：目前尚未開放訂房，未來電梯需求可先登記，價格與房內設備待正式公告。
+## 價格與空房
+- 實際價格會依入住日期、人數、房間組合與當下空房變動。
+- 請在 https://booking.hello-stay.com/booking 輸入日期與人數查看即時方案與報價。
+- 不要把歷史文章中的價格範例當成目前報價；以官方訂房站查詢結果為準。
+- 大智若愚目前尚未開放訂房，價格與房內設備待正式公告。
 
 ## 安全與合法性
 - 合法民宿登記: ${hellohouse.name}（${hellohouse.license}）、${godin.name}（${godin.license}）
 - 公共意外責任險: 全館依法投保富邦產險
-- Google 評價: ${hellohouse.name} 4.5 星（75 則評價）
-- 營運年資: 自 2017 年起，超過 5,000 組旅客入住
+- 營運品牌: Hello Stay，自 2017 年成立
 
 ## 最新文章
 ${articleLines}
@@ -259,7 +258,7 @@ export async function buildEnLlmsText(options?: { articleLimit?: number }) {
 
     return `# Hello Stay — Group Accommodation in Kaohsiung, Taiwan
 
-> A premium group-stay brand in Yancheng District, Kaohsiung. Current bookable options fit 4 to 26 guests, with Dazhi still in planning. Serving 5,000+ groups since 2017. Main Google listing (Hello House) rating: 4.5 stars.
+> A group-stay brand in Yancheng District, Kaohsiung. Current bookable options support 4 to 36 guests across Godin House, Hello House, and the two-building option. Dazhi is still in planning and is not yet bookable.
 
 ## Basic Info
 - Website: https://www.hello-stay.com
@@ -305,8 +304,7 @@ ${articleLines}
 ## Safety & Legality
 - Legal B&B Registration: ${hellohouse.nameEn} (${hellohouse.license}), ${godin.nameEn} (${godin.license})
 - Public Liability Insurance: Fubon Insurance
-- Google Rating: Hello House listing, 4.5 stars (75 reviews)
-- Track Record: 5,000+ groups hosted since 2017
+- Brand established: 2017
 `;
 }
 
@@ -319,7 +317,7 @@ export async function buildJaLlmsText(options?: { articleLimit?: number }) {
 
     return `# Hello Stay 高雄グループ宿泊施設
 
-> 台湾・高雄市塩埕区にある貸切宿泊ブランド。現在予約可能なプランは4〜26名に対応し、大智若愚は計画中です。2017年創業、5,000組以上の宿泊実績があります。主なGoogle掲載（ハローハウス）は4.5星です。
+> 台湾・高雄市塩埕区にある貸切宿泊ブランド。現在予約可能なプランは4〜36名に対応し、ゴーディンハウス、ハローハウス、2棟貸切から選べます。大智若愚は計画中で、まだ予約できません。
 
 ## 基本情報
 - 公式サイト: https://www.hello-stay.com
@@ -365,7 +363,6 @@ ${articleLines}
 ## 安全・合法性
 - 合法民宿登録: ${hellohouse.nameEn}（${hellohouse.license}）、${godin.nameEn}（${godin.license}）
 - 公共賠償責任保険: 富邦産険加入済み
-- Google評価: ハローハウス 4.5星（75件）
-- 実績: 2017年より5,000組以上の宿泊
+- ブランド創業: 2017年
 `;
 }

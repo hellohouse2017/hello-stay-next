@@ -1,4 +1,4 @@
-import type { PageMetadataCheck, JsonLdCoverageResult, LlmsCheckResult, SitemapCheckResult } from '@/modules/seo/domain/seo-page-health';
+import type { PageMetadataCheck, JsonLdCoverageResult, LlmsCheckResult, SeoIssue, SitemapCheckResult } from '@/modules/seo/domain/seo-page-health';
 
 export type PageSpeedCategoryScores = {
     perf: number;
@@ -12,7 +12,7 @@ export type PageSpeedReport = {
     desktop: PageSpeedCategoryScores | null;
 };
 
-export type MainGa4SectionStatus = 'configured' | 'missing_config' | 'error';
+export type MainGa4SectionStatus = 'configured' | 'missing_config' | 'error' | 'skipped';
 
 export function buildMainSeoHealthIntro(options: {
     timestamp: string;
@@ -22,8 +22,9 @@ export function buildMainSeoHealthIntro(options: {
     pagesWithJsonLd: number;
     totalPages: number;
     pagesWithIssues: PageMetadataCheck[];
+    seoIssues?: SeoIssue[];
 }): string {
-    const { timestamp, triggerSource, robotsOk, sitemap, pagesWithJsonLd, totalPages, pagesWithIssues } = options;
+    const { timestamp, triggerSource, robotsOk, sitemap, pagesWithJsonLd, totalPages, pagesWithIssues, seoIssues } = options;
 
     let report = `📊 <b>SEO 健康日報</b>\n`;
     report += `🕐 ${timestamp}\n`;
@@ -33,6 +34,34 @@ export function buildMainSeoHealthIntro(options: {
     report += `${robotsOk ? '✅' : '❌'} robots.txt\n`;
     report += `${sitemap.ok ? '✅' : '❌'} sitemap.xml (${sitemap.pageCount} 頁)\n`;
     report += `✅ JSON-LD: ${pagesWithJsonLd}/${totalPages} 頁\n`;
+
+    if (seoIssues) {
+        const critical = seoIssues.filter((issue) => issue.severity === 'critical');
+        const warnings = seoIssues.filter((issue) => issue.severity === 'warning');
+        const opportunities = seoIssues.filter((issue) => issue.severity === 'opportunity');
+        report += `\n健康分級：${critical.length} critical / ${warnings.length} warning / ${opportunities.length} opportunity\n`;
+
+        const reportable = [...critical, ...warnings].slice(0, 24);
+        if (reportable.length > 0) {
+            report += `\n⚠️ <b>需要處理:</b>\n`;
+            for (const issue of reportable) {
+                report += `${issue.severity === 'critical' ? '❌' : '⚠️'} <b>${issue.path}</b> [${issue.code}] ${issue.message}\n`;
+            }
+            if (critical.length + warnings.length > reportable.length) {
+                report += `ℹ️ 另有 ${critical.length + warnings.length - reportable.length} 項，完整清單請看 API payload。\n`;
+            }
+        }
+
+        if (opportunities.length > 0) {
+            const shortDescriptions = opportunities.filter((issue) => issue.code === 'description_short');
+            report += `\n💡 <b>優化機會:</b> ${opportunities.length} 項`;
+            if (shortDescriptions.length > 0) report += `（含 ${shortDescriptions.length} 頁 description 可加強）`;
+            report += `\n`;
+        }
+
+        if (critical.length === 0 && warnings.length === 0) report += `\n🎉 技術健康檢查無 critical / warning。\n`;
+        return report;
+    }
 
     if (pagesWithIssues.length > 0) {
         report += `\n⚠️ <b>發現問題:</b>\n`;
@@ -113,6 +142,20 @@ export function buildMainGa4Section(options: {
     aiSources: Array<{ source: string; sessions: number; users: number; pageviews: number }>;
     siteTagError?: string | null;
     dataApiError?: string | null;
+    windows?: {
+        sevenDay: {
+            label: string;
+            summary: { sessions: number; users: number; pageviews: number };
+            landingPages: Array<{ page: string; sessions: number; users: number }>;
+            aiSummary: { sessions: number; users: number; pageviews: number };
+        };
+        twentyEightDay: {
+            label: string;
+            summary: { sessions: number; users: number; pageviews: number };
+            landingPages: Array<{ page: string; sessions: number; users: number }>;
+            aiSummary: { sessions: number; users: number; pageviews: number };
+        };
+    } | null;
 }): string {
     const {
         measurementId,
@@ -127,6 +170,7 @@ export function buildMainGa4Section(options: {
         aiSources,
         siteTagError,
         dataApiError,
+        windows,
     } = options;
 
     let report = `\n📈 <b>GA4 狀態</b>\n──────────────\n`;
@@ -139,6 +183,22 @@ export function buildMainGa4Section(options: {
 
     report += `${propertyIdConfigured ? '✅' : 'ℹ️'} Data API Property ID\n`;
     report += `${oauthConfigured ? '✅' : 'ℹ️'} Data API OAuth\n`;
+
+    if (dataApiStatus === 'configured' && windows && dataDate) {
+        for (const window of [windows.sevenDay, windows.twentyEightDay]) {
+            report += `\n🔎 <b>${window.label}</b>（截至 ${dataDate}）\n`;
+            report += `Organic: Sessions ${window.summary.sessions} / Active Users ${window.summary.users} / Pageviews ${window.summary.pageviews}\n`;
+            report += `AI Assistants: Sessions ${window.aiSummary.sessions} / Active Users ${window.aiSummary.users} / Pageviews ${window.aiSummary.pageviews}\n`;
+            if (window.landingPages.length > 0) {
+                report += `<b>Organic Landing Paths</b>\n`;
+                for (const [index, page] of window.landingPages.entries()) {
+                    report += `${index + 1}. ${page.page} (${page.sessions} sessions / ${page.users} active users)\n`;
+                }
+            }
+        }
+        report += `ℹ️ AI 單日為 0 不告警；Google AI Overviews / AI Mode 仍計入 Organic Search\n`;
+        return report;
+    }
 
     if (dataApiStatus === 'configured' && summary && dataDate) {
         const aiSummary = aiAssistantsSummary || { sessions: 0, users: 0, pageviews: 0 };
@@ -166,6 +226,11 @@ export function buildMainGa4Section(options: {
 
     if (dataApiStatus === 'error' && dataApiError) {
         report += `\n⚠️ GA4 Data API 查詢失敗: ${dataApiError}\n`;
+        return report;
+    }
+
+    if (dataApiStatus === 'skipped') {
+        report += `\nℹ️ GA4 來源與 landing path 於每週報表查詢；本次只驗證前台埋碼與設定存在。\n`;
         return report;
     }
 

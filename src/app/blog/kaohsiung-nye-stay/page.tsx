@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: "高雄跨年包棟推薦｜倒數派對・煙火觀賞・包棟民宿",
     description: "高雄跨年住包棟民宿，在頂樓看義大世界煙火！中島廚房準備跨年大餐，麻將遊同樂，隔天睡到自然醒。鹽埕區團體包棟很適合。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-nye-stay" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-nye-stay" },
 };
 
 const sections = [
@@ -72,7 +73,7 @@ const sections = [
 
 export default function NYEPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄跨年包棟推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-nye-stay", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#fireworks"] } },
                 {

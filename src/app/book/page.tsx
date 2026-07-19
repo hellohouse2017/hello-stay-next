@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import BookingFlow from "./BookingFlow";
+import { getAlternateLanguageMap } from "@/i18n/config";
 
 export const metadata: Metadata = {
-    title: "Hello Stay 官方訂房入口｜先選館別再查空房與報價",
+    title: "高雄包棟民宿官方訂房入口｜先選館別再查空房與報價",
     description: "先選擇你好哇寓所、溝頂民宿或雙館包棟，再前往 Hello Stay 官方 booking 站查空房、看目前試算總價並完成預訂。",
-    alternates: { canonical: "https://www.hello-stay.com/book" },
+    alternates: { canonical: "https://www.hello-stay.com/book", languages: getAlternateLanguageMap("/book") },
     openGraph: {
         title: "Hello Stay 官方訂房入口 | 先選館別再查空房與報價",
         description: "先選擇館別，再前往官方 booking 站查空房、看目前試算總價並完成預訂。",
@@ -51,7 +52,7 @@ export default function BookPage() {
                                 {
                                     "@type": "Question",
                                     name: "Hello Stay 的高雄包棟民宿適合幾人？",
-                                    acceptedAnswer: { "@type": "Answer", text: "你好哇寓所適合 6 至 26 人，溝頂民宿適合 4 至 12 人；更大團體可以直接查看雙館方案。" },
+                                    acceptedAnswer: { "@type": "Answer", text: "你好哇寓所適合 8 至 26 人，溝頂民宿適合 4 至 12 人；更大團體可以直接查看雙館方案。" },
                                 },
                             ],
                         },

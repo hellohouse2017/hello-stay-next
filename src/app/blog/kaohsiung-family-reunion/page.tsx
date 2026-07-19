@@ -8,8 +8,9 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "高雄家族旅遊包棟推薦｜三代同堂・長輩友善・親子住宿",
-    description: "高雄家族旅遊住包棟民宿最好！三代同堂每間房獨立衛浴，長輩打麻將、小孩看Netflix、爸媽廚房備餐。鹽埕區6-38人包棟。",
+    description: "高雄家族旅遊住包棟民宿最好！三代同堂每間房獨立衛浴，長輩打麻將、小孩看Netflix、爸媽廚房備餐。鹽埕區6-36人包棟。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-family-reunion" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-family-reunion" },
 };
 
 const sections = [
@@ -29,7 +30,7 @@ const sections = [
 • 廚房煮飯 — 照顧老人小孩的飲食需求
 • 分層住宿 — 作息不同也不互相干擾` },
     {
-        id: "plan", title: "三代同堂房間安排建議", content: `你好哇寓所（6-26人）
+        id: "plan", title: "三代同堂房間安排建議", content: `你好哇寓所（8-26人）
 
 1F — 公共空間
 客廳、中島廚房、用餐區。白天全家集合吃飯聊天、晚上打牌。
@@ -45,7 +46,7 @@ const sections = [
 1F-3F 分配給不同小家庭，5F 景觀房給蜜月夫妻。
 各層有獨立空間，像住在自己家一樣。
 
-兩棟合訂（大家族 27-38人）
+兩棟合訂（大家族 27-36人）
 你好哇住年輕人、溝頂住長輩。兩棟距離 30 公尺。` },
     {
         id: "activity", title: "全家活動安排", content: `長輩最愛
@@ -88,12 +89,12 @@ const sections = [
 
 export default function FamilyPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄家族旅遊包棟推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-family-reunion", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#plan"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "高雄家族旅遊住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦包棟民宿，如你好哇寓所+溝頂民宿。三代同堂每間獨立衛浴、阿公阿嬤打麻將、小孩盡情跑跳、廚房可煮全家餐。兩棟合訂最多38人，各層獨立像住家一樣舒適。" } },
+                        { "@type": "Question", name: "高雄家族旅遊住哪裡好？", acceptedAnswer: { "@type": "Answer", text: "推薦包棟民宿，如你好哇寓所+溝頂民宿。三代同堂每間獨立衛浴、阿公阿嬤打麻將、小孩盡情跑跳、廚房可煮全家餐。雙館包棟最多 36 人，各層獨立像住家一樣舒適。" } },
                         { "@type": "Question", name: "高雄三代同堂旅遊行程推薦？", acceptedAnswer: { "@type": "Answer", text: "長輩：小堤咖啡+大溝頂市場+麻將。小孩：駁二小火車+壽山動物園+旗津。全家：大港橋+中島廚房聚餐+鹽埕老街散步。住包棟分層安排，作息不同也不互相影響。" } },
                     ]
                 },

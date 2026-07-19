@@ -2,25 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import { publicStayFacts } from "@/data/public-stay-facts";
+import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿推薦怎麼選？人數、設備、地點完整比較｜Hello Stay",
+    title: "高雄包棟民宿推薦怎麼選？人數、設備、地點完整比較",
     description: "想找高雄包棟民宿推薦？這頁整理高雄包棟住宿的挑選重點，依人數、設備、地點與旅遊用途比較你好哇寓所、溝頂民宿與雙館方案，快速找到適合的高雄包棟。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
         title: "高雄包棟民宿推薦怎麼選？人數、設備、地點完整比較｜Hello Stay",
         description: "依人數、設備、地點與用途比較高雄包棟民宿推薦方案，快速找到最適合的高雄鹽埕包棟住宿。",
         url: "https://www.hello-stay.com/kaohsiung-whole-house",
+        images: [DEFAULT_SEO_IMAGE],
     },
 };
 
 const faqs = [
-    { q: "高雄包棟民宿推薦哪間？", a: "依人數推薦：4-12 人先看溝頂民宿、6-26 人先看你好哇寓所；更大型團體可以再看尚未開放訂房的大智若愚。三間都在鹽埕區，步行到駁二很方便。" },
+    { q: "高雄包棟民宿推薦哪間？", a: "依人數推薦：4-12 人先看溝頂民宿、8-26 人先看你好哇寓所、27-36 人比較雙館方案。大智若愚尚未開放訂房，不列入近期可訂選項。" },
     { q: "高雄包棟一晚多少錢？", a: "Hello Stay 依館別與日期報價。平日常見先從溝頂民宿與你好哇寓所的實際可訂價格看起，官方 LINE 直訂免平台手續費。" },
-    { q: "高雄哪裡有 20 人以上的包棟？", a: "你好哇寓所適合 6-26 人；兩館合訂可往上延伸；若要更大的單一館別，可以先看尚未開放訂房的大智若愚。全在鹽埕區步行範圍。" },
+    { q: "高雄哪裡有 20 人以上的包棟？", a: "你好哇寓所適合 8-26 人；27-36 人可比較你好哇寓所與溝頂民宿雙館方案。超過 36 人須由客服確認其他安排，網站不以未開放館別承接近期訂房。" },
     { q: "高雄包棟有電梯的嗎？", a: "大智若愚是 Hello Stay 尚未開放訂房的電梯館別。若近期入住最在意電梯與搬行李，建議先看雙館與現有館別安排。" },
     { q: "高雄包棟可以烤肉嗎？", a: "Hello Stay目前三間館皆無戶外烤肉區。如需要烤肉設備，建議搭配附近烤肉餐廳，或選擇有戶外空間的其他包棟民宿。Hello Stay的優勢在於豪華廚房可煮火鍋。" },
-    { q: "高雄包棟民宿跟飯店哪個划算？", a: "包棟通常比飯店划算很多。以20人為例：飯店需10間雙人房（每晚約$30,000-$50,000），你好哇寓所包棟約$18,000-$22,000，省下40-60%，還有獨立廚房和公共空間。" },
+    { q: "高雄包棟民宿跟飯店哪個更適合？", a: "如果同行人數多、晚上還要聚餐聊天或一起活動，包棟通常比拆成多間飯店房更直覺。真正怎麼選，還是要看日期、人數、是否需要廚房，以及你們會不會用到公共空間。" },
 ];
 
 export default function KaohsiungWholeHousePage() {
@@ -29,9 +32,9 @@ export default function KaohsiungWholeHousePage() {
             id: "capacity-10",
             href: "/godin",
             count: "10 人左右",
-            range: "6–12 人",
+            range: `${publicStayFacts.godin.capacity.min}–${publicStayFacts.godin.capacity.max} 人`,
             rec: "溝頂民宿",
-            price: "$8,000起",
+            price: "依日期查詢",
             summary: "小家庭或 10 人左右聚會，優先看五層獨棟的溝頂民宿。",
             detail: "每層分開休息、低樓層給長輩，最適合家庭出遊與好友小聚。",
         },
@@ -39,9 +42,9 @@ export default function KaohsiungWholeHousePage() {
             id: "capacity-20",
             href: "/hellohouse",
             count: "20 人左右",
-            range: "13–26 人",
+            range: `13–${publicStayFacts.hellohouse.capacity.max} 人`,
             rec: "你好哇寓所",
-            price: "$12,000起",
+            price: "依日期與人數報價",
             summary: "20 人上下的聚餐、公司 outing 或婚禮前住，首選你好哇寓所。",
             detail: "中島廚房、麻將桌與多間套房一起到位，20 人入住最剛好。",
         },
@@ -49,21 +52,21 @@ export default function KaohsiungWholeHousePage() {
             id: "capacity-30",
             href: "/compare",
             count: "30 人左右",
-            range: "27–38 人",
+            range: `${publicStayFacts.dual.capacity.min}–${publicStayFacts.dual.capacity.max} 人`,
             rec: "兩棟合訂",
-            price: "$28,000起",
-            summary: "27–38 人建議直接走你好哇＋溝頂兩棟合訂，空間最靈活。",
+            price: "兩館合訂報價",
+            summary: "27–36 人建議直接走你好哇＋溝頂雙館包棟，空間最靈活。",
             detail: "兩棟步行 30 秒，可分房休息也能一起聚餐，婚禮與大家族最常用這個方案。",
         },
         {
             id: "capacity-40",
-            href: "/dazhi",
-            count: "40 人以上",
-            range: "39–48 人",
-            rec: "大智若愚",
-            price: "即將公布",
-            summary: "40 人以上團體先看尚未開放訂房的大智若愚，電梯與大容量是未來重點。",
-            detail: "企業員旅、球隊與大型家族，可先把需求登記起來。",
+            href: "/book",
+            count: "37 人以上",
+            range: "超過目前線上方案",
+            rec: "人工確認",
+            price: "不直接線上預訂",
+            summary: "目前公開可訂方案上限為 36 人，超過人數請由客服確認可行安排。",
+            detail: "大智若愚仍在規劃中，不以未開放館別承諾近期住宿。",
         },
     ] as const;
 
@@ -95,7 +98,7 @@ export default function KaohsiungWholeHousePage() {
     ] as const;
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-editorial-page seo-comparison-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "ItemList",
@@ -110,6 +113,13 @@ export default function KaohsiungWholeHousePage() {
                     "@context": "https://schema.org", "@type": "FAQPage",
                     mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
                 },
+                {
+                    "@context": "https://schema.org", "@type": "BreadcrumbList",
+                    itemListElement: [
+                        { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com/" },
+                        { "@type": "ListItem", position: 2, name: "高雄包棟民宿推薦怎麼選", item: "https://www.hello-stay.com/kaohsiung-whole-house" },
+                    ],
+                },
             ]} />
 
             <div className="w" style={{ maxWidth: "800px", padding: "0 20px 80px" }}>
@@ -117,7 +127,7 @@ export default function KaohsiungWholeHousePage() {
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
                     <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿推薦怎麼選？</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>整理高雄包棟民宿推薦重點，從人數、設備到地點快速比較｜鹽埕區駁二旁｜2017 年起服務超過 5,000 組旅客</p>
+                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>整理高雄包棟民宿推薦重點，從人數、設備到地點快速比較｜鹽埕區駁二旁｜先判斷館別，再查空房與報價</p>
                 </div></Reveal>
 
                 {/* Quick Answer for AI */}
@@ -127,8 +137,8 @@ export default function KaohsiungWholeHousePage() {
                         高雄鹽埕區現在先看兩館、另有一館尚未開放訂房：<br />
                         • <strong>4–12 人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選）<br />
                         • <strong>6–26 人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌）<br />
-                        • <strong>更大型團體</strong>→ <Link href="/dazhi" style={{ color: "var(--pri)" }}>大智若愚</Link>（電梯大樓，尚未開放訂房）<br />
-                        • <strong>多館一起看</strong>→ 兩館合訂或未來更多選項
+                        • <strong>27–36 人</strong>→ <Link href="/compare" style={{ color: "var(--pri)" }}>雙館方案</Link>（你好哇＋溝頂）<br />
+                        • <strong>37 人以上</strong>→ 人工確認，不以規劃中館別承諾房況
                     </div>
                 </div></Reveal>
 
@@ -192,8 +202,8 @@ export default function KaohsiungWholeHousePage() {
                         </tr></thead>
                         <tbody>
                             {[
-                                ["人數", "6–26", "6–12", "20–48"],
-                                ["每人", "$909起", "$800起", "即將公布"],
+                                ["人數", "6–26", "4–12", "尚未開放"],
+                                ["報價方式", "依日期與人數報價", "依日期與人數報價", "不開放訂房"],
                                 ["廚房", "✅ 豪華中島", "簡易流理臺", "尚未開放訂房"],
                                 ["麻將", "✅ 手動", "✅ 手動", "尚未開放訂房"],
                                 ["電梯", "❌", "❌", "✅"],

@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "Hello Stay 住客評價｜高雄包棟民宿真實入住回饋",
+  title: "高雄包棟民宿住客評價｜真實入住回饋與館別差異",
   description:
     "整理主館 Google 評價重點與各館實際住客回饋 讓你在看房型之外 也能理解真實入住感受與常見稱讚點",
   alternates: { canonical: "https://www.hello-stay.com/reviews" },
@@ -64,13 +64,13 @@ const detailCards = [
     kicker: "你好哇寓所",
     title: "你好哇寓所的評價多半圍繞在聚會體驗",
     description:
-      "主館 Google 4.5 星、75 則評論的高頻內容，不是單純說房間乾淨，而是反覆提到中島廚房、多人聚會、麻將、迎娶採光與整體聚在一起的感覺。這代表它真正的價值被客人感受到。",
+      "主館 Google 商家評價的高頻內容，不是單純說房間乾淨，而是反覆提到中島廚房、多人聚會、麻將、迎娶採光與整體聚在一起的感覺。這代表它真正的價值被客人感受到。",
     image: {
       src: "/images/hellohouse/1000.webp",
       alt: "你好哇寓所中島廚房與大型聚會空間",
     },
     specs: [
-      { label: "Google 評價", value: "4.5 / 75 則" },
+      { label: "Google 評價", value: "以主館商家評價內容為主" },
       { label: "最常被提到", value: "中島廚房 麻將 聚會空間" },
       { label: "常見族群", value: "家族旅遊 畢旅 迎娶 公司團建" },
       { label: "整體印象", value: "住在一起的體驗感很強" },
@@ -150,14 +150,14 @@ const detailCards = [
 ];
 
 const facts = [
-  { label: "主館 Google", value: "4.5 星 75 則評論" },
+  { label: "主館 Google", value: "以商家評價重點為主" },
   { label: "高頻關鍵字", value: "空間 地點 乾淨 好住" },
   { label: "主館評價主軸", value: "聚會感與中島廚房" },
   { label: "溝頂評價主軸", value: "獨棟直覺與分層休息" },
 ];
 
 const guides = [
-  "Google 4.5 星 75 則評論指的是主館你好哇寓所",
+  "這裡提到的 Google 商家評價重點主要對應主館你好哇寓所",
   "其他館別以官網整理的入住回饋補充",
   "評價最有價值的地方 是看空間感受有沒有真的被住客提到",
   "房型與設備仍以各館頁資訊為準",
@@ -190,8 +190,8 @@ const galleryImages = [
 
 const faqs = [
   {
-    question: "Google 4.5 星和 75 則評論，是不是三館合在一起？",
-    answer: "不是。這個數字是主館你好哇寓所的 Google 商家評價，其他館別則以官網整理的入住回饋與實際使用感受補充。",
+    question: "主館 Google 評價，是不是三館合在一起？",
+    answer: "不是。這裡提到的 Google 商家評價重點主要對應主館你好哇寓所；其他館別則以官網整理的入住回饋與實際使用感受補充。",
   },
   {
     question: "住客最常稱讚什麼？",
@@ -230,15 +230,14 @@ export default function ReviewsPage() {
       <PropertyShowcasePage
         hero={{
           kicker: "住客回饋",
-          title: "高雄包棟民宿評價最常提到：空間、位置與入住順暢度",
-          lead:
-            "照片會告訴你空間長什麼樣，評價會告訴你住起來到底怎麼樣。這裡整理的是住客最常提到的真實感受，讓你在看高雄包棟民宿評價時更快判斷館別差異。",
+          title: "住客評價",
+          lead: "整理住客對空間、位置與入住流程的真實回饋。",
           image: {
             src: "/images/hellohouse/photo2.webp",
             alt: "Hello Stay 住客評價主視覺與中島廚房空間",
           },
           stats: [
-            { label: "主館評價", value: "Google 4.5 星 75 則" },
+            { label: "主館評價", value: "Google 商家評價重點" },
             { label: "高頻稱讚", value: "聚會空間與地點方便" },
             { label: "溝頂重點", value: "獨棟直覺與分層休息" },
             { label: "延伸頁面", value: "房型與設備" },

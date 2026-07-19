@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const CANONICAL_EN = "https://www.hello-stay.com/en/blog/pier2-accommodation";
@@ -9,17 +10,18 @@ const CANONICAL_ZH = "https://www.hello-stay.com/blog/pier2-accommodation";
 
 export const metadata: Metadata = {
     title: "Pier-2 Art Center Accommodation | Walk 10 Min from Yancheng Villas",
-    description: "Looking for a stay near Pier-2 Art Center in Kaohsiung? Hello Stay's private villas in Yancheng District are a 10-minute walk from Pier-2 and 8 minutes from Dagang Bridge — more convenient than Cijin, with better food nearby.",
+    description: "Private group stays in Yancheng, a 10-minute walk from Pier-2 Art Center and close to Dagang Bridge, MRT, local food, and shared spaces.",
     alternates: {
         canonical: CANONICAL_EN,
         languages: { "zh-Hant": CANONICAL_ZH, en: CANONICAL_EN, "x-default": CANONICAL_ZH },
     },
-    openGraph: {
+        openGraph: {
         title: "Pier-2 Art Center Accommodation | Walk 10 Min from Yancheng Villas",
         description: "A 10-minute walk from Pier-2 Art Center, 8 minutes from Dagang Bridge. Private villas in Kaohsiung's Yancheng District.",
         url: CANONICAL_EN,
-        type: "article",
-    },
+            type: "article",
+            images: [DEFAULT_SEO_IMAGE],
+        },
 };
 
 const sections = [
@@ -84,7 +86,7 @@ Godin House
 ✨ Best for family trips and small groups
 💰 From about NT$8,000 on weekdays
 
-Booking both properties together can host up to 38 guests — ideal for large groups.`,
+Booking both properties together supports 27-36 guests — ideal for large groups.`,
     },
     {
         id: "tips",
@@ -111,11 +113,7 @@ Getting there
 
 export default function EnPier2Page() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <link rel="alternate" hrefLang="zh-Hant" href={CANONICAL_ZH} />
-            <link rel="alternate" hrefLang="en" href={CANONICAL_EN} />
-            <link rel="alternate" hrefLang="x-default" href={CANONICAL_ZH} />
-
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
@@ -134,7 +132,7 @@ export default function EnPier2Page() {
                         {
                             "@type": "Question",
                             name: "Is there recommended lodging near Pier-2 Art Center?",
-                            acceptedAnswer: { "@type": "Answer", text: "We recommend staying in Yancheng District, a 10-minute walk from Pier-2. Hello House, for example, is a private rental for 6-26 guests with a 4.5-star Google rating. Yancheng itself is a food destination, making it more convenient and offering more variety than staying right next to Pier-2." },
+                            acceptedAnswer: { "@type": "Answer", text: "We recommend staying in Yancheng District, a 10-minute walk from Pier-2. Hello House, for example, is a private rental for 8-26 guests with a 4.5-star Google rating. Yancheng itself is a food destination, making it more convenient and offering more variety than staying right next to Pier-2." },
                         },
                         {
                             "@type": "Question",

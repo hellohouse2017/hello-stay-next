@@ -1,9 +1,9 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { getAlternateLinks } from "@/i18n/config";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 
 export default function GuidePageContent({ locale }: { locale: Locale }) {
     const t = getDictionary(locale);
@@ -11,12 +11,16 @@ export default function GuidePageContent({ locale }: { locale: Locale }) {
 
     return (
         <>
-            {/* hreflang SEO links */}
-            {getAlternateLinks("/guide").map((link) => (
-                <link key={link.hreflang} rel="alternate" hrefLang={link.hreflang} href={link.href} />
-            ))}
-            <link rel="alternate" hrefLang="x-default" href="https://www.hello-stay.com/guide" />
+            {locale !== "zh" && <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                name: t.guide.meta_title,
+                description: t.guide.meta_desc,
+                url: `https://www.hello-stay.com${prefix}/guide`,
+                inLanguage: locale,
+            }} />}
 
+            <div className="legacy-editorial-page legacy-guide-page">
             {/* Hero Section */}
             <section className="hero-d" style={{ height: "60vh", minHeight: "450px" }}>
                 <div className="bg" style={{ backgroundImage: "url('/images/cover-bg.jpg')", opacity: 0.4 }} />
@@ -195,6 +199,7 @@ export default function GuidePageContent({ locale }: { locale: Locale }) {
                         </a>
                     </div>
                 </Reveal>
+            </div>
             </div>
         </>
     );

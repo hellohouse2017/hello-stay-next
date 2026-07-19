@@ -3,22 +3,24 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumb from "@/components/Breadcrumb";
+import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 const CANONICAL = "https://www.hello-stay.com/en/blog/kaohsiung-mahjong-stay";
 const ZH_CANONICAL = "https://www.hello-stay.com/blog/kaohsiung-mahjong-stay";
 
 export const metadata: Metadata = {
-    title: "Kaohsiung Private Villa with Mahjong Table | Play All Night",
-    description: "Looking for a Kaohsiung private villa with a mahjong table? Hello House and Godin House both have a manual mahjong table in the lounge, open until late, with a kitchen for late-night snacks. For 4-26 guests in Yancheng.",
+    title: "Kaohsiung Private Villa with Mahjong Table | Location & Quiet Hours",
+    description: "Compare the manual mahjong table locations at Hello House and Godin House in Yancheng, plus kitchen access and the 23:00 quiet-hours rule for group stays.",
     alternates: {
         canonical: CANONICAL,
         languages: { "zh-Hant": ZH_CANONICAL, en: CANONICAL, "x-default": ZH_CANONICAL },
     },
     openGraph: {
-        title: "Kaohsiung Private Villa with Mahjong Table | Play All Night",
-        description: "Manual mahjong table in the lounge, open until late, plus a kitchen for late-night snacks. For 4-26 guests in Yancheng, Kaohsiung.",
+        title: "Kaohsiung Private Villa with Mahjong Table | Location & Quiet Hours",
+        description: "Manual mahjong tables, kitchen differences, and the 23:00 quiet-hours rule for private group stays in Kaohsiung's Yancheng District.",
         url: CANONICAL,
         type: "article",
+        images: [DEFAULT_SEO_IMAGE],
     },
 };
 
@@ -27,14 +29,14 @@ const sections = [
         id: "why", title: "Why Play Mahjong at a Private Villa", content: `A public mahjong parlor just doesn't have the same atmosphere. Playing at your own private villa is the better call:
 
 • Manual mahjong — traditional hand-shuffled tiles, more conversation while you shuffle
-• No closing time — play as late as you want, unlike a parlor with fixed hours
+• Stay together — use the shared space while respecting the 23:00 quiet-hours rule
 • Sleep right upstairs — no need to drive home when you're tired
 • Snacks on demand — the kitchen is right there for late-night bites, drinks included
 • Full privacy — the whole villa is yours, win or lose without an audience` },
     {
         id: "setup", title: "Mahjong Setup at Hello House", content: `Mahjong table
 • Type: traditional manual mahjong (hand-shuffled)
-• Location: 4F lounge (Hello House) / 4F (Godin House)
+• Location: 1F shared space (Hello House) / 4F lounge (Godin House)
 • Tabletop: felt-covered, great tile feel
 • Size: standard, comfortable for long sessions
 
@@ -51,7 +53,7 @@ Extras
         id: "food", title: "Late-Night Snack Guide for Mahjong Nights", content: `Delivery to the villa
 📞 A-Luo-Ha braised snacks (4 min walk, best picked up in person)
 📞 Fried chicken (right around the corner)
-📞 Da-Kou-Pang grilled sandwich (if you're playing until morning 😂)
+📞 Da-Kou-Pang grilled sandwich (check opening hours before visiting)
 
 Cook it yourself in the kitchen
 🍲 Hot pot — buy ingredients at PX Mart, cook while you play
@@ -63,7 +65,7 @@ A few reminders
 • Keep drinks on the side table, not directly on the mahjong surface` },
     {
         id: "rules", title: "House Rules for Mahjong Nights", content: `✅ You're welcome to
-• Play until the early hours — the room is well soundproofed for mahjong
+• After 23:00, lower voices and the sound of chairs and tiles
 • Bring your own tile rack or scoring app
 
 
@@ -79,16 +81,13 @@ A few reminders
 
 export default function EnMahjongPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            <link rel="alternate" hrefLang="zh-Hant" href={ZH_CANONICAL} />
-            <link rel="alternate" hrefLang="en" href={CANONICAL} />
-            <link rel="alternate" hrefLang="x-default" href={ZH_CANONICAL} />
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "Kaohsiung Private Villa with Mahjong Table", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", inLanguage: "en", mainEntityOfPage: CANONICAL, speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#setup"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "Which Kaohsiung private villas have a mahjong table?", acceptedAnswer: { "@type": "Answer", text: "Both Hello House and Godin House have a manual mahjong table in the 4F lounge, with independent air conditioning and lighting. You can play until the early hours, then head upstairs to sleep. Nearby options for late-night snacks include braised food and fried chicken stalls, and the kitchen is available for hot pot too. For 6-26 guests." } },
-                        { "@type": "Question", name: "How late can we play mahjong at a Kaohsiung private villa?", acceptedAnswer: { "@type": "Answer", text: "There's no fixed cut-off time — you can play into the early hours. Just keep the volume down after 23:00, since the winning calls tend to get loud. The mahjong itself isn't very noisy; it's mainly about keeping voices down." } },
+                        { "@type": "Question", name: "Which Kaohsiung private villas have a mahjong table?", acceptedAnswer: { "@type": "Answer", text: "Hello House has a manual mahjong table in the 1F shared space, while Godin House has one in the 4F lounge. Hello House has a full kitchen; Godin House provides refrigerator, microwave, and sink facilities without open-flame cooking." } },
+                        { "@type": "Question", name: "How late can we use the mahjong space?", acceptedAnswer: { "@type": "Answer", text: "After 23:00, lower voices and avoid loud chair or tile movement. Continued use of the shared space depends on keeping noise low and respecting neighbors." } },
                     ]
                 },
             ]} />

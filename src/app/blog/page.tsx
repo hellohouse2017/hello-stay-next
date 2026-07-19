@@ -75,6 +75,25 @@ const buckets: ArticleBucket[] = [
     intro: "這類文章不是在講浪漫，而是在講真的會卡住旅客的事。",
     articleSlugs: ["taiwan-travel-foreign-guide"],
   },
+  {
+    id: "bucket-local-journal",
+    kicker: "鹽埕實地分享",
+    title: "從吃飯、散步到入住生活",
+    intro: "用一條旅程把真實店家、景點、採買與洗衣串起來，先找到想去的地方，再回頭選住宿。",
+    articleSlugs: [
+      "yancheng-breakfast-guide",
+      "yancheng-local-meals-guide",
+      "yancheng-snacks-guide",
+      "yancheng-dessert-drinks-guide",
+      "yancheng-night-guide",
+      "pier2-one-day-itinerary",
+      "dagangqiao-attraction-guide",
+      "yancheng-market-guide",
+      "yancheng-port-arts-guide",
+      "yancheng-shopping-laundry-guide",
+      "yancheng-westbay-route-guide",
+    ],
+  },
 ];
 
 const pageStyles = String.raw`
@@ -676,6 +695,9 @@ function pickImage(article: ArticleSummary) {
   if (article.slug === "kaohsiung-nye-stay") {
     return { src: "/images/hellohouse/party-cover.webp", alt: article.title };
   }
+  if (article.tags.includes("鹽埕") || article.tags.includes("駁二") || article.tags.includes("景點")) {
+    return { src: "/images/hellohouse/foodie-cover.webp", alt: article.title };
+  }
   return { src: "/images/hellohouse/cover.webp", alt: article.title };
 }
 
@@ -744,7 +766,7 @@ export default async function BlogIndex() {
 
       <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
 
-      <main className="blog-showcase">
+      <div className="blog-showcase luxury-journal">
         <section className="blog-hero">
           <div className="blog-shell">
             <div className="blog-hero__frame">
@@ -765,9 +787,9 @@ export default async function BlogIndex() {
                 <div className="blog-hero__copy">
                   <p className="blog-pill">HELLO STAY JOURNAL</p>
                   <p className="blog-kicker">LOCAL INSIGHTS</p>
-                  <h1>高雄包棟民宿怎麼選？從攻略直接找到適合頁面</h1>
+                  <h1>Hello Stay Journal</h1>
                   <p className="blog-hero__lead">
-                    文章依家族旅遊、企業團建、婚禮迎娶、廚房、麻將與交通重新整理。你不用先知道關鍵字，也能直接找到對應內容，再一路接回比較頁、館別頁與官方訂房。
+                    依旅遊情境、設備與交通整理。從需求找到主題，再回到比較頁與訂房。
                   </p>
 
                   <div className="blog-actions">
@@ -783,19 +805,19 @@ export default async function BlogIndex() {
                 <div className="blog-hero__stats">
                   <article>
                     <span>你現在要找的</span>
-                    <strong>住宿、設備與交通問題</strong>
+                    <strong>住宿與周邊問題</strong>
                   </article>
                   <article>
                     <span>常見入口</span>
-                    <strong>情境 設備 交通與生活圈</strong>
+                    <strong>情境、設備、生活圈</strong>
                   </article>
                   <article>
                     <span>怎麼讀</span>
-                    <strong>直接從需求找到對應主題</strong>
+                    <strong>從需求找到主題</strong>
                   </article>
                   <article>
                     <span>下一步</span>
-                    <strong>三館比較與房型頁</strong>
+                    <strong>比較與房型頁</strong>
                   </article>
                 </div>
               </div>
@@ -809,7 +831,7 @@ export default async function BlogIndex() {
               <div className="blog-section__head">
                 <p className="blog-kicker">FEATURED</p>
                 <h2>精選攻略</h2>
-                <p>最常被客人打開的主題會放在這裡</p>
+                <p>先從熱門問題開始。</p>
               </div>
 
               <div className="blog-featured">
@@ -873,9 +895,39 @@ export default async function BlogIndex() {
         <section className="blog-section">
           <div className="blog-shell">
             <div className="blog-section__head">
+              <p className="blog-kicker">LOCAL GUIDE</p>
+              <h2>鹽埕美食與景點</h2>
+              <p>早餐、老店、駁二與大港橋，另有獨立清單。</p>
+            </div>
+            <div className="blog-featured">
+              <Link className="blog-featured__main" href="/explore/food">
+                <div className="blog-featured__media">
+                  <Image src="/images/hellohouse/foodie-cover.webp" alt="鹽埕美食地圖" fill unoptimized sizes="(max-width: 1024px) 100vw, 60vw" />
+                </div>
+                <div className="blog-featured__body">
+                  <div className="blog-featured__meta"><span className="blog-tag">FOOD GUIDE</span></div>
+                  <h3>鹽埕美食地圖</h3>
+                  <p>早餐、正餐、甜點、酒吧與採買地點。</p>
+                  <span className="blog-link">查看美食</span>
+                </div>
+              </Link>
+              <aside className="blog-side">
+                <Link className="blog-side-card" href="/explore/spots">
+                  <h3>周邊景點</h3>
+                  <p>駁二、大港橋、港區與半日行程。</p>
+                  <span className="blog-link">查看景點</span>
+                </Link>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section className="blog-section">
+          <div className="blog-shell">
+            <div className="blog-section__head">
               <p className="blog-kicker">READ BY NEED</p>
               <h2>依需求找文章</h2>
-              <p>不同旅程在意的事情不同，直接從需求切入會更快。</p>
+              <p>直接從需求切入。</p>
             </div>
 
             <div className="blog-buckets">
@@ -931,7 +983,7 @@ export default async function BlogIndex() {
             <p className="blog-kicker">下一步</p>
             <h2>攻略看完 去選館</h2>
             <p>
-              知道自己這次在找什麼之後 就直接回館別比較 看房型設備 或查日期與空房
+              確認需求後，回到館別比較、房型設備與空房查詢。
             </p>
           </div>
 
@@ -944,7 +996,7 @@ export default async function BlogIndex() {
             </Link>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

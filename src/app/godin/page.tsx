@@ -2,14 +2,18 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
 import { godin } from "@/data/properties";
+import { getAlternateLanguageMap } from "@/i18n/config";
 
 const bookingHref = "https://booking.hello-stay.com/booking?property=%E6%BA%9D%E9%A0%82%E6%B0%91%E5%AE%BF";
 
 export const metadata: Metadata = {
-  title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運｜Hello Stay",
+  title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運",
   description:
     "高雄鹽埕民宿推薦「溝頂民宿」，適合 4-12 人包棟。五層獨棟空間、四間客房皆有獨立衛浴，步行可到駁二與鹽埕埔站，適合家庭旅遊與朋友小聚。",
-  alternates: { canonical: "https://www.hello-stay.com/godin" },
+  alternates: {
+    canonical: "https://www.hello-stay.com/godin",
+    languages: getAlternateLanguageMap("/godin"),
+  },
   openGraph: {
     title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運｜Hello Stay",
     description:
@@ -777,7 +781,7 @@ export default function GodinPage() {
         }}
       />
 
-      <main className="godin-page">
+      <div className="godin-page luxury-property-page">
         <section className="godin-hero">
           <div className="godin-shell">
             <div className="godin-hero__frame">
@@ -797,7 +801,7 @@ export default function GodinPage() {
               <div className="godin-hero__content">
                 <div className="godin-hero__copy">
                   <p className="godin-kicker">溝頂民宿</p>
-                  <h1>溝頂民宿｜鹽埕 4-12 人小團體包棟</h1>
+                  <h1>溝頂民宿</h1>
                   <p className="godin-hero__lead">
                     五層獨棟包棟，適合家庭旅行與小團體入住。四間客房皆有獨立衛浴，4F 是整團共用的交誼廳與簡易備餐空間。想找鹽埕民宿推薦或高雄小團體包棟，這館會是很直覺的選擇。
                   </p>
@@ -1037,7 +1041,7 @@ export default function GodinPage() {
             </a>
           </div>
         </section>
-      </main>
+      </div>
 
       <LineFloatingCTA lineUrl={godin.lineUrl} />
     </>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
+import { getAlternateLanguageMap } from "@/i18n/config";
 
 const lineUrl = "https://lin.ee/atCiMQw";
 
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   title: "大智若愚｜規劃中，尚未開放訂房",
   description:
     "大智若愚為 Hello Stay 規劃中的大型館別，目前尚未正式開放訂房。已知方向是一層三房一廳、電梯動線與大型團體包層 / 包棟規劃。",
-  alternates: { canonical: "https://www.hello-stay.com/dazhi" },
+  alternates: { canonical: "https://www.hello-stay.com/dazhi", languages: getAlternateLanguageMap("/dazhi") },
   openGraph: {
     title: "大智若愚｜規劃中，尚未開放訂房",
     description:
@@ -223,9 +224,8 @@ export default function DazhiPage() {
         hero={{
           status: "規劃中",
           kicker: "規劃中館別",
-          title: "大智若愚｜規劃中，尚未開放訂房",
-          lead:
-            "大智若愚目前仍在規劃階段。已知方向是電梯大樓、一層三房一廳、可包層可包棟，現階段只先公開已確認的資訊。",
+          title: "大智若愚",
+          lead: "規劃中的電梯館別，方向為一層三房一廳。目前尚未開放訂房。",
           image: {
             src: "/images/dazhi/building-render.webp",
             alt: "大智若愚建築規劃渲染圖",

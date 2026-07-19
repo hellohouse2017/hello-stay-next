@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿入住須知｜付款、取消與住宿規則｜Hello Stay",
+  title: "高雄包棟民宿入住須知｜付款、取消與住宿規則",
   description:
     "訂高雄包棟民宿前，先看懂 Hello Stay 的付款方式、取消規則、加人費用、安寧時間與入住條件。把高雄包棟住宿常見的訂房與入住重點一次確認清楚。",
   alternates: { canonical: "https://www.hello-stay.com/agreement" },
@@ -206,8 +206,8 @@ export default function AgreementPage() {
       <PropertyShowcasePage
         hero={{
           kicker: "入住須知",
-          title: "入住前請先知道：付款、取消與住宿規則",
-          lead: "先看懂付款方式、取消方式與安寧規則，訂房前把重點確認清楚。",
+          title: "入住須知",
+          lead: "付款、取消與住宿規則。訂房前請先確認。",
           image: {
             src: "/images/hellohouse/photo2.webp",
             alt: "Hello Stay 入住須知與住宿規則主視覺",

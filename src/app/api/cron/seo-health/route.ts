@@ -10,32 +10,41 @@ import {
     inspectGa4MeasurementTag,
 } from '@/modules/seo/infrastructure/seo-ga4';
 import { buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
-import { checkRobotsTxt, checkSitemapXml, inspectPageMetadata, type PageMetadataCheck } from '@/modules/seo/domain/seo-page-health';
+import { checkRobotsTxt, crawlSitemapHealth, type PageMetadataCheck } from '@/modules/seo/domain/seo-page-health';
 import { buildSeoHealthRouteErrorPayload, buildSeoHealthRoutePayload } from '@/modules/seo/application/seo-health-route-payload';
 import { isForceAlertSend, resolveSeoAlertDispatch, resolveSeoTriggerSource } from '@/modules/seo/application/seo-alert-delivery';
 import { appendOptionalReportSection, buildMainSeoHealthOpsState } from '@/modules/seo/application/seo-ops-service';
 import { buildElapsedSection, buildMainGa4Section, buildMainSeoHealthIntro } from '@/modules/seo/domain/seo-report-formatters';
 import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runtime';
+import { GA4_MEASUREMENT_ID } from '@/lib/analytics-config';
+import { buildBookingSeoFunnelSection, fetchBookingSeoFunnel } from '@/modules/seo/infrastructure/seo-booking-funnel';
+import { buildCoreWebVitalsSection, fetchCoreWebVitals } from '@/modules/seo/infrastructure/seo-pagespeed';
 
 const SITE_URL = 'https://www.hello-stay.com';
-const GA4_MEASUREMENT_ID = 'G-LKVWPNVH5M';
 const GA4_PROPERTY_ID_HEADER = 'x-seo-ga4-property-id';
 const GOOGLE_OAUTH_CLIENT_ID_HEADER = 'x-seo-google-oauth-client-id';
 const GOOGLE_OAUTH_CLIENT_SECRET_HEADER = 'x-seo-google-oauth-client-secret';
 const GOOGLE_OAUTH_REFRESH_TOKEN_HEADER = 'x-seo-google-oauth-refresh-token';
 const GA4_AI_TRAFFIC_NOTE = 'Google AI Overviews / AI Mode 目前仍算在 Organic Search；GA4 可單獨切出的 AI 流量是可辨識的 AI Assistants referrer。';
 
-const PAGES = [
-    { path: '/', name: '首頁' },
-    { path: '/hellohouse', name: '你好哇寓所' },
-    { path: '/godin', name: '溝頂民宿' },
-    { path: '/dazhi', name: '大智若愚' },
-    { path: '/book', name: '查詢空房' },
-    { path: '/agreement', name: '入住須知' },
-    { path: '/traffic', name: '交通停車' },
-    { path: '/explore', name: '周邊探索' },
-    { path: '/packages', name: '包棟方案' },
-];
+function offsetDate(date: string, days: number): string {
+    const value = new Date(`${date}T00:00:00Z`);
+    value.setUTCDate(value.getUTCDate() + days);
+    return value.toISOString().slice(0, 10);
+}
+
+function resolveReportCadence(request: Request, now = new Date()) {
+    const explicit = new URL(request.url).searchParams.get('scope');
+    if (explicit === 'monthly') return { scope: 'monthly' as const, includeWeekly: true, includeMonthly: true };
+    if (explicit === 'weekly') return { scope: 'weekly' as const, includeWeekly: true, includeMonthly: false };
+    if (explicit === 'daily') return { scope: 'daily' as const, includeWeekly: false, includeMonthly: false };
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', weekday: 'short', day: '2-digit' }).formatToParts(now);
+    const weekday = parts.find((part) => part.type === 'weekday')?.value;
+    const day = parts.find((part) => part.type === 'day')?.value;
+    const includeMonthly = day === '01';
+    const includeWeekly = includeMonthly || weekday === 'Mon';
+    return { scope: includeMonthly ? 'monthly' as const : includeWeekly ? 'weekly' as const : 'daily' as const, includeWeekly, includeMonthly };
+}
 
 function buildRequestDebugInfo(request: Request, options: { triggerSource: string; forceSend: boolean }) {
     return {
@@ -67,24 +76,35 @@ export async function GET(request: Request) {
         const previousState = await defaultSeoRouteRuntime.opsStateStore.readMain();
         const forceSend = isForceAlertSend(request);
         const triggerSource = resolveSeoTriggerSource(request);
-        const alertDispatch = resolveSeoAlertDispatch({
-            lastAlertAt: previousState?.lastAlertAt,
-            nowIso,
-            forceSend,
-        });
+        const cadence = resolveReportCadence(request);
         const requestDebugInfo = buildRequestDebugInfo(request, { triggerSource, forceSend });
 
         console.info('[SEO] seo-health request received', requestDebugInfo);
 
-        const [pageResults, sitemapResult, robotsOk] = await Promise.all([
-            Promise.all(PAGES.map((page) => inspectPageMetadata(SITE_URL, page.path, page.name))),
-            checkSitemapXml(SITE_URL),
+        const [healthCheck, robotsOk] = await Promise.all([
+            crawlSitemapHealth(SITE_URL),
             checkRobotsTxt(SITE_URL),
         ]);
+        const pageResults = healthCheck.pages;
+        const sitemapResult = healthCheck.sitemap;
 
         const totalPages = pageResults.length;
         const pagesWithJsonLd = pageResults.filter((page) => page.hasJsonLd).length;
         const pagesWithIssues = pageResults.filter((page) => page.issues.length > 0);
+        const criticalIssues = healthCheck.issues.filter((issue) => issue.severity === 'critical');
+        const currentTechnicalHealthy = robotsOk && sitemapResult.ok && criticalIssues.length === 0;
+        const previousCriticalFingerprints = Array.isArray(previousState?.summary?.criticalFingerprints)
+            ? previousState.summary.criticalFingerprints.filter((value): value is string => typeof value === 'string')
+            : [];
+        const alertDispatch = resolveSeoAlertDispatch({
+            lastAlertAt: previousState?.lastAlertAt,
+            nowIso,
+            forceSend,
+            previousCriticalFingerprints,
+            currentCriticalFingerprints: criticalIssues.map((issue) => issue.fingerprint),
+            previousHealthy: previousState?.healthy,
+            currentHealthy: currentTechnicalHealthy,
+        });
         const ga4PropertyId = request.headers.get(GA4_PROPERTY_ID_HEADER) || process.env.GOOGLE_ANALYTICS_PROPERTY_ID || '';
         const ga4OauthClientId = request.headers.get(GOOGLE_OAUTH_CLIENT_ID_HEADER) || process.env.GOOGLE_OAUTH_CLIENT_ID || '';
         const ga4OauthClientSecret = request.headers.get(GOOGLE_OAUTH_CLIENT_SECRET_HEADER) || process.env.GOOGLE_OAUTH_CLIENT_SECRET || '';
@@ -92,6 +112,8 @@ export async function GET(request: Request) {
         const ga4PropertyIdConfigured = !!ga4PropertyId;
         const ga4OauthConfigured = !!(ga4OauthClientId && ga4OauthClientSecret && ga4OauthRefreshToken);
         const ga4Date = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+        const ga4Range7d = { startDate: offsetDate(ga4Date, -6), endDate: ga4Date };
+        const ga4Range28d = { startDate: offsetDate(ga4Date, -27), endDate: ga4Date };
 
         const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
 
@@ -103,7 +125,9 @@ export async function GET(request: Request) {
             pagesWithJsonLd,
             totalPages,
             pagesWithIssues,
+            seoIssues: healthCheck.issues,
         });
+        report += `\n🗓️ 本次報表層級: ${cadence.scope}（技術每日 / 趨勢每週 / 內容每月）\n`;
 
         let ga4SiteTagDetected = false;
         let ga4SiteTagError: string | null = null;
@@ -117,46 +141,67 @@ export async function GET(request: Request) {
             console.error('[SEO] GA4 site tag error:', ga4SiteTagError);
         }
 
-        let ga4DataApiStatus: 'configured' | 'missing_config' | 'error' = 'missing_config';
+        let ga4DataApiStatus: 'configured' | 'missing_config' | 'error' | 'skipped' = cadence.includeWeekly ? 'missing_config' : 'skipped';
         let ga4Summary = null;
         let ga4LandingPages: Array<{ page: string; sessions: number; users: number }> = [];
         let ga4AiAssistantsSummary = null;
         let ga4AiSources: Array<{ source: string; sessions: number; users: number; pageviews: number }> = [];
+        let ga4Summary28d = null;
+        let ga4LandingPages28d: Array<{ page: string; sessions: number; users: number }> = [];
+        let ga4AiAssistantsSummary28d = null;
         let ga4Error: string | null = null;
 
-        if (ga4PropertyIdConfigured && ga4OauthConfigured) {
+        if (cadence.includeWeekly && ga4PropertyIdConfigured && ga4OauthConfigured) {
             try {
                 const { accessToken } = await exchangeRefreshTokenForAccessToken({
                     clientId: ga4OauthClientId,
                     clientSecret: ga4OauthClientSecret,
                     refreshToken: ga4OauthRefreshToken,
                 });
-                const [summary, landingPages, aiAssistantsSummary, aiSources] = await Promise.all([
+                const [summary, landingPages, aiAssistantsSummary, aiSources, summary28d, landingPages28d, aiAssistantsSummary28d] = await Promise.all([
                     fetchGa4OrganicSummary({
                         propertyId: ga4PropertyId,
                         accessToken,
-                        date: ga4Date,
+                        ...ga4Range7d,
                     }),
                     fetchGa4OrganicLandingPages({
                         propertyId: ga4PropertyId,
                         accessToken,
-                        date: ga4Date,
+                        ...ga4Range7d,
                     }),
                     fetchGa4AiAssistantSummary({
                         propertyId: ga4PropertyId,
                         accessToken,
-                        date: ga4Date,
+                        ...ga4Range7d,
                     }),
                     fetchGa4AiAssistantSources({
                         propertyId: ga4PropertyId,
                         accessToken,
-                        date: ga4Date,
+                        ...ga4Range28d,
+                    }),
+                    fetchGa4OrganicSummary({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range28d,
+                    }),
+                    fetchGa4OrganicLandingPages({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range28d,
+                    }),
+                    fetchGa4AiAssistantSummary({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range28d,
                     }),
                 ]);
                 ga4Summary = summary;
                 ga4LandingPages = landingPages;
                 ga4AiAssistantsSummary = aiAssistantsSummary;
                 ga4AiSources = aiSources;
+                ga4Summary28d = summary28d;
+                ga4LandingPages28d = landingPages28d;
+                ga4AiAssistantsSummary28d = aiAssistantsSummary28d;
                 ga4DataApiStatus = 'configured';
             } catch (error) {
                 ga4DataApiStatus = 'error';
@@ -178,26 +223,69 @@ export async function GET(request: Request) {
             aiSources: ga4AiSources,
             siteTagError: ga4SiteTagError,
             dataApiError: ga4Error,
+            windows: ga4Summary && ga4AiAssistantsSummary && ga4Summary28d && ga4AiAssistantsSummary28d ? {
+                sevenDay: {
+                    label: '近 7 天',
+                    summary: ga4Summary,
+                    landingPages: ga4LandingPages,
+                    aiSummary: ga4AiAssistantsSummary,
+                },
+                twentyEightDay: {
+                    label: '近 28 天',
+                    summary: ga4Summary28d,
+                    landingPages: ga4LandingPages28d,
+                    aiSummary: ga4AiAssistantsSummary28d,
+                },
+            } : null,
         });
 
+        const [bookingFunnel7d, bookingFunnel28d] = cadence.includeWeekly
+            ? await Promise.all([
+                fetchBookingSeoFunnel(7).catch((error) => {
+                    console.error('[SEO] Booking funnel 7d error:', error);
+                    return null;
+                }),
+                fetchBookingSeoFunnel(28).catch((error) => {
+                    console.error('[SEO] Booking funnel 28d error:', error);
+                    return null;
+                }),
+            ])
+            : [null, null];
+        if (cadence.includeWeekly) report += buildBookingSeoFunnelSection(bookingFunnel7d, bookingFunnel28d);
+
+        const coreWebVitals = cadence.includeWeekly
+            ? await Promise.all([
+                '/',
+                '/hellohouse',
+                '/godin',
+                '/compare',
+                '/blog/kaohsiung-arena-accommodation',
+            ].map((path) => fetchCoreWebVitals(`${SITE_URL}${path === '/' ? '' : path}`)))
+            : [];
+        if (coreWebVitals.length > 0) report += buildCoreWebVitalsSection(coreWebVitals);
+
         // ── Part 2: GSC 排名追蹤 ──────────────────────────
-        const rankingSection = await buildSeoRankingSection({
-            connect: connectToDatabase,
-            pageFilter: 'https://www.hello-stay.com',
-            fetchData: (targetDate) => fetchGSCData(targetDate, { pageFilter: 'https://www.hello-stay.com' }),
-            saveSnapshot,
-            getSnapshot,
-            errorPrefix: '[SEO]',
-        });
+        const rankingSection = cadence.includeWeekly
+            ? await buildSeoRankingSection({
+                connect: connectToDatabase,
+                pageFilter: 'https://www.hello-stay.com',
+                fetchData: (targetDate) => fetchGSCData(targetDate, { pageFilter: 'https://www.hello-stay.com' }),
+                saveSnapshot,
+                getSnapshot,
+                errorPrefix: '[SEO]',
+            })
+            : { report: '', rankingData: null, rankingError: null };
         report += rankingSection.report;
         const { rankingData, rankingError } = rankingSection;
 
         // ── Part 3: 部落格文章流量排行 ─────────────────────
-        report += await appendOptionalReportSection({
-            fetchData: fetchBlogTraffic,
-            buildReport: buildBlogRankingReport,
-            logPrefix: '[SEO] Blog traffic error:',
-        });
+        if (cadence.includeMonthly) {
+            report += await appendOptionalReportSection({
+                fetchData: () => fetchBlogTraffic({ endDate: rankingData?.date }),
+                buildReport: buildBlogRankingReport,
+                logPrefix: '[SEO] Blog traffic error:',
+            });
+        }
 
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
         report += buildElapsedSection(elapsed);
@@ -225,6 +313,7 @@ export async function GET(request: Request) {
             rankingError,
             ga4SiteTagDetected,
             ga4DataApiStatus,
+            criticalIssues,
         });
         const healthy = !!state.healthy;
         await defaultSeoRouteRuntime.opsStateStore.persistMain(state);
@@ -234,7 +323,14 @@ export async function GET(request: Request) {
             healthy,
             timestamp: now,
             elapsed: `${elapsed}s`,
-            pages: pageResults.map((page: PageMetadataCheck) => ({ name: page.name, path: page.path, status: page.status, jsonLd: page.hasJsonLd, issues: page.issues })),
+            pages: pageResults.map((page: PageMetadataCheck) => ({
+                name: page.name,
+                path: page.path,
+                status: page.status,
+                jsonLd: page.hasJsonLd,
+                issues: page.issues,
+                seoIssues: page.seoIssues || [],
+            })),
             sitemap: sitemapResult,
             robots: robotsOk,
             ranking: rankingData,
@@ -252,14 +348,24 @@ export async function GET(request: Request) {
                     summary: ga4AiAssistantsSummary,
                     sources: ga4AiSources,
                 },
+                windows: {
+                    sevenDay: { range: ga4Range7d, summary: ga4Summary, landingPages: ga4LandingPages, aiSummary: ga4AiAssistantsSummary },
+                    twentyEightDay: { range: ga4Range28d, summary: ga4Summary28d, landingPages: ga4LandingPages28d, aiSummary: ga4AiAssistantsSummary28d },
+                },
                 notes: [GA4_AI_TRAFFIC_NOTE],
                 error: ga4Error,
             },
+            bookingFunnel: {
+                sevenDay: bookingFunnel7d,
+                twentyEightDay: bookingFunnel28d,
+            },
+            coreWebVitals,
             alertSent,
             alertSuppressed: alertDispatch.alertSuppressed,
             triggerSource,
             forceSend,
             previousAlertAt: previousState?.lastAlertAt || null,
+            cadence: cadence.scope,
         }));
     } catch (error) {
         console.error('[Cron] seo-health error:', error);

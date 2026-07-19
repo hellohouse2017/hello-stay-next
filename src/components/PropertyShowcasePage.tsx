@@ -1,7 +1,15 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import {
+  CarTaxiFront,
+  CircleParking,
+  ExternalLink,
+  MapPin,
+  TramFront,
+  TrainFrontTunnel,
+  type LucideIcon,
+} from "lucide-react";
 import ShowcaseImageLightbox from "./ShowcaseImageLightbox";
 
 type ShowcaseText = string | string[];
@@ -27,7 +35,7 @@ export type ShowcaseOverviewCard = {
   kicker: string;
   title: string;
   summary: ShowcaseText;
-  image: ShowcaseImage;
+  image?: ShowcaseImage;
   href?: string;
   linkLabel?: string | null;
 };
@@ -42,7 +50,7 @@ export type ShowcaseDetailCard = {
   kicker: string;
   title: string;
   description: ShowcaseText;
-  image: ShowcaseImage;
+  image?: ShowcaseImage;
   specs: ShowcaseStat[];
   groups: ShowcaseDetailGroup[];
   action?: ShowcaseAction;
@@ -139,6 +147,30 @@ function TextLines({ text }: { text?: ShowcaseText }) {
 function hasShowcaseText(text?: ShowcaseText) {
   if (Array.isArray(text)) return text.length > 0;
   return Boolean(text);
+}
+
+const showcaseVisuals: Record<string, { mark: string; Icon: LucideIcon }> = {
+  "traffic-mrt": { mark: "O2", Icon: TramFront },
+  "traffic-hsr": { mark: "左營", Icon: TrainFrontTunnel },
+  "traffic-parking": { mark: "P", Icon: CircleParking },
+  "traffic-dropoff": { mark: "巷口", Icon: CarTaxiFront },
+};
+
+function ShowcaseVisual({ id, label }: { id: string; label: string }) {
+  const visual = showcaseVisuals[id] ?? { mark: "HS", Icon: MapPin };
+  const Icon = visual.Icon;
+
+  return (
+    <div className="showcase-visual" aria-label={`${label}圖示`}>
+      <span className="showcase-visual__rule showcase-visual__rule--top" />
+      <span className="showcase-visual__rule showcase-visual__rule--bottom" />
+      <span className="showcase-visual__mark">{visual.mark}</span>
+      <span className="showcase-visual__icon">
+        <Icon size={42} strokeWidth={1.15} aria-hidden="true" />
+      </span>
+      <span className="showcase-visual__label">{label}</span>
+    </div>
+  );
 }
 
 const pageStyles = String.raw`
@@ -397,6 +429,94 @@ const pageStyles = String.raw`
   background: #e8dfd0;
 }
 
+.showcase-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 182px;
+  overflow: hidden;
+  border: 1px solid rgba(45, 90, 68, 0.14);
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 249, 0.98), rgba(236, 230, 216, 0.9)),
+    repeating-linear-gradient(90deg, transparent 0 54px, rgba(45, 90, 68, 0.08) 55px 56px);
+  color: var(--accent);
+}
+
+.showcase-visual::before,
+.showcase-visual::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.showcase-visual::before {
+  width: 180%;
+  height: 1px;
+  background: rgba(45, 90, 68, 0.15);
+  transform: rotate(-26deg);
+}
+
+.showcase-visual::after {
+  width: 180%;
+  height: 1px;
+  background: rgba(178, 133, 50, 0.28);
+  transform: rotate(26deg);
+}
+
+.showcase-visual__rule {
+  position: absolute;
+  left: 18px;
+  width: 34px;
+  height: 1px;
+  background: rgba(45, 90, 68, 0.42);
+}
+
+.showcase-visual__rule--top {
+  top: 20px;
+}
+
+.showcase-visual__rule--bottom {
+  right: 18px;
+  bottom: 20px;
+  left: auto;
+  background: rgba(178, 133, 50, 0.66);
+}
+
+.showcase-visual__mark {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: rgba(31, 26, 22, 0.42);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+}
+
+.showcase-visual__icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  border: 1px solid rgba(45, 90, 68, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.76);
+  box-shadow: 0 12px 28px rgba(31, 26, 22, 0.08);
+}
+
+.showcase-visual__label {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .showcase-overview-card__body {
   display: grid;
   gap: 8px;
@@ -458,6 +578,13 @@ const pageStyles = String.raw`
   position: relative;
   min-height: 260px;
   background: #e8dfd0;
+}
+
+.showcase-detail-card__media .showcase-visual {
+  height: 100%;
+  min-height: 260px;
+  border: 0;
+  border-radius: 0;
 }
 
 .showcase-detail-card__body {
@@ -1097,7 +1224,7 @@ export default function PropertyShowcasePage({
     <>
       <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
 
-      <main className="showcase-page" style={pageVariables}>
+      <div className="showcase-page luxury-showcase" style={pageVariables}>
         <section className="showcase-hero">
           <div className="showcase-shell">
             <div className="showcase-hero__frame">
@@ -1151,15 +1278,19 @@ export default function PropertyShowcasePage({
               <div className="showcase-overview-grid">
                 {overview.cards.map((card) => (
                 <a className="showcase-overview-card" href={card.href ?? `#${card.id}`} key={card.id}>
-                  <div className="showcase-overview-card__image">
-                    <Image
-                      src={card.image.src}
-                      alt={card.image.alt}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
-                    />
-                  </div>
+                  {card.image ? (
+                    <div className="showcase-overview-card__image">
+                      <Image
+                        src={card.image.src}
+                        alt={card.image.alt}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
+                      />
+                    </div>
+                  ) : (
+                    <ShowcaseVisual id={card.id} label={card.kicker} />
+                  )}
 
                   <div className="showcase-overview-card__body">
                     <span>{card.kicker}</span>
@@ -1188,13 +1319,17 @@ export default function PropertyShowcasePage({
                 {details.cards.map((card) => (
                   <article className="showcase-detail-card" id={card.id} key={card.id}>
                     <div className="showcase-detail-card__media">
-                      <Image
-                        src={card.image.src}
-                        alt={card.image.alt}
-                        fill
-                        unoptimized
-                        sizes="(max-width: 820px) 100vw, 320px"
-                      />
+                      {card.image ? (
+                        <Image
+                          src={card.image.src}
+                          alt={card.image.alt}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 820px) 100vw, 320px"
+                        />
+                      ) : (
+                        <ShowcaseVisual id={card.id} label={card.kicker} />
+                      )}
                     </div>
 
                     <div className="showcase-detail-card__body">
@@ -1410,7 +1545,7 @@ export default function PropertyShowcasePage({
             </div>
           </section>
         ) : null}
-      </main>
+      </div>
     </>
   );
 }

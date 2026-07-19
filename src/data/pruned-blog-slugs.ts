@@ -3,7 +3,7 @@ export const PRUNED_BLOG_REDIRECTS = {
     "kaohsiung-sports-team": "/packages",
     "kaohsiung-bnb-recommendation": "/",
     "kaohsiung-group-stay-guide": "/kaohsiung-whole-house",
-    "yancheng-food-guide": "/explore",
+    "kaohsiung-concert-accommodation": "/blog/kaohsiung-arena-accommodation",
 } as const;
 
 export type PrunedBlogSlug = keyof typeof PRUNED_BLOG_REDIRECTS;

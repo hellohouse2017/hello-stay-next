@@ -8,7 +8,6 @@ export const AI_ASSISTANT_REFERRER_ALLOWLIST = [
     "bard.google.com",
     "claude.ai",
     "copilot.microsoft.com",
-    "bing.com",
 ];
 
 export function buildGa4InitScript(measurementId: string) {
@@ -17,7 +16,7 @@ export function buildGa4InitScript(measurementId: string) {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       (function() {
-        var config = {};
+        var config = { send_page_view: false };
         var referrer = document.referrer;
         var allowlist = ${JSON.stringify(AI_ASSISTANT_REFERRER_ALLOWLIST)};
 

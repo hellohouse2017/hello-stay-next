@@ -34,24 +34,28 @@ export const KEYWORD_GROUPS = [
         key: 'whole_house_core',
         label: '包棟核心詞群',
         keywords: ['高雄包棟民宿', '高雄包棟推薦', '高雄包棟'],
+        matches: (query: string) => query.includes('高雄') && query.includes('包棟'),
         intent: '最直接反映主站在高雄包棟主戰場的能見度。',
     },
     {
         key: 'accommodation_intent',
         label: '住宿決策詞群',
         keywords: ['高雄民宿推薦', '高雄民宿包棟', '高雄團體住宿', '高雄家族旅遊住宿'],
+        matches: (query: string) => query.includes('高雄') && /(民宿|住宿)/.test(query) && /(推薦|團體|家族|包棟|多人)/.test(query),
         intent: '偏近下單前的住宿比較與方案決策。',
     },
     {
         key: 'yancheng_local',
         label: '鹽埕在地詞群',
         keywords: ['鹽埕民宿', '鹽埕包棟'],
+        matches: (query: string) => query.includes('鹽埕') && /(民宿|住宿|包棟)/.test(query),
         intent: '反映區域型搜尋是否慢慢被吃下來。',
     },
     {
         key: 'brand_terms',
         label: '品牌詞群',
         keywords: ['你好哇寓所', '溝頂民宿'],
+        matches: (query: string) => /(你好哇|溝頂|hello\s*stay)/i.test(query),
         intent: '反映品牌認知與指名搜尋穩定度。',
     },
 ] as const;
@@ -72,6 +76,10 @@ export interface PageData {
     impressions: number;
     ctr: number;
     position: number;
+}
+
+interface QueryPageData extends QueryData {
+    page: string;
 }
 
 export interface ISeoSnapshot {
@@ -95,7 +103,7 @@ export interface SeoPeriodMetrics {
     avgPosition: number;
 }
 
-export type SeoTrendStatus = 'up' | 'flat' | 'down' | 'insufficient';
+export type SeoTrendStatus = 'up' | 'flat' | 'down' | 'mixed' | 'insufficient';
 
 export interface SeoTrendComparison {
     label: string;
@@ -129,8 +137,8 @@ export interface SeoKeywordGroupTrend {
 }
 
 export interface SeoOverallTrendSummary {
-    status: 'up' | 'flat' | 'down';
-    label: '偏進步' | '持平' | '偏弱';
+    status: 'up' | 'flat' | 'down' | 'mixed';
+    label: '偏進步' | '持平' | '偏弱' | '指標分歧';
     reason: string;
 }
 
@@ -140,6 +148,7 @@ export interface SeoTrendReport {
     comparison28d: SeoTrendComparison;
     landingPages: SeoLandingPageTrend[];
     keywordGroups: SeoKeywordGroupTrend[];
+    cannibalization?: Array<{ query: string; pages: Array<{ page: string; clicks: number; impressions: number }> }>;
     notes: string[];
 }
 
@@ -168,7 +177,7 @@ const defaultSeoSnapshotRepository = createMongoSeoSnapshotRepository({
 
 const GSC_SITE_URL = DEFAULT_GSC_SITE_URL;
 const SITE_ORIGIN = DEFAULT_MAIN_SITE_ORIGIN;
-const MIN_IMPRESSIONS_FOR_PAGE_JUDGEMENT = 20;
+const MIN_IMPRESSIONS_FOR_PAGE_JUDGEMENT = 100;
 const MIN_IMPRESSIONS_FOR_KEYWORD_GROUP_7D = 20;
 const MIN_IMPRESSIONS_FOR_KEYWORD_GROUP_28D = 40;
 const MIN_IMPRESSIONS_FOR_SITE_JUDGEMENT = 40;
@@ -245,18 +254,28 @@ export function evaluateTrendStatus(current: SeoPeriodMetrics, previous: SeoPeri
         };
     }
 
+    const clickDelta = current.clicks - previous.clicks;
     const clickDeltaPct = safeDeltaPct(current.clicks, previous.clicks) ?? 0;
     const impressionDeltaPct = safeDeltaPct(current.impressions, previous.impressions) ?? 0;
     const ctrDelta = current.ctr - previous.ctr;
     const positionDelta = previous.avgPosition - current.avgPosition;
 
-    if (clickDeltaPct >= 10 || (impressionDeltaPct >= 10 && ctrDelta >= 0) || positionDelta >= 0.8) {
-        return { status: 'up', note: null };
-    }
-
-    if (clickDeltaPct <= -10 || (impressionDeltaPct <= -10 && ctrDelta <= 0) || positionDelta <= -0.8) {
-        return { status: 'down', note: null };
-    }
+    const ctrHasEnoughData = current.impressions >= 100 && previous.impressions >= 100;
+    const positiveSignals = [
+        clickDelta >= 10 && clickDeltaPct >= 25,
+        positionDelta >= 1.5,
+        impressionDeltaPct >= 25 && (!ctrHasEnoughData || ctrDelta >= 0),
+        ctrHasEnoughData && ctrDelta >= 0.01,
+    ];
+    const negativeSignals = [
+        clickDelta <= -10 && clickDeltaPct <= -25,
+        positionDelta <= -1.5,
+    ];
+    const hasPositive = positiveSignals.some(Boolean);
+    const hasNegative = negativeSignals.some(Boolean);
+    if (hasPositive && hasNegative) return { status: 'mixed', note: '點擊、曝光、CTR 或排名方向不一致' };
+    if (hasNegative) return { status: 'down', note: null };
+    if (hasPositive) return { status: 'up', note: null };
 
     return { status: 'flat', note: null };
 }
@@ -341,28 +360,6 @@ async function fetchTopQueries(sc: ReturnType<typeof google.searchconsole>, star
     }));
 }
 
-async function fetchKeywordMetrics(sc: ReturnType<typeof google.searchconsole>, keyword: string, startDate: string, endDate: string, pageFilter?: string): Promise<SeoPeriodMetrics> {
-    try {
-        const response = await sc.searchanalytics.query({
-            siteUrl: GSC_SITE_URL,
-            requestBody: {
-                startDate,
-                endDate,
-                dimensions: ['query'],
-                dimensionFilterGroups: mergeFilterGroups(
-                    buildPageFilterGroups(pageFilter),
-                    [{
-                        filters: [{ dimension: 'query', expression: keyword, operator: 'equals' }],
-                    }],
-                ),
-            },
-        });
-        return normalizeMetrics(startDate, endDate, response.data.rows?.[0]);
-    } catch {
-        return createEmptyMetrics(startDate, endDate);
-    }
-}
-
 async function fetchTopPages(sc: ReturnType<typeof google.searchconsole>, startDate: string, endDate: string, pageFilter?: string): Promise<PageData[]> {
     const response = await sc.searchanalytics.query({
         siteUrl: GSC_SITE_URL,
@@ -384,16 +381,81 @@ async function fetchTopPages(sc: ReturnType<typeof google.searchconsole>, startD
     }));
 }
 
+async function fetchQueryPages(sc: ReturnType<typeof google.searchconsole>, startDate: string, endDate: string, pageFilter?: string): Promise<QueryPageData[]> {
+    const response = await sc.searchanalytics.query({
+        siteUrl: GSC_SITE_URL,
+        requestBody: {
+            startDate,
+            endDate,
+            dimensions: ['query', 'page'],
+            rowLimit: 25000,
+            ...(pageFilter ? { dimensionFilterGroups: buildPageFilterGroups(pageFilter) } : {}),
+        },
+    });
+    return (response.data.rows || []).map((row) => ({
+        query: (row.keys?.[0] || '').trim().toLowerCase(),
+        page: (row.keys?.[1] || '').replace(SITE_ORIGIN, ''),
+        clicks: row.clicks || 0,
+        impressions: row.impressions || 0,
+        ctr: row.ctr || 0,
+        position: row.position || 0,
+    }));
+}
+
+function aggregateQueryRows(rows: QueryPageData[], startDate: string, endDate: string): SeoPeriodMetrics {
+    const impressions = rows.reduce((sum, row) => sum + row.impressions, 0);
+    const clicks = rows.reduce((sum, row) => sum + row.clicks, 0);
+    return {
+        startDate,
+        endDate,
+        clicks,
+        impressions,
+        ctr: impressions > 0 ? clicks / impressions : 0,
+        avgPosition: impressions > 0
+            ? rows.reduce((sum, row) => sum + row.position * row.impressions, 0) / impressions
+            : 0,
+    };
+}
+
+function buildCannibalizationReport(rows: QueryPageData[]) {
+    const byQuery = new Map<string, QueryPageData[]>();
+    for (const row of rows) {
+        if (row.impressions < 10) continue;
+        const existing = byQuery.get(row.query) || [];
+        existing.push(row);
+        byQuery.set(row.query, existing);
+    }
+    return [...byQuery.entries()]
+        .filter(([, queryRows]) => queryRows.length >= 2 && queryRows.reduce((sum, row) => sum + row.impressions, 0) >= 50)
+        .sort((left, right) => right[1].reduce((sum, row) => sum + row.impressions, 0) - left[1].reduce((sum, row) => sum + row.impressions, 0))
+        .slice(0, 5)
+        .map(([query, queryRows]) => ({
+            query,
+            pages: queryRows
+                .sort((left, right) => right.impressions - left.impressions)
+                .map((row) => ({ page: row.page, clicks: row.clicks, impressions: row.impressions })),
+        }));
+}
+
 function buildLandingPageTrends(currentPages: PageData[], previousPages: PageData[], label: string): SeoLandingPageTrend[] {
+    const currentMap = new Map(currentPages.map((page) => [page.page, page]));
     const previousMap = new Map(previousPages.map((page) => [page.page, page]));
-    return currentPages.slice(0, 5).map((page) => {
+    const union = [...new Set([...currentMap.keys(), ...previousMap.keys()])]
+        .sort((left, right) => {
+            const leftScore = (currentMap.get(left)?.impressions || 0) + (previousMap.get(left)?.impressions || 0);
+            const rightScore = (currentMap.get(right)?.impressions || 0) + (previousMap.get(right)?.impressions || 0);
+            return rightScore - leftScore;
+        })
+        .slice(0, 5);
+    return union.map((pagePath) => {
+        const page = currentMap.get(pagePath);
         const current = normalizeMetrics(label, label, {
-            clicks: page.clicks,
-            impressions: page.impressions,
-            ctr: page.ctr,
-            position: page.position,
+            clicks: page?.clicks || 0,
+            impressions: page?.impressions || 0,
+            ctr: page?.ctr || 0,
+            position: page?.position || 0,
         });
-        const previousPage = previousMap.get(page.page);
+        const previousPage = previousMap.get(pagePath);
         const previous = normalizeMetrics(label, label, {
             clicks: previousPage?.clicks || 0,
             impressions: previousPage?.impressions || 0,
@@ -403,7 +465,7 @@ function buildLandingPageTrends(currentPages: PageData[], previousPages: PageDat
         const decision = evaluateTrendStatus(current, previous, MIN_IMPRESSIONS_FOR_PAGE_JUDGEMENT);
 
         return {
-            page: page.page,
+            page: pagePath,
             current,
             previous,
             status: decision.status,
@@ -448,6 +510,18 @@ function buildKeywordGroupTrend(
 }
 
 function buildOverallTrendSummary(comparison7d: SeoTrendComparison, comparison28d: SeoTrendComparison): SeoOverallTrendSummary {
+    if (
+        comparison7d.status === 'mixed'
+        || comparison28d.status === 'mixed'
+        || (comparison7d.status === 'up' && comparison28d.status === 'down')
+        || (comparison7d.status === 'down' && comparison28d.status === 'up')
+    ) {
+        return {
+            status: 'mixed',
+            label: '指標分歧',
+            reason: '近 7 天與近 28 天，或點擊、曝光、CTR 與排名方向不一致，先保留判斷並查看 landing page。',
+        };
+    }
     const score = [comparison7d, comparison28d].reduce((sum, comparison) => {
         if (comparison.status === 'up') return sum + 1;
         if (comparison.status === 'down') return sum - 1;
@@ -496,6 +570,7 @@ function renderTrendStatus(status: SeoTrendStatus): string {
     if (status === 'up') return '偏進步 ✅';
     if (status === 'down') return '偏弱 ⚠️';
     if (status === 'insufficient') return '資料不足 ℹ️';
+    if (status === 'mixed') return '指標分歧 ↕';
     return '持平';
 }
 
@@ -589,7 +664,19 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
         const current28dRange = buildWindow(latestDate, 28, 0);
         const previous28dRange = buildWindow(latestDate, 28, 28);
 
-        const [current7d, previous7d, current28d, previous28d, topQueries, currentTopPages, previousTopPages] = await Promise.all([
+        const [
+            current7d,
+            previous7d,
+            current28d,
+            previous28d,
+            topQueries,
+            currentTopPages,
+            previousTopPages,
+            current7dQueryPages,
+            previous7dQueryPages,
+            current28dQueryPages,
+            previous28dQueryPages,
+        ] = await Promise.all([
             fetchOverviewMetrics(sc, current7dRange.startDate, current7dRange.endDate, pageFilter),
             fetchOverviewMetrics(sc, previous7dRange.startDate, previous7dRange.endDate, pageFilter),
             fetchOverviewMetrics(sc, current28dRange.startDate, current28dRange.endDate, pageFilter),
@@ -597,15 +684,19 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
             fetchTopQueries(sc, current7dRange.startDate, current7dRange.endDate, pageFilter),
             fetchTopPages(sc, current7dRange.startDate, current7dRange.endDate, pageFilter),
             fetchTopPages(sc, previous7dRange.startDate, previous7dRange.endDate, pageFilter),
+            fetchQueryPages(sc, current7dRange.startDate, current7dRange.endDate, pageFilter),
+            fetchQueryPages(sc, previous7dRange.startDate, previous7dRange.endDate, pageFilter),
+            fetchQueryPages(sc, current28dRange.startDate, current28dRange.endDate, pageFilter),
+            fetchQueryPages(sc, previous28dRange.startDate, previous28dRange.endDate, pageFilter),
         ]);
 
-        const keywordRows = await Promise.all(TARGET_KEYWORDS.map(async (keyword) => ({
+        const keywordRows = TARGET_KEYWORDS.map((keyword) => ({
             query: keyword,
-            current7d: await fetchKeywordMetrics(sc, keyword, current7dRange.startDate, current7dRange.endDate, pageFilter),
-            previous7d: await fetchKeywordMetrics(sc, keyword, previous7dRange.startDate, previous7dRange.endDate, pageFilter),
-            current28d: await fetchKeywordMetrics(sc, keyword, current28dRange.startDate, current28dRange.endDate, pageFilter),
-            previous28d: await fetchKeywordMetrics(sc, keyword, previous28dRange.startDate, previous28dRange.endDate, pageFilter),
-        })));
+            current7d: aggregateQueryRows(current7dQueryPages.filter((row) => row.query === keyword), current7dRange.startDate, current7dRange.endDate),
+            previous7d: aggregateQueryRows(previous7dQueryPages.filter((row) => row.query === keyword), previous7dRange.startDate, previous7dRange.endDate),
+            current28d: aggregateQueryRows(current28dQueryPages.filter((row) => row.query === keyword), current28dRange.startDate, current28dRange.endDate),
+            previous28d: aggregateQueryRows(previous28dQueryPages.filter((row) => row.query === keyword), previous28dRange.startDate, previous28dRange.endDate),
+        }));
 
         const targetKeywords: QueryData[] = keywordRows.map((row) => ({
             query: row.query,
@@ -624,8 +715,13 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
         }));
 
         const keywordGroups = KEYWORD_GROUPS.map((group) => {
-            const keywords = group.keywords as readonly string[];
-            const rows = keywordRows.filter((row) => keywords.includes(row.query));
+            const rows = [{
+                query: group.key,
+                current7d: aggregateQueryRows(current7dQueryPages.filter((row) => group.matches(row.query)), current7dRange.startDate, current7dRange.endDate),
+                previous7d: aggregateQueryRows(previous7dQueryPages.filter((row) => group.matches(row.query)), previous7dRange.startDate, previous7dRange.endDate),
+                current28d: aggregateQueryRows(current28dQueryPages.filter((row) => group.matches(row.query)), current28dRange.startDate, current28dRange.endDate),
+                previous28d: aggregateQueryRows(previous28dQueryPages.filter((row) => group.matches(row.query)), previous28dRange.startDate, previous28dRange.endDate),
+            }];
             return buildKeywordGroupTrend(group, rows, current7dRange.label, current28dRange.label);
         });
 
@@ -637,9 +733,11 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
             comparison28d,
             landingPages: buildLandingPageTrends(currentTopPages, previousTopPages, current7dRange.label),
             keywordGroups,
+            cannibalization: buildCannibalizationReport(current28dQueryPages),
             notes: [
                 '低搜尋量詞或近 7/28 天總曝光不足時，日報會標成「資料不足」，不直接判定出榜或退步。',
-                '詞群表現來自預設核心關鍵字的聚合，適合看趨勢，不等於即時 SERP 單點排名。',
+                '詞群表現來自 query cluster，包含長尾並區分品牌／非品牌，適合看趨勢，不等於即時 SERP 單點排名。',
+                'CTR 至少 100 曝光才參與判讀；指標方向衝突時標記 mixed。',
                 '點擊、曝光、排名數字來自 Google Search Console 官方 API；「偏進步/持平/偏弱」是本站依據這些數字做的內部判讀邏輯，不是 Google 的官方評分或保證。',
             ],
         };
@@ -761,6 +859,17 @@ export function buildTrendRankingReport(dataDate: string, data: Awaited<ReturnTy
             report += `  28天：${renderTrendStatus(group.comparison28d.status)}｜${renderComparisonHeadline(group.comparison28d)}\n`;
             report += `  7天：${renderTrendStatus(group.comparison7d.status)}｜${renderComparisonHeadline(group.comparison7d)}\n`;
             report += `  ${group.intent}\n`;
+        }
+    }
+
+    if (trendReport.cannibalization && trendReport.cannibalization.length > 0) {
+        report += `\n🔀 <b>關鍵字頁面競合</b>（近28天）\n`;
+        report += `──────────────\n`;
+        for (const item of trendReport.cannibalization) {
+            report += `<b>${item.query}</b>\n`;
+            for (const page of item.pages) {
+                report += `  • ${page.page}: ${page.clicks} 點擊 / ${page.impressions} 曝光\n`;
+            }
         }
     }
 
@@ -938,6 +1047,7 @@ export async function fetchBlogTraffic(deps?: {
     titleLookup?: BlogTitleLookup;
     fetchPageTitle?: (pagePath: string) => Promise<string | null>;
     authProvider?: SearchConsoleAuthProvider;
+    endDate?: string;
 }): Promise<BlogTrafficReport | null> {
     const auth = await (deps?.authProvider || defaultSearchConsoleAuth).getAuth();
     if (!auth) return null;
@@ -947,8 +1057,8 @@ export async function fetchBlogTraffic(deps?: {
         const titleMap = await (deps?.titleLookup || defaultBlogTitleLookup).getTitleMap();
 
         // 查近 7 天的 /blog/ 頁面數據
-        const endDate = (() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; })();
-        const startDate = (() => { const d = new Date(); d.setDate(d.getDate() - 9); return d.toISOString().split('T')[0]; })();
+        const endDate = deps?.endDate || (() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; })();
+        const startDate = addDays(endDate, -6);
 
         const pr = await sc.searchanalytics.query({
             siteUrl: GSC_SITE_URL,

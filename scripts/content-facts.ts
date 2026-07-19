@@ -91,7 +91,7 @@ export const CONTENT_FACTS: ContentFacts = {
     },
     combo: {
       displayName: '兩棟合訂方案',
-      capacity: '27-38 人',
+      capacity: '27-36 人',
       highlights: ['兩棟距離近', '適合大家族或公司團體', '兼顧分層作息'],
       weekdayPriceFrom: '$28,000',
       holidayPriceFrom: '$35,000'

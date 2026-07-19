@@ -30,6 +30,13 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      {
+        source: "/admin/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          { key: "Cache-Control", value: "private, no-store, max-age=0" },
+        ],
+      },
     ];
   },
   async redirects() {
@@ -87,6 +94,7 @@ const nextConfig: NextConfig = {
       { source: "/index.html", destination: "/", permanent: true },
       { source: "/ruins/index.html", destination: "/dazhi", permanent: true },
       { source: "/ruins", destination: "/dazhi", permanent: true },
+      { source: "/blog/kaohsiung-concert-accommodation", destination: "/blog/kaohsiung-arena-accommodation", permanent: true },
     ];
   },
 };

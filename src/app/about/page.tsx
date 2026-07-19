@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
+  title: "高雄包棟民宿品牌介紹｜鹽埕三館定位與安全承諾",
   description:
     "從品牌起點、三館定位到安全承諾，一次看懂 Hello Stay 為什麼專注在高雄鹽埕區做團體包棟住宿。",
   alternates: { canonical: "https://www.hello-stay.com/about" },
@@ -97,7 +97,7 @@ const detailCards = [
       alt: "Hello Stay 三館定位與公共空間",
     },
     specs: [
-      { label: "你好哇寓所", value: "6-26 人 中島廚房與大型聚會" },
+      { label: "你好哇寓所", value: "8-26 人 中島廚房與大型聚會" },
       { label: "溝頂民宿", value: "4-12 人 分層客房與獨立衛浴" },
       { label: "大智若愚", value: "20-48 人 電梯與包層規劃" },
       { label: "雙館包棟", value: "大型團體不拆單" },
@@ -249,9 +249,8 @@ export default function AboutPage() {
       <PropertyShowcasePage
         hero={{
           kicker: "關於品牌",
-          title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
-          lead:
-            "Hello Stay 以高雄鹽埕團體包棟住宿為主軸。三館分別對應不同人數與空間需求，合法登記與安全承諾也一併公開。",
+          title: "Hello Stay",
+          lead: "高雄鹽埕的團體包棟住宿。依人數提供不同空間方案，公開合法登記與安全資訊。",
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 品牌與館別主視覺",

@@ -1,176 +1,241 @@
 import type { Metadata } from "next";
 import HomeTemplateExperience from "@/components/HomeTemplateExperience";
+import { homepageFaqItems, homepageLastReviewed } from "@/data/homepage-faq";
+import { godin, hellohouse } from "@/data/properties";
+import { getAlternateLanguageMap } from "@/i18n/config";
+
+const homeDescription =
+  "Hello Stay 提供高雄鹽埕 4-36 人包棟住宿，包含溝頂民宿、你好哇寓所與雙館方案。近駁二、大港橋與鹽埕埔站，先依人數選方案，再查即時空房與報價。";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費｜Hello Stay",
-  description:
-    "Hello Stay 提供高雄鹽埕包棟住宿與雙館包棟方案，近駁二、大港橋與鹽埕埔站。先依人數快速選館，再查空房、報價與官方直訂免手續費資訊。",
-  alternates: { canonical: "https://www.hello-stay.com" },
+  title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費",
+  description: homeDescription,
+  alternates: {
+    canonical: "https://www.hello-stay.com",
+    languages: getAlternateLanguageMap(""),
+  },
   openGraph: {
     title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費｜Hello Stay",
     description:
-      "高雄包棟民宿推薦品牌 Hello Stay，近駁二、大港橋與鹽埕埔站，先依人數快速選館，再查空房與官方直訂報價。",
+      "高雄鹽埕 4-36 人包棟住宿，先依人數選溝頂、你好哇或雙館方案，再查即時空房與官方報價。",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
+    images: [
+      {
+        url: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+        width: 1200,
+        height: 466,
+        alt: "Hello Stay 你好哇寓所高雄包棟民宿公共空間",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "高雄包棟民宿推薦｜Hello Stay",
+    description: "高雄鹽埕 4-36 人包棟住宿，依人數選方案並查即時空房與報價。",
+    images: ["https://www.hello-stay.com/images/hellohouse/cover.webp"],
   },
 };
 
-const homeStructuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    "@id": "https://www.hello-stay.com/#lodging",
-    name: "Hello Stay 高雄包棟",
-    parentOrganization: { "@type": "Organization", "@id": "https://www.hello-stay.com/#organization" },
-    alternateName: ["Hello Stay", "Hello Stay 高雄包棟"],
-    url: "https://www.hello-stay.com",
-    telephone: "+886-932-828-922",
-    email: "hellohouse2017@gmail.com",
-    description:
-      "高雄鹽埕區質感包棟民宿，目前可訂 4 至 26 人包棟方案，另有大型團體與電梯需求的未來館別規劃。配備中島廚房、麻將與桌遊設備，步行 10 分鐘可到駁二藝術特區。",
-    slogan: "高雄鹽埕・質感包棟旅宿",
-    foundingDate: "2017",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "大公路70巷8號",
-      addressLocality: "鹽埕區",
-      addressRegion: "高雄市",
-      postalCode: "803",
-      addressCountry: "TW",
-    },
-    geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 },
-    hasMap: "https://goo.gl/maps/qxGN4mpNP8qfRCB16",
-    priceRange: "$$",
-    checkinTime: "16:00",
-    checkoutTime: "11:00",
-    numberOfRooms: 10,
-    amenityFeature: [
-      { "@type": "LocationFeatureSpecification", name: "Kitchen", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Free Wi-Fi", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Air conditioning", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Self check-in", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Mahjong table", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Streaming TV", value: true },
-    ],
-    containsPlace: [
-      {
-        "@type": "Accommodation",
-        name: "你好哇寓所",
-        description: "6-26人包棟，中島廚房、麻將桌、桌遊",
-        numberOfBedrooms: 6,
-        occupancy: { "@type": "QuantitativeValue", maxValue: 26 },
-      },
-      {
-        "@type": "Accommodation",
-        name: "溝頂民宿",
-        description: "4-12 人整棟包棟，四間客房皆有獨立衛浴，4F 為交誼廳與簡易備餐空間",
-        numberOfBedrooms: 4,
-        occupancy: { "@type": "QuantitativeValue", maxValue: 12 },
-      },
-      {
-        "@type": "Accommodation",
-        name: "大智若愚",
-        description: "尚未開放訂房的電梯包層 / 包棟規劃，未來以正式公告內容為準",
-        occupancy: { "@type": "QuantitativeValue", maxValue: 48 },
-      },
-    ],
-    sameAs: [
-      "https://www.instagram.com/hellohouse2020/",
-      "https://www.facebook.com/HelloHouse2020/",
-      "https://lin.ee/atCiMQw",
-      "https://lin.ee/tUNnRLw",
-      "https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U",
-    ],
-    potentialAction: {
-      "@type": "ReserveAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://booking.hello-stay.com/booking",
-        inLanguage: "zh-Hant",
-        actionPlatform: ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"],
-      },
-      result: { "@type": "LodgingReservation", name: "Hello Stay 包棟預訂" },
-    },
+const organizationId = "https://www.hello-stay.com/#organization";
+const websiteId = "https://www.hello-stay.com/#website";
+const webpageId = "https://www.hello-stay.com/#webpage";
+const helloHouseId = "https://www.hello-stay.com/hellohouse#lodging";
+const godinId = "https://www.hello-stay.com/godin#lodging";
+const dualStayId = "https://www.hello-stay.com/#dual-stay";
+
+const reserveAction = {
+  "@type": "ReserveAction",
+  target: {
+    "@type": "EntryPoint",
+    urlTemplate: "https://booking.hello-stay.com/booking",
+    inLanguage: "zh-Hant",
+    actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://www.hello-stay.com/#organization",
-    name: "Hello Stay",
-    alternateName: ["Hello Stay", "Hello Stay 高雄包棟"],
-    subOrganization: [
-      {
-        "@type": "LodgingBusiness",
-        "@id": "https://www.hello-stay.com/#lodging",
-        name: "你好哇寓所",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "大公路70巷8號",
-          addressLocality: "鹽埕區",
-          addressRegion: "高雄市",
-          postalCode: "803",
-          addressCountry: "TW",
-        },
-        telephone: "+886-932-828-922",
-        sameAs: ["https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U"],
-      },
-      {
-        "@type": "LodgingBusiness",
-        "@id": "https://www.hello-stay.com/godin/#lodging",
-        name: "溝頂民宿",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "大公路70巷6-2號",
-          addressLocality: "鹽埕區",
-          addressRegion: "高雄市",
-          postalCode: "803",
-          addressCountry: "TW",
-        },
-        telephone: "+886-932-828-922",
-        sameAs: ["https://www.google.com/maps/search/?api=1&query=%E6%BA%9D%E9%A0%82%E6%B0%91%E5%AE%BF"],
-      },
-    ],
-    url: "https://www.hello-stay.com",
-    logo: "https://www.hello-stay.com/images/cover-bg.webp",
-    foundingDate: "2017",
-    email: "hellohouse2017@gmail.com",
-    telephone: "+886-932-828-922",
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+886-932-828-922",
-      contactType: "customer service",
+  result: { "@type": "LodgingReservation", name: "Hello Stay 包棟預訂" },
+};
+
+const homeStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "Hello Stay",
+      alternateName: ["Hello Stay 高雄包棟"],
+      url: "https://www.hello-stay.com",
+      image: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+      foundingDate: "2017",
       email: "hellohouse2017@gmail.com",
-      availableLanguage: ["zh-Hant", "en", "ja", "ko", "vi"],
-      areaServed: "TW",
+      telephone: "+886-932-828-922",
+      subOrganization: [{ "@id": helloHouseId }, { "@id": godinId }],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+886-932-828-922",
+        contactType: "customer service",
+        email: "hellohouse2017@gmail.com",
+        availableLanguage: ["zh-Hant", "en", "ja", "ko", "vi"],
+        areaServed: "TW",
+      },
+      sameAs: [
+        "https://www.instagram.com/hellohouse2020/",
+        "https://www.facebook.com/HelloHouse2020/",
+        "https://lin.ee/atCiMQw",
+        "https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U",
+      ],
     },
-    sameAs: [
-      "https://www.instagram.com/hellohouse2020/",
-      "https://www.facebook.com/HelloHouse2020/",
-      "https://lin.ee/atCiMQw",
-      "https://lin.ee/tUNnRLw",
-      "https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U",
-    ],
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://www.hello-stay.com/#website",
-    url: "https://www.hello-stay.com",
-    name: "Hello Stay 高雄包棟民宿",
-    inLanguage: ["zh-Hant", "en", "ja", "ko", "vi"],
-    publisher: { "@id": "https://www.hello-stay.com/#lodging" },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: { "@type": "EntryPoint", urlTemplate: "https://www.hello-stay.com/book?date={search_term_string}" },
-      "query-input": "required name=search_term_string",
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: "https://www.hello-stay.com",
+      name: "Hello Stay 高雄包棟民宿",
+      inLanguage: ["zh-Hant", "en", "ja", "ko", "vi"],
+      publisher: { "@id": organizationId },
     },
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: [".hs-hero__content", "h1", ".hs-section__head h2"],
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: "https://www.hello-stay.com",
+      name: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費",
+      description: homeDescription,
+      inLanguage: "zh-Hant-TW",
+      isPartOf: { "@id": websiteId },
+      about: [{ "@id": helloHouseId }, { "@id": godinId }, { "@id": dualStayId }],
+      mainEntity: { "@id": "https://www.hello-stay.com/#stay-options" },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: "https://www.hello-stay.com/images/hellohouse/cover.webp",
+      },
+      dateModified: homepageLastReviewed,
     },
-  },
-];
+    {
+      "@type": "LodgingBusiness",
+      "@id": helloHouseId,
+      name: hellohouse.name,
+      alternateName: hellohouse.nameEn,
+      url: "https://www.hello-stay.com/hellohouse",
+      image: `https://www.hello-stay.com${hellohouse.coverImage}`,
+      description: hellohouse.description,
+      parentOrganization: { "@id": organizationId },
+      telephone: hellohouse.phone,
+      email: "hellohouse2017@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: hellohouse.addressFull.street,
+        addressLocality: hellohouse.addressFull.district,
+        addressRegion: hellohouse.addressFull.city,
+        postalCode: hellohouse.addressFull.zip,
+        addressCountry: "TW",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: hellohouse.location.lat,
+        longitude: hellohouse.location.lng,
+      },
+      hasMap: hellohouse.mapUrl,
+      priceRange: "$$",
+      checkinTime: hellohouse.checkin,
+      checkoutTime: hellohouse.checkout,
+      numberOfRooms: hellohouse.totalRooms,
+      containsPlace: {
+        "@type": "Accommodation",
+        name: `${hellohouse.name}包棟住宿`,
+        numberOfBedrooms: hellohouse.totalRooms,
+        occupancy: {
+          "@type": "QuantitativeValue",
+          minValue: hellohouse.capacity.min,
+          maxValue: hellohouse.capacity.max,
+        },
+      },
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
+        { "@type": "LocationFeatureSpecification", name: "手動麻將桌", value: true },
+        { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+        { "@type": "LocationFeatureSpecification", name: "電子密碼鎖自助入住", value: true },
+      ],
+      sameAs: ["https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U"],
+      potentialAction: reserveAction,
+    },
+    {
+      "@type": "LodgingBusiness",
+      "@id": godinId,
+      name: godin.name,
+      alternateName: godin.nameEn,
+      url: "https://www.hello-stay.com/godin",
+      image: `https://www.hello-stay.com${godin.coverImage}`,
+      description: godin.description,
+      parentOrganization: { "@id": organizationId },
+      telephone: godin.phone,
+      email: "hellohouse2017@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: godin.addressFull.street,
+        addressLocality: godin.addressFull.district,
+        addressRegion: godin.addressFull.city,
+        postalCode: godin.addressFull.zip,
+        addressCountry: "TW",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: godin.location.lat,
+        longitude: godin.location.lng,
+      },
+      hasMap: godin.mapUrl,
+      priceRange: "$$",
+      checkinTime: godin.checkin,
+      checkoutTime: godin.checkout,
+      numberOfRooms: godin.totalRooms,
+      containsPlace: {
+        "@type": "Accommodation",
+        name: `${godin.name}包棟住宿`,
+        numberOfBedrooms: godin.totalRooms,
+        occupancy: {
+          "@type": "QuantitativeValue",
+          minValue: godin.capacity.min,
+          maxValue: godin.capacity.max,
+        },
+      },
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "簡易備餐空間", value: true },
+        { "@type": "LocationFeatureSpecification", name: "手動麻將桌", value: true },
+        { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+        { "@type": "LocationFeatureSpecification", name: "電子密碼鎖自助入住", value: true },
+      ],
+      sameAs: [godin.mapUrl],
+      potentialAction: reserveAction,
+    },
+    {
+      "@type": "Service",
+      "@id": dualStayId,
+      name: "Hello Stay 雙館包棟",
+      description: "你好哇寓所與溝頂民宿兩館合住，適合 27-36 人團體，兩館步行約 30 秒。",
+      provider: { "@id": organizationId },
+      areaServed: { "@type": "City", name: "高雄市" },
+      potentialAction: reserveAction,
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.hello-stay.com/#stay-options",
+      name: "Hello Stay 可訂住宿方案",
+      numberOfItems: 3,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, item: { "@id": godinId } },
+        { "@type": "ListItem", position: 2, item: { "@id": helloHouseId } },
+        { "@type": "ListItem", position: 3, item: { "@id": dualStayId } },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.hello-stay.com/#faq",
+      mainEntity: homepageFaqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    },
+  ],
+};
 
 export default function HomePage() {
   return (

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const PROPERTIES = [
-    { id: "hellohouse", name: "你好哇寓所", capacity: "6-26人", price: "依人數彈性報價", perPerson: 0, features: "中島廚房・手動麻將" },
+    { id: "hellohouse", name: "你好哇寓所", capacity: "8-26人", price: "依人數彈性報價", perPerson: 0, features: "中島廚房・手動麻將" },
     { id: "godin", name: "溝頂民宿", capacity: "4-12人", price: "平日$8,000起", perPerson: 0, features: "五層獨棟・交誼廳" },
     { id: "dazhi", name: "大智若愚", capacity: "規劃中", price: "尚未開放訂房", perPerson: 0, features: "電梯大樓・未來可包層" },
 ];
@@ -18,8 +18,7 @@ export default function ProposalCard() {
     const [needs, setNeeds] = useState<string[]>([]);
     const [generated, setGenerated] = useState(false);
 
-    const recommended = guests <= 6 ? PROPERTIES[0]
-        : guests <= 12 ? PROPERTIES[1]
+    const recommended = guests <= 12 ? PROPERTIES[1]
         : guests <= 26 ? PROPERTIES[0]
         : PROPERTIES[2];
 

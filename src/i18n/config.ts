@@ -18,9 +18,16 @@ export const localeHreflang: Record<Locale, string> = {
   vi: "vi",
 };
 
+export const localizedPublicPaths = new Set(["", "/hellohouse", "/godin", "/dazhi", "/book", "/guide", "/traffic"]);
+
 export function getLocalePath(locale: Locale, path: string = ""): string {
   if (locale === "zh") return path || "/";
   return `/${locale}${path}`;
+}
+
+export function getLocaleSwitchPath(locale: Locale, path: string = "") {
+  const normalizedPath = path === "/" ? "" : path;
+  return getLocalePath(locale, localizedPublicPaths.has(normalizedPath) ? normalizedPath : "");
 }
 
 export function getAlternateLinks(path: string = "") {
@@ -28,4 +35,11 @@ export function getAlternateLinks(path: string = "") {
     hreflang: localeHreflang[locale],
     href: `https://www.hello-stay.com${getLocalePath(locale, path)}`,
   }));
+}
+
+export function getAlternateLanguageMap(path: string = "") {
+  return {
+    ...Object.fromEntries(getAlternateLinks(path).map((link) => [link.hreflang, link.href])),
+    "x-default": `https://www.hello-stay.com${path || ""}`,
+  };
 }

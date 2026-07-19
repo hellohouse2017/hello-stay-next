@@ -1,5 +1,5 @@
 import type { ContentOpsState } from '@/modules/seo/infrastructure/seo-ops-state';
-import type { JsonLdCoverageResult, LlmsCheckResult, PageMetadataCheck, SitemapCheckResult } from '@/modules/seo/domain/seo-page-health';
+import type { JsonLdCoverageResult, LlmsCheckResult, PageMetadataCheck, SeoIssue, SitemapCheckResult } from '@/modules/seo/domain/seo-page-health';
 import type { PageSpeedReport } from '@/modules/seo/domain/seo-report-formatters';
 
 type MaybePromise<T> = T | Promise<T>;
@@ -36,7 +36,8 @@ export function buildMainSeoHealthOpsState(options: {
     sitemap: SitemapCheckResult;
     rankingError: string | null;
     ga4SiteTagDetected: boolean;
-    ga4DataApiStatus: 'configured' | 'missing_config' | 'error';
+    ga4DataApiStatus: 'configured' | 'missing_config' | 'error' | 'skipped';
+    criticalIssues?: SeoIssue[];
 }): ContentOpsState {
     const {
         nowIso,
@@ -49,8 +50,9 @@ export function buildMainSeoHealthOpsState(options: {
         rankingError,
         ga4SiteTagDetected,
         ga4DataApiStatus,
+        criticalIssues = [],
     } = options;
-    const healthy = pagesWithIssues.length === 0 && sitemap.ok && robotsOk && !rankingError && ga4SiteTagDetected;
+    const healthy = criticalIssues.length === 0 && sitemap.ok && robotsOk && !rankingError && ga4SiteTagDetected;
 
     return {
         status: healthy ? 'healthy' : 'failed',
@@ -71,6 +73,8 @@ export function buildMainSeoHealthOpsState(options: {
             rankingError: rankingError || null,
             ga4SiteTagDetected,
             ga4DataApiStatus,
+            criticalIssueCount: criticalIssues.length,
+            criticalFingerprints: criticalIssues.map((issue) => issue.fingerprint),
         },
     };
 }

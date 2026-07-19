@@ -1,9 +1,10 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { getAlternateLinks } from "@/i18n/config";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
+import { publicStayFacts } from "@/data/public-stay-facts";
 
 const floors = {
     zh: [
@@ -50,10 +51,20 @@ export default function GodinPageContent({ locale }: { locale: Locale }) {
 
     return (
         <>
-            {getAlternateLinks("/godin").map((link) => (
-                <link key={link.hreflang} rel="alternate" hrefLang={link.hreflang} href={link.href} />
-            ))}
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "LodgingBusiness",
+                name: `${publicStayFacts.godin.name} / Godin House`,
+                url: `https://www.hello-stay.com${prefix}/godin`,
+                inLanguage: locale,
+                numberOfRooms: publicStayFacts.godin.bedrooms,
+                amenityFeature: [
+                    { "@type": "LocationFeatureSpecification", name: "Manual mahjong table", value: true },
+                    { "@type": "LocationFeatureSpecification", name: "Preparation area (no full cooking)", value: true },
+                ],
+            }} />
 
+            <div className="legacy-editorial-page legacy-property-page legacy-godin-page">
             {/* Hero */}
             <section className="hero-b">
                 <Image 
@@ -162,6 +173,7 @@ export default function GodinPageContent({ locale }: { locale: Locale }) {
                     }}>{t.godin.cta_btn}</Link>
                 </Reveal>
             </section>
+            </div>
         </>
     );
 }

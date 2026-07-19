@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: "高雄婚禮迎娶包棟推薦｜闖關遊戲・婚攝場地・伴娘團住宿",
     description: "高雄包棟民宿是婚禮迎娶最佳選擇！寬敞一樓客廳適合闖關遊戲，絕佳自然採光讓婚攝一拍就是大片。多房型供伴娘團入住，廚房備茶點。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-wedding-venue" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-wedding-venue" },
 };
 
 const sections = [
@@ -78,7 +79,7 @@ const sections = [
 
 export default function WeddingPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄婚禮迎娶包棟推薦", description: "包棟民宿是婚禮迎娶最佳選擇，寬敞客廳適合闖關，自然採光婚攝大片。", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-wedding-venue", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#space"] } },
                 {

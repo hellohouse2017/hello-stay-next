@@ -1,6 +1,5 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { getAlternateLinks } from "@/i18n/config";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
@@ -22,10 +21,7 @@ export default function TrafficPageContent({ locale }: { locale: Locale }) {
     ];
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
-            {getAlternateLinks("/traffic").map((link) => (
-                <link key={link.hreflang} rel="alternate" hrefLang={link.hreflang} href={link.href} />
-            ))}
+        <div className="legacy-editorial-page legacy-traffic-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Place", name: "Hello House", address: { "@type": "PostalAddress", streetAddress: "大公路70巷8號", addressLocality: "鹽埕區", addressRegion: "Kaohsiung", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6245, longitude: 120.2823 } },
                 { "@context": "https://schema.org", "@type": "Place", name: "Godin House", address: { "@type": "PostalAddress", streetAddress: "大公路70巷6-2號", addressLocality: "鹽埕區", addressRegion: "Kaohsiung", addressCountry: "TW" }, geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 } },

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: "高雄企業移地訓練住宿｜Off-site 團建・會議包棟推薦",
     description: "高雄包棟民宿是企業 off-site 團建最佳場地。獨立客廳當會議室，中島廚房團隊聚餐，依館別與日期安排彈性方案。白天開會晚上圍爐，凝聚向心力。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-offsite-teambuilding" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-offsite-teambuilding" },
 };
 
 const sections = [
@@ -63,7 +64,7 @@ Day 2
 → 你好哇寓所：多間房 + 大客廳
 → 中島廚房是最大亮點，團隊聚餐氣氛滿分
 
-27-38 人（全公司 / 大型團隊）
+27-36 人（全公司 / 大型團隊）
 → 兩棟合訂，各有獨立空間
 → 白天一棟開會、一棟休息，互不干擾
 
@@ -82,7 +83,7 @@ Day 2
 
 export default function OffsitePage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄企業移地訓練住宿｜Off-site 團建包棟推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-offsite-teambuilding", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#setup"] } },
                 {

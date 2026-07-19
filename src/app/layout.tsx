@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import "../styles/luxury.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ChatWidgetLoader from "@/components/ChatWidgetLoader";
-import LineFloatingCTA from "@/components/LineFloatingCTA";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { getAlternateLinks } from "@/i18n/config";
 import { buildGa4InitScript } from "@/lib/ai-assistant-referrers";
-
-const GA4_MEASUREMENT_ID = "G-LKVWPNVH5M";
+import { GA4_MEASUREMENT_ID } from "@/lib/analytics-config";
+import { DEFAULT_SEO_IMAGE_URL } from "@/lib/seo-metadata";
+import { headers } from "next/headers";
 
 const notoSans = Noto_Sans_TC({
   subsets: ["latin"],
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "高雄包棟民宿推薦 | Hello Stay",
-    description: "高雄鹽埕區三館包棟民宿，依人數選擇最適合的方案。",
+    description: "高雄鹽埕區 4-36 人包棟住宿，依人數選擇溝頂、你好哇或雙館方案。",
     images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
 
@@ -83,10 +83,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const requestHeaders = await headers();
+  const htmlLang = requestHeaders.get("x-site-html-lang") || "zh-Hant-TW";
+  const sitePath = requestHeaders.get("x-site-path") || "/";
+  const siteUrl = new URL(sitePath, "https://www.hello-stay.com").toString();
   return (
-    <html lang="zh-Hant-TW" className={`${notoSans.variable} ${notoSerif.variable}`}>
+    <html lang={htmlLang} className={`${notoSans.variable} ${notoSerif.variable}`}>
       <head>
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image" content={DEFAULT_SEO_IMAGE_URL} />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
@@ -107,8 +113,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />
-        <LineFloatingCTA lineUrl="https://lin.ee/atCiMQw" />
-        <ChatWidgetLoader />
         <AnalyticsTracker />
         <Script
           id="font-awesome"

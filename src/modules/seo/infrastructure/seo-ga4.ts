@@ -67,6 +67,19 @@ function parseSummaryRow(row?: {
     };
 }
 
+type Ga4DateOptions = {
+    date?: string;
+    startDate?: string;
+    endDate?: string;
+};
+
+function resolveDateRange(options: Ga4DateOptions) {
+    const startDate = options.startDate || options.date;
+    const endDate = options.endDate || options.date;
+    if (!startDate || !endDate) throw new Error('GA4 date range is required');
+    return { startDate, endDate };
+}
+
 async function runGa4Report(options: {
     propertyId: string;
     accessToken: string;
@@ -142,9 +155,10 @@ export async function inspectGa4MeasurementTag(options: {
 
     const html = await response.text();
     const hasScriptTag = html.includes(`googletagmanager.com/gtag/js?id=${measurementId}`);
-    const hasConfigCall =
-        html.includes(`gtag('config', '${measurementId}')`) ||
-        html.includes(`gtag("config", "${measurementId}")`);
+    const escapedMeasurementId = measurementId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const hasConfigCall = new RegExp(
+        `gtag\\(\\s*['"]config['"]\\s*,\\s*['"]${escapedMeasurementId}['"]\\s*(?:,|\\))`
+    ).test(html.replace(/\\\\n/g, '\n').replace(/\\\\"/g, '"').replace(/\\\\'/g, "'"));
 
     return hasScriptTag && hasConfigCall;
 }
@@ -152,21 +166,23 @@ export async function inspectGa4MeasurementTag(options: {
 async function fetchGa4TrafficSummary(options: {
     propertyId: string;
     accessToken: string;
-    date: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
     label: string;
     dimensionName: string;
     filterFieldName: string;
     filterValue: string;
     fetchImpl?: typeof fetch;
 }): Promise<Ga4TrafficSummary> {
-    const { propertyId, accessToken, date, label, dimensionName, filterFieldName, filterValue, fetchImpl } = options;
+    const { propertyId, accessToken, label, dimensionName, filterFieldName, filterValue, fetchImpl } = options;
     const data = await runGa4Report({
         propertyId,
         accessToken,
         fetchImpl,
         label,
         body: {
-            dateRanges: [{ startDate: date, endDate: date }],
+            dateRanges: [resolveDateRange(options)],
             dimensions: [{ name: dimensionName }],
             metrics: [{ name: 'sessions' }, { name: 'activeUsers' }, { name: 'screenPageViews' }],
             dimensionFilter: buildExactStringFilter(filterFieldName, filterValue),
@@ -180,14 +196,18 @@ async function fetchGa4TrafficSummary(options: {
 export async function fetchGa4OrganicSummary(options: {
     propertyId: string;
     accessToken: string;
-    date: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
     fetchImpl?: typeof fetch;
 }): Promise<Ga4OrganicSummary> {
-    const { propertyId, accessToken, date, fetchImpl } = options;
+    const { propertyId, accessToken, date, startDate, endDate, fetchImpl } = options;
     return fetchGa4TrafficSummary({
         propertyId,
         accessToken,
         date,
+        startDate,
+        endDate,
         fetchImpl,
         label: 'GA4 summary',
         dimensionName: 'sessionDefaultChannelGroup',
@@ -199,17 +219,19 @@ export async function fetchGa4OrganicSummary(options: {
 export async function fetchGa4OrganicLandingPages(options: {
     propertyId: string;
     accessToken: string;
-    date: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
     fetchImpl?: typeof fetch;
 }): Promise<Ga4OrganicLandingPage[]> {
-    const { propertyId, accessToken, date, fetchImpl } = options;
+    const { propertyId, accessToken, fetchImpl } = options;
     const data = await runGa4Report({
         propertyId,
         accessToken,
         fetchImpl,
         label: 'GA4 landing',
         body: {
-            dateRanges: [{ startDate: date, endDate: date }],
+            dateRanges: [resolveDateRange(options)],
             dimensions: [{ name: 'landingPagePlusQueryString' }],
             metrics: [{ name: 'sessions' }, { name: 'activeUsers' }],
             dimensionFilter: buildExactStringFilter('sessionDefaultChannelGroup', 'Organic Search'),
@@ -230,14 +252,18 @@ export async function fetchGa4OrganicLandingPages(options: {
 export async function fetchGa4AiAssistantSummary(options: {
     propertyId: string;
     accessToken: string;
-    date: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
     fetchImpl?: typeof fetch;
 }): Promise<Ga4AiAssistantSummary> {
-    const { propertyId, accessToken, date, fetchImpl } = options;
+    const { propertyId, accessToken, date, startDate, endDate, fetchImpl } = options;
     return fetchGa4TrafficSummary({
         propertyId,
         accessToken,
         date,
+        startDate,
+        endDate,
         fetchImpl,
         label: 'GA4 AI assistant summary',
         dimensionName: 'sessionMedium',
@@ -249,17 +275,19 @@ export async function fetchGa4AiAssistantSummary(options: {
 export async function fetchGa4AiAssistantSources(options: {
     propertyId: string;
     accessToken: string;
-    date: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
     fetchImpl?: typeof fetch;
 }): Promise<Ga4TrafficSource[]> {
-    const { propertyId, accessToken, date, fetchImpl } = options;
+    const { propertyId, accessToken, fetchImpl } = options;
     const data = await runGa4Report({
         propertyId,
         accessToken,
         fetchImpl,
         label: 'GA4 AI assistant sources',
         body: {
-            dateRanges: [{ startDate: date, endDate: date }],
+            dateRanges: [resolveDateRange(options)],
             dimensions: [{ name: 'sessionSource' }],
             metrics: [{ name: 'sessions' }, { name: 'activeUsers' }, { name: 'screenPageViews' }],
             dimensionFilter: buildExactStringFilter('sessionMedium', AI_ASSISTANT_MEDIUM),

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
         canonical: CANONICAL,
         languages: getBlogTranslationLanguages("pier2-accommodation", CANONICAL),
     },
+    openGraph: { url: CANONICAL },
 };
 
 const sections = [
@@ -60,19 +61,19 @@ const sections = [
     {
         id: "stay", title: "駁二步行圈住宿推薦", content: `你好哇寓所 ⭐ 首選
 📍 大公路70巷8號（步行駁二 10 分鐘）
-👥 6-26 人包棟
+👥 8-26 人包棟
 🏷 有廚房、麻將、桌遊桌
-📊 Google 4.5 星 / 75 則評論
-💰 平日 $12,000 起
+💬 適合家族、朋友聚會、迎娶
+💰 依日期與人數報價
 
 溝頂民宿
 📍 大公路70巷6-2號（步行駁二 10 分鐘）
 👥 4-12 人獨棟
 🏷 五層樓、家庭風格
 ✨ 家庭旅遊、小團體包棟首選
-💰 平日約 $8,000 起
+💰 依日期與人數報價
 
-兩棟合訂可接待 38 人，非常適合大團體。` },
+雙館包棟可接待 27-36 人，非常適合大團體。` },
     {
         id: "tips", title: "駁二旅遊小提示", content: `最佳造訪時間
 • 平日人少，拍照不用排隊
@@ -95,12 +96,12 @@ const sections = [
 
 export default function Pier2Page() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "駁二住宿推薦｜步行10分鐘到駁二的包棟民宿", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/pier2-accommodation", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#location", "#stay"] } },
                 {
                     "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-                        { "@type": "Question", name: "駁二附近有推薦的住宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，步行10分鐘到駁二。如你好哇寓所，6-26人包棟，Google 4.5星。鹽埕區本身就是美食區，比住駁二旁更方便、選擇更多。" } },
+                        { "@type": "Question", name: "駁二附近有推薦的住宿嗎？", acceptedAnswer: { "@type": "Answer", text: "推薦住鹽埕區的包棟民宿，步行 10 分鐘到駁二。像你好哇寓所可安排 8-26 人包棟，溝頂民宿則適合 4-12 人。鹽埕區本身就是美食區，比單純住景點旁更方便。" } },
                         { "@type": "Question", name: "駁二藝術特區要門票嗎？", acceptedAnswer: { "@type": "Answer", text: "駁二倉庫群免費入場。大港橋免費，每日整點旋轉。部分展覽和VR體驗另計。建議平日造訪人少，傍晚16:00-18:00光線最美拍照最好。" } },
                     ]
                 },

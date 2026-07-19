@@ -23,53 +23,16 @@ export default function HomepageIntentBlock({
     ],
 }: Props) {
     return (
-        <section
-            style={{
-                background: "#fff",
-                borderRadius: "16px",
-                padding: "28px 24px",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
-                marginBottom: "20px",
-            }}
-        >
-            <div
-                style={{
-                    fontFamily: "var(--sans)",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.25em",
-                    textTransform: "uppercase",
-                    color: "var(--pri)",
-                    marginBottom: "12px",
-                }}
-            >
-                {eyebrow}
-            </div>
-            <h2
-                style={{
-                    fontFamily: "var(--serif)",
-                    fontSize: "1.08rem",
-                    color: "#3D3830",
-                    marginBottom: "12px",
-                    letterSpacing: "0.04em",
-                }}
-            >
-                {title}
-            </h2>
-            <div style={{ fontSize: "0.84rem", color: "#666", lineHeight: 1.95, marginBottom: "16px" }}>{children}</div>
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        <section className="article-intent-block">
+            <p className="article-kicker">{eyebrow}</p>
+            <h2>{title}</h2>
+            <div className="article-intent-block__copy">{children}</div>
+            <div className="article-intent-block__actions">
                 {actions.map((action) => (
                     <a
                         key={`${action.href}-${action.label}`}
                         href={action.href}
-                        style={{
-                            fontSize: "0.78rem",
-                            padding: "9px 15px",
-                            borderRadius: "20px",
-                            textDecoration: "none",
-                            background: action.solid ? "#161618" : "var(--bg)",
-                            color: action.solid ? "#fff" : "#3D3830",
-                            border: action.solid ? "1px solid #161618" : "1px solid #EDE8E3",
-                        }}
+                        className={action.solid ? "article-action article-action--solid" : "article-action"}
                     >
                         {action.label}
                     </a>

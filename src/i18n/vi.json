@@ -28,7 +28,7 @@
     "cta_sub": "Linh hoạt từ 6 đến 48 khách, thiết kế riêng cho mọi buổi họp mặt.",
     "cta_btn": "Kiểm tra phòng trống & Báo giá",
     "meta_title": "Biệt thự riêng Cao Hùng | Hello Stay",
-    "meta_desc": "Hello Stay cung cấp chỗ ở riêng cho nhóm tại quận Diêm Trình, Cao Hùng. Hiện có thể đặt Hello House (6-26 khách) và Godin House (4-12 khách); Dazhi vẫn đang trong giai đoạn quy hoạch và chưa mở đặt phòng."
+    "meta_desc": "Hello Stay cung cấp chỗ ở riêng cho nhóm tại quận Diêm Trình, Cao Hùng. Hello House phù hợp 8-26 khách, Godin House 4-12 khách; Dazhi vẫn đang quy hoạch và chưa mở đặt phòng."
   },
   "hellohouse": {
     "tagline": "Hello House · Est. 2017",
@@ -36,7 +36,7 @@
     "sub": "6–26 Khách · Biệt thự riêng cao cấp",
     "cta": "Kiểm tra phòng trống",
     "about_title": "Không gian ấm áp giữa lòng Cao Hùng",
-    "about_desc": "Tọa lạc tại trung tâm quận Diêm Trình, Hello House là căn cứ hoàn hảo để khám phá thành phố cảng. Không gian thuê riêng cho 6-26 khách. Không có người lạ — chỉ có bạn và người thân cùng nấu ăn trong bếp đảo rộng rãi, cùng chia sẻ tiếng cười trong phòng khách.",
+    "about_desc": "Tọa lạc tại trung tâm quận Diêm Trình, Hello House là căn cứ hoàn hảo để khám phá thành phố cảng. Không gian thuê riêng cho 8-26 khách. Không có người lạ — chỉ có bạn và người thân cùng nấu ăn trong bếp đảo rộng rãi, cùng chia sẻ tiếng cười trong phòng khách.",
     "why_title": "Tại sao chọn Hello House",
     "feat1_title": "Bếp đảo sang trọng",
     "feat1_desc": "Không gian mở với bếp IH, lò vi sóng, đầy đủ dụng cụ nấu ăn. Lý tưởng cho tiệc lẩu nhóm.",
@@ -54,8 +54,8 @@
     "cta_bottom_title": "Sẵn sàng cho chuyến đi Cao Hùng?",
     "cta_bottom_sub": "Dù là du lịch gia đình hay tiệc bạn bè, chúng tôi đã sẵn sàng.",
     "cta_bottom_btn": "Kiểm tra phòng ngay",
-    "meta_title": "Hello House | Biệt thự riêng Cao Hùng | 6-26 khách gần Pier-2",
-    "meta_desc": "Biệt thự riêng cao cấp tại quận Diêm Trình, Cao Hùng. Hello House cho thuê linh hoạt 6-26 khách với bếp đảo sang trọng, mạt chược, đa dạng phòng. Đi bộ đến Khu Nghệ thuật Pier-2."
+    "meta_title": "Hello House | Biệt thự riêng Cao Hùng | 8-26 khách gần Pier-2",
+    "meta_desc": "Biệt thự riêng cao cấp tại quận Diêm Trình, Cao Hùng. Hello House cho thuê linh hoạt 8-26 khách với bếp đảo sang trọng, mạt chược, đa dạng phòng. Đi bộ đến Khu Nghệ thuật Pier-2."
   },
   "godin": {
     "title": "Godin House",
@@ -138,7 +138,7 @@
   },
   "lang_switcher": "🌐 Ngôn ngữ",
   "guide": {
-    "meta_title": "【Du Lịch Cao Hùng】Cẩm Nang Khám Phá Pier-2 & Trải Nghiệm Biệt Thự Riêng | Hello Stay",
+    "meta_title": "Cẩm Nang Du Lịch Cao Hùng: Pier-2, Diêm Trình & Lưu Trú Nhóm",
     "meta_desc": "Khám phá quận Diêm Trình, Cao Hùng! Chỉ 20 phút đi tàu điện từ ga Zuoying, đi bộ 10 phút đến Pier-2. Thuê biệt thự nguyên căn Hello Stay với bếp đảo và mạt chược.",
     "hero_title": "Cẩm Nang Du Lịch Nhóm & Biệt Thự Riêng Cao Hùng",
     "hero_sub": "Nghệ thuật Pier-2, ẩm thực Diêm Trình, và trải nghiệm thuê biệt thự trọn gói",

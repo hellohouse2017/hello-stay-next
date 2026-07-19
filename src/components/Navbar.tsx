@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { createPortal } from "react-dom";
+import { Languages, Menu, X } from "lucide-react";
 import type { Locale } from "@/i18n/config";
-import { locales, localeNames, getLocalePath } from "@/i18n/config";
+import { locales, localeNames, getLocaleSwitchPath } from "@/i18n/config";
 
 type NavLink = {
     href: string;
@@ -25,6 +26,23 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => { setOpen(false); setLangOpen(false); }, [path]);
 
+    useEffect(() => {
+        if (!open) return;
+
+        const previousOverflow = document.body.style.overflow;
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setOpen(false);
+        };
+
+        document.body.style.overflow = "hidden";
+        document.addEventListener("keydown", closeOnEscape);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            document.removeEventListener("keydown", closeOnEscape);
+        };
+    }, [open]);
+
     // Detect current locale from path
     const currentLocale: Locale = (locales.find(l => l !== "zh" && path.startsWith(`/${l}/`)) || (locales.find(l => l !== "zh" && path === `/${l}`) || "zh")) as Locale;
     const prefix = currentLocale === "zh" ? "" : `/${currentLocale}`;
@@ -35,30 +53,30 @@ export default function Navbar() {
     const propertyLinks: NavLink[] = [
         { href: `${prefix}/hellohouse`, label: currentLocale === "zh" ? "你好哇寓所" : "Hello House" },
         { href: `${prefix}/godin`, label: currentLocale === "zh" ? "溝頂民宿" : "Godin House" },
-        { href: `${prefix}/dazhi`, label: "大智若愚" },
     ];
 
     const zhPlanningLinks: NavLink[] = [
-        { href: "/compare", label: "三館比較" },
-        { href: "/packages", label: "方案" },
-        { href: "/traffic", label: "交通" },
+        { href: "/compare", label: "住宿比較" },
+        { href: "/packages", label: "團體方案" },
+        { href: "/explore", label: "周邊探索" },
+        { href: "/traffic", label: "交通停車" },
     ];
 
     const links: NavLink[] = [
         ...propertyLinks,
         ...(currentLocale === "zh" ? zhPlanningLinks : []),
-        { href: `${prefix}/book`, label: currentLocale === "zh" ? "預訂" : "Book", cta: true },
+        { href: `${prefix}/book`, label: currentLocale === "zh" ? "查空房" : "Book", cta: true },
     ];
 
     // Mobile menu portal - renders outside nav to avoid nav's height/overflow constraints
     const mobileMenu = open && mounted ? createPortal(
-        <div className="mobile-menu-panel">
+        <div id="mobile-site-menu" className="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="網站導覽">
             <button
                 onClick={() => setOpen(false)}
                 aria-label="關閉選單"
                 className="mobile-menu-close"
             >
-                ×
+                <X size={22} strokeWidth={2} aria-hidden="true" />
             </button>
             <Link href={prefix || "/"} onClick={() => setOpen(false)} className="mobile-menu-brand">
                 Hello Stay
@@ -73,7 +91,7 @@ export default function Navbar() {
             ))}
             <div className="mobile-menu-langs" aria-label="語言切換">
                 {locales.map(l => (
-                    <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
+                    <Link key={l} href={getLocaleSwitchPath(l, pathWithoutLocale)}
                         onClick={() => setOpen(false)}
                         className={l === currentLocale ? "mobile-menu-lang active" : "mobile-menu-lang"}
                     >
@@ -113,13 +131,13 @@ export default function Navbar() {
                                     aria-expanded={langOpen}
                                     aria-haspopup="menu"
                                 >
-                                    <span aria-hidden="true">⌘</span>
+                                    <Languages size={15} strokeWidth={2} aria-hidden="true" />
                                     {localeNames[currentLocale]}
                                 </button>
                                 {langOpen && (
                                     <div className="language-menu__panel" role="menu">
                                         {locales.map(l => (
-                                            <Link key={l} href={getLocalePath(l, pathWithoutLocale === "/" ? "" : pathWithoutLocale)}
+                                            <Link key={l} href={getLocaleSwitchPath(l, pathWithoutLocale)}
                                                 onClick={() => setLangOpen(false)}
                                                 className={l === currentLocale ? "language-menu__item active" : "language-menu__item"}
                                                 role="menuitem"
@@ -135,16 +153,13 @@ export default function Navbar() {
                         <button
                             className="mobile-toggle"
                             onClick={() => setOpen(!open)}
-                            aria-label="選單"
+                            aria-label={open ? "關閉選單" : "開啟選單"}
                             aria-expanded={open}
+                            aria-controls="mobile-site-menu"
                         >
-                            {[0, 1, 2].map(i => (
-                                <span key={i}
-                                    style={{
-                                        transform: open ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
-                                    }}
-                                />
-                            ))}
+                            {open
+                                ? <X size={21} strokeWidth={2} aria-hidden="true" />
+                                : <Menu size={21} strokeWidth={2} aria-hidden="true" />}
                         </button>
                     </div>
                 </nav>

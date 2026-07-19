@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "高雄團體住宿推薦｜家族旅遊・企業團建・朋友包棟方案｜Hello Stay",
+  title: "高雄團體住宿推薦｜家族旅遊・企業團建・朋友包棟方案",
   description:
     "找高雄團體住宿推薦、家族旅遊包棟或朋友聚會空間？依人數、活動型態、廚房與公共空間需求，快速找到適合的高雄包棟方案，再直接進官方訂房站。",
   alternates: { canonical: "https://www.hello-stay.com/packages" },
@@ -34,7 +34,7 @@ const scenarios = [
     },
     description: ["多人討論、聚餐與晚間交流，", "都需要寬敞公共空間。"],
     specs: [
-      { label: "常見人數", value: "16-26 人" },
+      { label: "常見人數", value: "18-26 人" },
       { label: "優先館別", value: "你好哇寓所" },
       { label: "核心設備", value: "中島廚房 公共空間" },
       { label: "超過單館", value: "雙館包棟" },
@@ -225,14 +225,8 @@ export default function PackagesPage() {
       <PropertyShowcasePage
         hero={{
           kicker: "入住情境",
-          title: "依旅遊目的，選最適合的高雄包棟民宿",
-          lead: [
-            "家族旅遊、朋友聚會、企業團建、婚禮迎娶，",
-            "先看這次最在意的是什麼。",
-            "人數、廚房與公共空間對上後，",
-            "館別會更快收斂。",
-            "如果你正在找高雄團體住宿推薦，這頁就是最快的情境入口。",
-          ],
+          title: "團體住宿方案",
+          lead: "依人數與空間需求選擇家族旅行、朋友聚會、企業團建或迎娶住宿方案。",
           image: {
             src: "/images/hellohouse/party-cover.webp",
             alt: "Hello Stay 包棟方案與多人聚會主視覺",

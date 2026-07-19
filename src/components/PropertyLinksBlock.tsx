@@ -1,78 +1,50 @@
 import Link from "next/link";
 
-/**
- * PropertyLinksBlock — Blog 文章用的館別導覽區塊
- * 提供首頁／方案頁、館別頁、人數落地頁、查房四類內鏈
- * 放在 RelatedArticles 之前，增加文章→交易頁的內鏈密度
- */
+/** Compact, editorial internal navigation used beneath long-form articles. */
 export default function PropertyLinksBlock() {
     return (
-        <div style={{ background: "#fff", borderRadius: "16px", padding: "28px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>
-            <div style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "16px" }}>
-                高雄包棟民宿推薦
-            </div>
-            <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.9, marginBottom: "18px" }}>
-                正在找能開伙、打麻將、走路吃鹽埕美食的{" "}
-                <Link href="/" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                    高雄包棟民宿推薦 Hello Stay
-                </Link>
-                {" "}嗎？三館各自對應不同人數，也可以先比較{" "}
-                <Link href="/kaohsiung-whole-house" style={{ color: "var(--pri)", textDecoration: "underline" }}>
-                    高雄包棟方案整理
-                </Link>
-                ，再直接查空房。
+        <aside className="article-property-links">
+            <p className="article-kicker">HELLO STAY</p>
+            <h2>先看館別，再查空房</h2>
+            <p className="article-property-links__intro">
+                依人數與空間需求選擇館別，再前往官方訂房站查看日期與價格。
             </p>
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "20px" }}>
-                <Link href="/" style={{ fontSize: "0.78rem", padding: "7px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                    高雄包棟民宿首頁
+            <div className="article-property-links__top-actions">
+                <Link href="/">回到首頁</Link>
+                <Link href="/kaohsiung-whole-house">看包棟方案</Link>
+            </div>
+            <div className="article-property-links__properties">
+                <Link href="/hellohouse">
+                    <strong>你好哇寓所</strong>
+                    <span>6–26 人　中島廚房與聚會空間</span>
                 </Link>
-                <Link href="/kaohsiung-whole-house" style={{ fontSize: "0.78rem", padding: "7px 14px", borderRadius: "20px", background: "var(--bg)", color: "#3D3830", textDecoration: "none", border: "1px solid #EDE8E3" }}>
-                    依需求看包棟方案
+                <Link href="/godin">
+                    <strong>溝頂民宿</strong>
+                    <span>4–12 人　五層獨棟與 4F 交誼廳</span>
+                </Link>
+                <Link href="/dazhi">
+                    <strong>大智若愚</strong>
+                    <span>規劃中　電梯大樓包層方案</span>
                 </Link>
             </div>
-            <div style={{ display: "grid", gap: "10px", marginBottom: "20px" }}>
-                <Link href="/hellohouse" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>
-                    <span style={{ fontSize: "1.3rem" }}>🏠</span>
-                    <div>
-                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>你好哇寓所</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>6–26 人・中島廚房・麻將桌・鹽埕</div>
-                    </div>
-                </Link>
-                <Link href="/godin" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>
-                    <span style={{ fontSize: "1.3rem" }}>🏡</span>
-                    <div>
-                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>溝頂民宿</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>4–12 人・五層獨棟・頂樓露台・長輩友善</div>
-                    </div>
-                </Link>
-                <Link href="/dazhi" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", borderRadius: "10px", background: "var(--bg)", border: "1px solid #EDE8E3" }}>
-                    <span style={{ fontSize: "1.3rem" }}>🏢</span>
-                    <div>
-                        <div style={{ fontSize: "0.85rem", color: "#3D3830", fontWeight: 500, marginBottom: "2px" }}>大智若愚</div>
-                        <div style={{ fontSize: "0.72rem", color: "#999" }}>尚未開放訂房・電梯需求可先登記</div>
-                    </div>
-                </Link>
-            </div>
-            <div style={{ borderTop: "1px solid #F0EBE6", paddingTop: "16px" }}>
-                <div style={{ fontSize: "0.72rem", color: "#999", marginBottom: "10px" }}>依人數查詢</div>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            <div className="article-property-links__capacity">
+                <span>依人數查看</span>
+                <div>
                     {[
-                        { href: "/capacity/10", label: "10 人左右" },
-                        { href: "/capacity/20", label: "20 人左右" },
-                        { href: "/capacity/30", label: "30 人左右" },
-                        { href: "/capacity/40", label: "40 人以上" },
+                        { href: "/godin", label: "10 人左右" },
+                        { href: "/hellohouse", label: "20 人左右" },
+                        { href: "/compare", label: "30 人左右" },
+                        { href: "/compare", label: "40 人以上" },
                     ].map(({ href, label }) => (
-                        <Link key={href} href={href} style={{ fontSize: "0.78rem", padding: "6px 14px", borderRadius: "20px", border: "1px solid #D4CBC0", color: "#8A8279", textDecoration: "none" }}>
+                        <Link key={href} href={href}>
                             {label}
                         </Link>
                     ))}
                 </div>
             </div>
-            <div style={{ marginTop: "16px" }}>
-                <Link href="/book" style={{ display: "block", textAlign: "center", padding: "13px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.82rem", letterSpacing: "0.08em", textDecoration: "none" }}>
-                    立即查詢空房
-                </Link>
+            <div className="article-property-links__booking">
+                <Link href="/book">查看空房與報價</Link>
             </div>
-        </div>
+        </aside>
     );
 }

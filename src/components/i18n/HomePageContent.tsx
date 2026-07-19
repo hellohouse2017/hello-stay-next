@@ -1,6 +1,5 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { getAlternateLinks } from "@/i18n/config";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
@@ -11,12 +10,8 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
     return (
         <>
-            {/* hreflang */}
-            {getAlternateLinks("").map((link) => (
-                <link key={link.hreflang} rel="alternate" hrefLang={link.hreflang} href={link.href} />
-            ))}
-            <link rel="alternate" hrefLang="x-default" href="https://www.hello-stay.com/" />
 
+            <div className="legacy-editorial-page legacy-home-page">
             {/* Hero */}
             <section className="hero-d">
                 <div className="bg" style={{ backgroundImage: "url('/images/cover-bg.jpg')", opacity: 0.45 }} />
@@ -55,7 +50,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     <Reveal>
                         <div className="grid-asym" style={{ marginBottom: "clamp(60px, 8vw, 100px)" }}>
                             <div className="img-zoom img-rounded" style={{ aspectRatio: "4/3" }}>
-                                <Image src="/images/hellohouse/cover.jpg" alt={locale === "zh" ? "Hello Stay 你好哇寓所高雄包棟民宿 1F 公共交誼空間與豪華中島廚房全景，提供 6-26 人頂級獨立派對聚會空間" : "Hello House B&B Kaohsiung - 1F open common area and luxury island kitchen for 6-26 guests private group stay."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
+                                <Image src="/images/hellohouse/cover.jpg" alt={locale === "zh" ? "Hello Stay 你好哇寓所高雄包棟民宿 1F 公共交誼空間與豪華中島廚房全景，提供 8-26 人頂級獨立派對聚會空間" : "Hello House B&B Kaohsiung - 1F open common area and luxury island kitchen for 8-26 guests private group stay."} width={700} height={525} sizes="(max-width: 768px) 100vw, 50vw" priority className="img-cover" />
                             </div>
                             <div>
                                 <div className="label-d" style={{ color: "var(--pri)" }}>01</div>
@@ -131,6 +126,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     <p>{t.home.cta_sub}</p>
                     <Link href={`${prefix}/book`} className="btn-reserve">{t.home.cta_btn}</Link>
                 </Reveal>
+            </div>
             </div>
         </>
     );

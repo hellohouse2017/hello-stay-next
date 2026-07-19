@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "高雄有廚房的民宿推薦｜中島廚房・包棟煮飯・火鍋趴",
     description: "高雄哪間民宿有廚房可以煮飯？你好哇寓所有豪華中島廚房，IH爐、冰箱、完整餐具，最適合包棟火鍋趴、團隊聚餐、家族圍爐。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-kitchen-bnb" },
+    openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-kitchen-bnb" },
 };
 
 const sections = [
@@ -86,7 +87,7 @@ const sections = [
 
 export default function KitchenPage() {
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 { "@context": "https://schema.org", "@type": "Article", headline: "高雄有廚房的民宿推薦", author: { "@type": "Organization", name: "Hello Stay" }, publisher: { "@type": "Organization", name: "Hello Stay" }, datePublished: "2026-03-06", mainEntityOfPage: "https://www.hello-stay.com/blog/kaohsiung-kitchen-bnb", speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "#why", "#kitchen"] } },
                 {

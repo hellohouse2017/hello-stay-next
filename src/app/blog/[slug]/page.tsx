@@ -1,4 +1,4 @@
-import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articles";
+import { scheduledArticles, getPublishedArticles, getArticleDescription } from "@/data/scheduled-articles";
 import { getArticleBySlug, getAllArticleSlugs, hasArticleSourceFile } from "@/lib/articles";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import HomepageIntentBlock from "@/components/HomepageIntentBlock";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPrunedBlogRedirect, isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
 import { getBlogTranslationLanguages } from "@/data/blog-translations";
+import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 type ArticleFaq = { q: string; a: string };
@@ -103,6 +104,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 description: mdxArticle.description,
                 url: mdxArticle.canonical,
                 type: "article",
+                images: [DEFAULT_SEO_IMAGE],
             },
         };
     }
@@ -112,13 +114,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!article) return {};
     return {
         title: article.title,
-        description: article.description,
+        description: getArticleDescription(article),
         alternates: { canonical: `https://www.hello-stay.com/blog/${slug}` },
         openGraph: {
             title: article.title,
-            description: article.description,
+            description: getArticleDescription(article),
             url: `https://www.hello-stay.com/blog/${slug}`,
             type: "article",
+            images: [DEFAULT_SEO_IMAGE],
         },
     };
 }
@@ -135,7 +138,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
     const mdxArticle = hasArticleSourceFile(slug) ? await getArticleBySlug(slug) : null;
     if (mdxArticle) {
         return (
-            <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+            <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
                 <JsonLd data={[
                     {
                         "@context": "https://schema.org", "@type": "Article",
@@ -231,16 +234,21 @@ export default async function ScheduledArticlePage({ params }: Props) {
     if (!article) notFound();
 
     // Check publish date
-    const today = new Date().toISOString().slice(0, 10);
+    const today = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Taipei",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    }).format(new Date());
     if (article.publishDate > today) notFound();
 
     return (
-        <div style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
+        <div className="legacy-article-page" style={{ paddingTop: "calc(var(--nav-h) + 40px)", background: "var(--bg)", minHeight: "100vh" }}>
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "Article",
                     headline: article.title,
-                    description: article.description,
+                    description: getArticleDescription(article),
                     image: [DEFAULT_ARTICLE_IMAGE],
                     author: { "@type": "Organization", name: "Hello Stay 你好哇寓所", url: "https://www.hello-stay.com" },
                     publisher: {
@@ -277,7 +285,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             {article.title}
                         </h1>
                         <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px 0" }} />
-                        <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>{article.description}</p>
+                        <p style={{ fontSize: "0.85rem", color: "#999", lineHeight: 1.9 }}>{getArticleDescription(article)}</p>
                     </div>
                 </Reveal>
 

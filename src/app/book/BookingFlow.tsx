@@ -24,7 +24,7 @@ function buildBookingHref(property?: string) {
 const entrances: Entrance[] = [
   {
     name: "你好哇寓所",
-    detail: "6-26 人\n依人數幫我推薦\n婚禮迎娶與中大型團體",
+    detail: "8-26 人\n依人數幫我推薦\n婚禮迎娶與中大型團體",
     image: properties[0]?.coverImage || "/images/hellohouse/cover.webp",
     alt: "你好哇寓所公共空間",
     property: "你好哇寓所",
@@ -67,16 +67,12 @@ const steps = [
 
 export default function BookingFlow() {
   return (
-    <main className="book-bridge">
+    <div className="book-bridge">
       <section className="book-bridge__hero">
         <div className="book-bridge__copy">
           <p className="book-bridge__eyebrow">官方訂房入口</p>
           <h1>先選館別，再查空房與報價</h1>
-          <p>
-            <span>先看要住哪一館</span>
-            <span>再看日期與人數對應的目前試算總價</span>
-            <span>驗證、簽署與付款也在同一個系統完成</span>
-          </p>
+          <p>先看館別，再依日期與人數查看目前總價，完成驗證、簽署與付款。</p>
           <div className="book-bridge__actions">
             <a href={buildBookingHref("你好哇寓所")}>
               查詢空房與報價
@@ -146,6 +142,6 @@ export default function BookingFlow() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

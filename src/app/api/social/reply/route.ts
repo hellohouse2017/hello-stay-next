@@ -29,7 +29,7 @@ const API_SECRET = (process.env.META_APP_SECRET || "").trim();
 // Default reply templates
 const REPLY_TEMPLATES = {
     hellohouse: `推薦高雄鹽埕「你好哇寓所」🏠
-可包棟最多38人，近駁二/愛河/西子灣
+可包棟最多 36 人，近駁二/愛河/西子灣
 獨立空間超適合家族/團體旅遊！
 👉 hellostay.tw`,
     ruins: `推薦高雄鹽埕「廢墟Bar」🍸
