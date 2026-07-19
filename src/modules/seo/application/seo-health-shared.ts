@@ -1,7 +1,10 @@
 import {
+    buildGscDailyPerformanceReport,
     buildRankingReport,
     buildTrendRankingReport,
+    fetchGscDailyPerformance,
     findLatestGSCDate,
+    type GscDailyPerformance,
     type ISeoSnapshot,
     type SeoTrendReport,
 } from '@/modules/seo/infrastructure/seo-ranking';
@@ -34,6 +37,13 @@ export type BuildSeoRankingSectionOptions<TRankingData extends Omit<ISeoSnapshot
 export type BuildSeoRankingSectionResult<TRankingData extends Omit<ISeoSnapshot, 'date' | 'createdAt'>> = {
     report: string;
     rankingData: (TRankingData & { date: string }) | null;
+    rankingError: string | null;
+};
+
+export type BuildSeoDailyPerformanceSectionResult = {
+    report: string;
+    dataDate: string | null;
+    performance: GscDailyPerformance | null;
     rankingError: string | null;
 };
 
@@ -110,4 +120,54 @@ export async function buildSeoRankingSection<TRankingData extends Omit<ISeoSnaps
     }
 
     return { report, rankingData, rankingError };
+}
+
+export async function buildSeoDailyPerformanceSection(options: {
+    pageFilter?: string;
+    connect?: () => Promise<unknown>;
+    findLatestDate?: typeof findLatestGSCDate;
+    fetchData?: typeof fetchGscDailyPerformance;
+    errorPrefix: string;
+}): Promise<BuildSeoDailyPerformanceSectionResult> {
+    const connect = options.connect || (async () => undefined);
+    const findLatestDate = options.findLatestDate || findLatestGSCDate;
+    const fetchData = options.fetchData || fetchGscDailyPerformance;
+
+    try {
+        await connect();
+        const latestDate = await findLatestDate(options.pageFilter);
+        if (!latestDate) {
+            return {
+                report: '\n⚠️ GSC 最近 7 天都沒有數據\n',
+                dataDate: null,
+                performance: null,
+                rankingError: 'No GSC data available in last 7 days',
+            };
+        }
+
+        let report = latestDate.daysAgo > 3
+            ? `\n⚠️ GSC 數據延遲中，目前最新為 ${latestDate.daysAgo} 天前 (${latestDate.date})\n`
+            : '';
+        const performance = await fetchData(latestDate.date, { pageFilter: options.pageFilter });
+        if (!performance) {
+            return {
+                report: `${report}\n⚠️ GSC 數據暫時無法取得\n`,
+                dataDate: latestDate.date,
+                performance: null,
+                rankingError: 'fetchGscDailyPerformance returned null',
+            };
+        }
+
+        report += buildGscDailyPerformanceReport(latestDate.date, performance);
+        return { report, dataDate: latestDate.date, performance, rankingError: null };
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`${options.errorPrefix} Daily search performance error:`, message);
+        return {
+            report: `\n⚠️ GSC 成效數據錯誤: ${message}\n`,
+            dataDate: null,
+            performance: null,
+            rankingError: message,
+        };
+    }
 }

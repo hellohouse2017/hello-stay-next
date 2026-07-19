@@ -9,7 +9,7 @@ import {
     fetchGa4OrganicSummary,
     inspectGa4MeasurementTag,
 } from '@/modules/seo/infrastructure/seo-ga4';
-import { buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
+import { buildSeoDailyPerformanceSection, buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
 import { checkRobotsTxt, crawlSitemapHealth, type PageMetadataCheck } from '@/modules/seo/domain/seo-page-health';
 import { buildSeoHealthRouteErrorPayload, buildSeoHealthRoutePayload } from '@/modules/seo/application/seo-health-route-payload';
 import { isForceAlertSend, resolveSeoAlertDispatch, resolveSeoTriggerSource } from '@/modules/seo/application/seo-alert-delivery';
@@ -19,6 +19,8 @@ import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runt
 import { GA4_MEASUREMENT_ID } from '@/lib/analytics-config';
 import { buildBookingSeoFunnelSection, fetchBookingSeoFunnel } from '@/modules/seo/infrastructure/seo-booking-funnel';
 import { buildCoreWebVitalsSection, fetchCoreWebVitals } from '@/modules/seo/infrastructure/seo-pagespeed';
+
+export const maxDuration = 60;
 
 const SITE_URL = 'https://www.hello-stay.com';
 const GA4_PROPERTY_ID_HEADER = 'x-seo-ga4-property-id';
@@ -265,6 +267,13 @@ export async function GET(request: Request) {
         if (coreWebVitals.length > 0) report += buildCoreWebVitalsSection(coreWebVitals);
 
         // ── Part 2: GSC 排名追蹤 ──────────────────────────
+        const dailyPerformanceSection = cadence.includeWeekly
+            ? null
+            : await buildSeoDailyPerformanceSection({
+                connect: connectToDatabase,
+                pageFilter: 'https://www.hello-stay.com',
+                errorPrefix: '[SEO]',
+            });
         const rankingSection = cadence.includeWeekly
             ? await buildSeoRankingSection({
                 connect: connectToDatabase,
@@ -274,7 +283,7 @@ export async function GET(request: Request) {
                 getSnapshot,
                 errorPrefix: '[SEO]',
             })
-            : { report: '', rankingData: null, rankingError: null };
+            : { report: dailyPerformanceSection?.report || '', rankingData: null, rankingError: dailyPerformanceSection?.rankingError || null };
         report += rankingSection.report;
         const { rankingData, rankingError } = rankingSection;
 
@@ -334,6 +343,10 @@ export async function GET(request: Request) {
             sitemap: sitemapResult,
             robots: robotsOk,
             ranking: rankingData,
+            dailySearchPerformance: {
+                date: dailyPerformanceSection?.dataDate || null,
+                metrics: dailyPerformanceSection?.performance || null,
+            },
             rankingError,
             ga4: {
                 measurementId: GA4_MEASUREMENT_ID,

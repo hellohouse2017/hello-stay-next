@@ -119,6 +119,11 @@ export interface SeoTrendComparison {
     note: string | null;
 }
 
+export interface GscDailyPerformance {
+    latestDay: SeoPeriodMetrics;
+    comparison7d: SeoTrendComparison;
+}
+
 export interface SeoLandingPageTrend {
     page: string;
     current: SeoPeriodMetrics;
@@ -646,6 +651,36 @@ export async function findLatestGSCDate(pageFilter?: string): Promise<{ date: st
     return null;
 }
 
+export async function fetchGscDailyPerformance(targetDate: string, options?: { pageFilter?: string }): Promise<GscDailyPerformance | null> {
+    const auth = await defaultSearchConsoleAuth.getAuth();
+    if (!auth) return null;
+
+    try {
+        const sc = google.searchconsole({ version: 'v1', auth });
+        const pageFilter = options?.pageFilter;
+        const current7dRange = buildWindow(targetDate, 7, 0);
+        const previous7dRange = buildWindow(targetDate, 7, 7);
+        const [latestDay, current7d, previous7d] = await Promise.all([
+            fetchOverviewMetrics(sc, targetDate, targetDate, pageFilter),
+            fetchOverviewMetrics(sc, current7dRange.startDate, current7dRange.endDate, pageFilter),
+            fetchOverviewMetrics(sc, previous7dRange.startDate, previous7dRange.endDate, pageFilter),
+        ]);
+
+        return {
+            latestDay,
+            comparison7d: buildTrendComparison(
+                current7dRange.label,
+                current7d,
+                previous7d,
+                MIN_IMPRESSIONS_FOR_SITE_JUDGEMENT,
+            ),
+        };
+    } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : String(error);
+        throw new Error(`GSC API: ${msg}`);
+    }
+}
+
 export async function fetchGSCData(targetDate?: string, options?: { pageFilter?: string }): Promise<{
     totalClicks: number; totalImpressions: number; avgPosition: number; avgCtr: number;
     topQueries: QueryData[]; targetKeywords: QueryData[]; topPages: PageData[];
@@ -880,6 +915,24 @@ export function buildTrendRankingReport(dataDate: string, data: Awaited<ReturnTy
         }
     }
 
+    return report;
+}
+
+export function buildGscDailyPerformanceReport(dataDate: string, data: GscDailyPerformance): string {
+    const { latestDay, comparison7d } = data;
+    const direction = comparison7d.positionDelta > 0
+        ? `進步 ${Math.abs(comparison7d.positionDelta).toFixed(1)}`
+        : comparison7d.positionDelta < 0
+            ? `退步 ${Math.abs(comparison7d.positionDelta).toFixed(1)}`
+            : '持平';
+
+    let report = `\n📈 <b>Google 搜尋成效</b>（${dataDate} 最新可用資料）\n`;
+    report += `───────\n`;
+    report += `<b>最新單日</b>：${latestDay.clicks} 點擊 / ${latestDay.impressions} 次搜尋曝光 / CTR ${formatCtr(latestDay.ctr)} / 均排名 ${formatPosition(latestDay.avgPosition)}\n`;
+    report += `<b>近7天</b>：${comparison7d.current.clicks} 點擊 / ${comparison7d.current.impressions} 次搜尋曝光 / CTR ${formatCtr(comparison7d.current.ctr)} / 均排名 ${formatPosition(comparison7d.current.avgPosition)}\n`;
+    report += `<b>比前7天</b>：點擊 ${formatSignedPct(comparison7d.clicksDeltaPct)} / 曝光 ${formatSignedPct(comparison7d.impressionsDeltaPct)} / CTR ${(comparison7d.ctrDelta * 100).toFixed(1)}pp / 排名${direction}\n`;
+    report += `<b>趨勢判讀</b>：${renderTrendStatus(comparison7d.status)}${comparison7d.note ? `｜${comparison7d.note}` : ''}\n`;
+    report += `ℹ️ GSC 通常延遲 2–3 天；Landing page、詞群與訂房漏斗於每週報表展開。\n`;
     return report;
 }
 

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
+import { buildSeoDailyPerformanceSection, buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
 
 async function main() {
     const missing = await buildSeoRankingSection({
@@ -87,6 +87,36 @@ async function main() {
     assert.match(success.report, /Google 搜尋趨勢/);
     assert.match(success.report, /整體判斷/);
     assert.doesNotMatch(success.report, /這些字還搜不到你/);
+
+    const daily = await buildSeoDailyPerformanceSection({
+        connect: async () => undefined,
+        findLatestDate: async () => ({ date: '2026-05-10', daysAgo: 2 }),
+        fetchData: async () => ({
+            latestDay: { startDate: '2026-05-10', endDate: '2026-05-10', clicks: 17, impressions: 558, ctr: 17 / 558, avgPosition: 9.1 },
+            comparison7d: {
+                label: '近7天',
+                current: { startDate: '2026-05-04', endDate: '2026-05-10', clicks: 148, impressions: 3369, ctr: 0.044, avgPosition: 9.8 },
+                previous: { startDate: '2026-04-27', endDate: '2026-05-03', clicks: 168, impressions: 3519, ctr: 0.048, avgPosition: 8.5 },
+                clicksDelta: -20,
+                clicksDeltaPct: -11.9,
+                impressionsDelta: -150,
+                impressionsDeltaPct: -4.3,
+                ctrDelta: -0.004,
+                positionDelta: -1.3,
+                status: 'down',
+                note: null,
+            },
+        }),
+        errorPrefix: '[test]',
+    });
+    assert.equal(daily.rankingError, null);
+    assert.equal(daily.dataDate, '2026-05-10');
+    assert.equal(daily.performance?.latestDay.impressions, 558);
+    assert.match(daily.report, /Google 搜尋成效/);
+    assert.match(daily.report, /最新單日.*17 點擊 \/ 558 次搜尋曝光/);
+    assert.match(daily.report, /近7天.*148 點擊 \/ 3369 次搜尋曝光/);
+    assert.match(daily.report, /比前7天/);
+    assert.match(daily.report, /詞群與訂房漏斗於每週報表展開/);
 
     let connected = false;
     await buildSeoRankingSection({

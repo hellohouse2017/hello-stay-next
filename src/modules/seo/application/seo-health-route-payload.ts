@@ -1,7 +1,7 @@
 import type { checkRobotsTxt, checkSitemapXml, inspectPageMetadata } from '@/modules/seo/domain/seo-page-health';
 import type { SeoIssue } from '@/modules/seo/domain/seo-page-health';
 import type { Ga4OrganicLandingPage, Ga4OrganicSummary, Ga4TrafficSource, Ga4TrafficSummary } from '@/modules/seo/infrastructure/seo-ga4';
-import type { fetchGSCData } from '@/modules/seo/infrastructure/seo-ranking';
+import type { fetchGSCData, GscDailyPerformance } from '@/modules/seo/infrastructure/seo-ranking';
 import type { BookingSeoFunnelReport } from '@/modules/seo/infrastructure/seo-booking-funnel';
 import type { CoreWebVitalsResult } from '@/modules/seo/infrastructure/seo-pagespeed';
 
@@ -14,6 +14,10 @@ export interface SeoHealthRoutePayload {
     sitemap: Awaited<ReturnType<typeof checkSitemapXml>>;
     robots: Awaited<ReturnType<typeof checkRobotsTxt>>;
     ranking: Awaited<ReturnType<typeof fetchGSCData>> | null;
+    dailySearchPerformance?: {
+        date: string | null;
+        metrics: GscDailyPerformance | null;
+    };
     rankingError: string | null;
     ga4: {
         measurementId: string;
