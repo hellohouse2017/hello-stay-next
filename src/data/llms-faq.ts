@@ -22,7 +22,7 @@ export const llmsFaqZh: LlmsFaqItem[] = [
     },
     {
         question: "可以帶寵物嗎？",
-        answer: "非寵物友善旅宿。經事前申請並書面同意者，酌收清潔費平日 $800、假日 $1,000。",
+        answer: "非寵物友善旅宿。經事前申請並書面同意者，每隻酌收清潔費 NT$800。",
     },
     {
         question: "有停車場嗎？",
