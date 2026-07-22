@@ -22,6 +22,7 @@ export const publicStayFacts = {
   dual: {
     name: "雙館包棟",
     capacity: { min: 27, max: 36 },
+    standardCapacity: { min: 27, max: 34 },
     bedrooms: 10,
     bookingStatus: "open",
   },

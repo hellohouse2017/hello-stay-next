@@ -75,12 +75,12 @@ const stays: StayOption[] = [
       { src: hellohouse.coverImage, alt: "你好哇寓所公共空間", label: "你好哇寓所" },
       { src: godin.coverImage, alt: "溝頂民宿五層獨棟空間", label: "溝頂民宿" },
     ],
-    capacity: "27-36 人",
-    planSummary: "兩館合住，最多 36 人",
+    capacity: "27-34 人，35-36 人需加床",
+    planSummary: "兩館合住，合計 10 房",
     location: "兩館相鄰，位於鹽埕",
     bookingProperty: "雙館包棟",
-    guestGuide: "27-36 人優先",
-    bestFor: "27-36 人團體，需要 6 間以上房間",
+    guestGuide: "27-34 人優先",
+    bestFor: "27-34 人團體，或需要超過 6 間房；35-36 人需加床",
     facts: ["雙館入住", "最多 10 房", "大型團體", "不拆單"],
   },
 ];
@@ -178,10 +178,10 @@ const decisionRows = [
     reason: "需要多人一起備餐、聚會、打麻將或辦迎娶活動時最合適。",
   },
   {
-    guests: "27-36 人",
+    guests: "27-34 人",
     stay: "雙館包棟",
     setup: "兩館合住、最多 10 房",
-    reason: "兩館步行約 30 秒，可分房休息，也不用拆成兩個地區。",
+    reason: "兩館步行約 5 秒；35-36 人需加床，可分房休息，也不用拆成兩個地區。",
   },
 ] as const;
 
@@ -300,7 +300,7 @@ export default function HomeTemplateExperience() {
           <p className="hs-eyebrow">官方訂房入口</p>
           <h1 id="home-hero-title">Hello Stay<br />高雄鹽埕包棟</h1>
           <p className="hs-hero__lead">
-            <span>4-12 人溝頂　13-26 人你好哇　27-36 人雙館</span>
+            <span>4-12 人溝頂　13-26 人你好哇　27-34 人雙館</span>
             <span>輸入日期與人數　查看方案與空房</span>
           </p>
 

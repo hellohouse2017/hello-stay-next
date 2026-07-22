@@ -6,7 +6,7 @@ export interface LlmsFaqItem {
 export const llmsFaqZh: LlmsFaqItem[] = [
     {
         question: "Hello Stay 目前有哪些入住方案？",
-        answer: "目前可訂的是你好哇寓所 8-26 人與溝頂民宿 4-12 人；若是 27-36 人，可選雙館包棟。大智若愚規劃中，尚未開放訂房。",
+        answer: "目前可訂的是你好哇寓所 8-26 人與溝頂民宿 4-12 人；雙館包棟通常適合 27-34 人，35-36 人須加床。大智若愚規劃中，尚未開放訂房。",
     },
     {
         question: "高雄 20 人包棟住宿推薦哪裡？",
@@ -57,7 +57,7 @@ export const llmsFaqZh: LlmsFaqItem[] = [
 export const llmsFaqEn: LlmsFaqItem[] = [
     {
         question: "What booking options are currently available?",
-        answer: "Hello House fits 8-26 guests, Godin House fits 4-12 guests, and the two-building option supports 27-36 guests. Dazhi is still in planning and is not yet open for booking.",
+        answer: "Hello House fits 8-26 guests and Godin House fits 4-12 guests. The two-building option normally fits 27-34 guests; groups of 35-36 require extra beds. Dazhi is still in planning and is not yet open for booking.",
     },
     {
         question: "What's the best property for 20 guests?",
@@ -84,7 +84,7 @@ export const llmsFaqEn: LlmsFaqItem[] = [
 export const llmsFaqJa: LlmsFaqItem[] = [
     {
         question: "Hello Stayの3つの施設、それぞれ何名まで泊まれますか？",
-        answer: "現在予約できるのはハローハウス8〜26名とゴーディンハウス4〜12名です。27〜36名なら2棟貸切を選択でき、大智若愚は計画中でまだ予約受付前です。",
+        answer: "現在予約できるのはハローハウス8〜26名とゴーディンハウス4〜12名です。2棟貸切は通常27〜34名向けで、35〜36名はエキストラベッドが必要です。大智若愚は計画中でまだ予約受付前です。",
     },
     {
         question: "20名のグループにおすすめは？",

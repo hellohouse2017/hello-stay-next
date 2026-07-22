@@ -86,7 +86,7 @@ Godin House
 ✨ Best for family trips and small groups
 💰 From about NT$8,000 on weekdays
 
-Booking both properties together supports 27-36 guests — ideal for large groups.`,
+Booking both properties together normally fits 27-34 guests; groups of 35-36 require extra beds. It is ideal for large groups.`,
     },
     {
         id: "tips",

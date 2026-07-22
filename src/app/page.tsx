@@ -209,7 +209,7 @@ const homeStructuredData = {
       "@type": "Service",
       "@id": dualStayId,
       name: "Hello Stay 雙館包棟",
-      description: "你好哇寓所與溝頂民宿兩館合住，適合 27-36 人團體，兩館步行約 30 秒。",
+      description: "你好哇寓所與溝頂民宿兩館合住，通常適合 27-34 人，35-36 人須加床；兩館步行約 5 秒。",
       provider: { "@id": organizationId },
       areaServed: { "@type": "City", name: "高雄市" },
       potentialAction: reserveAction,
