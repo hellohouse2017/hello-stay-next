@@ -206,7 +206,7 @@ export default function KaohsiungWholeHousePage() {
                                 ["報價方式", "依日期與人數報價", "依日期與人數報價", "不開放訂房"],
                                 ["廚房", "✅ 豪華中島", "簡易流理臺", "尚未開放訂房"],
                                 ["麻將", "✅ 手動", "✅ 手動", "尚未開放訂房"],
-                                ["電梯", "❌", "❌", "✅"],
+                                ["電梯", publicStayFacts.hellohouse.elevator ? "✅" : "❌", publicStayFacts.godin.elevator ? "✅" : "❌", publicStayFacts.dazhi.elevator ? "✅" : "❌"],
                             ].map(([l, a, b, c], i) => (
                                 <tr key={l} style={{ borderBottom: "1px solid #F5F1ED", background: i % 2 === 0 ? "#FDFCFB" : "#fff" }}>
                                     <td style={{ padding: "10px 8px", color: "#666", fontWeight: 500 }}>{l}</td>
