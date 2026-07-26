@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { getHomeFaq, getHomeFaqHeading } from "@/i18n/home-faq";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
@@ -7,6 +8,8 @@ import Reveal from "@/components/Reveal";
 export default function HomePage({ locale }: { locale: Locale }) {
     const t = getDictionary(locale);
     const prefix = locale === "zh" ? "" : `/${locale}`;
+    const faq = getHomeFaq(locale);
+    const faqHeading = getHomeFaqHeading(locale);
 
     return (
         <>
@@ -118,6 +121,31 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     </Reveal>
                 </div>
             </section>
+
+            {/* FAQ (ja/ko only — driven by home-faq.ts) */}
+            {faq && faqHeading ? (
+                <section className="sec-cream" style={{ paddingTop: 0 }}>
+                    <div className="w" style={{ maxWidth: "860px" }}>
+                        <Reveal>
+                            <div style={{ textAlign: "center", marginBottom: "40px" }}>
+                                <div className="label-d" style={{ color: "#8A8279" }}>{faqHeading.label}</div>
+                                <h2 style={{ fontSize: "clamp(1.3rem, 2.6vw, 1.9rem)", letterSpacing: "0.06em" }}>{faqHeading.title}</h2>
+                                <div className="gold-line" style={{ margin: "24px auto" }} />
+                            </div>
+                        </Reveal>
+                        <div style={{ display: "grid", gap: "16px" }}>
+                            {faq.map((item) => (
+                                <Reveal key={item.q}>
+                                    <article style={{ background: "#fff", borderRadius: "12px", padding: "22px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}>
+                                        <h3 style={{ fontSize: "0.98rem", color: "#3D3830", marginBottom: "10px", letterSpacing: "0.04em" }}>{item.q}</h3>
+                                        <p style={{ fontSize: "0.88rem", color: "#8A8279", lineHeight: 1.9, margin: 0 }}>{item.a}</p>
+                                    </article>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            ) : null}
 
             {/* CTA */}
             <div className="cta-strip">

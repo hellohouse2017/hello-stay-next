@@ -101,6 +101,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="alternate" type="text/plain" href="https://www.hello-stay.com/llms-full.txt" title="LLMs-full.txt - AI Full Details" />
         <link rel="alternate" type="text/plain" hrefLang="en" href="https://www.hello-stay.com/llms-en.txt" title="LLMs.txt - English" />
         <link rel="alternate" type="text/plain" hrefLang="ja" href="https://www.hello-stay.com/llms-ja.txt" title="LLMs.txt - Japanese" />
+        <link rel="alternate" type="text/plain" hrefLang="ko" href="https://www.hello-stay.com/llms-ko.txt" title="LLMs.txt - Korean" />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Script

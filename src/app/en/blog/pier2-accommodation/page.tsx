@@ -7,13 +7,14 @@ import Breadcrumb from "@/components/Breadcrumb";
 
 const CANONICAL_EN = "https://www.hello-stay.com/en/blog/pier2-accommodation";
 const CANONICAL_ZH = "https://www.hello-stay.com/blog/pier2-accommodation";
+const CANONICAL_JA = "https://www.hello-stay.com/ja/blog/pier2-accommodation";
 
 export const metadata: Metadata = {
     title: "Pier-2 Art Center Accommodation | Walk 10 Min from Yancheng Villas",
     description: "Private group stays in Yancheng, a 10-minute walk from Pier-2 Art Center and close to Dagang Bridge, MRT, local food, and shared spaces.",
     alternates: {
         canonical: CANONICAL_EN,
-        languages: { "zh-Hant": CANONICAL_ZH, en: CANONICAL_EN, "x-default": CANONICAL_ZH },
+        languages: { "zh-Hant": CANONICAL_ZH, en: CANONICAL_EN, ja: CANONICAL_JA, "x-default": CANONICAL_ZH },
     },
         openGraph: {
         title: "Pier-2 Art Center Accommodation | Walk 10 Min from Yancheng Villas",
@@ -76,15 +77,14 @@ One MRT stop away
 📍 No. 8, Ln. 70, Dagong Rd. (10-minute walk to Pier-2)
 👥 Private rental for 8–26 guests
 🏷 Full kitchen, mahjong table, board games
-📊 Google rating 4.5 stars / 75 reviews
-💰 From NT$12,000 on weekdays
+💰 Rates vary by date and group size — check the official booking site
 
 Godin House
 📍 No. 6-2, Ln. 70, Dagong Rd. (10-minute walk to Pier-2)
 👥 Standalone building for 4–12 guests
-🏷 Five floors, family-style layout
+🏷 Five floors, all four rooms with private bathrooms
 ✨ Best for family trips and small groups
-💰 From about NT$8,000 on weekdays
+⚠ No elevator — stairs only
 
 Booking both properties together normally fits 27-34 guests; groups of 35-36 require extra beds. It is ideal for large groups.`,
     },
@@ -132,7 +132,7 @@ export default function EnPier2Page() {
                         {
                             "@type": "Question",
                             name: "Is there recommended lodging near Pier-2 Art Center?",
-                            acceptedAnswer: { "@type": "Answer", text: "We recommend staying in Yancheng District, a 10-minute walk from Pier-2. Hello House, for example, is a private rental for 8-26 guests with a 4.5-star Google rating. Yancheng itself is a food destination, making it more convenient and offering more variety than staying right next to Pier-2." },
+                            acceptedAnswer: { "@type": "Answer", text: "We recommend staying in Yancheng District, a 10-minute walk from Pier-2. Hello House, for example, is a private rental for 8-26 guests, and Godin House hosts 4-12. Yancheng itself is a food destination, making it more convenient and offering more variety than staying right next to Pier-2." },
                         },
                         {
                             "@type": "Question",

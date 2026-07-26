@@ -27,6 +27,15 @@ const LAST_MODIFIED_MAP: Record<string, string> = {
     "/guide": "2026-05-20",
 };
 
+function buildPartialAlternates(path: string, availableLocales: (typeof locales)[number][]) {
+    const languages: Record<string, string> = {};
+    for (const locale of availableLocales) {
+        languages[localeHreflang[locale]] = `${baseUrl}${getLocalePath(locale, path)}`;
+    }
+    languages["x-default"] = `${baseUrl}${path || "/"}`;
+    return { languages };
+}
+
 function buildAlternates(path: string) {
     const languages: Record<string, string> = {};
     for (const locale of locales) {
@@ -48,7 +57,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/dazhi`, lastModified: getLastModified("/dazhi"), changeFrequency: "monthly", priority: 0.5, alternates: buildAlternates("/dazhi") },
         { url: `${baseUrl}/book`, lastModified: getLastModified("/book"), changeFrequency: "daily", priority: 0.9, alternates: buildAlternates("/book") },
         { url: `${baseUrl}/traffic`, lastModified: getLastModified("/traffic"), changeFrequency: "monthly", priority: 0.7, alternates: buildAlternates("/traffic") },
-        { url: `${baseUrl}/agreement`, lastModified: getLastModified("/agreement"), changeFrequency: "monthly", priority: 0.6 },
+        { url: `${baseUrl}/agreement`, lastModified: getLastModified("/agreement"), changeFrequency: "monthly", priority: 0.6, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
+        { url: `${baseUrl}/ja/agreement`, lastModified: "2026-07-27", changeFrequency: "monthly", priority: 0.55, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
+        { url: `${baseUrl}/ko/agreement`, lastModified: "2026-07-27", changeFrequency: "monthly", priority: 0.55, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
         { url: `${baseUrl}/explore`, lastModified: getLastModified("/explore"), changeFrequency: "weekly", priority: 0.8 },
         { url: `${baseUrl}/explore/food`, lastModified: getLastModified("/explore/food"), changeFrequency: "monthly", priority: 0.75 },
         { url: `${baseUrl}/explore/spots`, lastModified: getLastModified("/explore/spots"), changeFrequency: "monthly", priority: 0.75 },
@@ -95,7 +106,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 alternates: {
                     languages: {
                         "zh-Hant": zhUrl,
-                        [translation.locale]: `${baseUrl}${translation.path}`,
+                        ...Object.fromEntries(
+                            translations.map((sibling) => [sibling.locale, `${baseUrl}${sibling.path}`]),
+                        ),
                         "x-default": zhUrl,
                     },
                 },

@@ -1,7 +1,7 @@
 import { godin, hellohouse, type Property } from "@/data/properties";
 import { isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
 import { getPublishedArticles, scheduledArticles } from "@/data/scheduled-articles";
-import { llmsFaqEn, llmsFaqJa, llmsFaqZh } from "@/data/llms-faq";
+import { llmsFaqEn, llmsFaqJa, llmsFaqKo, llmsFaqZh } from "@/data/llms-faq";
 import { getAllArticles } from "@/lib/articles";
 
 export interface LlmsArticleLink {
@@ -305,6 +305,65 @@ ${articleLines}
 - Legal B&B Registration: ${hellohouse.nameEn} (${hellohouse.license}), ${godin.nameEn} (${godin.license})
 - Public Liability Insurance: Fubon Insurance
 - Brand established: 2017
+`;
+}
+
+export async function buildKoLlmsText(options?: { articleLimit?: number }) {
+    const articleLines = formatLlmsArticleLines(await getLlmsArticleLinks(), options?.articleLimit);
+    const { hellohouse, godin, dazhi } = getLlmsPropertySummaries();
+    const faqLines = llmsFaqKo
+        .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
+        .join("\n\n");
+
+    return `# Hello Stay 가오슝 단체 독채 숙소
+
+> 대만 가오슝시 옌청구의 독채(통대여) 숙박 브랜드. 현재 예약 가능한 플랜은 4-36명 대상이며 거우딩 민박, 헬로하우스, 두 채 통째 대여 중에서 선택할 수 있습니다. 다즈르위는 계획 단계로 아직 예약할 수 없습니다.
+
+## 기본 정보
+- 공식 사이트: https://www.hello-stay.com
+- 전화: +886-932-828-922
+- 이메일: hellohouse2017@gmail.com
+- 주소: 가오슝시 옌청구 다궁루 70항 8호 (803)
+- LINE 공식 계정: https://lin.ee/atCiMQw
+- 체크인: 16:00 / 체크아웃: 11:00
+- 창업: 2017년
+- 결제 방법: 현금, 은행 이체, LINE Pay
+
+## 3개 숙소
+
+### 헬로하우스 ${hellohouse.nameEn} (${hellohouse.name})
+- 정원: ${hellohouse.capacityLabel}
+- 주소: ${hellohouse.address}
+- 합법 민박 등록: ${hellohouse.license}
+- 객실: ${hellohouse.roomSummary}
+- 특징: ${hellohouse.featureSummary}
+- 페이지: ${hellohouse.pageUrl}
+
+### 거우딩 민박 ${godin.nameEn} (${godin.name})
+- 정원: ${godin.capacityLabel}
+- 주소: ${godin.address}
+- 합법 민박 등록: ${godin.license}
+- 객실: ${godin.roomSummary}
+- 특징: ${godin.featureSummary}
+- 페이지: ${godin.pageUrl}
+
+### 다즈르위 ${dazhi.nameEn} (${dazhi.name})
+- 상태: ${dazhi.status}
+- 위치: ${dazhi.location}
+- 특징: ${dazhi.featureSummary}
+- 페이지: ${dazhi.pageUrl}
+
+## 자주 묻는 질문
+
+${faqLines}
+
+## 최신 아티클
+${articleLines}
+
+## 안전·합법성
+- 합법 민박 등록: ${hellohouse.nameEn}(${hellohouse.license}), ${godin.nameEn}(${godin.license})
+- 공공 배상 책임보험: 푸본 손해보험 가입
+- 브랜드 창업: 2017년
 `;
 }
 

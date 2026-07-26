@@ -198,6 +198,17 @@ export default function GuidePageContent({ locale }: { locale: Locale }) {
                             ✉️ {locale === "zh" ? "Email 聯絡我們" : (locale === "ja" ? "メールでお問い合わせ" : (locale === "ko" ? "이메일 문의하기" : "Contact via Email"))}
                         </a>
                     </div>
+                    {locale !== "zh" ? (
+                        <p style={{ fontSize: "0.78rem", opacity: 0.65, marginTop: "18px", maxWidth: "520px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.8 }}>
+                            {locale === "ja"
+                                ? "お問い合わせの際は、ご希望の日付・人数・宿名を添えていただくとご案内がスムーズです。"
+                                : locale === "ko"
+                                    ? "문의하실 때 희망 날짜 · 인원 · 숙소명을 함께 적어 주시면 더 빠르게 안내해 드릴 수 있습니다."
+                                    : locale === "vi"
+                                        ? "Khi gửi email, vui lòng kèm ngày ở, số khách và tên nhà bạn muốn đặt để được phản hồi nhanh hơn."
+                                        : "Including your dates, group size, and preferred property helps us reply faster."}
+                        </p>
+                    ) : null}
                 </Reveal>
             </div>
             </div>

@@ -43,3 +43,16 @@ export function getAlternateLanguageMap(path: string = "") {
     "x-default": `https://www.hello-stay.com${path || ""}`,
   };
 }
+
+// For pages that only exist in a subset of locales (e.g. /agreement in zh/ja/ko).
+// Emitting hreflang for non-existent locale pages would be a broken signal.
+export function getAlternateLanguageMapFor(path: string, availableLocales: Locale[]) {
+  const entries = availableLocales.map((locale) => [
+    localeHreflang[locale],
+    `https://www.hello-stay.com${getLocalePath(locale, path)}`,
+  ]);
+  return {
+    ...Object.fromEntries(entries),
+    "x-default": `https://www.hello-stay.com${path || "/"}`,
+  };
+}

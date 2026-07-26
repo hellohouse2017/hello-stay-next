@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
+import { getAlternateLanguageMapFor } from "@/i18n/config";
 
 export const metadata: Metadata = {
   title: "高雄包棟民宿入住須知｜付款、取消與住宿規則",
   description:
     "訂高雄包棟民宿前，先看懂 Hello Stay 的付款方式、取消規則、加人費用、安寧時間與入住條件。把高雄包棟住宿常見的訂房與入住重點一次確認清楚。",
-  alternates: { canonical: "https://www.hello-stay.com/agreement" },
+  alternates: {
+    canonical: "https://www.hello-stay.com/agreement",
+    languages: getAlternateLanguageMapFor("/agreement", ["zh", "ja", "ko"]),
+  },
   openGraph: {
     title: "高雄包棟民宿入住須知｜付款、取消與住宿規則｜Hello Stay",
     description: "先看懂高雄包棟民宿常見的付款、取消、加人與住宿規則，訂房前把 Hello Stay 的入住條件確認清楚。",

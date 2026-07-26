@@ -4,13 +4,16 @@
  * zh article and the translated page.
  */
 export interface BlogTranslation {
-    locale: "en";
+    locale: "en" | "ja";
     path: string;
 }
 
 export const BLOG_TRANSLATIONS: Record<string, BlogTranslation[]> = {
     "kaohsiung-mahjong-stay": [{ locale: "en", path: "/en/blog/kaohsiung-mahjong-stay" }],
-    "pier2-accommodation": [{ locale: "en", path: "/en/blog/pier2-accommodation" }],
+    "pier2-accommodation": [
+        { locale: "en", path: "/en/blog/pier2-accommodation" },
+        { locale: "ja", path: "/ja/blog/pier2-accommodation" },
+    ],
 };
 
 export function getBlogTranslationLanguages(slug: string, canonical: string): Record<string, string> | undefined {

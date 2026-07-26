@@ -34,7 +34,7 @@ export default function Footer() {
                     <div className="footer-d__col">
                         <div className="footer-d__title">{t.footer.info}</div>
                         <div className="footer-d__links">
-                            <Link href="/agreement">{t.footer.info_agreement}</Link>
+                            <Link href={currentLocale === "ja" || currentLocale === "ko" ? `${prefix}/agreement` : "/agreement"}>{t.footer.info_agreement}</Link>
                             <Link href={`${prefix}/traffic`}>{t.footer.info_traffic}</Link>
                             <Link href="/explore">{t.footer.info_explore}</Link>
                             {currentLocale === "zh" ? (

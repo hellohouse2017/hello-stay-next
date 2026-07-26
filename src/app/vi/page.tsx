@@ -7,7 +7,7 @@ import LocaleSeoJsonLd from "@/components/LocaleSeoJsonLd";
 const t = getDictionary("vi");
 
 export const metadata: Metadata = {
-    title: t.home.meta_title,
+    title: { absolute: t.home.meta_title },
     description: t.home.meta_desc,
     alternates: { canonical: "https://www.hello-stay.com/vi", languages: getAlternateLanguageMap("") },
 };
