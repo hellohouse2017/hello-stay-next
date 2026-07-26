@@ -15,6 +15,13 @@ function shuffle<T>(items: T[]): T[] {
   return [...items].sort(() => Math.random() - 0.5)
 }
 
+function hasFrontmatterFaq(content: string): boolean {
+  // Articles with structured frontmatter faq render their own FAQ section;
+  // injecting the weekly quick-decision block would duplicate visible content.
+  const frontmatter = content.match(/^---\n[\s\S]*?\n---/)
+  return frontmatter ? /^faq:/m.test(frontmatter[0]) : false
+}
+
 function loadSeoPriorityList(): SeoPriorityEntry[] {
   if (!fs.existsSync(priorityPath)) return []
 
@@ -54,6 +61,12 @@ async function weeklyRefresh() {
     const slug = file.replace('.mdx', '')
     const filePath = path.join(articlesDir, file)
     const original = fs.readFileSync(filePath, 'utf-8')
+
+    if (hasFrontmatterFaq(original)) {
+      console.log(`⏭️ ${file}（frontmatter 已有 faq，跳過每週區塊注入）`)
+      continue
+    }
+
     const blocks = buildWeeklyBlocks(slug, currentMonth, priorityMap.get(slug))
 
     let next = updateDateModified(original, today)
