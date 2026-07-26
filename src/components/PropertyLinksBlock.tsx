@@ -16,7 +16,7 @@ export default function PropertyLinksBlock() {
             <div className="article-property-links__properties">
                 <Link href="/hellohouse">
                     <strong>你好哇寓所</strong>
-                    <span>6–26 人　中島廚房與聚會空間</span>
+                    <span>8–26 人　中島廚房與聚會空間</span>
                 </Link>
                 <Link href="/godin">
                     <strong>溝頂民宿</strong>

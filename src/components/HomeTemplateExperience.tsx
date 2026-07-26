@@ -298,7 +298,7 @@ export default function HomeTemplateExperience() {
 
         <div className="hs-hero__content">
           <p className="hs-eyebrow">官方訂房入口</p>
-          <h1 id="home-hero-title">Hello Stay<br />高雄鹽埕包棟</h1>
+          <h1 id="home-hero-title">Hello Stay<br />高雄鹽埕包棟民宿</h1>
           <p className="hs-hero__lead">
             <span>4-12 人溝頂　13-26 人你好哇　27-34 人雙館</span>
             <span>輸入日期與人數　查看方案與空房</span>

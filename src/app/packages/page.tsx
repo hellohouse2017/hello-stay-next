@@ -203,6 +203,14 @@ export default function PackagesPage() {
         data={[
           {
             "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+              { "@type": "ListItem", position: 2, name: "團體住宿方案", item: "https://www.hello-stay.com/packages" },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "Service",
             provider: { "@type": "LodgingBusiness", name: "Hello Stay" },
             name: "高雄包棟民宿方案推薦",

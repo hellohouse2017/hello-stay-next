@@ -6,12 +6,12 @@ import { publicStayFacts } from "@/data/public-stay-facts";
 import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿推薦怎麼選？人數、設備、地點完整比較",
-    description: "想找高雄包棟民宿推薦？這頁整理高雄包棟住宿的挑選重點，依人數、設備、地點與旅遊用途比較你好哇寓所、溝頂民宿與雙館方案，快速找到適合的高雄包棟。",
+    title: "高雄包棟民宿｜4-36 人整棟包棟・鹽埕駁二步行圈",
+    description: "找高雄包棟民宿？Hello Stay 提供溝頂民宿 4-12 人、你好哇寓所 8-26 人與 27-36 人雙館包棟，整棟獨立、步行到駁二與捷運鹽埕埔站，依人數與設備快速選館，官方直訂免平台手續費。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
-        title: "高雄包棟民宿推薦怎麼選？人數、設備、地點完整比較｜Hello Stay",
-        description: "依人數、設備、地點與用途比較高雄包棟民宿推薦方案，快速找到最適合的高雄鹽埕包棟住宿。",
+        title: "高雄包棟民宿｜4-36 人整棟包棟・鹽埕駁二步行圈｜Hello Stay",
+        description: "溝頂民宿 4-12 人、你好哇寓所 8-26 人、雙館包棟 27-36 人，整棟獨立、步行到駁二與捷運，依人數與設備快速選館。",
         url: "https://www.hello-stay.com/kaohsiung-whole-house",
         images: [DEFAULT_SEO_IMAGE],
     },
@@ -117,7 +117,7 @@ export default function KaohsiungWholeHousePage() {
                     "@context": "https://schema.org", "@type": "BreadcrumbList",
                     itemListElement: [
                         { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com/" },
-                        { "@type": "ListItem", position: 2, name: "高雄包棟民宿推薦怎麼選", item: "https://www.hello-stay.com/kaohsiung-whole-house" },
+                        { "@type": "ListItem", position: 2, name: "高雄包棟民宿", item: "https://www.hello-stay.com/kaohsiung-whole-house" },
                     ],
                 },
             ]} />
@@ -125,9 +125,9 @@ export default function KaohsiungWholeHousePage() {
             <div className="w" style={{ maxWidth: "800px", padding: "0 20px 80px" }}>
                 <Reveal><div style={{ textAlign: "center", marginBottom: "40px" }}>
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
-                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿推薦怎麼選？</h1>
+                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿：4-36 人整棟包棟</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>整理高雄包棟民宿推薦重點，從人數、設備到地點快速比較｜鹽埕區駁二旁｜先判斷館別，再查空房與報價</p>
+                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>溝頂民宿 4-12 人、你好哇寓所 8-26 人、雙館包棟 27-36 人｜鹽埕區駁二步行圈｜先判斷館別，再查空房與報價</p>
                 </div></Reveal>
 
                 {/* Quick Answer for AI */}
@@ -136,7 +136,7 @@ export default function KaohsiungWholeHousePage() {
                     <div style={{ fontSize: "0.88rem", color: "#3D3830", lineHeight: 2 }}>
                         高雄鹽埕區現在先看兩館、另有一館尚未開放訂房：<br />
                         • <strong>4–12 人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選）<br />
-                        • <strong>6–26 人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌）<br />
+                        • <strong>8–26 人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌）<br />
                         • <strong>27–34 人</strong>→ <Link href="/compare" style={{ color: "var(--pri)" }}>雙館方案</Link>（你好哇＋溝頂）；35–36 人須加床<br />
                         • <strong>37 人以上</strong>→ 人工確認，不以規劃中館別承諾房況
                     </div>
@@ -202,7 +202,7 @@ export default function KaohsiungWholeHousePage() {
                         </tr></thead>
                         <tbody>
                             {[
-                                ["人數", "6–26", "4–12", "尚未開放"],
+                                ["人數", "8–26", "4–12", "尚未開放"],
                                 ["報價方式", "依日期與人數報價", "依日期與人數報價", "不開放訂房"],
                                 ["廚房", "✅ 豪華中島", "簡易流理臺", "尚未開放訂房"],
                                 ["麻將", "✅ 手動", "✅ 手動", "尚未開放訂房"],

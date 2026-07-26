@@ -74,7 +74,7 @@ One MRT stop away
         title: "Recommended stays within walking distance of Pier-2",
         content: `Hello House ⭐ Top choice
 📍 No. 8, Ln. 70, Dagong Rd. (10-minute walk to Pier-2)
-👥 Private rental for 6–26 guests
+👥 Private rental for 8–26 guests
 🏷 Full kitchen, mahjong table, board games
 📊 Google rating 4.5 stars / 75 reviews
 💰 From NT$12,000 on weekdays

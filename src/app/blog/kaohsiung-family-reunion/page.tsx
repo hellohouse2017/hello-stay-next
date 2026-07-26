@@ -8,7 +8,7 @@ import PropertyLinksBlock from "@/components/PropertyLinksBlock";
 
 export const metadata: Metadata = {
     title: "高雄家族旅遊包棟推薦｜三代同堂・長輩友善・親子住宿",
-    description: "高雄家族旅遊住包棟民宿最好！三代同堂每間房獨立衛浴，長輩打麻將、小孩看Netflix、爸媽廚房備餐。鹽埕區6-36人包棟。",
+    description: "高雄家族旅遊住包棟民宿最好！三代同堂每間房獨立衛浴，長輩打麻將、小孩看Netflix、爸媽廚房備餐。鹽埕區4-36人包棟。",
     alternates: { canonical: "https://www.hello-stay.com/blog/kaohsiung-family-reunion" },
     openGraph: { url: "https://www.hello-stay.com/blog/kaohsiung-family-reunion" },
 };

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import LineFloatingCTA from "@/components/LineFloatingCTA";
 import { godin } from "@/data/properties";
@@ -56,6 +57,33 @@ const fitGuides = [
   { label: "適合需求", value: "想住同一棟 又希望房間分層休息" },
   { label: "不必期待", value: "大型廚房或超大宴客空間" },
   { label: "整棟節奏", value: "白天出門 晚上回 4F 集合最順" },
+];
+
+const faqItems = [
+  {
+    q: "溝頂民宿可以幾個人包棟？",
+    a: "溝頂民宿適合 4-12 人整棟包棟，共 2 間雙人房與 2 間四人房，四間客房皆有獨立衛浴，適合家庭旅行與小型朋友聚會。",
+  },
+  {
+    q: "溝頂民宿可以開伙煮飯嗎？",
+    a: "館內提供流理台、雙門冰箱、微波爐與 RO 飲水機，適合簡單備餐與宵夜加熱，不提供正式開伙的廚房。想要中島廚房與完整烹飪設備，可以改看你好哇寓所。",
+  },
+  {
+    q: "溝頂民宿有麻將桌嗎？",
+    a: "有，4F 交誼廳備有手動麻將桌、桌遊、沙發與聯網電視，整團晚上回民宿可以在同一層聚會。",
+  },
+  {
+    q: "溝頂民宿有電梯嗎？長輩適合入住嗎？",
+    a: "溝頂民宿沒有電梯，五層樓以樓梯移動；若有長輩同行，建議優先把 1F 雙人房安排給長輩，減少上下樓需求。",
+  },
+  {
+    q: "溝頂民宿走到駁二和捷運站要多久？",
+    a: "步行到捷運鹽埕埔站約 5 分鐘、輕軌駁二大義站約 7 分鐘、大港橋約 8 分鐘、駁二藝術特區約 10 分鐘；巷口步行 2-3 分鐘內有超商與在地小吃。",
+  },
+  {
+    q: "超過 12 人的團體怎麼辦？",
+    a: "13 人以上建議改看 8-26 人的你好哇寓所；27-36 人可以選擇兩館一起訂的雙館包棟方案，兩館步行約 5 秒即達。",
+  },
 ];
 
 const actualGallery = [
@@ -636,6 +664,53 @@ const pageStyles = String.raw`
   border-color: rgba(255, 255, 255, 0.22);
 }
 
+.godin-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.godin-faq-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+}
+
+.godin-faq-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.02rem;
+  font-weight: 760;
+  line-height: 1.4;
+}
+
+.godin-faq-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.godin-crosslinks {
+  margin: 24px 0 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.godin-crosslinks a {
+  margin: 0 2px;
+  color: var(--accent);
+  font-weight: 760;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 1180px) {
   .godin-overview-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -678,6 +753,10 @@ const pageStyles = String.raw`
   .godin-overview-grid,
   .godin-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .godin-faq-grid {
+    grid-template-columns: 1fr;
   }
 
   .godin-room-card {
@@ -777,6 +856,23 @@ export default function GodinPage() {
                 { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
               ],
             },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+                { "@type": "ListItem", position: 2, name: "溝頂民宿", item: "https://www.hello-stay.com/godin" },
+              ],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqItems.map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: { "@type": "Answer", text: item.a },
+              })),
+            },
           ]),
         }}
       />
@@ -800,7 +896,7 @@ export default function GodinPage() {
 
               <div className="godin-hero__content">
                 <div className="godin-hero__copy">
-                  <p className="godin-kicker">溝頂民宿</p>
+                  <p className="godin-kicker">高雄鹽埕 4-12 人包棟民宿</p>
                   <h1>溝頂民宿</h1>
                   <p className="godin-hero__lead">
                     五層獨棟包棟，適合家庭旅行與小團體入住。四間客房皆有獨立衛浴，4F 是整團共用的交誼廳與簡易備餐空間。想找鹽埕民宿推薦或高雄小團體包棟，這館會是很直覺的選擇。
@@ -1023,6 +1119,33 @@ export default function GodinPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="godin-section">
+          <div className="godin-shell">
+            <div className="godin-section__head">
+              <p className="godin-kicker">常見問題</p>
+              <h2>入住溝頂民宿前最常問的事</h2>
+              <p>人數、備餐、麻將、樓梯與步行距離，先在這裡確認清楚。</p>
+            </div>
+
+            <div className="godin-faq-grid">
+              {faqItems.map((item) => (
+                <article className="godin-faq-card" key={item.q}>
+                  <h3>{item.q}</h3>
+                  <p>{item.a}</p>
+                </article>
+              ))}
+            </div>
+
+            <p className="godin-crosslinks">
+              還在比較館別？可以先看
+              <Link href="/kaohsiung-whole-house">高雄包棟民宿總覽</Link>、
+              <Link href="/hellohouse">你好哇寓所（8-26 人）</Link>或
+              <Link href="/compare">館別比較</Link>
+              ，確定人數與日期後再<Link href="/book">查詢空房與報價</Link>。
+            </p>
           </div>
         </section>
 

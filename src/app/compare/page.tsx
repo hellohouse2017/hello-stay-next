@@ -4,13 +4,13 @@ import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 import { publicStayFacts } from "@/data/public-stay-facts";
 
 export const metadata: Metadata = {
-  title: "Hello Stay 館別比較｜你好哇寓所、溝頂與雙館方案",
+  title: "高雄包棟民宿比較｜你好哇寓所vs溝頂民宿怎麼選",
   description:
-    "比較 Hello Stay 你好哇寓所、溝頂民宿與雙館方案的人數、房型、衛浴、廚房與公共空間；大智若愚目前僅列規劃狀態，不開放訂房。",
+    "高雄包棟怎麼選？比較你好哇寓所（8-26 人）、溝頂民宿（4-12 人）與 27-36 人雙館方案的人數、房型、衛浴、廚房與公共空間；大智若愚目前僅列規劃狀態，不開放訂房。",
   alternates: { canonical: "https://www.hello-stay.com/compare" },
   openGraph: {
-    title: "Hello Stay 館別比較｜你好哇寓所、溝頂與雙館方案",
-    description: "直接比較 Hello Stay 各住宿方案的人數、房型、設備與開放狀態。",
+    title: "高雄包棟民宿比較｜你好哇寓所vs溝頂民宿怎麼選｜Hello Stay",
+    description: "直接比較高雄鹽埕兩館包棟民宿與雙館方案的人數、房型、設備與開放狀態。",
     url: "https://www.hello-stay.com/compare",
     images: [
       {
@@ -171,6 +171,14 @@ export default function ComparePage() {
         data={[
           {
             "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.hello-stay.com" },
+              { "@type": "ListItem", position: 2, name: "館別比較", item: "https://www.hello-stay.com/compare" },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "ItemList",
             name: "Hello Stay 館別怎麼選",
             description: "先分清目前可訂館別，再看尚未開放訂房的大智若愚。",
@@ -206,9 +214,9 @@ export default function ComparePage() {
 
       <PropertyShowcasePage
         hero={{
-          kicker: "三館比較",
-          title: "住宿比較",
-          lead: "依人數、房間配置與公共空間比較目前方案。大智若愚仍在規劃中。",
+          kicker: "高雄包棟民宿比較",
+          title: "高雄包棟怎麼選",
+          lead: "依人數、房間配置與公共空間比較目前包棟方案：4-12 人看溝頂、8-26 人看你好哇、27-36 人選雙館。大智若愚仍在規劃中。",
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 三館比較主視覺",
