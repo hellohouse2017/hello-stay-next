@@ -541,7 +541,7 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 .book-bridge__steps,
 .book-bridge__entrances { width: min(1280px, calc(100% - 64px)); max-width: none; }
 
-.book-bridge__hero { min-height: min(700px, calc(100svh - var(--nav-h))); align-items: end; }
+.book-bridge__hero { min-height: min(700px, calc(100svh - var(--nav-h))); align-items: center; }
 
 .book-bridge__copy h1 {
   font-family: var(--serif) !important;

@@ -147,13 +147,15 @@ function buildBookingHref(params: {
   if (params.checkIn) url.searchParams.set("checkInDate", params.checkIn);
   if (params.checkOut) url.searchParams.set("checkOutDate", params.checkOut);
   if (params.guestCount) url.searchParams.set("guestCount", params.guestCount);
+  if (!params.checkIn || !params.checkOut) url.searchParams.set("openCalendar", "1");
   return url.toString();
 }
 
 function suggestProperty(guestCount: string): BookingProperty {
   const guests = Number(guestCount);
   if (!Number.isFinite(guests) || guests < 4 || guests > 36) return "";
-  if (guests <= 12) return "溝頂民宿";
+  if (guests <= 7) return "溝頂民宿";
+  if (guests <= 12) return "";
   if (guests <= 26) return "你好哇寓所";
   return "雙館包棟";
 }
@@ -300,7 +302,7 @@ export default function HomeTemplateExperience() {
           <p className="hs-eyebrow">官方訂房入口</p>
           <h1 id="home-hero-title">Hello Stay<br />高雄鹽埕包棟民宿</h1>
           <p className="hs-hero__lead">
-            <span>4-12 人溝頂　13-26 人你好哇　27-34 人雙館</span>
+            <span>4-7 人溝頂　8-12 人兩館比較　13-26 人你好哇　27-34 人雙館</span>
             <span>輸入日期與人數　查看方案與空房</span>
           </p>
 

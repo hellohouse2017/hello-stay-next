@@ -375,6 +375,43 @@ const pageStyles = String.raw`
   line-height: 1.55;
 }
 
+.showcase-inpage-nav {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 20;
+  border-top: 1px solid rgba(31, 26, 22, 0.08);
+  border-bottom: 1px solid var(--line);
+  background: rgba(246, 241, 232, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.showcase-inpage-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 48px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.showcase-inpage-nav__inner::-webkit-scrollbar { display: none; }
+
+.showcase-inpage-nav a {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.showcase-inpage-nav a:hover,
+.showcase-inpage-nav a:focus-visible {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .showcase-section {
   padding-top: 84px;
 }
@@ -1267,7 +1304,18 @@ export default function PropertyShowcasePage({
           </div>
         </section>
 
-        <section className="showcase-section">
+        <nav className="showcase-inpage-nav" aria-label="館內導覽">
+          <div className="showcase-shell showcase-inpage-nav__inner">
+            <a href="#showcase-overview">空間總覽</a>
+            <a href="#showcase-details">房型與設備</a>
+            {gallery ? <a href="#showcase-gallery">實景照片</a> : null}
+            {faq ? <a href="#showcase-faq">常見問題</a> : null}
+            {location ? <a href="#showcase-location">交通位置</a> : null}
+            {final ? <a href="#showcase-final">查空房</a> : null}
+          </div>
+        </nav>
+
+        <section className="showcase-section" id="showcase-overview">
           <div className="showcase-shell">
             <div className="showcase-section__head">
               <p className="showcase-kicker">{overview.kicker}</p>
@@ -1306,7 +1354,7 @@ export default function PropertyShowcasePage({
           </div>
         </section>
 
-        <section className="showcase-section">
+        <section className="showcase-section" id="showcase-details">
           <div className="showcase-shell">
             <div className="showcase-section__head">
               <p className="showcase-kicker">{details.kicker}</p>
@@ -1410,7 +1458,7 @@ export default function PropertyShowcasePage({
         </section>
 
         {gallery ? (
-          <section className="showcase-section">
+          <section className="showcase-section" id="showcase-gallery">
             <div className="showcase-shell">
               <div className="showcase-section__head">
                 <p className="showcase-kicker">{gallery.kicker}</p>
@@ -1439,7 +1487,7 @@ export default function PropertyShowcasePage({
         ) : null}
 
         {faq ? (
-          <section className="showcase-section">
+          <section className="showcase-section" id="showcase-faq">
             <div className="showcase-shell">
               <div className="showcase-section__head">
                 <p className="showcase-kicker">{faq.kicker}</p>
@@ -1475,7 +1523,7 @@ export default function PropertyShowcasePage({
         ) : null}
 
         {location ? (
-          <section className="showcase-section" id={location.id}>
+          <section className="showcase-section" id={location.id ?? "showcase-location"}>
             <div className="showcase-shell">
               <div className="showcase-section__head">
                 <p className="showcase-kicker">{location.kicker}</p>
@@ -1532,7 +1580,7 @@ export default function PropertyShowcasePage({
         ) : null}
 
         {final ? (
-          <section className="showcase-final showcase-shell">
+          <section className="showcase-final showcase-shell" id="showcase-final">
             <div>
               <p className="showcase-kicker">{final.kicker}</p>
               <h2>{final.title}</h2>

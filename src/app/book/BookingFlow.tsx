@@ -18,6 +18,7 @@ type Entrance = {
 function buildBookingHref(property?: string) {
   const url = new URL(bookingBase);
   if (property) url.searchParams.set("property", property);
+  url.searchParams.set("openCalendar", "1");
   return url.toString();
 }
 
@@ -74,7 +75,7 @@ export default function BookingFlow() {
           <h1>先選館別，再查空房與報價</h1>
           <p>先看館別，再依日期與人數查看目前總價，完成驗證、簽署與付款。</p>
           <div className="book-bridge__actions">
-            <a href={buildBookingHref("你好哇寓所")}>
+            <a href={buildBookingHref()}>
               查詢空房與報價
               <ChevronRight size={16} />
             </a>

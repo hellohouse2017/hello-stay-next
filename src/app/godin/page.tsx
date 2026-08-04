@@ -280,6 +280,43 @@ const pageStyles = String.raw`
   line-height: 1.55;
 }
 
+.godin-inpage-nav {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 20;
+  border-top: 1px solid rgba(31, 26, 22, 0.08);
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 242, 234, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.godin-inpage-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 48px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.godin-inpage-nav__inner::-webkit-scrollbar { display: none; }
+
+.godin-inpage-nav a {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.76rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.godin-inpage-nav a:hover,
+.godin-inpage-nav a:focus-visible {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .godin-section {
   padding-top: 84px;
 }
@@ -925,7 +962,18 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-section">
+        <nav className="godin-inpage-nav" aria-label="溝頂民宿頁面導覽">
+          <div className="godin-shell godin-inpage-nav__inner">
+            <a href="#godin-overview">房型總覽</a>
+            <a href="#godin-details">房型與設備</a>
+            <a href="#godin-gallery">實景照片</a>
+            <a href="#godin-location">交通位置</a>
+            <a href="#godin-faq">常見問題</a>
+            <a href="#godin-final">查空房</a>
+          </div>
+        </nav>
+
+        <section className="godin-section" id="godin-overview">
           <div className="godin-shell">
             <div className="godin-section__head">
               <p className="godin-kicker">房型指南</p>
@@ -959,7 +1007,7 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-section">
+        <section className="godin-section" id="godin-details">
           <div className="godin-shell">
             <div className="godin-section__head">
               <p className="godin-kicker">房型細節</p>
@@ -1065,7 +1113,7 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-section">
+        <section className="godin-section" id="godin-gallery">
           <div className="godin-shell">
             <div className="godin-section__head">
               <p className="godin-kicker">實景照片</p>
@@ -1092,7 +1140,7 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-section">
+        <section className="godin-section" id="godin-location">
           <div className="godin-shell">
             <div className="godin-section__head">
               <p className="godin-kicker">交通位置</p>
@@ -1122,7 +1170,7 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-section">
+        <section className="godin-section" id="godin-faq">
           <div className="godin-shell">
             <div className="godin-section__head">
               <p className="godin-kicker">常見問題</p>
@@ -1149,7 +1197,7 @@ export default function GodinPage() {
           </div>
         </section>
 
-        <section className="godin-final godin-shell">
+        <section className="godin-final godin-shell" id="godin-final">
           <div>
             <p className="godin-kicker">訂房提醒</p>
             <h2>確認日期與人數後查空房</h2>
