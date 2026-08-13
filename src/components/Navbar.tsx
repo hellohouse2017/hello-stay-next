@@ -56,15 +56,14 @@ export default function Navbar() {
     ];
 
     const zhPlanningLinks: NavLink[] = [
-        { href: "/compare", label: "住宿比較" },
-        { href: "/packages", label: "團體方案" },
-        { href: "/explore", label: "周邊探索" },
-        { href: "/traffic", label: "交通停車" },
+        { href: `${prefix}/#stay-options`, label: "住宿選擇" },
+        { href: `${prefix}/compare`, label: "比較住宿" },
+        { href: `${prefix}/explore`, label: "鹽埕玩什麼" },
+        { href: `${prefix}/#home-faq`, label: "常見問題" },
     ];
 
     const links: NavLink[] = [
-        ...propertyLinks,
-        ...(currentLocale === "zh" ? zhPlanningLinks : []),
+        ...(currentLocale === "zh" ? zhPlanningLinks : propertyLinks),
         { href: `${prefix}/book`, label: currentLocale === "zh" ? "查空房" : "Book", cta: true },
     ];
 
@@ -120,7 +119,12 @@ export default function Navbar() {
 
                         <div className="desktop-nav site-nav__links">
                             {links.map(l => (
-                                <Link key={l.href} href={l.href} className={l.cta ? "cta-link" : ""}>
+                                <Link
+                                    key={l.href}
+                                    href={l.href}
+                                    className={[l.cta ? "cta-link" : "", !l.cta && l.href === `${prefix}/explore` ? "is-active" : ""].filter(Boolean).join(" ")}
+                                    aria-current={!l.cta && l.href === `${prefix}/explore` ? "page" : undefined}
+                                >
                                     {l.label}
                                 </Link>
                             ))}

@@ -61,8 +61,12 @@ export default function LocalGuidePage({
           </div>
 
           <div className="local-guide-sections">
-                    {sections.map((section) => (
-              <section className="local-guide-section" key={section.title}>
+            {sections.map((section) => (
+              <section
+                className="local-guide-section"
+                id={section.kicker.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}
+                key={section.title}
+              >
                 <div className="local-guide-section__head">
                   <div>
                     <p className="local-guide-kicker">{section.kicker}</p>
