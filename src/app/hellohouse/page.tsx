@@ -58,7 +58,7 @@ const stayGuides = [
 ];
 
 const fitGuides = [
-  { label: "適合人數", value: "13-26 人家族旅行 朋友聚會 迎娶團體" },
+  { label: "適合人數", value: "8-26 人（家族旅行 朋友聚會 迎娶團體）" },
   { label: "最有感優勢", value: "中島廚房與多人交誼空間" },
   { label: "常見用途", value: "慶生 聚餐 火鍋 宵夜 迎娶" },
   { label: "選館重點", value: "重視大家能不能聚在同一個空間" },
@@ -133,6 +133,7 @@ export default function HelloHousePage() {
               alternateName: ["Hello House", "你好哇", "Hello Stay 一館"],
               url: "https://www.hello-stay.com/hellohouse",
               telephone: "+886-932-828-922",
+              email: "hellohouse2017@gmail.com",
               description:
                 "高雄鹽埕區 8-26 人包棟民宿，主打 1F 中島廚房、交誼空間、麻將與多元房型，適合多人聚會與家族旅行。",
               address: {
@@ -145,15 +146,47 @@ export default function HelloHousePage() {
               },
               geo: { "@type": "GeoCoordinates", latitude: 22.62497, longitude: 120.28459 },
               hasMap: hellohouse.mapUrl,
+              sameAs: [
+                "https://www.instagram.com/hellohouse2020/",
+                "https://www.facebook.com/HelloHouse2020/",
+                "https://lin.ee/atCiMQw",
+                "https://www.google.com/maps/place/?q=place_id:ChIJs97gIJMFbjQRzlIsr4hlP-U",
+              ],
               checkinTime: "16:00",
               checkoutTime: "11:00",
               numberOfRooms: 6,
               petsAllowed: false,
+              smokingAllowed: false,
               amenityFeature: [
                 { "@type": "LocationFeatureSpecification", name: "中島廚房", value: true },
                 { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
                 { "@type": "LocationFeatureSpecification", name: "客房獨立衛浴", value: true },
                 { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+                { "@type": "LocationFeatureSpecification", name: "43吋 Netflix 聯網電視", value: true },
+                { "@type": "LocationFeatureSpecification", name: "RO 逆滲透飲水機", value: true },
+                { "@type": "LocationFeatureSpecification", name: "自助密碼鎖入住", value: true },
+                { "@type": "LocationFeatureSpecification", name: "電梯", value: false },
+                { "@type": "LocationFeatureSpecification", name: "戶外烤肉區", value: false },
+              ],
+              containsPlace: [
+                {
+                  "@type": "Accommodation",
+                  name: "你好哇 雙人房 (共 3 間：1201、1301、1401)",
+                  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2 },
+                  bed: { "@type": "BedDetails", numberOfBeds: 1, typeOfBed: "Double" },
+                },
+                {
+                  "@type": "Accommodation",
+                  name: "你好哇 四人房 (共 1 間：1202)",
+                  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 4 },
+                  bed: { "@type": "BedDetails", numberOfBeds: 2, typeOfBed: "Double" },
+                },
+                {
+                  "@type": "Accommodation",
+                  name: "你好哇 六人房 (共 2 間：1302、1402)",
+                  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 6 },
+                  bed: { "@type": "BedDetails", numberOfBeds: 3, typeOfBed: "Double" },
+                },
               ],
             },
             {

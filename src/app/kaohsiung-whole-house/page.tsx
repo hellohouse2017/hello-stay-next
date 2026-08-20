@@ -6,12 +6,12 @@ import { publicStayFacts } from "@/data/public-stay-facts";
 import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿｜4-36 人整棟包棟・鹽埕駁二步行圈",
-    description: "找高雄包棟民宿？Hello Stay 提供溝頂民宿 4-12 人、你好哇寓所 8-26 人與 27-36 人雙館包棟，整棟獨立、步行到駁二與捷運鹽埕埔站，依人數與設備快速選館，官方直訂免平台手續費。",
+    title: "高雄 4-36 人包棟方案｜6、10、20、30 人住宿怎麼選",
+    description: "高雄 6、10、20、30 人包棟住宿怎麼選？依人數前往對應攻略，再比較溝頂民宿、你好哇寓所與 27-36 人雙館方案的房型、設備與樓梯動線。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
-        title: "高雄包棟民宿｜4-36 人整棟包棟・鹽埕駁二步行圈｜Hello Stay",
-        description: "溝頂民宿 4-12 人、你好哇寓所 8-26 人、雙館包棟 27-36 人，整棟獨立、步行到駁二與捷運，依人數與設備快速選館。",
+        title: "高雄 4-36 人包棟方案｜6、10、20、30 人住宿怎麼選｜Hello Stay",
+        description: "依 6、10、20、30 人快速進入對應攻略，再比較溝頂、你好哇與雙館方案。",
         url: "https://www.hello-stay.com/kaohsiung-whole-house",
         images: [DEFAULT_SEO_IMAGE],
     },
@@ -21,52 +21,52 @@ const faqs = [
     { q: "高雄包棟民宿推薦哪間？", a: "依人數推薦：4-12 人先看溝頂民宿、8-26 人先看你好哇寓所、27-34 人比較雙館方案；35-36 人使用雙館時須加床。大智若愚尚未開放訂房，不列入近期可訂選項。" },
     { q: "高雄包棟一晚多少錢？", a: "Hello Stay 依館別與日期報價。平日常見先從溝頂民宿與你好哇寓所的實際可訂價格看起，官方 LINE 直訂免平台手續費。" },
     { q: "高雄哪裡有 20 人以上的包棟？", a: "你好哇寓所適合 8-26 人；雙館通常適合 27-34 人，35-36 人須加床。超過 36 人須由客服確認其他安排，網站不以未開放館別承接近期訂房。" },
-    { q: "高雄包棟有電梯的嗎？", a: "大智若愚是 Hello Stay 尚未開放訂房的電梯館別。若近期入住最在意電梯與搬行李，建議先看雙館與現有館別安排。" },
-    { q: "高雄包棟可以烤肉嗎？", a: "Hello Stay目前三間館皆無戶外烤肉區。如需要烤肉設備，建議搭配附近烤肉餐廳，或選擇有戶外空間的其他包棟民宿。Hello Stay的優勢在於豪華廚房可煮火鍋。" },
+    { q: "高雄包棟有電梯的嗎？", a: "Hello Stay 目前可訂的你好哇寓所、溝頂民宿與雙館方案都沒有電梯，館內需要走樓梯。若近期入住一定需要電梯，請另找符合需求的住宿；規劃中的大智若愚尚未開放訂房。" },
+    { q: "高雄包棟可以烤肉嗎？", a: "Hello Stay 目前可訂館別都沒有戶外烤肉區。若需要烤肉設備，建議選擇有合法戶外空間的其他住宿；你好哇寓所可使用中島廚房準備餐點，但仍須遵守館內規範與安寧時段。" },
     { q: "高雄包棟民宿跟飯店哪個更適合？", a: "如果同行人數多、晚上還要聚餐聊天或一起活動，包棟通常比拆成多間飯店房更直覺。真正怎麼選，還是要看日期、人數、是否需要廚房，以及你們會不會用到公共空間。" },
 ];
 
 export default function KaohsiungWholeHousePage() {
     const capacityCards = [
         {
-            id: "capacity-10",
-            href: "/godin",
-            count: "10 人左右",
+            id: "capacity-6",
+            href: "/blog/kaohsiung-6-person-stay",
+            count: "6 人住宿",
             range: `${publicStayFacts.godin.capacity.min}–${publicStayFacts.godin.capacity.max} 人`,
             rec: "溝頂民宿",
-            price: "依日期查詢",
-            summary: "小家庭或 10 人左右聚會，優先看五層獨棟的溝頂民宿。",
-            detail: "每層分開休息、低樓層給長輩，最適合家庭出遊與好友小聚。",
+            price: "看 6 人攻略",
+            summary: "6 人先比較四房獨棟與飯店分房，再確認是否需要公共交誼空間。",
+            detail: "溝頂開放 4-12 人，房型為 2 間雙人房與 2 間四人房。",
+        },
+        {
+            id: "capacity-10",
+            href: "/blog/kaohsiung-10-person-stay",
+            count: "10 人住宿",
+            range: `${publicStayFacts.godin.capacity.min}–${publicStayFacts.godin.capacity.max} 人`,
+            rec: "溝頂民宿",
+            price: "看 10 人攻略",
+            summary: "10 人重點是四間房如何分配、每房衛浴與晚上是否需要一起活動。",
+            detail: "溝頂的實際房型是 2 間雙人房與 2 間四人房，不是四間雙人房。",
         },
         {
             id: "capacity-20",
-            href: "/hellohouse",
-            count: "20 人左右",
-            range: `13–${publicStayFacts.hellohouse.capacity.max} 人`,
+            href: "/blog/kaohsiung-20-person-stay",
+            count: "20 人住宿",
+            range: `${publicStayFacts.hellohouse.capacity.min}–${publicStayFacts.hellohouse.capacity.max} 人`,
             rec: "你好哇寓所",
-            price: "依日期與人數報價",
-            summary: "20 人上下的聚餐、公司 outing 或婚禮前住，首選你好哇寓所。",
-            detail: "中島廚房、麻將桌與多間套房一起到位，20 人入住最剛好。",
+            price: "看 20 人攻略",
+            summary: "20 人通常先看你好哇寓所的 6 間客房與 1F 中島廚房。",
+            detail: "若需要更多分房空間，再比較兩館合訂，不用先看未開放館別。",
         },
         {
             id: "capacity-30",
-            href: "/compare",
-            count: "30 人左右",
+            href: "/blog/kaohsiung-30-person-stay",
+            count: "30 人住宿",
             range: `${publicStayFacts.dual.capacity.min}–${publicStayFacts.dual.capacity.max} 人`,
-            rec: "兩棟合訂",
-            price: "兩館合訂報價",
-            summary: "27–34 人建議直接走你好哇＋溝頂雙館包棟；35–36 人須加床。",
-            detail: "兩棟步行約 5 秒，可分房休息也能一起聚餐，婚禮與大家族最常用這個方案。",
-        },
-        {
-            id: "capacity-40",
-            href: "/book",
-            count: "37 人以上",
-            range: "超過目前線上方案",
-            rec: "人工確認",
-            price: "不直接線上預訂",
-            summary: "目前公開可訂方案上限為 36 人，超過人數請由客服確認可行安排。",
-            detail: "大智若愚仍在規劃中，不以未開放館別承諾近期住宿。",
+            rec: "兩館合訂",
+            price: "看 30 人攻略",
+            summary: "30 人使用你好哇＋溝頂雙館；27-34 人是標準安排，35-36 人須加床。",
+            detail: "兩館步行約 5 秒，可把聚會集中在你好哇、休息分散到兩館。",
         },
     ] as const;
 
@@ -77,14 +77,14 @@ export default function KaohsiungWholeHousePage() {
             emoji: "👨‍👩‍👧‍👦",
             label: "家庭旅遊",
             summary: "4-12 人帶長輩優先看溝頂，13-26 人聚餐選你好哇",
-            detail: "人數更大時，再看兩館合訂或尚未開放訂房的大智若愚。",
+            detail: "人數更大時，再比較兩館合訂；長輩同行須先確認樓層與樓梯動線。",
         },
         {
             id: "need-company-retreat",
             href: "/compare",
             emoji: "💼",
             label: "企業團建",
-            summary: "10-20 人先看你好哇，20 人以上同步評估尚未開放訂房的大智若愚",
+            summary: "10-26 人先看你好哇，27-36 人再比較雙館方案",
             detail: "需要共煮、聚餐與多人分房時，主比較頁最適合先快速篩選。",
         },
         {
@@ -102,11 +102,11 @@ export default function KaohsiungWholeHousePage() {
             <JsonLd data={[
                 {
                     "@context": "https://schema.org", "@type": "ItemList",
-                    name: "高雄包棟民宿怎麼選", description: "高雄鹽埕區包棟民宿完整方案，先看目前可訂館別再看尚未開放訂房方案",
+                    name: "高雄 4-36 人包棟方案", description: "依人數比較高雄鹽埕區目前可訂的兩館與雙館方案",
                     itemListElement: [
                         { "@type": "ListItem", position: 1, item: { "@type": "LodgingBusiness", name: "你好哇寓所", url: "https://www.hello-stay.com/hellohouse" } },
                         { "@type": "ListItem", position: 2, item: { "@type": "LodgingBusiness", name: "溝頂民宿", url: "https://www.hello-stay.com/godin" } },
-                        { "@type": "ListItem", position: 3, item: { "@type": "LodgingBusiness", name: "大智若愚", url: "https://www.hello-stay.com/dazhi" } },
+                        { "@type": "ListItem", position: 3, item: { "@type": "Service", name: "你好哇＋溝頂雙館方案", url: "https://www.hello-stay.com/compare#compare-dual" } },
                     ],
                 },
                 {
@@ -125,7 +125,7 @@ export default function KaohsiungWholeHousePage() {
             <div className="w" style={{ maxWidth: "800px", padding: "0 20px 80px" }}>
                 <Reveal><div style={{ textAlign: "center", marginBottom: "40px" }}>
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
-                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿：4-36 人整棟包棟</h1>
+                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄 4-36 人包棟方案怎麼選？</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
                     <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>溝頂民宿 4-12 人、你好哇寓所 8-26 人、雙館包棟 27-36 人｜鹽埕區駁二步行圈｜先判斷館別，再查空房與報價</p>
                 </div></Reveal>
@@ -134,11 +134,11 @@ export default function KaohsiungWholeHousePage() {
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px", borderLeft: "4px solid var(--pri)" }}>
                     <div style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>3 秒決策表</div>
                     <div style={{ fontSize: "0.88rem", color: "#3D3830", lineHeight: 2 }}>
-                        高雄鹽埕區現在先看兩館、另有一館尚未開放訂房：<br />
+                        高雄鹽埕區目前有兩間可訂民宿與一個雙館方案：<br />
                         • <strong>4–12 人</strong>→ <Link href="/godin" style={{ color: "var(--pri)" }}>溝頂民宿</Link>（五層獨棟，帶長輩首選）<br />
                         • <strong>8–26 人</strong>→ <Link href="/hellohouse" style={{ color: "var(--pri)" }}>你好哇寓所</Link>（中島廚房＋麻將桌）<br />
                         • <strong>27–34 人</strong>→ <Link href="/compare" style={{ color: "var(--pri)" }}>雙館方案</Link>（你好哇＋溝頂）；35–36 人須加床<br />
-                        • <strong>37 人以上</strong>→ 人工確認，不以規劃中館別承諾房況
+                        • <strong>37 人以上</strong>→ 超過目前公開方案，請由客服人工確認
                     </div>
                 </div></Reveal>
 
@@ -192,21 +192,21 @@ export default function KaohsiungWholeHousePage() {
 
                 {/* Quick Comparison Table */}
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "24px 12px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px", overflowX: "auto" }}>
-                    <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px", paddingLeft: "8px" }}>三間快速比較</h2>
+                    <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px", paddingLeft: "8px" }}>目前可訂方案快速比較</h2>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
                         <thead><tr style={{ borderBottom: "2px solid #F5F1ED" }}>
                             <th style={{ textAlign: "left", padding: "8px", color: "#999" }}></th>
                             <th style={{ textAlign: "center", padding: "8px", color: "var(--pri)", fontWeight: 600 }}>你好哇</th>
                             <th style={{ textAlign: "center", padding: "8px", color: "var(--pri)", fontWeight: 600 }}>溝頂</th>
-                            <th style={{ textAlign: "center", padding: "8px", color: "var(--pri)", fontWeight: 600 }}>大智若愚</th>
+                            <th style={{ textAlign: "center", padding: "8px", color: "var(--pri)", fontWeight: 600 }}>雙館</th>
                         </tr></thead>
                         <tbody>
                             {[
-                                ["人數", "8–26", "4–12", "尚未開放"],
-                                ["報價方式", "依日期與人數報價", "依日期與人數報價", "不開放訂房"],
-                                ["廚房", "✅ 豪華中島", "簡易流理臺", "尚未開放訂房"],
-                                ["麻將", "✅ 手動", "✅ 手動", "尚未開放訂房"],
-                                ["電梯", publicStayFacts.hellohouse.elevator ? "✅" : "❌", publicStayFacts.godin.elevator ? "✅" : "❌", publicStayFacts.dazhi.elevator ? "✅" : "❌"],
+                                ["人數", "8–26", "4–12", "27–36"],
+                                ["客房", "6 間", "4 間", "合計 10 間"],
+                                ["廚房", "完整中島廚房", "簡易備餐空間", "以你好哇為主"],
+                                ["麻將", "手動", "手動", "兩館皆有"],
+                                ["電梯", publicStayFacts.hellohouse.elevator ? "有" : "無", publicStayFacts.godin.elevator ? "有" : "無", "無"],
                             ].map(([l, a, b, c], i) => (
                                 <tr key={l} style={{ borderBottom: "1px solid #F5F1ED", background: i % 2 === 0 ? "#FDFCFB" : "#fff" }}>
                                     <td style={{ padding: "10px 8px", color: "#666", fontWeight: 500 }}>{l}</td>
@@ -221,6 +221,14 @@ export default function KaohsiungWholeHousePage() {
                         <Link href="/compare" style={{ fontSize: "0.78rem", color: "var(--pri)", textDecoration: "none" }}>看完整比較表 →</Link>
                     </div>
                 </div></Reveal>
+
+                <Reveal><aside style={{ background: "#F5F1ED", padding: "20px", borderLeft: "4px solid #8A8279", marginBottom: "20px" }}>
+                    <h2 style={{ fontFamily: "var(--serif)", fontSize: "1rem", color: "#3D3830", marginBottom: "8px" }}>大智若愚為規劃中館別</h2>
+                    <p style={{ fontSize: "0.8rem", color: "#666", lineHeight: 1.8, margin: 0 }}>
+                        大智若愚尚未開放訂房，不列入目前可訂方案，也不能承接近期電梯需求。規劃內容請看
+                        {" "}<Link href="/dazhi" style={{ color: "var(--pri)" }}>獨立說明頁</Link>。
+                    </p>
+                </aside></Reveal>
 
                 {/* FAQ */}
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "28px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px" }}>

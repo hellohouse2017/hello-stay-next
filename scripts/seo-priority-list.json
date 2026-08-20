@@ -1,4 +1,19 @@
 {
-  "generatedAt": "2026-07-08T13:44:56.210Z",
-  "priorities": []
+  "generatedAt": "2026-08-16T12:57:24.445Z",
+  "dataSourceNote": "currentRank/ctr/clicks/impressions 來自 Google Search Console 官方 API；priority/reason/suggestedAction 是本站依據這些數字產生的內部建議，不是 Google 官方評分或保證排名的依據。",
+  "priorities": [
+    {
+      "slug": "kaohsiung-arena-accommodation",
+      "priority": 3,
+      "reason": "CTR 過低 (1.1%)，615 人看到但只有 7 人點",
+      "currentRank": 10.003252032520326,
+      "ctr": 0.011382113821138212,
+      "clicks": 7,
+      "impressions": 615,
+      "currentTitle": "高雄世運住宿／高雄巨蛋住宿｜捷運、散場與多人包棟比較",
+      "currentDescription": "高雄世運與高雄巨蛋住宿怎麼選？單看演出與快速散場優先住左營；多人同行、還要玩駁二鹽埕，再比較捷運轉乘與包棟方案。",
+      "suggestedAction": "CTR 偏低，建議重寫 title 前 15 字加入具體利益點或地標，description 補上人數、場景或直訂優勢。目前 title: 高雄世運住宿／高雄巨蛋住宿｜捷運、散場與多人包棟比較。目前 description: 高雄世運與高雄巨蛋住宿怎麼選？單看演出與快速散場優先住左營；多人同行、還要玩駁二鹽埕，再比較捷運轉乘與包棟方案。。",
+      "generatedAt": "2026-08-16T12:57:24.445Z"
+    }
+  ]
 }

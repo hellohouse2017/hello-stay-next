@@ -8,6 +8,11 @@ export const AI_ASSISTANT_REFERRER_ALLOWLIST = [
     "bard.google.com",
     "claude.ai",
     "copilot.microsoft.com",
+    "grok.com",
+    "x.ai",
+    "meta.ai",
+    "mistral.ai",
+    "you.com",
 ];
 
 export function buildGa4InitScript(measurementId: string) {

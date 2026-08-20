@@ -1,7 +1,15 @@
 import type { checkRobotsTxt, checkSitemapXml, inspectPageMetadata } from '@/modules/seo/domain/seo-page-health';
 import type { SeoIssue } from '@/modules/seo/domain/seo-page-health';
-import type { Ga4OrganicLandingPage, Ga4OrganicSummary, Ga4TrafficSource, Ga4TrafficSummary } from '@/modules/seo/infrastructure/seo-ga4';
+import type {
+    Ga4AiLandingPage,
+    Ga4OrganicLandingPage,
+    Ga4OrganicSummary,
+    Ga4TrafficSource,
+    Ga4TrafficSummary,
+    SeoLandingConversion,
+} from '@/modules/seo/infrastructure/seo-ga4';
 import type { fetchGSCData, GscDailyPerformance } from '@/modules/seo/infrastructure/seo-ranking';
+import type { SeoQueryPageOpportunity } from '@/modules/seo/domain/seo-query-ownership';
 import type { BookingSeoFunnelReport } from '@/modules/seo/infrastructure/seo-booking-funnel';
 import type { CoreWebVitalsResult } from '@/modules/seo/infrastructure/seo-pagespeed';
 
@@ -19,6 +27,7 @@ export interface SeoHealthRoutePayload {
         metrics: GscDailyPerformance | null;
     };
     rankingError: string | null;
+    pageOwnershipWarnings: SeoQueryPageOpportunity[];
     ga4: {
         measurementId: string;
         siteTagDetected: boolean;
@@ -28,13 +37,15 @@ export interface SeoHealthRoutePayload {
         date: string | null;
         summary: Ga4OrganicSummary | null;
         landingPages: Ga4OrganicLandingPage[];
+        conversionLandingPages: SeoLandingConversion[];
+        aiLandingPages: Ga4AiLandingPage[];
         aiAssistants: {
             summary: Ga4TrafficSummary | null;
             sources: Ga4TrafficSource[];
         };
         windows?: {
-            sevenDay: { range: { startDate: string; endDate: string }; summary: Ga4OrganicSummary | null; landingPages: Ga4OrganicLandingPage[]; aiSummary: Ga4TrafficSummary | null };
-            twentyEightDay: { range: { startDate: string; endDate: string }; summary: Ga4OrganicSummary | null; landingPages: Ga4OrganicLandingPage[]; aiSummary: Ga4TrafficSummary | null };
+            sevenDay: { range: { startDate: string; endDate: string }; summary: Ga4OrganicSummary | null; landingPages: Ga4OrganicLandingPage[]; conversionLandingPages: SeoLandingConversion[]; aiLandingPages: Ga4AiLandingPage[]; aiSummary: Ga4TrafficSummary | null };
+            twentyEightDay: { range: { startDate: string; endDate: string }; summary: Ga4OrganicSummary | null; landingPages: Ga4OrganicLandingPage[]; conversionLandingPages: SeoLandingConversion[]; aiLandingPages: Ga4AiLandingPage[]; aiSummary: Ga4TrafficSummary | null };
         };
         notes: string[];
         error: string | null;

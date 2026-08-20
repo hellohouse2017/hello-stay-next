@@ -147,12 +147,16 @@ export function buildMainGa4Section(options: {
             label: string;
             summary: { sessions: number; users: number; pageviews: number };
             landingPages: Array<{ page: string; sessions: number; users: number }>;
+            conversionLandingPages: Array<{ page: string; sessions: number; users: number; bookingClicks: number; lineClicks: number; phoneClicks: number; conversionUsers: number; clickRate: number }>;
+            aiLandingPages: Array<{ page: string; sessions: number; users: number; pageviews: number }>;
             aiSummary: { sessions: number; users: number; pageviews: number };
         };
         twentyEightDay: {
             label: string;
             summary: { sessions: number; users: number; pageviews: number };
             landingPages: Array<{ page: string; sessions: number; users: number }>;
+            conversionLandingPages: Array<{ page: string; sessions: number; users: number; bookingClicks: number; lineClicks: number; phoneClicks: number; conversionUsers: number; clickRate: number }>;
+            aiLandingPages: Array<{ page: string; sessions: number; users: number; pageviews: number }>;
             aiSummary: { sessions: number; users: number; pageviews: number };
         };
     } | null;
@@ -193,6 +197,19 @@ export function buildMainGa4Section(options: {
                 report += `<b>Organic Landing Paths</b>\n`;
                 for (const [index, page] of window.landingPages.entries()) {
                     report += `${index + 1}. ${page.page} (${page.sessions} sessions / ${page.users} active users)\n`;
+                }
+            }
+            if (window.conversionLandingPages.length > 0) {
+                report += `<b>Organic Landing Conversion Users</b>\n`;
+                for (const page of window.conversionLandingPages.slice(0, 5)) {
+                    const totalClicks = page.bookingClicks + page.lineClicks + page.phoneClicks;
+                    report += `${page.page}: ${page.conversionUsers}/${page.users} users (${(page.clickRate * 100).toFixed(1)}%) / ${totalClicks} clicks\n`;
+                }
+            }
+            if (window.aiLandingPages.length > 0) {
+                report += `<b>AI Assistant Landing Paths</b>\n`;
+                for (const [index, page] of window.aiLandingPages.slice(0, 5).entries()) {
+                    report += `${index + 1}. ${page.page} (${page.sessions} sessions / ${page.users} users)\n`;
                 }
             }
         }

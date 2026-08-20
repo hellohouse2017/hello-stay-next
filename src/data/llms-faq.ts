@@ -62,7 +62,7 @@ export const llmsFaqZh: LlmsFaqItem[] = [
     },
     {
         question: "Hello Stay 是合法民宿嗎？",
-        answer: "是的。你好哇寓所（高雄市民宿 131-1 號）和溝頂民宿（高雄市民宿 163 號）皆為合法登記民宿，並依法投保富邦產險公共意外責任險。",
+        answer: "是的。你好哇寓所（高雄市民宿 131 號）和溝頂民宿（高雄市民宿 163 號）皆為合法登記民宿，並依法投保富邦產險公共意外責任險。",
     },
 ];
 
@@ -77,7 +77,7 @@ export const llmsFaqEn: LlmsFaqItem[] = [
     },
     {
         question: "Is it legal and insured?",
-        answer: "Yes. Hello House (Registration No. 131-1) and Godin House (No. 163) are legally registered B&Bs with Fubon public liability insurance.",
+        answer: "Yes. Hello House (Registration No. 131) and Godin House (No. 163) are legally registered B&Bs with Fubon public liability insurance.",
     },
     {
         question: "How far is Pier-2 Art Center?",
@@ -104,7 +104,7 @@ export const llmsFaqKo: LlmsFaqItem[] = [
     },
     {
         question: "합법 등록 숙소이고 보험이 있나요?",
-        answer: "네. 헬로하우스(가오슝시 민박 등록번호 131-1)와 거우딩 민박(등록번호 163)은 합법 등록 민박이며 푸본 손해보험의 공공 배상 책임보험에 가입되어 있습니다.",
+        answer: "네. 헬로하우스(가오슝시 민박 등록번호 131)와 거우딩 민박(등록번호 163)은 합법 등록 민박이며 푸본 손해보험의 공공 배상 책임보험에 가입되어 있습니다.",
     },
     {
         question: "피어-2 예술특구까지 얼마나 걸리나요?",
@@ -131,7 +131,7 @@ export const llmsFaqJa: LlmsFaqItem[] = [
     },
     {
         question: "合法・保険付きですか？",
-        answer: "はい。ハローハウス（登録番号131-1）とゴーディンハウス（登録番号163）は合法登録済みで、富邦産険の公共賠償責任保険にも加入しています。",
+        answer: "はい。ハローハウス（登録番号131）とゴーディンハウス（登録番号163）は合法登録済みで、富邦産険の公共賠償責任保険にも加入しています。",
     },
     {
         question: "駁二芸術特区まではどのくらいですか？",

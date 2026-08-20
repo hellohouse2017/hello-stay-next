@@ -102,15 +102,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="alternate" type="text/plain" hrefLang="en" href="https://www.hello-stay.com/llms-en.txt" title="LLMs.txt - English" />
         <link rel="alternate" type="text/plain" hrefLang="ja" href="https://www.hello-stay.com/llms-ja.txt" title="LLMs.txt - Japanese" />
         <link rel="alternate" type="text/plain" hrefLang="ko" href="https://www.hello-stay.com/llms-ko.txt" title="LLMs.txt - Korean" />
+        <Script
+          id="ga4-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: buildGa4InitScript(GA4_MEASUREMENT_ID) }}
+        />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {buildGa4InitScript(GA4_MEASUREMENT_ID)}
-        </Script>
         <Navbar />
         <main style={{ flex: 1 }}>{children}</main>
         <Footer />

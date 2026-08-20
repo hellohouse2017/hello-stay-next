@@ -6,17 +6,17 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  Bath,
-  BedDouble,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
-  CookingPot,
+  Heart,
   House,
   KeyRound,
-  MapPin,
+  MessageSquare,
+  Minus,
   Pause,
   Play,
+  Plus,
   ShieldCheck,
   Star,
   TrainFront,
@@ -24,29 +24,24 @@ import {
 } from "lucide-react";
 import { godin, hellohouse } from "@/data/properties";
 import { homepageFaqItems, homepageLastReviewed } from "@/data/homepage-faq";
-import { publicStayFacts } from "@/data/public-stay-facts";
 import { foodGuideSections, spotGuideSections } from "@/data/local-guides";
 
 type BookingProperty = "" | "你好哇寓所" | "溝頂民宿" | "雙館包棟";
 
 type StayOption = {
-  id: "hellohouse" | "godin" | "dual";
+  id: "godin" | "hellohouse" | "dual";
   name: string;
-  nameEn: string;
   href: string;
   image?: string;
   imageAlt?: string;
   splitImages?: { src: string; alt: string; label: string }[];
-  capacity: string;
-  roomCount: string;
-  bathroomCount: string;
-  kitchen: string;
-  commonSpace: string;
-  price: string;
+  capacityLabel: string;
+  bedroomLabel: string;
+  priceLabel: string;
   bookingProperty?: BookingProperty;
   guestGuide: string;
   description: string;
-  facts: string[];
+  pillTags: string[];
 };
 
 type HeroSlide = {
@@ -60,60 +55,48 @@ const lineUrl = "https://lin.ee/atCiMQw";
 
 const stays: StayOption[] = [
   {
-    id: "hellohouse",
-    name: hellohouse.name,
-    nameEn: hellohouse.nameEn,
-    href: "/hellohouse",
-    image: hellohouse.coverImage,
-    imageAlt: "你好哇寓所一樓中島廚房與高雄包棟民宿公共交誼空間",
-    capacity: `${hellohouse.capacity.min}-${hellohouse.capacity.max} 人`,
-    roomCount: `${publicStayFacts.hellohouse.bedrooms} 間客房`,
-    bathroomCount: "客房皆有獨立衛浴",
-    kitchen: "中島廚房",
-    commonSpace: "大型交誼空間",
-    price: `平日起 NT$${hellohouse.startPrice.toLocaleString("zh-TW")} 起`,
-    bookingProperty: "你好哇寓所",
-    guestGuide: "13-26 人優先",
-    description: hellohouse.description,
-    facts: ["中島廚房", "麻將桌", "電子密碼鎖"],
-  },
-  {
     id: "godin",
-    name: godin.name,
-    nameEn: godin.nameEn,
+    name: "溝頂民宿",
     href: "/godin",
     image: godin.coverImage,
     imageAlt: "溝頂民宿四樓交誼廳與高雄鹽埕小團體包棟空間",
-    capacity: `${godin.capacity.min}-${godin.capacity.max} 人`,
-    roomCount: `${publicStayFacts.godin.bedrooms} 間客房`,
-    bathroomCount: "客房皆有獨立衛浴",
-    kitchen: "簡易備餐空間",
-    commonSpace: "4F 交誼廳",
-    price: `平日起 NT$${godin.startPrice.toLocaleString("zh-TW")} 起`,
+    capacityLabel: "4-12 人包棟",
+    bedroomLabel: "2-4 間客房",
+    priceLabel: `平日 NT$${godin.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
     bookingProperty: "溝頂民宿",
-    guestGuide: "4-12 人優先",
-    description: godin.description,
-    facts: ["五層獨棟", "麻將桌", "分層休息"],
+    guestGuide: "4-12 人分層整棟",
+    description: "五層獨棟設計，分層休息互不干擾；頂樓配備明亮交誼廳與手動麻將桌，小家庭與好友出遊專屬整棟首選。",
+    pillTags: ["五層獨棟整棟獨享", "4F 頂樓專屬交誼廳", "手動麻將桌", "客房皆有獨立衛浴"],
+  },
+  {
+    id: "hellohouse",
+    name: "你好哇寓所",
+    href: "/hellohouse",
+    image: hellohouse.coverImage,
+    imageAlt: "你好哇寓所一樓中島廚房與高雄包棟民宿公共交誼空間",
+    capacityLabel: "8-26 人包棟",
+    bedroomLabel: "3-6 間客房",
+    priceLabel: `平日 NT$${hellohouse.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
+    bookingProperty: "你好哇寓所",
+    guestGuide: "8-26 人中島大公區",
+    description: "一樓設有寬敞中島廚房、高腳吧台與大型交誼客廳；多間套房獨立衛浴，最適合家族聚會、多人聚餐與迎娶活動。",
+    pillTags: ["一樓大型中島廚房", "手動麻將桌", "全套房獨立衛浴", "適合聚會與迎娶"],
   },
   {
     id: "dual",
     name: "雙館包棟",
-    nameEn: "Dual Stay",
     href: "/book",
     splitImages: [
       { src: hellohouse.coverImage, alt: "你好哇寓所公共空間", label: "你好哇寓所" },
       { src: godin.coverImage, alt: "溝頂民宿五層獨棟空間", label: "溝頂民宿" },
     ],
-    capacity: `${publicStayFacts.dual.standardCapacity.min}-${publicStayFacts.dual.standardCapacity.max} 人，最多 36 人`,
-    roomCount: `${publicStayFacts.dual.bedrooms} 間客房`,
-    bathroomCount: "兩館客房皆有獨立衛浴",
-    kitchen: "兩館各自提供備餐空間",
-    commonSpace: "兩館公共空間",
-    price: "依日期與人數即時報價",
+    capacityLabel: "27-36 人包棟",
+    bedroomLabel: "7-10 間客房",
+    priceLabel: "依日期與人數即時報價",
     bookingProperty: "雙館包棟",
-    guestGuide: "27-34 人優先",
-    description: "兩館相鄰、步行約 5 秒，適合需要更多房間與分層休息的大型團體；35-36 人需加床。",
-    facts: ["兩館相鄰", "大型團體", "不拆單"],
+    guestGuide: "27-36 人大型團體",
+    description: "你好哇與溝頂兩館相鄰、步行僅約 5 秒；合計最多 10 間客房與雙交誼廳，大型團體同聚也能保有私密休息空間。",
+    pillTags: ["兩館相鄰步行 5 秒", "最多 10 間客房", "雙交誼空間", "企業員工旅遊與大家族"],
   },
 ];
 
@@ -121,67 +104,29 @@ const heroSlides: HeroSlide[] = [
   {
     src: hellohouse.coverImage,
     alt: "你好哇寓所一樓中島廚房與高腳椅吧台公共空間",
-    label: "你好哇寓所｜中島廚房",
+    label: "你好哇寓所｜經典中島廚房",
   },
   {
     src: "/images/hellohouse/1000.webp",
     alt: "你好哇寓所一樓完整中島廚房、冰箱與備餐設備",
-    label: "你好哇寓所｜多人備餐空間",
+    label: "你好哇寓所｜多人備餐與長桌交誼",
   },
   {
     src: "/images/hellohouse/1202.webp",
     alt: "你好哇寓所二樓 1202 四人房、雙人床與吊椅",
-    label: "你好哇寓所｜四人房",
+    label: "你好哇寓所｜質感套房空間",
   },
   {
     src: godin.coverImage,
     alt: "溝頂民宿四樓交誼廳、長桌與聯網電視",
-    label: "溝頂民宿｜交誼廳",
+    label: "溝頂民宿｜頂樓專屬交誼廳",
   },
   {
     src: "/images/godin/cover-4.webp",
     alt: "溝頂民宿四樓交誼廳手動麻將桌與多人座位",
-    label: "溝頂民宿｜麻將空間",
+    label: "溝頂民宿｜休閒麻將空間",
   },
 ];
-
-const decisionRows = [
-  {
-    guests: "4-5 人",
-    stay: "溝頂民宿",
-    setup: "2 房起、小團體整棟",
-    reason: "人數少也能保有完整獨立空間，先看溝頂最直接。",
-  },
-  {
-    guests: "8-12 人",
-    stay: "兩館都可比較",
-    setup: "溝頂偏整棟；你好哇偏大空間",
-    reason: "重視預算與分層休息看溝頂；重視中島廚房與聚會空間看你好哇。",
-  },
-  {
-    guests: "13-26 人",
-    stay: "你好哇寓所",
-    setup: "3-6 房級距",
-    reason: "需要多人一起備餐、聚會、打麻將或辦迎娶活動時最合適。",
-  },
-  {
-    guests: "27-34 人",
-    stay: "雙館包棟",
-    setup: "兩館合住、最多 10 房",
-    reason: "兩館步行約 5 秒；35-36 人需加床，可分房休息，也不用拆成兩個地區。",
-  },
-] as const;
-
-const comparisonRows = [
-  { label: "適合人數", values: stays.map((stay) => stay.capacity) },
-  { label: "客房數", values: stays.map((stay) => stay.roomCount) },
-  { label: "衛浴", values: stays.map((stay) => stay.bathroomCount) },
-  { label: "廚房 / 備餐", values: stays.map((stay) => stay.kitchen) },
-  { label: "客廳 / 公共空間", values: stays.map((stay) => stay.commonSpace) },
-  { label: "麻將桌", values: [publicStayFacts.hellohouse.mahjong, publicStayFacts.godin.mahjong, "兩館皆有"] },
-  { label: "電梯", values: [publicStayFacts.hellohouse.elevator ? "有" : "無", publicStayFacts.godin.elevator ? "有" : "無", "兩館皆無"] },
-  { label: "起始參考", values: [stays[0].price, stays[1].price, stays[2].price] },
-] as const;
 
 const reviewQuotes = [
   ...hellohouse.reviews.map((review) => ({ ...review, property: hellohouse.name })),
@@ -190,24 +135,24 @@ const reviewQuotes = [
 
 const localExperiences = [
   {
-    label: "FOOD & DAILY LIFE",
-    title: "住進鹽埕，從一碗早餐開始",
+    label: "在地早餐與經典小吃",
+    title: "住進鹽埕，從一碗在地早餐開始",
     description: foodGuideSections[0].intro,
     items: foodGuideSections[0].items.slice(0, 3),
     image: "/images/hellohouse/foodie-cover.webp",
     imageAlt: "鹽埕在地美食與 Hello Stay 住宿生活圈",
     href: "/explore/food",
-    linkLabel: "探索鹽埕美食",
+    linkLabel: "探索鹽埕美食指南",
   },
   {
-    label: "ARTS & WATERFRONT",
-    title: "沿著港區散步，慢慢認識高雄",
+    label: "港區散步與駁二特區",
+    title: "沿著港區散步，感受高雄海港微風",
     description: spotGuideSections[0].intro,
     items: spotGuideSections[0].items.slice(0, 3),
     image: "/images/godin/cover-3.webp",
     imageAlt: "鹽埕街區與高雄港周邊景點",
     href: "/explore/spots",
-    linkLabel: "查看周邊景點",
+    linkLabel: "查看周邊散步景點",
   },
 ];
 
@@ -239,15 +184,6 @@ function buildBookingHref(params: {
   return url.toString();
 }
 
-function suggestProperty(guestCount: string): BookingProperty {
-  const guests = Number(guestCount);
-  if (!Number.isFinite(guests) || guests < 4 || guests > 36) return "";
-  if (guests <= 7) return "溝頂民宿";
-  if (guests <= 12) return "";
-  if (guests <= 26) return "你好哇寓所";
-  return "雙館包棟";
-}
-
 function Stars({ rating }: { rating: number }) {
   return (
     <span className="luxury-review__stars" aria-label={`${rating} 顆星`}>
@@ -273,62 +209,94 @@ export default function HomeTemplateExperience() {
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guestCount, setGuestCount] = useState("");
+  const [podMode, setPodMode] = useState<"guests" | "rooms">("guests");
+  const [guestCount, setGuestCount] = useState("12");
+  const [roomCountChoice, setRoomCountChoice] = useState("4");
+  const [preferredProperty, setPreferredProperty] = useState<BookingProperty>("");
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [isHeroPaused, setIsHeroPaused] = useState(false);
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
-  const selectedProperty = suggestProperty(guestCount);
+  const toggleFavorite = (id: string) => {
+    setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const parsedGuestCount = Number(guestCount);
   const guestCountOutsideRange =
-    guestCount !== "" && (!Number.isFinite(parsedGuestCount) || parsedGuestCount < 4 || parsedGuestCount > 36);
+    podMode === "guests" &&
+    guestCount !== "" &&
+    (!Number.isFinite(parsedGuestCount) || parsedGuestCount < 4 || parsedGuestCount > 36);
+
   const bookingHref = guestCountOutsideRange
     ? lineUrl
-    : buildBookingHref({ property: selectedProperty, checkIn, checkOut, guestCount });
+    : buildBookingHref({
+        property: preferredProperty,
+        checkIn,
+        checkOut,
+        guestCount: podMode === "guests" ? guestCount : String(Number(roomCountChoice) * 3),
+      });
   const checkOutMinimum = checkIn ? addDays(checkIn, 1) : dayAfterTomorrow;
 
   useEffect(() => {
     if (heroSlides.length < 2 || isHeroPaused) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
-
-    const timer = window.setInterval(() => {
-      setHeroSlideIndex((current) => (current + 1) % heroSlides.length);
-    }, 5600);
-
-    return () => window.clearInterval(timer);
+    const timer = setInterval(() => {
+      setHeroSlideIndex((prev) => (prev + 1) % heroSlides.length);
+    }, 6500);
+    return () => clearInterval(timer);
   }, [isHeroPaused]);
 
-  const goToHeroSlide = (nextIndex: number, pause = true) => {
-    const total = heroSlides.length;
-    setHeroSlideIndex(((nextIndex % total) + total) % total);
-    if (pause) setIsHeroPaused(true);
+  const goToHeroSlide = (index: number) => {
+    setHeroSlideIndex((index + heroSlides.length) % heroSlides.length);
   };
 
   const handleCheckInChange = (value: string) => {
     setCheckIn(value);
-    if (value && checkOut && checkOut <= value) setCheckOut("");
+    if (!value) return;
+    if (!checkOut || new Date(checkOut) <= new Date(value)) {
+      setCheckOut(addDays(value, 1));
+    }
+  };
+
+  const incrementGuests = () => {
+    const current = Number(guestCount) || 12;
+    if (current < 36) setGuestCount(String(current + 1));
+  };
+
+  const decrementGuests = () => {
+    const current = Number(guestCount) || 12;
+    if (current > 4) setGuestCount(String(current - 1));
+  };
+
+  const incrementRooms = () => {
+    const current = Number(roomCountChoice) || 4;
+    if (current < 10) setRoomCountChoice(String(current + 1));
+  };
+
+  const decrementRooms = () => {
+    const current = Number(roomCountChoice) || 4;
+    if (current > 2) setRoomCountChoice(String(current - 1));
   };
 
   const bookingActionLabel = guestCountOutsideRange
-    ? "LINE 詢問其他人數"
-    : selectedProperty
-      ? `查看${selectedProperty}空房`
-      : "查看空房與報價";
+    ? "LINE 專人安排其他需求"
+    : preferredProperty
+      ? `查詢 ${preferredProperty} 空房與報價`
+      : "查詢即時空房與報價";
 
   return (
-    <div className="luxury-home">
-      <section className="luxury-hero" aria-labelledby="home-hero-title">
-        <div className="luxury-hero__media">
+    <div className="luxury-home-v2">
+      {/* ═══ 1. HERO 視覺 ＆ 快速預訂查詢艙 ═══ */}
+      <section className="mockup-hero" aria-labelledby="home-hero-title">
+        <div className="mockup-hero__media">
           <div
-            className="luxury-hero__carousel"
+            className="mockup-hero__carousel"
             role="region"
             aria-roledescription="輪播"
-            aria-label="Hello Stay 住宿空間照片"
+            aria-label="Hello Stay 精品住宿空間實景"
           >
             {heroSlides.map((slide, index) => (
               <div
-                className={`luxury-hero__slide${index === heroSlideIndex ? " is-active" : ""}`}
+                className={`mockup-hero__slide${index === heroSlideIndex ? " is-active" : ""}`}
                 aria-hidden={index !== heroSlideIndex}
                 key={`${slide.src}-${slide.label}`}
               >
@@ -343,20 +311,21 @@ export default function HomeTemplateExperience() {
               </div>
             ))}
           </div>
-          <div className="luxury-hero__shade" aria-hidden="true" />
-          <div className="luxury-hero__wash" aria-hidden="true" />
-          <div className="luxury-hero__caption" aria-hidden="true">
+          <div className="mockup-hero__overlay" aria-hidden="true" />
+
+          <div className="mockup-hero__caption" aria-hidden="true">
             {heroSlides[heroSlideIndex]?.label}
           </div>
-          <div className="luxury-hero__controls" aria-label="Hero 圖片控制">
+
+          <div className="mockup-hero__controls" aria-label="Hero 圖片控制">
             <button type="button" onClick={() => goToHeroSlide(heroSlideIndex - 1)} aria-label="上一張圖片">
-              <ChevronLeft size={18} strokeWidth={1.8} />
+              <ChevronLeft size={16} strokeWidth={2} />
             </button>
             <span>
               {String(heroSlideIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
             </span>
             <button type="button" onClick={() => goToHeroSlide(heroSlideIndex + 1)} aria-label="下一張圖片">
-              <ChevronRight size={18} strokeWidth={1.8} />
+              <ChevronRight size={16} strokeWidth={2} />
             </button>
             <button
               type="button"
@@ -364,129 +333,252 @@ export default function HomeTemplateExperience() {
               aria-label={isHeroPaused ? "繼續自動播放" : "暫停自動播放"}
               aria-pressed={isHeroPaused}
             >
-              {isHeroPaused ? <Play size={15} strokeWidth={1.8} /> : <Pause size={15} strokeWidth={1.8} />}
+              {isHeroPaused ? <Play size={14} strokeWidth={2} /> : <Pause size={14} strokeWidth={2} />}
             </button>
           </div>
-          <div className="luxury-hero__dots" aria-label="Hero 圖片分頁">
-            {heroSlides.map((slide, index) => (
-              <button
-                key={`${slide.label}-${index}`}
-                type="button"
-                className={index === heroSlideIndex ? "is-active" : ""}
-                onClick={() => goToHeroSlide(index)}
-                aria-label={`切換到第 ${index + 1} 張：${slide.label}`}
-                aria-pressed={index === heroSlideIndex}
-              />
-            ))}
-          </div>
         </div>
 
-        <div className="luxury-container luxury-hero__inner">
-          <div className="luxury-hero__copy">
-            <p className="luxury-kicker">HELLO STAY · KAOHSIUNG</p>
-            <h1 id="home-hero-title">在鹽埕，住進一整棟的質感假期</h1>
-            <p className="luxury-hero__lead">
-              三種包棟選擇，從 4 人小團體到 36 人雙館入住。<br />
-              讓每一次相聚，都有舒服而完整的空間。
+        {/* Floating Centered Booking Pod */}
+        <div className="mockup-hero__container">
+          <div className="mockup-hero__intro">
+            <h1 id="home-hero-title">住進一整棟的高雄質感假期</h1>
+            <p className="mockup-hero__sub">
+              高雄鹽埕 4-36 人包棟住宿・專屬私享空間・官方直訂免手續費
             </p>
-            <div className="luxury-hero__meta">
-              <span><MapPin size={15} aria-hidden="true" /> 高雄鹽埕生活圈</span>
-              <span>近捷運鹽埕埔站與駁二藝術特區</span>
-            </div>
           </div>
-        </div>
 
-        <div className="luxury-container luxury-booking-anchor">
-          <div className="luxury-booking" aria-label="快速查詢空房與報價">
-            <div className="luxury-booking__fields">
-              <label>
-                <span><CalendarDays size={16} aria-hidden="true" /> 入住</span>
-                <input
-                  type="date"
-                  value={checkIn}
-                  min={tomorrow}
-                  onChange={(event) => handleCheckInChange(event.target.value)}
-                  onInput={(event) => handleCheckInChange(event.currentTarget.value)}
-                />
-              </label>
-              <label>
-                <span><CalendarDays size={16} aria-hidden="true" /> 退房</span>
-                <input
-                  type="date"
-                  value={checkOut}
-                  min={checkOutMinimum}
-                  onChange={(event) => setCheckOut(event.target.value)}
-                  onInput={(event) => setCheckOut(event.currentTarget.value)}
-                />
-              </label>
-              <label>
-                <span><Users size={16} aria-hidden="true" /> 人數</span>
-                <input
-                  inputMode="numeric"
-                  min="4"
-                  max="36"
-                  placeholder="例：12"
-                  type="number"
-                  value={guestCount}
-                  onChange={(event) => setGuestCount(event.target.value)}
-                />
-              </label>
+          <div className="mockup-pod" role="search" aria-label="快速預訂查詢艙">
+            {/* Pod Mode Tabs: By Guests vs By Bedrooms */}
+            <div className="mockup-pod__tabs" role="tablist" aria-label="切換查詢方式">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={podMode === "guests"}
+                className={`mockup-pod__tab${podMode === "guests" ? " is-active" : ""}`}
+                onClick={() => setPodMode("guests")}
+              >
+                <Users size={14} aria-hidden="true" />
+                <span>依人數找房（4-36 人）</span>
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={podMode === "rooms"}
+                className={`mockup-pod__tab${podMode === "rooms" ? " is-active" : ""}`}
+                onClick={() => setPodMode("rooms")}
+              >
+                <House size={14} aria-hidden="true" />
+                <span>依房間數找房（2-10 房）</span>
+              </button>
             </div>
-            <div className="luxury-booking__action">
-              <p aria-live="polite">
+
+            {/* 4 等高欄位 Grid */}
+            <div className="mockup-pod__grid">
+              {/* Col 1: Check-in */}
+              <div className="mockup-pod__col">
+                <label htmlFor="pod-checkin" className="mockup-pod__col-head">
+                  <CalendarDays size={14} aria-hidden="true" />
+                  <strong>入住日期</strong>
+                </label>
+                <div className="mockup-pod__col-body">
+                  <input
+                    id="pod-checkin"
+                    type="date"
+                    value={checkIn}
+                    min={tomorrow}
+                    onChange={(e) => handleCheckInChange(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Col 2: Check-out */}
+              <div className="mockup-pod__col">
+                <label htmlFor="pod-checkout" className="mockup-pod__col-head">
+                  <CalendarDays size={14} aria-hidden="true" />
+                  <strong>退房日期</strong>
+                </label>
+                <div className="mockup-pod__col-body">
+                  <input
+                    id="pod-checkout"
+                    type="date"
+                    value={checkOut}
+                    min={checkOutMinimum}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Col 3: Guests or Rooms */}
+              {podMode === "guests" ? (
+                <div className="mockup-pod__col">
+                  <div className="mockup-pod__col-head">
+                    <span className="mockup-pod__label-group">
+                      <Users size={14} aria-hidden="true" />
+                      <strong>入住人數</strong>
+                    </span>
+                    <span className="mockup-pod__tag">4-36 人</span>
+                  </div>
+                  <div className="mockup-pod__counter">
+                    <button
+                      type="button"
+                      onClick={decrementGuests}
+                      aria-label="減少人數"
+                      disabled={Number(guestCount) <= 4}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <input
+                      type="number"
+                      min="4"
+                      max="36"
+                      value={guestCount}
+                      onChange={(e) => setGuestCount(e.target.value)}
+                      aria-label="輸入入住人數"
+                    />
+                    <span className="mockup-pod__counter-unit">位旅客</span>
+                    <button
+                      type="button"
+                      onClick={incrementGuests}
+                      aria-label="增加人數"
+                      disabled={Number(guestCount) >= 36}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="mockup-pod__col">
+                  <div className="mockup-pod__col-head">
+                    <span className="mockup-pod__label-group">
+                      <House size={14} aria-hidden="true" />
+                      <strong>房間需求</strong>
+                    </span>
+                    <span className="mockup-pod__tag">2-10 房</span>
+                  </div>
+                  <div className="mockup-pod__counter">
+                    <button
+                      type="button"
+                      onClick={decrementRooms}
+                      aria-label="減少房間數"
+                      disabled={Number(roomCountChoice) <= 2}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <input
+                      type="number"
+                      min="2"
+                      max="10"
+                      value={roomCountChoice}
+                      onChange={(e) => setRoomCountChoice(e.target.value)}
+                      aria-label="輸入房間數需求"
+                    />
+                    <span className="mockup-pod__counter-unit">間客房</span>
+                    <button
+                      type="button"
+                      onClick={incrementRooms}
+                      aria-label="增加房間數"
+                      disabled={Number(roomCountChoice) >= 10}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Col 4: Preferred Villa */}
+              <div className="mockup-pod__col">
+                <label htmlFor="pod-villa" className="mockup-pod__col-head">
+                  <House size={14} aria-hidden="true" />
+                  <strong>偏好館別</strong>
+                </label>
+                <div className="mockup-pod__col-body">
+                  <select
+                    id="pod-villa"
+                    value={preferredProperty}
+                    onChange={(e) => setPreferredProperty(e.target.value as BookingProperty)}
+                  >
+                    <option value="">
+                      {podMode === "guests"
+                        ? "依人數智慧推薦方案"
+                        : "依房數智慧推薦方案"}
+                    </option>
+                    <option value="溝頂民宿">溝頂民宿（2-4 房・4-12 人整棟）</option>
+                    <option value="你好哇寓所">你好哇寓所（3-6 房・8-26 人中島）</option>
+                    <option value="雙館包棟">雙館包棟（7-10 房・27-36 人合住）</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom CTA Row */}
+            <div className="mockup-pod__cta">
+              <p className="mockup-pod__hint" aria-live="polite">
                 {guestCountOutsideRange
-                  ? "目前線上方案支援 4-36 人，其他人數請先用 LINE 確認"
-                  : selectedProperty
-                    ? `依人數優先推薦：${selectedProperty}`
-                    : "輸入日期與實際需要床位的人數，前往官方訂房站查詢"
-                }
+                  ? "目前線上方案支援 4-36 人，其他需求請透過 LINE 諮詢專人"
+                  : preferredProperty
+                    ? `已為您指定：${preferredProperty}，直接連線官方訂房系統查即時空房`
+                    : "輸入日期與需求，一鍵前往官方訂房系統查看空房與即時報價"}
               </p>
               <Link
-                className="luxury-button luxury-button--dark"
                 href={bookingHref}
                 target={guestCountOutsideRange ? "_blank" : undefined}
                 rel={guestCountOutsideRange ? "noopener noreferrer" : undefined}
+                className="mockup-pod__btn"
               >
-                {bookingActionLabel} <ArrowRight size={16} aria-hidden="true" />
+                <span>{bookingActionLabel}</span>
+                <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="luxury-trust" aria-label="Hello Stay 核心承諾">
-        <div className="luxury-container luxury-trust__grid">
-          <div className="luxury-trust__item">
-            <ShieldCheck size={24} strokeWidth={1.3} aria-hidden="true" />
-            <div><strong>官方直訂最佳優惠</strong><span>免平台手續費，報價以訂房站即時結果為準</span></div>
+      {/* ═══ 2. 四大核心承諾（信任背書） ═══ */}
+      <section className="mockup-trust" aria-label="Hello Stay 核心承諾">
+        <div className="mockup-container mockup-trust__grid">
+          <div className="mockup-trust__card">
+            <ShieldCheck size={26} strokeWidth={1.5} aria-hidden="true" />
+            <div>
+              <strong>官方直訂免手續費</strong>
+              <span>保證最優價格，即時日曆連線與透明報價</span>
+            </div>
           </div>
-          <div className="luxury-trust__item">
-            <House size={24} strokeWidth={1.3} aria-hidden="true" />
-            <div><strong>合法民宿・安心入住</strong><span>你好哇 131-1 號，溝頂 163 號</span></div>
+          <div className="mockup-trust__card">
+            <House size={26} strokeWidth={1.5} aria-hidden="true" />
+            <div>
+              <strong>合法登記民宿</strong>
+              <span>你好哇 131 號・溝頂 163 號・安全合規</span>
+            </div>
           </div>
-          <div className="luxury-trust__item">
-            <TrainFront size={24} strokeWidth={1.3} aria-hidden="true" />
-            <div><strong>近捷運與鹽埕景點</strong><span>鹽埕埔站約 5 分鐘，駁二約 10 分鐘</span></div>
+          <div className="mockup-trust__card">
+            <TrainFront size={26} strokeWidth={1.5} aria-hidden="true" />
+            <div>
+              <strong>近捷運與駁二特區</strong>
+              <span>鹽埕埔站步行 5 分鐘・駁二特區 10 分鐘</span>
+            </div>
           </div>
-          <div className="luxury-trust__item">
-            <KeyRound size={24} strokeWidth={1.3} aria-hidden="true" />
-            <div><strong>自助入住・彈性便利</strong><span>16:00 入住，11:00 退房</span></div>
+          <div className="mockup-trust__card">
+            <KeyRound size={26} strokeWidth={1.5} aria-hidden="true" />
+            <div>
+              <strong>密碼鎖自助入住</strong>
+              <span>16:00 入住・11:00 退房・彈性無拘束</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="luxury-section luxury-stays" id="stay-options" aria-labelledby="stay-options-title">
-        <div className="luxury-container">
-          <div className="luxury-section__heading luxury-section__heading--split">
-            <div>
-              <p className="luxury-kicker">STAY YOUR WAY</p>
-              <h2 id="stay-options-title">依人數選住宿</h2>
-            </div>
-            <p>先找到適合團體規模的空間，再比較房型、公共區域與入住節奏。</p>
+      {/* ═══ 3. 精選包棟住宿方案（三大空間一次講清楚） ═══ */}
+      <section className="mockup-villas" id="stay-options" aria-labelledby="stay-options-title">
+        <div className="mockup-container">
+          <div className="mockup-villas__head">
+            <h2 id="stay-options-title">精選包棟住宿方案</h2>
+            <p>專為家庭、親友聚會與大型團體打造的獨立整棟空間，依人數需求挑選最適合的房型。</p>
           </div>
 
-          <div className="luxury-stays__grid">
+          {/* 3 Large Boutique Cards */}
+          <div className="mockup-cards">
             {stays.map((stay) => {
+              const isFav = favorites[stay.id] || false;
               const bookingHrefForStay =
                 stay.bookingProperty && stay.id !== "dual"
                   ? buildBookingHref({ property: stay.bookingProperty, checkIn, checkOut, guestCount })
@@ -495,210 +587,238 @@ export default function HomeTemplateExperience() {
                     : stay.href;
 
               return (
-                <article className="luxury-stay" key={stay.id}>
-                  <Link href={stay.href} className="luxury-stay__media" aria-label={`查看 ${stay.name} 詳細介紹`}>
-                    {stay.splitImages ? (
-                      <div className="luxury-stay__split">
-                        {stay.splitImages.map((image) => (
-                          <div className="luxury-stay__split-pane" key={image.label}>
-                            <Image src={image.src} alt={image.alt} fill loading="lazy" sizes="(max-width: 820px) 100vw, 25vw" />
-                            <span>{image.label}</span>
-                          </div>
+                <article className="mockup-card" key={stay.id}>
+                  <div className="mockup-card__media-wrap">
+                    <Link href={stay.href} className="mockup-card__media" aria-label={`查看 ${stay.name} 詳細介紹`}>
+                      {stay.splitImages ? (
+                        <div className="mockup-card__split">
+                          {stay.splitImages.map((image) => (
+                            <div className="mockup-card__split-pane" key={image.label}>
+                              <Image src={image.src} alt={image.alt} fill loading="lazy" sizes="(max-width: 900px) 100vw, 50vw" />
+                              <span>{image.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <Image src={stay.image!} alt={stay.imageAlt!} fill loading="lazy" sizes="(max-width: 900px) 100vw, 50vw" />
+                      )}
+                    </Link>
+                    <div className="mockup-card__badges-corner">
+                      <span className="mockup-card__badge-capacity">
+                        <Users size={13} aria-hidden="true" />
+                        {stay.capacityLabel}
+                      </span>
+                      <span className="mockup-card__badge-rooms">
+                        <House size={13} aria-hidden="true" />
+                        {stay.bedroomLabel}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      className={`mockup-card__favorite${isFav ? " is-active" : ""}`}
+                      onClick={() => toggleFavorite(stay.id)}
+                      aria-label={`收藏 ${stay.name}`}
+                    >
+                      <Heart size={16} fill={isFav ? "#b38547" : "none"} strokeWidth={1.8} />
+                    </button>
+                  </div>
+
+                  <div className="mockup-card__body">
+                    <div className="mockup-card__main">
+                      <div className="mockup-card__title-row">
+                        <h3>{stay.name}</h3>
+                        <div className="mockup-card__guides">
+                          <span className="mockup-card__fit">{stay.guestGuide}</span>
+                        </div>
+                      </div>
+
+                      <p className="mockup-card__desc">{stay.description}</p>
+
+                      <div className="mockup-card__tags">
+                        {stay.pillTags.map((tag) => (
+                          <span key={tag}>{tag}</span>
                         ))}
                       </div>
-                    ) : (
-                      <Image src={stay.image!} alt={stay.imageAlt!} fill loading="lazy" sizes="(max-width: 820px) 100vw, 33vw" />
-                    )}
-                    <span className="luxury-stay__capacity">{stay.capacity}</span>
-                  </Link>
-                  <div className="luxury-stay__body">
-                    <div className="luxury-stay__title-row">
-                      <div>
-                        <p className="luxury-stay__eyebrow">{stay.nameEn}</p>
-                        <h3>{stay.name}</h3>
-                      </div>
-                      <p className="luxury-stay__fit">{stay.guestGuide}</p>
                     </div>
-                    <p className="luxury-stay__description">{stay.description}</p>
-                    <dl className="luxury-stay__facts">
-                      <div><dt><BedDouble size={15} aria-hidden="true" /> 房間</dt><dd>{stay.roomCount}</dd></div>
-                      <div><dt><Bath size={15} aria-hidden="true" /> 衛浴</dt><dd>{stay.bathroomCount}</dd></div>
-                      <div><dt><CookingPot size={15} aria-hidden="true" /> 設備</dt><dd>{stay.kitchen}</dd></div>
-                      <div><dt><House size={15} aria-hidden="true" /> 空間</dt><dd>{stay.commonSpace}</dd></div>
-                    </dl>
-                    <div className="luxury-stay__foot">
-                      <div>
-                        <span className="luxury-stay__price-label">價格參考</span>
-                        <strong>{stay.price}</strong>
+
+                    <div className="mockup-card__footer">
+                      <div className="mockup-card__pricing">
+                        <span className="mockup-card__pricing-label">參考起價</span>
+                        <div className="mockup-card__pricing-val">
+                          <strong>{stay.priceLabel}</strong>
+                        </div>
                       </div>
-                      <div className="luxury-stay__tags">
-                        {stay.facts.map((fact) => <span key={fact}>{fact}</span>)}
+
+                      <div className="mockup-card__actions">
+                        <Link href={stay.href} className="mockup-btn mockup-btn--outline">
+                          查看房型細節
+                        </Link>
+                        <Link href={bookingHrefForStay} className="mockup-btn mockup-btn--gold">
+                          查詢這館空房
+                        </Link>
                       </div>
-                    </div>
-                    <div className="luxury-stay__actions">
-                      <Link href={stay.href} className="luxury-text-link">看房型與設備 <ArrowUpRight size={15} aria-hidden="true" /></Link>
-                      <Link href={bookingHrefForStay} className="luxury-button luxury-button--outline">查這館空房 <ArrowRight size={15} aria-hidden="true" /></Link>
                     </div>
                   </div>
                 </article>
               );
             })}
           </div>
+
+          {/* Comparison Page Link Banner */}
+          <div className="mockup-comparison-banner">
+            <p>需要比較各館客房格局、衛浴數量、廚房設備與即時房價等完整細節？</p>
+            <Link className="mockup-link" href="/compare">
+              查看三館完整規格比對頁面 <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="luxury-section luxury-decision" aria-labelledby="decision-title">
-        <div className="luxury-container">
-          <div className="luxury-section__heading">
-            <p className="luxury-kicker">A QUICK DECISION</p>
-            <h2 id="decision-title">先用人數縮小選擇，再看空間需求</h2>
-            <p>不用在所有房型裡迷路，先從團體規模找到最值得比較的方案。</p>
-          </div>
-          <div className="luxury-decision__list">
-            {decisionRows.map((row) => (
-              <div className="luxury-decision__row" key={row.guests}>
-                <strong>{row.guests}</strong>
-                <span>{row.stay}</span>
-                <span>{row.setup}</span>
-                <p>{row.reason}</p>
+      {/* ═══ 4. 真實旅客入住回饋 ═══ */}
+      <section className="mockup-reviews" aria-labelledby="reviews-title">
+        <div className="mockup-container">
+          <div className="mockup-villas__head mockup-villas__head--split">
+            <div>
+              <h2 id="reviews-title">真實旅客入住回饋</h2>
+            </div>
+            <div className="mockup-rating-summary">
+              <strong className="mockup-rating-summary__score">4.9</strong>
+              <div className="mockup-rating-summary__details">
+                <Stars rating={5} />
+                <span>Google 評價 150+ 則滿意推薦</span>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section className="luxury-section luxury-comparison" id="comparison" aria-labelledby="comparison-title">
-        <div className="luxury-container">
-          <div className="luxury-section__heading luxury-section__heading--split">
-            <div>
-              <p className="luxury-kicker">COMPARE THE SPACE</p>
-              <h2 id="comparison-title">選對空間，旅程更完美</h2>
-            </div>
-            <p>把人數、房間、衛浴和公共空間放在同一張表裡，快速找到適合你們的館別。</p>
-          </div>
-          <div className="luxury-comparison__scroll">
-            <table>
-              <caption>Hello Stay 三種住宿方案比較</caption>
-              <thead>
-                <tr>
-                  <th scope="col">比較項目</th>
-                  {stays.map((stay) => <th scope="col" key={stay.id}>{stay.name}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row">{row.label}</th>
-                    {row.values.map((value, index) => <td key={`${row.label}-${index}`}>{value}</td>)}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="luxury-comparison__note">
-            <span>* 雙館 35-36 人需加床；實際可訂房型與價格以官方訂房站即時結果為準。</span>
-            <Link className="luxury-text-link" href="/compare">查看完整住宿比較 <ArrowRight size={15} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="luxury-section luxury-reviews" aria-labelledby="reviews-title">
-        <div className="luxury-container">
-          <div className="luxury-section__heading luxury-section__heading--split">
-            <div>
-              <p className="luxury-kicker">GUEST NOTES</p>
-              <h2 id="reviews-title">旅客住過，才知道空間好不好用</h2>
-            </div>
-            <div className="luxury-review-summary">
-              <strong>{hellohouse.rating?.value ?? "-"}<small> / 5</small></strong>
-              <span><Stars rating={5} /> 主館 Google 評價 {hellohouse.rating?.count ?? ""} 則</span>
-              <Link href="/reviews">閱讀更多入住回饋 <ArrowRight size={15} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div className="luxury-reviews__grid">
-            {reviewQuotes.map((review, index) => (
-              <article className="luxury-review" key={`${review.property}-${review.author}-${index}`}>
-                <div className="luxury-review__top"><Stars rating={review.rating} /><span>{review.property}</span></div>
+          <div className="mockup-reviews__grid">
+            {reviewQuotes.slice(0, 4).map((review, index) => (
+              <article className="mockup-review-card" key={`${review.property}-${review.author}-${index}`}>
+                <div className="mockup-review-card__top">
+                  <Stars rating={review.rating} />
+                  <span className="mockup-review-card__stay">{review.property}</span>
+                </div>
                 <blockquote>「{review.text}」</blockquote>
-                <cite>{review.author}</cite>
+                <cite>— {review.author}</cite>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="luxury-section luxury-local" id="local-explore" aria-labelledby="local-title">
-        <div className="luxury-container">
-          <div className="luxury-section__heading luxury-section__heading--split">
+      {/* ═══ 5. 鹽埕在地生活指南 ═══ */}
+      <section className="mockup-local" id="local-explore" aria-labelledby="local-title">
+        <div className="mockup-container">
+          <div className="mockup-villas__head mockup-villas__head--split">
             <div>
-              <p className="luxury-kicker">YANCHENG LOCAL GUIDE</p>
-              <h2 id="local-title">住在鹽埕，還可以玩什麼？</h2>
+              <h2 id="local-title">住在鹽埕，漫步港灣與老街</h2>
             </div>
-            <p>從住宿出發，步行去吃一間老店、逛駁二，再沿著港區把高雄慢慢走一遍。</p>
+            <p>出門就是鹽埕道地小吃、咖啡香氣與駁二文創園區，用最舒服的節奏感受高雄生活。</p>
           </div>
-          <div className="luxury-local__grid">
+
+          <div className="mockup-local__grid">
             {localExperiences.map((experience) => (
-              <article className="luxury-local-story" key={experience.title}>
-                <div className="luxury-local-story__media">
+              <article className="mockup-local-card" key={experience.title}>
+                <div className="mockup-local-card__img">
                   <Image src={experience.image} alt={experience.imageAlt} fill loading="lazy" sizes="(max-width: 820px) 100vw, 50vw" />
                 </div>
-                <div className="luxury-local-story__body">
-                  <p className="luxury-kicker">{experience.label}</p>
+                <div className="mockup-local-card__content">
+                  <p className="mockup-local-card__tag">{experience.label}</p>
                   <h3>{experience.title}</h3>
                   <p>{experience.description}</p>
                   <ul>
-                    {experience.items.map((item) => <li key={item.name}><span>{item.name}</span><small>{item.meta}</small></li>)}
+                    {experience.items.map((item) => (
+                      <li key={item.name}>
+                        <span>{item.name}</span>
+                        <small>{item.meta}</small>
+                      </li>
+                    ))}
                   </ul>
-                  <Link className="luxury-text-link" href={experience.href}>{experience.linkLabel} <ArrowUpRight size={15} aria-hidden="true" /></Link>
+                  <Link className="mockup-link" href={experience.href}>
+                    {experience.linkLabel} <ArrowUpRight size={14} aria-hidden="true" />
+                  </Link>
                 </div>
               </article>
             ))}
           </div>
-          <div className="luxury-local__footer">
-            <span><MapPin size={16} aria-hidden="true" /> 駁二步行約 10 分鐘・鹽埕埔站步行約 5 分鐘</span>
-            <Link className="luxury-button luxury-button--outline" href="/explore">查看完整鹽埕指南 <ArrowRight size={15} aria-hidden="true" /></Link>
-          </div>
         </div>
       </section>
 
-      <section className="luxury-section luxury-faq" id="home-faq" aria-labelledby="home-faq-title">
-        <div className="luxury-container luxury-faq__layout">
-          <div className="luxury-section__heading">
-            <p className="luxury-kicker">BEFORE YOU BOOK</p>
-            <h2 id="home-faq-title">預訂前，先把疑問釐清</h2>
-            <p>房型、設備、交通與報價方式，都整理在這裡。</p>
-            <div className="luxury-faq__links">
-              <Link className="luxury-text-link" href="/agreement">入住與取消規則 <ArrowUpRight size={15} aria-hidden="true" /></Link>
-              <Link className="luxury-text-link" href="/traffic">交通與停車 <ArrowUpRight size={15} aria-hidden="true" /></Link>
+      {/* ═══ 6. 預訂前常見問題 ═══ */}
+      <section className="mockup-faq" id="home-faq" aria-labelledby="home-faq-title">
+        <div className="mockup-container mockup-faq__layout">
+          <div className="mockup-villas__head">
+            <h2 id="home-faq-title">預訂前常見問題</h2>
+            <p>訂房流程、開伙設備、打麻將與周邊停車等疑問，都在這裡為您即時解答。</p>
+            <div className="mockup-faq__links">
+              <Link className="mockup-link" href="/agreement">
+                入住與退款守則 <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
+              <Link className="mockup-link" href="/traffic">
+                交通與周邊停車 <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
             </div>
           </div>
-          <div className="luxury-faq__list">
+
+          <div className="mockup-faq__list">
             {homepageFaqItems.map((item) => (
-              <details key={item.question}>
-                <summary>{item.question}<span aria-hidden="true" /></summary>
+              <details className="mockup-faq__item" key={item.question}>
+                <summary>
+                  <span>{item.question}</span>
+                  <span className="mockup-faq__icon" aria-hidden="true" />
+                </summary>
                 <p>{item.answer}</p>
               </details>
             ))}
-            <p className="luxury-faq__updated">資料核對：{homepageLastReviewed}</p>
+            <p className="mockup-faq__date">最後核對日期：{homepageLastReviewed}</p>
           </div>
         </div>
       </section>
 
-      <section className="luxury-final" aria-labelledby="home-final-title">
-        <div className="luxury-container luxury-final__inner">
+      {/* ═══ 7. 底端行動呼籲 ═══ */}
+      <section className="mockup-final" aria-labelledby="home-final-title">
+        <div className="mockup-container mockup-final__inner">
           <div>
-            <p className="luxury-kicker">YOUR STAY STARTS HERE</p>
-            <h2 id="home-final-title">準備好住進你的鹽埕假期了嗎？</h2>
-            <p>輸入日期與人數，從官方訂房站查看即時空房、方案與報價。</p>
+            <h2 id="home-final-title">準備好開啟你的鹽埕包棟假期了嗎？</h2>
+            <p>透過官方直訂系統查詢即時空房與透明報價，或透過 LINE 專人諮詢。</p>
           </div>
-          <div className="luxury-final__actions">
-            <Link className="luxury-button luxury-button--light" href={bookingHref} target={guestCountOutsideRange ? "_blank" : undefined} rel={guestCountOutsideRange ? "noopener noreferrer" : undefined}>
+          <div className="mockup-final__actions">
+            <Link
+              className="mockup-btn mockup-btn--gold-solid"
+              href={bookingHref}
+              target={guestCountOutsideRange ? "_blank" : undefined}
+              rel={guestCountOutsideRange ? "noopener noreferrer" : undefined}
+            >
               {bookingActionLabel} <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <Link className="luxury-text-link luxury-text-link--light" href="/compare">先比較住宿方案 <ArrowUpRight size={15} aria-hidden="true" /></Link>
+            <a
+              className="mockup-btn mockup-btn--line"
+              href="https://lin.ee/atCiMQw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageSquare size={16} aria-hidden="true" />
+              LINE 官方客服專人諮詢
+            </a>
           </div>
         </div>
       </section>
+
+      {/* ═══ 8. 行動端浮動列 ═══ */}
+      <div className="mockup-mobile-bar" aria-label="行動端快速預訂操作列">
+        <Link href="#home-hero-title" className="mockup-mobile-bar__btn mockup-mobile-bar__btn--dates">
+          <CalendarDays size={16} aria-hidden="true" />
+          <span>選擇日期查空房</span>
+        </Link>
+        <a
+          href="https://lin.ee/atCiMQw"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mockup-mobile-bar__btn mockup-mobile-bar__btn--booking"
+        >
+          <MessageSquare size={16} aria-hidden="true" />
+          <span>LINE 專人諮詢</span>
+        </a>
+      </div>
     </div>
   );
 }

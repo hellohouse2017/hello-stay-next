@@ -10,4 +10,5 @@ export * from './infrastructure/seo-ops-adapters';
 export * from './infrastructure/seo-pagespeed';
 export * from './infrastructure/seo-ranking';
 export * from './infrastructure/seo-ranking-ruins';
+export * from './domain/seo-query-ownership';
 export * from './infrastructure/seo-snapshot-repository';

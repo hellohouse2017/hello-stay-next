@@ -94,6 +94,7 @@ type ShowcaseFinal = {
   kicker: string;
   title: string;
   body?: ShowcaseText;
+  navLabel?: string;
   primaryAction: ShowcaseAction;
   secondaryAction?: ShowcaseAction;
 };
@@ -175,14 +176,15 @@ function ShowcaseVisual({ id, label }: { id: string; label: string }) {
 
 const pageStyles = String.raw`
 .showcase-page {
-  --ink: #1f1a16;
-  --text: #5f584f;
-  --muted: #8f8579;
-  --line: #e6ddd0;
-  --paper: #f6f1e8;
-  --card: #fffdf9;
-  --accent: #2d5a44;
-  --accent-soft: #dce9df;
+  --ink: #121413;
+  --text: #343c37;
+  --muted: #68736d;
+  --line: #e4e2d8;
+  --paper: #f8f6f0;
+  --card: #ffffff;
+  --accent: #c29b61;
+  --accent-dark: #a88047;
+  --accent-soft: #f3ecdf;
   --overview-columns: 5;
   --overview-columns-tablet: 3;
   --overview-columns-mobile: 2;
@@ -190,8 +192,9 @@ const pageStyles = String.raw`
   --gallery-columns-tablet: 3;
   --gallery-columns-mobile: 2;
   padding-bottom: 96px;
-  background: linear-gradient(180deg, #f7f2ea 0%, #f4efe6 100%);
+  background: var(--paper);
   color: var(--ink);
+  font-family: inherit;
 }
 
 .showcase-page * {
@@ -207,16 +210,17 @@ const pageStyles = String.raw`
 }
 
 .showcase-shell {
-  width: min(1180px, calc(100% - 48px));
+  width: min(1280px, calc(100% - 48px));
   margin: 0 auto;
 }
 
 .showcase-kicker {
   margin: 0;
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 760;
-  letter-spacing: 0;
+  color: var(--accent-dark);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .showcase-pill {
@@ -224,14 +228,15 @@ const pageStyles = String.raw`
   align-items: center;
   width: fit-content;
   min-height: 34px;
-  padding: 0 14px;
+  padding: 0 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 250, 242, 0.94);
+  background: rgba(18, 20, 19, 0.85);
+  color: #ffffff;
   font-size: 0.78rem;
-  font-weight: 760;
+  font-weight: 600;
   line-height: 1;
   backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .showcase-hero {
@@ -242,9 +247,10 @@ const pageStyles = String.raw`
   position: relative;
   min-height: min(760px, calc(100vh - var(--nav-h) - 36px));
   overflow: hidden;
-  border-radius: 8px;
-  background: #25211d;
-  box-shadow: 0 32px 84px rgba(31, 26, 22, 0.18);
+  border-radius: 20px;
+  background: #121413;
+  box-shadow: 0 24px 54px -12px rgba(18, 20, 19, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .showcase-hero__media {
@@ -320,25 +326,37 @@ const pageStyles = String.raw`
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
+  gap: 6px;
+  padding: 0 24px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fffaf2;
-  font-size: 0.92rem;
-  font-weight: 760;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
   backdrop-filter: blur(14px);
-  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
 .showcase-button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .showcase-button--primary {
-  border-color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--ink);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #121413;
+  box-shadow: 0 4px 14px rgba(194, 155, 97, 0.35);
+  font-weight: 700;
+}
+
+.showcase-button--primary:hover {
+  background: #d4ae72;
+  border-color: #d4ae72;
+  box-shadow: 0 8px 24px rgba(194, 155, 97, 0.45);
 }
 
 .showcase-hero__stats {
@@ -348,48 +366,50 @@ const pageStyles = String.raw`
   overflow: hidden;
   width: 100%;
   margin-top: 36px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(18px);
 }
 
 .showcase-hero__stats article {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
   padding: 18px 20px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(18, 20, 19, 0.65);
 }
 
 .showcase-hero__stats span {
-  color: rgba(255, 250, 242, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.76rem;
-  font-weight: 720;
+  font-weight: 600;
   line-height: 1.45;
+  white-space: nowrap;
 }
 
 .showcase-hero__stats strong {
-  color: #fffaf2;
-  font-size: 0.98rem;
-  font-weight: 760;
-  line-height: 1.55;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.45;
+  white-space: nowrap;
 }
 
 .showcase-inpage-nav {
   position: sticky;
   top: var(--nav-h);
   z-index: 20;
-  border-top: 1px solid rgba(31, 26, 22, 0.08);
+  border-top: 1px solid rgba(18, 20, 19, 0.08);
   border-bottom: 1px solid var(--line);
-  background: rgba(246, 241, 232, 0.94);
+  background: rgba(248, 246, 240, 0.94);
   backdrop-filter: blur(16px);
 }
 
 .showcase-inpage-nav__inner {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 48px;
+  gap: 8px;
+  min-height: 52px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -398,18 +418,19 @@ const pageStyles = String.raw`
 
 .showcase-inpage-nav a {
   flex: 0 0 auto;
-  padding: 7px 12px;
+  padding: 8px 16px;
   border-radius: 999px;
   color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 760;
+  font-size: 0.8rem;
+  font-weight: 600;
   white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
 .showcase-inpage-nav a:hover,
 .showcase-inpage-nav a:focus-visible {
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .showcase-section {
@@ -418,7 +439,7 @@ const pageStyles = String.raw`
 
 .showcase-section__head {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   max-width: 820px;
   margin-bottom: 28px;
 }
@@ -426,44 +447,53 @@ const pageStyles = String.raw`
 .showcase-section__head h2 {
   margin: 0;
   color: var(--ink);
+  font-family: var(--serif, serif);
   font-size: clamp(1.8rem, 2.55vw, 2.55rem);
-  font-weight: 760;
-  line-height: 1.18;
-  line-break: strict;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  word-break: normal;
   text-wrap: balance;
 }
 
 .showcase-section__head p {
   margin: 0;
-  color: var(--text);
-  font-size: 0.98rem;
-  line-height: 1.8;
-  line-break: strict;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  word-break: normal;
   text-wrap: pretty;
 }
 
 .showcase-overview-grid {
   display: grid;
   grid-template-columns: repeat(var(--overview-columns), minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 .showcase-overview-card {
   display: grid;
   gap: 14px;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 249, 0.92);
-  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(18, 20, 19, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(18, 20, 19, 0.08);
+  border-color: rgba(194, 155, 97, 0.4);
 }
 
 .showcase-overview-card__image {
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  border-radius: 6px;
-  background: #e8dfd0;
+  border-radius: 12px;
+  background: #e8e6dd;
 }
 
 .showcase-visual {
@@ -472,11 +502,11 @@ const pageStyles = String.raw`
   place-items: center;
   min-height: 182px;
   overflow: hidden;
-  border: 1px solid rgba(45, 90, 68, 0.14);
-  border-radius: 6px;
+  border: 1px solid rgba(194, 155, 97, 0.2);
+  border-radius: 12px;
   background:
-    linear-gradient(135deg, rgba(255, 253, 249, 0.98), rgba(236, 230, 216, 0.9)),
-    repeating-linear-gradient(90deg, transparent 0 54px, rgba(45, 90, 68, 0.08) 55px 56px);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 240, 0.9)),
+    repeating-linear-gradient(90deg, transparent 0 54px, rgba(194, 155, 97, 0.08) 55px 56px);
   color: var(--accent);
 }
 
@@ -490,14 +520,14 @@ const pageStyles = String.raw`
 .showcase-visual::before {
   width: 180%;
   height: 1px;
-  background: rgba(45, 90, 68, 0.15);
+  background: rgba(194, 155, 97, 0.2);
   transform: rotate(-26deg);
 }
 
 .showcase-visual::after {
   width: 180%;
   height: 1px;
-  background: rgba(178, 133, 50, 0.28);
+  background: rgba(168, 128, 71, 0.28);
   transform: rotate(26deg);
 }
 
@@ -506,7 +536,7 @@ const pageStyles = String.raw`
   left: 18px;
   width: 34px;
   height: 1px;
-  background: rgba(45, 90, 68, 0.42);
+  background: rgba(194, 155, 97, 0.42);
 }
 
 .showcase-visual__rule--top {
@@ -517,15 +547,15 @@ const pageStyles = String.raw`
   right: 18px;
   bottom: 20px;
   left: auto;
-  background: rgba(178, 133, 50, 0.66);
+  background: rgba(168, 128, 71, 0.66);
 }
 
 .showcase-visual__mark {
   position: absolute;
   top: 16px;
   right: 18px;
-  color: rgba(31, 26, 22, 0.42);
-  font-family: var(--font-serif, Georgia, serif);
+  color: rgba(18, 20, 19, 0.4);
+  font-family: var(--serif, Georgia, serif);
   font-size: 0.76rem;
   letter-spacing: 0.14em;
 }
@@ -537,19 +567,19 @@ const pageStyles = String.raw`
   place-items: center;
   width: 78px;
   height: 78px;
-  border: 1px solid rgba(45, 90, 68, 0.35);
+  border: 1px solid rgba(194, 155, 97, 0.35);
   border-radius: 999px;
-  background: rgba(255, 253, 249, 0.76);
-  box-shadow: 0 12px 28px rgba(31, 26, 22, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 28px rgba(18, 20, 19, 0.08);
 }
 
 .showcase-visual__label {
   position: absolute;
   right: 18px;
   bottom: 16px;
-  color: var(--accent);
+  color: var(--accent-dark);
   font-size: 0.7rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -560,43 +590,46 @@ const pageStyles = String.raw`
 }
 
 .showcase-overview-card__body span {
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 760;
+  color: var(--accent-dark);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .showcase-overview-card__body strong {
   color: var(--ink);
-  font-size: 1rem;
-  font-weight: 760;
-  line-height: 1.45;
-  line-break: strict;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: normal;
   text-wrap: balance;
 }
 
 .showcase-overview-card__body p,
 .showcase-overview-card__link {
   margin: 0;
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.86rem;
   line-height: 1.6;
+  word-break: normal;
 }
 
 .showcase-overview-card__link {
-  color: var(--accent);
-  font-weight: 720;
+  color: var(--accent-dark);
+  font-weight: 700;
 }
 
 .showcase-detail-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) 340px;
-  gap: 26px;
+  gap: 28px;
   align-items: start;
 }
 
 .showcase-detail-stack {
   display: grid;
-  gap: 18px;
+  gap: 24px;
 }
 
 .showcase-detail-card {
@@ -605,16 +638,16 @@ const pageStyles = String.raw`
   gap: 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 18px;
   background: var(--card);
-  box-shadow: 0 16px 42px rgba(31, 26, 22, 0.06);
+  box-shadow: 0 16px 40px -10px rgba(18, 20, 19, 0.06);
   scroll-margin-top: calc(var(--nav-h) + 28px);
 }
 
 .showcase-detail-card__media {
   position: relative;
   min-height: 260px;
-  background: #e8dfd0;
+  background: #e8e6dd;
 }
 
 .showcase-detail-card__media .showcase-visual {
@@ -628,36 +661,39 @@ const pageStyles = String.raw`
   display: grid;
   gap: 16px;
   align-content: start;
-  padding: 22px 24px;
+  padding: 26px 28px;
 }
 
 .showcase-detail-card__head {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .showcase-detail-card__head span {
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 760;
+  color: var(--accent-dark);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .showcase-detail-card__head h3 {
   margin: 0;
   color: var(--ink);
-  font-size: 1.36rem;
-  font-weight: 760;
+  font-family: var(--serif, serif);
+  font-size: 1.45rem;
+  font-weight: 600;
   line-height: 1.28;
-  line-break: strict;
+  word-break: normal;
   text-wrap: balance;
 }
 
 .showcase-detail-card__head p {
   margin: 0;
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.7;
-  line-break: strict;
+  word-break: normal;
   text-wrap: pretty;
 }
 
@@ -667,16 +703,16 @@ const pageStyles = String.raw`
   gap: 1px;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--line);
 }
 
 .showcase-detail-card__spec {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
-  padding: 12px;
-  background: #faf6ef;
+  padding: 12px 14px;
+  background: #faf8f3;
 }
 
 .showcase-detail-card__spec span,
@@ -685,9 +721,10 @@ const pageStyles = String.raw`
 .showcase-location-card span,
 .showcase-location-list span {
   color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 720;
-  line-height: 1.45;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .showcase-detail-card__spec strong,
@@ -696,9 +733,9 @@ const pageStyles = String.raw`
 .showcase-location-card strong,
 .showcase-location-list strong {
   color: var(--ink);
-  font-size: 0.96rem;
-  font-weight: 760;
-  line-height: 1.55;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .showcase-detail-card__groups {
@@ -710,38 +747,45 @@ const pageStyles = String.raw`
 .showcase-detail-card__footer {
   display: flex;
   justify-content: flex-start;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .showcase-detail-card__footer .showcase-button {
-  min-height: 44px;
+  min-height: 42px;
   border-color: var(--line);
-  background: #f7f1e7;
+  background: #ffffff;
   color: var(--ink);
   backdrop-filter: none;
+  font-size: 0.84rem;
+  border: 1px solid var(--line);
+}
+
+.showcase-detail-card__footer .showcase-button:hover {
+  background: var(--accent);
+  color: #121413;
+  border-color: var(--accent);
 }
 
 .showcase-group {
   display: grid;
-  gap: 10px;
-  padding: 14px;
+  gap: 8px;
+  padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fffaf4;
+  border-radius: 12px;
+  background: #ffffff;
 }
 
 .showcase-group h4 {
   margin: 0;
   color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 760;
-  line-break: strict;
-  text-wrap: balance;
+  font-size: 0.88rem;
+  font-weight: 700;
+  word-break: normal;
 }
 
 .showcase-group ul {
   display: grid;
-  gap: 7px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -750,9 +794,10 @@ const pageStyles = String.raw`
 .showcase-group li {
   position: relative;
   padding-left: 14px;
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.84rem;
   line-height: 1.55;
+  word-break: normal;
 }
 
 .showcase-group li::before {
@@ -768,7 +813,7 @@ const pageStyles = String.raw`
 
 .showcase-side-stack {
   display: grid;
-  gap: 16px;
+  gap: 18px;
   position: sticky;
   top: calc(var(--nav-h) + 24px);
 }
@@ -779,15 +824,15 @@ const pageStyles = String.raw`
 .showcase-location-list,
 .showcase-final {
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 249, 0.94);
-  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(18, 20, 19, 0.05);
 }
 
 .showcase-facts-card,
 .showcase-fit-card,
 .showcase-location-card {
-  padding: 20px;
+  padding: 22px;
 }
 
 .showcase-facts-card h3,
@@ -795,10 +840,10 @@ const pageStyles = String.raw`
 .showcase-location-card h3 {
   margin: 0 0 14px;
   color: var(--ink);
-  font-size: 1rem;
-  font-weight: 760;
-  line-break: strict;
-  text-wrap: balance;
+  font-family: var(--serif, serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  word-break: normal;
 }
 
 .showcase-facts-list,
@@ -806,16 +851,16 @@ const pageStyles = String.raw`
   display: grid;
   gap: 1px;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 12px;
   background: var(--line);
 }
 
 .showcase-facts-list article,
 .showcase-fit-list article {
   display: grid;
-  gap: 6px;
-  padding: 14px;
-  background: #fffaf4;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #ffffff;
 }
 
 .showcase-guides {
@@ -826,17 +871,18 @@ const pageStyles = String.raw`
 }
 
 .showcase-guides li {
-  color: var(--text);
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.88rem;
   line-height: 1.65;
+  word-break: normal;
 }
 
 .showcase-location-card p {
   margin: 0;
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.75;
-  line-break: strict;
+  word-break: normal;
   text-wrap: pretty;
 }
 
@@ -848,8 +894,8 @@ const pageStyles = String.raw`
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f8f2e8;
+  border-radius: 12px;
+  background: #f8f6f0;
   aspect-ratio: 941 / 1672;
   cursor: zoom-in;
   text-decoration: none;
@@ -867,7 +913,7 @@ const pageStyles = String.raw`
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(24, 20, 16, 0.9);
+  background: rgba(18, 20, 19, 0.92);
   backdrop-filter: blur(14px);
 }
 
@@ -911,8 +957,8 @@ const pageStyles = String.raw`
   overflow: hidden;
   width: 100%;
   min-height: min(76vh, 1180px);
-  border-radius: 10px;
-  background: #f8f2e8;
+  border-radius: 14px;
+  background: #f8f6f0;
 }
 
 .showcase-image-lightbox__frame img {
@@ -929,9 +975,9 @@ const pageStyles = String.raw`
 .showcase-location-card a {
   display: inline-flex;
   margin-top: 14px;
-  color: var(--accent);
+  color: var(--accent-dark);
   font-size: 0.9rem;
-  font-weight: 760;
+  font-weight: 700;
 }
 
 .showcase-location-list {
@@ -939,6 +985,7 @@ const pageStyles = String.raw`
   gap: 1px;
   overflow: hidden;
   background: var(--line);
+  border-radius: 18px;
 }
 
 .showcase-location-list a {
@@ -948,7 +995,7 @@ const pageStyles = String.raw`
 }
 
 .showcase-location-list a:hover article {
-  background: #f5eee1;
+  background: #f9f7f2;
 }
 
 .showcase-location-list article {
@@ -956,8 +1003,8 @@ const pageStyles = String.raw`
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px;
   align-items: center;
-  padding: 16px 18px;
-  background: #fffaf4;
+  padding: 16px 20px;
+  background: #ffffff;
 }
 
 .showcase-location-list__meta {
@@ -970,20 +1017,20 @@ const pageStyles = String.raw`
   align-items: center;
   gap: 6px;
   justify-self: start;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #f7f1e7;
-  color: var(--accent);
+  background: #faf8f3;
+  color: var(--accent-dark);
   font-size: 0.82rem;
-  font-weight: 760;
+  font-weight: 700;
   white-space: nowrap;
 }
 
 .showcase-gallery {
   display: grid;
   grid-template-columns: repeat(var(--gallery-columns), minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .showcase-gallery__item {
@@ -995,50 +1042,48 @@ const pageStyles = String.raw`
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  border-radius: 8px;
-  background: #e8dfd0;
-  box-shadow: 0 10px 28px rgba(31, 26, 22, 0.05);
+  border-radius: 14px;
+  background: #e8e6dd;
+  box-shadow: 0 10px 28px rgba(18, 20, 19, 0.05);
 }
 
 .showcase-gallery__item figcaption {
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 720;
+  font-weight: 600;
 }
 
 .showcase-faq-list {
   display: grid;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--line);
-  box-shadow: 0 14px 36px rgba(31, 26, 22, 0.05);
+  gap: 12px;
 }
 
 .showcase-faq-item {
   display: grid;
-  gap: 8px;
-  padding: 20px 22px;
-  background: rgba(255, 253, 249, 0.94);
+  gap: 10px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(18, 20, 19, 0.03);
 }
 
 .showcase-faq-item h3 {
   margin: 0;
   color: var(--ink);
-  font-size: 1rem;
-  font-weight: 760;
-  line-height: 1.5;
-  line-break: strict;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.45;
+  word-break: normal;
   text-wrap: balance;
 }
 
 .showcase-faq-item p {
   margin: 0;
-  color: var(--text);
+  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.75;
-  line-break: strict;
+  word-break: normal;
   text-wrap: pretty;
 }
 
@@ -1063,23 +1108,28 @@ const pageStyles = String.raw`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
+  gap: 32px;
   margin-top: 88px;
-  padding: 28px 30px;
-  background: #1f1a16;
+  padding: 40px 44px;
+  background: #121413;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 54px rgba(18, 20, 19, 0.25);
 }
 
 .showcase-final .showcase-kicker {
-  color: rgba(228, 238, 228, 0.9);
+  color: var(--accent);
 }
 
 .showcase-final h2 {
   margin: 0 0 12px;
-  color: #fffaf2;
+  color: #ffffff;
+  font-family: var(--serif, serif);
   font-size: clamp(1.7rem, 2.65vw, 2.35rem);
-  font-weight: 760;
-  line-height: 1.2;
-  line-break: strict;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  word-break: normal;
   text-wrap: balance;
 }
 
@@ -1167,6 +1217,16 @@ const pageStyles = String.raw`
 }
 
 @media (max-width: 640px) {
+  .showcase-inpage-nav__inner {
+    gap: 0;
+    scroll-padding-inline: 14px;
+  }
+
+  .showcase-inpage-nav a {
+    padding: 7px 6px;
+    font-size: 0.7rem;
+  }
+
   .showcase-hero {
     padding-top: calc(var(--nav-h) + 14px);
   }
@@ -1311,7 +1371,7 @@ export default function PropertyShowcasePage({
             {gallery ? <a href="#showcase-gallery">實景照片</a> : null}
             {faq ? <a href="#showcase-faq">常見問題</a> : null}
             {location ? <a href="#showcase-location">交通位置</a> : null}
-            {final ? <a href="#showcase-final">查空房</a> : null}
+            {final ? <a href="#showcase-final">{final.navLabel || "查空房"}</a> : null}
           </div>
         </nav>
 

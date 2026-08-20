@@ -70,6 +70,7 @@ async function main() {
             },
         },
         rankingError: 'gsc timeout',
+        pageOwnershipWarnings: [],
         ga4: {
             measurementId: 'G-LKVWPNVH5M',
             siteTagDetected: true,
@@ -79,6 +80,8 @@ async function main() {
             date: null,
             summary: null,
             landingPages: [],
+            conversionLandingPages: [],
+            aiLandingPages: [],
             aiAssistants: {
                 summary: null,
                 sources: [],
@@ -161,6 +164,7 @@ async function main() {
             },
         },
         rankingError: 'gsc timeout',
+        pageOwnershipWarnings: [],
         ga4: {
             measurementId: 'G-LKVWPNVH5M',
             siteTagDetected: true,
@@ -170,6 +174,8 @@ async function main() {
             date: null,
             summary: null,
             landingPages: [],
+            conversionLandingPages: [],
+            aiLandingPages: [],
             aiAssistants: {
                 summary: null,
                 sources: [],

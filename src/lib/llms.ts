@@ -294,6 +294,11 @@ export async function buildEnLlmsText(options?: { articleLimit?: number }) {
 - Highlights: ${dazhi.featureSummary}
 - Page: ${dazhi.pageUrl}
 
+## Use Case Recommendations
+- Family & Seniors (4-12 guests): Godin House is recommended (5-story private building, en-suite bathrooms in all 4 bedrooms, 1F double room minimizes stairs). For 13+ guests, choose Hello House.
+- Friends, Mahjong & Cooking (8-26 guests): Hello House is recommended for its 1F kitchen island, dual IH cooker, manual mahjong table, and large lounge.
+- Wedding Parties & Large Groups (27-36 guests): Hello House + Godin House dual building rental. Both houses are only 5 seconds apart on foot.
+
 ## FAQ
 
 ${faqLines}
@@ -352,6 +357,11 @@ export async function buildKoLlmsText(options?: { articleLimit?: number }) {
 - 위치: ${dazhi.location}
 - 특징: ${dazhi.featureSummary}
 - 페이지: ${dazhi.pageUrl}
+
+## 추천 이용 상황
+- 가족 및 어르신 동반 여행 (4-12명): 거우딩 민박 추천 (5층 독채, 모든 객실 개별 욕실, 1층 더블룸 구비). 13명 이상은 헬로하우스 추천.
+- 친구 모임, 마작 및 요리 (8-26명): 헬로하우스 추천 (1층 아일랜드 주방, IH 인덕션, 마작 테이블, 대형 라운지).
+- 단체 및 기업 워크숍 (27-36명): 헬로하우스 + 거우딩 민박 두 채 통째 대여 추천.
 
 ## 자주 묻는 질문
 
@@ -412,6 +422,11 @@ export async function buildJaLlmsText(options?: { articleLimit?: number }) {
 - 特徴: ${dazhi.featureSummary}
 - ページ: ${dazhi.pageUrl}
 
+## 利用シーン別おすすめ
+- 家族・シニア同伴旅行 (4〜12名): ゴーディンハウスがおすすめ（5階建1棟貸切、全室専用バスルーム、1階ダブルルーム完備）。13名以上はハローハウス。
+- 友人グループ・麻雀・料理 (8〜26名): ハローハウスがおすすめ（1階アイランドキッチン、IH調理器、手打ち麻雀卓、大型リビング）。
+- 団体・企業合宿 (27〜36名): ハローハウス＋ゴーディンハウスの2棟貸切プラン。
+
 ## よくある質問
 
 ${faqLines}
@@ -422,6 +437,5 @@ ${articleLines}
 ## 安全・合法性
 - 合法民宿登録: ${hellohouse.nameEn}（${hellohouse.license}）、${godin.nameEn}（${godin.license}）
 - 公共賠償責任保険: 富邦産険加入済み
-- ブランド創業: 2017年
 `;
 }

@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import {
     exchangeRefreshTokenForAccessToken,
+    fetchGa4AiAssistantLandingPages,
     fetchGa4AiAssistantSources,
     fetchGa4AiAssistantSummary,
     fetchGa4OrganicLandingPages,
     fetchGa4OrganicSummary,
+    fetchGa4SeoLandingConversions,
     inspectGa4MeasurementTag,
 } from '@/modules/seo/infrastructure/seo-ga4';
 
@@ -54,6 +56,45 @@ async function main() {
         { page: '/blog/post-a', sessions: 20, users: 15 },
     ]);
 
+    const conversionLandingPages = await fetchGa4SeoLandingConversions({
+        propertyId: '123456',
+        accessToken: 'token',
+        date: '2026-05-11',
+        fetchImpl: async (_input, init) => {
+            const body = JSON.parse(String(init?.body));
+            const metricName = body.metrics[0].name;
+            if (metricName === 'sessions') {
+                assert.deepEqual(body.dimensions, [{ name: 'landingPagePlusQueryString' }]);
+                return new Response(JSON.stringify({ rows: [
+                    { dimensionValues: [{ value: '/compare' }], metricValues: [{ value: '40' }, { value: '30' }] },
+                    { dimensionValues: [{ value: '/explore/food' }], metricValues: [{ value: '20' }, { value: '18' }] },
+                ] }), { status: 200 });
+            }
+            assert.equal(body.dimensionFilter.andGroup.expressions[0].filter.fieldName, 'sessionDefaultChannelGroup');
+            assert.deepEqual(
+                body.dimensionFilter.andGroup.expressions[1].filter.inListFilter.values,
+                ['book_click', 'line_cta_click', 'phone_click'],
+            );
+            if (metricName === 'eventCount') {
+                return new Response(JSON.stringify({ rows: [
+                    { dimensionValues: [{ value: '/compare' }, { value: 'book_click' }], metricValues: [{ value: '6' }] },
+                    { dimensionValues: [{ value: '/compare' }, { value: 'line_cta_click' }], metricValues: [{ value: '3' }] },
+                    { dimensionValues: [{ value: '/compare' }, { value: 'phone_click' }], metricValues: [{ value: '1' }] },
+                    { dimensionValues: [{ value: '/explore/food' }, { value: 'book_click' }], metricValues: [{ value: '2' }] },
+                ] }), { status: 200 });
+            }
+            assert.equal(metricName, 'totalUsers');
+            return new Response(JSON.stringify({ rows: [
+                { dimensionValues: [{ value: '/compare' }], metricValues: [{ value: '8' }] },
+                { dimensionValues: [{ value: '/explore/food' }], metricValues: [{ value: '2' }] },
+            ] }), { status: 200 });
+        },
+    });
+    assert.deepEqual(conversionLandingPages, [
+        { page: '/compare', sessions: 40, users: 30, bookingClicks: 6, lineClicks: 3, phoneClicks: 1, conversionUsers: 8, clickRate: 8 / 30 },
+        { page: '/explore/food', sessions: 20, users: 18, bookingClicks: 2, lineClicks: 0, phoneClicks: 0, conversionUsers: 2, clickRate: 2 / 18 },
+    ]);
+
     const aiSummary = await fetchGa4AiAssistantSummary({
         propertyId: '123456',
         accessToken: 'token',
@@ -97,6 +138,25 @@ async function main() {
     });
     assert.deepEqual(aiSources, [
         { source: 'chatgpt.com', sessions: 4, users: 3, pageviews: 8 },
+    ]);
+
+    const aiLandingPages = await fetchGa4AiAssistantLandingPages({
+        propertyId: '123456',
+        accessToken: 'token',
+        date: '2026-05-11',
+        fetchImpl: async (_input, init) => {
+            const body = JSON.parse(String(init?.body));
+            assert.deepEqual(body.dimensions, [{ name: 'landingPagePlusQueryString' }]);
+            assert.equal(body.dimensionFilter.filter.fieldName, 'sessionMedium');
+            assert.equal(body.dimensionFilter.filter.stringFilter.value, 'ai-assistant');
+            return new Response(JSON.stringify({ rows: [
+                { dimensionValues: [{ value: '/explore/food' }], metricValues: [{ value: '5' }, { value: '4' }, { value: '9' }] },
+                { dimensionValues: [{ value: '(not set)' }], metricValues: [{ value: '1' }, { value: '1' }, { value: '1' }] },
+            ] }), { status: 200 });
+        },
+    });
+    assert.deepEqual(aiLandingPages, [
+        { page: '/explore/food', sessions: 5, users: 4, pageviews: 9 },
     ]);
 
     await assert.rejects(

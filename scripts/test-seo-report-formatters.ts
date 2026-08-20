@@ -88,6 +88,63 @@ async function main() {
     assert.match(ga4Configured, /chatgpt\.com/);
     assert.match(ga4Configured, /Google AI Overviews \/ AI Mode 目前仍算在 Organic Search/);
 
+    const ga4Windows = buildMainGa4Section({
+        measurementId: 'G-LKVWPNVH5M',
+        siteTagDetected: true,
+        propertyIdConfigured: true,
+        oauthConfigured: true,
+        dataApiStatus: 'configured',
+        dataDate: '2026-08-14',
+        summary: null,
+        landingPages: [],
+        aiAssistantsSummary: null,
+        aiSources: [],
+        dataApiError: null,
+        windows: {
+            sevenDay: {
+                label: '近 7 天',
+                summary: { sessions: 80, users: 60, pageviews: 120 },
+                landingPages: [{ page: '/compare', sessions: 24, users: 20 }],
+                conversionLandingPages: [{
+                    page: '/compare',
+                    sessions: 24,
+                    users: 20,
+                    bookingClicks: 3,
+                    lineClicks: 2,
+                    phoneClicks: 1,
+                    conversionUsers: 4,
+                    clickRate: 0.2,
+                }],
+                aiLandingPages: [{ page: '/explore/food', sessions: 5, users: 4, pageviews: 7 }],
+                aiSummary: { sessions: 8, users: 6, pageviews: 12 },
+            },
+            twentyEightDay: {
+                label: '近 28 天',
+                summary: { sessions: 320, users: 240, pageviews: 500 },
+                landingPages: [{ page: '/kaohsiung-whole-house', sessions: 72, users: 60 }],
+                conversionLandingPages: [{
+                    page: '/kaohsiung-whole-house',
+                    sessions: 72,
+                    users: 60,
+                    bookingClicks: 8,
+                    lineClicks: 5,
+                    phoneClicks: 2,
+                    conversionUsers: 12,
+                    clickRate: 0.2,
+                }],
+                aiLandingPages: [{ page: '/blog/kaohsiung-arena-accommodation', sessions: 11, users: 9, pageviews: 14 }],
+                aiSummary: { sessions: 33, users: 25, pageviews: 45 },
+            },
+        },
+    });
+    assert.match(ga4Windows, /近 7 天/);
+    assert.match(ga4Windows, /\/compare: 4\/20 users \(20\.0%\) \/ 6 clicks/);
+    assert.match(ga4Windows, /AI Assistant Landing Paths/);
+    assert.match(ga4Windows, /\/explore\/food \(5 sessions \/ 4 users\)/);
+    assert.match(ga4Windows, /近 28 天/);
+    assert.match(ga4Windows, /\/kaohsiung-whole-house: 12\/60 users \(20\.0%\) \/ 15 clicks/);
+    assert.match(ga4Windows, /\/blog\/kaohsiung-arena-accommodation \(11 sessions \/ 9 users\)/);
+
     const ga4MissingConfig = buildMainGa4Section({
         measurementId: 'G-LKVWPNVH5M',
         siteTagDetected: true,

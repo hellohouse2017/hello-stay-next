@@ -15,6 +15,18 @@ export interface Ga4OrganicLandingPage {
     users: number;
 }
 
+export interface SeoLandingConversion extends Ga4OrganicLandingPage {
+    bookingClicks: number;
+    lineClicks: number;
+    phoneClicks: number;
+    conversionUsers: number;
+    clickRate: number;
+}
+
+export interface Ga4AiLandingPage extends Ga4OrganicLandingPage {
+    pageviews: number;
+}
+
 export interface Ga4TrafficSource {
     source: string;
     sessions: number;
@@ -54,6 +66,24 @@ function buildExactStringFilter(fieldName: string, value: string) {
                 value,
             },
         },
+    };
+}
+
+function buildInListFilter(fieldName: string, values: readonly string[]) {
+    return {
+        filter: {
+            fieldName,
+            inListFilter: {
+                values: [...values],
+                caseSensitive: true,
+            },
+        },
+    };
+}
+
+function buildAndFilter(expressions: Array<Record<string, unknown>>) {
+    return {
+        andGroup: { expressions },
     };
 }
 
@@ -249,6 +279,107 @@ export async function fetchGa4OrganicLandingPages(options: {
         .filter((row) => row.page && row.page !== '(not set)');
 }
 
+export async function fetchGa4SeoLandingConversions(options: {
+    propertyId: string;
+    accessToken: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
+    fetchImpl?: typeof fetch;
+}): Promise<SeoLandingConversion[]> {
+    const { propertyId, accessToken, fetchImpl } = options;
+    const dateRanges = [resolveDateRange(options)];
+    const landingPageDimension = { name: 'landingPagePlusQueryString' };
+    const organicFilter = buildExactStringFilter('sessionDefaultChannelGroup', 'Organic Search');
+    const conversionEvents = ['book_click', 'line_cta_click', 'phone_click'] as const;
+    const conversionFilter = buildAndFilter([
+        organicFilter,
+        buildInListFilter('eventName', conversionEvents),
+    ]);
+
+    const [landingData, clickData, conversionUserData] = await Promise.all([
+        runGa4Report({
+            propertyId,
+            accessToken,
+            fetchImpl,
+            label: 'GA4 SEO landing conversions baseline',
+            body: {
+                dateRanges,
+                dimensions: [landingPageDimension],
+                metrics: [{ name: 'sessions' }, { name: 'activeUsers' }],
+                dimensionFilter: organicFilter,
+                orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+                limit: 100,
+            },
+        }),
+        runGa4Report({
+            propertyId,
+            accessToken,
+            fetchImpl,
+            label: 'GA4 SEO landing conversion clicks',
+            body: {
+                dateRanges,
+                dimensions: [landingPageDimension, { name: 'eventName' }],
+                metrics: [{ name: 'eventCount' }],
+                dimensionFilter: conversionFilter,
+                limit: 500,
+            },
+        }),
+        runGa4Report({
+            propertyId,
+            accessToken,
+            fetchImpl,
+            label: 'GA4 SEO landing conversion users',
+            body: {
+                dateRanges,
+                dimensions: [landingPageDimension],
+                metrics: [{ name: 'totalUsers' }],
+                dimensionFilter: conversionFilter,
+                limit: 100,
+            },
+        }),
+    ]);
+
+    const clicksByPage = new Map<string, Pick<SeoLandingConversion, 'bookingClicks' | 'lineClicks' | 'phoneClicks'>>();
+    for (const row of clickData.rows || []) {
+        const page = row.dimensionValues?.[0]?.value || '';
+        const eventName = row.dimensionValues?.[1]?.value || '';
+        if (!page || page === '(not set)') continue;
+        const clicks = clicksByPage.get(page) || { bookingClicks: 0, lineClicks: 0, phoneClicks: 0 };
+        const count = Number(row.metricValues?.[0]?.value || 0);
+        if (eventName === 'book_click') clicks.bookingClicks += count;
+        if (eventName === 'line_cta_click') clicks.lineClicks += count;
+        if (eventName === 'phone_click') clicks.phoneClicks += count;
+        clicksByPage.set(page, clicks);
+    }
+
+    const conversionUsersByPage = new Map(
+        (conversionUserData.rows || [])
+            .map((row) => [
+                row.dimensionValues?.[0]?.value || '',
+                Number(row.metricValues?.[0]?.value || 0),
+            ] as const)
+            .filter(([page]) => page && page !== '(not set)'),
+    );
+
+    return (landingData.rows || [])
+        .map((row): SeoLandingConversion | null => {
+            const page = row.dimensionValues?.[0]?.value || '';
+            if (!page || page === '(not set)') return null;
+            const users = Number(row.metricValues?.[1]?.value || 0);
+            const conversionUsers = conversionUsersByPage.get(page) || 0;
+            return {
+                page,
+                sessions: Number(row.metricValues?.[0]?.value || 0),
+                users,
+                ...(clicksByPage.get(page) || { bookingClicks: 0, lineClicks: 0, phoneClicks: 0 }),
+                conversionUsers,
+                clickRate: users > 0 ? conversionUsers / users : 0,
+            };
+        })
+        .filter((row): row is SeoLandingConversion => row !== null);
+}
+
 export async function fetchGa4AiAssistantSummary(options: {
     propertyId: string;
     accessToken: string;
@@ -304,4 +435,38 @@ export async function fetchGa4AiAssistantSources(options: {
             pageviews: Number(row.metricValues?.[2]?.value || 0),
         }))
         .filter((row) => row.source && row.source !== '(not set)');
+}
+
+export async function fetchGa4AiAssistantLandingPages(options: {
+    propertyId: string;
+    accessToken: string;
+    date?: string;
+    startDate?: string;
+    endDate?: string;
+    fetchImpl?: typeof fetch;
+}): Promise<Ga4AiLandingPage[]> {
+    const { propertyId, accessToken, fetchImpl } = options;
+    const data = await runGa4Report({
+        propertyId,
+        accessToken,
+        fetchImpl,
+        label: 'GA4 AI assistant landing pages',
+        body: {
+            dateRanges: [resolveDateRange(options)],
+            dimensions: [{ name: 'landingPagePlusQueryString' }],
+            metrics: [{ name: 'sessions' }, { name: 'activeUsers' }, { name: 'screenPageViews' }],
+            dimensionFilter: buildExactStringFilter('sessionMedium', AI_ASSISTANT_MEDIUM),
+            orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+            limit: 20,
+        },
+    });
+
+    return (data.rows || [])
+        .map((row) => ({
+            page: row.dimensionValues?.[0]?.value || '(not set)',
+            sessions: Number(row.metricValues?.[0]?.value || 0),
+            users: Number(row.metricValues?.[1]?.value || 0),
+            pageviews: Number(row.metricValues?.[2]?.value || 0),
+        }))
+        .filter((row) => row.page && row.page !== '(not set)');
 }

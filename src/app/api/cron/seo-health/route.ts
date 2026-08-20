@@ -3,10 +3,12 @@ import connectToDatabase from '@/modules/seo/infrastructure/seo-mongodb';
 import { fetchGSCData, saveSnapshot, getSnapshot, fetchBlogTraffic, buildBlogRankingReport } from '@/modules/seo/infrastructure/seo-ranking';
 import {
     exchangeRefreshTokenForAccessToken,
+    fetchGa4AiAssistantLandingPages,
     fetchGa4AiAssistantSources,
     fetchGa4AiAssistantSummary,
     fetchGa4OrganicLandingPages,
     fetchGa4OrganicSummary,
+    fetchGa4SeoLandingConversions,
     inspectGa4MeasurementTag,
 } from '@/modules/seo/infrastructure/seo-ga4';
 import { buildSeoDailyPerformanceSection, buildSeoRankingSection } from '@/modules/seo/application/seo-health-shared';
@@ -146,11 +148,15 @@ export async function GET(request: Request) {
         let ga4DataApiStatus: 'configured' | 'missing_config' | 'error' | 'skipped' = cadence.includeWeekly ? 'missing_config' : 'skipped';
         let ga4Summary = null;
         let ga4LandingPages: Array<{ page: string; sessions: number; users: number }> = [];
+        let ga4ConversionLandingPages: Array<{ page: string; sessions: number; users: number; bookingClicks: number; lineClicks: number; phoneClicks: number; conversionUsers: number; clickRate: number }> = [];
         let ga4AiAssistantsSummary = null;
         let ga4AiSources: Array<{ source: string; sessions: number; users: number; pageviews: number }> = [];
+        let ga4AiLandingPages: Array<{ page: string; sessions: number; users: number; pageviews: number }> = [];
         let ga4Summary28d = null;
         let ga4LandingPages28d: Array<{ page: string; sessions: number; users: number }> = [];
+        let ga4ConversionLandingPages28d: Array<{ page: string; sessions: number; users: number; bookingClicks: number; lineClicks: number; phoneClicks: number; conversionUsers: number; clickRate: number }> = [];
         let ga4AiAssistantsSummary28d = null;
+        let ga4AiLandingPages28d: Array<{ page: string; sessions: number; users: number; pageviews: number }> = [];
         let ga4Error: string | null = null;
 
         if (cadence.includeWeekly && ga4PropertyIdConfigured && ga4OauthConfigured) {
@@ -160,13 +166,30 @@ export async function GET(request: Request) {
                     clientSecret: ga4OauthClientSecret,
                     refreshToken: ga4OauthRefreshToken,
                 });
-                const [summary, landingPages, aiAssistantsSummary, aiSources, summary28d, landingPages28d, aiAssistantsSummary28d] = await Promise.all([
+                const [
+                    summary,
+                    landingPages,
+                    conversionLandingPages,
+                    aiAssistantsSummary,
+                    aiSources,
+                    aiLandingPages,
+                    summary28d,
+                    landingPages28d,
+                    conversionLandingPages28d,
+                    aiAssistantsSummary28d,
+                    aiLandingPages28d,
+                ] = await Promise.all([
                     fetchGa4OrganicSummary({
                         propertyId: ga4PropertyId,
                         accessToken,
                         ...ga4Range7d,
                     }),
                     fetchGa4OrganicLandingPages({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range7d,
+                    }),
+                    fetchGa4SeoLandingConversions({
                         propertyId: ga4PropertyId,
                         accessToken,
                         ...ga4Range7d,
@@ -181,6 +204,11 @@ export async function GET(request: Request) {
                         accessToken,
                         ...ga4Range28d,
                     }),
+                    fetchGa4AiAssistantLandingPages({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range7d,
+                    }),
                     fetchGa4OrganicSummary({
                         propertyId: ga4PropertyId,
                         accessToken,
@@ -191,7 +219,17 @@ export async function GET(request: Request) {
                         accessToken,
                         ...ga4Range28d,
                     }),
+                    fetchGa4SeoLandingConversions({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range28d,
+                    }),
                     fetchGa4AiAssistantSummary({
+                        propertyId: ga4PropertyId,
+                        accessToken,
+                        ...ga4Range28d,
+                    }),
+                    fetchGa4AiAssistantLandingPages({
                         propertyId: ga4PropertyId,
                         accessToken,
                         ...ga4Range28d,
@@ -199,11 +237,15 @@ export async function GET(request: Request) {
                 ]);
                 ga4Summary = summary;
                 ga4LandingPages = landingPages;
+                ga4ConversionLandingPages = conversionLandingPages;
                 ga4AiAssistantsSummary = aiAssistantsSummary;
                 ga4AiSources = aiSources;
+                ga4AiLandingPages = aiLandingPages;
                 ga4Summary28d = summary28d;
                 ga4LandingPages28d = landingPages28d;
+                ga4ConversionLandingPages28d = conversionLandingPages28d;
                 ga4AiAssistantsSummary28d = aiAssistantsSummary28d;
+                ga4AiLandingPages28d = aiLandingPages28d;
                 ga4DataApiStatus = 'configured';
             } catch (error) {
                 ga4DataApiStatus = 'error';
@@ -230,12 +272,16 @@ export async function GET(request: Request) {
                     label: '近 7 天',
                     summary: ga4Summary,
                     landingPages: ga4LandingPages,
+                    conversionLandingPages: ga4ConversionLandingPages,
+                    aiLandingPages: ga4AiLandingPages,
                     aiSummary: ga4AiAssistantsSummary,
                 },
                 twentyEightDay: {
                     label: '近 28 天',
                     summary: ga4Summary28d,
                     landingPages: ga4LandingPages28d,
+                    conversionLandingPages: ga4ConversionLandingPages28d,
+                    aiLandingPages: ga4AiLandingPages28d,
                     aiSummary: ga4AiAssistantsSummary28d,
                 },
             } : null,
@@ -348,6 +394,7 @@ export async function GET(request: Request) {
                 metrics: dailyPerformanceSection?.performance || null,
             },
             rankingError,
+            pageOwnershipWarnings: rankingData?.trendReport?.pageOwnershipWarnings || [],
             ga4: {
                 measurementId: GA4_MEASUREMENT_ID,
                 siteTagDetected: ga4SiteTagDetected,
@@ -357,13 +404,15 @@ export async function GET(request: Request) {
                 date: ga4DataApiStatus === 'configured' ? ga4Date : null,
                 summary: ga4Summary,
                 landingPages: ga4LandingPages,
+                conversionLandingPages: ga4ConversionLandingPages,
+                aiLandingPages: ga4AiLandingPages,
                 aiAssistants: {
                     summary: ga4AiAssistantsSummary,
                     sources: ga4AiSources,
                 },
                 windows: {
-                    sevenDay: { range: ga4Range7d, summary: ga4Summary, landingPages: ga4LandingPages, aiSummary: ga4AiAssistantsSummary },
-                    twentyEightDay: { range: ga4Range28d, summary: ga4Summary28d, landingPages: ga4LandingPages28d, aiSummary: ga4AiAssistantsSummary28d },
+                    sevenDay: { range: ga4Range7d, summary: ga4Summary, landingPages: ga4LandingPages, conversionLandingPages: ga4ConversionLandingPages, aiLandingPages: ga4AiLandingPages, aiSummary: ga4AiAssistantsSummary },
+                    twentyEightDay: { range: ga4Range28d, summary: ga4Summary28d, landingPages: ga4LandingPages28d, conversionLandingPages: ga4ConversionLandingPages28d, aiLandingPages: ga4AiLandingPages28d, aiSummary: ga4AiAssistantsSummary28d },
                 },
                 notes: [GA4_AI_TRAFFIC_NOTE],
                 error: ga4Error,

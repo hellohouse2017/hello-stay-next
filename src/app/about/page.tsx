@@ -3,13 +3,13 @@ import JsonLd from "@/components/JsonLd";
 import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿品牌介紹｜鹽埕三館定位與安全承諾",
+  title: "高雄包棟民宿品牌介紹｜鹽埕兩館與規劃中館別",
   description:
-    "從品牌起點、三館定位到安全承諾，一次看懂 Hello Stay 為什麼專注在高雄鹽埕區做團體包棟住宿。",
+    "從品牌起點、兩館可訂方案到規劃中館別，一次看懂 Hello Stay 在高雄鹽埕區的團體包棟住宿定位。",
   alternates: { canonical: "https://www.hello-stay.com/about" },
   openGraph: {
     title: "Hello Stay 是專為團體旅客設計的高雄包棟民宿品牌",
-    description: "了解 Hello Stay 的品牌起點、三館角色分工與合法安全承諾。",
+    description: "了解 Hello Stay 的品牌起點、兩館可訂方案、規劃中館別與合法安全承諾。",
     url: "https://www.hello-stay.com/about",
     images: [
       {
@@ -36,14 +36,14 @@ const brandCards = [
   },
   {
     id: "about-portfolio",
-    kicker: "三館分工",
-    title: "三館各自有角色",
-    summary: "你好哇、溝頂和大智若愚不是重複館型，而是對應不同人數和不同使用情境。",
+    kicker: "館別分工",
+    title: "兩館可訂，一館規劃中",
+    summary: "你好哇寓所與溝頂民宿目前可訂；大智若愚仍在規劃中，尚未開放房況與報價。",
     image: {
       src: "/images/hellohouse/1000.webp",
-      alt: "Hello Stay 三館定位與公共空間代表畫面",
+      alt: "Hello Stay 可訂館別與規劃中館別定位",
     },
-    linkLabel: "查看三館定位",
+    linkLabel: "查看館別定位",
   },
   {
     id: "about-safety",
@@ -88,19 +88,19 @@ const detailCards = [
   },
   {
     id: "about-portfolio",
-    kicker: "三館分工",
-    title: "三館各自對應不同人數與空間需求",
+    kicker: "館別分工",
+    title: "目前可訂方案與規劃中館別分開說明",
     description:
-      "你好哇寓所主打大型公共空間與中島廚房，溝頂民宿主打小團體整棟獨立與四間客房獨立衛浴，大智若愚則是面向更大型團體的電梯與包層規劃。這樣分，是為了讓客人更快找到適合自己的空間。",
+      "你好哇寓所與溝頂民宿是目前可查房、可報價的館別，也可依人數安排雙館。大智若愚是規劃中的電梯館別，尚未開放訂房，因此不列入現行方案比較。",
     image: {
       src: "/images/hellohouse/1000.webp",
-      alt: "Hello Stay 三館定位與公共空間",
+      alt: "Hello Stay 可訂館別與規劃中館別定位",
     },
     specs: [
       { label: "你好哇寓所", value: "8-26 人 中島廚房與大型聚會" },
       { label: "溝頂民宿", value: "4-12 人 分層客房與獨立衛浴" },
-      { label: "大智若愚", value: "20-48 人 電梯與包層規劃" },
-      { label: "雙館包棟", value: "大型團體不拆單" },
+      { label: "雙館包棟", value: "27-36 人依實際人數確認" },
+      { label: "大智若愚", value: "規劃中 尚未開放訂房" },
     ],
     groups: [
       {
@@ -109,7 +109,7 @@ const detailCards = [
       },
       {
         title: "現在的館別安排",
-        items: ["館別差異先被講清楚", "房型頁補完整設備資訊", "日期與報價回到訂房站確認"],
+        items: ["可訂與規劃中狀態分開", "房型頁補完整設備資訊", "日期與報價回到訂房站確認"],
       },
     ],
   },
@@ -124,7 +124,7 @@ const detailCards = [
       alt: "Hello Stay 安全與合法承諾",
     },
     specs: [
-      { label: "合法館別", value: "你好哇寓所 民宿 131-1 號" },
+      { label: "合法館別", value: "你好哇寓所 民宿 131 號" },
       { label: "合法館別", value: "溝頂民宿 民宿 163 號" },
       { label: "保險", value: "富邦產險公共意外責任險" },
       { label: "安全基本盤", value: "消防設備與高溫清潔" },
@@ -145,21 +145,21 @@ const detailCards = [
 const facts = [
   { label: "我們在做什麼", value: "高雄鹽埕區團體包棟" },
   { label: "選館基準", value: "人數 設備 房型" },
-  { label: "目前館別", value: "你好哇 溝頂 大智若愚" },
-  { label: "決策底線", value: "合法 安全 位置與空間好用" },
+  { label: "目前可訂", value: "你好哇 溝頂與雙館方案" },
+  { label: "規劃中", value: "大智若愚 尚未開放訂房" },
 ];
 
 const guides = [
   "Hello Stay 以團體包棟住宿為主軸",
-  "三館各自對應不同人數與使用方式",
+  "兩館可訂 大智若愚仍在規劃中",
   "合法登記與安全承諾公開呈現",
   "房型與設備細節仍以各館頁為準",
 ];
 
 const fit = [
   { label: "適合對象", value: "第一次認識 Hello Stay 的客人" },
-  { label: "重點內容", value: "品牌起點 三館分工 安全承諾" },
-  { label: "延伸頁面", value: "三館比較 或各館頁" },
+  { label: "重點內容", value: "品牌起點 館別狀態 安全承諾" },
+  { label: "延伸頁面", value: "可訂方案比較 或各館頁" },
   { label: "更多資訊", value: "房型與設備會在各館頁完整介紹" },
 ];
 
@@ -177,7 +177,7 @@ const galleryImages = [
   {
     src: "/images/dazhi/building-render.webp",
     alt: "大智若愚規劃示意圖",
-    caption: "大智若愚",
+    caption: "大智若愚（規劃中）",
   },
 ];
 
@@ -187,12 +187,12 @@ const faqs = [
     answer: "是自己的館別品牌 官網會先把館別差異整理清楚 再連到官方訂房站查日期與報價",
   },
   {
-    question: "三館是不是只是大小不同？",
-    answer: "不是。除了人數不同，三館的核心差在公共空間、廚房、衛浴配置與入住動線，所以要分開設計、分開介紹。",
+    question: "目前哪些館別可以訂？",
+    answer: "你好哇寓所與溝頂民宿目前可訂，也可依人數安排雙館；大智若愚仍在規劃中，尚未開放訂房。",
   },
   {
     question: "如果我想快速知道哪一館適合我 應該去哪裡",
-    answer: "直接去 /compare 最快；如果你已經知道自己偏小團或大團，也可以直接進 /godin 或 /hellohouse。",
+    answer: "先看高雄包棟民宿比較頁最快；如果已經知道自己是 4-12 人或 8-26 人，也可以直接查看溝頂民宿或你好哇寓所。",
   },
 ];
 
@@ -207,7 +207,7 @@ export default function AboutPage() {
             "@id": "https://www.hello-stay.com/about/#webpage",
             url: "https://www.hello-stay.com/about",
             name: "關於 Hello Stay",
-            description: "Hello Stay 高雄鹽埕包棟民宿品牌故事、三館定位與安全承諾。",
+            description: "Hello Stay 高雄鹽埕包棟民宿品牌故事、可訂館別、規劃中館別與安全承諾。",
           },
           {
             "@context": "https://schema.org",
@@ -226,11 +226,6 @@ export default function AboutPage() {
                 "@type": "LodgingBusiness",
                 name: "溝頂民宿",
                 url: "https://www.hello-stay.com/godin",
-              },
-              {
-                "@type": "LodgingBusiness",
-                name: "大智若愚",
-                url: "https://www.hello-stay.com/dazhi",
               },
             ],
           },
@@ -257,11 +252,11 @@ export default function AboutPage() {
           },
           stats: [
             { label: "品牌起點", value: "2017 年起深耕鹽埕" },
-            { label: "館別方向", value: "小團 大團 大型團體分流" },
+            { label: "目前可訂", value: "你好哇 溝頂 雙館" },
             { label: "共同原則", value: "包棟邏輯 合法安全" },
-            { label: "品牌輪廓", value: "角色清楚 不做重複館型" },
+            { label: "規劃中", value: "大智若愚 尚未開放" },
           ],
-          primaryAction: { href: "/compare", label: "看三館比較" },
+          primaryAction: { href: "/compare", label: "看可訂方案比較" },
           secondaryAction: { href: "/book", label: "直接查日期與空房" },
         }}
         overview={{
@@ -286,7 +281,7 @@ export default function AboutPage() {
         gallery={{
           kicker: "目前館別方向",
           title: "目前館別方向",
-          intro: "三館不是同一個模板換名字，而是依不同團體需求分別設計。",
+          intro: "你好哇與溝頂目前可訂；大智若愚僅展示規劃方向，尚未開放房況與報價。",
           columns: 3,
           images: galleryImages,
         }}
@@ -301,7 +296,7 @@ export default function AboutPage() {
           title: "真正影響入住決定的是館別差異",
           body:
             "人數、公共空間、房型配置與設備條件，會比品牌介紹更直接影響入住判斷。",
-          primaryAction: { href: "/compare", label: "看三館比較" },
+          primaryAction: { href: "/compare", label: "看可訂方案比較" },
           secondaryAction: { href: "/packages", label: "看情境方案" },
         }}
       />

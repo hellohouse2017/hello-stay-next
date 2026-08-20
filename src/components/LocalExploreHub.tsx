@@ -19,7 +19,10 @@ import {
 } from "lucide-react";
 import { foodGuideSections, spotGuideSections, type LocalGuideItem } from "@/data/local-guides";
 
-type ExploreCategory = "all" | "food" | "coffee" | "spots" | "life" | "traffic";
+import GuideShareToolbar from "./GuideShareToolbar";
+import GuideReadingExperience from "./GuideReadingExperience";
+
+type ExploreCategory = "all" | "breakfast" | "food" | "snacks" | "nightmarket" | "coffee" | "spots" | "life" | "traffic";
 
 type ExploreCard = {
   category: Exclude<ExploreCategory, "all">;
@@ -41,46 +44,83 @@ type PopularPick = {
   image: string;
   alt: string;
   mapQuery?: string;
+  directMapUrl?: string;
   href?: string;
 };
 
 const categories: Array<{ id: ExploreCategory; label: string; icon: typeof Utensils }> = [
   { id: "all", label: "全部推薦", icon: Compass },
-  { id: "food", label: "美食小吃", icon: Utensils },
-  { id: "coffee", label: "咖啡甜點", icon: Coffee },
+  { id: "breakfast", label: "特色早餐", icon: Utensils },
+  { id: "food", label: "正餐熱炒", icon: Utensils },
+  { id: "snacks", label: "街頭小吃", icon: ShoppingBag },
+  { id: "nightmarket", label: "夜市推薦", icon: Sparkles },
+  { id: "coffee", label: "咖啡酒吧", icon: Coffee },
   { id: "spots", label: "景點藝文", icon: Sparkles },
-  { id: "life", label: "在地生活", icon: ShoppingBag },
+  { id: "life", label: "生活補給", icon: ShoppingBag },
   { id: "traffic", label: "交通資訊", icon: Car },
 ];
 
 const exploreCards: ExploreCard[] = [
   {
-    category: "food",
-    label: "FOOD & DAILY LIFE",
-    title: "鹽埕必吃美食",
-    description: "從在地早餐、老店小吃到古早味冰品，沿著鹽埕的日常滋味慢慢吃。",
-    image: "/images/explore/ice.jpg",
-    alt: "鹽埕高雄婆婆冰的芒果冰",
+    category: "breakfast",
+    label: "BREAKFAST",
+    title: "鹽埕特色早餐",
+    description: "大溝頂虱目魚肚漿、大ㄎㄡ胖炭烤三明治、姐妹老五爆餡烘蛋堡，開啟活力早晨。",
+    image: "/images/explore/market.jpg",
+    alt: "鹽埕第一公有零售市場與在地早餐街區",
     href: "/explore/food#breakfast",
-    linkLabel: "探索鹽埕美食",
+    linkLabel: "查看特色早餐",
     icon: Utensils,
   },
   {
+    category: "food",
+    label: "LOCAL MEALS & HOTPOTS",
+    title: "必吃正餐與汕頭火鍋",
+    description: "米其林必比登鴨肉珍、港園牛肉麵、味味香沙茶火鍋與北站深夜熱炒，美味齊全。",
+    image: "/images/hellohouse/1000.webp",
+    alt: "聚餐美食與包棟料理空間",
+    href: "/explore/food#local-meals",
+    linkLabel: "探索正餐與火鍋",
+    icon: Utensils,
+  },
+  {
+    category: "snacks",
+    label: "STREET SNACKS",
+    title: "經典小吃與甜品",
+    description: "阿囉哈滷味、阿芳清蒸肉圓、阿寶豆乳雞、戴蛋餅、王家豆花與50年杏仁茶。",
+    image: "/images/explore/ice.jpg",
+    alt: "鹽埕街頭古早味冰品與小吃",
+    href: "/explore/food#snacks-street-food",
+    linkLabel: "查看小吃清單",
+    icon: ShoppingBag,
+  },
+  {
+    category: "nightmarket",
+    label: "NIGHT MARKETS",
+    title: "在地與觀光夜市",
+    description: "週六限定鹽埕建國夜市、六合觀光夜市與自強夜市，感受高雄道地夜生活風情。",
+    image: "/images/explore/harbor.jpg",
+    alt: "高雄港夜市與港灣夜景",
+    href: "/explore/food#night-markets",
+    linkLabel: "探索夜市行程",
+    icon: Sparkles,
+  },
+  {
     category: "coffee",
-    label: "COFFEE & SWEETS",
-    title: "老屋咖啡香",
-    description: "午後沿著老街散步，找一間老屋咖啡館，讓旅程留一點慢下來的空白。",
+    label: "COFFEE & NIGHTLIFE",
+    title: "老屋咖啡與私密酒吧",
+    description: "新濱·駅前百年金庫冰滴、小堤昭和咖啡館，以及瀨南街廢墟BAR預約包場特色體驗。",
     image: "/images/explore/sanhe-05.jpg",
     alt: "新濱·駅前百年金庫冰滴咖啡設備",
-    href: "/explore/food#coffee-sweets",
-    linkLabel: "探索咖啡甜點",
+    href: "/explore/food#coffee-nightlife",
+    linkLabel: "探索咖啡與酒吧",
     icon: Coffee,
   },
   {
     category: "spots",
     label: "ARTS & WATERFRONT",
     title: "藝文景點巡禮",
-    description: "從駁二、大港橋到港區藝文空間，把鹽埕的老城與海港一次走進。",
+    description: "從駁二藝術特區、水平旋轉大港橋到高流愛河灣，把鹽埕老城與海港一次走遍。",
     image: "/images/explore/pier2.jpg",
     alt: "駁二藝術特區蓬萊倉庫群與步道",
     href: "/explore/spots",
@@ -89,13 +129,13 @@ const exploreCards: ExploreCard[] = [
   },
   {
     category: "life",
-    label: "LOCAL LIFE",
-    title: "在地生活風景",
-    description: "採買、補給與洗衣都在附近，住進鹽埕，也住進一段不必趕路的日常。",
+    label: "LOCAL LIFE & LAUNDRY",
+    title: "生活機能與補給",
+    description: "IPSO自助洗衣、衣潔洗衣、全聯生鮮超市下廚採買與24H便利超商，隨時便利。",
     image: "/images/explore/oldhouse.jpg",
-    alt: "鹽埕老街老屋與日常街景",
-    href: "/explore/food#shopping",
-    linkLabel: "查看生活機能",
+    alt: "鹽埕老街老屋與日常生活機能",
+    href: "/explore/food#laundry",
+    linkLabel: "查看採買與洗衣",
     icon: ShoppingBag,
   },
 ];
@@ -104,7 +144,7 @@ const trafficCard: ExploreCard = {
   category: "traffic",
   label: "GETTING AROUND",
   title: "交通資訊一次看",
-  description: "捷運、高鐵、自駕與叫車方式都整理好，抵達鹽埕後再安心開始散步。",
+  description: "捷運鹽埕埔站、高鐵轉乘、自駕停車場與叫車方式都整理好，抵達後安心散步。",
   image: "/images/traffic/guide.png",
   alt: "你好哇寓所與溝頂民宿交通停車指引圖",
   href: "/traffic",
@@ -114,72 +154,104 @@ const trafficCard: ExploreCard = {
 
 const popularPicks: PopularPick[] = [
   {
+    category: "米其林推薦",
+    title: "鴨肉珍 (總店)",
+    description: "香濃肉燥鴨肉飯與鮮嫩切盤，米其林必比登推介排隊名店。",
+    meta: "五福四路",
+    image: "/images/explore/market.jpg",
+    alt: "鹽埕鴨肉珍",
+    directMapUrl: "https://maps.app.goo.gl/n7rDEnbjunGjisPS9",
+    href: "/explore/food#local-meals",
+  },
+  {
+    category: "人氣火鍋",
+    title: "味味香廣東汕頭牛豬羊肉爐",
+    description: "扁魚沙茶高湯與現切溫體牛，包棟朋友聚餐圍爐首選。",
+    meta: "七賢三路",
+    image: "/images/hellohouse/1000.webp",
+    alt: "味味香廣東汕頭沙茶火鍋",
+    directMapUrl: "https://maps.google.com/?q=味味香廣東汕頭沙茶火鍋+高雄",
+    href: "/explore/food#local-meals",
+  },
+  {
+    category: "特色小吃",
+    title: "阿囉哈滷味",
+    description: "鹽埕代表性乾式滷味，特調黑胡椒醬汁入味，宵夜首選。",
+    meta: "大仁路",
+    image: "/images/explore/ice.jpg",
+    alt: "阿囉哈滷味",
+    directMapUrl: "https://goo.gl/maps/7p6QA3RUA2d1zS1J9",
+    href: "/explore/food#snacks-street-food",
+  },
+  {
+    category: "在地早餐",
+    title: "大溝頂虱目魚米粉湯",
+    description: "無刺鮮美虱目魚肚漿、米粉湯與煎魚腸，老饕清晨首選。",
+    meta: "大溝頂老街",
+    image: "/images/explore/market.jpg",
+    alt: "大溝頂虱目魚米粉湯",
+    directMapUrl: "https://goo.gl/maps/2DPVK1d8ep9m3Ggi7",
+    href: "/explore/food#breakfast",
+  },
+  {
+    category: "夜市推薦",
+    title: "鹽埕建國夜市（週六限定）",
+    description: "鹽埕人私房週六限定街區夜市，充滿傳統夜市小吃與人情味。",
+    meta: "建國四路",
+    image: "/images/explore/harbor.jpg",
+    alt: "鹽埕建國夜市",
+    directMapUrl: "https://maps.google.com/?q=鹽埕埔夜市+高雄",
+    href: "/explore/food#night-markets",
+  },
+  {
     category: "景點藝文",
     title: "駁二藝術特區",
-    description: "倉庫群、展覽與文創店，從鹽埕出發最適合慢慢逛。",
+    description: "倉庫群、當代展覽、文創小店與週末市集，慢慢散步最舒服。",
     meta: "步行約 10 分鐘",
     image: "/images/explore/pier2.jpg",
     alt: "駁二藝術特區蓬萊倉庫群",
-    mapQuery: "駁二藝術特區 高雄市鹽埕區大勇路1號",
+    directMapUrl: "https://maps.google.com/?q=駁二藝術特區+高雄",
     href: "/explore/spots#walkable-core",
   },
   {
-    category: "在地生活",
-    title: "鹽埕示範公有零售市場",
-    description: "市場小吃與街區生活，適合把早餐和散步排在一起。",
-    meta: "鹽埕市場",
-    image: "/images/explore/market.jpg",
-    alt: "鹽埕第一公有零售市場入口",
-    mapQuery: "鹽埕示範公有零售市場 高雄",
-    href: "/explore/spots#walkable-core",
+    category: "老屋酒吧",
+    title: "廢墟BAR (預約包場制)",
+    description: "老屋廢墟美學再生空間，預約包場享受專屬私密調酒聚會。",
+    meta: "瀨南街",
+    image: "/images/explore/sanhe-05.jpg",
+    alt: "廢墟BAR老屋空間",
+    directMapUrl: "https://maps.google.com/?q=廢墟Ruins+高雄",
+    href: "/explore/food#coffee-nightlife",
   },
   {
-    category: "咖啡甜點",
+    category: "老屋咖啡",
     title: "新濱·駅前",
-    description: "日式老屋裡的咖啡與茶點，適合午後慢慢坐著。",
-    meta: "老屋咖啡",
+    description: "百年舊三和銀行古蹟裡的咖啡與茶點，百年金庫冰滴咖啡座。",
+    meta: "哈瑪星商圈",
     image: "/images/explore/sanhe-01.jpg",
     alt: "新濱·駅前咖啡館室內空間",
-    mapQuery: "新濱·駅前 高雄鹽埕",
-    href: "/explore/food#coffee-sweets",
+    directMapUrl: "https://maps.google.com/?q=新濱駅前+高雄",
+    href: "/explore/food#coffee-nightlife",
   },
   {
-    category: "景點藝文",
+    category: "水岸地標",
     title: "大港橋",
-    description: "沿港區散步，看旋轉橋景，也能接著走到棧貳庫。",
+    description: "全台首座水平旋轉景觀橋，傍晚開合秀，連通棧貳庫水岸。",
     meta: "港區散步",
     image: "/images/explore/bridge.jpg",
     alt: "高雄港大港橋與水岸景色",
-    mapQuery: "大港橋 高雄",
+    directMapUrl: "https://maps.google.com/?q=大港橋+高雄",
     href: "/explore/spots#walkable-core",
   },
   {
-    category: "咖啡甜點",
-    title: "高雄婆婆冰",
-    description: "鹽埕經典古早味冰品，適合散步途中停下來消暑。",
-    meta: "七賢三路",
-    image: "/images/explore/ice.jpg",
-    alt: "鹽埕阿婆冰芒果冰",
-    mapQuery: "高雄婆婆冰 創始店 七賢三路135號",
-    href: "/explore/food#snacks-drinks",
-  },
-  {
-    category: "住宿空間",
-    title: "回到你好哇寓所",
-    description: "逛累了回到中島廚房與公共空間，繼續一起吃飯、聊天。",
-    meta: "Hello Stay",
-    image: "/images/hellohouse/1000.webp",
-    alt: "你好哇寓所中島廚房與多人備餐空間",
-    href: "/hellohouse",
-  },
-  {
-    category: "慢旅行",
-    title: "三天兩夜慢旅行",
-    description: "把鹽埕、駁二、旗津與捷運備案排成不趕路的三天行程。",
-    meta: "行程提案",
-    image: "/images/explore/harbor.jpg",
-    alt: "高雄港灣與鹽埕港區景色",
-    href: "/blog/kaohsiung-3day-seasonal",
+    category: "生活補給",
+    title: "IPSO 自助洗衣 (距離最近)",
+    description: "全新進口商用洗脫烘一體機，快速高溫殺菌，離民宿最近。",
+    meta: "大仁路商圈",
+    image: "/images/traffic/guide.png",
+    alt: "IPSO自助洗衣",
+    directMapUrl: "https://maps.google.com/?q=IPSO+自助洗衣+高雄鹽埕",
+    href: "/explore/food#laundry",
   },
 ];
 
@@ -219,13 +291,14 @@ function getItemByName(sections: typeof foodGuideSections | typeof spotGuideSect
 
 function mapHref(item: LocalGuideItem | undefined): string | undefined {
   if (!item) return undefined;
+  if (item.directMapUrl) return item.directMapUrl;
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.mapQuery)}`;
 }
 
 function PopularCard({ pick }: { pick: PopularPick }) {
   const item = getItemByName(foodGuideSections, pick.title) || getItemByName(spotGuideSections, pick.title);
-  const href = pick.href || mapHref(item);
-  const isExternal = !pick.href && Boolean(href);
+  const href = pick.directMapUrl || pick.href || mapHref(item);
+  const isExternal = Boolean(pick.directMapUrl) || (!pick.href && Boolean(href));
 
   const content = (
     <>
@@ -267,8 +340,26 @@ export default function LocalExploreHub() {
     popularRef.current?.scrollBy({ left: direction === "left" ? -300 : 300, behavior: "smooth" });
   };
 
+  const hubHighlights = [
+    "鴨肉珍（米其林必比登推介）",
+    "味味香廣東汕頭沙茶火鍋",
+    "大溝頂虱目魚米粉湯與大ㄎㄡ胖碳烤三明治",
+    "阿囉哈滷味與阿芳古早味清蒸肉圓",
+    "鹽埕建國夜市（週六限定）",
+    "駁二藝術特區與旋轉大港橋",
+    "廢墟BAR老屋包場酒吧",
+    "IPSO 自助洗衣（離館最近）",
+  ];
+
   return (
     <div className="local-guide-page explore-redesign">
+      <GuideReadingExperience
+        title="鹽埕玩什麼？美食、景點與在地生活指南"
+        description="從老屋咖啡、在地美食，到河岸風景、藝文空間與日常補給，鹽埕有留給旅人慢慢走的理由。"
+        url="/explore"
+        highlights={hubHighlights}
+      />
+
       <section className="explore-redesign__hero" aria-labelledby="explore-title">
         <Image
           src="/images/explore/pier2.jpg"
@@ -279,7 +370,7 @@ export default function LocalExploreHub() {
         />
         <div className="explore-redesign__hero-overlay" aria-hidden="true" />
         <div className="explore-redesign__container explore-redesign__hero-content">
-          <p className="explore-redesign__eyebrow"><MapPin size={14} aria-hidden="true" /> YANCHENG LOCAL GUIDE</p>
+          <p className="explore-redesign__eyebrow"><MapPin size={14} aria-hidden="true" /> Hello Stay ｜ 鹽埕私房漫遊指南</p>
           <h1 id="explore-title">鹽埕玩什麼？</h1>
           <p className="explore-redesign__hero-lead">在老城裡，發現最迷人的生活節奏</p>
           <p className="explore-redesign__hero-copy">從老屋咖啡、在地美食，到河岸風景、藝文空間與日常補給，鹽埕有留給旅人慢慢走的理由。</p>
@@ -310,7 +401,7 @@ export default function LocalExploreHub() {
 
       <section className="explore-redesign__intro" aria-labelledby="explore-intro-title">
           <div className="explore-redesign__container">
-            <p className="explore-redesign__eyebrow explore-redesign__eyebrow--dark">EXPLORE YANCHENG</p>
+            <p className="explore-redesign__eyebrow explore-redesign__eyebrow--dark">Hello Stay ｜ 鹽埕在地探索</p>
             <h2 id="explore-intro-title">探索鹽埕的美好日常</h2>
             <span className="explore-redesign__rule" aria-hidden="true" />
             <p>精選推薦，帶你走進鹽埕的在地魅力與文化風景。</p>
@@ -343,7 +434,7 @@ export default function LocalExploreHub() {
           <div className="explore-redesign__container">
             <div className="explore-redesign__section-head">
               <div>
-                <p className="explore-redesign__eyebrow explore-redesign__eyebrow--dark">TOP PICKS</p>
+                <p className="explore-redesign__eyebrow explore-redesign__eyebrow--dark">人氣精選 ｜ 街區私房點</p>
                 <h2 id="popular-title">人氣推薦</h2>
                 <p>旅客最愛的鹽埕景點與美食</p>
               </div>
@@ -357,6 +448,17 @@ export default function LocalExploreHub() {
             </div>
           </div>
       </section>
+
+      {/* 底部大型同行友人分享卡片 */}
+      <div className="explore-redesign__container">
+        <GuideShareToolbar
+          title="鹽埕玩什麼？在地旅宿美食與景點總覽"
+          description="把這份鹽埕必吃、夜市、老屋酒吧與生活機能地圖傳給同行友人，一起規劃高雄包棟之旅！"
+          url="/explore"
+          highlights={hubHighlights}
+          variant="card"
+        />
+      </div>
 
       <section className="explore-redesign__stay-cta" aria-labelledby="stay-cta-title">
           <div className="explore-redesign__container explore-redesign__stay-grid">

@@ -12,6 +12,7 @@
     "test:seo-local-crawl": "npx tsx scripts/verify-local-seo-crawl.ts",
     "test:seo-alert-delivery": "npx tsx scripts/test-seo-alert-delivery.ts",
     "test:seo-pagespeed": "npx tsx scripts/test-seo-pagespeed.ts",
+    "test:seo-ga4": "npx tsx scripts/test-seo-ga4.ts",
     "test:seo-report-formatters": "npx tsx scripts/test-seo-report-formatters.ts",
     "test:seo-health-shared": "npx tsx scripts/test-seo-health-shared.ts",
     "test:seo-ranking-boundary": "npx tsx scripts/test-seo-ranking-boundary.ts",
@@ -31,6 +32,8 @@
     "update:weekly": "tsx scripts/weekly-refresh.ts",
     "enrich:monthly": "tsx scripts/content-enrichment.ts",
     "seo:analyze": "tsx scripts/seo-driven-update.ts",
+    "ping:indexnow": "tsx scripts/ping-indexnow.ts",
+    "ping:google": "tsx scripts/submit-google-indexing.ts",
     "validate:content": "tsx scripts/validate-public-content.ts"
   },
   "dependencies": {

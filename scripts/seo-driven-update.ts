@@ -14,7 +14,10 @@ import mongoose from 'mongoose'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { loadEnvConfig } from '@next/env'
 import { scheduledArticles } from '@/data/scheduled-articles'
+
+loadEnvConfig(process.cwd())
 
 const MONGO_URI = process.env.MONGODB_URI || ''
 const articlesDir = path.join(process.cwd(), 'src/content/articles')

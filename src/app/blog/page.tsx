@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import { getAllArticles } from "@/lib/articles";
 import { scheduledArticles, getPublishedArticles } from "@/data/scheduled-articles";
 import { isPrunedBlogSlug } from "@/data/pruned-blog-slugs";
+import GuideShareToolbar from "@/components/GuideShareToolbar";
 
 export const metadata: Metadata = {
   title: "高雄包棟民宿怎麼選？情境、設備與交通整理",
@@ -71,9 +72,9 @@ const buckets: ArticleBucket[] = [
   {
     id: "bucket-practical",
     kicker: "實用資訊",
-    title: "交通相關問題",
-    intro: "這類文章不是在講浪漫，而是在講真的會卡住旅客的事。",
-    articleSlugs: ["taiwan-travel-foreign-guide"],
+    title: "政策補助與交通指南",
+    intro: "整理政府最新國旅補助方案、平日折抵規則與無車自由行交通痛點，出發前看這篇最省心省預算。",
+    articleSlugs: ["taiwan-travel-subsidy-guide", "taiwan-travel-foreign-guide"],
   },
   {
     id: "bucket-local-journal",
@@ -689,7 +690,7 @@ function pickImage(article: ArticleSummary) {
   if (article.slug === "pier2-accommodation") {
     return { src: "/images/hellohouse/photo5.webp", alt: article.title };
   }
-  if (article.slug === "taiwan-travel-foreign-guide") {
+  if (article.slug === "taiwan-travel-foreign-guide" || article.slug === "taiwan-travel-subsidy-guide") {
     return { src: "/images/hellohouse/traffic.webp", alt: article.title };
   }
   if (article.slug === "kaohsiung-nye-stay") {
@@ -928,6 +929,15 @@ export default async function BlogIndex() {
               <p className="blog-kicker">READ BY NEED</p>
               <h2>依需求找文章</h2>
               <p>直接從需求切入。</p>
+            </div>
+
+            <div style={{ margin: "24px 0" }}>
+              <GuideShareToolbar
+                title="Hello Stay 高雄包棟旅宿攻略庫"
+                description="家族旅遊、企業團建、包棟麻將廚房、鹽埕美食夜市與周邊景點全指南。"
+                url="/blog"
+                variant="inline"
+              />
             </div>
 
             <div className="blog-buckets">

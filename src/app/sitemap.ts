@@ -8,22 +8,22 @@ import { BLOG_TRANSLATIONS } from "@/data/blog-translations";
 const baseUrl = "https://www.hello-stay.com";
 
 const LAST_MODIFIED_MAP: Record<string, string> = {
-    "": "2026-07-27",
+    "": "2026-08-16",
     "/hellohouse": "2026-07-12",
     "/godin": "2026-07-27",
     "/dazhi": "2026-05-19",
     "/book": "2026-03-15",
     "/traffic": "2026-03-24",
     "/agreement": "2026-07-22",
-    "/explore": "2026-07-17",
-    "/explore/food": "2026-07-14",
-    "/explore/spots": "2026-07-14",
+    "/explore": "2026-08-16",
+    "/explore/food": "2026-08-16",
+    "/explore/spots": "2026-08-16",
     "/packages": "2026-07-27",
     "/reviews": "2026-07-09",
-    "/kaohsiung-whole-house": "2026-07-27",
-    "/compare": "2026-07-27",
+    "/kaohsiung-whole-house": "2026-08-16",
+    "/compare": "2026-08-16",
     "/blog": "2026-07-14",
-    "/about": "2026-05-20",
+    "/about": "2026-08-16",
     "/guide": "2026-05-20",
 };
 

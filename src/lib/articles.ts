@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -23,6 +23,7 @@ export interface ArticleMetadata {
 
 export interface Article extends ArticleMetadata {
   content: ReactNode
+  rawContent?: string
 }
 
 function normalizeFaq(value: unknown): Array<{ q: string; a: string }> | undefined {
@@ -92,6 +93,20 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     const { content: mdxContent } = await compileMDX({
       source: content,
       options: { parseFrontmatter: false },
+      components: {
+        a: (props: any) => {
+          const href = props?.href || ''
+          const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')
+          if (isExternal) {
+            return React.createElement('a', {
+              ...props,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+            })
+          }
+          return React.createElement('a', props)
+        },
+      },
     })
 
     return {
@@ -107,6 +122,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       faq: normalizeFaq(data.faq),
       wordCount: estimateWordCount(content),
       content: mdxContent,
+      rawContent: content,
     }
   } catch (error) {
     if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {

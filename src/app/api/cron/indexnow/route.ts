@@ -20,20 +20,10 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const today = new Date().toISOString().slice(0, 10);
-
-    // Get all published blog articles
-    const publishedArticles = scheduledArticles.filter(a => a.publishDate <= today);
-    const blogUrls = publishedArticles.map(a => `${HOST}/blog/${a.slug}`);
-
-    // Static pages
-    const staticUrls = [
-        "/", "/hellohouse", "/godin", "/dazhi", "/book",
-        "/kaohsiung-whole-house", "/compare", "/explore", "/traffic", "/packages", "/reviews",
-        "/blog",
-    ].map(p => `${HOST}${p}`);
-
-    const allUrls = [...staticUrls, ...blogUrls];
+    // Get all sitemap URLs dynamically
+    const { default: sitemap } = await import("@/app/sitemap");
+    const sitemapEntries = await sitemap();
+    const allUrls = sitemapEntries.map((entry) => entry.url);
 
     // Submit to IndexNow
     const response = await fetch("https://api.indexnow.org/indexnow", {
@@ -51,8 +41,6 @@ export async function GET(req: NextRequest) {
         success: true,
         indexnowStatus: response.status,
         totalSubmitted: allUrls.length,
-        blogArticles: blogUrls.length,
-        staticPages: staticUrls.length,
-        date: today,
+        timestamp: new Date().toISOString(),
     });
 }

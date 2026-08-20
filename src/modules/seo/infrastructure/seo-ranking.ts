@@ -12,6 +12,10 @@ import {
     type SearchConsoleAuthProvider,
 } from './seo-gsc-runtime';
 import { createMongoSeoSnapshotRepository } from './seo-snapshot-repository';
+import {
+    buildSeoQueryPageOpportunities,
+    type SeoQueryPageOpportunity,
+} from '../domain/seo-query-ownership';
 
 // ── 目標關鍵字（老闆最在意的排名）──────────────────
 
@@ -154,6 +158,8 @@ export interface SeoTrendReport {
     landingPages: SeoLandingPageTrend[];
     keywordGroups: SeoKeywordGroupTrend[];
     cannibalization?: Array<{ query: string; pages: Array<{ page: string; clicks: number; impressions: number }> }>;
+    queryPageOpportunities?: SeoQueryPageOpportunity[];
+    pageOwnershipWarnings?: SeoQueryPageOpportunity[];
     notes: string[];
 }
 
@@ -762,6 +768,10 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
 
         const comparison7d = buildTrendComparison(current7dRange.label, current7d, previous7d, MIN_IMPRESSIONS_FOR_SITE_JUDGEMENT);
         const comparison28d = buildTrendComparison(current28dRange.label, current28d, previous28d, MIN_IMPRESSIONS_FOR_SITE_JUDGEMENT);
+        const queryPageOpportunities = buildSeoQueryPageOpportunities(current28dQueryPages);
+        const pageOwnershipWarnings = queryPageOpportunities
+            .filter((opportunity) => opportunity.competitionStatus !== 'aligned' && opportunity.impressions >= 20)
+            .slice(0, 10);
         const trendReport: SeoTrendReport = {
             overall: buildOverallTrendSummary(comparison7d, comparison28d),
             comparison7d,
@@ -769,11 +779,14 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
             landingPages: buildLandingPageTrends(currentTopPages, previousTopPages, current7dRange.label),
             keywordGroups,
             cannibalization: buildCannibalizationReport(current28dQueryPages),
+            queryPageOpportunities: queryPageOpportunities.slice(0, 100),
+            pageOwnershipWarnings,
             notes: [
                 '低搜尋量詞或近 7/28 天總曝光不足時，日報會標成「資料不足」，不直接判定出榜或退步。',
                 '詞群表現來自 query cluster，包含長尾並區分品牌／非品牌，適合看趨勢，不等於即時 SERP 單點排名。',
                 'CTR 至少 100 曝光才參與判讀；指標方向衝突時標記 mixed。',
                 '點擊、曝光、排名數字來自 Google Search Console 官方 API；「偏進步/持平/偏弱」是本站依據這些數字做的內部判讀邏輯，不是 Google 的官方評分或保證。',
+                '頁面分工警示依本站既定搜尋角色比對 GSC query/page 資料；aligned、competing、misaligned 是內部治理狀態，不是 Google 官方分類。',
             ],
         };
 

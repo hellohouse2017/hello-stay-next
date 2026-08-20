@@ -871,6 +871,7 @@ export default function GodinPage() {
               alternateName: ["Godin House", "溝頂", "Hello Stay 二館"],
               url: "https://www.hello-stay.com/godin",
               telephone: "+886-932-828-922",
+              email: "hellohouse2017@gmail.com",
               description:
                 "高雄鹽埕區五層樓獨棟包棟民宿，四間客房皆有獨立衛浴，適合 4-12 人家庭或小團體入住。",
               address: {
@@ -882,15 +883,41 @@ export default function GodinPage() {
                 addressCountry: "TW",
               },
               geo: { "@type": "GeoCoordinates", latitude: 22.6244, longitude: 120.2822 },
+              hasMap: godin.mapUrl,
+              sameAs: [
+                "https://www.instagram.com/hellohouse2020/",
+                "https://www.facebook.com/HelloHouse2020/",
+                "https://lin.ee/atCiMQw",
+              ],
               checkinTime: "16:00",
               checkoutTime: "11:00",
               numberOfRooms: 4,
               petsAllowed: false,
+              smokingAllowed: false,
               amenityFeature: [
                 { "@type": "LocationFeatureSpecification", name: "四間客房皆有獨立衛浴", value: true },
                 { "@type": "LocationFeatureSpecification", name: "4F 公共交誼廳", value: true },
                 { "@type": "LocationFeatureSpecification", name: "麻將桌", value: true },
                 { "@type": "LocationFeatureSpecification", name: "免費 Wi-Fi", value: true },
+                { "@type": "LocationFeatureSpecification", name: "微波爐與簡易備餐流理台", value: true },
+                { "@type": "LocationFeatureSpecification", name: "RO 逆滲透飲水機", value: true },
+                { "@type": "LocationFeatureSpecification", name: "自助密碼鎖入住", value: true },
+                { "@type": "LocationFeatureSpecification", name: "電梯", value: false },
+                { "@type": "LocationFeatureSpecification", name: "戶外烤肉區", value: false },
+              ],
+              containsPlace: [
+                {
+                  "@type": "Accommodation",
+                  name: "溝頂 雙人房 (共 2 間：1F 雙人房、5F 雙人房)",
+                  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2 },
+                  bed: { "@type": "BedDetails", numberOfBeds: 1, typeOfBed: "Double" },
+                },
+                {
+                  "@type": "Accommodation",
+                  name: "溝頂 四人房 (共 2 間：2F 四人房、3F 四人房)",
+                  occupancy: { "@type": "QuantitativeValue", minValue: 1, maxValue: 4 },
+                  bed: { "@type": "BedDetails", numberOfBeds: 2, typeOfBed: "Double" },
+                },
               ],
             },
             {
