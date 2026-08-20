@@ -54,10 +54,10 @@ const scheduledArticleSource: ScheduledArticle[] = [
     // ── Q1: 人數篇 × 情境篇 ──
     {
         slug: "kaohsiung-6-person-stay",
-        title: "高雄 6 人住宿推薦：小團體包棟 vs 訂飯店，哪個划算？",
-        description: "6人出遊高雄住包棟還是飯店？從價格、空間、設備完整比較，幫你找到最適合的住宿方式。",
+        title: "【高雄 4 房包棟推薦】6 人小團體出遊：溝頂民宿 4 房全套房 vs 飯店訂房比較",
+        description: "6人出遊高雄住包棟還是飯店？溝頂民宿提供 4 房全獨立衛浴套房，包棟不鎖房，完整比較價格、空間與分房隱私。",
         publishDate: "2026-03-01",
-        dateModified: "2026-08-16",
+        dateModified: "2026-08-20",
         emoji: "👥", tags: ["包棟", "6人"],
         excerpt: "6人出遊住飯店要訂3間房，包棟只要一棟。價格、空間、設備完整比較。",
         sections: [
@@ -95,10 +95,10 @@ const scheduledArticleSource: ScheduledArticle[] = [
     },
     {
         slug: "kaohsiung-10-person-stay",
-        title: "高雄 10 人包棟民宿推薦｜4 間房、獨立衛浴與麻將怎麼選",
-        description: "高雄 10 人包棟民宿怎麼選？核對四間房的實際配置、每房獨立衛浴、手動麻將與樓梯動線，再依日期查詢房況與報價。",
+        title: "【高雄 4 房包棟推薦】10 人包棟首選溝頂民宿｜4 間獨立套房・手動麻將與分房指南",
+        description: "高雄 10 人包棟民宿怎麼選？溝頂民宿提供 4 間獨立套房衛浴（2雙人+2四人），包棟整棟獨享不鎖房，附頂樓交誼廳與手動麻將桌。",
         publishDate: "2026-03-08",
-        dateModified: "2026-08-16",
+        dateModified: "2026-08-20",
         emoji: "🏠", tags: ["包棟", "10人"],
         excerpt: "10 人出遊是最常見的包棟人數。空間、設備、地點三大重點幫你選。",
         sections: [
@@ -190,10 +190,10 @@ const scheduledArticleSource: ScheduledArticle[] = [
     },
     {
         slug: "kaohsiung-20-person-stay",
-        title: "高雄 20 人包棟民宿推薦｜6 間房與雙館方案怎麼選",
-        description: "高雄 20 人包棟住宿先看你好哇寓所 6 間房；若需要更多分房空間，再比較你好哇與溝頂雙館方案的房型與動線。",
+        title: "【高雄 6 房包棟推薦】20 人包棟首選你好哇寓所｜6 間獨立套房・中島大廚房與雙館合住指南",
+        description: "高雄 20 人包棟推薦你好哇寓所 6 房全套房配置（3雙+1四+2六）與 1F 中島大廚房；若需更多房間可合訂雙館 10 房，包棟全開絕不鎖房。",
         publishDate: "2026-03-20",
-        dateModified: "2026-08-16",
+        dateModified: "2026-08-20",
         emoji: "🎉", tags: ["包棟", "20人"],
         excerpt: "20 人先看你好哇寓所 6 間房；需要更多分房空間時，再比較雙館方案。",
         sections: [
@@ -235,10 +235,10 @@ const scheduledArticleSource: ScheduledArticle[] = [
     // Week 5
     {
         slug: "kaohsiung-30-person-stay",
-        title: "高雄 30 人包棟住宿推薦｜雙館 10 間房怎麼分",
-        description: "高雄 30 人包棟可使用你好哇寓所與溝頂民宿雙館方案。整理 10 間房分配、兩館距離、聚會空間與交通安排。",
+        title: "【高雄 10 房包棟推薦】30 人大型團體包棟｜雙館 10 間獨立套房・中島廚房與分棟分房指南",
+        description: "高雄 30 人大型團體包棟首選！你好哇寓所＋溝頂民宿雙館合住提供 10 間獨立套房，兩館相鄰步行 5 秒，雙交誼廳與中島廚房，包棟獨享絕不鎖房。",
         publishDate: "2026-03-27",
-        dateModified: "2026-08-16",
+        dateModified: "2026-08-20",
         emoji: "🏘️", tags: ["包棟", "30人"],
         excerpt: "30 人出遊最大的挑戰：找不到一個地方能全部住在一起。我們有解法。",
         sections: [
@@ -1112,10 +1112,10 @@ Day 2
 },
     {
     "slug": "kaohsiung-arena-accommodation",
-    "title": "高雄世運住宿／高雄巨蛋住宿｜捷運、散場與多人包棟比較",
-    "description": "高雄世運與高雄巨蛋住宿怎麼選？單看演出與快速散場優先住左營；多人同行、還要玩駁二鹽埕，再比較捷運轉乘與包棟方案。",
+    "title": "【高雄演唱會住宿推薦】世運/巨蛋散場捷運直達・4房/6房多人包棟首選",
+    "description": "高雄世運主場館與巨蛋演唱會住宿首選！捷運直達、散場交通動線完整解析。提供 4 房（4-12人）與 6 房（8-26人）全獨立套房包棟，附中島廚房與交誼客廳，官方直訂免手續費。",
     "publishDate": "2026-03-24",
-    "dateModified": "2026-08-16",
+    "dateModified": "2026-08-20",
     "emoji": "🏟️",
     "tags": [
         "巨蛋",

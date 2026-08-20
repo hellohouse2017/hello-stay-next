@@ -60,13 +60,13 @@ const stays: StayOption[] = [
     href: "/godin",
     image: godin.coverImage,
     imageAlt: "溝頂民宿四樓交誼廳與高雄鹽埕小團體包棟空間",
-    capacityLabel: "4-12 人包棟",
-    bedroomLabel: "2-4 間客房",
+    capacityLabel: "4-12 人・4 房包棟",
+    bedroomLabel: "4 間獨立客房（2雙+2四）",
     priceLabel: `平日 NT$${godin.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
     bookingProperty: "溝頂民宿",
     guestGuide: "4-12 人分層整棟",
     description: "五層獨棟設計，分層休息互不干擾；頂樓配備明亮交誼廳與手動麻將桌，小家庭與好友出遊專屬整棟首選。",
-    pillTags: ["五層獨棟整棟獨享", "4F 頂樓專屬交誼廳", "手動麻將桌", "客房皆有獨立衛浴"],
+    pillTags: ["4 間獨立套房衛浴", "包棟整棟獨享不鎖房", "4F 頂樓交誼廳＋手動麻將", "近捷運鹽埕埔站 5 分鐘"],
   },
   {
     id: "hellohouse",
@@ -74,13 +74,13 @@ const stays: StayOption[] = [
     href: "/hellohouse",
     image: hellohouse.coverImage,
     imageAlt: "你好哇寓所一樓中島廚房與高雄包棟民宿公共交誼空間",
-    capacityLabel: "8-26 人包棟",
-    bedroomLabel: "3-6 間客房",
+    capacityLabel: "8-26 人・6 房包棟",
+    bedroomLabel: "6 間獨立客房（3雙+1四+2六）",
     priceLabel: `平日 NT$${hellohouse.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
     bookingProperty: "你好哇寓所",
     guestGuide: "8-26 人中島大公區",
     description: "一樓設有寬敞中島廚房、高腳吧台與大型交誼客廳；多間套房獨立衛浴，最適合家族聚會、多人聚餐與迎娶活動。",
-    pillTags: ["一樓大型中島廚房", "手動麻將桌", "全套房獨立衛浴", "適合聚會與迎娶"],
+    pillTags: ["6 間獨立套房衛浴", "1F 大型中島廚房＋交誼廳", "包棟全開絕不鎖房", "手動麻將桌＋迎娶聚餐首選"],
   },
   {
     id: "dual",
@@ -90,13 +90,13 @@ const stays: StayOption[] = [
       { src: hellohouse.coverImage, alt: "你好哇寓所公共空間", label: "你好哇寓所" },
       { src: godin.coverImage, alt: "溝頂民宿五層獨棟空間", label: "溝頂民宿" },
     ],
-    capacityLabel: "27-36 人包棟",
-    bedroomLabel: "7-10 間客房",
+    capacityLabel: "27-36 人・10 房包棟",
+    bedroomLabel: "10 間獨立客房（4房+6房合住）",
     priceLabel: "依日期與人數即時報價",
     bookingProperty: "雙館包棟",
     guestGuide: "27-36 人大型團體",
     description: "你好哇與溝頂兩館相鄰、步行僅約 5 秒；合計最多 10 間客房與雙交誼廳，大型團體同聚也能保有私密休息空間。",
-    pillTags: ["兩館相鄰步行 5 秒", "最多 10 間客房", "雙交誼空間", "企業員工旅遊與大家族"],
+    pillTags: ["10 間全套房獨立衛浴", "兩館相鄰步行 5 秒", "雙交誼空間＋中島廚房", "包棟獨享絕不鎖房"],
   },
 ];
 
@@ -502,9 +502,9 @@ export default function HomeTemplateExperience() {
                         ? "依人數智慧推薦方案"
                         : "依房數智慧推薦方案"}
                     </option>
-                    <option value="溝頂民宿">溝頂民宿（2-4 房・4-12 人整棟）</option>
-                    <option value="你好哇寓所">你好哇寓所（3-6 房・8-26 人中島）</option>
-                    <option value="雙館包棟">雙館包棟（7-10 房・27-36 人合住）</option>
+                    <option value="溝頂民宿">溝頂民宿（4 房・4-12 人整棟）</option>
+                    <option value="你好哇寓所">你好哇寓所（6 房・8-26 人中島）</option>
+                    <option value="雙館包棟">雙館包棟（10 房・27-36 人合住）</option>
                   </select>
                 </div>
               </div>

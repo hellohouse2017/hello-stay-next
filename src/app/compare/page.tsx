@@ -4,13 +4,13 @@ import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 import { publicStayFacts } from "@/data/public-stay-facts";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿比較｜4-36 人依人數選館",
+  title: "【高雄包棟民宿比較】4房vs6房怎麼挑？你好哇寓所與溝頂民宿房型・衛浴・分房配置評比｜Hello Stay",
   description:
-    "高雄包棟民宿怎麼選？比較溝頂民宿 4-12 人、你好哇寓所 8-26 人與雙館 27-36 人方案的房型、衛浴、廚房與公共空間。",
+    "高雄包棟民宿怎麼選？比較溝頂民宿（4房/4衛・4-12人）、你好哇寓所（6房/6衛・8-26人）與雙館 10 房方案的房型配置、分房隱私、中島廚房與公共空間，全獨立套房・包棟絕不鎖房。",
   alternates: { canonical: "https://www.hello-stay.com/compare" },
   openGraph: {
-    title: "高雄包棟民宿比較｜4-36 人依人數選館｜Hello Stay",
-    description: "依人數、房型與公共空間比較高雄鹽埕目前可訂的兩館與雙館包棟方案。",
+    title: "【高雄包棟民宿比較】4房vs6房怎麼挑？你好哇寓所與溝頂民宿房型・衛浴・分房配置評比｜Hello Stay",
+    description: "依房間數（4房/6房/10房）、人數與分房隱私比較高雄鹽埕目前可訂的兩館與雙館包棟方案，全套房獨立衛浴・包棟絕不鎖房。",
     url: "https://www.hello-stay.com/compare",
     images: [
       {
@@ -114,17 +114,17 @@ const bookableOptions = [
 ] as const;
 
 const comparisonFacts = [
-  { label: "4-12 人", value: "溝頂：四房獨棟" },
-  { label: "8-26 人", value: "你好哇：中島廚房與聚會空間" },
-  { label: "27-36 人", value: "雙館：10 房分棟休息" },
-  { label: "需要電梯", value: "目前可訂方案皆不符合" },
+  { label: "4 房包棟（4-12人）", value: "溝頂：4 間獨立套房衛浴・不鎖房" },
+  { label: "6 房包棟（8-26人）", value: "你好哇：6 間獨立套房衛浴＋中島大廚房" },
+  { label: "10 房包棟（27-36人）", value: "雙館：10 間獨立套房衛浴・分棟休息" },
+  { label: "分房隱私與承諾", value: "全套房獨立衛浴・包棟絕不鎖房" },
 ];
 
 const bookingNotes = [
-  "4-7 人優先看溝頂，8-12 人兩館皆可比較，13-26 人看你好哇",
-  "27-34 人使用雙館標準安排，35-36 人須加床",
-  "需要正式開伙時，以你好哇中島廚房最完整",
-  "長輩或行動不便者同行時，先確認樓層安排",
+  "3-4 對情侶或小團體：溝頂 4 房提供 4 間獨立套房（2雙+2四），每組皆有專屬衛浴",
+  "多組家庭或聚會迎娶：你好哇 6 房提供 6 間獨立套房與 1F 中島廚房大客廳",
+  "包棟透明承諾：所有包棟方案皆享有對應之完整房間數與全棟空間，絕不鎖房",
+  "27-34 人使用雙館標準安排，35-36 人須加床；兩館皆為樓梯動線、無電梯",
 ];
 
 const fit = [

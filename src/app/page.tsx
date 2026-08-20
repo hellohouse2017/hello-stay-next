@@ -5,19 +5,19 @@ import { godin, hellohouse } from "@/data/properties";
 import { getAlternateLanguageMap } from "@/i18n/config";
 
 const homeDescription =
-  "Hello Stay 提供高雄鹽埕 4-36 人包棟住宿，包含溝頂民宿、你好哇寓所與雙館方案。近駁二、大港橋與鹽埕埔站，先依人數選方案，再查即時空房與報價。";
+  "高雄鹽埕 4-36 人包棟民宿推薦！提供 4 房（溝頂 4-12 人）、6 房（你好哇 8-26 人中島廚房）與 10 房雙館合住。全套房獨立衛浴・包棟不鎖房，近駁二與捷運站，官方直訂免手續費。";
 
 export const metadata: Metadata = {
-  title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費",
+  title: "【高雄包棟民宿推薦】4房/6房/10房獨立套房・4-36人包棟｜Hello Stay 官方直訂免手續費",
   description: homeDescription,
   alternates: {
     canonical: "https://www.hello-stay.com",
     languages: getAlternateLanguageMap(""),
   },
   openGraph: {
-    title: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費｜Hello Stay",
+    title: "【高雄包棟民宿推薦】4房/6房/10房獨立套房・4-36人包棟｜Hello Stay",
     description:
-      "高雄鹽埕 4-36 人包棟住宿，先依人數選溝頂、你好哇或雙館方案，再查即時空房與官方報價。",
+      "高雄鹽埕 4-36 人包棟住宿，提供 4 房、6 房與 10 房方案，全獨立套房衛浴・包棟不鎖房，依人數或房間數查即時空房與官方報價。",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "高雄包棟民宿推薦｜Hello Stay",
-    description: "高雄鹽埕 4-36 人包棟住宿，依人數選方案並查即時空房與報價。",
+    title: "【高雄包棟民宿推薦】4房/6房/10房獨立套房・4-36人包棟｜Hello Stay",
+    description: "高雄鹽埕 4-36 人包棟住宿，4 房、6 房與 10 房全獨立套房，包棟不鎖房，即時查空房與免手續費直訂。",
     images: ["https://www.hello-stay.com/images/hellohouse/cover.webp"],
   },
 };
@@ -97,7 +97,7 @@ const homeStructuredData = {
       "@type": "WebPage",
       "@id": webpageId,
       url: "https://www.hello-stay.com",
-      name: "高雄包棟民宿推薦｜近駁二捷運・官方直訂免手續費",
+      name: "【高雄包棟民宿推薦】4房/6房/10房獨立套房・4-36人包棟｜Hello Stay 官方直訂免手續費",
       description: homeDescription,
       inLanguage: "zh-Hant-TW",
       isPartOf: { "@id": websiteId },

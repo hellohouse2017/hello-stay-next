@@ -94,7 +94,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       source: content,
       options: { parseFrontmatter: false },
       components: {
-        a: (props: any) => {
+        a: (props: React.ComponentPropsWithoutRef<'a'>) => {
           const href = props?.href || ''
           const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')
           if (isExternal) {
