@@ -15,6 +15,7 @@ const TARGET_URLS = [
     "https://www.hello-stay.com/blog/kaohsiung-group-trip",
     "https://www.hello-stay.com/blog/taiwan-travel-foreign-guide",
     "https://www.hello-stay.com/blog/taiwan-travel-subsidy-guide",
+    "https://www.hello-stay.com/blog/kaohsiung-concert-stay-group",
 ];
 
 async function main() {

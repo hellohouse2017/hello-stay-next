@@ -147,6 +147,17 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
             { href: "/book", label: "查詢平日空房與報價" },
         ],
     },
+    "kaohsiung-concert-stay-group": {
+        id: "concert-stay-choice",
+        title: "高雄演唱會與音樂祭包棟住宿推薦",
+        body: "散場搭捷運免塞車直達鹽埕埔站，高流與大港開唱步行 10 分鐘！4-12 人選五層獨棟溝頂民宿、8-26 人選 1F 中島廚房你好哇寓所，深夜煮宵夜火鍋、開啤酒同樂。",
+        links: [
+            { href: "/hellohouse", label: "你好哇寓所 (8-26人)" },
+            { href: "/godin", label: "溝頂民宿 (4-12人)" },
+            { href: "/compare", label: "三館方案比較" },
+            { href: "/book", label: "查詢演唱會檔期空房" },
+        ],
+    },
 };
 
 function getArticleSection(tags?: string[]) {

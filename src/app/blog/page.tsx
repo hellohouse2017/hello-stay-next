@@ -51,6 +51,7 @@ const buckets: ArticleBucket[] = [
     title: "依旅程找文章",
     intro: "如果你是在找這次旅程到底該怎麼安排 從情境入口切入會最快",
     articleSlugs: [
+      "kaohsiung-concert-stay-group",
       "kaohsiung-family-reunion",
       "kaohsiung-offsite-teambuilding",
       "kaohsiung-wedding-venue",
@@ -693,7 +694,7 @@ function pickImage(article: ArticleSummary) {
   if (article.slug === "taiwan-travel-foreign-guide" || article.slug === "taiwan-travel-subsidy-guide") {
     return { src: "/images/hellohouse/traffic.webp", alt: article.title };
   }
-  if (article.slug === "kaohsiung-nye-stay") {
+  if (article.slug === "kaohsiung-nye-stay" || article.slug === "kaohsiung-concert-stay-group") {
     return { src: "/images/hellohouse/party-cover.webp", alt: article.title };
   }
   if (article.tags.includes("鹽埕") || article.tags.includes("駁二") || article.tags.includes("景點")) {
