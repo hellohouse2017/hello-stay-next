@@ -470,7 +470,7 @@ export default function LocalExploreHub() {
               <h2 id="stay-cta-title">玩累了，就回來好好休息</h2>
               <p>選擇最適合你的包棟住宿，在鹽埕享受步行出門、回館聚會的旅程。</p>
               <div className="explore-redesign__stay-links">
-                <Link className="explore-redesign__button" href="/#stay-options">查看住宿選擇 <ArrowRight size={15} aria-hidden="true" /></Link>
+                <Link className="explore-redesign__button" href="/kaohsiung-whole-house">查看包棟攻略 <ArrowRight size={15} aria-hidden="true" /></Link>
                 <Link className="explore-redesign__text-link" href="/compare">比較住宿方案 <ArrowRight size={15} aria-hidden="true" /></Link>
               </div>
             </div>

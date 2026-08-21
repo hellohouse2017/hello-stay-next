@@ -88,7 +88,7 @@ const stays: StayOption[] = [
   {
     id: "dual",
     name: "雙館包棟",
-    href: "/book",
+    href: "/compare",
     splitImages: [
       { src: hellohouse.coverImage, alt: "你好哇寓所公共空間", label: "你好哇寓所" },
       { src: godin.coverImage, alt: "溝頂民宿五層獨棟空間", label: "溝頂民宿" },

@@ -112,6 +112,7 @@ const detailCards = [
         items: ["可訂與規劃中狀態分開", "房型頁補完整設備資訊", "日期與報價回到訂房站確認"],
       },
     ],
+    action: { href: "/compare", label: "看兩館與雙館完整比較" },
   },
   {
     id: "about-safety",
@@ -139,6 +140,7 @@ const detailCards = [
         items: ["合法登記", "定期消防檢查", "公共責任保險", "備品高溫清潔處理"],
       },
     ],
+    action: { href: "/agreement", label: "查看入住須知與規範" },
   },
 ];
 

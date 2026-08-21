@@ -73,7 +73,7 @@ export default function KaohsiungWholeHousePage() {
     const occasionCards = [
         {
             id: "need-family-trip",
-            href: "/compare",
+            href: "/blog/kaohsiung-family-reunion",
             emoji: "👨‍👩‍👧‍👦",
             label: "家庭旅遊",
             summary: "4-12 人帶長輩優先看溝頂，13-26 人聚餐選你好哇",
@@ -81,7 +81,7 @@ export default function KaohsiungWholeHousePage() {
         },
         {
             id: "need-company-retreat",
-            href: "/compare",
+            href: "/blog/kaohsiung-offsite-teambuilding",
             emoji: "💼",
             label: "企業團建",
             summary: "10-26 人先看你好哇，27-36 人再比較雙館方案",
@@ -246,10 +246,14 @@ export default function KaohsiungWholeHousePage() {
                     <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.15rem", color: "#3D3830", marginBottom: "16px" }}>相關攻略</h2>
                     <div style={{ display: "grid", gap: "8px" }}>
                         {[
-                            { href: "/blog/kaohsiung-family-reunion", title: "家族旅遊包棟推薦" },
-                            { href: "/blog/kaohsiung-group-trip", title: "高雄團體旅遊行程推薦" },
-                            { href: "/blog/kaohsiung-kitchen-bnb", title: "有廚房的高雄民宿推薦" },
-                            { href: "/blog/kaohsiung-mahjong-stay", title: "高雄麻將民宿推薦" },
+                            { href: "/blog/taiwan-travel-subsidy-guide", title: "2026 國旅補助平日包棟住宿攻略" },
+                            { href: "/blog/taiwan-travel-subsidy-pricing-guide", title: "國旅補助防坑與透明定價指南" },
+                            { href: "/blog/pier2-accommodation", title: "駁二藝術特區周邊包棟住宿推薦" },
+                            { href: "/blog/kaohsiung-concert-stay-group", title: "高雄流行音樂中心與演唱會包棟推薦" },
+                            { href: "/blog/kaohsiung-family-reunion", title: "家族旅遊長輩友善包棟推薦" },
+                            { href: "/blog/kaohsiung-group-trip", title: "高雄團體旅遊行程 2-4 天推薦" },
+                            { href: "/blog/kaohsiung-kitchen-bnb", title: "有廚房的高雄包棟民宿自煮指南" },
+                            { href: "/blog/kaohsiung-mahjong-stay", title: "高雄手動麻將包棟民宿指南" },
                         ].map(a => (
                             <Link key={a.href} href={a.href} style={{ padding: "12px 16px", borderRadius: "10px", background: "var(--bg)", textDecoration: "none", fontSize: "0.82rem", color: "#3D3830" }}>📝 {a.title}</Link>
                         ))}

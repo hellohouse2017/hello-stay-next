@@ -36,7 +36,7 @@ export default function PropertyLinksBlock() {
                         { href: "/compare", label: "30 人左右" },
                         { href: "/compare", label: "40 人以上" },
                     ].map(({ href, label }) => (
-                        <Link key={href} href={href}>
+                        <Link key={`${href}-${label}`} href={href}>
                             {label}
                         </Link>
                     ))}
