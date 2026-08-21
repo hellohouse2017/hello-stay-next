@@ -3237,6 +3237,40 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   background: rgba(194, 155, 97, 0.12);
 }
 
+.mockup-card__subsidy-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #936015;
+  background: #fdf5e6;
+  border: 1px solid rgba(194, 155, 97, 0.4);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.mockup-card__subsidy-badge:hover {
+  background: #faebd2;
+  border-color: #b38547;
+  color: #724707;
+}
+
+.mockup-subsidy-disclaimer {
+  margin-top: 16px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px dashed #dcd4c8;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #7a7266;
+  text-align: center;
+  line-height: 1.6;
+}
+
 .mockup-card__desc {
   font-size: 0.92rem;
   line-height: 1.7;

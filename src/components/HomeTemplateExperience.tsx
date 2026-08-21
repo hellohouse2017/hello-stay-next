@@ -40,6 +40,7 @@ type StayOption = {
   priceLabel: string;
   bookingProperty?: BookingProperty;
   guestGuide: string;
+  subsidyBadge?: string;
   description: string;
   pillTags: string[];
 };
@@ -65,6 +66,7 @@ const stays: StayOption[] = [
     priceLabel: `平日 NT$${godin.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
     bookingProperty: "溝頂民宿",
     guestGuide: "4-12 人分層整棟",
+    subsidyBadge: "🎁 國旅補助平日最高折抵 $8,000",
     description: "五層獨棟設計，分層休息互不干擾；頂樓配備明亮交誼廳與手動麻將桌，小家庭與好友出遊專屬整棟首選。",
     pillTags: ["4 間獨立套房衛浴", "包棟整棟獨享不鎖房", "4F 頂樓交誼廳＋手動麻將", "近捷運鹽埕埔站 5 分鐘"],
   },
@@ -79,6 +81,7 @@ const stays: StayOption[] = [
     priceLabel: `平日 NT$${hellohouse.startPrice.toLocaleString("zh-TW")} 起 / 晚`,
     bookingProperty: "你好哇寓所",
     guestGuide: "8-26 人中島大公區",
+    subsidyBadge: "🎁 國旅補助平日最高折抵 $10,000",
     description: "一樓設有寬敞中島廚房、高腳吧台與大型交誼客廳；多間套房獨立衛浴，最適合家族聚會、多人聚餐與迎娶活動。",
     pillTags: ["6 間獨立套房衛浴", "1F 大型中島廚房＋交誼廳", "包棟全開絕不鎖房", "手動麻將桌＋迎娶聚餐首選"],
   },
@@ -95,6 +98,7 @@ const stays: StayOption[] = [
     priceLabel: "依日期與人數即時報價",
     bookingProperty: "雙館包棟",
     guestGuide: "27-36 人大型團體",
+    subsidyBadge: "🎁 國旅補助平日最高折抵 $18,000",
     description: "你好哇與溝頂兩館相鄰、步行僅約 5 秒；合計最多 10 間客房與雙交誼廳，大型團體同聚也能保有私密休息空間。",
     pillTags: ["10 間全套房獨立衛浴", "兩館相鄰步行 5 秒", "雙交誼空間＋中島廚房", "包棟獨享絕不鎖房"],
   },
@@ -629,6 +633,15 @@ export default function HomeTemplateExperience() {
                         <h3>{stay.name}</h3>
                         <div className="mockup-card__guides">
                           <span className="mockup-card__fit">{stay.guestGuide}</span>
+                          {stay.subsidyBadge && (
+                            <Link
+                              href="/blog/taiwan-travel-subsidy-pricing-guide"
+                              className="mockup-card__subsidy-badge"
+                              title="查看 2026 國旅補助透明折抵指南"
+                            >
+                              {stay.subsidyBadge}
+                            </Link>
+                          )}
                         </div>
                       </div>
 
@@ -662,6 +675,11 @@ export default function HomeTemplateExperience() {
                 </article>
               );
             })}
+          </div>
+
+          {/* Subsidy Disclaimer & Guarantee Notice */}
+          <div className="mockup-subsidy-disclaimer">
+            <span>⚠️ <strong>國旅補助折抵提醒</strong>：補助試算僅供規劃參考，非訂單保證。政府補助採全國額度制（先住先核銷至額滿為止），訂房不代表保留補助名額；旅客須於入住當日出示身分證正本，核銷成功現場直接退抵；若遇經費提前用罄、未帶正本或資格不符，將依原常態房價結算。</span>
           </div>
 
           {/* Comparison Page Link Banner */}
