@@ -147,6 +147,17 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
             { href: "/book", label: "查詢平日空房與報價" },
         ],
     },
+    "taiwan-travel-subsidy-pricing-guide": {
+        id: "subsidy-pricing-stay-choice",
+        title: "拒絕假優惠！Hello Stay 透明定價高雄包棟",
+        body: "堅持常態平日房價，現場實扣政府身分證補助與生日券。4-12 人選五層獨棟溝頂民宿、8-26 人選中島廚房你好哇寓所，官方 LINE 免費提供透明試算明細。",
+        links: [
+            { href: "/book", label: "官網即時查房檢驗價格" },
+            { href: "/hellohouse", label: "你好哇寓所 (8-26人)" },
+            { href: "/godin", label: "溝頂民宿 (4-12人)" },
+            { href: "/compare", label: "三館包棟比較" },
+        ],
+    },
     "kaohsiung-concert-stay-group": {
         id: "concert-stay-choice",
         title: "高雄演唱會與音樂祭包棟住宿推薦",

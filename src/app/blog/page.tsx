@@ -74,8 +74,12 @@ const buckets: ArticleBucket[] = [
     id: "bucket-practical",
     kicker: "實用資訊",
     title: "政策補助與交通指南",
-    intro: "整理政府最新國旅補助方案、平日折抵規則與無車自由行交通痛點，出發前看這篇最省心省預算。",
-    articleSlugs: ["taiwan-travel-subsidy-guide", "taiwan-travel-foreign-guide"],
+    intro: "整理政府最新國旅補助方案、平日折抵規則、透明防坑攻略與無車自由行交通痛點，出發前看這篇最省心省預算。",
+    articleSlugs: [
+      "taiwan-travel-subsidy-guide",
+      "taiwan-travel-subsidy-pricing-guide",
+      "taiwan-travel-foreign-guide",
+    ],
   },
   {
     id: "bucket-local-journal",
@@ -691,7 +695,11 @@ function pickImage(article: ArticleSummary) {
   if (article.slug === "pier2-accommodation") {
     return { src: "/images/hellohouse/photo5.webp", alt: article.title };
   }
-  if (article.slug === "taiwan-travel-foreign-guide" || article.slug === "taiwan-travel-subsidy-guide") {
+  if (
+    article.slug === "taiwan-travel-foreign-guide" ||
+    article.slug === "taiwan-travel-subsidy-guide" ||
+    article.slug === "taiwan-travel-subsidy-pricing-guide"
+  ) {
     return { src: "/images/hellohouse/traffic.webp", alt: article.title };
   }
   if (article.slug === "kaohsiung-nye-stay" || article.slug === "kaohsiung-concert-stay-group") {
