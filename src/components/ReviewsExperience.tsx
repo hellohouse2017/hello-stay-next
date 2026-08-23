@@ -121,6 +121,40 @@ export default function ReviewsExperience() {
               ))}
             </div>
           </div>
+
+          {/* 頂部實景氛圍縮圖列 */}
+          <div className="reviews-hero-gallery">
+            <div className="reviews-hero-gallery__item">
+              <Image
+                src="/images/hellohouse/cover.webp"
+                alt="Hello Stay 你好哇寓所挑高中島吧台與客廳實景"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="reviews-hero-gallery__img"
+              />
+              <span className="reviews-hero-gallery__tag">你好哇寓所・挑高中島吧台</span>
+            </div>
+            <div className="reviews-hero-gallery__item">
+              <Image
+                src="/images/godin/cover-1.webp"
+                alt="Hello Stay 溝頂民宿 4F 專屬交誼長桌與沙發空間"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="reviews-hero-gallery__img"
+              />
+              <span className="reviews-hero-gallery__tag">溝頂民宿・4F 專屬交誼廳</span>
+            </div>
+            <div className="reviews-hero-gallery__item">
+              <Image
+                src="/images/explore/bridge.jpg"
+                alt="高雄鹽埕大港橋旋轉橋與港灣散步生活圈"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="reviews-hero-gallery__img"
+              />
+              <span className="reviews-hero-gallery__tag">鹽埕駁二・步行散步生活圈</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -238,6 +272,21 @@ export default function ReviewsExperience() {
                   </div>
 
                   <h3 className="review-card__title">「{review.title}」</h3>
+
+                  {review.image && (
+                    <div className="review-card__media">
+                      <Image
+                        src={review.image.src}
+                        alt={review.image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                        className="review-card__img"
+                      />
+                      <span className="review-card__img-caption">
+                        {review.image.caption}
+                      </span>
+                    </div>
+                  )}
 
                   <blockquote className="review-card__content">
                     {review.content}
@@ -616,6 +665,45 @@ export default function ReviewsExperience() {
           color: var(--muted);
         }
 
+        .reviews-hero-gallery {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          margin-top: 20px;
+        }
+
+        .reviews-hero-gallery__item {
+          position: relative;
+          aspect-ratio: 16 / 9;
+          border-radius: 14px;
+          overflow: hidden;
+          background: #e8e5dc;
+          border: 1px solid var(--line);
+          box-shadow: 0 4px 16px rgba(18, 20, 19, 0.04);
+        }
+
+        .reviews-hero-gallery__img {
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .reviews-hero-gallery__item:hover .reviews-hero-gallery__img {
+          transform: scale(1.04);
+        }
+
+        .reviews-hero-gallery__tag {
+          position: absolute;
+          bottom: 8px;
+          left: 8px;
+          padding: 4px 10px;
+          border-radius: 6px;
+          background: rgba(18, 20, 19, 0.8);
+          color: #ffffff;
+          font-size: 0.72rem;
+          font-weight: 700;
+          backdrop-filter: blur(8px);
+        }
+
         /* 評價列表區 */
         .reviews-feed-section {
           padding: 48px 0 64px;
@@ -820,6 +908,43 @@ export default function ReviewsExperience() {
           font-weight: 750;
           line-height: 1.4;
           color: var(--ink);
+        }
+
+        .review-card__media {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          border-radius: 12px;
+          overflow: hidden;
+          margin: 8px 0 14px;
+          background: #eae7dd;
+          border: 1px solid rgba(222, 218, 206, 0.7);
+        }
+
+        .review-card__img {
+          object-fit: cover;
+          transition: transform 0.35s ease;
+        }
+
+        .review-card:hover .review-card__img {
+          transform: scale(1.03);
+        }
+
+        .review-card__img-caption {
+          position: absolute;
+          bottom: 8px;
+          left: 8px;
+          right: 8px;
+          padding: 4px 10px;
+          border-radius: 6px;
+          background: rgba(18, 20, 19, 0.75);
+          color: #ffffff;
+          font-size: 0.73rem;
+          font-weight: 600;
+          backdrop-filter: blur(8px);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .review-card__content {
@@ -1207,6 +1332,9 @@ export default function ReviewsExperience() {
         }
 
         @media (max-width: 600px) {
+          .reviews-hero-gallery {
+            grid-template-columns: 1fr;
+          }
           .reviews-dimensions-grid {
             grid-template-columns: 1fr;
           }

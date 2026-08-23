@@ -19,6 +19,11 @@ export interface ReviewItem {
   title: string;
   content: string;
   highlights: string[];
+  image?: {
+    src: string;
+    alt: string;
+    caption: string;
+  };
   verifiedGoogle: boolean;
 }
 
@@ -112,6 +117,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "這次帶公婆跟親戚共 18 個人來高雄玩，原本很擔心人多衛浴不夠會排隊，結果你好哇每間客房都有乾濕分離衛浴，完全不用搶！一樓客廳挑高又寬敞，晚上大家聚在一起吃切盤水果、聊天，長輩早點回房間休息也完全聽不到樓下的聲音，隔音做得很好。走路去吃鴨肉珍跟冬粉王只要 3 分鐘，對長輩來說散步完全沒負擔。",
     highlights: ["每間客房獨立衛浴", "隔音好長輩好睡", "步行 3 分鐘到在地美食", "電子鎖自助入住順暢"],
+    image: {
+      src: "/images/hellohouse/1402.webp",
+      alt: "你好哇寓所高樓層大面採光六人房實景",
+      caption: "入住 4F 景觀大六人房・每間客房均附獨立衛浴",
+    },
     verifiedGoogle: true,
   },
   {
@@ -130,6 +140,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "我們 14 個朋友每年固定聚會一次，這次選你好哇最看重的就是那個超大中島吧台。設備比想像中還齊全，IH 爐、大雙門冰箱、微波爐、各種大湯鍋和碗筷一應俱全。大家在旁邊備料洗菜完全不會擠在一起，旁邊就是麻將桌跟大電視，邊看 Netflix 邊聊天超有聚會感！退房後大家都說這是歷年住過最舒服的包棟。",
     highlights: ["超大中島吧台", "餐具鍋具超齊全", "大冰箱冰滿飲料", "麻將桌與 Netflix 大電視"],
+    image: {
+      src: "/images/hellohouse/photo2.webp",
+      alt: "你好哇寓所 1F 開放式中島廚房與齊全備餐設備",
+      caption: "1F 中島廚房・雙口 IH 爐與微波爐鍋具齊備",
+    },
     verifiedGoogle: true,
   },
   {
@@ -148,6 +163,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "選你好哇當作高雄迎娶飯店替代方案真的太對了！高樓層大面落地窗的自然採光非常棒，新娘妝容拍出來超透亮。一樓客廳很大，奉茶拜別儀式時親友 20 幾個人在場動線依然非常流暢，完全沒有飯店套房擁擠壓迫的感覺。電子密碼鎖讓新秘、婚攝、伴郎伴娘進出都很方便，管家事前溝通也極度貼心細緻！",
     highlights: ["落地大窗自然採光好", "奉茶儀式動線流暢", "新秘伴娘進出方便", "管家事前協助確認"],
+    image: {
+      src: "/images/hellohouse/wedding-cover.webp",
+      alt: "你好哇寓所大面落地採光迎娶新娘房與質感空間",
+      caption: "迎娶採光房・落地大窗與寬敞拜別奉茶動線",
+    },
     verifiedGoogle: true,
   },
   {
@@ -166,6 +186,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "我們是兩個家庭共 8 個人包棟，溝頂民宿五層樓整棟都是我們的，進出沒有外人打擾非常自在！客房每層分開，大家想休息就回自己的房間，每間都有獨立衛浴。晚上大家集合到 4 樓交誼廳打麻將、吃鹽埕在地宵夜，有沙發、大電視跟微波爐、冰箱，機能很完整。走路去駁二跟大港橋不到 10 分鐘，CP 值極高！",
     highlights: ["五層樓整棟獨立無外人", "每間客房獨立衛浴", "4F 專屬麻將交誼廳", "走路散步到駁二大港橋"],
+    image: {
+      src: "/images/godin/cover-1.webp",
+      alt: "溝頂民宿 4F 專屬獨立交誼長桌與沙發空間",
+      caption: "溝頂 4F 專屬交誼廳・麻將桌與沙發電視區",
+    },
     verifiedGoogle: true,
   },
   {
@@ -184,6 +209,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "這次帶部門團隊來高雄進行 2 天 1 夜的季度總結。一樓大長桌與吧台很適合大家打開筆電開會討論，結束後直接在客廳吃吃喝喝放鬆。房間床鋪很乾淨，冷氣安靜且很涼，退房時大家都覺得住在同一個大空間裡的凝聚感，比各自關在飯店房間好太多了。捷運走過來只要 5 分鐘，交通很方便。",
     highlights: ["一樓空間適合討論聚會", "床鋪乾淨冷氣涼又靜", "捷運鹽埕埔站步行 5 分鐘", "團隊凝聚力超強"],
+    image: {
+      src: "/images/hellohouse/photo1.webp",
+      alt: "你好哇寓所 1F 寬敞交誼空間與麻將電視多功能區",
+      caption: "1F 挑高聚會交誼廳・適合團隊交流與放鬆",
+    },
     verifiedGoogle: true,
   },
   {
@@ -202,6 +232,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "畢旅找了很久終於挑到這間！本來以為鹽埕老街區的老宅會比較舊，結果一進門發現裡面裝潢非常乾淨清爽，衛浴也很新。四樓有專屬的麻將桌跟沙發區，大家買了奶茶跟雞排上去聊天。民宿外面走幾步就是老街小吃，走到駁二聽團看展也很近，每個人平均下來價格超親民，大推！",
     highlights: ["室內乾淨新穎現代", "平攤價格超實惠", "鹽埕在地巷弄老街氛圍", "步行即達駁二與捷運站"],
+    image: {
+      src: "/images/godin/cover-4.webp",
+      alt: "溝頂民宿 4F 休閒麻將桌與桌遊交誼區",
+      caption: "溝頂 4F 麻將桌遊區・小資學生聚會首選",
+    },
     verifiedGoogle: true,
   },
   {
@@ -220,6 +255,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "我們帶了 4 個學齡前小朋友跟阿公阿嬤。你好哇一樓空間是開放式無死角設計，大人在廚房做早餐或切水果，抬頭就能看到小孩在客廳玩桌遊、看電視，非常安心。客房床墊支撐力很足夠，不會太軟，長輩睡得腰不酸。線上管家在出發前提供的周邊停車建議與美食地圖超級實用！",
     highlights: ["一樓無死角開放視野", "床墊支撐力夠好睡", "貼心周邊停車指引", "適合帶小孩家庭"],
+    image: {
+      src: "/images/hellohouse/1000.webp",
+      alt: "你好哇寓所 1F 挑高無阻隔公共空間全景",
+      caption: "1F 開放式視野・廚房吧台與客廳視線無死角",
+    },
     verifiedGoogle: true,
   },
   {
@@ -238,6 +278,11 @@ export const verifiedReviews: ReviewItem[] = [
     content:
       "很喜歡溝頂民宿那種低調安靜的質感。整棟只有我們 6 個人使用，5 樓雙人房採光超棒，看出去就是鹽埕老街街景。白天租 YouBike 騎去駁二和大港橋吹海風，晚上回 4 樓交誼廳吃宵夜聊聊天。熱水水量很足、水溫穩定，整體住起來非常舒適放鬆！",
     highlights: ["5F 街景採光雙人房", "熱水強且水溫穩定", "生活機能便利安靜", "騎 YouBike 玩駁二超順暢"],
+    image: {
+      src: "/images/godin/room5.webp",
+      alt: "溝頂民宿 5F 景觀雙人房大面採光落地窗街景",
+      caption: "5F 景觀雙人房・落地窗陽台與鹽埕街景",
+    },
     verifiedGoogle: true,
   },
 ];
@@ -251,8 +296,8 @@ export const reviewSpotlights: ReviewSpotlight[] = [
     quote: "「大家圍在超大中島吧台一起洗菜備料、煮火鍋喝酒，這才是包棟民宿該有的樣子！」",
     author: "你好哇寓所 住客 Tommy",
     image: {
-      src: "/images/hellohouse/1000.webp",
-      alt: "你好哇寓所 1F 奢華中島廚房與高腳吧台聚會空間",
+      src: "/images/hellohouse/photo2.webp",
+      alt: "你好哇寓所 1F 開放式中島廚房近拍實景，配備專業雙口 IH 爐、RO 飲水機與大雙門冰箱",
     },
     property: "你好哇寓所",
     tags: ["IH 雙口爐", "雙門大冰箱", "全套鍋碗瓢盆", "RO 飲水機"],
@@ -261,46 +306,46 @@ export const reviewSpotlights: ReviewSpotlight[] = [
   },
   {
     id: "spotlight-mahjong",
-    title: "專屬交誼與麻將空間",
-    subtitle: "兩館皆備有歡聚娛樂設施",
-    quote: "「有手動麻將桌、Netflix 聯網電視與大沙發，晚上大家待在交誼廳超放鬆！」",
-    author: "溝頂民宿 住客 張先生",
+    title: "專屬交誼與麻將客廳",
+    subtitle: "兩館皆備有歡聚娛樂交誼設施",
+    quote: "「有手動麻將桌、Netflix 聯網電視與大沙發，晚上大家聚在一樓客廳放鬆暢聊超有團體感！」",
+    author: "你好哇寓所 住客 Leo",
     image: {
-      src: "/images/godin/cover-4.webp",
-      alt: "溝頂民宿 4F 專屬麻將交誼廳與沙發娛樂區",
+      src: "/images/hellohouse/photo1.webp",
+      alt: "你好哇寓所 1F 挑高客廳與交誼空間全景，備有手動麻將桌、桌遊與 43 吋聯網電視",
     },
-    property: "溝頂民宿 & 你好哇寓所",
+    property: "你好哇寓所 & 溝頂民宿",
     tags: ["手動麻將桌", "聯網大電視", "桌遊撲克牌", "舒適沙發區"],
     href: "/compare",
-    actionLabel: "比較兩館交誼廳差異",
+    actionLabel: "比較兩館交誼空間",
   },
   {
     id: "spotlight-ensuite",
-    title: "全套房獨立衛浴配置",
-    subtitle: "多人同住也享有一人一室的從容",
-    quote: "「每間客房都有獨立衛浴乾濕分離，18 個人出門前梳洗完全不用排隊搶廁所。」",
+    title: "採光景觀客房・全套房獨立衛浴",
+    subtitle: "每間客房皆享獨立衛浴・包棟絕不鎖房",
+    quote: "「每間客房都有乾濕分離獨立衛浴，大面落地窗採光極佳，18 個人出門梳洗完全不用搶廁所。」",
     author: "你好哇寓所 住客 陳小姐",
     image: {
-      src: "/images/hellohouse/1202.webp",
-      alt: "你好哇寓所大面落地採光四人房與獨立乾濕分離衛浴",
+      src: "/images/hellohouse/1402.webp",
+      alt: "你好哇寓所 4F 景觀大六人房實景，大面落地玻璃採光與獨立套房衛浴",
     },
-    property: "全館標配",
+    property: "全館套房標配",
     tags: ["客房皆含獨立衛浴", "乾濕分離淋浴", "大出水量穩定熱水", "獨立筒舒適床墊"],
     href: "/hellohouse",
     actionLabel: "查看完整客房房型",
   },
   {
     id: "spotlight-location",
-    title: "鹽埕核心・散步美食生活圈",
-    subtitle: "走路 3-10 分鐘串連駁二與排隊名店",
-    quote: "「巷口出來就是鴨肉珍、冬粉王，走路 8 分鐘到駁二大港橋，不用開車找車位超輕鬆！」",
+    title: "鹽埕散步美食與駁二港灣圈",
+    subtitle: "走路 3-10 分鐘串連大港橋、駁二與在地老店",
+    quote: "「巷口出來就是鴨肉珍、冬粉王，走路 8 分鐘就到大港橋吹海風，不用開車找車位超輕鬆！」",
     author: "住客 何小姐",
     image: {
-      src: "/images/hellohouse/photo5.webp",
-      alt: "Hello Stay 鹽埕區步行生活圈，鄰近駁二藝術特區與在地美食",
+      src: "/images/explore/bridge.jpg",
+      alt: "高雄鹽埕大港橋與港灣漫步生活圈實景，步行 8-10 分鐘即達",
     },
     property: "鹽埕區核心生活圈",
-    tags: ["捷運鹽埕埔站 5 分鐘", "駁二藝術特區 10 分鐘", "鴨肉珍 3 分鐘", "大港橋 8 分鐘"],
+    tags: ["捷運鹽埕埔站 5 分鐘", "駁二藝術特區 10 分鐘", "大港橋 8 分鐘", "鴨肉珍 3 分鐘"],
     href: "/explore",
     actionLabel: "探索周邊美食景點",
   },
