@@ -679,7 +679,7 @@ export default function HomeTemplateExperience() {
 
           {/* Subsidy Disclaimer & Guarantee Notice */}
           <div className="mockup-subsidy-disclaimer">
-            <span>⚠️ <strong>國旅補助折抵提醒</strong>：補助試算僅供規劃參考，非訂單保證。政府補助採全國額度制（先住先核銷至額滿為止），訂房不代表保留補助名額；旅客須於入住當日出示身分證正本，核銷成功現場直接退抵；若遇經費提前用罄、未帶正本或資格不符，將依原常態房價結算。</span>
+            <span>⚠️ <strong>國旅補助折抵提醒</strong>：國旅補助（平日住宿獎助）僅適用於平日（週日至週四）入住，週末假日（週五、週六）、國定假日與連續假期全數不適用折抵。補助試算僅供規劃參考，非訂單保證；政府補助採全國額度制（先住先核銷至額滿為止），訂房不代表保留補助名額；旅客須於入住當日出示身分證或健保卡正本現場核銷退抵，若遇經費提前用罄、未帶正本或資格不符，將依原常態房價結算。</span>
           </div>
 
           {/* Comparison Page Link Banner */}

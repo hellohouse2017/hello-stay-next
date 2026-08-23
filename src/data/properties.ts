@@ -160,7 +160,6 @@ export const hellohouse: Property = {
                     { icon: '🧴', label: '沐浴用品' },
                 ]},
                 { category: '便利設施', icon: '✨', items: [
-                    { icon: '📺', label: '聯網電視' },
                     { icon: '💻', label: '書桌' },
                     { icon: '❄️', label: '冷暖空調' },
                 ]},

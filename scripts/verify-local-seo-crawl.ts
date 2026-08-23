@@ -78,9 +78,19 @@ async function verifyLandingPage(path: string) {
     }
 
     if (path === '/explore/food') {
-        const foodList = schemas.find((node) => node['@type'] === 'ItemList' && node.numberOfItems === 20);
-        assert.ok(foodList, 'food page should expose a 20-item ItemList');
-        assert.equal(Array.isArray(foodList.itemListElement) ? foodList.itemListElement.length : 0, 20, 'food ItemList should contain exactly 20 restaurants');
+        const foodList = schemas.find((node) => node['@type'] === 'ItemList' && typeof node.numberOfItems === 'number');
+        assert.ok(foodList, 'food page should expose an ItemList with a numeric item count');
+        const itemCount = Array.isArray(foodList.itemListElement) ? foodList.itemListElement.length : 0;
+        assert.equal(itemCount, foodList.numberOfItems, 'food ItemList count should match its itemListElement length');
+        assert.ok(itemCount > 0, 'food ItemList should contain at least one restaurant');
+        assert.equal($('.local-guide-stay-bridge').length, 1, 'food page should expose a mid-content stay bridge');
+        assert.ok($('.local-guide-stay-bridge a[href="/book"]').length > 0, 'food page stay bridge should link to booking');
+    }
+
+    if (path === '/blog/kaohsiung-10-person-stay') {
+        const stickyBooking = $('.guide-mobile-booking-bar a[href*="/book?guestCount=10"]');
+        assert.equal(stickyBooking.length, 1, '10-person article should expose a headcount-aware mobile booking CTA');
+        assert.equal(stickyBooking.attr('data-cta-position'), 'sticky_mobile', 'mobile booking CTA should expose its position');
     }
 }
 

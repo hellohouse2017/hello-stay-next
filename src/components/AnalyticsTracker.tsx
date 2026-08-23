@@ -55,6 +55,34 @@ function ensureGa4() {
     return win.gtag;
 }
 
+function inferSeoIntent(pathname: string) {
+    if (pathname === '/kaohsiung-whole-house') return 'core_whole_house';
+    if (pathname === '/compare') return 'compare';
+    if (/^\/blog\/kaohsiung-(6|10|15|20|30)-person-stay$/.test(pathname)) return 'party_size';
+    if (/kitchen|mahjong|family|arena/.test(pathname)) return 'feature';
+    if (/hellohouse|godin/.test(pathname)) return 'brand';
+    return pathname.startsWith('/blog/') || pathname.startsWith('/explore') ? 'inspiration' : 'brand';
+}
+
+function getConversionContext(anchor: HTMLAnchorElement, attribution: ReturnType<typeof getBookingAttributionContext>, destination: URL) {
+    const guestCount = Number(destination.searchParams.get('guestCount') || anchor.dataset.partySize || 0) || undefined;
+    const property = destination.searchParams.get('property') || anchor.dataset.propertySlug || '';
+    return {
+        source_page: window.location.pathname,
+        seo_intent_group: anchor.dataset.seoIntent || inferSeoIntent(window.location.pathname),
+        property_slug: property,
+        party_size: guestCount,
+        cta_type: anchor.dataset.ctaType || 'booking',
+        cta_position: anchor.dataset.ctaPosition || 'content',
+        destination: destination.pathname,
+        site_session_id: attribution.siteSessionId,
+        landing_path: attribution.landingPath,
+        origin_path: attribution.originPath,
+        acquisition_source: attribution.acquisitionSource,
+        acquisition_medium: attribution.acquisitionMedium,
+    };
+}
+
 export default function AnalyticsTracker() {
     const pathname = usePathname();
 
@@ -107,11 +135,7 @@ export default function AnalyticsTracker() {
                     location: window.location.pathname,
                     property: targetUrl.searchParams.get('property') || '',
                     guest_count: Number(targetUrl.searchParams.get('guestCount') || 0) || undefined,
-                    site_session_id: attribution.siteSessionId,
-                    landing_path: attribution.landingPath,
-                    origin_path: attribution.originPath,
-                    acquisition_source: attribution.acquisitionSource,
-                    acquisition_medium: attribution.acquisitionMedium,
+                    ...getConversionContext(anchor, attribution, targetUrl),
                 });
                 return;
             }
@@ -121,21 +145,21 @@ export default function AnalyticsTracker() {
                     event_category: 'conversion',
                     event_label: anchor.innerText.trim().slice(0, 80) || 'line',
                     location: window.location.pathname,
+                    ...getConversionContext(anchor, attribution, new URL(href, window.location.origin)),
                 });
             } else if (href.startsWith('tel:')) {
                 gtag('event', 'phone_click', {
                     event_category: 'conversion',
                     event_label: href.replace('tel:', ''),
                     location: window.location.pathname,
+                    ...getConversionContext(anchor, attribution, new URL(href, window.location.origin)),
                 });
             } else if (href === '/book' || href.endsWith('/book') || /\/book(\?|$)/.test(href)) {
                 gtag('event', 'book_click', {
                     event_category: 'conversion',
                     event_label: anchor.innerText.trim().slice(0, 80) || 'book',
                     location: window.location.pathname,
-                    site_session_id: attribution.siteSessionId,
-                    landing_path: attribution.landingPath,
-                    origin_path: attribution.originPath,
+                    ...getConversionContext(anchor, attribution, new URL(href, window.location.origin)),
                 });
             }
         };

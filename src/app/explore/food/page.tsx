@@ -117,9 +117,9 @@ export default function FoodExplorePage() {
           ],
         }}
         faq={[...faqs]}
-        primaryAction={{ href: "/compare", label: "依人數比較住宿" }}
+        primaryAction={{ href: "/kaohsiung-whole-house", label: "依人數選高雄包棟" }}
         noteActions={[
-          { href: "/compare", label: "比較目前可訂方案" },
+          { href: "/kaohsiung-whole-house", label: "看包棟方案與適合人數" },
           { href: "/book", label: "查空房與報價" },
         ]}
         contentBridgeId="food-guide"

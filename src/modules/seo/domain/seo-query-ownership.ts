@@ -24,6 +24,7 @@ export interface SeoQueryPageOpportunity {
 const HEADCOUNT_LANDING_PAGES: Record<string, string> = {
     '6': '/blog/kaohsiung-6-person-stay',
     '10': '/blog/kaohsiung-10-person-stay',
+    '15': '/blog/kaohsiung-15-person-stay',
     '20': '/blog/kaohsiung-20-person-stay',
     '30': '/blog/kaohsiung-30-person-stay',
 };
@@ -44,7 +45,23 @@ export function resolveIntendedSeoLandingPage(rawQuery: string): string | null {
         return '/blog/kaohsiung-arena-accommodation';
     }
 
-    const headcount = query.match(/(?:^|\D)(6|10|20|30)\s*人(?:\D|$)/)?.[1];
+    if (/(廚房|開伙|煮飯|火鍋)/.test(query) && /(住宿|民宿|包棟)/.test(query)) {
+        return '/blog/kaohsiung-kitchen-bnb';
+    }
+
+    if (/(麻將|麻將桌)/.test(query) && /(住宿|民宿|包棟)/.test(query)) {
+        return '/blog/kaohsiung-mahjong-stay';
+    }
+
+    if (/(親子|帶小孩|家庭住宿)/.test(query) && /(住宿|民宿|包棟)/.test(query)) {
+        return '/blog/kaohsiung-family-accommodation';
+    }
+
+    if (/(家族旅遊|家族包棟|家庭團聚|家人聚會)/.test(query) && /(住宿|民宿|包棟|旅遊)/.test(query)) {
+        return '/blog/kaohsiung-family-reunion';
+    }
+
+    const headcount = query.match(/(?:^|\D)(6|10|15|20|30)\s*人(?:\D|$)/)?.[1];
     if (headcount && /(住宿|民宿|包棟|住哪)/.test(query)) {
         return HEADCOUNT_LANDING_PAGES[headcount];
     }
@@ -53,7 +70,10 @@ export function resolveIntendedSeoLandingPage(rawQuery: string): string | null {
         return '/kaohsiung-whole-house';
     }
 
-    if (query.includes('高雄') && query.includes('包棟')) return '/compare';
+    if (query.includes('高雄') && query.includes('包棟')) {
+        if (/(比較|差異|評比|怎麼選|怎麼挑)/.test(query)) return '/compare';
+        return '/kaohsiung-whole-house';
+    }
     if (query.includes('高雄') && /(團體|多人|家族)/.test(query) && /(住宿|民宿)/.test(query)) {
         return '/kaohsiung-whole-house';
     }

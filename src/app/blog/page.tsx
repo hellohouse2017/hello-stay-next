@@ -695,12 +695,14 @@ function pickImage(article: ArticleSummary) {
   if (article.slug === "pier2-accommodation") {
     return { src: "/images/hellohouse/photo5.webp", alt: article.title };
   }
-  if (
-    article.slug === "taiwan-travel-foreign-guide" ||
-    article.slug === "taiwan-travel-subsidy-guide" ||
-    article.slug === "taiwan-travel-subsidy-pricing-guide"
-  ) {
-    return { src: "/images/hellohouse/traffic.webp", alt: article.title };
+  if (article.slug === "taiwan-travel-foreign-guide") {
+    return { src: "/images/explore/harbor.jpg", alt: article.title };
+  }
+  if (article.slug === "taiwan-travel-subsidy-guide") {
+    return { src: "/images/hellohouse/photo3.webp", alt: article.title };
+  }
+  if (article.slug === "taiwan-travel-subsidy-pricing-guide") {
+    return { src: "/images/hellohouse/1000.webp", alt: article.title };
   }
   if (article.slug === "kaohsiung-nye-stay" || article.slug === "kaohsiung-concert-stay-group") {
     return { src: "/images/hellohouse/party-cover.webp", alt: article.title };

@@ -336,6 +336,61 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 }
 .local-guide-page .local-guide-item__article:hover { color: var(--pri); }
 
+.local-guide-stay-bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  margin: 28px 0;
+  padding: 28px 32px;
+  background: var(--pri-dark);
+  color: #fffdf8;
+  border: 1px solid rgba(197, 168, 128, 0.35);
+}
+
+.local-guide-stay-bridge .local-guide-kicker {
+  color: var(--hotel-gold-light);
+  margin-bottom: 8px;
+}
+
+.local-guide-stay-bridge h2 {
+  margin: 0 0 8px;
+  color: #fffdf8;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+}
+
+.local-guide-stay-bridge p:not(.local-guide-kicker) {
+  margin: 0;
+  color: rgba(255, 253, 248, 0.76);
+  line-height: 1.8;
+}
+
+.local-guide-stay-bridge__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.local-guide-stay-bridge__actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  color: #1a1d1b;
+  background: #fffdf8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.local-guide-stay-bridge__actions a:last-child {
+  color: #fffdf8;
+  background: var(--pri);
+}
+
 @media (max-width: 820px) {
   .site-nav .w { width: calc(100% - 32px); }
   .site-header.nav-d,
@@ -384,6 +439,8 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   .local-guide-page .local-guide-hero h1 { font-size: 2.7rem; }
   .local-guide-page .local-guide-content { padding: 70px 0; }
   .local-guide-page .local-explore-card { min-height: 360px; }
+  .local-guide-stay-bridge { grid-template-columns: 1fr; gap: 18px; padding: 24px 20px; }
+  .local-guide-stay-bridge__actions { justify-content: flex-start; }
 }
 
 /* Remaining public templates use the same editorial system as the redesigned routes. */
@@ -4632,6 +4689,10 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   color: var(--hotel-text-main);
 }
 
+.guide-mobile-booking-bar {
+  display: none;
+}
+
 /* 5星級暗夜黑曜 Hero */
 .luxury-guide-hero {
   position: relative;
@@ -4718,6 +4779,41 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 }
 
 @media (max-width: 640px) {
+  .luxury-guide-page { padding-bottom: 118px; }
+  .guide-mobile-booking-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 950;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(18, 20, 19, 0.96);
+    border-top: 1px solid rgba(197, 168, 128, 0.35);
+    box-shadow: 0 -8px 24px rgba(18, 20, 19, 0.16);
+    backdrop-filter: blur(14px);
+  }
+  .guide-mobile-booking-bar a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .guide-mobile-booking-bar a:first-child {
+    color: #1a1d1b;
+    background: linear-gradient(135deg, #dfc89e 0%, #c29b61 100%);
+  }
+  .guide-mobile-booking-bar a:last-child {
+    color: #ffffff;
+    background: #06c755;
+  }
   .luxury-guide-card {
     padding: 24px 20px;
     border-radius: 14px;
@@ -5041,6 +5137,4 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
     width: 100%;
   }
 }
-
-
 

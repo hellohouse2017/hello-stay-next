@@ -52,8 +52,16 @@ async function main() {
     assert.equal(lowVolumeTrend.status, 'insufficient');
     assert.match(lowVolumeTrend.note || '', /低搜尋量/);
 
-    assert.equal(resolveIntendedSeoLandingPage('高雄包棟民宿推薦'), '/compare');
+    assert.equal(resolveIntendedSeoLandingPage('高雄包棟民宿推薦'), '/kaohsiung-whole-house');
+    assert.equal(resolveIntendedSeoLandingPage('高雄包棟民宿'), '/kaohsiung-whole-house');
+    assert.equal(resolveIntendedSeoLandingPage('高雄包棟民宿比較'), '/compare');
+    assert.equal(resolveIntendedSeoLandingPage('高雄民宿包棟'), '/kaohsiung-whole-house');
     assert.equal(resolveIntendedSeoLandingPage('高雄 10 人住宿'), '/blog/kaohsiung-10-person-stay');
+    assert.equal(resolveIntendedSeoLandingPage('高雄 15 人包棟'), '/blog/kaohsiung-15-person-stay');
+    assert.equal(resolveIntendedSeoLandingPage('高雄有廚房的民宿'), '/blog/kaohsiung-kitchen-bnb');
+    assert.equal(resolveIntendedSeoLandingPage('高雄麻將包棟民宿'), '/blog/kaohsiung-mahjong-stay');
+    assert.equal(resolveIntendedSeoLandingPage('高雄親子住宿'), '/blog/kaohsiung-family-accommodation');
+    assert.equal(resolveIntendedSeoLandingPage('高雄家族旅遊包棟'), '/blog/kaohsiung-family-reunion');
     assert.equal(resolveIntendedSeoLandingPage('鹽埕早餐推薦'), '/explore/food');
     assert.equal(resolveIntendedSeoLandingPage('你好哇寓所'), '/hellohouse');
 
@@ -72,7 +80,7 @@ async function main() {
             status: opportunity.competitionStatus,
         })),
         [
-            { query: '高雄包棟民宿', intended: '/compare', actual: '/compare', status: 'aligned' },
+            { query: '高雄包棟民宿', intended: '/kaohsiung-whole-house', actual: '/compare', status: 'misaligned' },
             { query: '鹽埕早餐推薦', intended: '/explore/food', actual: '/explore/food', status: 'competing' },
             { query: '高雄 10 人住宿', intended: '/blog/kaohsiung-10-person-stay', actual: '/kaohsiung-whole-house', status: 'misaligned' },
         ],

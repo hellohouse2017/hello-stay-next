@@ -17,14 +17,44 @@ import GuideReadingExperience from "@/components/GuideReadingExperience";
 
 type Props = { params: Promise<{ slug: string }> };
 type ArticleFaq = { q: string; a: string };
+type ArticleBridgeLink = {
+    href: string;
+    label: string;
+    partySize?: number;
+    seoIntent?: string;
+    ctaType?: string;
+};
 type ArticleBridge = {
     id: string;
     title: string;
     body: string;
-    links: Array<{ href: string; label: string }>;
+    links: ArticleBridgeLink[];
 };
 
 const DEFAULT_ARTICLE_IMAGE = "https://www.hello-stay.com/images/cover-bg.webp";
+const ARTICLE_PARTY_SIZES: Record<string, number> = {
+    "kaohsiung-6-person-stay": 6,
+    "kaohsiung-10-person-stay": 10,
+    "kaohsiung-15-person-stay": 15,
+    "kaohsiung-20-person-stay": 20,
+    "kaohsiung-30-person-stay": 30,
+};
+
+function getArticleBookingHref(slug: string) {
+    const partySize = ARTICLE_PARTY_SIZES[slug];
+    return partySize ? `/book?guestCount=${partySize}` : "/book";
+}
+
+function getArticleBookingLabel(slug: string) {
+    const partySize = ARTICLE_PARTY_SIZES[slug];
+    return partySize ? `輸入 ${partySize} 人查空房與報價` : "查詢空房與報價";
+}
+
+function getArticleSeoIntent(slug: string) {
+    if (ARTICLE_PARTY_SIZES[slug]) return "party_size";
+    if (/kitchen|mahjong|family|arena/.test(slug)) return "feature";
+    return "inspiration";
+}
 
 const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
     "kaohsiung-3day-seasonal": {
@@ -52,9 +82,9 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "高雄麻將包棟選館建議",
         body: "你好哇寓所 1F 配備手動麻將桌、桌遊與大型中島交誼廳，適合 8-26 人聚會；溝頂民宿 4F 設有獨立交誼廳與麻將空間，適合 4-12 人包棟。",
         links: [
-            { href: "/hellohouse", label: "8-26 人看你好哇" },
-            { href: "/godin", label: "4-12 人看溝頂" },
-            { href: "/compare", label: "包棟方案比較" },
+            { href: "/hellohouse", label: "8-26 人看你好哇", seoIntent: "feature" },
+            { href: "/godin", label: "4-12 人看溝頂", seoIntent: "feature" },
+            { href: "/book?guestCount=10", label: "輸入人數查麻將包棟空房", partySize: 10, seoIntent: "feature", ctaType: "booking" },
         ],
     },
     "kaohsiung-kitchen-bnb": {
@@ -62,9 +92,49 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "想開伙煮火鍋？兩館設備差異",
         body: "你好哇寓所提供 1F 完整中島廚房（雙口 IH 爐、烤箱、微波爐、雙門冰箱與鍋碗餐具），適合煮火鍋與備餐；溝頂民宿 4F 提供簡易流理台與微波爐。",
         links: [
-            { href: "/hellohouse", label: "你好哇中島廚房" },
-            { href: "/godin", label: "溝頂簡易備餐" },
-            { href: "/book", label: "查空房與報價" },
+            { href: "/hellohouse", label: "你好哇中島廚房", seoIntent: "feature" },
+            { href: "/godin", label: "溝頂簡易備餐", seoIntent: "feature" },
+            { href: "/book?guestCount=20", label: "輸入人數查廚房包棟空房", partySize: 20, seoIntent: "feature", ctaType: "booking" },
+        ],
+    },
+    "kaohsiung-10-person-stay": {
+        id: "headcount-10-stay-choice",
+        title: "10 人包棟先看房型，再直接查當期報價",
+        body: "10 人通常先看溝頂民宿的 4 間客房與獨立衛浴；若更重視正式開伙與較大的 1F 公共空間，再比較你好哇寓所。價格與可入住館別會隨日期、人數與方案變動，直接帶入 10 人查詢最準。",
+        links: [
+            { href: "/godin", label: "看溝頂 4 房配置", seoIntent: "party_size" },
+            { href: "/compare", label: "比較 10 人適合的館別", seoIntent: "party_size" },
+            { href: "/book?guestCount=10", label: "輸入 10 人查空房與報價", partySize: 10, seoIntent: "party_size", ctaType: "booking" },
+        ],
+    },
+    "kaohsiung-20-person-stay": {
+        id: "headcount-20-stay-choice",
+        title: "20 人包棟先看你好哇，再確認分房與檔期",
+        body: "20 人落在你好哇寓所 8-26 人的主要適用範圍，重點是 6 間客房、全房獨立衛浴與 1F 中島公共空間；若需要更多分房或分棟休息，再比較雙館方案。",
+        links: [
+            { href: "/hellohouse", label: "看你好哇 6 房配置", seoIntent: "party_size" },
+            { href: "/compare", label: "比較單館與雙館", seoIntent: "party_size" },
+            { href: "/book?guestCount=20", label: "輸入 20 人查空房與報價", partySize: 20, seoIntent: "party_size", ctaType: "booking" },
+        ],
+    },
+    "kaohsiung-30-person-stay": {
+        id: "headcount-30-stay-choice",
+        title: "30 人直接看雙館，先確認分棟與當期房況",
+        body: "30 人屬於你好哇寓所＋溝頂民宿雙館的標準安排範圍（27-34 人）；兩館步行約 5 秒、合計 10 間客房。35-36 人需加床，請直接用 30 人與入住日期查詢官方報價。",
+        links: [
+            { href: "/compare", label: "看雙館房型與分棟比較", seoIntent: "party_size" },
+            { href: "/kaohsiung-whole-house", label: "看 27-36 人包棟主頁", seoIntent: "party_size" },
+            { href: "/book?guestCount=30", label: "輸入 30 人查雙館空房與報價", partySize: 30, seoIntent: "party_size", ctaType: "booking" },
+        ],
+    },
+    "kaohsiung-family-accommodation": {
+        id: "family-accommodation-choice",
+        title: "親子包棟先確認樓梯，再選公共空間",
+        body: "你好哇寓所適合 8-26 人家庭團體，1F 有中島廚房與公共空間；溝頂民宿適合 4-12 人、1F 有房但全館無電梯。兩館都須走樓梯，帶幼兒或長輩請先核對樓層與分房。",
+        links: [
+            { href: "/kaohsiung-whole-house", label: "依人數看包棟方案", seoIntent: "feature" },
+            { href: "/compare", label: "比較房型與樓梯動線", seoIntent: "feature" },
+            { href: "/book?guestCount=12", label: "輸入人數查親子包棟空房", partySize: 12, seoIntent: "feature", ctaType: "booking" },
         ],
     },
     "pier2-accommodation": {
@@ -242,6 +312,10 @@ function ArticleContentBridge({ bridge }: { bridge: ArticleBridge }) {
                             key={link.href}
                             data-content-bridge={bridge.id}
                             data-content-bridge-target={link.href}
+                            data-seo-intent={link.seoIntent}
+                            data-party-size={link.partySize}
+                            data-cta-type={link.ctaType}
+                            data-cta-position="content_bridge"
                             style={{ padding: "9px 12px", border: "1px solid #D4CBC0", color: "#3D3830", fontSize: "0.78rem", fontWeight: 600 }}
                         >
                             {link.label}
@@ -349,6 +423,9 @@ export default async function ScheduledArticlePage({ params }: Props) {
                     description={mdxArticle.description}
                     url={canonicalUrl}
                     highlights={highlights}
+                    bookingHref={getArticleBookingHref(slug)}
+                    seoIntent={getArticleSeoIntent(slug)}
+                    partySize={ARTICLE_PARTY_SIZES[slug]}
                 />
 
                 <JsonLd data={[
@@ -448,7 +525,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             actions={[
                                 { href: "/", label: "高雄包棟民宿推薦首頁" },
                                 { href: "/compare", label: "高雄包棟推薦比較" },
-                                { href: "/book", label: "查詢空房與報價", solid: true },
+                                { href: getArticleBookingHref(slug), label: getArticleBookingLabel(slug), solid: true },
                             ]}
                         >
                             很多人是先從攻略文章找到我們，再回到{" "}
@@ -467,7 +544,11 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         <div style={{ textAlign: "center", marginTop: "36px" }}>
                             <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
                                 <Link
-                                    href="/book"
+                                    href={getArticleBookingHref(slug)}
+                                    data-seo-intent={getArticleSeoIntent(slug)}
+                                    data-party-size={ARTICLE_PARTY_SIZES[slug]}
+                                    data-cta-type="booking"
+                                    data-cta-position="bottom"
                                     style={{
                                         padding: "14px 36px",
                                         borderRadius: "999px",
@@ -480,7 +561,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                                         boxShadow: "0 6px 20px rgba(23, 72, 61, 0.28)",
                                     }}
                                 >
-                                    查詢空房與報價
+                                    {getArticleBookingLabel(slug)}
                                 </Link>
                                 <Link
                                     href="/explore"
@@ -531,6 +612,9 @@ export default async function ScheduledArticlePage({ params }: Props) {
                 description={getArticleDescription(article)}
                 url={canonicalUrl}
                 highlights={articleHighlights}
+                bookingHref={getArticleBookingHref(slug)}
+                seoIntent={getArticleSeoIntent(slug)}
+                partySize={ARTICLE_PARTY_SIZES[slug]}
             />
 
             <JsonLd data={[
@@ -634,7 +718,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                         actions={[
                             { href: "/", label: "高雄包棟推薦首頁" },
                             { href: "/kaohsiung-whole-house", label: "依需求看包棟方案" },
-                            { href: "/book", label: "查詢空房與報價", solid: true },
+                            { href: getArticleBookingHref(slug), label: getArticleBookingLabel(slug), solid: true },
                         ]}
                     >
                         如果你是從這篇內容頁一路看下來，通常已經知道自己在找什麼了。這時候直接回{" "}
@@ -652,9 +736,13 @@ export default async function ScheduledArticlePage({ params }: Props) {
                 <Reveal>
                     <div style={{ textAlign: "center", marginTop: "36px" }}>
                         <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                            <Link
-                                href="/book"
-                                style={{
+                                <Link
+                                    href={getArticleBookingHref(slug)}
+                                    data-seo-intent={getArticleSeoIntent(slug)}
+                                    data-party-size={ARTICLE_PARTY_SIZES[slug]}
+                                    data-cta-type="booking"
+                                    data-cta-position="bottom"
+                                    style={{
                                     padding: "14px 36px",
                                     borderRadius: "999px",
                                     background: "linear-gradient(135deg, #17483d 0%, #10342c 100%)",
@@ -666,7 +754,7 @@ export default async function ScheduledArticlePage({ params }: Props) {
                                     boxShadow: "0 6px 20px rgba(23, 72, 61, 0.28)",
                                 }}
                             >
-                                查詢空房與報價
+                                {getArticleBookingLabel(slug)}
                             </Link>
                             <Link
                                 href="/explore"

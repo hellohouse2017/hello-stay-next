@@ -4,12 +4,12 @@ import PropertyShowcasePage from "@/components/PropertyShowcasePage";
 import { publicStayFacts } from "@/data/public-stay-facts";
 
 export const metadata: Metadata = {
-  title: "【高雄包棟民宿比較】4房vs6房怎麼挑？你好哇寓所與溝頂民宿房型・衛浴・分房配置評比｜Hello Stay",
+  title: "高雄包棟民宿比較｜人數、設備與地點怎麼選｜你好哇寓所",
   description:
     "高雄包棟民宿怎麼選？比較溝頂民宿（4房/4衛・4-12人）、你好哇寓所（6房/6衛・8-26人）與雙館 10 房方案的房型配置、分房隱私、中島廚房與公共空間，全獨立套房・包棟絕不鎖房。",
   alternates: { canonical: "https://www.hello-stay.com/compare" },
   openGraph: {
-    title: "【高雄包棟民宿比較】4房vs6房怎麼挑？你好哇寓所與溝頂民宿房型・衛浴・分房配置評比｜Hello Stay",
+    title: "高雄包棟民宿比較｜人數、設備與地點怎麼選｜你好哇寓所",
     description: "依房間數（4房/6房/10房）、人數與分房隱私比較高雄鹽埕目前可訂的兩館與雙館包棟方案，全套房獨立衛浴・包棟絕不鎖房。",
     url: "https://www.hello-stay.com/compare",
     images: [
@@ -220,8 +220,8 @@ export default function ComparePage() {
       <PropertyShowcasePage
         hero={{
           kicker: "高雄包棟民宿比較",
-          title: "高雄包棟民宿怎麼選？",
-          lead: "先看人數，再看房型與公共空間：4-12 人選溝頂、8-26 人選你好哇、27-36 人選雙館。規劃中的大智若愚不列入目前可訂比較。",
+          title: "高雄包棟民宿怎麼選？人數與館別比較",
+          lead: "這一頁專門比較人數、房型、設備與地點；如果你已經知道入住日期與人數，請直接前往高雄包棟主頁查空房與官方報價。4-12 人選溝頂、8-26 人選你好哇、27-36 人選雙館。",
           image: {
             src: "/images/hellohouse/cover.webp",
             alt: "Hello Stay 高雄包棟民宿比較主視覺",
@@ -233,7 +233,7 @@ export default function ComparePage() {
             { label: "目前電梯方案", value: "無" },
           ],
           primaryAction: { href: "/book", label: "查詢空房與報價" },
-          secondaryAction: { href: "/kaohsiung-whole-house", label: "依人數看完整攻略" },
+          secondaryAction: { href: "/kaohsiung-whole-house", label: "前往高雄包棟主頁查空房" },
         }}
         overview={{
           kicker: "BOOKABLE OPTIONS",

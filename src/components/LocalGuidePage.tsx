@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   ArrowRight,
   BookOpenText,
@@ -171,6 +172,8 @@ export default function LocalGuidePage({
         description={lead}
         url={kind === "food" ? "/explore/food" : "/explore/spots"}
         highlights={allHighlights}
+        bookingHref="/book"
+        seoIntent={kind === "food" ? "food_guide" : "inspiration"}
       />
 
       <section className="local-guide-hero">
@@ -232,7 +235,42 @@ export default function LocalGuidePage({
             <p>{sectionLead}</p>
           </div>
 
-          <GuideSections sections={sections} />
+          {sections.map((section, index) => (
+            <Fragment key={section.title}>
+              <GuideSections sections={[section]} />
+              {kind === "food" && index === 0 ? (
+                <aside className="local-guide-stay-bridge" aria-labelledby="local-guide-stay-bridge-title">
+                  <div>
+                    <p className="local-guide-kicker">吃完鹽埕老店，住宿也一起安排</p>
+                    <h2 id="local-guide-stay-bridge-title">住在美食生活圈，回館後還能繼續聚會</h2>
+                    <p>早餐、老店與宵夜都走得到；多人同行再依 4–12 人、8–26 人或 27–36 人選擇包棟方案。</p>
+                  </div>
+                  <div className="local-guide-stay-bridge__actions">
+                    <Link
+                      href="/kaohsiung-whole-house"
+                      data-content-bridge={contentBridgeId}
+                      data-content-bridge-target="mid_stay_bridge"
+                      data-seo-intent="food_guide"
+                      data-cta-type="content_bridge"
+                      data-cta-position="mid_content"
+                    >
+                      依人數看包棟方案 <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
+                    <Link
+                      href="/book"
+                      data-content-bridge={contentBridgeId}
+                      data-content-bridge-target="mid_booking"
+                      data-seo-intent="food_guide"
+                      data-cta-type="booking"
+                      data-cta-position="mid_content"
+                    >
+                      查空房與報價 <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
+                  </div>
+                </aside>
+              ) : null}
+            </Fragment>
+          ))}
 
           {secondarySections.length > 0 ? (
             <section className="local-guide-secondary" aria-labelledby="local-guide-secondary-title">

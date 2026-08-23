@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowRight, ArrowUpRight, CalendarDays, CheckCircle2, Hotel, ShieldCheck, Users } from "lucide-react";
 import { properties } from "@/data/properties";
 
@@ -20,9 +21,10 @@ type Entrance = {
   splitImages?: { src: string; alt: string; label: string }[];
 };
 
-function buildBookingHref(property?: string) {
+function buildBookingHref(property?: string, guestCount?: string) {
   const url = new URL(bookingBase);
   if (property) url.searchParams.set("property", property);
+  if (guestCount && /^\d{1,2}$/.test(guestCount)) url.searchParams.set("guestCount", guestCount);
   url.searchParams.set("openCalendar", "1");
   return url.toString();
 }
@@ -87,6 +89,11 @@ const steps = [
 ];
 
 export default function BookingFlow() {
+  const searchParams = useSearchParams();
+  const requestedProperty = searchParams.get("property") || undefined;
+  const requestedGuestCount = searchParams.get("guestCount") || undefined;
+  const bookingSeoIntent = requestedGuestCount ? "party_size" : "brand";
+
   return (
     <div className="book-luxury-page">
       {/* ═══ 1. HERO ═══ */}
@@ -100,7 +107,14 @@ export default function BookingFlow() {
               依團體人數或房間需求選擇館別，一鍵進入官方訂房系統。
             </p>
             <div className="book-luxury-hero__actions">
-              <a href={buildBookingHref()} className="mockup-btn mockup-btn--gold">
+              <a
+                href={buildBookingHref(requestedProperty, requestedGuestCount)}
+                data-seo-intent={bookingSeoIntent}
+                data-party-size={requestedGuestCount}
+                data-cta-type="booking"
+                data-cta-position="hero"
+                className="mockup-btn mockup-btn--gold"
+              >
                 前往官方訂房系統 <ArrowRight size={16} aria-hidden="true" />
               </a>
               <Link href="/compare" className="mockup-btn mockup-btn--outline">
@@ -185,7 +199,14 @@ export default function BookingFlow() {
                     <p className="book-luxury-card__desc">{item.detail}</p>
                   </div>
 
-                  <a href={buildBookingHref(item.property)} className="mockup-btn mockup-btn--gold">
+                  <a
+                    href={buildBookingHref(item.property, requestedGuestCount)}
+                    data-seo-intent={bookingSeoIntent}
+                    data-party-size={requestedGuestCount}
+                    data-cta-type="booking"
+                    data-cta-position="property_card"
+                    className="mockup-btn mockup-btn--gold"
+                  >
                     查詢 {item.name} 空房 <ArrowRight size={15} aria-hidden="true" />
                   </a>
                 </div>
@@ -197,4 +218,3 @@ export default function BookingFlow() {
     </div>
   );
 }
-

@@ -31,10 +31,10 @@ export default function PropertyLinksBlock() {
                 <span>依人數查看</span>
                 <div>
                     {[
-                        { href: "/godin", label: "10 人左右" },
-                        { href: "/hellohouse", label: "20 人左右" },
-                        { href: "/compare", label: "30 人左右" },
-                        { href: "/compare", label: "40 人以上" },
+                        { href: "/blog/kaohsiung-10-person-stay", label: "10 人左右" },
+                        { href: "/blog/kaohsiung-20-person-stay", label: "20 人左右" },
+                        { href: "/blog/kaohsiung-30-person-stay", label: "30 人左右" },
+                        { href: "/kaohsiung-whole-house", label: "40 人以上" },
                     ].map(({ href, label }) => (
                         <Link key={`${href}-${label}`} href={href}>
                             {label}

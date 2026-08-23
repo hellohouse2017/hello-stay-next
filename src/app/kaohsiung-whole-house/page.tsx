@@ -6,12 +6,12 @@ import { publicStayFacts } from "@/data/public-stay-facts";
 import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = {
-    title: "【高雄包棟民宿總整理】4房/6房/10房怎麼選？4-36人房型・衛浴與分房指南｜Hello Stay",
-    description: "高雄 4 房、6 房與 10 房包棟住宿怎麼選？依人數與房間數前往對應攻略，完整比較溝頂民宿（4房/4衛）、你好哇寓所（6房/6衛）與雙館方案的房型配置、設備與分房動線。",
+    title: "高雄包棟民宿推薦｜依人數選整棟住宿與直接詢價｜你好哇寓所",
+    description: "高雄包棟民宿官方方案：溝頂 4–12 人、你好哇 8–26 人、雙館 27–36 人。依人數、房間與廚房需求選館，再查日期、空房與包棟價格。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
-        title: "【高雄包棟民宿總整理】4房/6房/10房怎麼選？4-36人房型・衛浴與分房指南｜Hello Stay",
-        description: "依 4 房、6 房、10 房與 6、10、20、30 人快速比較溝頂、你好哇與雙館方案，全套房獨立衛浴・包棟絕不鎖房。",
+        title: "高雄包棟民宿推薦｜依人數選整棟住宿與直接詢價｜你好哇寓所",
+        description: "依 4–36 人、人數與設備需求選擇溝頂、你好哇或雙館方案，直接查看官方空房與包棟報價。",
         url: "https://www.hello-stay.com/kaohsiung-whole-house",
         images: [DEFAULT_SEO_IMAGE],
     },
@@ -125,9 +125,13 @@ export default function KaohsiungWholeHousePage() {
             <div className="w" style={{ maxWidth: "800px", padding: "0 20px 80px" }}>
                 <Reveal><div style={{ textAlign: "center", marginBottom: "40px" }}>
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
-                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄 4-36 人包棟方案怎麼選？</h1>
+                    <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿推薦｜依人數選整棟住宿</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
-                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "500px", margin: "0 auto", lineHeight: 1.8 }}>溝頂民宿 4-12 人、你好哇寓所 8-26 人、雙館包棟 27-36 人｜鹽埕區駁二步行圈｜先判斷館別，再查空房與報價</p>
+                    <p style={{ fontSize: "0.88rem", color: "#999", maxWidth: "560px", margin: "0 auto", lineHeight: 1.8 }}>溝頂民宿 4–12 人、你好哇寓所 8–26 人、雙館包棟 27–36 人｜鹽埕區駁二步行圈｜先選人數與館別，再直接查空房、價格或用 LINE 詢價</p>
+                    <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap", marginTop: "22px" }}>
+                        <Link href="/book" style={{ padding: "12px 22px", borderRadius: "999px", background: "#161618", color: "#fff", fontSize: "0.82rem", textDecoration: "none" }}>查看可入住日期與包棟價格</Link>
+                        <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" style={{ padding: "12px 22px", borderRadius: "999px", background: "#06C755", color: "#fff", fontSize: "0.82rem", textDecoration: "none" }}>LINE 取得包棟報價</a>
+                    </div>
                 </div></Reveal>
 
                 {/* Quick Answer for AI */}
@@ -262,8 +266,8 @@ export default function KaohsiungWholeHousePage() {
 
                 {/* CTA */}
                 <Reveal><div style={{ textAlign: "center", display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                    <Link href="/book" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>查詢空房</Link>
-                    <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">💬 LINE 線上客服</a>
+                    <Link href="/book" data-seo-intent="core_whole_house" data-cta-type="booking" data-cta-position="bottom" style={{ padding: "14px 32px", borderRadius: "10px", background: "#161618", color: "#fff", fontFamily: "var(--serif)", fontSize: "0.85rem", letterSpacing: "0.08em", textDecoration: "none" }}>查詢空房</Link>
+                    <a href="https://lin.ee/atCiMQw" data-seo-intent="core_whole_house" data-cta-type="line_quote" data-cta-position="bottom" target="_blank" rel="noopener noreferrer" className="btn-line btn-line--lg">💬 LINE 線上客服</a>
                 </div></Reveal>
             </div>
         </div>
