@@ -51,7 +51,7 @@ export default function ReviewsExperience() {
         <div className="reviews-container">
           <div className="reviews-hero__badge">
             <ShieldCheck size={16} className="reviews-hero__badge-icon" />
-            <span>Google 商家 4.9 ★★★★★ 真實口碑認證</span>
+            <span>Google 商家 4.5 ★★★★★ 真實口碑認證</span>
           </div>
 
           <h1 className="reviews-hero__title">
@@ -59,8 +59,8 @@ export default function ReviewsExperience() {
           </h1>
 
           <p className="reviews-hero__desc">
-            彙整 200+ 則 Google 商家五星好評與多組家庭、好友聚會、迎娶團隊的真實入住故事。
-            不說空泛形容詞，讓真實住客告訴你空間有多好用、生活圈有多方便。
+            整理 Google 商家真實好評（你好哇寓所累積 75 則 4.5 星評價）與實際住客入住回饋。
+            不講空話、不灌水造假，讓真實住客告訴你中島廚房多好煮、位置多方便、包棟多自在。
           </p>
 
           {/* 綜合數據總覽卡 */}
@@ -75,7 +75,7 @@ export default function ReviewsExperience() {
                     ))}
                   </div>
                   <span className="reviews-summary-count">
-                    累積 {reviewStats.totalReviews} 則真實住客五星滿意
+                    Google 商家 {reviewStats.totalReviews} 則真實評分認證
                   </span>
                 </div>
               </div>

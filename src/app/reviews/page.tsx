@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "高雄包棟民宿評價推薦｜住客真實入住回饋與 Google 五星口碑｜Hello Stay",
   description:
-    "精選 200+ 則 Google 商家真實好評與住客回饋！深入了解你好哇寓所（中島大廚房・8-26人聚會）與溝頂民宿（獨棟分層・4-12人）的真實入住心得。全獨立套房、麻將娛樂、走路 10 分鐘到駁二，高雄家族旅遊與朋友包棟首選推薦。",
+    "整理 Google 商家真實好評（你好哇寓所累積 75 則 4.5 星評價）與住客真實回饋！深入了解你好哇寓所（中島大廚房・8-26人聚會）與溝頂民宿（獨棟分層・4-12人）的真實入住心得。全獨立套房、麻將娛樂、走路 10 分鐘到駁二，高雄家族旅遊與朋友包棟首選推薦。",
   keywords: [
     "高雄包棟民宿評價",
     "高雄包棟民宿推薦",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "高雄包棟民宿評價推薦｜住客真實入住回饋與 Google 五星口碑｜Hello Stay",
     description:
-      "200+ 則 Google 商家真實好評！全獨立套房・中島大廚房・麻將娛樂・步行駁二生活圈，看真實住客怎麼說。",
+      "Google 商家 4.5 星真實好評！全獨立套房・中島大廚房・麻將娛樂・步行駁二生活圈，看真實住客怎麼說。",
     url: "https://www.hello-stay.com/reviews",
     images: [
       {
@@ -66,7 +66,7 @@ export default function ReviewsPage() {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: reviewStats.averageRating,
-        reviewCount: "200",
+        reviewCount: "75",
         bestRating: "5",
         worstRating: "1",
       },
