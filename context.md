@@ -11,7 +11,7 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
-### 2026-08-26（交通與停車 /traffic 手機版 UI/UX 徹底重構、LINE Bot 導流一秒即懂）
+### 2026-08-26（交通與停車 /traffic 手機版 UI/UX 徹底重構、LINE Bot 導流一秒即懂並完成部署）
 - **痛點根治**：徹底解決過去在 LINE 點擊「停車交通」按鈕（`?src=line`）進入 `/traffic` 時，因套用通用展示頁模板導致停車資訊沉底（需滑動 5-8 個螢幕）、缺乏清楚下車 SOP 與停車場結構化導航之問題。
 - **全新專屬 `TrafficExperience.tsx` 元件**：
   1. **緊湊 Mobile-First Hero 與 4 大速覽指標**：頂部直接呈現「大公路 70 巷內」、「自駕停車（巷口下車・周邊停車）」、「捷運鹽埕埔站 2 號出口 5 分」、「輕軌文武聖殿站 4 分鐘」。
@@ -22,7 +22,10 @@ Hello Stay 民宿的官方網站前台。
   6. **大眾運輸與計程車報路指引**：高鐵/台鐵/捷運/輕軌清晰步態圖標化，計程車與 Uber 叫車專用定位地址一鍵複製。
   7. **FAQ 與底部客服支援**：手風琴收納 6 大關鍵問題，配置 LINE 官方管家直連與緊急電話按鈕。
   8. **SEO 結構化資料升級**：完整注入 BreadcrumbList、HowTo、Place（兩館個別門牌與座標）、FAQPage 等 Schema.org 結構化資料。
-- **驗證**：`npm run validate:content`、targeted ESLint（0 errors / 0 warnings）、`npx tsc --noEmit`、`npm run test:seo-route-boundaries`、`npm run test:seo-page-health`、`npm run build:local`（160 靜態路由全數生成）全數 100% 通過。
+- **驗證與正式部署**：
+  * 本地驗證：`npm run validate:content`、targeted ESLint（0 errors / 0 warnings）、`npx tsc --noEmit`、`npm run test:seo-route-boundaries`、`npm run test:seo-page-health`、`npm run build:local`（160 靜態路由全數生成）全數 100% 通過。
+  * Vercel 正式部署：Deployment `https://hello-stay-next-ave8p61l8-hellohouses-projects.vercel.app` 已成功 alias 至 `https://www.hello-stay.com`。正式站抽查 `/traffic` 與 `/traffic?src=line` 皆正常回傳 HTTP 200。
+
 
 ### 2026-08-26（修正 GSC SEO 提交的 Vercel 型別部署失敗）
 - GitHub 自動部署 `5655838`（`feat(seo): 強化高雄包棟主詞 SERP 點擊率與頁面意圖`）在 Vercel 的 TypeScript 檢查中失敗；錯誤為 `HomeTemplateExperience.tsx` 讀取 FAQ 項目的 `id`，但該提交漏帶新版 `src/data/homepage-faq.ts` 型別與欄位資料。
