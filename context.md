@@ -11,6 +11,19 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-08-26（交通與停車 /traffic 手機版 UI/UX 徹底重構、LINE Bot 導流一秒即懂）
+- **痛點根治**：徹底解決過去在 LINE 點擊「停車交通」按鈕（`?src=line`）進入 `/traffic` 時，因套用通用展示頁模板導致停車資訊沉底（需滑動 5-8 個螢幕）、缺乏清楚下車 SOP 與停車場結構化導航之問題。
+- **全新專屬 `TrafficExperience.tsx` 元件**：
+  1. **緊湊 Mobile-First Hero 與 4 大速覽指標**：頂部直接呈現「大公路 70 巷內」、「自駕停車（巷口下車・周邊停車）」、「捷運鹽埕埔站 2 號出口 5 分」、「輕軌文武聖殿站 4 分鐘」。
+  2. **置頂快捷導航 Tabs（Segmented Control）**：支援 `?src=line`、`#parking`、`#map` 自動切換，快速於【🚗 自駕與停車】、【🗺️ 地圖與位置】、【🚇 捷運／高鐵／輕軌】、【🚕 計程車／叫車】與【❓ 常見問題】間無縫切換。
+  3. **開車必看關鍵警示與「抵達 3 步驟 SOP」**：清楚告知兩館在傳統巷弄內無法直開門口與無私人車位，SOP 引導「步驟 1：開至巷口下行李 ➔ 步驟 2：駕駛前往推薦停車場 ➔ 步驟 3：步行 2-5 分鐘進館」。
+  4. **6 大精選停車場卡片**：結構化標註型態（路邊車格/室內地下/大型立體/戶外平面）、步行時間、收費行情與特色，配置一鍵「🧭 開啟 Google Maps 導航」大按鈕。
+  5. **地圖與兩館門牌一鍵複製/導航**：官方交通指引地圖 `guide-v3.webp` 支援全螢幕 Lightbox 放大檢視；你好哇寓所與溝頂民宿提供一鍵複製地址與步行導航按鈕。
+  6. **大眾運輸與計程車報路指引**：高鐵/台鐵/捷運/輕軌清晰步態圖標化，計程車與 Uber 叫車專用定位地址一鍵複製。
+  7. **FAQ 與底部客服支援**：手風琴收納 6 大關鍵問題，配置 LINE 官方管家直連與緊急電話按鈕。
+  8. **SEO 結構化資料升級**：完整注入 BreadcrumbList、HowTo、Place（兩館個別門牌與座標）、FAQPage 等 Schema.org 結構化資料。
+- **驗證**：`npm run validate:content`、targeted ESLint（0 errors / 0 warnings）、`npx tsc --noEmit`、`npm run test:seo-route-boundaries`、`npm run test:seo-page-health`、`npm run build:local`（160 靜態路由全數生成）全數 100% 通過。
+
 ### 2026-08-26（修正 GSC SEO 提交的 Vercel 型別部署失敗）
 - GitHub 自動部署 `5655838`（`feat(seo): 強化高雄包棟主詞 SERP 點擊率與頁面意圖`）在 Vercel 的 TypeScript 檢查中失敗；錯誤為 `HomeTemplateExperience.tsx` 讀取 FAQ 項目的 `id`，但該提交漏帶新版 `src/data/homepage-faq.ts` 型別與欄位資料。
 - 本次修正將必要的 FAQ 資料檔納入同一提交，首頁評價摘要改直接讀取 `reviewStats` 的真實 `4.5` 星／`75+` 則資料，不再保留不一致的 `4.9`／`150+` 硬編碼數字。既有的非 SEO 工作區變更維持不納入提交。

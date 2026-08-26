@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
-import PropertyShowcasePage from "@/components/PropertyShowcasePage";
-import { parkingLots } from "@/data/parking-lots";
+import TrafficExperience from "@/components/TrafficExperience";
 import { getAlternateLanguageMap } from "@/i18n/config";
 
 export const metadata: Metadata = {
-  title: "高雄鹽埕包棟交通｜捷運、高鐵、停車一次看",
+  title: "高雄鹽埕包棟交通停車指南｜自駕停車、捷運高鐵、叫車指引 - Hello Stay",
   description:
-    "Hello Stay 高雄鹽埕包棟民宿交通停車整理。捷運怎麼走、高鐵怎麼轉、自駕停哪裡、叫車在哪裡下，這頁一次看完。",
+    "Hello Stay 高雄鹽埕包棟民宿交通停車整理。自駕停車推薦、大公路 70 巷口下車 SOP、捷運鹽埕埔站 2 號出口步行 5 分鐘、高鐵輕軌轉乘與叫車定位，手機一目瞭然。",
   alternates: { canonical: "https://www.hello-stay.com/traffic", languages: getAlternateLanguageMap("/traffic") },
   openGraph: {
-    title: "Hello Stay 怎麼去？捷運、高鐵、停車一次看",
-    description: "搭捷運、從高鐵轉車、自駕停車或叫車前來，Hello Stay 的交通方式這頁直接整理給你。",
+    title: "Hello Stay 怎麼去？高雄包棟交通與停車指引",
+    description: "自駕停車推薦、大公路 70 巷口下車 SOP、捷運高鐵轉乘與叫車定位，Hello Stay 交通停車這頁一次看懂。",
     url: "https://www.hello-stay.com/traffic",
     images: [
       {
@@ -24,178 +23,38 @@ export const metadata: Metadata = {
   },
 };
 
-const routeCards = [
+const trafficSchemaFaqs = [
   {
-    id: "traffic-mrt",
-    kicker: "捷運",
-    title: "搭捷運",
-    image: {
-      src: "/images/traffic/mrt.webp",
-      alt: "高雄捷運鹽埕埔站 2 號出口（O2）",
-    },
-    summary: "搭到鹽埕埔站 O2，出站後步行約 5 分鐘就會到。",
-    description: "沒有開車的話，直接搭捷運到鹽埕埔站最省事。從 O2 二號出口出站後，沿大公路走進 70 巷，大約 5 分鐘就會到。",
-    specs: [
-      { label: "下車站", value: "鹽埕埔站 O2" },
-      { label: "出口", value: "O2 二號出口" },
-      { label: "步行", value: "約 5 分鐘" },
-      { label: "適合", value: "無車旅客" },
-    ],
-    groups: [
-      {
-        title: "怎麼走",
-        items: ["搭捷運到鹽埕埔站", "從 O2 二號出口出站", "沿大公路步行到 70 巷"],
-      },
-      {
-        title: "先記這三件事",
-        items: ["先到鹽埕埔站 O2", "出站走二號出口", "沿大公路步行進 70 巷"],
-      },
-    ],
-    action: {
-      href: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking",
-      label: "開啟步行導航",
-      external: true,
-    },
+    question: "車可以直接開到民宿門口嗎？",
+    answer:
+      "不行。你好哇寓所與溝頂民宿皆位於傳統鹽埕巷弄內（大公路 70 巷），巷道窄小車輛無法直達門口，亦無專屬私人車位。請先將車輛開至「大公路 70 巷口」讓同行人員與大件行李下車，駕駛再前往周邊停車場停妥後步行進館。",
   },
   {
-    id: "traffic-hsr",
-    kicker: "高鐵",
-    title: "搭高鐵",
-    image: {
-      src: "/images/traffic/hsr.webp",
-      alt: "台灣高鐵左營站 700T 列車月台",
-    },
-    summary: "左營下車後轉捷運，到鹽埕埔站後再步行進巷。",
-    description: "外縣市過來的話，從高鐵左營站轉捷運最方便。到鹽埕埔站後，再步行進大公路 70 巷即可。",
-    specs: [
-      { label: "高鐵", value: "左營站" },
-      { label: "紅線", value: "到美麗島站" },
-      { label: "橘線", value: "到鹽埕埔站" },
-      { label: "最後", value: "步行約 5 分鐘" },
-    ],
-    groups: [
-      {
-        title: "轉乘方式",
-        items: ["高鐵左營站下車", "轉捷運紅線到美麗島站", "再轉橘線到鹽埕埔站"],
-      },
-      {
-        title: "適合",
-        items: ["外縣市旅客", "無車同行", "不想處理停車"],
-      },
-    ],
+    question: "可以在巷口暫停放行李嗎？",
+    answer:
+      "可以。大公路 70 巷口路面寬敞，可臨時臨停 1~2 分鐘讓同行人員與大件行李先下車。巷口走進民宿僅需 20~30 秒，同行者可先前往門口等候，駕駛再輕鬆前往停車。",
   },
   {
-    id: "traffic-parking",
-    kicker: "停車",
-    title: "自駕停車",
-    image: {
-      src: "/images/traffic/parking.webp",
-      alt: "高雄市鹽埕立體停車場與周邊停車",
-    },
-    summary: "先找路邊車格，沒有位置再停附近收費停車場。",
-    description: "兩館都在巷內，車子不能直接開到門口。先在周邊停好車，再步行進巷會比較順。",
-    specs: [
-      { label: "路邊車格", value: "大公路 七賢三路 富野路周邊" },
-      { label: "收費停車場", value: "下方都有地圖連結" },
-      { label: "下車", value: "依共用地圖紅箭頭處" },
-      { label: "進館", value: "停好後步行入內" },
-    ],
-    groups: [
-      {
-        title: "停車順序",
-        items: ["先找大公路、七賢三路和富野路周邊的路邊車格", "如果沒有位置，再停附近收費停車場", "下面整理的每個停車點都能直接開 Google Maps"],
-      },
-      {
-        title: "停車前先看",
-        items: ["不要把車停在巷口等太久", "不要預期能直接停到門口", "可以先讓同行者下車，再去找車位"],
-      },
-    ],
-    action: { href: "#traffic-map", label: "看周邊停車點" },
+    question: "開車過來停哪裡最方便、最推薦？",
+    answer:
+      "1.【首選路邊車格】：大公路、七賢三路、富野路周邊皆有公有計時車格，抵達時若有空位建議直接停放。2.【室內首選】：推薦「高雄國際會議中心地下停車場」（步行約 3-4 分鐘），室內地下防曬防雨。3.【車位最多】：推薦「鹽埕立體停車場（大仁路）」（步行約 4-5 分鐘），公有大型車塔車位充裕。",
   },
   {
-    id: "traffic-dropoff",
-    kicker: "叫車",
-    title: "叫車下車",
-    image: {
-      src: "/images/traffic/dropoff.webp",
-      alt: "計程車與叫車於大公路巷口下車處",
-    },
-    summary: "直接定位大公路 70 巷，下車後步行約 1 分鐘。",
-    description: "搭 Uber 或計程車的話，直接定位館名或大公路 70 巷即可。在巷口下車後，再步行進館最方便。",
-    specs: [
-      { label: "定位", value: "館名或地址" },
-      { label: "下車", value: "依共用地圖紅箭頭處" },
-      { label: "步行", value: "約 1 分鐘" },
-      { label: "適合", value: "多人行李" },
-    ],
-    groups: [
-      {
-        title: "叫車定位",
-        items: ["直接輸入館名或地址", "也可以定位大公路 70 巷", "下車後再步行進巷"],
-      },
-      {
-        title: "下車後再確認",
-        items: ["先確認門牌位置", "車輛不能直達門口", "再直接步行入內"],
-      },
-    ],
-    action: {
-      href: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路70巷8號",
-      label: "打開下車點",
-      external: true,
-    },
+    question: "周邊停車場有電動車充電樁（EV）嗎？",
+    answer:
+      "有的！鄰近的「鹽埕立體停車場（大仁路）」（步行約 4-5 分鐘）設有公有電動車充電樁設備；亦可透過充電 App 查詢周邊即時充電樁空位狀態。",
+  },
+  {
+    question: "可以提前寄放行李嗎？",
+    answer:
+      "可以。入住當天中午 12:00 後開放提前寄放行李；請務必提前透過 LINE 客服告知管家，並請同組旅客一次統一寄放，寄放完成後請先離開現場，待 16:00 整理完畢領取密碼後再正式進房入住。",
+  },
+  {
+    question: "退房後可以繼續寄放行李嗎？",
+    answer:
+      "退房後無法提供行李寄放服務。建議旅客可將行李寄放於「捷運鹽埕埔站 (O2)」或「捷運美麗島站」之付費置物櫃，寄放後即可輕鬆暢遊鹽埕與駁二特區。",
   },
 ];
-
-const trafficFacts = [
-  { label: "兩館位置", value: "大公路 70 巷" },
-  { label: "捷運", value: "鹽埕埔站 O2" },
-  { label: "步行", value: "約 5 分鐘" },
-  { label: "停車", value: "路邊車格優先" },
-];
-
-const beforeArrival = [
-  "兩館地址與館名",
-  "共用地圖",
-  "停車點地圖",
-  "大公路 70 巷下車處",
-];
-
-const bestFor = [
-  { label: "捷運旅客", value: "鹽埕埔站 O2" },
-  { label: "高鐵旅客", value: "左營站轉捷運" },
-  { label: "自駕旅客", value: "先停車再步行" },
-  { label: "多人帶行李", value: "共用下車點" },
-];
-
-const faqs = [
-  {
-    question: "從鹽埕埔站走到民宿要多久？",
-    answer: "從 O2 二號出口出站後，步行約 5 分鐘就會到大公路 70 巷。",
-  },
-  {
-    question: "從高鐵左營站怎麼到 Hello Stay？",
-    answer: "從左營站搭捷運紅線到美麗島站，再轉橘線到鹽埕埔站，出站後步行進大公路 70 巷即可。",
-  },
-  {
-    question: "開車停哪裡最方便？",
-    answer: "先找大公路、七賢三路和富野路周邊的路邊車格。如果沒有位置，再看下面整理的收費停車場。",
-    links: parkingLots.map((lot) => ({
-      href: lot.nav,
-      label: lot.name,
-      external: true,
-    })),
-  },
-  {
-    question: "車可以直接開到門口嗎？",
-    answer: "不行。兩館都在巷內，車子不能直接開到門口，請先在巷口周邊下車或停車，再步行進館。",
-  },
-];
-
-const locationSpots = parkingLots.map((lot) => ({
-  name: lot.name,
-  detail: lot.price,
-  href: lot.nav,
-}));
 
 export default function TrafficPage() {
   return (
@@ -204,105 +63,96 @@ export default function TrafficPage() {
         data={[
           {
             "@context": "https://schema.org",
-            "@type": "HowTo",
-            name: "如何前往 Hello Stay 高雄包棟民宿",
-            description: "搭捷運到鹽埕埔站 O2 二號出口後，再步行前往 Hello Stay 高雄鹽埕包棟民宿",
-            totalTime: "PT30M",
-            step: [
-              { "@type": "HowToStep", position: 1, name: "抵達高雄捷運鹽埕埔站" },
-              { "@type": "HowToStep", position: 2, name: "從 O2 二號出口出站" },
-              { "@type": "HowToStep", position: 3, name: "步行到大公路 70 巷" },
-              { "@type": "HowToStep", position: 4, name: "依館別門牌入住" },
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "首頁",
+                item: "https://www.hello-stay.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "交通與停車",
+                item: "https://www.hello-stay.com/traffic",
+              },
             ],
           },
           {
             "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "如何前往 Hello Stay 高雄包棟民宿（交通與停車）",
+            description: "抵達高雄鹽埕大公路 70 巷口下行李後，停放周邊停車場或搭乘捷運步行前往 Hello Stay 高雄包棟民宿",
+            totalTime: "PT15M",
+            step: [
+              {
+                "@type": "HowToStep",
+                position: 1,
+                name: "抵達大公路 70 巷口（下車點）",
+                text: "開車或搭車至高雄市鹽埕區大公路 70 巷口，臨停讓同行人員與行李下車。",
+              },
+              {
+                "@type": "HowToStep",
+                position: 2,
+                name: "停放周邊推薦停車場",
+                text: "駕駛前往大公路路邊車格、高雄國際會議中心地下停車場或鹽埕立體停車場停放車輛。",
+              },
+              {
+                "@type": "HowToStep",
+                position: 3,
+                name: "步行進 70 巷入住民宿",
+                text: "停妥後步行 20 秒至 1 分鐘進入大公路 70 巷，輸入電子門鎖密碼自助入住。",
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Place",
+            name: "Hello Stay 你好哇寓所",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "大公路 70 巷 8 號",
+              addressLocality: "鹽埕區",
+              addressRegion: "高雄市",
+              addressCountry: "TW",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 22.6245,
+              longitude: 120.2823,
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Place",
+            name: "Hello Stay 溝頂民宿",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "大公路 70 巷 6-2 號",
+              addressLocality: "鹽埕區",
+              addressRegion: "高雄市",
+              addressCountry: "TW",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 22.6244,
+              longitude: 120.2822,
+            },
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
+            mainEntity: trafficSchemaFaqs.map((faq) => ({
               "@type": "Question",
               name: faq.question,
-              acceptedAnswer: { "@type": "Answer", text: Array.isArray(faq.answer) ? faq.answer.join(" ") : faq.answer },
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
             })),
           },
         ]}
       />
 
-      <PropertyShowcasePage
-        hero={{
-          kicker: "交通指南",
-          title: "交通與停車",
-          lead: "兩館位於高雄鹽埕區大公路 70 巷。車輛請在巷口周邊下車或停車，再步行進入。",
-          image: {
-            src: "/images/traffic/hero.webp",
-            alt: "高雄輕軌與鹽埕駁二周邊街景 - Hello Stay 交通指南",
-          },
-          stats: trafficFacts,
-          primaryAction: {
-            href: "https://www.google.com/maps/dir/?api=1&destination=你好哇寓所&travelmode=walking",
-            label: "直接開導航",
-            external: true,
-          },
-          secondaryAction: { href: "#traffic-map", label: "先看共用地圖" },
-        }}
-        overview={{
-          kicker: "先選到達方式",
-          title: "你怎麼來，就看哪一段",
-          intro: "你是搭捷運、從高鐵轉車、自駕，還是直接叫車過來，就看對應那張卡片。",
-          columns: 4,
-          cards: routeCards.map((card) => ({
-            id: card.id,
-            kicker: card.kicker,
-            title: card.title,
-            summary: card.summary,
-            image: card.image,
-            linkLabel: null,
-          })),
-        }}
-        details={{
-          kicker: "照你的交通方式走",
-          title: "四種最常見的到達方式",
-          intro: "兩館都在同一帶，主要差別只在你是搭捷運、開車，還是叫車過來。下面把最常見的四種走法分開整理。",
-          cards: routeCards.map((card) => ({
-            id: card.id,
-            kicker: card.kicker,
-            title: card.title,
-            description: card.description,
-            image: card.image,
-            specs: card.specs,
-            groups: card.groups,
-            action: card.action,
-          })),
-          factsTitle: "先看這幾個重點",
-          facts: trafficFacts,
-          guidesTitle: "出發前先存起來",
-          guides: beforeArrival,
-          fitTitle: "常見情況",
-          fit: bestFor,
-        }}
-        faq={{
-          kicker: "常見問題",
-          title: "交通與停車常見問題",
-          intro: "這幾題是住客最常問的，也是最容易在出發前卡住的地方。",
-          items: faqs,
-        }}
-        location={{
-          id: "traffic-map",
-          kicker: "共用地圖",
-          title: "共用地圖與停車點",
-          intro: "如果你想直接看圖，這裡有兩館位置、下車處和周邊停車點。下面每個停車點都能直接開 Google Maps。",
-          cardTitle: "兩館地址與下車位置",
-          address: "高雄市鹽埕區大公路 70 巷 8 號 / 6-2 號",
-          description: "你好哇寓所和溝頂民宿就在同一條巷子裡。兩館都要從巷口步行進去，照地圖紅箭頭標示的位置下車，再步行進巷就可以了。",
-          image: {
-            src: "/images/traffic/guide-v3.webp",
-            alt: "民宿交通指引圖 溝頂 你好哇寓所 共用地圖",
-          },
-          imageLabel: "點開放大檢視民宿交通指引圖",
-          spots: locationSpots,
-          mapUrl: "https://www.google.com/maps/search/?api=1&query=高雄市鹽埕區大公路70巷8號",
-          mapLabel: "開啟 Google Maps",
-        }}
-      />
+      <TrafficExperience />
     </>
   );
 }

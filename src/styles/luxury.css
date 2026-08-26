@@ -6830,3 +6830,1199 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   }
 }
 
+/* =========================================================================
+   Traffic & Parking Experience (Mobile First Quiet Luxury Design)
+   ========================================================================= */
+.traffic-experience-page {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: var(--paper, #f8f6f0);
+  color: var(--ink, #121413);
+  font-family: inherit;
+  padding-bottom: 80px;
+}
+
+.traffic-experience-page *,
+.traffic-experience-page *::before,
+.traffic-experience-page *::after {
+  box-sizing: border-box;
+}
+
+.traffic-container {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.text-gold {
+  color: #c29b61 !important;
+}
+
+.traffic-section-header {
+  margin-bottom: 24px;
+}
+
+.traffic-section-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  color: #a88047;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.traffic-section-title {
+  margin: 0 0 6px;
+  font-family: var(--serif, serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 750;
+  color: #121413;
+  letter-spacing: -0.01em;
+}
+
+.traffic-section-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #68736d;
+  line-height: 1.6;
+}
+
+/* ─── Hero Banner ─── */
+.traffic-hero {
+  padding: 44px 0 28px;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(248, 246, 240, 0.8) 100%);
+  border-bottom: 1px solid var(--line, #e4e2d8);
+}
+
+.traffic-hero__inner {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.traffic-hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(194, 155, 97, 0.14);
+  color: #a88047;
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.traffic-hero__title {
+  margin: 0 0 10px;
+  font-family: var(--serif, serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.65rem);
+  font-weight: 750;
+  color: #121413;
+  letter-spacing: -0.02em;
+}
+
+.traffic-hero__subtitle {
+  margin: 0 auto 24px;
+  max-width: 660px;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: #5a645e;
+}
+
+.traffic-hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.traffic-metric-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  box-shadow: 0 4px 14px rgba(18, 20, 19, 0.03);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.traffic-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: #c29b61;
+  box-shadow: 0 8px 20px rgba(18, 20, 19, 0.06);
+}
+
+.traffic-metric-card--highlight {
+  border-color: rgba(194, 155, 97, 0.45);
+  background: linear-gradient(135deg, #ffffff 0%, #faf6ee 100%);
+}
+
+.traffic-metric-card__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(194, 155, 97, 0.12);
+  color: #a88047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.traffic-metric-card__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.traffic-metric-card__label {
+  font-size: 0.7rem;
+  color: #78827c;
+  font-weight: 600;
+}
+
+.traffic-metric-card__val {
+  font-size: 0.84rem;
+  color: #121413;
+  font-weight: 750;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Sticky Tabs ─── */
+.traffic-tabs-wrapper {
+  position: sticky;
+  top: var(--nav-h, 76px);
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line, #e4e2d8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.traffic-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.traffic-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.traffic-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: #5a645e;
+  background: #f4f2ea;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.traffic-tab-btn:hover {
+  background: #ebe7dc;
+  color: #121413;
+}
+
+.traffic-tab-btn.is-active {
+  background: #121413;
+  color: #ffffff;
+  border-color: #121413;
+  box-shadow: 0 4px 12px rgba(18, 20, 19, 0.15);
+}
+
+.traffic-tab-badge {
+  font-size: 0.68rem;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #c29b61;
+  color: #121413;
+  font-weight: 800;
+}
+
+/* ─── Main Content Fade ─── */
+.traffic-main-content {
+  padding-top: 24px;
+}
+
+.traffic-section-fade {
+  animation: trafficFadeIn 0.25s ease-out;
+}
+
+@keyframes trafficFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Alert Banner ─── */
+.traffic-alert-banner {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #fff8eb;
+  border: 1.5px solid #e8b960;
+  margin: 8px 0 24px;
+  box-shadow: 0 6px 20px rgba(232, 185, 96, 0.12);
+}
+
+.traffic-alert-banner__icon {
+  color: #c28212;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.traffic-alert-banner__content h3 {
+  margin: 0 0 6px;
+  font-size: 1.02rem;
+  font-weight: 750;
+  color: #7c4800;
+}
+
+.traffic-alert-banner__content p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #855307;
+}
+
+/* ─── SOP Card & Steps ─── */
+.traffic-sop-card {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(18, 20, 19, 0.04);
+  margin-bottom: 36px;
+}
+
+.traffic-sop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.traffic-sop-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px 20px;
+  border-radius: 14px;
+  background: #fbf9f5;
+  border: 1px solid rgba(194, 155, 97, 0.25);
+  text-align: left;
+}
+
+.traffic-sop-step__badge {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #c29b61;
+  color: #121413;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.traffic-sop-step__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #a88047;
+  border: 1px solid var(--line, #e4e2d8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  margin-top: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.traffic-sop-step h4 {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  font-weight: 750;
+  color: #121413;
+}
+
+.traffic-sop-step p {
+  margin: 0 0 16px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #5a645e;
+  flex-grow: 1;
+}
+
+/* ─── Parking Lots Grid & Cards ─── */
+.traffic-lots-section {
+  margin-bottom: 40px;
+}
+
+.traffic-lots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.traffic-lot-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: 0 6px 20px rgba(18, 20, 19, 0.03);
+  transition: all 0.25s ease;
+}
+
+.traffic-lot-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(194, 155, 97, 0.5);
+  box-shadow: 0 12px 32px rgba(18, 20, 19, 0.08);
+}
+
+.traffic-lot-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.traffic-lot-card__tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.traffic-lot-card__walk {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: #a88047;
+  background: #faf6ee;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(194, 155, 97, 0.2);
+}
+
+.traffic-lot-card__title {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+  font-weight: 750;
+  color: #121413;
+  line-height: 1.35;
+}
+
+.traffic-lot-card__addr {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  color: #78827c;
+}
+
+.traffic-lot-card__price-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #fbf9f5;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(194, 155, 97, 0.15);
+}
+
+.traffic-lot-card__price-label {
+  font-size: 0.76rem;
+  color: #78827c;
+  font-weight: 600;
+}
+
+.traffic-lot-card__price-val {
+  font-size: 0.84rem;
+  color: #121413;
+  font-weight: 750;
+}
+
+.traffic-lot-card__note {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #5a645e;
+  margin: 0 0 12px;
+  flex-grow: 1;
+}
+
+.traffic-lot-card__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.traffic-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f4f2ea;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #434c46;
+}
+
+.traffic-lot-card__action {
+  margin-top: auto;
+}
+
+/* ─── Actions & Buttons ─── */
+.traffic-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.traffic-action-btn--primary {
+  background: #c29b61;
+  color: #121413;
+  border-color: #c29b61;
+  box-shadow: 0 4px 12px rgba(194, 155, 97, 0.25);
+}
+
+.traffic-action-btn--primary:hover {
+  background: #d4ae72;
+  border-color: #d4ae72;
+  transform: translateY(-1px);
+}
+
+.traffic-action-btn--outline {
+  background: #ffffff;
+  color: #121413;
+  border-color: var(--line, #e4e2d8);
+}
+
+.traffic-action-btn--outline:hover {
+  background: #fbf9f5;
+  border-color: #c29b61;
+  color: #a88047;
+}
+
+.traffic-action-btn--line {
+  background: #06c755;
+  color: #ffffff;
+  border-color: #06c755;
+}
+
+.traffic-action-btn--line:hover {
+  background: #05b04c;
+  border-color: #05b04c;
+}
+
+.traffic-action-btn--outline-light {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.traffic-action-btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+.traffic-action-btn--full {
+  width: 100%;
+}
+
+/* ─── Tags ─── */
+.traffic-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.traffic-tag--gold {
+  background: rgba(194, 155, 97, 0.16);
+  color: #a88047;
+}
+
+.traffic-tag--dark {
+  background: #121413;
+  color: #ffffff;
+}
+
+/* ─── Map & Properties ─── */
+.traffic-map-card {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(18, 20, 19, 0.04);
+  margin-bottom: 24px;
+}
+
+.traffic-map-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.traffic-map-image-container {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--line, #e4e2d8);
+}
+
+.traffic-map-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.traffic-map-image__overlay {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(18, 20, 19, 0.85);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.traffic-properties-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.traffic-property-card {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 18px;
+  padding: 24px 22px;
+  box-shadow: 0 6px 20px rgba(18, 20, 19, 0.03);
+}
+
+.traffic-property-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.traffic-property-card__titles h3 {
+  margin: 6px 0 2px;
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: #121413;
+}
+
+.traffic-property-card__titles small {
+  color: #78827c;
+  font-size: 0.78rem;
+}
+
+.traffic-property-card__door {
+  text-align: right;
+  background: #faf6ee;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(194, 155, 97, 0.2);
+}
+
+.traffic-property-card__door span {
+  display: block;
+  font-size: 0.68rem;
+  color: #a88047;
+  font-weight: 600;
+}
+
+.traffic-property-card__door strong {
+  font-size: 1.15rem;
+  color: #121413;
+  font-weight: 800;
+}
+
+.traffic-property-card__address-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fbf9f5;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 650;
+  color: #121413;
+  margin-bottom: 12px;
+  word-break: break-all;
+}
+
+.traffic-property-card__walk-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #5a645e;
+  margin: 0 0 18px;
+}
+
+.traffic-property-card__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.traffic-dropoff-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: #121413;
+  color: #ffffff;
+  margin-bottom: 32px;
+}
+
+.traffic-dropoff-box__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(194, 155, 97, 0.2);
+  color: #c29b61;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.traffic-dropoff-box__body h4 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: #fffdf8;
+}
+
+.traffic-dropoff-box__body p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Transit & Taxi & FAQ ─── */
+.traffic-transit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.traffic-transit-card {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 18px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.traffic-transit-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.traffic-transit-card__head h3 {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: #121413;
+}
+
+.traffic-transit-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(194, 155, 97, 0.12);
+  color: #a88047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.traffic-transit-card__body {
+  margin-bottom: 16px;
+}
+
+.traffic-transit-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.traffic-transit-step-item p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #5a645e;
+}
+
+.traffic-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #121413;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.traffic-transit-tip {
+  font-size: 0.8rem;
+  color: #78827c;
+  font-style: italic;
+}
+
+.traffic-taxi-box {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 20px;
+  padding: 32px 28px;
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
+
+.traffic-taxi-box__badge {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(194, 155, 97, 0.14);
+  color: #a88047;
+  font-size: 0.74rem;
+  font-weight: 750;
+  margin-bottom: 10px;
+}
+
+.traffic-taxi-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: #121413;
+}
+
+.traffic-taxi-box p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #5a645e;
+  margin: 0 0 18px;
+}
+
+.traffic-taxi-address-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #fbf9f5;
+  border: 1px solid rgba(194, 155, 97, 0.3);
+  border-radius: 12px;
+  margin: 18px 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.traffic-taxi-address-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.traffic-taxi-address-card__label {
+  font-size: 0.72rem;
+  color: #78827c;
+  font-weight: 600;
+}
+
+.traffic-taxi-address-card__val {
+  font-size: 0.95rem;
+  color: #121413;
+  font-weight: 750;
+}
+
+.traffic-taxi-hints {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.traffic-taxi-hint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #5a645e;
+}
+
+.traffic-taxi-hint-item svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.traffic-faq-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.traffic-faq-card {
+  background: #ffffff;
+  border: 1px solid var(--line, #e4e2d8);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.traffic-faq-card.is-open {
+  border-color: rgba(194, 155, 97, 0.45);
+  box-shadow: 0 4px 16px rgba(18, 20, 19, 0.04);
+}
+
+.traffic-faq-card__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 12px;
+}
+
+.traffic-faq-card__trigger-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.traffic-faq-card__question {
+  font-size: 0.96rem;
+  font-weight: 750;
+  color: #121413;
+}
+
+.traffic-faq-card__chevron {
+  color: #78827c;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.traffic-faq-card__chevron.is-open {
+  transform: rotate(180deg);
+  color: #c29b61;
+}
+
+.traffic-faq-card__body {
+  padding: 0 20px 20px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #5a645e;
+  border-top: 1px solid #f4f2ea;
+  padding-top: 14px;
+}
+
+/* ─── Bottom Bar ─── */
+.traffic-bottom-bar {
+  margin: 48px 0 24px;
+  padding: 32px 36px;
+  border-radius: 20px;
+  background: #121413;
+  color: #ffffff;
+}
+
+.traffic-bottom-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.traffic-bottom-bar__title {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: #fffdf8;
+}
+
+.traffic-bottom-bar__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 580px;
+}
+
+.traffic-bottom-bar__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ─── Responsive Media Queries ─── */
+@media (max-width: 880px) {
+  .traffic-hero__metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .traffic-sop-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .traffic-lots-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .traffic-properties-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .traffic-transit-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .traffic-dropoff-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .traffic-dropoff-box__body {
+    text-align: center;
+  }
+
+  .traffic-dropoff-box .traffic-action-btn {
+    width: 100%;
+  }
+
+  .traffic-bottom-bar__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .traffic-bottom-bar__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .traffic-bottom-bar__actions .traffic-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .traffic-hero {
+    padding: 32px 0 20px;
+  }
+
+  .traffic-hero__title {
+    font-size: 1.55rem;
+  }
+
+  .traffic-hero__metrics {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .traffic-sop-card {
+    padding: 22px 16px;
+  }
+
+  .traffic-map-card {
+    padding: 20px 16px;
+  }
+
+  .traffic-property-card {
+    padding: 20px 16px;
+  }
+
+  .traffic-property-card__actions {
+    flex-direction: column;
+  }
+
+  .traffic-property-card__actions .traffic-action-btn {
+    width: 100%;
+  }
+
+  .traffic-taxi-box {
+    padding: 22px 16px;
+  }
+
+  .traffic-taxi-actions .traffic-action-btn {
+    width: 100%;
+  }
+
+  .traffic-bottom-bar {
+    padding: 24px 18px;
+  }
+}
+
+/* ─── Lightbox Modal ─── */
+.traffic-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(18, 20, 19, 0.88);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: trafficModalFadeIn 0.2s ease-out;
+}
+
+@keyframes trafficModalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.traffic-modal-content {
+  position: relative;
+  max-width: 96vw;
+  max-height: 92vh;
+  background: #121413;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.traffic-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.traffic-modal-close:hover {
+  background: #c29b61;
+  color: #121413;
+}
+
+.traffic-modal-image-wrap {
+  width: 100%;
+  max-height: 78vh;
+  overflow: auto;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.traffic-modal-image {
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  display: block;
+}
+
+.traffic-modal-caption {
+  margin: 12px 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
