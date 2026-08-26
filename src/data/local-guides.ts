@@ -1,4 +1,5 @@
 export type LocalGuideItem = {
+  order?: number;
   name: string;
   meta: string;
   detail: string;
@@ -26,6 +27,7 @@ const food = (
   signature?: string,
   badge?: string,
 ): LocalGuideItem => ({
+  order: foodOrder++,
   name,
   meta,
   detail,
@@ -35,6 +37,9 @@ const food = (
   signature,
   badge,
 });
+
+let foodOrder = 1;
+let spotOrder = 1;
 
 const spot = (
   name: string,
@@ -46,6 +51,7 @@ const spot = (
   signature?: string,
   badge?: string,
 ): LocalGuideItem => ({
+  order: 1000 + spotOrder++,
   name,
   meta,
   detail,

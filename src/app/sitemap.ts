@@ -15,6 +15,7 @@ const LAST_MODIFIED_MAP: Record<string, string> = {
     "/book": "2026-03-15",
     "/traffic": "2026-03-24",
     "/agreement": "2026-07-22",
+    "/faq": "2026-08-25",
     "/explore": "2026-08-16",
     "/explore/food": "2026-08-16",
     "/explore/spots": "2026-08-16",
@@ -23,7 +24,7 @@ const LAST_MODIFIED_MAP: Record<string, string> = {
     "/kaohsiung-whole-house": "2026-08-16",
     "/compare": "2026-08-16",
     "/blog": "2026-07-14",
-    "/about": "2026-08-16",
+    "/about": "2026-08-23",
     "/guide": "2026-05-20",
 };
 
@@ -58,6 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/book`, lastModified: getLastModified("/book"), changeFrequency: "daily", priority: 0.9, alternates: buildAlternates("/book") },
         { url: `${baseUrl}/traffic`, lastModified: getLastModified("/traffic"), changeFrequency: "monthly", priority: 0.7, alternates: buildAlternates("/traffic") },
         { url: `${baseUrl}/agreement`, lastModified: getLastModified("/agreement"), changeFrequency: "monthly", priority: 0.6, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
+        { url: `${baseUrl}/faq`, lastModified: getLastModified("/faq"), changeFrequency: "weekly", priority: 0.8, alternates: buildAlternates("/faq") },
         { url: `${baseUrl}/ja/agreement`, lastModified: "2026-07-27", changeFrequency: "monthly", priority: 0.55, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
         { url: `${baseUrl}/ko/agreement`, lastModified: "2026-07-27", changeFrequency: "monthly", priority: 0.55, alternates: buildPartialAlternates("/agreement", ["zh", "ja", "ko"]) },
         { url: `${baseUrl}/explore`, lastModified: getLastModified("/explore"), changeFrequency: "weekly", priority: 0.8 },

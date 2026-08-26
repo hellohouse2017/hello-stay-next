@@ -58,14 +58,18 @@ export default function Navbar() {
     const zhPlanningLinks: NavLink[] = [
         { href: `${prefix}/#stay-options`, label: "住宿選擇" },
         { href: `${prefix}/compare`, label: "比較住宿" },
+        { href: `${prefix}/traffic`, label: "交通停車" },
         { href: `${prefix}/explore`, label: "鹽埕玩什麼" },
-        { href: `${prefix}/#home-faq`, label: "常見問題" },
+        { href: `${prefix}/faq`, label: "常見問題" },
     ];
 
     const links: NavLink[] = [
         ...(currentLocale === "zh" ? zhPlanningLinks : propertyLinks),
         { href: `${prefix}/book`, label: currentLocale === "zh" ? "查空房" : "Book", cta: true },
     ];
+
+    const isPrimaryNavActive = (link: NavLink) =>
+        !link.cta && (link.href === `${prefix}/explore` || link.href === `${prefix}/traffic` || link.href === `${prefix}/faq`);
 
     // Mobile menu portal - renders outside nav to avoid nav's height/overflow constraints
     const mobileMenu = open && mounted ? createPortal(
@@ -122,8 +126,8 @@ export default function Navbar() {
                                 <Link
                                     key={l.href}
                                     href={l.href}
-                                    className={[l.cta ? "cta-link" : "", !l.cta && l.href === `${prefix}/explore` ? "is-active" : ""].filter(Boolean).join(" ")}
-                                    aria-current={!l.cta && l.href === `${prefix}/explore` ? "page" : undefined}
+                                    className={[l.cta ? "cta-link" : "", isPrimaryNavActive(l) ? "is-active" : ""].filter(Boolean).join(" ")}
+                                    aria-current={isPrimaryNavActive(l) ? "page" : undefined}
                                 >
                                     {l.label}
                                 </Link>

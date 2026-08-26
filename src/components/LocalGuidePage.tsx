@@ -33,6 +33,7 @@ type LocalGuideAction = {
 type LocalGuidePageProps = {
   kind: "food" | "spots";
   eyebrow: string;
+  titleId?: string;
   title: string;
   lead: string;
   image: { src: string; alt: string };
@@ -57,7 +58,7 @@ function getSectionId(section: LocalGuideSection) {
   return section.kicker.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-function GuideSections({ sections }: { sections: LocalGuideSection[] }) {
+function GuideSections({ sections, contentBridgeId }: { sections: LocalGuideSection[]; contentBridgeId?: string }) {
   return (
     <div className="local-guide-sections">
       {sections.map((section) => (
@@ -70,72 +71,117 @@ function GuideSections({ sections }: { sections: LocalGuideSection[] }) {
             <p>{section.intro}</p>
           </div>
           <div className="local-guide-items">
-            {section.items.map((item) => (
-              <article className="local-guide-item concierge-spot-card" key={item.name}>
-                <div className="concierge-spot-card__header">
-                  {item.badge && (
-                    <span className="concierge-spot-card__badge">
-                      <Sparkles size={11} aria-hidden="true" />
-                      {item.badge}
-                    </span>
-                  )}
-                  <h4 className="concierge-spot-card__title">{item.name}</h4>
-                </div>
+            <>
+              {section.items.map((item) => {
+                const showStayCta = [3, 12, 24].includes(item.order ?? 0);
+                return (
+                  <Fragment key={item.name}>
+                    <article className="local-guide-item concierge-spot-card">
+                      <div className="concierge-spot-card__header">
+                        {item.badge && (
+                          <span className="concierge-spot-card__badge">
+                            <Sparkles size={11} aria-hidden="true" />
+                            {item.badge}
+                          </span>
+                        )}
+                        <h4 className="concierge-spot-card__title">{item.name}</h4>
+                      </div>
 
-                {item.signature && (
-                  <div className="concierge-spot-card__signature">
-                    <strong>私房必點：</strong>
-                    <span>{item.signature}</span>
-                  </div>
-                )}
+                      {item.signature && (
+                        <div className="concierge-spot-card__signature">
+                          <strong>私房必點：</strong>
+                          <span>{item.signature}</span>
+                        </div>
+                      )}
 
-                <p className="concierge-spot-card__detail">{item.detail}</p>
+                      <p className="concierge-spot-card__detail">{item.detail}</p>
 
-                <div className="concierge-spot-card__meta-row">
-                  <span className="concierge-spot-card__walk">
-                    <MapPin size={13} aria-hidden="true" /> {item.meta}
-                  </span>
-                </div>
+                      <div className="concierge-spot-card__meta-row">
+                        <span className="concierge-spot-card__walk">
+                          <MapPin size={13} aria-hidden="true" /> {item.meta}
+                        </span>
+                      </div>
 
-                <div className="concierge-spot-card__actions">
-                  {item.articleSlug ? (
-                    <Link
-                      className="local-guide-item__article"
-                      href={`/blog/${item.articleSlug}`}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        padding: "8px 14px",
-                        borderRadius: "8px",
-                        border: "1px solid #d4ddd7",
-                        fontSize: "0.82rem",
-                        color: "#17483d",
-                        fontWeight: 600,
-                        textDecoration: "none",
-                      }}
-                    >
-                      <BookOpenText size={14} aria-hidden="true" />
-                      推薦攻略
-                    </Link>
-                  ) : null}
-                  <a
-                    className="concierge-spot-card__map-btn"
-                    href={
-                      item.directMapUrl ||
-                      `https://maps.google.com/?q=${encodeURIComponent(item.mapQuery)}`
-                    }
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`直接開啟 ${item.name} 的 Google Maps 地標`}
-                  >
-                    <Navigation size={13} aria-hidden="true" />
-                    Google 地圖地標
-                    <ExternalLink size={11} aria-hidden="true" />
-                  </a>
-                </div>
-              </article>
-            ))}
+                      <div className="concierge-spot-card__actions">
+                        {item.articleSlug ? (
+                          <Link
+                            className="local-guide-item__article"
+                            href={`/blog/${item.articleSlug}`}
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
+                              padding: "8px 14px",
+                              borderRadius: "8px",
+                              border: "1px solid #d4ddd7",
+                              fontSize: "0.82rem",
+                              color: "#17483d",
+                              fontWeight: 600,
+                              textDecoration: "none",
+                            }}
+                          >
+                            <BookOpenText size={14} aria-hidden="true" />
+                            推薦攻略
+                          </Link>
+                        ) : null}
+                        <a
+                          className="concierge-spot-card__map-btn"
+                          href={
+                            item.directMapUrl ||
+                            `https://maps.google.com/?q=${encodeURIComponent(item.mapQuery)}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`直接開啟 ${item.name} 的 Google Maps 地標`}
+                        >
+                          <Navigation size={13} aria-hidden="true" />
+                          Google 地圖地標
+                          <ExternalLink size={11} aria-hidden="true" />
+                        </a>
+                      </div>
+                    </article>
+                    {showStayCta ? (
+                      <aside
+                        className="local-guide-inline-stay-cta"
+                        aria-labelledby={`stay-cta-${item.order}`}
+                      >
+                        <p id={`stay-cta-${item.order}`}>
+                          {item.order === 3
+                            ? "吃完這區，今晚住哪也一起確認。"
+                            : item.order === 12
+                              ? "多人吃飽回館，還能一起煮宵夜。"
+                              : "買完宵夜，直接查可入住日期。"}
+                        </p>
+                        <div>
+                          <Link
+                            href="/book?guestCount=8"
+                            data-content-bridge={contentBridgeId}
+                            data-content-bridge-target={`after_item_${item.order}`}
+                            data-seo-intent="food_guide"
+                            data-party-size="8"
+                            data-cta-type="geo_stay_bridge"
+                            data-cta-position={`after_item_${item.order}`}
+                          >
+                            8 人查空房
+                          </Link>
+                          <Link
+                            href="/book?guestCount=20"
+                            data-content-bridge={contentBridgeId}
+                            data-content-bridge-target={`after_item_${item.order}`}
+                            data-seo-intent="food_guide"
+                            data-party-size="20"
+                            data-cta-type="geo_stay_bridge"
+                            data-cta-position={`after_item_${item.order}`}
+                          >
+                            20 人查空房
+                          </Link>
+                        </div>
+                      </aside>
+                    ) : null}
+                  </Fragment>
+                );
+              })}
+            </>
           </div>
         </section>
       ))}
@@ -146,6 +192,7 @@ function GuideSections({ sections }: { sections: LocalGuideSection[] }) {
 export default function LocalGuidePage({
   kind,
   eyebrow,
+  titleId,
   title,
   lead,
   image,
@@ -183,7 +230,7 @@ export default function LocalGuidePage({
           </div>
           <div className="local-guide-hero__content">
             <p className="local-guide-kicker"><Icon size={15} aria-hidden="true" /> {eyebrow}</p>
-            <h1>{title}</h1>
+            <h1 id={titleId}>{title}</h1>
             <p className="local-guide-hero__lead">{lead}</p>
             <div className="local-guide-facts" aria-label="頁面重點">
               {facts.map((fact) => (
@@ -237,7 +284,7 @@ export default function LocalGuidePage({
 
           {sections.map((section, index) => (
             <Fragment key={section.title}>
-              <GuideSections sections={[section]} />
+              <GuideSections sections={[section]} contentBridgeId={contentBridgeId} />
               {kind === "food" && index === 0 ? (
                 <aside className="local-guide-stay-bridge" aria-labelledby="local-guide-stay-bridge-title">
                   <div>
@@ -247,14 +294,24 @@ export default function LocalGuidePage({
                   </div>
                   <div className="local-guide-stay-bridge__actions">
                     <Link
-                      href="/kaohsiung-whole-house"
+                      href="/godin"
                       data-content-bridge={contentBridgeId}
-                      data-content-bridge-target="mid_stay_bridge"
+                      data-content-bridge-target="mid_godin"
                       data-seo-intent="food_guide"
                       data-cta-type="content_bridge"
                       data-cta-position="mid_content"
                     >
-                      依人數看包棟方案 <ArrowRight size={16} aria-hidden="true" />
+                      4–12 人看溝頂 <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
+                    <Link
+                      href="/hellohouse"
+                      data-content-bridge={contentBridgeId}
+                      data-content-bridge-target="mid_hellohouse"
+                      data-seo-intent="food_guide"
+                      data-cta-type="content_bridge"
+                      data-cta-position="mid_content"
+                    >
+                      8–26 人看你好哇 <ArrowRight size={16} aria-hidden="true" />
                     </Link>
                     <Link
                       href="/book"

@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,17 +12,20 @@ import {
 } from "lucide-react";
 import ShowcaseImageLightbox from "./ShowcaseImageLightbox";
 
-type ShowcaseText = string | string[];
+export type ShowcaseText = ReactNode;
 
 export type ShowcaseAction = {
   href: string;
   label: string;
   external?: boolean;
+  ctaType?: string;
+  ctaPosition?: string;
+  partySize?: number | string;
 };
 
 export type ShowcaseStat = {
   label: string;
-  value: string;
+  value: ReactNode;
 };
 
 export type ShowcaseImage = {
@@ -42,7 +45,7 @@ export type ShowcaseOverviewCard = {
 
 export type ShowcaseDetailGroup = {
   title: string;
-  items: string[];
+  items: ReactNode[];
 };
 
 export type ShowcaseDetailCard = {
@@ -57,7 +60,7 @@ export type ShowcaseDetailCard = {
 };
 
 export type ShowcaseGalleryItem = ShowcaseImage & {
-  caption: string;
+  caption: ReactNode;
 };
 
 export type ShowcaseFaqItem = {
@@ -70,6 +73,41 @@ export type ShowcaseLocationSpot = {
   name: string;
   detail: string;
   href?: string;
+};
+
+export type ShowcaseMatrixRow = {
+  id: string;
+  title: ReactNode;
+  capacity: ReactNode;
+  property: ReactNode;
+  rooms: ReactNode;
+  kitchen: ReactNode;
+  entertainment: ReactNode;
+  bestFor: ReactNode;
+  action: ShowcaseAction;
+};
+
+export type ShowcaseMatrix = ShowcaseSectionHead & {
+  id?: string;
+  rows: ShowcaseMatrixRow[];
+};
+
+export type ShowcaseLinkItem = {
+  label: string;
+  href: string;
+  badge?: string;
+  external?: boolean;
+};
+
+export type ShowcaseLinkCategory = {
+  title: string;
+  icon?: string;
+  items: ShowcaseLinkItem[];
+};
+
+export type ShowcaseLinksHub = ShowcaseSectionHead & {
+  id?: string;
+  categories: ShowcaseLinkCategory[];
 };
 
 type ShowcaseSectionHead = {
@@ -107,6 +145,7 @@ export type PropertyShowcasePageProps = {
     lead: ShowcaseText;
     image: ShowcaseImage;
     stats: ShowcaseStat[];
+    navPills?: Array<{ label: string; href: string }>;
     primaryAction: ShowcaseAction;
     secondaryAction?: ShowcaseAction;
   };
@@ -114,12 +153,13 @@ export type PropertyShowcasePageProps = {
     cards: ShowcaseOverviewCard[];
     columns?: number;
   };
+  matrix?: ShowcaseMatrix;
   details: ShowcaseSectionHead & {
     cards: ShowcaseDetailCard[];
     factsTitle: string;
     facts: ShowcaseStat[];
     guidesTitle: string;
-    guides: string[];
+    guides: ReactNode[];
     fitTitle: string;
     fit: ShowcaseStat[];
   };
@@ -127,6 +167,7 @@ export type PropertyShowcasePageProps = {
     images: ShowcaseGalleryItem[];
     columns?: number;
   };
+  linksHub?: ShowcaseLinksHub;
   faq?: ShowcaseSectionHead & {
     items: ShowcaseFaqItem[];
   };
@@ -136,18 +177,22 @@ export type PropertyShowcasePageProps = {
 
 function TextLines({ text }: { text?: ShowcaseText }) {
   if (!hasShowcaseText(text)) return null;
-  if (!Array.isArray(text)) return text;
+  if (!Array.isArray(text)) return <>{text}</>;
 
-  return text.map((line, index) => (
-    <span className="showcase-text-line" key={`${line}-${index}`}>
-      {line}
-    </span>
-  ));
+  return (
+    <>
+      {text.map((line, index) => (
+        <span className="showcase-text-line" key={typeof line === "string" ? `${line}-${index}` : index}>
+          {line}
+        </span>
+      ))}
+    </>
+  );
 }
 
 function hasShowcaseText(text?: ShowcaseText) {
   if (Array.isArray(text)) return text.length > 0;
-  return Boolean(text);
+  return text !== null && text !== undefined && text !== false && text !== "";
 }
 
 const showcaseVisuals: Record<string, { mark: string; Icon: LucideIcon }> = {
@@ -195,6 +240,7 @@ const pageStyles = String.raw`
   background: var(--paper);
   color: var(--ink);
   font-family: inherit;
+  overflow-x: hidden;
 }
 
 .showcase-page * {
@@ -207,6 +253,196 @@ const pageStyles = String.raw`
 
 .showcase-text-line {
   display: block;
+}
+
+.showcase-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.showcase-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fffaf2;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.showcase-nav-pill:hover {
+  background: var(--accent);
+  color: #121413;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.showcase-page .showcase-inline-link,
+.showcase-detail-card p a,
+.showcase-overview-card p a,
+.showcase-faq-item p a,
+.showcase-group li a,
+.showcase-facts-list article a,
+.showcase-fit-list article a,
+.showcase-guides li a,
+.showcase-matrix-cell a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(194, 155, 97, 0.45);
+  transition: all 0.2s ease;
+}
+
+.showcase-page .showcase-inline-link:hover,
+.showcase-detail-card p a:hover,
+.showcase-overview-card p a:hover,
+.showcase-faq-item p a:hover,
+.showcase-group li a:hover,
+.showcase-facts-list article a:hover,
+.showcase-fit-list article a:hover,
+.showcase-guides li a:hover,
+.showcase-matrix-cell a:hover {
+  color: #121413;
+  text-decoration-color: var(--accent-dark);
+}
+
+.showcase-matrix-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 36px rgba(18, 20, 19, 0.05);
+  max-width: 100%;
+}
+
+.showcase-matrix-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.showcase-matrix-table th {
+  padding: 14px 16px;
+  background: #faf8f3;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--line);
+  white-space: nowrap;
+}
+
+.showcase-matrix-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  vertical-align: middle;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.showcase-matrix-table tr:last-child td {
+  border-bottom: none;
+}
+
+.showcase-matrix-table tr:hover td {
+  background: #fdfbf7;
+}
+
+.showcase-matrix-row-title {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.showcase-links-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.showcase-links-hub-card {
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(18, 20, 19, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.showcase-links-hub-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 750;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.showcase-links-hub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.showcase-links-hub-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #faf8f3;
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  min-width: 0;
+}
+
+.showcase-links-hub-item a > span:first-child {
+  min-width: 0;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.showcase-links-hub-item a:hover {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  border-color: rgba(194, 155, 97, 0.3);
+  transform: translateX(2px);
+}
+
+.showcase-links-hub-badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(194, 155, 97, 0.18);
+  color: var(--accent-dark);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .showcase-shell {
@@ -245,7 +481,7 @@ const pageStyles = String.raw`
 
 .showcase-hero__frame {
   position: relative;
-  min-height: min(760px, calc(100vh - var(--nav-h) - 36px));
+  min-height: 520px;
   overflow: hidden;
   border-radius: 20px;
   background: #121413;
@@ -263,8 +499,8 @@ const pageStyles = String.raw`
   inset: 0;
   content: "";
   background:
-    linear-gradient(90deg, rgba(18, 17, 15, 0.78) 0%, rgba(18, 17, 15, 0.44) 44%, rgba(18, 17, 15, 0.14) 76%),
-    linear-gradient(0deg, rgba(18, 17, 15, 0.2), rgba(18, 17, 15, 0.04));
+    linear-gradient(90deg, rgba(18, 17, 15, 0.82) 0%, rgba(18, 17, 15, 0.52) 48%, rgba(18, 17, 15, 0.2) 80%),
+    linear-gradient(0deg, rgba(18, 17, 15, 0.3), rgba(18, 17, 15, 0.05));
 }
 
 .showcase-hero__media img,
@@ -277,16 +513,17 @@ const pageStyles = String.raw`
 .showcase-hero__content {
   position: relative;
   z-index: 2;
-  display: grid;
-  align-content: end;
-  min-height: min(760px, calc(100vh - var(--nav-h) - 36px));
-  padding: clamp(32px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 520px;
+  padding: clamp(28px, 4vw, 56px);
 }
 
 .showcase-hero__copy {
   display: grid;
-  gap: 22px;
-  width: min(700px, 100%);
+  gap: 16px;
+  width: min(840px, 100%);
 }
 
 .showcase-hero__copy .showcase-kicker {
@@ -296,20 +533,20 @@ const pageStyles = String.raw`
 .showcase-hero h1 {
   margin: 0;
   color: #fffaf2;
-  font-size: clamp(2.55rem, 4.35vw, 4.75rem);
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
   font-weight: 780;
-  line-height: 1.06;
-  letter-spacing: 0;
-  line-break: strict;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  word-break: break-word;
   text-wrap: balance;
 }
 
 .showcase-hero__lead {
   margin: 0;
-  color: rgba(255, 250, 242, 0.86);
-  font-size: 1.05rem;
-  line-height: 1.9;
-  line-break: strict;
+  color: rgba(255, 250, 242, 0.88);
+  font-size: 1.02rem;
+  line-height: 1.8;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
@@ -323,11 +560,11 @@ const pageStyles = String.raw`
 
 .showcase-button {
   display: inline-flex;
-  min-height: 48px;
+  min-height: 46px;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 0 24px;
+  padding: 0 22px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
@@ -365,7 +602,7 @@ const pageStyles = String.raw`
   gap: 1px;
   overflow: hidden;
   width: 100%;
-  margin-top: 36px;
+  margin-top: 28px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(18px);
@@ -373,26 +610,26 @@ const pageStyles = String.raw`
 
 .showcase-hero__stats article {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
-  padding: 18px 20px;
-  background: rgba(18, 20, 19, 0.65);
+  padding: 14px 16px;
+  background: rgba(18, 20, 19, 0.72);
 }
 
 .showcase-hero__stats span {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.74rem;
   font-weight: 600;
-  line-height: 1.45;
-  white-space: nowrap;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .showcase-hero__stats strong {
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 700;
   line-height: 1.45;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 .showcase-inpage-nav {
@@ -452,7 +689,7 @@ const pageStyles = String.raw`
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: balance;
 }
 
@@ -461,18 +698,20 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.96rem;
   line-height: 1.7;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
 .showcase-overview-grid {
   display: grid;
-  grid-template-columns: repeat(var(--overview-columns), minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
 .showcase-overview-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 14px;
   padding: 16px;
   border: 1px solid var(--line);
@@ -480,6 +719,7 @@ const pageStyles = String.raw`
   background: #ffffff;
   box-shadow: 0 10px 30px rgba(18, 20, 19, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 0;
 }
 
 .showcase-overview-card:hover {
@@ -599,10 +839,10 @@ const pageStyles = String.raw`
 
 .showcase-overview-card__body strong {
   color: var(--ink);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
   line-height: 1.4;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: balance;
 }
 
@@ -612,7 +852,7 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.86rem;
   line-height: 1.6;
-  word-break: normal;
+  word-break: break-word;
 }
 
 .showcase-overview-card__link {
@@ -622,19 +862,20 @@ const pageStyles = String.raw`
 
 .showcase-detail-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) 340px;
-  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
   align-items: start;
 }
 
 .showcase-detail-stack {
   display: grid;
   gap: 24px;
+  min-width: 0;
 }
 
 .showcase-detail-card {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-columns: 280px minmax(0, 1fr);
   gap: 0;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -642,6 +883,7 @@ const pageStyles = String.raw`
   background: var(--card);
   box-shadow: 0 16px 40px -10px rgba(18, 20, 19, 0.06);
   scroll-margin-top: calc(var(--nav-h) + 28px);
+  min-width: 0;
 }
 
 .showcase-detail-card__media {
@@ -661,7 +903,8 @@ const pageStyles = String.raw`
   display: grid;
   gap: 16px;
   align-content: start;
-  padding: 26px 28px;
+  padding: 24px 26px;
+  min-width: 0;
 }
 
 .showcase-detail-card__head {
@@ -681,10 +924,10 @@ const pageStyles = String.raw`
   margin: 0;
   color: var(--ink);
   font-family: var(--serif, serif);
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.28;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: balance;
 }
 
@@ -693,18 +936,19 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.7;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
 .showcase-detail-card__specs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--line);
+  min-width: 0;
 }
 
 .showcase-detail-card__spec {
@@ -715,27 +959,21 @@ const pageStyles = String.raw`
   background: #faf8f3;
 }
 
-.showcase-detail-card__spec span,
-.showcase-facts-card span,
-.showcase-fit-card span,
-.showcase-location-card span,
-.showcase-location-list span {
+.showcase-detail-card__spec span {
   color: var(--muted);
   font-size: 0.74rem;
   font-weight: 600;
   line-height: 1.4;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
-.showcase-detail-card__spec strong,
-.showcase-facts-card strong,
-.showcase-fit-card strong,
-.showcase-location-card strong,
-.showcase-location-list strong {
+.showcase-detail-card__spec strong {
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .showcase-detail-card__groups {
@@ -780,7 +1018,7 @@ const pageStyles = String.raw`
   color: var(--ink);
   font-size: 0.88rem;
   font-weight: 700;
-  word-break: normal;
+  word-break: break-word;
 }
 
 .showcase-group ul {
@@ -797,7 +1035,7 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.84rem;
   line-height: 1.55;
-  word-break: normal;
+  word-break: break-word;
 }
 
 .showcase-group li::before {
@@ -816,6 +1054,7 @@ const pageStyles = String.raw`
   gap: 18px;
   position: sticky;
   top: calc(var(--nav-h) + 24px);
+  min-width: 0;
 }
 
 .showcase-facts-card,
@@ -827,12 +1066,13 @@ const pageStyles = String.raw`
   border-radius: 18px;
   background: #ffffff;
   box-shadow: 0 12px 32px rgba(18, 20, 19, 0.05);
+  min-width: 0;
 }
 
 .showcase-facts-card,
 .showcase-fit-card,
 .showcase-location-card {
-  padding: 22px;
+  padding: 20px;
 }
 
 .showcase-facts-card h3,
@@ -843,7 +1083,7 @@ const pageStyles = String.raw`
   font-family: var(--serif, serif);
   font-size: 1.1rem;
   font-weight: 600;
-  word-break: normal;
+  word-break: break-word;
 }
 
 .showcase-facts-list,
@@ -861,6 +1101,30 @@ const pageStyles = String.raw`
   gap: 4px;
   padding: 12px 14px;
   background: #ffffff;
+  min-width: 0;
+}
+
+.showcase-facts-list span,
+.showcase-fit-list span,
+.showcase-location-card span,
+.showcase-location-list span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.showcase-facts-list strong,
+.showcase-fit-list strong,
+.showcase-location-card strong,
+.showcase-location-list strong {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .showcase-guides {
@@ -874,7 +1138,7 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.65;
-  word-break: normal;
+  word-break: break-word;
 }
 
 .showcase-location-card p {
@@ -882,7 +1146,7 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.75;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
@@ -1074,7 +1338,7 @@ const pageStyles = String.raw`
   font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.45;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: balance;
 }
 
@@ -1083,7 +1347,7 @@ const pageStyles = String.raw`
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.75;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
@@ -1129,7 +1393,7 @@ const pageStyles = String.raw`
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  word-break: normal;
+  word-break: break-word;
   text-wrap: balance;
 }
 
@@ -1138,7 +1402,7 @@ const pageStyles = String.raw`
   color: rgba(255, 250, 242, 0.78);
   font-size: 0.96rem;
   line-height: 1.75;
-  line-break: strict;
+  word-break: break-word;
   text-wrap: pretty;
 }
 
@@ -1158,7 +1422,7 @@ const pageStyles = String.raw`
 
 @media (max-width: 1180px) {
   .showcase-overview-grid {
-    grid-template-columns: repeat(var(--overview-columns-tablet), minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   .showcase-gallery {
@@ -1167,8 +1431,7 @@ const pageStyles = String.raw`
 }
 
 @media (max-width: 1024px) {
-  .showcase-hero__stats,
-  .showcase-detail-card__specs {
+  .showcase-hero__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1181,22 +1444,30 @@ const pageStyles = String.raw`
   }
 
   .showcase-detail-card {
-    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .showcase-links-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 820px) {
   .showcase-shell {
-    width: calc(100% - 28px);
+    width: calc(100% - 32px);
   }
 
   .showcase-hero__frame,
   .showcase-hero__content {
-    min-height: 620px;
+    min-height: auto;
+  }
+
+  .showcase-hero__content {
+    padding: 32px 20px;
   }
 
   .showcase-overview-grid {
-    grid-template-columns: repeat(var(--overview-columns-mobile), minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   .showcase-gallery {
@@ -1208,15 +1479,20 @@ const pageStyles = String.raw`
   }
 
   .showcase-detail-card__media {
-    min-height: 240px;
+    min-height: 220px;
   }
 
   .showcase-final {
     display: grid;
+    padding: 32px 24px;
   }
 }
 
 @media (max-width: 640px) {
+  .showcase-shell {
+    width: calc(100% - 24px);
+  }
+
   .showcase-inpage-nav__inner {
     gap: 0;
     scroll-padding-inline: 14px;
@@ -1231,35 +1507,35 @@ const pageStyles = String.raw`
     padding-top: calc(var(--nav-h) + 14px);
   }
 
-  .showcase-hero__frame,
   .showcase-hero__content {
-    min-height: 560px;
-  }
-
-  .showcase-hero__content {
-    padding: 22px;
+    padding: 24px 16px;
   }
 
   .showcase-hero h1 {
-    font-size: 2.3rem;
-    line-height: 1.12;
+    font-size: 1.95rem;
+    line-height: 1.2;
   }
 
   .showcase-hero__lead {
-    font-size: 0.98rem;
-    line-height: 1.75;
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   .showcase-hero__stats,
   .showcase-overview-grid,
   .showcase-detail-card__specs,
   .showcase-detail-card__groups,
+  .showcase-links-hub-grid,
   .showcase-gallery {
     grid-template-columns: 1fr;
   }
 
+  .showcase-detail-card__body {
+    padding: 20px 16px;
+  }
+
   .showcase-section {
-    padding-top: 68px;
+    padding-top: 56px;
   }
 
   .showcase-location-list article {
@@ -1274,6 +1550,7 @@ const pageStyles = String.raw`
   .showcase-actions,
   .showcase-final__actions {
     display: grid;
+    width: 100%;
   }
 }
 `;
@@ -1283,14 +1560,31 @@ function ShowcaseActionButton({ action, primary = false }: { action: ShowcaseAct
 
   if (action.external) {
     return (
-      <a className={className} href={action.href} target="_blank" rel="noreferrer">
+      <a
+        className={className}
+        href={action.href}
+        target="_blank"
+        rel="noreferrer"
+        data-seo-intent="scenario_package"
+        data-party-size={action.partySize}
+        data-cta-type={action.ctaType || "external"}
+        data-cta-position={action.ctaPosition || (primary ? "hero_primary" : "hero_secondary")}
+      >
         {action.label}
       </a>
     );
   }
 
   return (
-    <Link className={className} href={action.href}>
+    <Link
+      className={className}
+      href={action.href}
+      data-seo-intent={action.href.startsWith("/book") ? "scenario_package" : undefined}
+      data-property-slug={new URL(action.href, "https://www.hello-stay.com").searchParams.get("property") || undefined}
+      data-party-size={action.partySize || new URL(action.href, "https://www.hello-stay.com").searchParams.get("guestCount") || undefined}
+      data-cta-type={action.ctaType || (action.href.startsWith("/book") ? "booking" : "content_bridge")}
+      data-cta-position={action.ctaPosition || (primary ? "hero_primary" : "hero_secondary")}
+    >
       {action.label}
     </Link>
   );
@@ -1299,8 +1593,10 @@ function ShowcaseActionButton({ action, primary = false }: { action: ShowcaseAct
 export default function PropertyShowcasePage({
   hero,
   overview,
+  matrix,
   details,
   gallery,
+  linksHub,
   faq,
   location,
   final,
@@ -1349,11 +1645,21 @@ export default function PropertyShowcasePage({
                     <ShowcaseActionButton action={hero.primaryAction} primary />
                     {hero.secondaryAction ? <ShowcaseActionButton action={hero.secondaryAction} /> : null}
                   </div>
+
+                  {hero.navPills && hero.navPills.length > 0 ? (
+                    <div className="showcase-nav-pills">
+                      {hero.navPills.map((pill) => (
+                        <a key={pill.href} href={pill.href} className="showcase-nav-pill">
+                          {pill.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
 
                 <div className="showcase-hero__stats">
-                  {hero.stats.map((item) => (
-                    <article key={item.label}>
+                  {hero.stats.map((item, idx) => (
+                    <article key={typeof item.label === "string" ? item.label : idx}>
                       <span>{item.label}</span>
                       <strong>{item.value}</strong>
                     </article>
@@ -1366,9 +1672,11 @@ export default function PropertyShowcasePage({
 
         <nav className="showcase-inpage-nav" aria-label="館內導覽">
           <div className="showcase-shell showcase-inpage-nav__inner">
-            <a href="#showcase-overview">空間總覽</a>
-            <a href="#showcase-details">房型與設備</a>
+            <a href="#showcase-overview">情境速覽</a>
+            {matrix ? <a href={matrix.id ? `#${matrix.id}` : "#showcase-matrix"}>方案對照</a> : null}
+            <a href="#showcase-details">方案細節</a>
             {gallery ? <a href="#showcase-gallery">實景照片</a> : null}
+            {linksHub ? <a href={linksHub.id ? `#${linksHub.id}` : "#showcase-links-hub"}>主題攻略</a> : null}
             {faq ? <a href="#showcase-faq">常見問題</a> : null}
             {location ? <a href="#showcase-location">交通位置</a> : null}
             {final ? <a href="#showcase-final">{final.navLabel || "查空房"}</a> : null}
@@ -1414,6 +1722,51 @@ export default function PropertyShowcasePage({
           </div>
         </section>
 
+        {matrix ? (
+          <section className="showcase-section" id={matrix.id ?? "showcase-matrix"}>
+            <div className="showcase-shell">
+              <div className="showcase-section__head">
+                <p className="showcase-kicker">{matrix.kicker}</p>
+                <h2>{matrix.title}</h2>
+                {hasShowcaseText(matrix.intro) ? <p><TextLines text={matrix.intro} /></p> : null}
+              </div>
+
+              <div className="showcase-matrix-container">
+                <table className="showcase-matrix-table">
+                  <thead>
+                    <tr>
+                      <th>方案類型</th>
+                      <th>建議人數</th>
+                      <th>推薦館別</th>
+                      <th>房數衛浴</th>
+                      <th>廚房備餐</th>
+                      <th>娛樂設施</th>
+                      <th>最適合</th>
+                      <th>查看方案</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {matrix.rows.map((row) => (
+                      <tr key={row.id}>
+                        <td className="showcase-matrix-row-title showcase-matrix-cell">{row.title}</td>
+                        <td className="showcase-matrix-cell">{row.capacity}</td>
+                        <td className="showcase-matrix-cell">{row.property}</td>
+                        <td className="showcase-matrix-cell">{row.rooms}</td>
+                        <td className="showcase-matrix-cell">{row.kitchen}</td>
+                        <td className="showcase-matrix-cell">{row.entertainment}</td>
+                        <td className="showcase-matrix-cell">{row.bestFor}</td>
+                        <td>
+                          <ShowcaseActionButton action={row.action} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         <section className="showcase-section" id="showcase-details">
           <div className="showcase-shell">
             <div className="showcase-section__head">
@@ -1448,8 +1801,8 @@ export default function PropertyShowcasePage({
                       </div>
 
                       <div className="showcase-detail-card__specs">
-                        {card.specs.map((spec) => (
-                          <article className="showcase-detail-card__spec" key={`${card.id}-${spec.label}`}>
+                        {card.specs.map((spec, idx) => (
+                          <article className="showcase-detail-card__spec" key={typeof spec.label === "string" ? `${card.id}-${spec.label}` : `${card.id}-${idx}`}>
                             <span>{spec.label}</span>
                             <strong>{spec.value}</strong>
                           </article>
@@ -1457,12 +1810,12 @@ export default function PropertyShowcasePage({
                       </div>
 
                       <div className="showcase-detail-card__groups">
-                        {card.groups.map((group) => (
-                          <section className="showcase-group" key={`${card.id}-${group.title}`}>
+                        {card.groups.map((group, gIdx) => (
+                          <section className="showcase-group" key={typeof group.title === "string" ? `${card.id}-${group.title}` : `${card.id}-${gIdx}`}>
                             <h4>{group.title}</h4>
                             <ul>
-                              {group.items.map((item) => (
-                                <li key={`${group.title}-${item}`}>{item}</li>
+                              {group.items.map((item, iIdx) => (
+                                <li key={typeof item === "string" ? `${card.id}-${item}` : `${card.id}-${gIdx}-${iIdx}`}>{item}</li>
                               ))}
                             </ul>
                           </section>
@@ -1483,8 +1836,8 @@ export default function PropertyShowcasePage({
                 <section className="showcase-facts-card">
                   <h3>{details.factsTitle}</h3>
                   <div className="showcase-facts-list">
-                    {details.facts.map((item) => (
-                      <article key={item.label}>
+                    {details.facts.map((item, idx) => (
+                      <article key={typeof item.label === "string" ? item.label : idx}>
                         <span>{item.label}</span>
                         <strong>{item.value}</strong>
                       </article>
@@ -1495,8 +1848,8 @@ export default function PropertyShowcasePage({
                 <section className="showcase-facts-card">
                   <h3>{details.guidesTitle}</h3>
                   <ul className="showcase-guides">
-                    {details.guides.map((item) => (
-                      <li key={item}>{item}</li>
+                    {details.guides.map((item, idx) => (
+                      <li key={typeof item === "string" ? item : idx}>{item}</li>
                     ))}
                   </ul>
                 </section>
@@ -1504,8 +1857,8 @@ export default function PropertyShowcasePage({
                 <section className="showcase-fit-card">
                   <h3>{details.fitTitle}</h3>
                   <div className="showcase-fit-list">
-                    {details.fit.map((item) => (
-                      <article key={item.label}>
+                    {details.fit.map((item, idx) => (
+                      <article key={typeof item.label === "string" ? item.label : idx}>
                         <span>{item.label}</span>
                         <strong>{item.value}</strong>
                       </article>
@@ -1540,6 +1893,46 @@ export default function PropertyShowcasePage({
                     </div>
                     <figcaption>{image.caption}</figcaption>
                   </figure>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {linksHub ? (
+          <section className="showcase-section" id={linksHub.id ?? "showcase-links-hub"}>
+            <div className="showcase-shell">
+              <div className="showcase-section__head">
+                <p className="showcase-kicker">{linksHub.kicker}</p>
+                <h2>{linksHub.title}</h2>
+                {hasShowcaseText(linksHub.intro) ? <p><TextLines text={linksHub.intro} /></p> : null}
+              </div>
+
+              <div className="showcase-links-hub-grid">
+                {linksHub.categories.map((category) => (
+                  <article className="showcase-links-hub-card" key={category.title}>
+                    <h3>
+                      {category.icon ? <span>{category.icon}</span> : null}
+                      <span>{category.title}</span>
+                    </h3>
+                    <ul className="showcase-links-hub-list">
+                      {category.items.map((item) => (
+                        <li className="showcase-links-hub-item" key={`${category.title}-${item.label}`}>
+                          {item.external ? (
+                            <a href={item.href} target="_blank" rel="noreferrer">
+                              <span>{item.label}</span>
+                              {item.badge ? <span className="showcase-links-hub-badge">{item.badge}</span> : null}
+                            </a>
+                          ) : (
+                            <Link href={item.href}>
+                              <span>{item.label}</span>
+                              {item.badge ? <span className="showcase-links-hub-badge">{item.badge}</span> : null}
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
                 ))}
               </div>
             </div>

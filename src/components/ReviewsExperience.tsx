@@ -87,7 +87,7 @@ export default function ReviewsExperience() {
                 </div>
                 <div className="reviews-trust-pill">
                   <CheckCircle2 size={16} className="text-emerald-600" />
-                  <span>全套房獨立衛浴・絕不鎖房</span>
+                  <span>每間客房皆有獨立衛浴</span>
                 </div>
               </div>
 
@@ -427,7 +427,7 @@ export default function ReviewsExperience() {
             <span className="reviews-cta-kicker">READY TO PLAN YOUR STAY?</span>
             <h2 className="reviews-cta-title">找到適合你們的聚會空間了嗎？</h2>
             <p className="reviews-cta-desc">
-              包棟絕不鎖房・全套房獨立衛浴・鹽埕駁二步行生活圈。
+              包棟整棟專屬獨享・每間客房皆有獨立衛浴・鹽埕駁二步行生活圈。
               歡迎直接比對兩館配置，或加 LINE 由管家為您即時確認空房與報價。
             </p>
 

@@ -8,8 +8,8 @@ import {
   foodSupportSections,
 } from "@/data/local-guides";
 
-const pageTitle = `鹽埕區美食推薦 ${foodGuideItemCount} 選｜早餐、老店、小吃與咖啡地圖`;
-const pageDescription = `整理 ${foodGuideItemCount} 間鹽埕早餐、老店、小吃、咖啡、甜點與酒吧，依類型快速導航；另附入住期間的採買與洗衣補給資訊。`;
+const pageTitle = `鹽埕美食地圖｜${foodGuideItemCount} 間必吃早餐、老店與小吃（2026）`;
+const pageDescription = `${foodGuideItemCount} 間鹽埕美食一次看：早餐、老店、小吃、咖啡與宵夜依時段分類，每間附 Google Maps 導航；多人行程可直接接高雄包棟住宿方案。`;
 
 const faqs = [
   {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "https://www.hello-stay.com/explore/food" },
   openGraph: {
-    title: `${pageTitle}｜Hello Stay`,
+    title: pageTitle,
     description: pageDescription,
     url: "https://www.hello-stay.com/explore/food",
     images: [{ url: "https://www.hello-stay.com/images/explore/market.jpg", width: 1280, height: 672, alt: "鹽埕第一公有零售市場入口" }],
@@ -53,7 +53,11 @@ export default function FoodExplorePage() {
             name: pageTitle,
             description: pageDescription,
             url: "https://www.hello-stay.com/explore/food",
-            dateModified: "2026-08-16",
+            dateModified: "2026-08-25",
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["#page-title", "#local-guide-answer-title", "#local-guide-stay-bridge-title"],
+            },
           },
           {
             "@context": "https://schema.org",
@@ -94,6 +98,7 @@ export default function FoodExplorePage() {
       <LocalGuidePage
         kind="food"
         eyebrow="YANCHENG FOOD GUIDE"
+        titleId="page-title"
         title={pageTitle}
         lead={`從早餐、老店到咖啡與酒吧，先看 ${foodGuideItemCount} 間餐飲主清單；採買與洗衣放在後段，避免生活補給稀釋美食內容。`}
         image={{ src: "/images/explore/market.jpg", alt: "鹽埕第一公有零售市場入口與街區生活" }}
@@ -108,8 +113,8 @@ export default function FoodExplorePage() {
         sectionHeading={`${foodGuideItemCount} 間鹽埕餐飲，依時段與類型挑選`}
         sectionLead="餐飲店家是本頁主體；店名與位置已核對，營業時間與臨時公休仍以店家當日公告為準。"
         directAnswer={{
-          title: "鹽埕美食可先分成早餐、老店正餐、小吃飲品、咖啡甜點與晚間酒吧",
-          body: `第一次來不必把 ${foodGuideItemCount} 間全部排滿。每天挑一間早餐、一間正餐與一個下午或晚間停留點即可；多人同行可先確認住宿方案，再依館別位置開啟店家導航。`,
+          title: "鹽埕美食分類與導航",
+          body: `鹽埕美食分成早餐、正餐熱炒、小吃飲品、咖啡甜點與晚間酒吧。本頁整理 ${foodGuideItemCount} 間餐飲店家，每間附 Google Maps 導航；多人同行可先確認包棟住宿再排行程。`,
           checkedOn: "2026-08-16",
           sources: [
             { label: "Google Maps 店家資訊", href: "https://www.google.com/maps" },

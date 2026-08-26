@@ -55,7 +55,7 @@ const scheduledArticleSource: ScheduledArticle[] = [
     {
         slug: "kaohsiung-6-person-stay",
         title: "【高雄 4 房包棟推薦】6 人小團體出遊：溝頂民宿 4 房全套房 vs 飯店訂房比較",
-        description: "6人出遊高雄住包棟還是飯店？溝頂民宿提供 4 房全獨立衛浴套房，包棟不鎖房，完整比較價格、空間與分房隱私。",
+        description: "6人出遊高雄住包棟還是飯店？溝頂民宿提供 4 房每房獨立衛浴，整棟專屬獨享，完整比較價格、空間與分房隱私。",
         publishDate: "2026-03-01",
         dateModified: "2026-08-20",
         emoji: "👥", tags: ["包棟", "6人"],

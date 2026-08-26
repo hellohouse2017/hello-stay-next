@@ -141,7 +141,7 @@ export const verifiedReviews: ReviewItem[] = [
     title: "離駁二走路只要 10 分鐘，隔音意外的好，床墊支撐性很夠",
     content:
       "離駁二藝術特區走路只要 10 分鐘，巷口出來就是鹽埕老街美食，位置真的很棒。隔音意外的好，晚上睡覺非常安靜，獨立筒床墊支撐性很夠，同行長輩都睡得很好。客房皆配有獨立衛浴乾濕分離，多人包棟出門完全不用搶洗手間。",
-    highlights: ["步行 10 分鐘到駁二", "隔音好睡得安靜", "床墊支撐性佳", "全套房獨立衛浴"],
+    highlights: ["步行 10 分鐘到駁二", "隔音好睡得安靜", "床墊支撐性佳", "每房皆有獨立衛浴"],
     image: {
       src: "/images/hellohouse/1402.webp",
       alt: "你好哇寓所高樓層大面採光六人房實景",
@@ -330,8 +330,8 @@ export const reviewSpotlights: ReviewSpotlight[] = [
   },
   {
     id: "spotlight-ensuite",
-    title: "採光景觀客房・全套房獨立衛浴",
-    subtitle: "每間客房皆享獨立衛浴・包棟絕不鎖房",
+    title: "採光景觀客房・每房皆有獨立衛浴",
+    subtitle: "每間客房皆享專屬衛浴・整棟專屬獨享",
     quote: "「隔音意外的好，晚上睡覺很安靜，獨立筒床墊支撐性很夠，每間房都有獨立衛浴完全不用搶廁所。」",
     author: "Google 商家住客 L 小姐",
     image: {

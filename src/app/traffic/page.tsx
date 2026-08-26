@@ -294,7 +294,7 @@ export default function TrafficPage() {
           address: "高雄市鹽埕區大公路 70 巷 8 號 / 6-2 號",
           description: "你好哇寓所和溝頂民宿就在同一條巷子裡。兩館都要從巷口步行進去，照地圖紅箭頭標示的位置下車，再步行進巷就可以了。",
           image: {
-            src: "/images/traffic/guide.webp",
+            src: "/images/traffic/guide-v3.webp",
             alt: "民宿交通指引圖 溝頂 你好哇寓所 共用地圖",
           },
           imageLabel: "點開放大檢視民宿交通指引圖",

@@ -31,7 +31,9 @@ export default function PropertyLinksBlock() {
                 <span>依人數查看</span>
                 <div>
                     {[
+                        { href: "/blog/kaohsiung-6-person-stay", label: "6 人左右" },
                         { href: "/blog/kaohsiung-10-person-stay", label: "10 人左右" },
+                        { href: "/blog/kaohsiung-15-person-stay", label: "15 人左右" },
                         { href: "/blog/kaohsiung-20-person-stay", label: "20 人左右" },
                         { href: "/blog/kaohsiung-30-person-stay", label: "30 人左右" },
                         { href: "/kaohsiung-whole-house", label: "40 人以上" },

@@ -31,6 +31,14 @@ type ArticleBridge = {
     links: ArticleBridgeLink[];
 };
 
+type ArticleHeroCtaAction = {
+    href: string;
+    label: string;
+    solid?: boolean;
+    bridgeTarget: string;
+    ctaType: string;
+};
+
 const DEFAULT_ARTICLE_IMAGE = "https://www.hello-stay.com/images/cover-bg.webp";
 const ARTICLE_PARTY_SIZES: Record<string, number> = {
     "kaohsiung-6-person-stay": 6,
@@ -38,6 +46,7 @@ const ARTICLE_PARTY_SIZES: Record<string, number> = {
     "kaohsiung-15-person-stay": 15,
     "kaohsiung-20-person-stay": 20,
     "kaohsiung-30-person-stay": 30,
+    "taiwan-travel-subsidy-guide": 10,
 };
 
 function getArticleBookingHref(slug: string) {
@@ -51,9 +60,57 @@ function getArticleBookingLabel(slug: string) {
 }
 
 function getArticleSeoIntent(slug: string) {
+    if (slug === "taiwan-travel-subsidy-guide") return "subsidy";
     if (ARTICLE_PARTY_SIZES[slug]) return "party_size";
     if (/kitchen|mahjong|family|arena/.test(slug)) return "feature";
     return "inspiration";
+}
+
+function getArticleHeroCta(slug: string) {
+    if (slug === "taiwan-travel-subsidy-guide") {
+        const cta: { title: string; body: string; actions: ArticleHeroCtaAction[] } = {
+            title: "國旅補助立即試算",
+            body: "平日連住兩晚最高折抵 2,000 元；壽星抽中生日券可疊加至最高 3,200 元。輸入日期與人數，直接查 Hello Stay 官方房價。",
+            actions: [
+                {
+                    href: "/book?guestCount=10",
+                    label: "輸入 10 人查空房與報價",
+                    solid: true,
+                    bridgeTarget: "hero_booking",
+                    ctaType: "booking",
+                },
+                {
+                    href: "/blog/taiwan-travel-subsidy-pricing-guide",
+                    label: "看透明定價指南",
+                    bridgeTarget: "pricing_guide",
+                    ctaType: "content_bridge",
+                },
+            ],
+        };
+        return cta;
+    }
+    if (/^kaohsiung-(6|10|15|20|30)-person-stay$/.test(slug)) {
+        return {
+            title: "確認日期與人數，直接查當期報價",
+            body: "補助與房價都會隨平假日、連假與可訂館別變動；先輸入同行人數，再比對官方即時空房最準確。",
+            actions: [
+                {
+                    href: getArticleBookingHref(slug),
+                    label: getArticleBookingLabel(slug),
+                    solid: true,
+                    bridgeTarget: "party_size_booking",
+                    ctaType: "booking",
+                },
+                {
+                    href: "/compare",
+                    label: "比較三館配置",
+                    bridgeTarget: "compare_page",
+                    ctaType: "content_bridge",
+                },
+            ] as ArticleHeroCtaAction[],
+        };
+    }
+    return null;
 }
 
 const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
@@ -142,9 +199,10 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "駁二藝術特區步行圈包棟推薦",
         body: "Hello Stay 位於鹽埕區大公路，步行 10 分鐘到駁二藝術特區、5 分鐘到捷運鹽埕埔站。4-12 人選溝頂民宿，8-26 人選你好哇寓所，27-36 人選雙館方案。",
         links: [
-            { href: "/hellohouse", label: "你好哇寓所 (8-26人)" },
-            { href: "/godin", label: "溝頂民宿 (4-12人)" },
-            { href: "/kaohsiung-whole-house", label: "依人數看方案" },
+            { href: "/hellohouse", label: "8–26 人看你好哇寓所" },
+            { href: "/godin", label: "4–12 人看溝頂民宿" },
+            { href: "/compare#compare-dual", label: "27–36 人看雙館包棟" },
+            { href: "/book?guestCount=16", label: "查 16 人駁二行程空房", partySize: 16, seoIntent: "feature", ctaType: "booking" },
         ],
     },
     "kaohsiung-group-trip": {
@@ -162,9 +220,9 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "婚禮迎娶與親友包棟配置",
         body: "迎娶儀式與親友聚會推薦空間挑高、具備中島大廳的你好哇寓所；若長輩同行需減少爬樓梯，溝頂民宿 1F 設有獨立衛浴雙人房，兩館步行僅 5 秒。",
         links: [
-            { href: "/hellohouse", label: "你好哇寓所" },
-            { href: "/godin", label: "溝頂民宿" },
-            { href: "/book", label: "預約日期與方案" },
+            { href: "/hellohouse", label: "迎娶主場地看你好哇寓所" },
+            { href: "/godin", label: "長輩親友看溝頂民宿" },
+            { href: "/book?guestCount=24&property=你好哇寓所", label: "查 24 人迎娶空房", partySize: 24, seoIntent: "feature", ctaType: "booking" },
         ],
     },
     "kaohsiung-family-reunion": {
@@ -172,9 +230,9 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "家庭家族旅遊選館指南",
         body: "帶長輩出遊（4-12 人）建議優先安排溝頂民宿 1F 雙人房；13 人以上大家族聚餐聊天推薦你好哇寓所 1F 大交誼廳；27 人以上建議雙館分棟住宿。",
         links: [
-            { href: "/godin", label: "4-12 人溝頂民宿" },
-            { href: "/hellohouse", label: "8-26 人你好哇寓所" },
-            { href: "/compare", label: "看各館比較" },
+            { href: "/godin", label: "4–12 人看溝頂民宿" },
+            { href: "/hellohouse", label: "8–26 人看你好哇寓所" },
+            { href: "/compare", label: "比較房型與樓梯動線" },
         ],
     },
     "kaohsiung-offsite-teambuilding": {
@@ -182,9 +240,9 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "企業移地訓練與團隊 Outing",
         body: "團隊需要工作討論與晚上聚會，你好哇寓所 1F 中島長桌與大交誼廳最適合；若需男女分棟或作息分流，可合訂你好哇＋溝頂雙館（共 10 間客房）。",
         links: [
-            { href: "/hellohouse", label: "你好哇寓所" },
-            { href: "/compare", label: "雙館方案" },
-            { href: "/book", label: "查團隊檔期" },
+            { href: "/hellohouse", label: "20 人團建看你好哇寓所" },
+            { href: "/compare#compare-dual", label: "27 人以上看雙館包棟" },
+            { href: "/book?guestCount=20&property=你好哇寓所", label: "查 20 人團建空房", partySize: 20, seoIntent: "feature", ctaType: "booking" },
         ],
     },
     "kaohsiung-nye-stay": {
@@ -233,10 +291,10 @@ const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
         title: "高雄演唱會與音樂祭包棟住宿推薦",
         body: "散場搭捷運免塞車直達鹽埕埔站，高流與大港開唱步行 10 分鐘！4-12 人選五層獨棟溝頂民宿、8-26 人選 1F 中島廚房你好哇寓所，深夜煮宵夜火鍋、開啤酒同樂。",
         links: [
-            { href: "/hellohouse", label: "你好哇寓所 (8-26人)" },
-            { href: "/godin", label: "溝頂民宿 (4-12人)" },
+            { href: "/hellohouse", label: "8–26 人看你好哇寓所" },
+            { href: "/godin", label: "4–12 人看溝頂民宿" },
             { href: "/compare", label: "三館方案比較" },
-            { href: "/book", label: "查詢演唱會檔期空房" },
+            { href: "/book?guestCount=16", label: "查演唱會檔期空房", partySize: 16, seoIntent: "feature", ctaType: "booking" },
         ],
     },
 };
@@ -490,6 +548,31 @@ export default async function ScheduledArticlePage({ params }: Props) {
                                 <p className="luxury-guide-hero__lead">{mdxArticle.description}</p>
                             </div>
                         </Reveal>
+                        {getArticleHeroCta(slug) ? (
+                            <Reveal>
+                                <aside className="article-instant-cta">
+                                    <h2>{getArticleHeroCta(slug)?.title}</h2>
+                                    <p>{getArticleHeroCta(slug)?.body}</p>
+                                    <div className="article-instant-cta__actions">
+                                        {(getArticleHeroCta(slug)?.actions || []).map((action) => (
+                                            <Link
+                                                key={`${action.href}-${action.label}`}
+                                                href={action.href}
+                                                className={action.solid ? "article-action article-action--solid" : "article-action"}
+                                                data-content-bridge={slug === "taiwan-travel-subsidy-guide" ? "subsidy-instant-calculation" : `${slug}-hero-cta`}
+                                                data-content-bridge-target={action.bridgeTarget}
+                                                data-seo-intent={getArticleSeoIntent(slug)}
+                                                data-party-size={ARTICLE_PARTY_SIZES[slug]}
+                                                data-cta-type={action.ctaType}
+                                                data-cta-position="hero"
+                                            >
+                                                {action.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </aside>
+                            </Reveal>
+                        ) : null}
                     </div>
                 </header>
 
