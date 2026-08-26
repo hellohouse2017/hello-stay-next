@@ -27,6 +27,7 @@ import {
 import { godin, hellohouse } from "@/data/properties";
 import { homepageFaqItems } from "@/data/homepage-faq";
 import { foodGuideSections, spotGuideSections } from "@/data/local-guides";
+import { reviewStats } from "@/data/reviews-data";
 
 type BookingProperty = "" | "你好哇寓所" | "溝頂民宿" | "雙館包棟";
 
@@ -744,10 +745,10 @@ export default function HomeTemplateExperience() {
               <h2 id="reviews-title">真實旅客入住回饋</h2>
             </div>
             <div className="mockup-rating-summary">
-              <strong className="mockup-rating-summary__score">4.9</strong>
+              <strong className="mockup-rating-summary__score">{reviewStats.averageRating}</strong>
               <div className="mockup-rating-summary__details">
                 <Stars rating={5} />
-                <span>Google 評價 150+ 則滿意推薦</span>
+                <span>Google 評價 {reviewStats.totalReviews} 則真實好評</span>
               </div>
             </div>
           </div>
