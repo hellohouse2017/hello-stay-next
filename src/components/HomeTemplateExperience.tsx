@@ -7,9 +7,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   CalendarDays,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Heart,
+  HelpCircle,
   House,
   KeyRound,
   MessageSquare,
@@ -23,7 +25,7 @@ import {
   Users,
 } from "lucide-react";
 import { godin, hellohouse } from "@/data/properties";
-import { homepageFaqItems, homepageLastReviewed } from "@/data/homepage-faq";
+import { homepageFaqItems } from "@/data/homepage-faq";
 import { foodGuideSections, spotGuideSections } from "@/data/local-guides";
 
 type BookingProperty = "" | "你好哇寓所" | "溝頂民宿" | "雙館包棟";
@@ -68,7 +70,7 @@ const stays: StayOption[] = [
     guestGuide: "4-12 人分層整棟",
     subsidyBadge: "🎁 國旅補助平日最高折抵 $8,000",
     description: "五層獨棟設計，分層休息互不干擾；頂樓配備明亮交誼廳與手動麻將桌，小家庭與好友出遊專屬整棟首選。",
-    pillTags: ["4 間獨立套房衛浴", "包棟整棟獨享不鎖房", "4F 頂樓交誼廳＋手動麻將", "近捷運鹽埕埔站 5 分鐘"],
+    pillTags: ["4 間獨立衛浴客房", "包棟整棟專屬獨享", "4F 頂樓交誼廳＋手動麻將", "近捷運鹽埕埔站 5 分鐘"],
   },
   {
     id: "hellohouse",
@@ -83,7 +85,7 @@ const stays: StayOption[] = [
     guestGuide: "8-26 人中島大公區",
     subsidyBadge: "🎁 國旅補助平日最高折抵 $10,000",
     description: "一樓設有寬敞中島廚房、高腳吧台與大型交誼客廳；多間套房獨立衛浴，最適合家族聚會、多人聚餐與迎娶活動。",
-    pillTags: ["6 間獨立套房衛浴", "1F 大型中島廚房＋交誼廳", "包棟全開絕不鎖房", "手動麻將桌＋迎娶聚餐首選"],
+    pillTags: ["6 間獨立衛浴客房", "1F 大型中島廚房＋交誼廳", "包棟整棟專屬獨享", "手動麻將桌＋迎娶聚餐首選"],
   },
   {
     id: "dual",
@@ -100,7 +102,7 @@ const stays: StayOption[] = [
     guestGuide: "27-36 人大型團體",
     subsidyBadge: "🎁 國旅補助平日最高折抵 $18,000",
     description: "你好哇與溝頂兩館相鄰、步行僅約 5 秒；合計最多 10 間客房與雙交誼廳，大型團體同聚也能保有私密休息空間。",
-    pillTags: ["10 間全套房獨立衛浴", "兩館相鄰步行 5 秒", "雙交誼空間＋中島廚房", "包棟獨享絕不鎖房"],
+    pillTags: ["10 間獨立衛浴客房", "兩館相鄰步行 5 秒", "雙交誼空間＋中島廚房", "包棟整棟專屬獨享"],
   },
 ];
 
@@ -220,6 +222,45 @@ export default function HomeTemplateExperience() {
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [isHeroPaused, setIsHeroPaused] = useState(false);
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+
+  // ─── FAQ 互動狀態 ───
+  const [openFaqIds, setOpenFaqIds] = useState<Record<string, boolean>>({
+    "checkin-checkout-time": true,
+  });
+
+  // 支援舊版 #home-faq 錨點平滑滾動
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleUrlState = () => {
+      const hashStr = window.location.hash || "";
+      const cleanHash = hashStr.split("?")[0].replace("#", "");
+
+      if (cleanHash === "home-faq") {
+        setTimeout(() => {
+          const el = document.getElementById("home-faq");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 200);
+      } else if (cleanHash) {
+        const matchedItem = homepageFaqItems.find((item) => item.id === cleanHash);
+        if (matchedItem) {
+          setOpenFaqIds((prev) => ({ ...prev, [matchedItem.id]: true }));
+          setTimeout(() => {
+            const el = document.getElementById(matchedItem.id);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 350);
+        }
+      }
+    };
+
+    handleUrlState();
+    window.addEventListener("hashchange", handleUrlState);
+    return () => window.removeEventListener("hashchange", handleUrlState);
+  }, []);
 
   const toggleFavorite = (id: string) => {
     setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -345,9 +386,12 @@ export default function HomeTemplateExperience() {
         {/* Floating Centered Booking Pod */}
         <div className="mockup-hero__container">
           <div className="mockup-hero__intro">
-            <h1 id="home-hero-title">住進一整棟的高雄質感假期</h1>
+            <span className="mockup-kicker" style={{ color: "var(--mockup-gold-light)", display: "inline-block", marginBottom: "6px" }}>
+              ✦ 高雄鹽埕駁二・4-36 人全棟私享包棟
+            </span>
+            <h1 id="home-hero-title">高雄包棟民宿首選・住進一整棟的質感假期</h1>
             <p className="mockup-hero__sub">
-              高雄鹽埕 4-36 人包棟住宿・專屬私享空間・官方直訂免手續費
+              4-36 人包棟住宿・每間房皆有獨立衛浴・中島廚房・手動麻將・官方直訂免手續費
             </p>
           </div>
 
@@ -362,7 +406,7 @@ export default function HomeTemplateExperience() {
                 onClick={() => setPodMode("guests")}
               >
                 <Users size={14} aria-hidden="true" />
-                <span>依人數找房（4-36 人）</span>
+                <span>依人數（4-36人）</span>
               </button>
               <button
                 type="button"
@@ -372,7 +416,7 @@ export default function HomeTemplateExperience() {
                 onClick={() => setPodMode("rooms")}
               >
                 <House size={14} aria-hidden="true" />
-                <span>依房間數找房（2-10 房）</span>
+                <span>依房數（2-10房）</span>
               </button>
             </div>
 
@@ -761,33 +805,116 @@ export default function HomeTemplateExperience() {
         </div>
       </section>
 
-      {/* ═══ 6. 預訂前常見問題 ═══ */}
+      {/* ═══ 6. 首頁精選常見問題 (FAQ) ═══ */}
       <section className="mockup-faq" id="home-faq" aria-labelledby="home-faq-title">
-        <div className="mockup-container mockup-faq__layout">
-          <div className="mockup-villas__head">
-            <h2 id="home-faq-title">預訂前常見問題</h2>
-            <p>訂房流程、開伙設備、打麻將與周邊停車等疑問，都在這裡為您即時解答。</p>
-            <div className="mockup-faq__links">
-              <Link className="mockup-link" href="/agreement">
+        <div className="mockup-container">
+          <div className="mockup-faq__header">
+            <div className="mockup-faq__header-info">
+              <span className="mockup-kicker">STAY FAQ & SERVICE</span>
+              <h2 id="home-faq-title" className="mockup-faq__title">預訂前常見問題速覽</h2>
+              <p className="mockup-faq__subtitle">
+                為您精選旅客最關心的 4 大包棟核心重點。更多完整的 30 題設備、中島廚房、麻將、停車與生活公約詳解，請造訪常見問題專頁。
+              </p>
+            </div>
+            <div className="mockup-faq__quick-links">
+              <Link className="mockup-faq__link-btn" href="/faq">
+                完整 30 題 FAQ <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
+              <Link className="mockup-faq__link-btn" href="/agreement">
                 入住與退款守則 <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
-              <Link className="mockup-link" href="/traffic">
+              <Link className="mockup-faq__link-btn" href="/traffic">
                 交通與周邊停車 <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
             </div>
           </div>
 
-          <div className="mockup-faq__list">
-            {homepageFaqItems.map((item) => (
-              <details className="mockup-faq__item" key={item.question}>
-                <summary>
-                  <span>{item.question}</span>
-                  <span className="mockup-faq__icon" aria-hidden="true" />
-                </summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
-            <p className="mockup-faq__date">最後核對日期：{homepageLastReviewed}</p>
+          {/* 精選 4 題問答列表 */}
+          <div className="mockup-faq__grid" style={{ gridTemplateColumns: "1fr" }}>
+            {homepageFaqItems.slice(0, 4).map((item, idx) => {
+              const isOpen = !!openFaqIds[item.id] || idx === 0;
+              return (
+                <details
+                  id={item.id}
+                  className={`mockup-faq__card ${isOpen ? "is-open" : ""}`}
+                  key={item.id}
+                  open={isOpen}
+                  onToggle={(e) => {
+                    const details = e.currentTarget;
+                    setOpenFaqIds((prev) => ({
+                      ...prev,
+                      [item.id]: details.open,
+                    }));
+                  }}
+                >
+                  <summary className="mockup-faq__summary">
+                    <div className="mockup-faq__summary-text">
+                      <span className="mockup-faq__item-cat">{item.categoryLabel}</span>
+                      <h3 className="mockup-faq__question">{item.question}</h3>
+                    </div>
+                    <span className="mockup-faq__chevron" aria-hidden="true">
+                      <ChevronDown size={18} />
+                    </span>
+                  </summary>
+
+                  <div className="mockup-faq__body">
+                    {item.highlights && item.highlights.length > 0 && (
+                      <div className="mockup-faq__highlights" aria-label="重點摘要">
+                        {item.highlights.map((hl, i) => (
+                          <span key={i} className="mockup-faq__badge">
+                            {hl}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <p className="mockup-faq__answer">{item.answer}</p>
+                  </div>
+                </details>
+              );
+            })}
+          </div>
+
+          {/* 導流至 /faq 完整知識庫與專人諮詢按鈕 */}
+          <div
+            className="mockup-agr-card"
+            style={{
+              marginTop: "24px",
+              background: "#fbf9f4",
+              borderColor: "rgba(194,155,97,0.3)",
+              padding: "24px 28px",
+            }}
+          >
+            <div
+              className="mockup-agr-contact-box"
+              style={{
+                margin: 0,
+                padding: 0,
+                background: "transparent",
+                border: "none",
+              }}
+            >
+              <div>
+                <strong style={{ fontSize: "1.05rem" }}>想查詢更多麻將、中島廚房、寵物或發票報帳問題？</strong>
+                <p>
+                  我們已將 30 題包棟住宿常見問題整理為獨立知識庫，支援關鍵字即時搜尋與分類解答。
+                </p>
+              </div>
+              <div className="mockup-agr-contact-actions">
+                <Link href="/faq" className="mockup-btn mockup-btn--gold" style={{ minWidth: "160px" }}>
+                  <HelpCircle size={16} />
+                  查看全部 30 題 FAQ
+                </Link>
+                <a
+                  href={lineUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mockup-btn mockup-btn--line"
+                >
+                  <MessageSquare size={16} />
+                  LINE 專人諮詢
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

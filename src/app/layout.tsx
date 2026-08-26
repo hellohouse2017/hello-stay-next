@@ -29,24 +29,24 @@ const notoSerif = Noto_Serif_TC({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hello-stay.com"),
   title: {
-    default: "高雄包棟民宿｜Hello Stay",
+    default: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
     template: "%s | Hello Stay",
   },
-  description: "高雄鹽埕包棟民宿推薦 Hello Stay，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，官網先幫你判斷館別，再查空房與報價。",
+  description: "高雄包棟民宿推薦 Hello Stay：提供 4–36 人整棟包棟（4房/6房/10房），每間客房皆有獨立衛浴，配備 1F 大型中島廚房與手動麻將桌。近捷運鹽埕埔站與駁二特區，官網即時查空房與免手續費最低價直訂！",
   authors: [{ name: "Hello Stay" }],
   openGraph: {
     type: "website",
     locale: "zh_TW",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
-    title: "高雄包棟民宿｜Hello Stay",
-    description: "高雄鹽埕包棟民宿，依人數選擇你好哇寓所、溝頂民宿與雙館包棟。近駁二、大港橋與鹽埕埔站，先查空房與報價。",
+    title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
+    description: "高雄鹽埕 4-36 人包棟住宿首選，每間客房皆有獨立衛浴・整棟專屬獨享，配備中島廚房與手動麻將，近駁二與捷運鹽埕埔站，官網即時查空房與免手續費直訂。",
     images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 高雄包棟民宿" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "高雄包棟民宿推薦 | Hello Stay",
-    description: "高雄鹽埕區 4-36 人包棟住宿，依人數選擇溝頂、你好哇或雙館方案。",
+    title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
+    description: "高雄鹽埕區 4-36 人包棟住宿，4 房、6 房與 10 房每房皆有獨立衛浴，整棟專屬獨享，即時查空房與免手續費直訂。",
     images: ["https://www.hello-stay.com/images/cover-bg.webp"],
   },
 

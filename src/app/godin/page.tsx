@@ -8,17 +8,17 @@ import { getAlternateLanguageMap } from "@/i18n/config";
 const bookingHref = "https://booking.hello-stay.com/booking?property=%E6%BA%9D%E9%A0%82%E6%B0%91%E5%AE%BF";
 
 export const metadata: Metadata = {
-  title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運",
+  title: "溝頂民宿｜高雄鹽埕 4-12 人包棟民宿・五層獨棟・每房獨立衛浴",
   description:
-    "高雄鹽埕民宿推薦「溝頂民宿」，適合 4-12 人包棟。五層獨棟空間、四間客房皆有獨立衛浴，步行可到駁二與鹽埕埔站，適合家庭旅遊與朋友小聚。",
+    "高雄小團體包棟推薦「溝頂民宿」：4-12 人五層獨棟、4 間客房皆有獨立衛浴，整棟專屬獨享。4F 設專屬交誼廳與手動麻將桌，步行 5 分鐘到捷運鹽埕埔站、8 分鐘到駁二，即時查空房與直訂優惠！",
   alternates: {
     canonical: "https://www.hello-stay.com/godin",
     languages: getAlternateLanguageMap("/godin"),
   },
   openGraph: {
-    title: "鹽埕民宿推薦｜溝頂民宿 4-12 人包棟・步行到駁二捷運｜Hello Stay",
+    title: "溝頂民宿｜高雄鹽埕 4-12 人包棟民宿・五層獨棟・每房獨立衛浴｜Hello Stay",
     description:
-      "高雄鹽埕小團體包棟首選「溝頂民宿」，適合 4-12 人，四間客房皆有獨立衛浴，4F 設交誼廳、麻將桌與簡易備餐空間，步行可到駁二與捷運。",
+      "高雄鹽埕小團體包棟首選「溝頂民宿」：適合 4-12 人，4 間客房皆有獨立衛浴，4F 設交誼廳、手動麻將桌與簡易備餐空間，步行可到駁二與捷運鹽埕埔站。",
     url: "https://www.hello-stay.com/godin",
     images: [
       {

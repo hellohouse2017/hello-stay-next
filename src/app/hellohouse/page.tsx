@@ -11,17 +11,17 @@ const dagangWalkMinutes = hellohouse.nearbySpots.find((spot) => spot.name.includ
 const mrtWalkMinutes = hellohouse.nearbySpots.find((spot) => spot.name.includes("鹽埕埔站"))?.walkMinutes ?? 5;
 
 export const metadata: Metadata = {
-  title: "你好哇寓所｜高雄 8-26 人包棟民宿・有廚房與麻將桌",
+  title: "你好哇寓所｜高雄 8-26 人包棟民宿・中島廚房與麻將・駁二捷運 5 分鐘",
   description:
-    "高雄 8-26 人包棟民宿「你好哇寓所」，位於鹽埕區，主打 1F 中島廚房、大型交誼空間與麻將桌。適合家族旅行、朋友聚會、迎娶、慶生與多人聚餐。",
+    "高雄 8-26 人包棟民宿首選「你好哇寓所」：位於鹽埕區，6 間客房全獨立套房衛浴，主打 1F 大型中島廚房、交誼客廳與手動麻將桌。近駁二與捷運鹽埕埔站，適合家族旅行、朋友聚會、迎娶與多人聚餐，官方直訂免手續費！",
   alternates: {
     canonical: "https://www.hello-stay.com/hellohouse",
     languages: getAlternateLanguageMap("/hellohouse"),
   },
   openGraph: {
-    title: "你好哇寓所｜高雄 8-26 人包棟民宿・有廚房與麻將桌｜Hello Stay",
+    title: "你好哇寓所｜高雄 8-26 人包棟民宿・中島廚房與麻將・駁二捷運 5 分鐘｜Hello Stay",
     description:
-      "你好哇寓所提供高雄 8-26 人包棟，重點是中島廚房、吧台、大型交誼空間與麻將桌，適合多人聚會與家族旅遊。",
+      "你好哇寓所提供高雄鹽埕 8-26 人包棟，6 間客房全獨立衛浴，配備 1F 大型中島廚房、吧台、交誼空間與手動麻將桌，適合多人聚會與家族旅遊直訂。",
     url: "https://www.hello-stay.com/hellohouse",
     images: [
       {

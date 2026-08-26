@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
 import HomeTemplateExperience from "@/components/HomeTemplateExperience";
-import { homepageFaqItems, homepageLastReviewed } from "@/data/homepage-faq";
+import { homepageLastReviewed } from "@/data/homepage-faq";
+import { reviewStats } from "@/data/reviews-data";
 import { godin, hellohouse } from "@/data/properties";
 import { getAlternateLanguageMap } from "@/i18n/config";
 
 const homeDescription =
-  "Hello Stay 高雄鹽埕官方住宿入口：你好哇寓所、溝頂民宿與雙館包棟方案，提供 4-36 人整棟住宿、獨立衛浴與聚會空間，近駁二與捷運站，可直接查空房與官方報價。";
+  "高雄包棟民宿推薦首選 Hello Stay：提供 4–36 人整棟包棟（4房/6房/10房），每間客房皆有獨立衛浴，配備 1F 大型中島廚房與手動麻將桌。近捷運鹽埕埔站與駁二特區，官網即時查空房與免手續費最低價直訂！";
 
 export const metadata: Metadata = {
-  title: "Hello Stay 高雄鹽埕包棟民宿｜你好哇寓所與溝頂民宿官方直訂",
+  title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
   description: homeDescription,
   alternates: {
     canonical: "https://www.hello-stay.com",
     languages: getAlternateLanguageMap(""),
   },
   openGraph: {
-    title: "Hello Stay 高雄鹽埕包棟民宿｜官方住宿與訂房入口",
+    title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
     description:
-      "高雄鹽埕 4-36 人包棟住宿，提供 4 房、6 房與 10 房方案，全獨立套房衛浴・包棟不鎖房，依人數或房間數查即時空房與官方報價。",
+      "高雄鹽埕 4-36 人包棟住宿首選，提供 4 房、6 房與 10 房方案，每間客房皆有獨立衛浴・整棟專屬獨享，配備中島廚房與手動麻將，依人數或房間數查即時空房與官方直訂優惠。",
     url: "https://www.hello-stay.com",
     siteName: "Hello Stay 高雄包棟民宿",
     type: "website",
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hello Stay 高雄鹽埕包棟民宿｜官方住宿與訂房入口",
-    description: "高雄鹽埕 4-36 人包棟住宿，4 房、6 房與 10 房全獨立套房，包棟不鎖房，即時查空房與免手續費直訂。",
+    title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
+    description: "高雄鹽埕 4-36 人包棟住宿，4 房、6 房與 10 房每房皆有獨立衛浴，整棟專屬獨享，即時查空房與免手續費直訂。",
     images: ["https://www.hello-stay.com/images/hellohouse/cover.webp"],
   },
 };
@@ -97,7 +98,7 @@ const homeStructuredData = {
       "@type": "WebPage",
       "@id": webpageId,
       url: "https://www.hello-stay.com",
-      name: "Hello Stay 高雄鹽埕包棟民宿｜官方住宿與訂房入口",
+      name: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・中島廚房與麻將｜Hello Stay",
       description: homeDescription,
       inLanguage: "zh-Hant-TW",
       isPartOf: { "@id": websiteId },
@@ -138,6 +139,13 @@ const homeStructuredData = {
       checkinTime: hellohouse.checkin,
       checkoutTime: hellohouse.checkout,
       numberOfRooms: hellohouse.totalRooms,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: reviewStats.averageRating,
+        reviewCount: "75",
+        bestRating: "5",
+        worstRating: "1",
+      },
       containsPlace: {
         "@type": "Accommodation",
         name: `${hellohouse.name}包棟住宿`,
@@ -186,6 +194,13 @@ const homeStructuredData = {
       checkinTime: godin.checkin,
       checkoutTime: godin.checkout,
       numberOfRooms: godin.totalRooms,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: reviewStats.averageRating,
+        reviewCount: "75",
+        bestRating: "5",
+        worstRating: "1",
+      },
       containsPlace: {
         "@type": "Accommodation",
         name: `${godin.name}包棟住宿`,
@@ -224,15 +239,6 @@ const homeStructuredData = {
         { "@type": "ListItem", position: 2, item: { "@id": helloHouseId } },
         { "@type": "ListItem", position: 3, item: { "@id": dualStayId } },
       ],
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.hello-stay.com/#faq",
-      mainEntity: homepageFaqItems.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: { "@type": "Answer", text: item.answer },
-      })),
     },
   ],
 };

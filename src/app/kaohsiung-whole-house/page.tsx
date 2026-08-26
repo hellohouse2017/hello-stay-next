@@ -6,19 +6,21 @@ import { publicStayFacts } from "@/data/public-stay-facts";
 import { DEFAULT_SEO_IMAGE } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = {
-    title: "高雄包棟民宿推薦｜依人數選整棟住宿與直接詢價｜你好哇寓所",
-    description: "高雄包棟民宿官方方案：溝頂 4–12 人、你好哇 8–26 人、雙館 27–36 人。依人數、房間與廚房需求選館，再查日期、空房與包棟價格。",
+    title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・即時報價",
+    description: "高雄包棟民宿官方總覽：溝頂 4–12 人、你好哇 8–26 人、雙館 27–36 人。每間客房皆有獨立衛浴・整棟專屬獨享，配備中島廚房與麻將。依人數與設備需求快速選館，即時查空房與官方直訂優惠。",
     alternates: { canonical: "https://www.hello-stay.com/kaohsiung-whole-house" },
     openGraph: {
-        title: "高雄包棟民宿推薦｜依人數選整棟住宿與直接詢價｜你好哇寓所",
-        description: "依 4–36 人、人數與設備需求選擇溝頂、你好哇或雙館方案，直接查看官方空房與包棟報價。",
+        title: "高雄包棟民宿推薦｜4-36人整棟包棟・每房獨立衛浴・即時報價",
+        description: "高雄包棟民宿官方總覽：溝頂 4–12 人、你好哇 8–26 人、雙館 27–36 人。每間客房皆有獨立衛浴・整棟專屬獨享，配備中島廚房與麻將。依人數與設備需求快速選館，即時查空房與官方直訂優惠。",
         url: "https://www.hello-stay.com/kaohsiung-whole-house",
         images: [DEFAULT_SEO_IMAGE],
     },
 };
 
 const faqs = [
-    { q: "高雄包棟民宿推薦哪間？有幾間房間？", a: "依房數與人數推薦：4 房選溝頂民宿（4-12 人、4 間客房含 2 間雙人房與 2 間四人房，全獨立衛浴）；6 房選你好哇寓所（8-26 人、6 間客房含中島廚房）；27-34 人推薦 10 房雙館方案，35-36 人使用雙館時須加床。包棟整棟獨享不鎖房。大智若愚尚未開放訂房，不列入近期可訂選項。" },
+    { q: "高雄包棟民宿推薦哪間？有幾間房間？", a: "依房數與人數推薦：4 房選溝頂民宿（4-12 人、4 間客房含 2 間雙人房與 2 間四人房，每間皆有獨立衛浴）；6 房選你好哇寓所（8-26 人、6 間客房含中島廚房）；27-34 人推薦 10 房雙館方案，35-36 人使用雙館時須加床。包棟皆為整棟專屬獨享。大智若愚尚未開放訂房，不列入近期可訂選項。" },
+    { q: "高雄包棟民宿 8 人住哪裡比較適合？", a: "8 人可先看溝頂民宿的 2 間雙人房加 2 間四人房，整棟分層且每房都有獨立衛浴；若更重視一起開伙與大型客廳，再比較你好哇寓所的 6 房中島方案。實際房價請以入住日期與人數查詢。" },
+    { q: "高雄包棟民宿 12 人怎麼分配房型？", a: "12 人通常先看溝頂民宿：4 房為 2 間雙人房與 2 間四人房，全房獨立衛浴。若同行者希望每人有更大公共空間、一起煮火鍋或打麻將，再比較你好哇寓所；兩館都沒有電梯。" },
     { q: "高雄包棟一晚多少錢？", a: "Hello Stay 依館別與日期報價。平日常見先從溝頂民宿與你好哇寓所的實際可訂價格看起，官方 LINE 直訂免平台手續費。" },
     { q: "高雄哪裡有 20 人以上的包棟？", a: "你好哇寓所適合 8-26 人；雙館通常適合 27-34 人，35-36 人須加床。超過 36 人須由客服確認其他安排，網站不以未開放館別承接近期訂房。" },
     { q: "高雄包棟有電梯的嗎？", a: "Hello Stay 目前可訂的你好哇寓所、溝頂民宿與雙館方案都沒有電梯，館內需要走樓梯。若近期入住一定需要電梯，請另找符合需求的住宿；規劃中的大智若愚尚未開放訂房。" },
@@ -144,6 +146,57 @@ export default function KaohsiungWholeHousePage() {
                         • <strong>27–34 人</strong>→ <Link href="/compare" style={{ color: "var(--pri)" }}>雙館方案</Link>（你好哇＋溝頂）；35–36 人須加床<br />
                         • <strong>37 人以上</strong>→ 超過目前公開方案，請由客服人工確認
                     </div>
+                </div></Reveal>
+
+                <Reveal><div id="instant-decision-cards" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px", marginBottom: "20px" }}>
+                    {[
+                        {
+                            title: "4–12 人小團體",
+                            property: "溝頂民宿",
+                            body: "五層獨棟、4 房全獨立衛浴，適合長輩與小團體。",
+                            href: "/book?guestCount=8&property=溝頂民宿",
+                            detailHref: "/godin",
+                            detailLabel: "看溝頂房型",
+                        },
+                        {
+                            title: "8–26 人中大團體",
+                            property: "你好哇寓所",
+                            body: "6 房全獨立衛浴、1F 中島廚房，適合開伙聚會。",
+                            href: "/book?guestCount=20&property=你好哇寓所",
+                            detailHref: "/hellohouse",
+                            detailLabel: "看你好哇房型",
+                        },
+                        {
+                            title: "27–36 人大型團體",
+                            property: "雙館包棟",
+                            body: "兩館步行約 5 秒，27–34 人標準安排，35–36 人須加床。",
+                            href: "/book?guestCount=30&property=雙館包棟",
+                            detailHref: "/compare#compare-dual",
+                            detailLabel: "看雙館配置",
+                        },
+                    ].map(card => (
+                        <article key={card.title} style={{ background: "#fff", borderRadius: "16px", padding: "20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", borderLeft: "4px solid var(--pri)", display: "grid", gap: "10px" }}>
+                            <div>
+                                <div style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--pri)" }}>Instant Choice</div>
+                                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1rem", color: "#3D3830", margin: "6px 0 0" }}>{card.title}</h3>
+                                <p style={{ fontSize: "0.78rem", color: "#666", lineHeight: 1.7, margin: "6px 0 0" }}>{card.body}</p>
+                            </div>
+                            <Link
+                                href={card.href}
+                                data-seo-intent="core_whole_house"
+                                data-property-slug={card.property}
+                                data-party-size={card.href.match(/guestCount=(\d+)/)?.[1]}
+                                data-cta-type="booking"
+                                data-cta-position="decision_card"
+                                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: "38px", padding: "9px 14px", borderRadius: "999px", background: "#161618", color: "#fff", fontSize: "0.76rem", textDecoration: "none", textAlign: "center" }}
+                            >
+                                查 {card.property} 空房
+                            </Link>
+                            <Link href={card.detailHref} data-cta-type="content_bridge" data-cta-position="decision_card_secondary" style={{ fontSize: "0.72rem", color: "var(--pri)", textAlign: "center", textDecoration: "none" }}>
+                                {card.detailLabel} →
+                            </Link>
+                        </article>
+                    ))}
                 </div></Reveal>
 
                 {/* By Capacity */}
