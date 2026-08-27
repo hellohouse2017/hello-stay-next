@@ -11,6 +11,13 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-08-27（國旅補助試算入口與訂房頁顯示流程補齊，正式結帳維持原價）
+- 首頁精選住宿卡、首頁查房入口與 `/book` Hero CTA 全部導向 booking 的國旅補助試算模式（`subsidy=1`），並補上「輸入日期後查看補助後預估價」的可見說明。
+- `/book` 新增國旅補助規則、預估價僅供參考與原價結帳說明，FAQ／HowTo／metadata 同步反映「入住現場確認資格、名額與政府額度後才折抵」的流程。
+- booking 訂房頁加入「試算國旅補助後價格」切換入口；房價卡、房型確認、分棟入住明細與聯絡人區塊同步顯示正式原價、預估可折金額及補助後預估價。
+- 補助估算只改變前台顯示，不改 `quote.totalPrice`、checkout payload、付款金額或正式訂單；資格不符、額度用罄或未帶證件時仍依原價結算。
+- 驗證：booking `check:runtime-boundaries`、`typecheck`、`test:concierge-core`（88 passed）及補助專項測試（4 passed）；主站 `validate:content` 與 targeted ESLint 通過。未部署、未修改 production、未發送外部訊息。
+
 ### 2026-08-26（交通與停車 /traffic 手機版 UI/UX 徹底重構、LINE Bot 導流一秒即懂並完成部署）
 - **痛點根治**：徹底解決過去在 LINE 點擊「停車交通」按鈕（`?src=line`）進入 `/traffic` 時，因套用通用展示頁模板導致停車資訊沉底（需滑動 5-8 個螢幕）、缺乏清楚下車 SOP 與停車場結構化導航之問題。
 - **全新專屬 `TrafficExperience.tsx` 元件**：

@@ -25,6 +25,7 @@ function buildBookingHref(property?: string, guestCount?: string) {
   const url = new URL(bookingBase);
   if (property) url.searchParams.set("property", property);
   if (guestCount && /^\d{1,2}$/.test(guestCount)) url.searchParams.set("guestCount", guestCount);
+  url.searchParams.set("subsidy", "1");
   url.searchParams.set("openCalendar", "1");
   return url.toString();
 }
@@ -101,10 +102,10 @@ export default function BookingFlow() {
         <div className="mockup-container book-luxury-hero__inner">
           <div className="book-luxury-hero__copy">
             <p className="mockup-kicker">OFFICIAL BOOKING PORTAL</p>
-            <h1>先選館別，再查空房與即時報價</h1>
+            <h1>先選館別，再查空房與國旅補助預估價</h1>
             <p className="book-luxury-hero__sub">
               官方直訂保證最優價格・即時日曆連線・免平台手續費。<br />
-              依團體人數或房間需求選擇館別，一鍵進入官方訂房系統。
+              依團體人數或房間需求選擇館別，一鍵進入官方訂房系統；輸入日期後即可查看補助後預估價。
             </p>
             <div className="book-luxury-hero__actions">
               <a
@@ -115,7 +116,7 @@ export default function BookingFlow() {
                 data-cta-position="hero"
                 className="mockup-btn mockup-btn--gold"
               >
-                前往官方訂房系統 <ArrowRight size={16} aria-hidden="true" />
+                國旅補助試算 <ArrowRight size={16} aria-hidden="true" />
               </a>
               <Link href="/compare" className="mockup-btn mockup-btn--outline">
                 先比較三館差異 <ArrowUpRight size={16} aria-hidden="true" />
@@ -136,6 +137,14 @@ export default function BookingFlow() {
               <span>官方直訂・合法民宿・即時確認</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mockup-container" aria-label="國旅補助試算說明">
+        <div className="my-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-5 text-sm leading-6 text-emerald-950">
+          <h2 className="text-lg font-bold">國旅補助試算怎麼看？</h2>
+          <p className="mt-2">目前以週日至週四平日晚試算，第 1 個符合日期每房預估 NT$800、第 2 個符合日期每房預估 NT$1,200，每房最多 1 位旅客。</p>
+          <p className="mt-1 font-bold">這是規劃用預估，不是保證折抵：結帳與付款仍以原價，入住現場須確認證件、資格、名額與政府額度後才辦理折抵。</p>
         </div>
       </section>
 

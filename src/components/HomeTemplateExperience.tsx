@@ -187,6 +187,7 @@ function buildBookingHref(params: {
   if (params.checkIn) url.searchParams.set("checkInDate", params.checkIn);
   if (params.checkOut) url.searchParams.set("checkOutDate", params.checkOut);
   if (params.guestCount) url.searchParams.set("guestCount", params.guestCount);
+  url.searchParams.set("subsidy", "1");
   if (!params.checkIn || !params.checkOut) url.searchParams.set("openCalendar", "1");
   return url.toString();
 }
@@ -622,6 +623,7 @@ export default function HomeTemplateExperience() {
           <div className="mockup-villas__head">
             <h2 id="stay-options-title">精選包棟住宿方案</h2>
             <p>專為家庭、親友聚會與大型團體打造的獨立整棟空間，依人數需求挑選最適合的房型。</p>
+            <p className="mt-2 text-sm font-semibold text-emerald-800">輸入入住日期後，可直接查看國旅補助後預估價；正式結帳仍以原價，入住現場確認資格後折抵。</p>
           </div>
 
           {/* 3 Large Boutique Cards */}
@@ -680,9 +682,9 @@ export default function HomeTemplateExperience() {
                           <span className="mockup-card__fit">{stay.guestGuide}</span>
                           {stay.subsidyBadge && (
                             <Link
-                              href="/blog/taiwan-travel-subsidy-pricing-guide"
+                              href={bookingHrefForStay}
                               className="mockup-card__subsidy-badge"
-                              title="查看 2026 國旅補助透明折抵指南"
+                              title="立即試算國旅補助後預估價"
                             >
                               {stay.subsidyBadge}
                             </Link>
@@ -712,7 +714,7 @@ export default function HomeTemplateExperience() {
                           查看房型細節
                         </Link>
                         <Link href={bookingHrefForStay} className="mockup-btn mockup-btn--gold">
-                          查詢這館空房
+                          查詢空房並試算補助
                         </Link>
                       </div>
                     </div>

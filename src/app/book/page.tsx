@@ -4,11 +4,11 @@ import { getAlternateLanguageMap } from "@/i18n/config";
 
 export const metadata: Metadata = {
     title: "高雄包棟民宿官方訂房入口｜先選館別再查空房與報價",
-    description: "先選擇你好哇寓所、溝頂民宿或雙館包棟，再前往 Hello Stay 官方 booking 站查空房、看目前試算總價並完成預訂。",
+    description: "先選擇你好哇寓所、溝頂民宿或雙館包棟，再前往官方 booking 站查空房、查看國旅補助後預估價；正式結帳仍以原價，入住現場確認資格後折抵。",
     alternates: { canonical: "https://www.hello-stay.com/book", languages: getAlternateLanguageMap("/book") },
     openGraph: {
         title: "Hello Stay 官方訂房入口 | 先選館別再查空房與報價",
-        description: "先選擇館別，再前往官方 booking 站查空房、看目前試算總價並完成預訂。",
+        description: "先選擇館別，再前往官方 booking 站查空房、查看國旅補助後預估價並完成預訂。",
         url: "https://www.hello-stay.com/book",
         images: [{ url: "https://www.hello-stay.com/images/cover-bg.webp", width: 1200, height: 630, alt: "Hello Stay 訂房入口" }],
     },
@@ -26,7 +26,7 @@ export default function BookPage() {
                             "@context": "https://schema.org",
                             "@type": "WebPage",
                             name: "Hello Stay 官方訂房入口",
-                            description: "先選擇館別，再前往官方 booking 站查空房、看目前試算總價並完成預訂。",
+                            description: "先選擇館別，再前往官方 booking 站查空房、查看國旅補助後預估價；正式結帳仍以原價。",
                             url: "https://www.hello-stay.com/book",
                             isPartOf: { "@type": "WebSite", name: "Hello Stay 高雄包棟民宿", url: "https://www.hello-stay.com" },
                             potentialAction: {
@@ -47,7 +47,12 @@ export default function BookPage() {
                                 {
                                     "@type": "Question",
                                     name: "查到有空房後要怎麼預訂？",
-                                    acceptedAnswer: { "@type": "Answer", text: "進入 booking.hello-stay.com/booking 後，選日期、人數與館別，完成 Email 驗證、簽署與付款即可。" },
+                                    acceptedAnswer: { "@type": "Answer", text: "進入 booking.hello-stay.com/booking 後，選日期、人數與館別，查看正式房價與國旅補助後預估價；完成 Email 驗證、簽署與付款即可。" },
+                                },
+                                {
+                                    "@type": "Question",
+                                    name: "國旅補助預估價會直接套用到結帳嗎？",
+                                    acceptedAnswer: { "@type": "Answer", text: "不會。頁面上的補助後價格僅供規劃參考，正式結帳與付款仍以原價；入住現場出示有效證件並確認資格、名額與政府額度後，才辦理折抵。" },
                                 },
                                 {
                                     "@type": "Question",
@@ -60,7 +65,7 @@ export default function BookPage() {
                             "@context": "https://schema.org",
                             "@type": "HowTo",
                             name: "如何使用 Hello Stay 官方訂房入口",
-                            description: "先選擇館別，再前往 booking 站查空房、看目前試算總價並完成預訂。",
+                            description: "先選擇館別，再前往 booking 站查空房、查看國旅補助後預估價並完成預訂。",
                             totalTime: "PT5M",
                             step: [
                                 {
@@ -81,7 +86,7 @@ export default function BookPage() {
                                     "@type": "HowToStep",
                                     position: 3,
                                     name: "輸入日期與人數",
-                                    text: "在 booking 站選入住日期、退房日期與實際人數，查看目前試算總價。",
+                                    text: "在 booking 站選入住日期、退房日期與實際人數，查看正式房價及國旅補助後預估價。",
                                     url: "https://booking.hello-stay.com/booking",
                                 },
                                 {
