@@ -398,6 +398,21 @@ export default function HomeTemplateExperience() {
           </div>
 
           <div className="mockup-pod" role="search" aria-label="快速預訂查詢艙">
+            <Link
+              href={bookingHref}
+              className="mockup-pod__subsidy-link"
+              target={guestCountOutsideRange ? "_blank" : undefined}
+              rel={guestCountOutsideRange ? "noopener noreferrer" : undefined}
+              aria-label="前往國旅補助試算"
+            >
+              <span className="mockup-pod__subsidy-icon" aria-hidden="true">🎁</span>
+              <span className="mockup-pod__subsidy-copy">
+                <strong>國旅補助試算入口</strong>
+                <span>平日先看預估折抵，正式結帳仍以原價</span>
+              </span>
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+
             {/* Pod Mode Tabs: By Guests vs By Bedrooms */}
             <div className="mockup-pod__tabs" role="tablist" aria-label="切換查詢方式">
               <button
