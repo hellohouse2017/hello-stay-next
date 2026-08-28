@@ -1629,8 +1629,7 @@ export default function PropertyShowcasePage({
                   priority
                   loading="eager"
                   fetchPriority="high"
-                  unoptimized
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                 />
               </div>
 
@@ -1700,7 +1699,6 @@ export default function PropertyShowcasePage({
                         src={card.image.src}
                         alt={card.image.alt}
                         fill
-                        unoptimized
                         sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
                       />
                     </div>
@@ -1785,7 +1783,6 @@ export default function PropertyShowcasePage({
                           src={card.image.src}
                           alt={card.image.alt}
                           fill
-                          unoptimized
                           sizes="(max-width: 820px) 100vw, 320px"
                         />
                       ) : (
@@ -1887,7 +1884,6 @@ export default function PropertyShowcasePage({
                         src={image.src}
                         alt={image.alt}
                         fill
-                        unoptimized
                         sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
                       />
                     </div>

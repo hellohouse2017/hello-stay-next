@@ -125,7 +125,7 @@ export default function KaohsiungWholeHousePage() {
             ]} />
 
             <div className="w" style={{ maxWidth: "800px", padding: "0 20px 80px" }}>
-                <Reveal><div style={{ textAlign: "center", marginBottom: "40px" }}>
+                <div style={{ textAlign: "center", marginBottom: "40px" }}>
                     <div style={{ fontFamily: "var(--en)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--pri)", marginBottom: "12px" }}>Kaohsiung Whole House Rental</div>
                     <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 400, letterSpacing: "0.06em", color: "#2a2a2a" }}>高雄包棟民宿推薦｜依人數選整棟住宿</h1>
                     <div style={{ width: "40px", height: "1px", background: "var(--pri)", margin: "20px auto" }} />
@@ -134,7 +134,7 @@ export default function KaohsiungWholeHousePage() {
                         <Link href="/book" style={{ padding: "12px 22px", borderRadius: "999px", background: "#161618", color: "#fff", fontSize: "0.82rem", textDecoration: "none" }}>查看可入住日期與包棟價格</Link>
                         <a href="https://lin.ee/atCiMQw" target="_blank" rel="noopener noreferrer" style={{ padding: "12px 22px", borderRadius: "999px", background: "#06C755", color: "#fff", fontSize: "0.82rem", textDecoration: "none" }}>LINE 取得包棟報價</a>
                     </div>
-                </div></Reveal>
+                </div>
 
                 {/* Quick Answer for AI */}
                 <Reveal><div style={{ background: "#fff", borderRadius: "16px", padding: "24px 20px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", marginBottom: "20px", borderLeft: "4px solid var(--pri)" }}>

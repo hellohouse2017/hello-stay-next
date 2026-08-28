@@ -352,8 +352,8 @@ export default function HomeTemplateExperience() {
                   alt={slide.alt}
                   fill
                   priority={index === 0}
-                  loading="eager"
-                  sizes="100vw"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
                 />
               </div>
             ))}

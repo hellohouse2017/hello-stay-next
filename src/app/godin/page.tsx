@@ -953,8 +953,7 @@ export default function GodinPage() {
                   priority
                   loading="eager"
                   fetchPriority="high"
-                  unoptimized
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                 />
               </div>
 
@@ -1016,7 +1015,6 @@ export default function GodinPage() {
                       src={room.images[0]?.src ?? godin.coverImage}
                       alt={room.images[0]?.alt ?? room.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
                     />
                   </div>
@@ -1051,7 +1049,6 @@ export default function GodinPage() {
                         src={room.images[0]?.src ?? godin.coverImage}
                         alt={room.images[0]?.alt ?? room.name}
                         fill
-                        unoptimized
                         sizes="(max-width: 820px) 100vw, 320px"
                       />
                     </div>
@@ -1156,7 +1153,6 @@ export default function GodinPage() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      unoptimized
                       sizes="(max-width: 640px) 100vw, (max-width: 1180px) 33vw, 20vw"
                     />
                   </div>

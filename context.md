@@ -11,6 +11,26 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-08-28（GSC 網址群組 LCP 2.8 秒 Core Web Vitals 效能全面優化）
+- **背景**：Google Search Console (GSC) 報出 31 個網址群組 LCP 2.8 秒（需改善，標準 $\le 2.5$ 秒）。
+- **關鍵修正與落地**：
+  1. **首頁 Hero 輪播頻寬優化 (`HomeTemplateExperience.tsx`)**：
+     - 原先 5 張輪播大圖全設 `loading="eager"` 造成行動端同時搶佔連線頻寬。
+     - 改為僅第 1 張 (index === 0) 設置 `priority` + `loading="eager"`，其餘 4 張設為 `loading="lazy"`，並給予響應式 `sizes`。
+  2. **房型展示頁與館別頁移除 `unoptimized` (`PropertyShowcasePage.tsx`, `godin/page.tsx`, `blog/page.tsx`)**：
+     - 移除多處寫死的 `unoptimized` 標記，啟用 Next.js Sharp 自動轉換 AVIF/WebP 與裝置適配縮圖。
+  3. **探索/景點/美食圖檔 WebP 化與尺寸縮減 (`/explore`, `/explore/food`, `LocalExploreHub.tsx`)**：
+     - 使用 sharp 將 `public/images/explore/` 所有原始大型 JPG 轉為高畫質 WebP，圖檔體積減少 20%~60%，更新全站 explore 與 review 圖片路徑。
+  4. **部落格文章頁首屏 H1 動畫延遲消除 (`blog/[slug]/page.tsx`, `kaohsiung-whole-house/page.tsx`)**：
+     - 移除頂部 Hero 標題與引言外層的 `<Reveal>` 包裹，消除 CSS `animation-timeline: view()` 造成的 LCP 人為 Render Delay，確保文章在第一幀即時繪製 (Instant Paint)。
+  5. **腳本載入策略與資源預連線 (`layout.tsx`)**：
+     - 將 GA4 初始化 script 策略改為 `afterInteractive`。
+     - 加入 `booking.hello-stay.com` 之 `preconnect` 與 `dns-prefetch`。
+- **本地驗證**：
+  - `npm run validate:content` 通過。
+  - `npm run build:local`（160 靜態路由全數編譯成功）。
+  - `npm run test:seo-pagespeed`、`npm run test:seo-page-health`、`npm run test:seo-route-boundaries` 全數通過。
+
 ### 2026-08-27（首頁 Hero 首屏 RWD 與國旅補助入口可見性修正）
 - 首頁 Hero 標題改用最大字數寬度、`clamp()` 響應式字級與平衡換行，修正桌面版標題過大及手機版斷行不自然的問題。
 - 在 Hero 快速查詢艙最上方新增醒目的「🎁 國旅補助試算入口」，直接帶入既有 `subsidy=1` 查詢流程，並明示「平日先看預估折抵，正式結帳仍以原價」。

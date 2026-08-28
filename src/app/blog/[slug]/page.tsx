@@ -529,49 +529,45 @@ export default async function ScheduledArticlePage({ params }: Props) {
                             ]}
                         />
 
-                        <Reveal>
-                            <div style={{ marginTop: "24px" }}>
-                                <div className="luxury-guide-hero__kicker">
-                                    <span>Hello Stay ｜ 鹽埕漫遊私房攻略</span>
-                                </div>
-                                <h1>{mdxArticle.title}</h1>
-
-                                <div className="luxury-guide-hero__meta">
-                                    <span>🗓️ {mdxArticle.dateModified || mdxArticle.date}</span>
-                                    <span>⏱️ 約 {readTimeMinutes} 分鐘閱讀</span>
-                                    {mdxArticle.tags && mdxArticle.tags.length > 0 && (
-                                        <span>🏷️ {mdxArticle.tags.join("・")}</span>
-                                    )}
-                                    <span>📍 鹽埕生活圈</span>
-                                </div>
-
-                                <p className="luxury-guide-hero__lead">{mdxArticle.description}</p>
+                        <div style={{ marginTop: "24px" }}>
+                            <div className="luxury-guide-hero__kicker">
+                                <span>Hello Stay ｜ 鹽埕漫遊私房攻略</span>
                             </div>
-                        </Reveal>
+                            <h1>{mdxArticle.title}</h1>
+
+                            <div className="luxury-guide-hero__meta">
+                                <span>🗓️ {mdxArticle.dateModified || mdxArticle.date}</span>
+                                <span>⏱️ 約 {readTimeMinutes} 分鐘閱讀</span>
+                                {mdxArticle.tags && mdxArticle.tags.length > 0 && (
+                                    <span>🏷️ {mdxArticle.tags.join("・")}</span>
+                                )}
+                                <span>📍 鹽埕生活圈</span>
+                            </div>
+
+                            <p className="luxury-guide-hero__lead">{mdxArticle.description}</p>
+                        </div>
                         {getArticleHeroCta(slug) ? (
-                            <Reveal>
-                                <aside className="article-instant-cta">
-                                    <h2>{getArticleHeroCta(slug)?.title}</h2>
-                                    <p>{getArticleHeroCta(slug)?.body}</p>
-                                    <div className="article-instant-cta__actions">
-                                        {(getArticleHeroCta(slug)?.actions || []).map((action) => (
-                                            <Link
-                                                key={`${action.href}-${action.label}`}
-                                                href={action.href}
-                                                className={action.solid ? "article-action article-action--solid" : "article-action"}
-                                                data-content-bridge={slug === "taiwan-travel-subsidy-guide" ? "subsidy-instant-calculation" : `${slug}-hero-cta`}
-                                                data-content-bridge-target={action.bridgeTarget}
-                                                data-seo-intent={getArticleSeoIntent(slug)}
-                                                data-party-size={ARTICLE_PARTY_SIZES[slug]}
-                                                data-cta-type={action.ctaType}
-                                                data-cta-position="hero"
-                                            >
-                                                {action.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </aside>
-                            </Reveal>
+                            <aside className="article-instant-cta">
+                                <h2>{getArticleHeroCta(slug)?.title}</h2>
+                                <p>{getArticleHeroCta(slug)?.body}</p>
+                                <div className="article-instant-cta__actions">
+                                    {(getArticleHeroCta(slug)?.actions || []).map((action) => (
+                                        <Link
+                                            key={`${action.href}-${action.label}`}
+                                            href={action.href}
+                                            className={action.solid ? "article-action article-action--solid" : "article-action"}
+                                            data-content-bridge={slug === "taiwan-travel-subsidy-guide" ? "subsidy-instant-calculation" : `${slug}-hero-cta`}
+                                            data-content-bridge-target={action.bridgeTarget}
+                                            data-seo-intent={getArticleSeoIntent(slug)}
+                                            data-party-size={ARTICLE_PARTY_SIZES[slug]}
+                                            data-cta-type={action.ctaType}
+                                            data-cta-position="hero"
+                                        >
+                                            {action.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </aside>
                         ) : null}
                     </div>
                 </header>
@@ -579,13 +575,11 @@ export default async function ScheduledArticlePage({ params }: Props) {
                 {/* 內容容器 */}
                 <main className="luxury-guide-container">
                     {/* 文章主體卡片 */}
-                    <Reveal>
-                        <article className="luxury-guide-card">
-                            <div className="luxury-guide-content mdx-content">
-                                {mdxArticle.content}
-                            </div>
-                        </article>
-                    </Reveal>
+                    <article className="luxury-guide-card">
+                        <div className="luxury-guide-content mdx-content">
+                            {mdxArticle.content}
+                        </div>
+                    </article>
 
                     {/* 文末單一行程統整與旅伴分享卡 */}
                     <Reveal>

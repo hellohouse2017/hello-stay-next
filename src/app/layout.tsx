@@ -96,6 +96,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://booking.hello-stay.com" />
+        <link rel="dns-prefetch" href="https://booking.hello-stay.com" />
         {/* AI crawler discovery */}
         <link rel="alternate" type="text/plain" href="https://www.hello-stay.com/llms.txt" title="LLMs.txt - AI Summary" />
         <link rel="alternate" type="text/plain" href="https://www.hello-stay.com/llms-full.txt" title="LLMs-full.txt - AI Full Details" />
@@ -104,7 +107,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="alternate" type="text/plain" hrefLang="ko" href="https://www.hello-stay.com/llms-ko.txt" title="LLMs.txt - Korean" />
         <Script
           id="ga4-init"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: buildGa4InitScript(GA4_MEASUREMENT_ID) }}
         />
       </head>

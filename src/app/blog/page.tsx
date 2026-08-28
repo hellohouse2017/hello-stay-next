@@ -696,7 +696,7 @@ function pickImage(article: ArticleSummary) {
     return { src: "/images/hellohouse/photo5.webp", alt: article.title };
   }
   if (article.slug === "taiwan-travel-foreign-guide") {
-    return { src: "/images/explore/harbor.jpg", alt: article.title };
+    return { src: "/images/explore/harbor.webp", alt: article.title };
   }
   if (article.slug === "taiwan-travel-subsidy-guide") {
     return { src: "/images/hellohouse/photo3.webp", alt: article.title };
@@ -790,8 +790,7 @@ export default async function BlogIndex() {
                   priority
                   loading="eager"
                   fetchPriority="high"
-                  unoptimized
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                 />
               </div>
 
@@ -853,7 +852,6 @@ export default async function BlogIndex() {
                       src={pickImage(featured).src}
                       alt={pickImage(featured).alt}
                       fill
-                      unoptimized
                       sizes="(max-width: 1024px) 100vw, 60vw"
                     />
                   </div>
@@ -914,7 +912,7 @@ export default async function BlogIndex() {
             <div className="blog-featured">
               <Link className="blog-featured__main" href="/explore/food">
                 <div className="blog-featured__media">
-                  <Image src="/images/hellohouse/foodie-cover.webp" alt="鹽埕美食地圖" fill unoptimized sizes="(max-width: 1024px) 100vw, 60vw" />
+                  <Image src="/images/hellohouse/foodie-cover.webp" alt="鹽埕美食地圖" fill sizes="(max-width: 1024px) 100vw, 60vw" />
                 </div>
                 <div className="blog-featured__body">
                   <div className="blog-featured__meta"><span className="blog-tag">FOOD GUIDE</span></div>
@@ -971,7 +969,6 @@ export default async function BlogIndex() {
                               src={image.src}
                               alt={image.alt}
                               fill
-                              unoptimized
                               sizes="(max-width: 820px) 100vw, 240px"
                             />
                           </div>

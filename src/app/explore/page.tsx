@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "鹽埕玩什麼？｜Hello Stay 在地探索指南",
     description: "從 Hello Stay 出發，慢慢走進鹽埕的美食、咖啡、港區景點與在地生活。",
     url: "https://www.hello-stay.com/explore",
-    images: [{ url: "https://www.hello-stay.com/images/explore/pier2.jpg", width: 1280, height: 853, alt: "駁二藝術特區蓬萊倉庫群與鹽埕港區" }],
+    images: [{ url: "https://www.hello-stay.com/images/explore/pier2.webp", width: 1280, height: 853, alt: "駁二藝術特區蓬萊倉庫群與鹽埕港區" }],
   },
 };
 

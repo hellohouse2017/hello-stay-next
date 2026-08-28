@@ -226,7 +226,7 @@ export default function LocalGuidePage({
       <section className="local-guide-hero">
         <div className="local-guide-shell local-guide-hero__grid">
           <div className="local-guide-hero__media">
-            <Image src={image.src} alt={image.alt} fill priority sizes="(max-width: 820px) 100vw, 52vw" />
+            <Image src={image.src} alt={image.alt} fill priority fetchPriority="high" sizes="(max-width: 820px) 100vw, 52vw" />
           </div>
           <div className="local-guide-hero__content">
             <p className="local-guide-kicker"><Icon size={15} aria-hidden="true" /> {eyebrow}</p>

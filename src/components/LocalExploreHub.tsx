@@ -66,7 +66,7 @@ const exploreCards: ExploreCard[] = [
     label: "BREAKFAST",
     title: "鹽埕特色早餐",
     description: "大溝頂虱目魚肚漿、大ㄎㄡ胖炭烤三明治、姐妹老五爆餡烘蛋堡，開啟活力早晨。",
-    image: "/images/explore/market.jpg",
+    image: "/images/explore/market.webp",
     alt: "鹽埕第一公有零售市場與在地早餐街區",
     href: "/explore/food#breakfast",
     linkLabel: "查看特色早餐",
@@ -88,7 +88,7 @@ const exploreCards: ExploreCard[] = [
     label: "STREET SNACKS",
     title: "經典小吃與甜品",
     description: "阿囉哈滷味、阿芳清蒸肉圓、阿寶豆乳雞、戴蛋餅、王家豆花與50年杏仁茶。",
-    image: "/images/explore/ice.jpg",
+    image: "/images/explore/ice.webp",
     alt: "鹽埕街頭古早味冰品與小吃",
     href: "/explore/food#snacks-street-food",
     linkLabel: "查看小吃清單",
@@ -99,7 +99,7 @@ const exploreCards: ExploreCard[] = [
     label: "NIGHT MARKETS",
     title: "在地與觀光夜市",
     description: "週六限定鹽埕建國夜市、六合觀光夜市與自強夜市，感受高雄道地夜生活風情。",
-    image: "/images/explore/harbor.jpg",
+    image: "/images/explore/harbor.webp",
     alt: "高雄港夜市與港灣夜景",
     href: "/explore/food#night-markets",
     linkLabel: "探索夜市行程",
@@ -110,7 +110,7 @@ const exploreCards: ExploreCard[] = [
     label: "COFFEE & NIGHTLIFE",
     title: "老屋咖啡與私密酒吧",
     description: "新濱·駅前百年金庫冰滴、小堤昭和咖啡館，以及瀨南街廢墟BAR預約包場特色體驗。",
-    image: "/images/explore/sanhe-05.jpg",
+    image: "/images/explore/sanhe-05.webp",
     alt: "新濱·駅前百年金庫冰滴咖啡設備",
     href: "/explore/food#coffee-nightlife",
     linkLabel: "探索咖啡與酒吧",
@@ -121,7 +121,7 @@ const exploreCards: ExploreCard[] = [
     label: "ARTS & WATERFRONT",
     title: "藝文景點巡禮",
     description: "從駁二藝術特區、水平旋轉大港橋到高流愛河灣，把鹽埕老城與海港一次走遍。",
-    image: "/images/explore/pier2.jpg",
+    image: "/images/explore/pier2.webp",
     alt: "駁二藝術特區蓬萊倉庫群與步道",
     href: "/explore/spots",
     linkLabel: "查看周邊景點",
@@ -132,7 +132,7 @@ const exploreCards: ExploreCard[] = [
     label: "LOCAL LIFE & LAUNDRY",
     title: "生活機能與補給",
     description: "IPSO自助洗衣、衣潔洗衣、全聯生鮮超市下廚採買與24H便利超商，隨時便利。",
-    image: "/images/explore/oldhouse.jpg",
+    image: "/images/explore/oldhouse.webp",
     alt: "鹽埕老街老屋與日常生活機能",
     href: "/explore/food#laundry",
     linkLabel: "查看採買與洗衣",
@@ -158,7 +158,7 @@ const popularPicks: PopularPick[] = [
     title: "鴨肉珍 (總店)",
     description: "香濃肉燥鴨肉飯與鮮嫩切盤，米其林必比登推介排隊名店。",
     meta: "五福四路",
-    image: "/images/explore/market.jpg",
+    image: "/images/explore/market.webp",
     alt: "鹽埕鴨肉珍",
     directMapUrl: "https://maps.app.goo.gl/n7rDEnbjunGjisPS9",
     href: "/explore/food#local-meals",
@@ -178,7 +178,7 @@ const popularPicks: PopularPick[] = [
     title: "阿囉哈滷味",
     description: "鹽埕代表性乾式滷味，特調黑胡椒醬汁入味，宵夜首選。",
     meta: "大仁路",
-    image: "/images/explore/ice.jpg",
+    image: "/images/explore/ice.webp",
     alt: "阿囉哈滷味",
     directMapUrl: "https://goo.gl/maps/7p6QA3RUA2d1zS1J9",
     href: "/explore/food#snacks-street-food",
@@ -188,7 +188,7 @@ const popularPicks: PopularPick[] = [
     title: "大溝頂虱目魚米粉湯",
     description: "無刺鮮美虱目魚肚漿、米粉湯與煎魚腸，老饕清晨首選。",
     meta: "大溝頂老街",
-    image: "/images/explore/market.jpg",
+    image: "/images/explore/market.webp",
     alt: "大溝頂虱目魚米粉湯",
     directMapUrl: "https://goo.gl/maps/2DPVK1d8ep9m3Ggi7",
     href: "/explore/food#breakfast",
@@ -198,7 +198,7 @@ const popularPicks: PopularPick[] = [
     title: "鹽埕建國夜市（週六限定）",
     description: "鹽埕人私房週六限定街區夜市，充滿傳統夜市小吃與人情味。",
     meta: "建國四路",
-    image: "/images/explore/harbor.jpg",
+    image: "/images/explore/harbor.webp",
     alt: "鹽埕建國夜市",
     directMapUrl: "https://maps.google.com/?q=鹽埕埔夜市+高雄",
     href: "/explore/food#night-markets",
@@ -208,7 +208,7 @@ const popularPicks: PopularPick[] = [
     title: "駁二藝術特區",
     description: "倉庫群、當代展覽、文創小店與週末市集，慢慢散步最舒服。",
     meta: "步行約 10 分鐘",
-    image: "/images/explore/pier2.jpg",
+    image: "/images/explore/pier2.webp",
     alt: "駁二藝術特區蓬萊倉庫群",
     directMapUrl: "https://maps.google.com/?q=駁二藝術特區+高雄",
     href: "/explore/spots#walkable-core",
@@ -218,7 +218,7 @@ const popularPicks: PopularPick[] = [
     title: "廢墟BAR (預約包場制)",
     description: "老屋廢墟美學再生空間，預約包場享受專屬私密調酒聚會。",
     meta: "瀨南街",
-    image: "/images/explore/sanhe-05.jpg",
+    image: "/images/explore/sanhe-05.webp",
     alt: "廢墟BAR老屋空間",
     directMapUrl: "https://maps.google.com/?q=廢墟Ruins+高雄",
     href: "/explore/food#coffee-nightlife",
@@ -228,7 +228,7 @@ const popularPicks: PopularPick[] = [
     title: "新濱·駅前",
     description: "百年舊三和銀行古蹟裡的咖啡與茶點，百年金庫冰滴咖啡座。",
     meta: "哈瑪星商圈",
-    image: "/images/explore/sanhe-01.jpg",
+    image: "/images/explore/sanhe-01.webp",
     alt: "新濱·駅前咖啡館室內空間",
     directMapUrl: "https://maps.google.com/?q=新濱駅前+高雄",
     href: "/explore/food#coffee-nightlife",
@@ -238,7 +238,7 @@ const popularPicks: PopularPick[] = [
     title: "大港橋",
     description: "全台首座水平旋轉景觀橋，傍晚開合秀，連通棧貳庫水岸。",
     meta: "港區散步",
-    image: "/images/explore/bridge.jpg",
+    image: "/images/explore/bridge.webp",
     alt: "高雄港大港橋與水岸景色",
     directMapUrl: "https://maps.google.com/?q=大港橋+高雄",
     href: "/explore/spots#walkable-core",
@@ -248,7 +248,7 @@ const popularPicks: PopularPick[] = [
     title: "IPSO 自助洗衣 (距離最近)",
     description: "全新進口商用洗脫烘一體機，快速高溫殺菌，離民宿最近。",
     meta: "大仁路商圈",
-    image: "/images/explore/oldhouse.jpg",
+    image: "/images/explore/oldhouse.webp",
     alt: "鹽埕街區生活設施",
     directMapUrl: "https://maps.google.com/?q=IPSO+自助洗衣+高雄鹽埕",
     href: "/explore/food#laundry",
@@ -362,11 +362,11 @@ export default function LocalExploreHub() {
 
       <section className="explore-redesign__hero" aria-labelledby="explore-title">
         <Image
-          src="/images/explore/pier2.jpg"
+          src="/images/explore/pier2.webp"
           alt="駁二藝術特區蓬萊倉庫群與鹽埕港區"
           fill
           priority
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
         />
         <div className="explore-redesign__hero-overlay" aria-hidden="true" />
         <div className="explore-redesign__container explore-redesign__hero-content">

@@ -146,7 +146,7 @@ export default function ReviewsExperience() {
             </div>
             <div className="reviews-hero-gallery__item">
               <Image
-                src="/images/explore/bridge.jpg"
+                src="/images/explore/bridge.webp"
                 alt="高雄鹽埕大港橋旋轉橋與港灣散步生活圈"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"

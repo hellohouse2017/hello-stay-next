@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: pageDescription,
     url: "https://www.hello-stay.com/explore/food",
-    images: [{ url: "https://www.hello-stay.com/images/explore/market.jpg", width: 1280, height: 672, alt: "鹽埕第一公有零售市場入口" }],
+    images: [{ url: "https://www.hello-stay.com/images/explore/market.webp", width: 1280, height: 672, alt: "鹽埕第一公有零售市場入口" }],
   },
 };
 
@@ -101,7 +101,7 @@ export default function FoodExplorePage() {
         titleId="page-title"
         title={pageTitle}
         lead={`從早餐、老店到咖啡與酒吧，先看 ${foodGuideItemCount} 間餐飲主清單；採買與洗衣放在後段，避免生活補給稀釋美食內容。`}
-        image={{ src: "/images/explore/market.jpg", alt: "鹽埕第一公有零售市場入口與街區生活" }}
+        image={{ src: "/images/explore/market.webp", alt: "鹽埕第一公有零售市場入口與街區生活" }}
         facts={[
           { label: "餐飲主清單", value: `${foodGuideItemCount} 間` },
           { label: "內容分類", value: "早餐、正餐、小吃、咖啡、酒吧" },

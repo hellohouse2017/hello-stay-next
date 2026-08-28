@@ -350,7 +350,7 @@ export const reviewSpotlights: ReviewSpotlight[] = [
     quote: "「離駁二藝術特區走路只要 10 分鐘，巷口出來就是鴨肉珍、冬粉王，不用開車找車位超輕鬆！」",
     author: "住客 王小姐",
     image: {
-      src: "/images/explore/bridge.jpg",
+      src: "/images/explore/bridge.webp",
       alt: "高雄鹽埕大港橋與港灣漫步生活圈實景，步行 8-10 分鐘即達",
     },
     property: "鹽埕區核心生活圈",
