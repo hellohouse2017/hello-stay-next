@@ -2684,7 +2684,8 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 .mockup-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(12, 14, 13, 0.45) 0%, rgba(12, 14, 13, 0.75) 100%);
+  background: radial-gradient(circle at center, rgba(14, 18, 16, 0.35) 0%, rgba(10, 12, 11, 0.72) 100%),
+              linear-gradient(180deg, rgba(14, 18, 16, 0.45) 0%, rgba(10, 12, 11, 0.25) 45%, rgba(10, 12, 11, 0.85) 100%);
   z-index: 2;
 }
 
@@ -2693,14 +2694,14 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   bottom: 24px;
   left: 32px;
   z-index: 3;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.76rem;
   letter-spacing: 0.08em;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
+  background: rgba(14, 18, 16, 0.55);
+  backdrop-filter: blur(12px);
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .mockup-hero__controls {
@@ -2713,11 +2714,11 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   gap: 8px;
   color: #ffffff;
   font-size: 0.75rem;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  padding: 4px 10px;
+  background: rgba(14, 18, 16, 0.55);
+  backdrop-filter: blur(12px);
+  padding: 4px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .mockup-hero__controls button {
@@ -2748,14 +2749,8 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 
 .mockup-hero__intro {
   width: min(100%, 1120px);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   color: #ffffff;
-}
-
-.mockup-hero__intro .mockup-kicker {
-  color: var(--mockup-gold-light);
-  letter-spacing: 0.25em;
-  font-size: 0.82rem;
 }
 
 .mockup-hero__intro h1 {
@@ -2763,106 +2758,133 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   width: 100%;
   max-width: 24ch;
   margin-inline: auto;
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
   font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: #ffffff;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  margin: 8px auto 12px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
+  margin: 0 auto 12px;
   text-wrap: balance;
   word-break: normal;
   overflow-wrap: anywhere;
 }
 
 .mockup-hero__sub {
-  font-size: clamp(0.88rem, 3vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 680px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 720px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
   word-break: break-word;
   overflow-wrap: break-word;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* ─── SLEEK FLOATING BOOKING POD (1:1 對齊與雙模式找房) ─── */
+/* ─── SLEEK FLOATING BOOKING POD (Ultra-Luxury Boutique Lounge) ─── */
 .mockup-pod {
   width: 100%;
   max-width: 1040px;
   background: #ffffff;
-  border-radius: 22px;
-  padding: 24px 28px;
-  box-shadow: 0 24px 54px rgba(18, 20, 19, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 22px 26px;
+  box-shadow: 0 24px 60px rgba(10, 14, 12, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 2px 8px rgba(194, 155, 97, 0.15);
+  border: 1px solid rgba(228, 226, 216, 0.9);
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
   margin: 0 auto;
 }
 
+/* 國旅補助香檳金奢華微光膠囊 */
 .mockup-pod__subsidy-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: block;
   width: 100%;
-  padding: 10px 14px;
-  border: 1px solid rgba(24, 72, 59, 0.2);
-  border-radius: 14px;
-  background: linear-gradient(90deg, rgba(231, 245, 237, 0.95), rgba(250, 246, 232, 0.95));
-  color: var(--mockup-green);
   text-decoration: none;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  border-radius: 999px;
+  border: 1px solid rgba(194, 155, 97, 0.38);
+  background: linear-gradient(135deg, rgba(254, 252, 248, 0.98) 0%, rgba(248, 243, 233, 0.96) 100%);
+  padding: 7px 16px;
+  box-shadow: 0 2px 8px rgba(194, 155, 97, 0.08);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .mockup-pod__subsidy-link:hover {
   border-color: var(--mockup-gold);
-  box-shadow: 0 6px 18px rgba(24, 72, 59, 0.12);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(249, 242, 230, 1) 100%);
+  box-shadow: 0 4px 18px rgba(194, 155, 97, 0.24);
   transform: translateY(-1px);
 }
 
-.mockup-pod__subsidy-icon {
+.mockup-pod__subsidy-capsule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.mockup-pod__subsidy-tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  border-radius: 10px;
-  background: #ffffff;
-  font-size: 1.05rem;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(194, 155, 97, 0.16);
+  color: var(--mockup-gold-dark);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.mockup-pod__subsidy-copy {
-  display: flex;
-  min-width: 0;
+.mockup-pod__subsidy-tag svg {
+  color: var(--mockup-gold-dark);
+}
+
+.mockup-pod__subsidy-text {
+  font-size: 0.82rem;
+  color: #3b433f;
+  font-weight: 500;
   flex: 1;
-  flex-direction: column;
-  gap: 1px;
-  line-height: 1.35;
+  text-align: left;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.mockup-pod__subsidy-copy strong {
-  font-size: 0.86rem;
-  font-weight: 800;
+.mockup-pod__subsidy-text strong {
+  color: #17483d;
+  font-weight: 700;
 }
 
-.mockup-pod__subsidy-copy span {
-  color: var(--mockup-muted);
-  font-size: 0.72rem;
-  font-weight: 600;
+.mockup-pod__subsidy-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--mockup-gold-dark);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-.mockup-pod__subsidy-link > svg {
-  flex: 0 0 auto;
+.mockup-pod__subsidy-link:hover .mockup-pod__subsidy-action {
+  transform: translateX(2px);
+  color: #8c6734;
 }
 
 .mockup-pod__tabs {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: var(--mockup-bg);
-  padding: 4px;
+  gap: 4px;
+  background: #f3f1ea;
+  padding: 3px;
   border-radius: 999px;
   border: 1px solid var(--mockup-line);
   width: fit-content;
@@ -2889,7 +2911,7 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 }
 
 .mockup-pod__tab.is-active {
-  background: var(--mockup-dark);
+  background: #141716;
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(18, 20, 19, 0.2);
 }
@@ -2897,27 +2919,32 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 .mockup-pod__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .mockup-pod__col {
-  min-height: 84px;
-  height: 84px;
-  background: var(--mockup-bg);
+  min-height: 80px;
+  height: 80px;
+  background: #faf8f3;
   padding: 10px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--mockup-line);
+  border-radius: 12px;
+  border: 1px solid #e7e4da;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
+.mockup-pod__col:hover {
+  border-color: rgba(194, 155, 97, 0.5);
+  background: #ffffff;
+}
+
 .mockup-pod__col:focus-within {
   border-color: var(--mockup-gold);
   background: #ffffff;
-  box-shadow: 0 2px 10px rgba(194, 155, 97, 0.15);
+  box-shadow: 0 0 0 3px rgba(194, 155, 97, 0.12);
 }
 
 .mockup-pod__col-head {
@@ -2932,14 +2959,14 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 .mockup-pod__col-head strong {
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--mockup-muted);
+  color: #606d66;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
 .mockup-pod__col-head svg {
-  color: var(--mockup-muted);
+  color: #7b8881;
   flex-shrink: 0;
 }
 
@@ -2953,7 +2980,7 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   font-size: 0.68rem;
   font-weight: 700;
   color: var(--mockup-gold-dark);
-  background: rgba(194, 155, 97, 0.14);
+  background: rgba(194, 155, 97, 0.15);
   padding: 2px 6px;
   border-radius: 4px;
   white-space: nowrap;
@@ -2963,7 +2990,7 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   display: flex;
   align-items: center;
   width: 100%;
-  height: 34px;
+  height: 32px;
 }
 
 .mockup-pod__col-body input[type="date"] {
@@ -2998,12 +3025,13 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .mockup-pod__counter button:hover:not(:disabled) {
   border-color: var(--mockup-gold);
   color: var(--mockup-gold-dark);
-  background: var(--mockup-bg);
+  background: #fdfbf7;
 }
 
 .mockup-pod__counter button:disabled {
@@ -3064,14 +3092,14 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: var(--mockup-dark);
+  background: #141716;
   color: #ffffff;
   border-radius: 999px;
   font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(18, 20, 19, 0.25);
-  border: 1px solid var(--mockup-gold);
+  border: 1px solid rgba(194, 155, 97, 0.75);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   white-space: nowrap;
   flex-shrink: 0;
@@ -3079,7 +3107,7 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 
 .mockup-pod__btn:hover {
   background: var(--mockup-gold);
-  color: var(--mockup-dark);
+  color: #121413;
   border-color: var(--mockup-gold);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(194, 155, 97, 0.35);
@@ -3099,18 +3127,20 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 .mockup-trust__card {
   background: #ffffff;
   padding: 22px 20px;
-  border-radius: 14px;
-  border: 1px solid var(--mockup-line);
+  border-radius: 16px;
+  border: 1px solid rgba(228, 226, 216, 0.85);
+  box-shadow: 0 4px 16px rgba(18, 20, 19, 0.03);
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  color: var(--mockup-green);
-  transition: transform 0.2s, box-shadow 0.2s;
+  color: var(--mockup-gold-dark);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .mockup-trust__card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--mockup-shadow);
+  border-color: rgba(194, 155, 97, 0.45);
+  box-shadow: 0 12px 30px rgba(18, 20, 19, 0.07);
 }
 
 .mockup-trust__card div {
@@ -3120,15 +3150,16 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
 }
 
 .mockup-trust__card strong {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--mockup-text);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .mockup-trust__card span {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--mockup-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ─── 4. VILLA RETREATS SHOWCASE & PILLS ─── */
@@ -4391,21 +4422,17 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
     margin-bottom: 14px;
   }
 
-  .mockup-hero__intro .mockup-kicker {
-    font-size: 0.74rem;
-    letter-spacing: 0.15em;
-  }
-
   .mockup-hero__intro h1 {
     max-width: 20ch;
-    font-size: clamp(1.6rem, 7.2vw, 2rem);
-    line-height: 1.18;
+    font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+    line-height: 1.2;
     margin: 4px 0 6px;
   }
 
   .mockup-hero__sub {
-    font-size: 0.84rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    line-height: 1.48;
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .mockup-hero__controls,
@@ -4414,38 +4441,45 @@ body .hs-template .hs-final-cta { max-width: none; margin-top: 120px; padding: 8
   }
 
   .mockup-pod {
-    padding: 14px 12px;
+    padding: 12px 12px;
     border-radius: 16px;
-    gap: 10px;
+    gap: 8px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
     width: 100%;
   }
 
   .mockup-pod__subsidy-link {
-    gap: 8px;
-    padding: 8px 10px;
-    border-radius: 11px;
+    padding: 6px 10px;
+    border-radius: 999px;
   }
 
-  .mockup-pod__subsidy-icon {
-    width: 28px;
-    height: 28px;
-    flex-basis: 28px;
-    border-radius: 8px;
-    font-size: 0.95rem;
+  .mockup-pod__subsidy-capsule {
+    gap: 6px;
   }
 
-  .mockup-pod__subsidy-copy strong {
-    font-size: 0.78rem;
+  .mockup-pod__subsidy-tag {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    gap: 4px;
   }
 
-  .mockup-pod__subsidy-copy span {
-    font-size: 0.64rem;
+  .mockup-pod__subsidy-tag svg {
+    width: 11px;
+    height: 11px;
   }
 
-  .mockup-pod__subsidy-link > svg {
-    width: 15px;
-    height: 15px;
+  .mockup-pod__subsidy-text {
+    font-size: 0.72rem;
+  }
+
+  .mockup-pod__subsidy-action {
+    font-size: 0.7rem;
+    gap: 2px;
+  }
+
+  .mockup-pod__subsidy-action svg {
+    width: 11px;
+    height: 11px;
   }
 
   .mockup-pod__tabs {

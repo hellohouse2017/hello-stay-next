@@ -11,6 +11,18 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-08-28（首頁極致奢華 Ultra-Luxury Boutique UI/UX 重構升級）
+- **核心設計重塑與落地**：
+  1. **移除頂部干擾標籤**：依指示徹底清除 Hero 頂端 `✦ 高雄鹽埕駁二・4-36 人全棟私享包棟`，解決與導航列重疊與視覺擁擠問題，讓首屏視野更顯大氣開闊。
+  2. **全新「國旅補助試算」奢華香檳金微光膠囊**：告別粗糙 emoji 🎁 與大片草綠色塊，重構為細緻 1px 香檳金微光膠囊（`mockup-pod__subsidy-capsule`），搭配細緻 Sparkles 圖示、精緻字級排版與金色流光懸停微動效（Hover Shimmer）。
+  3. **Hero 視覺與字體排版精品化**：注入電影級雙層光影暗角（Cinematic Vignette Overlay），主標題採用精緻襯線體與平衡字距，副標題以典雅金色間隔點（`‧`）排版，突顯頂級旅宿的 Quiet Luxury 靜奢氛圍。
+  4. **快速預訂查詢艙（The Floating Booking Lounge）工藝升級**：白底微光雙層外邊框、20px 圓角、36px 深度柔光陰影、精緻 Segmented Control 雙模式切換 Tab、暖燕麥 1px 微光輸入格、精細金屬拉絲計數器與曜石墨黑流光預訂按鈕。
+  5. **四大承諾與手機端 RWD 深度優化**：升級為細線條極簡奢華卡片，手機端 2x2 輸入格緊湊防溢出，首屏通透無遮擋。
+- **本地驗證**：
+  - `npm run validate:content`（49 排程/23 MDX）全數通過。
+  - `npx eslint src/components/HomeTemplateExperience.tsx`（0 errors / 0 warnings）通過。
+  - `npm run build:local`（160 靜態路由全數編譯成功）。
+
 ### 2026-08-28（GSC 網址群組 LCP 2.8 秒 Core Web Vitals 效能全面優化）
 - **背景**：Google Search Console (GSC) 報出 31 個網址群組 LCP 2.8 秒（需改善，標準 $\le 2.5$ 秒）。
 - **關鍵修正與落地**：

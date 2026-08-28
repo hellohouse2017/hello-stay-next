@@ -20,6 +20,7 @@ import {
   Play,
   Plus,
   ShieldCheck,
+  Sparkles,
   Star,
   TrainFront,
   Users,
@@ -388,12 +389,9 @@ export default function HomeTemplateExperience() {
         {/* Floating Centered Booking Pod */}
         <div className="mockup-hero__container">
           <div className="mockup-hero__intro">
-            <span className="mockup-kicker" style={{ color: "var(--mockup-gold-light)", display: "inline-block", marginBottom: "6px" }}>
-              ✦ 高雄鹽埕駁二・4-36 人全棟私享包棟
-            </span>
             <h1 id="home-hero-title">高雄包棟民宿首選・住進一整棟的質感假期</h1>
             <p className="mockup-hero__sub">
-              4-36 人包棟住宿・每間房皆有獨立衛浴・中島廚房・手動麻將・官方直訂免手續費
+              4-36 人包棟住宿 ‧ 每間房皆有獨立衛浴 ‧ 中島廚房 ‧ 手動麻將 ‧ 官方直訂免手續費
             </p>
           </div>
 
@@ -405,12 +403,19 @@ export default function HomeTemplateExperience() {
               rel={guestCountOutsideRange ? "noopener noreferrer" : undefined}
               aria-label="前往國旅補助試算"
             >
-              <span className="mockup-pod__subsidy-icon" aria-hidden="true">🎁</span>
-              <span className="mockup-pod__subsidy-copy">
-                <strong>國旅補助試算入口</strong>
-                <span>平日先看預估折抵，正式結帳仍以原價</span>
-              </span>
-              <ArrowRight size={17} aria-hidden="true" />
+              <div className="mockup-pod__subsidy-capsule">
+                <span className="mockup-pod__subsidy-tag">
+                  <Sparkles size={13} strokeWidth={2} aria-hidden="true" />
+                  <span>國旅補助試算</span>
+                </span>
+                <span className="mockup-pod__subsidy-text">
+                  平日預估最高折抵 <strong>$8,000–$18,000</strong> ‧ 正式結帳仍以原價
+                </span>
+                <span className="mockup-pod__subsidy-action">
+                  <span>立即試算</span>
+                  <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
+                </span>
+              </div>
             </Link>
 
             {/* Pod Mode Tabs: By Guests vs By Bedrooms */}
