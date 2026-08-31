@@ -11,6 +11,28 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-08-31（FAQ 變更正式收斂與 clean deployment 流程落地）
+- **既有 dirty changes 收尾**：確認 `context.md`、`src/components/FaqExperience.tsx`、`src/styles/luxury.css` 是 2026-08-28 FAQ UI 修復的同一組變更，未發現與其他功能混雜；本次一併採用並建立 focused commit。
+- **語意結構修正**：FAQ 題目改為合法的 `h3 > button` 結構，按鈕內容只使用 phrasing elements，保留題號、題目與 Chevron 的原有視覺排版。
+- **流程防呆**：主站已加入 clean-worktree gate 與 guarded production deploy；後續只可從乾淨 commit 使用 `npm run deploy:production` 部署，禁止從 dirty working tree 直接呼叫 Vercel。
+- **驗證**：完成 content validation、ESLint、production build、Git diff 檢查與 clean-worktree gate 後再交接。
+
+### 2026-08-28（FAQ 常見問題頁面 UI 排版、文字斷行與 QA 對齊修復）
+- **背景與痛點**：
+  1. 頂部速覽指標卡在桌機寬度時，「16:00 進房・11:00 退房」文字斷行不良，出現「房」單字孤立掉至第二行。
+  2. FAQ 手風琴卡片內部題號 `Q1.` 因外層 button 預設置中且與問題標題分行，導致 `Q1.` 懸在上方中央、標題靠左、右側展開按鈕垂直錯位的突兀排版。
+- **關鍵修復與落地**：
+  1. **Hero 指標卡文字與排版優化**：
+     - `進退房時間` 卡片文字調整為 `16:00 入住・11:00 退房`，並於 `.mockup-agr-hero__metric-val` 注入 `white-space: nowrap` 與 `align-items: center`，杜絕任何中英混排斷行單字孤立問題。
+  2. **FAQ 問答卡片 UI/UX 重構升級**：
+     - 將 `Q{index + 1}.` 題號整合至問題標題 `<h3 className="mockup-faq__question">` 內部，以行內精緻黃銅金色粗體（`mockup-faq__num`）緊密相連，配合 `align-items: baseline` 與 `text-align: left`。
+     - `.mockup-faq__summary` 徹底規範為 100% 靠左、透明無外框、垂直置中對齊右側 Chevron 展開按鈕。
+     - 手機端 RWD 深度優化，確保全寬度字級、行距與點擊區域完美協調。
+- **本地驗證**：
+  - `npm run validate:content` 通過。
+  - `npx eslint src/components/FaqExperience.tsx src/app/faq/page.tsx`（0 errors / 0 warnings）通過。
+  - `npm run build:local`（162 靜態路由全數編譯成功）。
+
 ### 2026-08-28（全方位頂層漏斗 ToFu SEO 內容矩陣重構升級與新篇發布）
 - **背景與目標**：為承接高雄下半年大型展演、婚禮迎娶、企業團建、大港開唱與高鐵自由行等高曝光與高客單包棟客群，針對頂層漏斗（ToFu）進行全面翻新與擴充。
 - **關鍵改動與落地**：

@@ -163,7 +163,7 @@ export default function FaqExperience() {
                 </div>
                 <div className="mockup-agr-hero__metric-body">
                   <span className="mockup-agr-hero__metric-label">進退房時間</span>
-                  <span className="mockup-agr-hero__metric-val">16:00 進房・11:00 退房</span>
+                  <span className="mockup-agr-hero__metric-val">16:00 入住・11:00 退房</span>
                 </div>
               </div>
 
@@ -352,32 +352,25 @@ export default function FaqExperience() {
                     id={faq.id}
                     className={`mockup-faq__card ${isOpen ? "is-open" : ""}`}
                   >
-                    <button
-                      type="button"
-                      className="mockup-faq__summary"
-                      onClick={() => toggleFaq(faq.id)}
-                      aria-expanded={isOpen}
-                    >
-                      <div className="mockup-faq__summary-text">
-                        <span
-                          className="mockup-faq__num"
-                          style={{
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            color: "var(--mockup-gold-dark)",
-                            marginRight: "6px",
-                          }}
-                        >
-                          Q{index + 1}.
+                    <h3 className="mockup-faq__question">
+                      <button
+                        type="button"
+                        className="mockup-faq__summary"
+                        onClick={() => toggleFaq(faq.id)}
+                        aria-expanded={isOpen}
+                      >
+                        <span className="mockup-faq__summary-text mockup-faq__summary-text--question">
+                          <span className="mockup-faq__num">Q{index + 1}.</span>
+                          <span className="mockup-faq__question-title">{faq.question}</span>
                         </span>
-                        <span className="mockup-faq__question">{faq.question}</span>
-                      </div>
-                      <ChevronDown
-                        size={18}
-                        className={`mockup-faq__chevron ${isOpen ? "is-open" : ""}`}
-                        aria-hidden="true"
-                      />
-                    </button>
+                        <span
+                          className={`mockup-faq__chevron ${isOpen ? "is-open" : ""}`}
+                          aria-hidden="true"
+                        >
+                          <ChevronDown size={18} />
+                        </span>
+                      </button>
+                    </h3>
 
                     {isOpen && (
                       <div className="mockup-faq__body">
@@ -386,7 +379,7 @@ export default function FaqExperience() {
                           <div className="mockup-faq__highlights">
                             {faq.highlights.map((tag) => (
                               <span key={tag} className="mockup-faq__badge">
-                                <CheckCircle2 size={11} aria-hidden="true" />
+                                <CheckCircle2 size={12} aria-hidden="true" />
                                 {tag}
                               </span>
                             ))}
