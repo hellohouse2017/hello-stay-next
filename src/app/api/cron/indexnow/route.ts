@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { scheduledArticles } from "@/data/scheduled-articles";
 
 const INDEXNOW_KEY = "3f2ee42d161f4223b12db715cc59bf14";
 const HOST = "https://www.hello-stay.com";
