@@ -8,6 +8,8 @@
     "build:local": "npm run validate:content && next build --webpack",
     "start": "next start",
     "lint": "eslint",
+    "check:clean": "node scripts/check-clean-worktree.mjs",
+    "deploy:production": "bash scripts/deploy-production.sh",
     "test:seo-page-health": "npx tsx scripts/test-seo-page-health.ts",
     "test:seo-local-crawl": "npx tsx scripts/verify-local-seo-crawl.ts",
     "test:seo-alert-delivery": "npx tsx scripts/test-seo-alert-delivery.ts",

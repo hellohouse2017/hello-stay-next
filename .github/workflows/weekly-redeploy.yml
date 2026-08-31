@@ -3,6 +3,10 @@ name: Weekly Blog Redeploy
 on:
   workflow_dispatch: # Allow manual trigger
 
+concurrency:
+  group: hello-stay-content-automation
+  cancel-in-progress: false
+
 jobs:
   redeploy:
     runs-on: ubuntu-latest
@@ -13,9 +17,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Verify clean checkout
+        run: npm run check:clean
+
       - name: Trigger redeploy with empty commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git commit --allow-empty -m "chore: weekly redeploy for scheduled blog articles"
           git push
+
+      - name: Verify clean working tree
+        run: npm run check:clean

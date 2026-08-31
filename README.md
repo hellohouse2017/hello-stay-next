@@ -16,6 +16,26 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Task and production workflow
+
+This repository is deployed from Git commits, not from an arbitrary local
+working tree. Before handing off or deploying a change:
+
+```bash
+npm run check:clean
+```
+
+For an authorized production deployment, use the guarded command below. It
+blocks dirty working trees, runs the production build, verifies that the build
+did not create tracked changes, and only then invokes Vercel:
+
+```bash
+npm run deploy:production
+```
+
+Do not run `vercel --prod` directly. Existing dirty files must be classified as
+baseline work and must not be staged or discarded without explicit adoption.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

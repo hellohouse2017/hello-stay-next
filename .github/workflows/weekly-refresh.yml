@@ -6,6 +6,10 @@ on:
 permissions:
   contents: write  # 需要寫入權限才能 push
 
+concurrency:
+  group: hello-stay-content-automation
+  cancel-in-progress: false
+
 jobs:
   weekly-refresh:
     runs-on: ubuntu-latest
@@ -30,6 +34,9 @@ jobs:
       - name: 安裝依賴
         run: npm ci
 
+      - name: 確認 checkout 乾淨
+        run: npm run check:clean
+
       - name: SEO 數據分析（可選）
         run: npx tsx scripts/seo-driven-update.ts || echo "SEO 分析失敗，繼續執行更新"
         env:
@@ -38,3 +45,6 @@ jobs:
 
       - name: 執行每週更新
         run: npx tsx scripts/weekly-refresh.ts
+
+      - name: 確認更新已提交
+        run: npm run check:clean

@@ -6,6 +6,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: hello-stay-content-automation
+  cancel-in-progress: false
+
 jobs:
   monthly-enrich:
     runs-on: ubuntu-latest
@@ -30,5 +34,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+      - name: 確認 checkout 乾淨
+        run: npm run check:clean
+
       - name: 執行每月深度更新
         run: npx tsx scripts/content-enrichment.ts
+
+      - name: 確認更新已提交
+        run: npm run check:clean
