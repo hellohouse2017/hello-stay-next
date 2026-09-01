@@ -29,6 +29,7 @@ import { godin, hellohouse } from "@/data/properties";
 import { homepageFaqItems } from "@/data/homepage-faq";
 import { foodGuideSections, spotGuideSections } from "@/data/local-guides";
 import { reviewStats } from "@/data/reviews-data";
+import { addTaipeiDaysToYmd, formatTaipeiYmd } from "@/lib/taipei-time";
 
 type BookingProperty = "" | "你好哇寓所" | "溝頂民宿" | "雙館包棟";
 
@@ -164,17 +165,8 @@ const localExperiences = [
   },
 ];
 
-function formatDate(date: Date) {
-  const year = date.getFullYear();
-  const month = `${date.getMonth() + 1}`.padStart(2, "0");
-  const day = `${date.getDate()}`.padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
 function addDays(dateString: string, days: number) {
-  const date = new Date(`${dateString}T12:00:00`);
-  date.setDate(date.getDate() + days);
-  return formatDate(date);
+  return addTaipeiDaysToYmd(dateString, days);
 }
 
 function buildBookingHref(params: {
@@ -205,15 +197,11 @@ function Stars({ rating }: { rating: number }) {
 
 export default function HomeTemplateExperience() {
   const tomorrow = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    return formatDate(date);
+    return addTaipeiDaysToYmd(formatTaipeiYmd(), 1);
   }, []);
 
   const dayAfterTomorrow = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 2);
-    return formatDate(date);
+    return addTaipeiDaysToYmd(formatTaipeiYmd(), 2);
   }, []);
 
   const [checkIn, setCheckIn] = useState("");

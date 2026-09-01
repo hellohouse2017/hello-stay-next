@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { formatTaipeiDateTime } from "@/lib/taipei-time";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -317,7 +318,7 @@ export default function SocialDashboard() {
                                     <div style={styles.postHeader}>
                                         <strong>@{post.username}</strong>
                                         <span style={styles.postTime}>
-                                            {new Date(post.timestamp).toLocaleString("zh-TW")}
+                                            {formatTaipeiDateTime(post.timestamp)}
                                         </span>
                                     </div>
                                     <p style={styles.postText}>
@@ -368,7 +369,7 @@ export default function SocialDashboard() {
                                     <div style={styles.postHeader}>
                                         <strong style={{ color: '#e1306c' }}>📷 IG</strong>
                                         <span style={styles.postTime}>
-                                            {new Date(post.timestamp).toLocaleString("zh-TW")}
+                                            {formatTaipeiDateTime(post.timestamp)}
                                         </span>
                                     </div>
                                     <p style={styles.postText}>

@@ -16,6 +16,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { loadEnvConfig } from '@next/env'
 import { scheduledArticles } from '@/data/scheduled-articles'
+import { addTaipeiDaysToYmd, formatTaipeiYmd } from '@/lib/taipei-time'
 
 loadEnvConfig(process.cwd())
 
@@ -50,9 +51,7 @@ interface ArticlePriority {
 }
 
 function getDateStr(daysAgo: number): string {
-  const d = new Date()
-  d.setDate(d.getDate() - daysAgo)
-  return d.toISOString().split('T')[0]
+  return addTaipeiDaysToYmd(formatTaipeiYmd(), -daysAgo)
 }
 
 function loadArticleMetadata(slug: string): { title?: string; description?: string } {

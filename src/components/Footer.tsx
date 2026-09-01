@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { getTaipeiYear } from "@/lib/taipei-time";
 
 export default function Footer() {
     const path = usePathname();
@@ -81,7 +82,7 @@ export default function Footer() {
                 </div>
 
                 <div className="footer-d__bottom">
-                    <span>© {new Date().getFullYear()} Hello Stay. All rights reserved.</span>
+                    <span>© {getTaipeiYear()} Hello Stay. All rights reserved.</span>
                     <span>合法民宿・公共意外責任保險・官方直訂</span>
                 </div>
             </div>

@@ -406,7 +406,8 @@ async function main() {
     }
 
     // Write output
-    const output = `// ── SEO 活動文章（自動生成 ${new Date().toISOString().slice(0, 10)}）──
+    const { formatTaipeiYmd } = await import("../src/lib/taipei-time");
+    const output = `// ── SEO 活動文章（自動生成 ${formatTaipeiYmd()}）──
 // 請將以下內容追加到 scheduled-articles.ts 的 scheduledArticles 陣列中
 
 ${results.map(r => `    ${r}`).join(",\n")}

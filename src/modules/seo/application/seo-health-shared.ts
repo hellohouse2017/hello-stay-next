@@ -8,6 +8,7 @@ import {
     type ISeoSnapshot,
     type SeoTrendReport,
 } from '@/modules/seo/infrastructure/seo-ranking';
+import { addTaipeiDaysToYmd, formatTaipeiYmd } from '@/lib/taipei-time';
 
 export type SeoRankingData = {
     date: string;
@@ -52,9 +53,7 @@ function hasTrendReport(data: Omit<ISeoSnapshot, 'date' | 'createdAt'>): data is
 }
 
 export function getDaysAgoDateString(daysAgo: number): string {
-    const d = new Date();
-    d.setDate(d.getDate() - daysAgo);
-    return d.toISOString().split('T')[0];
+    return addTaipeiDaysToYmd(formatTaipeiYmd(), -daysAgo);
 }
 
 export async function buildSeoRankingSection<TRankingData extends Omit<ISeoSnapshot, 'date' | 'createdAt'>>(options: BuildSeoRankingSectionOptions<TRankingData>): Promise<BuildSeoRankingSectionResult<TRankingData>> {

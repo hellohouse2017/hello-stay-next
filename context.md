@@ -11,6 +11,12 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-09-01（全工作區台灣時區統一與訂房付款通知流程）
+- 主站所有對外顯示與 SEO 日期範圍計算統一以 `Asia/Taipei` 為牆鐘時區；日期／時間 helper、社群後台、首頁快捷查房、GSC／GA4 報表與排程腳本不再依賴執行環境的 local timezone。
+- 訂房核心保留 UTC ISO timestamp 作為儲存與絕對時間計算，所有客戶、Telegram、Email、管理後台及訂單期限顯示固定轉換為台灣時間。
+- 完成簽約頁補上訂單編號、付款期限、付款連結、Email 投遞狀態、我的訂單找回方式與複製成功提示；付款回報後，Telegram「確認收款」會將訂單轉為 `paid`，寄送付款確認信給客人並 CC `hellohouse2017@gmail.com`，且具冪等、防重寄、失敗記錄與後台重寄入口。
+- 付款回報 API 改由後端嚴格驗證房價加 NT$5,000 押金的應收總額，避免信任前端任意金額；正式 Email、production MongoDB、webhook 與部署本次均未執行。
+
 ### 2026-08-31（FAQ 變更正式收斂與 clean deployment 流程落地）
 - **既有 dirty changes 收尾**：確認 `context.md`、`src/components/FaqExperience.tsx`、`src/styles/luxury.css` 是 2026-08-28 FAQ UI 修復的同一組變更，未發現與其他功能混雜；本次一併採用並建立 focused commit。
 - **語意結構修正**：FAQ 題目改為合法的 `h3 > button` 結構，按鈕內容只使用 phrasing elements，保留題號、題目與 Chevron 的原有視覺排版。

@@ -16,6 +16,7 @@ import {
     buildSeoQueryPageOpportunities,
     type SeoQueryPageOpportunity,
 } from '../domain/seo-query-ownership';
+import { addTaipeiDaysToYmd, formatTaipeiYmd } from '@/lib/taipei-time';
 
 // ── 目標關鍵字（老闆最在意的排名）──────────────────
 
@@ -636,9 +637,7 @@ export async function findLatestGSCDate(pageFilter?: string): Promise<{ date: st
 
     // 從 2 天前開始往回找，最多找到 7 天前
     for (let daysAgo = 2; daysAgo <= 7; daysAgo++) {
-        const d = new Date();
-        d.setDate(d.getDate() - daysAgo);
-        const date = d.toISOString().split('T')[0];
+        const date = addDays(formatTaipeiYmd(), -daysAgo);
 
         try {
             const requestBody: Record<string, unknown> = { startDate: date, endDate: date, dimensions: [] };
@@ -697,7 +696,7 @@ export async function fetchGSCData(targetDate?: string, options?: { pageFilter?:
 
     try {
         const sc = google.searchconsole({ version: 'v1', auth });
-        const latestDate = targetDate || (() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; })();
+        const latestDate = targetDate || addTaipeiDaysToYmd(formatTaipeiYmd(), -3);
         const pageFilter = options?.pageFilter;
 
         const current7dRange = buildWindow(latestDate, 7, 0);
@@ -1044,13 +1043,8 @@ export async function runSeoCheck(config: {
 
         await snapshotRepository.save(date, snapshotData);
 
-        const yesterday = new Date(date);
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayDate = yesterday.toISOString().split('T')[0];
-
-        const lastWeek = new Date(date);
-        lastWeek.setDate(lastWeek.getDate() - 7);
-        const lastWeekDate = lastWeek.toISOString().split('T')[0];
+        const yesterdayDate = addTaipeiDaysToYmd(date, -1);
+        const lastWeekDate = addTaipeiDaysToYmd(date, -7);
 
         const todaySnapshot = await snapshotRepository.get(date);
         const yesterdaySnapshot = await snapshotRepository.get(yesterdayDate);
@@ -1123,7 +1117,7 @@ export async function fetchBlogTraffic(deps?: {
         const titleMap = await (deps?.titleLookup || defaultBlogTitleLookup).getTitleMap();
 
         // 查近 7 天的 /blog/ 頁面數據
-        const endDate = deps?.endDate || (() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; })();
+        const endDate = deps?.endDate || addTaipeiDaysToYmd(formatTaipeiYmd(), -3);
         const startDate = addDays(endDate, -6);
 
         const pr = await sc.searchanalytics.query({

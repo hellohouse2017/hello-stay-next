@@ -21,6 +21,7 @@ import { defaultSeoRouteRuntime } from '@/modules/seo/application/seo-route-runt
 import { GA4_MEASUREMENT_ID } from '@/lib/analytics-config';
 import { buildBookingSeoFunnelSection, fetchBookingSeoFunnel } from '@/modules/seo/infrastructure/seo-booking-funnel';
 import { buildCoreWebVitalsSection, fetchCoreWebVitals } from '@/modules/seo/infrastructure/seo-pagespeed';
+import { addTaipeiDaysToYmd, formatTaipeiDateTime, formatTaipeiYmd } from '@/lib/taipei-time';
 
 export const maxDuration = 60;
 
@@ -32,9 +33,7 @@ const GOOGLE_OAUTH_REFRESH_TOKEN_HEADER = 'x-seo-google-oauth-refresh-token';
 const GA4_AI_TRAFFIC_NOTE = 'Google AI Overviews / AI Mode 目前仍算在 Organic Search；GA4 可單獨切出的 AI 流量是可辨識的 AI Assistants referrer。';
 
 function offsetDate(date: string, days: number): string {
-    const value = new Date(`${date}T00:00:00Z`);
-    value.setUTCDate(value.getUTCDate() + days);
-    return value.toISOString().slice(0, 10);
+    return addTaipeiDaysToYmd(date, days);
 }
 
 function resolveReportCadence(request: Request, now = new Date()) {
@@ -115,11 +114,11 @@ export async function GET(request: Request) {
         const ga4OauthRefreshToken = request.headers.get(GOOGLE_OAUTH_REFRESH_TOKEN_HEADER) || process.env.GOOGLE_OAUTH_REFRESH_TOKEN || '';
         const ga4PropertyIdConfigured = !!ga4PropertyId;
         const ga4OauthConfigured = !!(ga4OauthClientId && ga4OauthClientSecret && ga4OauthRefreshToken);
-        const ga4Date = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+        const ga4Date = addTaipeiDaysToYmd(formatTaipeiYmd(), -2);
         const ga4Range7d = { startDate: offsetDate(ga4Date, -6), endDate: ga4Date };
         const ga4Range28d = { startDate: offsetDate(ga4Date, -27), endDate: ga4Date };
 
-        const now = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+        const now = formatTaipeiDateTime(new Date());
 
         let report = buildMainSeoHealthIntro({
             timestamp: now,

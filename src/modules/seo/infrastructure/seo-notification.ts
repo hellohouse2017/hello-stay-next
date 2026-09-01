@@ -54,7 +54,18 @@ async function sendTelegramMessageViaConfig(
 
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
     const chunks = splitTelegramMessage(text);
-    const reportId = `seo-${new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14)}`;
+    const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Taipei",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+    }).formatToParts(new Date());
+    const reportTimestamp = parts.filter((part) => part.type !== "literal").map((part) => part.value).join("");
+    const reportId = `seo-${reportTimestamp}`;
     try {
         for (const [index, chunk] of chunks.entries()) {
             const header = `🆔 ${reportId} · ${index + 1}/${chunks.length}\n`;

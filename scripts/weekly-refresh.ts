@@ -5,11 +5,12 @@ import path from 'path'
 import { execSync } from 'child_process'
 import { buildWeeklyBlocks, replaceMarkedBlock, updateDateModified, WEEKLY_MARKER } from './content-block-builder'
 import type { SeoPriorityEntry } from './content-facts'
+import { formatTaipeiMonthLabel, formatTaipeiYmd } from '../src/lib/taipei-time'
 
 const articlesDir = path.join(process.cwd(), 'src/content/articles')
 const priorityPath = path.join(process.cwd(), 'scripts/seo-priority-list.json')
-const today = new Date().toISOString().slice(0, 10)
-const currentMonth = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })
+const today = formatTaipeiYmd()
+const currentMonth = formatTaipeiMonthLabel()
 
 function shuffle<T>(items: T[]): T[] {
   return [...items].sort(() => Math.random() - 0.5)

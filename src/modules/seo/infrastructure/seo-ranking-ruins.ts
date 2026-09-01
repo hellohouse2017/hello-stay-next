@@ -11,6 +11,7 @@ import {
     defaultSearchConsoleAuthProvider,
 } from './seo-gsc-runtime';
 import { createMongoSeoSnapshotRepository } from './seo-snapshot-repository';
+import { addTaipeiDaysToYmd, formatTaipeiYmd } from '@/lib/taipei-time';
 
 // ── 廢墟 Bar 目標關鍵字 ──────────────────────────
 export const RUINS_TARGET_KEYWORDS = [
@@ -88,8 +89,8 @@ export async function fetchRuinsBlogTraffic(): Promise<{
     try {
         const sc = google.searchconsole({ version: 'v1', auth });
 
-        const endDate = (() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; })();
-        const startDate = (() => { const d = new Date(); d.setDate(d.getDate() - 9); return d.toISOString().split('T')[0]; })();
+        const endDate = addTaipeiDaysToYmd(formatTaipeiYmd(), -3);
+        const startDate = addTaipeiDaysToYmd(formatTaipeiYmd(), -9);
 
         const pr = await sc.searchanalytics.query({
             siteUrl: DEFAULT_GSC_SITE_URL,
