@@ -627,6 +627,9 @@ const thematicLinksHub = {
         { label: "家族旅遊三代同堂慢住推薦", href: "/blog/kaohsiung-family-reunion", badge: "家族" },
         { label: "朋友聚會與團體出遊全攻略", href: "/blog/kaohsiung-group-trip", badge: "朋友" },
         { label: "跨年過年節慶包棟住宿推薦", href: "/blog/kaohsiung-nye-stay", badge: "節慶" },
+        { label: "2027 新樂街過年市集攻略", href: "/blog/kaohsiung-cny-xinle-street-market", badge: "春節" },
+        { label: "2026 大港開唱全攻略推薦", href: "/blog/megaport-festival-guide", badge: "音樂祭" },
+        { label: "Taiwan PASS 交通省錢攻略", href: "/blog/taiwan-pass-kaohsiung-travel", badge: "交通" },
       ],
     },
     {
