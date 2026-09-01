@@ -4,13 +4,13 @@ import TrafficExperience from "@/components/TrafficExperience";
 import { getAlternateLanguageMap } from "@/i18n/config";
 
 export const metadata: Metadata = {
-  title: "高雄鹽埕包棟交通停車指南｜自駕停車、捷運高鐵、叫車指引 - Hello Stay",
+  title: "【2026/2027高雄鹽埕交通與停車指南】高鐵轉捷運20分直達・周邊推薦停車場懶人包・巷口下車SOP",
   description:
-    "Hello Stay 高雄鹽埕包棟民宿交通停車整理。自駕停車推薦、大公路 70 巷口下車 SOP、捷運鹽埕埔站 2 號出口步行 5 分鐘、高鐵輕軌轉乘與叫車定位，手機一目瞭然。",
+    "2026/2027 最新 Hello Stay 交通與停車指南：高鐵左營站搭捷運直達「鹽埕埔站 2 號出口」步行 5 分鐘！自駕開車整理大公路 70 巷口下行李 SOP、室內地下防雨與公有立體車塔（含 EV 充電樁）等 6 大推薦停車場一鍵導航與叫車定位，出發前必看。",
   alternates: { canonical: "https://www.hello-stay.com/traffic", languages: getAlternateLanguageMap("/traffic") },
   openGraph: {
-    title: "Hello Stay 怎麼去？高雄包棟交通與停車指引",
-    description: "自駕停車推薦、大公路 70 巷口下車 SOP、捷運高鐵轉乘與叫車定位，Hello Stay 交通停車這頁一次看懂。",
+    title: "【2026/2027 高雄鹽埕交通與停車指南】高鐵轉捷運 20 分直達・周邊推薦停車場懶人包",
+    description: "自駕停車推薦、大公路 70 巷口下行李 SOP、捷運鹽埕埔站步行 5 分鐘與叫車定位，Hello Stay 官方交通指南一次看懂。",
     url: "https://www.hello-stay.com/traffic",
     images: [
       {

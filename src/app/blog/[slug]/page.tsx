@@ -69,8 +69,8 @@ function getArticleSeoIntent(slug: string) {
 function getArticleHeroCta(slug: string) {
     if (slug === "taiwan-travel-subsidy-guide") {
         const cta: { title: string; body: string; actions: ArticleHeroCtaAction[] } = {
-            title: "國旅補助立即試算",
-            body: "平日連住兩晚最高折抵 2,000 元；壽星抽中生日券可疊加至最高 3,200 元。輸入日期與人數，直接查 Hello Stay 官方房價。",
+            title: "2026 國旅補助 × 高雄包棟立即試算",
+            body: "平日（週日至週四）連住兩晚每房最高折抵 2,000 元；壽星生日券可疊加至 3,200 元；Taiwan PASS 提供乘車與住宿雙省。Hello Stay 堅持常態透明房價、現場實名核銷，絕不先漲價後折抵！",
             actions: [
                 {
                     href: "/book?guestCount=10",

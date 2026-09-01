@@ -11,6 +11,30 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-09-02（GSC CTR & AEO/GEO 全站深度優化與多語系 AI 知識庫同步）
+- **背景與目標**：針對 GSC 搜尋成效數據中高曝光低點擊（Low CTR）之高含金量頁面、26 篇已發布 MDX 專題文章與多語系 LLM 知識庫（`llms.txt` / `llms-full.txt` / `llms-en.txt` / `llms-ja.txt` / `llms-ko.txt`），全面實施 SERP CTR 點擊率升級、AEO/GEO 快速事實摘要區塊、結構化 FAQ 補強與多語系 AI 知識庫同步。
+- **關鍵改動與落地**：
+  1. **R1: SERP CTR 點擊率優化（高曝光低 CTR 頁面改版）**：
+     - `/explore/food`（鹽埕美食地圖）：更新標題與描述，植入「外帶老店回民宿中島聚餐」高 CTR 誘因，更新 OpenGraph 與 JSON-LD `dateModified: 2026-09-02`。
+     - `/blog/taiwan-travel-subsidy-guide`（2026 國旅補助）：升級標題為《2026 國旅補助全攻略｜自由行住宿每房 1,000 元＋生日券 1,200 元申領教學與平日包棟透明比價指南》，加強高鐵/客庄加碼與避坑指南。
+     - `kaohsiung-arena-accommodation`（巨蛋住宿）：優化 SERP 標題與描述，強調紅線 18 分鐘直達鹽埕埔站，擴充 4 組高意圖 FAQ。
+     - `/traffic`（交通與停車指南）：加入高鐵直達 20 分鐘、大公路 70 巷落客 SOP 與周邊 6 間停車場/充電樁規格。
+  2. **R2: 26 篇 MDX 文章 AEO/GEO 快速事實摘要與結構化 FAQ 升級**：
+     - 全站 26 篇已發布 MDX 文章全數置入 `> ### 📌 【AI / 讀者快速事實摘要】...` 區塊，提供 LLM / AI Overviews / 讀者秒查標準事實。
+     - 補齊全站所有缺乏 FAQ 之 MDX 文章，全 26 篇皆具備完整 4-5 組高意圖 `faq: [{ q, a }]` Frontmatter，由 `ArticleSchema.tsx` 自動生成合規 `FAQPage` 結構化資料。
+     - 於各 MDX 專題中嵌入精準 Markdown 對比表格（舞台散場步程、家族分房、廚房設備、夜生活模式等），大幅提升 GEO 引用與讀者停留時間。
+     - 全數更新 `dateModified: "2026-09-02"`。
+  3. **R3: 多語系 LLM 知識庫擴充與 0 幻覺校正 (`src/lib/llms.ts` & `src/data/llms-faq.ts`)**：
+     - 修正 `LICENSE_BY_SLUG.hellohouse` 為合法「高雄市民宿 131 號」（杜絕 131-1 號）。
+     - 擴充繁中 `llmsFaqZh` 至 20 題，英文 `llmsFaqEn` 至 12 題，日文 `llmsFaqJa` 至 11 題，韓文 `llmsFaqKo` 至 11 題。
+     - 在 `src/lib/llms.ts` 中實作多語系 Property Summaries (`getLlmsPropertySummariesEn/Ja/Ko`)，並加入 Amenities & Facilities、Nearby Transport、Booking Tips、Safety & Legality 與 Sitemap 等核心區塊。
+- **全站品質與合規驗證 (Verification Gate)**：
+  - `npm run validate:content`（50 排程 / 3 核准排程 / 26 MDX）100% 通過。
+  - `npm run test:seo-page-health`（SEO 頁面健康度）測試通過。
+  - `npm run test:seo-route-boundaries`（SEO 路由邊界）測試通過。
+  - `npm run build:local`（164 靜態路由全數編譯成功，包含 5 份 llms.txt 靜態路由）。
+  - 100% 符合零幻覺事實守則（你好哇 131 號、溝頂 163 號、你好哇 8-26人、溝頂 4-12人、雙館 27-36人、大智若愚規劃中不開放、23:00 社區安寧、無電梯誠實揭露、無未經證實價格）。
+
 ### 2026-09-01（2027 高雄新樂街過年市集旗艦專題與春節包棟 SEO 內容矩陣）
 - **背景與目標**：依據 GSC 搜尋意圖與高雄農曆新年在地盛事，鎖定「新樂街過年市集」、「高雄過年市集」、「鹽埕年街」、「春節高雄包棟」、「除夕圍爐民宿」等高含金量搜尋詞，打造旗艦級導流內容與春節延伸主題矩陣。
 - **關鍵改動與落地**：
