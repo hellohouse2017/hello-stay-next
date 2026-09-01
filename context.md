@@ -11,6 +11,33 @@ Hello Stay 民宿的官方網站前台。
 
 ## 最近變更
 
+### 2026-09-01（2027 高雄新樂街過年市集旗艦專題與春節包棟 SEO 內容矩陣）
+- **背景與目標**：依據 GSC 搜尋意圖與高雄農曆新年在地盛事，鎖定「新樂街過年市集」、「高雄過年市集」、「鹽埕年街」、「春節高雄包棟」、「除夕圍爐民宿」等高含金量搜尋詞，打造旗艦級導流內容與春節延伸主題矩陣。
+- **關鍵改動與落地**：
+  1. **全新旗艦級 MDX 專題文章 (`src/content/articles/kaohsiung-cny-xinle-street-market.mdx`)**：
+     - 發布《2027 高雄新樂街過年市集（年街）全攻略｜除夕至初三封街營業時間、奶茶一條街排隊美食地圖與步行 3 分鐘鹽埕包棟推薦》。
+     - 完整涵蓋 2027 年街時程（2027/02/05 除夕至 2027/02/08 初三，每日 15:00 至翌日 01:00）、封街管制路段（大勇路至七賢三路之間的新樂街）、捷運鹽埕埔站直達交通。
+     - 整合奶茶一條街（樺達奶茶、雙妃奶茶、研究茶）與傳統鹽埕小吃（鴨肉珍、阿綿麻糬、老蔡虱目魚粥）。
+     - 切中春節鹽埕塞車與停車一位難求痛點，自然橋接 Hello Stay 地理優勢（步行 3 分鐘進館放行李、1F 中島廚房年菜圍爐、手動麻將守歲、每房獨立衛浴）。
+     - 具備完整 SEO Frontmatter（Title、Description、Canonical、Tags、FAQ 最少 4 組與 FAQPage Schema 結構化資料）。
+  2. **升級春節延伸內容矩陣 (Family Reunion, Kitchen, Mahjong)**：
+     - `kaohsiung-family-reunion.mdx`：升級為《2027 高雄家族旅遊與春節過年包棟推薦｜三代同堂除夕圍爐、手動麻將守歲與新樂街年街散步住宿指南》，建立新樂街年街走春行程與中島圍爐內鏈。
+     - `kaohsiung-kitchen-bnb.mdx`：加入春節除夕自煮圍爐火鍋、大宴小酌與步行 3 分鐘逛新樂街過年市集夜市宵夜之雙向內鏈。
+     - `kaohsiung-mahjong-stay.mdx`：加入過年守歲手動麻將與初一至初三散步逛新樂街年街之情境橋接，並嚴格提示 23:00 後降低音量社區安寧規範。
+  3. **系統註冊與 Content Bridge 轉換卡**：
+     - `src/app/blog/[slug]/page.tsx`：註冊 `ARTICLE_CONTENT_BRIDGES["kaohsiung-cny-xinle-street-market"]`，精準分流推薦你好哇寓所（8-26人）、溝頂民宿（4-12人）與雙館包棟（27-36人），直接導流 `/hellohouse`、`/godin`、`/compare` 與 `/book`。
+     - `src/app/blog/page.tsx`：將新文章歸入 `bucket-scenarios`（情境與活動包棟）分類與配置封面圖選擇邏輯。
+     - `src/components/RelatedArticles.tsx`：加入新文章之標籤關聯推薦，強化站內雙向主題集群（Topic Cluster）。
+  4. **全站事實守則合規 (Factual Guardrails)**：
+     - 嚴格落實合法民宿登記（你好哇 131 號、溝頂 163 號）。
+     - 人數容量精確對齊（你好哇 8–26 人、溝頂 4–12 人、雙館 27–36 人）。
+     - 誠實揭露無電梯爬梯現況、23:00 夜間社區安寧守則，無任何未經證實之硬編碼價格/折扣比例。
+- **本地驗證**：
+  - `npm run validate:content`（50 排程 / 3 核准排程 / 26 MDX）100% 通過。
+  - `npm run test:seo-page-health` 與 `npm run test:seo-route-boundaries` 測試通過。
+  - `npm run lint`（0 errors / 0 warnings）通過。
+  - `npm run build:local`（164 靜態路由全數編譯成功）。
+
 ### 2026-09-01（全工作區台灣時區統一與訂房付款通知流程）
 - 主站所有對外顯示與 SEO 日期範圍計算統一以 `Asia/Taipei` 為牆鐘時區；日期／時間 helper、社群後台、首頁快捷查房、GSC／GA4 報表與排程腳本不再依賴執行環境的 local timezone。
 - 訂房核心保留 UTC ISO timestamp 作為儲存與絕對時間計算，所有客戶、Telegram、Email、管理後台及訂單期限顯示固定轉換為台灣時間。
