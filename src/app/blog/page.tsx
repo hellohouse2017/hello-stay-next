@@ -51,6 +51,7 @@ const buckets: ArticleBucket[] = [
     title: "依旅程找文章",
     intro: "如果你是在找這次旅程到底該怎麼安排 從情境入口切入會最快",
     articleSlugs: [
+      "kaohsiung-cny-xinle-street-market",
       "kaohsiung-concert-stay-group",
       "kaohsiung-family-reunion",
       "kaohsiung-offsite-teambuilding",
@@ -677,6 +678,9 @@ const pageStyles = String.raw`
 `;
 
 function pickImage(article: ArticleSummary) {
+  if (article.slug === "kaohsiung-cny-xinle-street-market") {
+    return { src: "/images/hellohouse/party-cover.webp", alt: article.title };
+  }
   if (article.slug === "kaohsiung-offsite-teambuilding") {
     return { src: "/images/hellohouse/business-cover.webp", alt: article.title };
   }

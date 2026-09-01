@@ -9,6 +9,7 @@ interface ArticleInfo {
 }
 
 const allArticles: ArticleInfo[] = [
+    { slug: "kaohsiung-cny-xinle-street-market", title: "新樂街過年市集全攻略", emoji: "🧧", tags: ["新樂街", "過年市集", "高雄過年", "春節包棟", "鹽埕美食", "駁二住宿"] },
     { slug: "yancheng-breakfast-guide", title: "鹽埕早餐怎麼吃", emoji: "", tags: ["鹽埕", "早餐"] },
     { slug: "yancheng-local-meals-guide", title: "鹽埕午餐晚餐吃什麼", emoji: "", tags: ["鹽埕", "午餐"] },
     { slug: "yancheng-snacks-guide", title: "鹽埕小吃怎麼選", emoji: "", tags: ["鹽埕", "小吃"] },

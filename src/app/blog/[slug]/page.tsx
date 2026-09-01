@@ -114,6 +114,17 @@ function getArticleHeroCta(slug: string) {
 }
 
 const ARTICLE_CONTENT_BRIDGES: Record<string, ArticleBridge> = {
+    "kaohsiung-cny-xinle-street-market": {
+        id: "cny-xinle-market-stay-choice",
+        title: "2027 高雄新樂街過年市集包棟選館建議",
+        body: "新樂年街步行 3 分鐘！4-12 人選五層獨棟溝頂民宿（4F 手動麻將與交誼空間），8-26 人選你好哇寓所（1F 中島廚房煮年夜火鍋、1F 手動麻將），27-36 人可訂雙館合訂方案。春節連假熱門，建議提早查房預約。",
+        links: [
+            { href: "/hellohouse", label: "8–26 人看你好哇寓所 (1F中島圍爐)", seoIntent: "feature" },
+            { href: "/godin", label: "4–12 人看溝頂民宿 (4F手動麻將)", seoIntent: "feature" },
+            { href: "/compare", label: "27–36 人看雙館包棟比較", seoIntent: "feature" },
+            { href: "/book?guestCount=16", label: "輸入 16 人查春節包棟空房", partySize: 16, seoIntent: "feature", ctaType: "booking" },
+        ],
+    },
     "kaohsiung-3day-seasonal": {
         id: "three-day-headcount",
         title: "依同行人數選住宿",
